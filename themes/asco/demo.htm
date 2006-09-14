@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+    <title>[title]</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" /><opt>
+    [CSS]</opt><opt>
+    [JS]</opt>
+</head>
+<body>
+    <div class="page">
+        <div class="menu">
+            <ul class="firstmenu">
+                <li><a href="http://www.ascodocpsy.org/sommaire.php3" title="Accueil du site">Ascodocpsy.org</a></li>
+                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=711" title="Contacter l'équipe de coordination du GIP Ascodocpsy">Contact</a></li>
+            </ul>
+    
+            <ul class="menu">
+                <li>Base documentaire
+                    <ul>
+                        <li><a href="/">Accueil démo</a></li>
+                        <li><a href="/base/searchform">Recherche</a></li>
+                        <if test="User::hasAccess('Edit,Admin')">
+                            <li><a href="/base/showCart">Votre sélection</a></li>
+                            <li><a href="/base/new">Nouvelle notice</a></li>
+                            <li><a href="/base/import">Import de notices</a></li>
+                        </if>
+                    </ul>
+                </li>
+                <if test="User::hasAccess('Admin')">
+                    <li>Administrateurs
+                        <ul>
+                            <li><a href="/ConfigModule/">Configuration</a></li>
+                            <li><a href="/TaskManager/">Gestionnaire de tâches</a></li>
+                            <li><a href="/changes.txt">Liste des changements</a></li>
+                        </ul>
+                    </li>
+                </if>
+            </ul>
+        </div>
+        <div class="contents">
+        <img src="/styles/asco/logo_web.jpeg" />
+/*        
+        <p>test routing</p>
+        <li>/module/action -> href="/module/action"
+        <li>/module/action/ -> href="/module/action/"
+        <li>/module -> href="/module"
+        <li>/module/ -> href="/module/"
+        <li>action -> href="action"
+        <li>action/ -> href="action/"
+        <li> -> href=""
+        <li>/ -> href="/"
+
+        <li> -> href=""
+        <li>/ -> href="/"
+        <li>/import -> href="/import"
+        <li>/import/ -> href="/import/"
+        <li>/panier -> href="/panier"
+        <li>/panier/ -> href="/panier/"
+        <li>/bidule/action -> href="/bidule/action"
+        <li>/bidule/action/ -> href="/bidule/action/"
+
+        <p>fin test routing</p>
+*/        [contents]
+        </div>
+    </div>
+</body>
+</html>

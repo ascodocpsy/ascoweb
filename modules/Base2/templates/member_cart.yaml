@@ -1,0 +1,131 @@
+contents:
+  - [text]
+    tag: h1
+    contents: Contenu de votre panier - Accès membre du GIP
+  - [form]
+    action: '/base/exportCart'
+    method: get
+    contents:
+      - [text]
+        tag: p
+        contents: >
+            Vous pouvez afficher, exporter ou envoyer par e-mail le contenu de 
+            votre panier.
+            Pour cela, choisissez parmi les options suivantes puis cliquez sur
+            le bouton 'Go !'.
+      - [text]
+        tag: p
+        contents: >
+            Vous pouvez également supprimer certaines notices de votre panier en 
+            les cochant puis en cliquant sur le bouton 'supprimer les notices du 
+            panier' qui figure en bas de page.
+      - [text]
+        tag: p
+        contents: >
+            Si vous souhaitez vider complètement votre panier, 
+            <a href="/base/clearCart">cliquez ici</a>.
+      - [opt]
+        contents:
+          - [text]
+            tag: p
+            contents: '[error]'
+            class: error
+      - [fieldset]
+        title: Formats disponibles
+        contents:
+          - [loop]
+            on: array($formats)
+            order: asc
+            contents:
+              - [radio]
+                name: format
+                value: '[array.key]'
+                title: '[array.title]'
+                tag: br/
+      - [fieldset]
+        title: 'Export/envoi'
+        contents:
+          - [button]
+            action: submit
+            title: 'Go !'
+            style: 'float: right;'
+          - [div]
+            contents:
+              - [radio]
+                name: cmd
+                title: Exporter vers un fichier
+                value: export
+                onclick: document.getElementById('mail').style.display='none'
+                checked: checked
+          - [div]
+            contents:
+              - [radio]
+                name: cmd
+                title: Afficher à l'écran
+                value: show
+                onclick: document.getElementById('mail').style.display='none'
+          - [div]
+            contents:
+              - [radio]
+                name: cmd
+                title: Envoyer par e-mail
+                value: mail
+                onclick: document.getElementById('mail').style.display=''
+              - [div]
+                name: mail
+                style: 'display: none; margin: 1em 0 0 3em;'
+                contents:
+                  - [div]
+                    contents:
+                      - [input]
+                        name: to
+                        title: 'Destinataire :'
+                        value: ''
+                        style: 'width: 20em;'
+                  - [div]
+                    contents:
+                      - [input]
+                        name: subject
+                        title: 'Sujet :'
+                        value: 'Notices Ascodocpsy'
+                        style: 'width: 20em;'
+                  - [div]
+                    contents:
+                      - [textarea]
+                        name: body
+                        title: 'Message :'
+                        value: 'Les notices sélectionnées figurent dans le document joint'
+                        style: 'width: 20em;'
+  - [form]
+    action: '/base/removeFromCart'
+    method: post
+    contents:
+      - [ul]
+        class: shortlist
+        contents:
+          - [loop]
+            on: bis($selection)
+            max: 100
+            order: desc
+            contents:
+              - [text]
+                class: record
+                tag: li
+                contents:
+                  - [check]
+                    name: art
+                    value: '[REF]'
+                  - [text]
+                    contents: '<a class="fullrecord" href="/base/show?ref=[REF]" title="Voir la notice complète"><span>Voir la notice complète</span></a>'
+                  - [text]
+                    contents: '<a class="loadrecord" href="/base/load?ref=[REF]" title="Modifier la notice"><span>Modifier la notice</span></a>'
+                  - [text]
+                    contents: '[template]'
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            name: btnrem
+            action: submit
+            title: Supprimer les notices du panier
+            class: submit

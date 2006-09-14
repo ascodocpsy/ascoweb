@@ -1,0 +1,46 @@
+contents:
+  - [if]
+    test:"User::hasAccess('AdminBase')"
+    contents:
+      - [text]
+        tag: h1
+        contents: Base documentaire - Visualisation - Accès administrateur
+  - [else]
+    contents:
+      - [text]
+        tag: h1
+        contents: Base documentaire - Visualisation - Accès membre du GIP
+  - [text]
+    tag: p
+    contents: 'Equation : [equation]'
+  - [form]
+    action: '/base/addToCart'
+    method: post
+    contents:
+      - [ul]
+        class: fulllist
+        contents:
+          - [loop]
+            on: bis($selection)
+            max: 300
+            order: desc
+            contents:
+              - [text]
+                class: record
+                tag: li
+                contents:
+                  - [hidden]
+                    name: art
+                    value: '[REF]'
+                  - [text]
+                    contents: '<a class="loadrecord" href="/base/load?ref=[REF]" title="Modifier la notice"><span>Modifier la notice</span></a>'
+                  - [text]
+                    contents: '[template]'
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            name: btnadd
+            action: submit
+            title: Ajouter la notice au panier
+            class: submit

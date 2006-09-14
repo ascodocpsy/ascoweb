@@ -1,0 +1,115 @@
+contents:
+  - [if]
+    test:"User::hasAccess('AdminBase')"
+    contents:
+      - [text]
+        tag: h1
+        contents: Base documentaire - Recherche - Accès administrateur
+  - [else]
+    contents:
+      - [text]
+        tag: h1
+        contents: Base documentaire - Recherche - Accès membre du GIP
+  - [form]
+    action: '/base/search'
+    class: search
+    contents:
+      - [div]
+        contents:
+          - [input]
+            name: Mots
+            title: Recherche tous champs
+      - [div]
+        contents:
+          - [input]
+            name: MotCle
+            title: Descripteur
+      - [div]
+        contents:
+          - [input]
+            name: Titres
+            title: Titre
+      - [div]
+        contents:
+          - [input]
+            name: Aut
+            title: Auteur
+      - [div]
+        contents:
+          - [input]
+            name: Nomp
+            title: Nom propre
+      - [div]
+        contents:
+          - [input]
+            name: Resu
+            title: Résumé
+      - [div]
+        contents:
+          - [checklist]
+            name: Dates
+            table: date
+            title: Date du document
+      - [div]
+        contents:
+          - [checklist]
+            name: Type
+            table: type
+            title: Type de document
+      - [div]
+        contents:
+          - [input]
+            name: Rev
+            title: Titre du périodique
+      - [div]
+        contents:
+          - [input]
+            name: Edit
+            title: Editeur
+      - [div]
+        contents:
+          - [input]
+            name: Col
+            title: Collection
+      - [div]
+        contents:
+          - [input]
+            name: IsbnIssn
+            title: ISBN, ISSN
+      - [div]
+        contents:
+          - [input]
+            name: Numeros
+            title: Numéro (du périodique, du congrès, du texte officiel)
+      - [div]
+        contents:
+          - [checklist]
+            name: NatText
+            table: nattext
+            title: Nature du texte officiel
+      - [div]
+        contents:
+          - [input]
+            name: DateText
+            title: Date du texte officiel
+          - [text]
+            tag: span
+            contents: 'Format : AAAA-MM-JJ'
+            class: exemple
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            action: submit
+            title: Rechercher
+            class: submit
+  - [form]
+    class: reset
+    contents:
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            action: submit
+            title: Effacer tout
+            class: reset

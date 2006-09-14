@@ -1,0 +1,116 @@
+contents:
+  - [fieldset]
+    title: Nature du texte officiel *
+    class: obl
+    contents:
+      - [radiolist]
+        name: NatText
+        table: nattext.txt
+  - [fieldset]
+    title: Titres du document
+    contents:
+      - [div]
+        contents:
+          - [textarea]
+            title: Titre *
+            name: Tit
+            class: fullwidth autoheight obl
+      - [div]
+        contents:
+          - [textarea]
+            title: Titre de l'annexe
+            name: Annexe
+            class: fullwidth autoheight
+  - [fieldset]
+    title: Dates
+    contents:
+      - [div]
+        contents:
+          - [input]
+            title: Date du texte officiel *
+            name: DateText
+            class: fullwidth obl
+      - [div]
+        contents:
+          - [input]
+            title: Date de publication du texte officiel *
+            name: DatePub
+            class: fullwidth obl
+      - [div]
+        contents:
+          - [input]
+            title: Date de fin de validité du texte officiel
+            name: DateVali
+            class: fullwidth
+  - [fieldset]
+    title : Périodique
+    contents:
+      - [div]
+        contents:
+          - [textarea]
+            title : Titre du périodique *
+            name: Rev
+            class: fullwidth autoheight obl
+      - [div]
+        contents:
+          - [input]
+            title : Numéro *
+            name: Num
+            class: fullwidth obl
+  - [fieldset]
+    title : Résumé
+    contents:
+      - [textarea]
+        name: Resu
+        class: fullwidth autoheight
+  - [fieldset]
+    title: Indexation
+    contents:
+      - [div]
+        contents:
+          - [textarea]
+            title: Thème *
+            name: Theme
+            class: fullwidth autoheight obl
+      - [div]
+        contents:
+          - [textarea]
+            title: Descripteurs *
+            name: MotCle
+            class: fullwidth autoheight obl
+      - [div]
+        contents:
+          - [textarea]
+            title: Noms propres
+            name: Nomp
+            class: fullwidth autoheight
+      - [div]
+        contents:
+          - [textarea]
+            title: Candidats descripteurs
+            name: CanDes
+            class: fullwidth autoheight
+  - [fieldset]
+    title: Versions électroniques des documents
+    contents:
+      - [div]
+        contents:
+          - [textarea]
+            title: Lien vers le document *
+            name: Lien
+            class: fullwidth autoheight obl
+      - [div]
+        contents:
+          - [textarea]
+            title: Lien vers l'annexe
+            name: LienAnne
+            class: fullwidth autoheight
+  - [fieldset]
+    title: Producteur de la fiche *
+    class: obl
+    contents:
+      - [input]
+        name: ProdFich
+        class: fullwidth
+  - [text]
+    contents: '<script type="text/javascript">ctrlInitialize("ControlsTexteOfficiel");</script>'

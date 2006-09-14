@@ -1,0 +1,65 @@
+contents:
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        contents: '[Type], [Date]'
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        title: Titre
+        contents: '[Tit]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Auteur(s)
+            contents: '[Aut]'
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        title: Périodique
+        contents: '[Rev]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            contents: '<opt>vol [Vol], </opt><opt>n°[Num], </opt>p. [PdPf]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Notes
+            contents: '[Notes]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Descripteurs
+            contents: '<opt>[MotCle]</opt><opt>/[Theme]</opt><opt>/[CanDes]</opt><opt>/[Nomp]</opt>'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Résumé
+            contents: '[Resu]'

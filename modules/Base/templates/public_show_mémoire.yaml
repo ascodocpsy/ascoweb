@@ -1,0 +1,57 @@
+contents:
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        contents: '[Type], [Date]'
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        title: Titre
+        contents: '[Tit]'
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        title: Auteur(s)
+        contents: '[Aut]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Thèse
+            contents: '<opt>[DipSpe], </opt><opt>[Lieu], </opt><opt>[Edit], </opt>[Page]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Notes
+            contents: '[Notes]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Descripteurs
+            contents: '<opt>[MotCle]</opt><opt>/[Theme]</opt><opt>/[CanDes]</opt><opt>/[Nomp]</opt>'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Résumé
+            contents: '[Resu]'

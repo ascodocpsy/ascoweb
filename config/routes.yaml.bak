@@ -1,0 +1,79 @@
+- url: /base/recherche_simple
+  module: base
+  action: search
+  
+- url: /toto
+  module: base
+  action: advancedsearch
+
+- url: /base/[ref]
+  with:
+    - ref: \d+
+  module: base
+  action: show
+  
+- url: /base/auteur/[aut]
+  module: base
+  action: search
+
+- url: /base/type/[type]
+  module: base
+  action: search
+
+- url: /base/motcle/[motscles]
+  module: base
+  action: search
+
+- url: /base/revue/[rev]
+  module: base
+  action: search
+
+- url: /base/revue/[rev]/localisation
+  module: base
+  action: locate
+
+- url: /base/modifier/[ref]
+  with:
+    - ref: \d+
+  module: base
+  action: load
+
+- url: /base/nouveau
+  module: base
+  action: load
+
+- url: /base/enregistrer
+  module: base
+  action: save
+
+- url: /base/supprimer
+  module: base
+  action: delete
+
+- url: /panier/
+  module: base
+  action: showCart
+
+- url: /panier/ajouter
+  module: base
+  action: addToCart
+
+- url: /panier/enlever
+  module: base
+  action: removeFromCart
+
+- url: /panier/vider
+  module: base
+  action: clearCart
+
+- url: /panier/exporter
+  module: base
+  action: exportCart
+
+- url: /connect/[statut]
+  module: SpipSecurity
+  action: index
+
+- url:      /
+  module:   HomePage
+  action:   index

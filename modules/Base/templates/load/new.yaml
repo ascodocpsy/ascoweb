@@ -1,0 +1,24 @@
+contents:
+  - [text]
+    tag: h1
+    contents: Base documentaire - Ajout d'une notice
+  - [text]
+    tag: p
+    contents: |
+        Pour créer une nouvelle notice, vous devez choisir au préalable, 
+        dans la liste ci-dessous, le type du document que vous allez saisir.
+        Cliquez ensuite sur le bouton "Créer" pour obtenir le formulaire de
+        saisie.
+  - [form]
+    method: post
+    action: '/base/load'
+    contents:
+      - [fieldset]
+        title: Choix du type de document
+        contents:
+          - [selectlist]
+            name: Type
+            table: Type.txt
+          - [button]
+            action: submit
+            title: Créer...

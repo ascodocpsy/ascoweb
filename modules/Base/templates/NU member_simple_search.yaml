@@ -1,0 +1,45 @@
+contents:
+  - [if]
+    test:"User::hasAccess('AdminBase')"
+    contents:
+      - [text]
+        tag: h1
+        contents: Base documentaire - Recherche simple - Accès administrateur
+  - [else]
+    contents:
+      - [text]
+        tag: h1
+        contents: Base documentaire - Recherche simple - Accès membres du GIP
+  - [opt]
+    contents:
+      - [text]
+        tag: p
+        contents: '[error]'
+        class: error
+  - [form]
+    class: search
+    contents:
+      - [text]
+        tag: p
+        contents: La zone de texte ci-dessous vous permet de rechercher sur les champs :<br />Tit, Annexe, CongrTit, CongrDat, CongrLie, Aut, Date, DateText, Lieu, NatText, Resu, MotCle, Nomp, CanDes, Theme
+      - [div]
+        contents:
+          - [input]
+            name: Mots
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            action: submit
+            title: Rechercher
+            class: submit
+  - [form]
+    class: reset
+    contents:
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            action: submit
+            title: Effacer tout
+            class: reset

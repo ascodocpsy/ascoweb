@@ -1,0 +1,14 @@
+contents:
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        contents: '[Type]'
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        title: Titre
+        contents: '[Tit]<opt> / [Annexe]</opt>'

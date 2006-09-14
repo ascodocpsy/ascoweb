@@ -1,0 +1,29 @@
+contents:
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        contents: '[Type], [Date]'
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        title: Titre
+        contents: '[Tit]'
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        title: Auteur(s)
+        contents: '[Aut]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            contents: '<opt>[DipSpe], </opt><opt>[Lieu], </opt><opt>[Edit], </opt>[Page]'

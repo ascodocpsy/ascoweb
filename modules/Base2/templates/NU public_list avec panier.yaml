@@ -1,0 +1,41 @@
+contents:
+  - [text]
+    tag: h1
+    contents: Base documentaire - Recherche - Accès public
+  - [text]
+    tag: h2
+    contents: Liste des réponses obtenues
+  - [text]
+    tag: p
+    contents: 'Equation : <code>[equation]</code>'
+  - [form]
+    action: '/base/addToCart'
+    method: post
+    contents:
+      - [ul]
+        class: shortlist
+        contents:
+          - [loop]
+            on: bis($selection)
+            max: 100
+            order: desc
+            contents:
+              - [text]
+                class: record
+                tag: li
+                contents:
+                  - [check]
+                    name: art
+                    value: '[REF]'
+                  - [text]
+                    contents: '<a class="fullrecord" href="/base/show?ref=[REF]" title="Voir la notice complète"><span>Voir la notice complète</span></a>'
+                  - [text]
+                    contents: '[template]'
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            name: btnadd
+            action: submit
+            title: Ajouter les notices au panier
+            class: submit

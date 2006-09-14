@@ -1,0 +1,104 @@
+contents:
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        contents: '[Type], [Date]'
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        title: Titre
+        contents: '[Tit]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Auteur(s)
+            contents: '[Aut]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Congrès
+            contents: '<opt>[CongrTit], </opt><opt>[CongrDat], </opt><opt>n°[CongrNum], </opt><opt>[CongrLie]</opt>'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Editeur
+            contents: '<opt>[Lieu] : </opt><opt>[Edit], </opt><opt>[Reed], </opt>[Page]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Collection
+            contents: '[Col]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Notes
+            contents: '[Notes]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Descripteurs
+            contents: '<opt>[MotCle]</opt><opt>/[Theme]</opt><opt>/[CanDes]</opt><opt>/[Nomp]</opt>'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Résumé
+            contents: '[Resu]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: ISBN
+            contents: '[IsbnIssn]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Localisation
+            contents: '[Loc]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Producteur
+            contents: '[ProdFich]'

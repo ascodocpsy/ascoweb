@@ -1,0 +1,17 @@
+contents:
+  - [form]
+    method: post
+    style: >
+      width: 35em;
+      margin: 20em auto;
+    contents:
+      - [fieldset]
+        title: Connexion au site
+        contents:
+          - [password]
+            name: password
+            value: ''
+            title: 'Mot de passe :'
+          - [button]
+            action: submit
+            title: Connexion...
