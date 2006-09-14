@@ -1,8 +1,12 @@
 Ce fichier liste les modifications apportées au site (les plus récentes en tête).
 
+14/09/06, SF
+- Suppression du format d'export AJP
+
 13/09/06, SF
 - Liste des réponses : Ajout d'une ligne séparatrice entre chaque notice
-+ un lien "Haut de page" + boutons "Tout sélectionner" et "Tout désélectionner".
++ un lien "Haut de page" pour la liste des réponses et le panier
++ boutons "Tout sélectionner" et "Tout désélectionner".
 
 12/09/06, SF
 - Formulaire de recherche : pour le critère Nature du texte officiel, remplacement
