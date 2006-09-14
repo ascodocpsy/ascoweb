@@ -69,13 +69,6 @@ contents:
             contents:
               - [radio]
                 name: cmd
-                title: Afficher à l'écran
-                value: show
-                onclick: document.getElementById('mail').style.display='none'
-          - [div]
-            contents:
-              - [radio]
-                name: cmd
                 title: Envoyer par e-mail
                 value: mail
                 onclick: document.getElementById('mail').style.display=''
