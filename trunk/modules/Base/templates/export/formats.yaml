@@ -31,10 +31,3 @@ csv:
   layout: none
   content-type: text/plain
   filename: ascodocpsy.csv
-
-ajp:
-  title: Export de tous les champs en format AJP (texto, cindoc...)
-  template: 'ajp.txt'
-  layout: none
-  filename: ascodocpsy.ajp
-  content-type: text/plain
