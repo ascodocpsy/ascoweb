@@ -1,0 +1,91 @@
+contents:
+  - [text]
+    tag: h1
+    contents: Base documentaire - Recherche guidée - Accès public
+  - [opt]
+    contents:
+      - [text]
+        tag: p
+        contents: '[error]'
+        class: error
+  - [form]
+    action: search
+    class: search
+    contents:
+      - [div]
+        contents:
+          - [input]
+            name: Mots
+            title: Recherche tous champs
+      - [div]
+        contents:
+          - [input]
+            name: MotCle
+            title: Descripteur
+      - [div]
+        contents:
+          - [input]
+            name: Titres
+            title: Titre
+      - [div]
+        contents:
+          - [input]
+            name: Aut
+            title: Auteur
+      - [div]
+        contents:
+          - [input]
+            name: Resu
+            title: Résumé
+      - [div]
+        contents:
+          - [input]
+            name: Dates
+            title: Date du document
+          - [text]
+            tag: span
+            contents: 'Format : AAAA ou AAAA-MM-JJ'
+            class: exemple
+      - [div]
+        contents:
+          - [checklist]
+            name: Type
+            table: public_type
+            title: Type de document
+      - [div]
+        contents:
+          - [input]
+            name: Rev
+            title: Titre du périodique
+      - [div]
+        contents:
+          - [checklist]
+            name: NatText
+            table: nattext
+            title: Nature du texte officiel
+      - [div]
+        contents:
+          - [input]
+            name: DateText
+            title: Date du texte officiel
+          - [text]
+            tag: span
+            contents: 'Format : AAAA-MM-JJ'
+            class: exemple
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            action: submit
+            title: Rechercher
+            class: submit
+  - [form]
+    class: reset
+    contents:
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            action: submit
+            title: Effacer tout
+            class: reset

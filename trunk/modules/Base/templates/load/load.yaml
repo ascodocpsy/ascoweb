@@ -1,0 +1,322 @@
+contents:
+  - [text]
+    tag: h1
+    contents: Base documentaire - Ajout/Modification de notice
+  - [form]
+    method: post
+    action: '/base/save'
+    class: load
+    contents:
+      - [div]
+        contents:
+          - [hidden]
+            name: ref
+      - [fieldset]
+        title: Type de document
+        contents:
+          - [radiolist]
+            name: Type
+            table: type.txt
+      - [fieldset]
+        title: Nature du texte officiel
+        contents:
+          - [radiolist]
+            name: NatText
+            table: nattext.txt
+      - [fieldset]
+        title: Auteurs
+        contents:
+          - [textarea]
+            name: Aut
+            class: fullwidth autoheight
+            rows: 1
+      - [fieldset]
+        title: Titres du document
+        contents:
+          - [div]
+            contents:
+              - [textarea]
+                title: Titre du document
+                name: Tit
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [textarea]
+                title: Titre de l'annexe
+                name: Annexe
+                class: fullwidth autoheight
+      - [fieldset]
+        title: Spécialité du diplôme
+        contents:
+          - [textarea]
+            name: DipSpe
+            class: fullwidth autoheight
+      - [fieldset]
+        title: Congrès
+        contents:
+          - [div]
+            contents:
+              - [textarea]
+                title: Intitulé
+                name: CongrTit
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [input]
+                title: Numéro
+                name: CongrNum
+                class: fullwidth
+          - [div]
+            contents:
+              - [input]
+                title: Ville
+                name: CongrLie
+                class: fullwidth
+          - [div]
+            contents:
+              - [input]
+                title: Année
+                name: CongrDat
+                class: fullwidth
+      - [fieldset]
+        title: Dates
+        contents:
+          - [div]
+            contents:
+              - [input]
+                title: Année du document ou de soutenance
+                name: Date
+                class: fullwidth
+          - [div]
+            contents:
+              - [input]
+                title: Date du texte officiel
+                name: DateText
+                class: fullwidth
+          - [div]
+            contents:
+              - [input]
+                title: Date de publication du texte officiel
+                name: DatePub
+                class: fullwidth
+          - [div]
+            contents:
+              - [input]
+                title: Date de fin de validité du texte officiel
+                name: DateVali
+                class: fullwidth
+      - [fieldset]
+        title: Mentions bibliographiques
+        contents:
+          - [div]
+            contents:
+              - [input]
+                title: Nombre de pages
+                name: Page
+                class: fullwidth
+          - [div]
+            contents:
+              - [input]
+                title: Page de début et page de fin
+                name: PdPf
+                class: fullwidth
+          - [div]
+            contents:
+              - [textarea]
+                title: Notes bibliographiques
+                name: Notes
+                class: fullwidth autoheight
+      - [fieldset]
+        title: Edition
+        contents:
+          - [div]
+            contents:
+              - [textarea]
+                title: Editeur(s)
+                name: Edit
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [textarea]
+                title: Lieu d'édition ou de soutenance
+                name: Lieu
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [textarea]
+                title: Collection
+                name: Col
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [textarea]
+                title: Mention d'édition
+                name: Reed
+                class: fullwidth autoheight
+      - [fieldset]
+        title: ISBN / ISSN
+        contents:
+          - [input]
+            name: IsbnIssn
+            class: fullwidth
+      - [fieldset]
+        title : Périodique
+        contents:
+          - [div]
+            contents:
+              - [textarea]
+                title : Titre du périodique
+                name: Rev
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [input]
+                title : Volume
+                name: Vol
+                class: fullwidth
+          - [div]
+            contents:
+              - [input]
+                title : Numéro
+                name: Num
+                class: fullwidth
+          - [div]
+            contents:
+              - [input]
+                title : Date de vie et de mort
+                name: ViePerio
+                class: fullwidth
+          - [div]
+            contents:
+              - [textarea]
+                title : Etat de la collection
+                name: EtatCol
+                class: fullwidth autoheight
+      - [fieldset]
+        title : Résumé
+        contents:
+          - [textarea]
+            name: Resu
+            class: fullwidth autoheight
+      - [fieldset]
+        title: Indexation
+        contents:
+          - [div]
+            contents:
+              - [textarea]
+                title: Thème
+                name: Theme
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [textarea]
+                title: Descripteurs
+                name: MotCle
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [textarea]
+                title: Noms propres
+                name: Nomp
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [textarea]
+                title: Candidats descripteurs
+                name: CanDes
+                class: fullwidth autoheight
+      - [fieldset]
+        title: Versions électroniques des documents
+        contents:
+          - [div]
+            contents:
+              - [textarea]
+                title: Lien vers le document
+                name: Lien
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [textarea]
+                title: Lien vers l'annexe
+                name: LienAnne
+                class: fullwidth autoheight
+      - [fieldset]
+        title: Localisation du document
+        contents:
+          - [textarea]
+            name: Loc
+            class: fullwidth autoheight
+      - [fieldset]
+        title: Producteur de la fiche
+        contents:
+          - [input]
+            name: ProdFich
+            class: fullwidth
+      - [fieldset]
+        title: Gestion de la notice
+        contents:
+          - [div]
+            contents:
+              - [hidden]
+                name: FinSaisie
+                value: ''
+              - [check]
+                title: Notice à valider
+                name: FinSaisie
+                value: 1
+          - [if]
+            test: "User::hasAccess('AdminBase')"
+            contents:
+              - [div]
+                contents:
+                  - [hidden]
+                    name: Valide
+                    value: ''
+                  - [check]
+                    title: Notice validée par un administrateur
+                    name: Valide
+                    value: 1
+      - [opt]
+        contents:
+          - [fieldset]
+            title: Dates de création et de mise à jour de la notice
+            contents:
+              - [div]
+                contents:
+                  - [text]
+                    contents: 'Création : [Creation]'
+                    tag: p
+              - [div]
+                contents:
+                  - [text]
+                    contents: 'Mise à jour : [LastUpdate]'
+                    tag: p
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            action: submit
+            title: Enregistrer
+            class: submit
+  - [opt]
+    contents:
+      - [if]
+        test: "User::hasAccess('AdminBase')"
+        contents:
+          - [form]
+            method: post
+            action: '/base/delete'
+            contents:
+              - [div]
+                contents:
+                  - [hidden]
+                    name: ref
+              - [div]
+                class: buttons
+                contents:
+                  - [button]
+                    action: submit
+                    title: Supprimer
+                    class: reset
+  - [text]
+    contents: '<script type="text/javascript">ctrlInitialize("Controls");</script>'

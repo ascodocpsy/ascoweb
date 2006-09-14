@@ -1,0 +1,31 @@
+# Config spécifique à ASCODOCPSY
+
+admin:
+  name: Séverine Ferron
+  email: severine.ferron@bdsp.tm.fr
+
+# theme général du site (deux options possibles pour le moment: asco, poivron)
+theme: asco
+
+# structure général des pages par défaut
+layout: demo.htm
+
+# titre par défaut des pages
+title: Base documentaire ASCODOCPSY
+
+# nom des feuilles de style CSS à utiliser
+# doit être sous forme de tableau car on peut en avoir plusieurs
+CSS: [style.css]
+
+# fichiers javascript à inclure
+#JS: [xxx.js]
+# doit être sous forme de tableau car on peut en avoir plusieurs
+
+# module de sécurité à utiliser pour la protection du site
+security: 
+  handler: SpipSecurity
+
+# paramétrage des sessions utilisateurs
+sessions:
+  use: true
+  lifetime: 0

@@ -1,0 +1,13 @@
+# Fichier de configuration config\test.yaml
+# Ce fichier est au format YAML, pensez à utiliser correctement les espaces pour l'indentation
+
+
+groupe1:
+  clé1: 'valeur 1'
+  clé2: 'valeur 2'
+
+groupe2:
+  clé3: 'valeur 3'
+  clé4: 'valeur 4'
+
+

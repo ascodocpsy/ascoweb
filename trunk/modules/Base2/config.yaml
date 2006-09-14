@@ -1,0 +1,69 @@
+# paramétrage commun à toutes les actions
+module: BisDatabase
+
+database: ascodocpsy
+
+# Paramètrage spécifique aux actions :
+
+filter: 
+    AdminBase: 
+    EditBase: 
+    default: '(* sauf type=periodique)'
+
+search:
+    template:
+        AdminBase: templates/member_advanced_search.yaml
+        EditBase: templates/member_advanced_search.yaml
+        default: templates/public_advanced_search.yaml
+    list:
+        AdminBase: templates/member_list_article.yaml
+        EditBase: templates/member_list.yaml
+        default: templates/public_list.yaml
+
+#pseudo action avec des templates, des filtres, des droits différents
+advancedsearch:
+    action: search
+    template:
+        AdminBase: templates/member_advanced_search.yaml
+        EditBase: templates/member_advanced_search.yaml
+        default: templates/public_advanced_search.yaml
+    list:
+        AdminBase: templates/member_list_article.yaml
+        EditBase: templates/member_list.yaml
+        default: templates/public_list.yaml
+
+show:
+    template:
+        EditBase: templates/member_show_article.yaml
+        AdminBase: templates/member_show_article.yaml
+        default: templates/public_show_article.yaml
+
+load:
+    access: AdminBase,EditBase
+    JS: [autosize.js]
+    template: templates/load.yaml
+
+save:
+    access: AdminBase,EditBase
+
+delete:
+    access: AdminBase
+
+addToCart:
+  sessions:
+    use: true
+clearCart:
+  sessions:
+    use: true
+exportCart:
+  sessions:
+    use: true
+showCart:
+  sessions:
+    use: true
+
+normalize-author:
+  - search: collectif|collab.
+    replace: 
+  - search: (.+)(?:(née?)[ ].+)
+    replace: $1

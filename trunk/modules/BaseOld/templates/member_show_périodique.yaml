@@ -1,0 +1,29 @@
+contents:
+  - [div]
+    class: row
+    contents:
+      - [div]
+        contents: '[Type]<opt>, [ViePerio]</opt>'
+  - [div]
+    class: row
+    contents:
+      - [div]
+        contents: '[Rev]<opt>, [IsbnIssn]</opt>'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Localisation
+            contents: '[EtatCol]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Notes
+            contents: '[Notes]'

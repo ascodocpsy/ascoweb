@@ -1,0 +1,29 @@
+# nom des feuilles de style CSS à utiliser
+# doit être sous forme de tableau car on peut en avoir plusieurs
+#CSS: [xxx.css]
+
+# fichiers javascript à inclure
+# doit être sous forme de tableau car on peut en avoir plusieurs
+#JS: [xxx.js]
+
+#title: fdsfsdlkfjdskhl
+
+load:
+  JS: [autosize.js, controls.js, load.js]
+  key: toto
+
+sort:
+  sortkey: 'Date:DateText:CongrDat,8,KeyDateBdsp ; Type,20,KeyTextIgnoreCase ; Rev,50,KeyTextIgnoreCase'
+
+addToCart:
+  sessions:
+    use: true
+clearCart:
+  sessions:
+    use: true
+exportCart:
+  sessions:
+    use: true
+showCart:
+  sessions:
+    use: true

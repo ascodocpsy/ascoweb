@@ -1,0 +1,18 @@
+# Config spécifique à ASCODOCPSY
+admin:
+  name:		Séverine Ferron
+  email:	severine.ferron@bdsp.tm.fr
+  
+theme: 	asco
+layout:	demo
+
+title:		Base documentaire ASCODOCPSY
+  
+CSS:style
+#JS:			
+
+security: 
+  handler: SpipSecurity	# Nom du module à utiliser pour la gestion utilisateurs
+
+sessions:
+  use: true

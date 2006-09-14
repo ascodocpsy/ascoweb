@@ -1,0 +1,90 @@
+- url: /base/formulairerecherche
+  module: base
+  action: searchform
+
+- url: /base/recherche
+  module: base
+  action: search
+
+- url: /base/[ref]
+  with:
+    ref: '\d+(,\d+){0,4}'
+  module: base
+  action: show
+  
+- url: /base/auteur/[aut]
+  module: base
+  action: search
+
+- url: /base/motcle/[motscles]
+  module: base
+  action: search
+
+- url: /base/revue/[rev]
+  module: base
+  action: search
+
+- url: /base/revue/[rev]/localisation
+  module: base
+  action: locate
+
+- url: /base/[ref]/modifier
+  with:
+    ref: \d+
+  module: base
+  action: load
+
+- url: /base/[ref]/modifiertout
+  with:
+    ref: \d+
+  module: base
+  action: loadfull
+
+# pb si /base/nouveau/type
+- url: /base/nouveautype
+  module: base
+  action: new
+
+- url: /base/nouveau
+  module: base
+  action: load
+
+- url: /base/nouveautout
+  module: base
+  action: loadfull
+
+- url: /base/enregistrer
+  module: base
+  action: save
+
+- url: /base/supprimer
+  module: base
+  action: delete
+
+- url: /panier/
+  module: base
+  action: showCart
+
+- url: /panier/ajouter
+  module: base
+  action: addToCart
+
+- url: /panier/enlever
+  module: base
+  action: removeFromCart
+
+- url: /panier/vider
+  module: base
+  action: clearCart
+
+- url: /panier/exporter
+  module: base
+  action: exportCart
+
+- url: /connect/[statut]
+  module: SpipSecurity
+  action: index
+
+- url:      /
+  module:   HomePage
+  action:   index

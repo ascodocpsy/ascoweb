@@ -1,0 +1,114 @@
+# Fichier de configuration du module Base
+
+# nom des feuilles de style CSS à utiliser
+# doit être sous forme de tableau car on peut en avoir plusieurs
+#CSS: [xxx.css]
+
+# fichiers javascript à inclure
+# doit être sous forme de tableau car on peut en avoir plusieurs
+#JS: [xxx.js]
+
+#title: aaaaa
+
+database: ascodocpsy
+
+filter:
+    AdminBase:
+    EditBase:
+    cli:
+    default: '(* sauf type=periodique) and Valide=vrai'
+#    default: '(* sauf type=periodique)'
+
+searchform:
+    template:
+        AdminBase: templates/member_search.yaml
+        EditBase: templates/member_search.yaml
+        default: templates/public_search.yaml
+    callback: none
+
+search:
+#   template:
+#        AdminBase: templates/member_search.yaml
+#        EditBase: templates/member_search.yaml
+#        default: templates/public_search.yaml
+
+    template:
+        AdminBase: templates/member_list.yaml
+        EditBase: templates/member_list.yaml
+        default: templates/public_list.yaml
+
+    errortemplate: templates/error/error_base.yaml
+    JS: [asco.js]
+
+show:
+    template:
+        AdminBase: templates/member_show.yaml
+        EditBase: templates/member_show.yaml
+        default: templates/public_show.yaml
+
+load:
+    access: AdminBase,EditBase
+    JS: [autosize.js, controls.js, load.js]
+    template: templates/load/load_type.yaml
+
+loadfull:
+    action: load
+    access: AdminBase
+    JS: [autosize.js, controls.js, load.js]
+    template: templates/load/load.yaml
+#    callback: none
+    callback: getDates
+
+new:
+    access: AdminBase,EditBase
+    template: templates/load/new.yaml
+
+save:
+    access: AdminBase,EditBase
+
+delete:
+    access: AdminBase
+    callback: none
+
+locate:
+    access: AdminBase,EditBase
+    template:
+        AdminBase: templates/member_show.yaml
+        EditBase: templates/member_show.yaml
+        default: templates/public_show.yaml
+    errortemplate: templates/error/error.yaml
+
+import:
+    access: AdminBase
+
+importfiles:
+    access: cli
+
+sort:
+    access: cli, AdminBase
+#filter: ''
+#sortkey: 'Date:DateText:CongrDat,8,KeyDateBdsp ; Type,20,KeyTextIgnoreCase ; Rev,50,KeyTextIgnoreCase'
+    sortkey: 'Date:DateText:CongrDat,8,KeyDateBdsp ; Type,20,KeyTextIgnoreCase'
+
+# Panier de notices
+addToCart:
+  sessions:
+    use: true
+  errortemplate: templates/error/error.yaml
+
+removeFromCart:
+  errortemplate: templates/error/error.yaml
+
+clearCart:
+  sessions:
+    use: true
+
+exportCart:
+  sessions:
+    use: true
+  errortemplate: templates/error/error.yaml
+
+showCart:
+  access: AdminBase, EditBase
+  sessions:
+    use: true

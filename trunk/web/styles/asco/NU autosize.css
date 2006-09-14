@@ -1,0 +1,9 @@
+/* Feuille de style pour le retaillage automatique des textarea */
+
+/*
+form.form input.fullwidth,
+form.form textarea.fullwidth
+{
+	width: 98%;*//* pas 100% sinon, avec les marges, on obtient un ascenseur horizontal *//*
+}
+*/

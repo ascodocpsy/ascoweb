@@ -1,0 +1,31 @@
+contents:
+  - [text]
+    tag: h1
+    contents: Base documentaire - Recherche - Accès public
+  - [text]
+    tag: h2
+    contents: Liste des réponses obtenues
+  - [text]
+    tag: p
+    contents: 'Equation : <code>[equation]</code>'
+  - [text]
+    contents: '<hr />'
+  - [ul]
+    class: shortlist
+    contents:
+      - [loop]
+        on: bis($selection)
+        max: 300
+        order: desc
+        contents:
+          - [text]
+            class: record
+            tag: li
+            contents:
+              - [text]
+                contents: '<a class="fullrecord" href="/base/show?ref=[REF]" title="Voir la notice complète"><span>Voir la notice complète</span></a>'
+              - [text]
+                contents: '[template]'
+          - [text]
+            contents: '<hr />'
+

@@ -1,0 +1,154 @@
+contents:
+  - [fieldset]
+    title: Auteurs *
+    class: obl
+    contents:
+      - [textarea]
+        name: Aut
+        class: fullwidth autoheight
+        rows: 1
+  - [fieldset]
+    title: Titre du document *
+    class: obl
+    contents:
+      - [textarea]
+        name: Tit
+        class: fullwidth autoheight
+  - [fieldset]
+    title: Congrès
+    contents:
+      - [div]
+        contents:
+          - [textarea]
+            title: Intitulé *
+            name: CongrTit
+            class: fullwidth autoheight obl
+      - [div]
+        contents:
+          - [input]
+            title: Numéro *
+            name: CongrNum
+            class: fullwidth obl
+      - [div]
+        contents:
+          - [input]
+            title: Ville *
+            name: CongrLie
+            class: fullwidth obl
+      - [div]
+        contents:
+          - [input]
+            title: Année *
+            name: CongrDat
+            class: fullwidth obl
+  - [fieldset]
+    title: Année du document *
+    class: obl
+    contents:
+      - [input]
+        name: Date
+        class: fullwidth
+  - [fieldset]
+    title: Mentions bibliographiques
+    contents:
+      - [div]
+        contents:
+          - [input]
+            title: Nombre de pages *
+            name: Page
+            class: fullwidth obl
+      - [div]
+        contents:
+          - [textarea]
+            title: Notes bibliographiques
+            name: Notes
+            class: fullwidth autoheight
+  - [fieldset]
+    title: Edition
+    contents:
+      - [div]
+        contents:
+          - [textarea]
+            title: Editeur(s) *
+            name: Edit
+            class: fullwidth autoheight obl
+      - [div]
+        contents:
+          - [textarea]
+            title: Lieu d'édition *
+            name: Lieu
+            class: fullwidth autoheight obl
+      - [div]
+        contents:
+          - [textarea]
+            title: Collection
+            name: Col
+            class: fullwidth autoheight
+      - [div]
+        contents:
+          - [textarea]
+            title: Mention d'édition
+            name: Reed
+            class: fullwidth autoheight
+  - [fieldset]
+    title: ISBN / ISSN *
+    class: obl
+    contents:
+      - [input]
+        name: IsbnIssn
+        class: fullwidth
+  - [fieldset]
+    title : Résumé
+    contents:
+      - [textarea]
+        name: Resu
+        class: fullwidth autoheight
+  - [fieldset]
+    title: Indexation
+    contents:
+      - [div]
+        contents:
+          - [textarea]
+            title: Thème *
+            name: Theme
+            class: fullwidth autoheight obl
+      - [div]
+        contents:
+          - [textarea]
+            title: Descripteurs *
+            name: MotCle
+            class: fullwidth autoheight obl
+      - [div]
+        contents:
+          - [textarea]
+            title: Noms propres
+            name: Nomp
+            class: fullwidth autoheight
+      - [div]
+        contents:
+          - [textarea]
+            title: Candidats descripteurs
+            name: CanDes
+            class: fullwidth autoheight
+  - [fieldset]
+    title: Lien vers le document
+    contents:
+      - [textarea]
+        name: Lien
+        class: fullwidth autoheight
+  - [fieldset]
+    title: Localisation du document *
+    class: obl
+    contents:
+      - [textarea]
+        name: Loc
+        class: fullwidth autoheight
+  - [fieldset]
+    title: Producteur de la fiche *
+    class: obl
+    contents:
+      - [input]
+        name: ProdFich
+        class: fullwidth
+  - [text]
+    contents: '<script type="text/javascript">ctrlInitialize("ControlsCongres");</script>'

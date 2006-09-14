@@ -1,0 +1,40 @@
+# Ce fichier liste tous les formats d'export disponibles pour la base Ascodocpsy.
+#
+# Chaque format disponible contient les éléments suivants :
+#
+# - un nom (obligatoire) qui doit être unique
+#
+# - title (obligatoire) : nom du format tel qu'il est affiché à l'utilisateur
+#
+# - template (obligatoire) : nom du template à utiliser
+#
+# - layout (optionnel) : nom du layout à utiliser. Si vide, le layout par défaut
+#   du module sera utilisé
+#
+# - content-type (optionnel) : type mime a envoyer. Si vide, retourne le type
+#   mime par défaut.
+#
+# - filename (optionnel) : nom proposé par le navigateur si l'utilisateur
+#   choisit l'option 'enregistrer dans un fichier'
+#
+
+commun:
+  title: Export en format commun (CSV)
+  template: 'commun.txt'
+  layout: none
+  content-type: text/plain
+  filename: ascodocpsy.txt
+
+csv:
+  title: Export de tous les champs en format CSV
+  template: 'export.txt'
+  layout: none
+  content-type: text/plain
+  filename: ascodocpsy.csv
+
+ajp:
+  title: Export de tous les champs en format AJP (texto, cindoc...)
+  template: 'ajp.txt'
+  layout: none
+  filename: ascodocpsy.ajp
+  content-type: text/plain

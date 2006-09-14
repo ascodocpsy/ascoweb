@@ -1,0 +1,45 @@
+contents:
+  - [fieldset]
+    title : Titre du périodique
+    contents:
+      - [textarea]
+        name: Rev
+        class: fullwidth autoheight
+  - [fieldset]
+    title: Date de vie et de mort
+    contents:
+      - [input]
+        name: ViePerio
+        class: fullwidth
+  - [fieldset]
+    title: Etat de la collection
+    contents:
+      - [textarea]
+        name: EtatCol
+        class: fullwidth autoheight
+  - [fieldset]
+    title: ISSN
+    contents:
+      - [input]
+        name: IsbnIssn
+        class: fullwidth
+  - [fieldset]
+    title: Notes
+    contents:
+      - [textarea]
+        name: Notes
+        class: fullwidth autoheight
+  - [fieldset]
+    title: Lien vers le document
+    contents:
+      - [textarea]
+        name: Lien
+        class: fullwidth autoheight
+  - [fieldset]
+    title: Producteur de la fiche
+    contents:
+      - [input]
+        name: ProdFich
+        class: fullwidth
+  - [text]
+    contents: '<script type="text/javascript">ctrlInitialize("ControlsPeriodique");</script>'

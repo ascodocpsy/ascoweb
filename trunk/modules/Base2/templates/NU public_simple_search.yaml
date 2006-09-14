@@ -1,0 +1,37 @@
+contents:
+  - [text]
+    tag: h1
+    contents: Base documentaire - Recherche simple - Accès public
+  - [opt]
+    contents:
+      - [text]
+        tag: p
+        contents: '[error]'
+        class: error
+  - [form]
+    class: search
+    contents:
+      - [text]
+        tag: p
+        contents: La zone de texte ci-dessous vous permet de rechercher sur les champs :<br />Tit, CongrTit, Resu, MotCle, Nomp, CanDes, Theme
+      - [div]
+        contents:
+          - [input]
+            name: Mot
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            action: submit
+            title: Rechercher
+            class: submit
+  - [form]
+    class: reset
+    contents:
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            action: submit
+            title: Effacer tout
+            class: reset

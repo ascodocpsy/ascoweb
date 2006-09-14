@@ -1,0 +1,32 @@
+contents:
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        contents: '[Type], [Date]'
+  - [div]
+    class: row
+    contents:
+      - [div]
+        class: field
+        title: Titre
+        contents: '[Tit]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Auteur(s)
+            contents: '[Aut]'
+  - [opt]
+    contents:
+      - [div]
+        class: row
+        contents:
+          - [div]
+            class: field
+            title: Congrès
+            contents: '<opt>[CongrTit], </opt><opt>[CongrDat], </opt><opt>n°[CongrNum], </opt><opt>[CongrLie], </opt><opt>[Lieu] : </opt><opt>[Edit], </opt><opt>[Reed], </opt>[Page]' 

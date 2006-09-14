@@ -1,0 +1,184 @@
+contents:
+  - [text]
+    tag: h1
+    contents: Base documentaire - Ajout/Modification d'un document Article
+  - [form]
+    method: post
+    action: save
+    class: load
+    contents:
+      - [div]
+        contents:
+          - [hidden]
+            name: ref
+      - [div]
+        contents:
+          - [hidden]
+            name: Type
+      - [fieldset]
+        title: Gestion de la notice
+        contents:
+          - [div]
+            contents:
+              - [hidden]
+                name: FinSaisie
+                value: ''
+              - [check]
+                title: Notice complète
+                name: FinSaisie
+                value: 1
+          - [if]
+            test: "User::hasAccess('AdminBase')"
+            contents:
+              - [div]
+                contents:
+                  - [hidden]
+                    name: Valide
+                    value: ''
+                  - [check]
+                    title: Notice validée par un administrateur
+                    name: Valide
+                    value: 1
+      - [fieldset]
+        title: Auteurs
+        contents:
+          - [textarea]
+            name: Aut
+            class: fullwidth autoheight
+            rows: 1
+      - [fieldset]
+        title: Titre de l'article
+        contents:
+          - [textarea]
+            name: Tit
+            class: fullwidth autoheight
+            rows: 1
+      - [fieldset]
+        title: Année du document
+        contents:
+          - [input]
+            name: Date
+            class: fullwidth
+      - [fieldset]
+        title: Mentions bibliographiques
+        contents:
+          - [div]
+            contents:
+              - [input]
+                title: Page de début et page de fin
+                name: PdPf
+                class: fullwidth
+          - [div]
+            contents:
+              - [textarea]
+                title: Notes bibliographiques
+                name: Notes
+                class: fullwidth autoheight
+      - [fieldset]
+        title : Périodique
+        contents:
+          - [div]
+            contents:
+              - [textarea]
+                title : Titre du périodique
+                name: Rev
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [input]
+                title : Volume
+                name: Vol
+                class: fullwidth
+          - [div]
+            contents:
+              - [input]
+                title : Numéro
+                name: Num
+                class: fullwidth
+      - [fieldset]
+        title : Résumé
+        contents:
+          - [textarea]
+            name: Resu
+            class: fullwidth autoheight
+      - [fieldset]
+        title: Indexation
+        contents:
+          - [div]
+            contents:
+              - [textarea]
+                title: Thème
+                name: Theme
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [textarea]
+                title: Descripteurs
+                name: MotCle
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [textarea]
+                title: Noms propres
+                name: Nomp
+                class: fullwidth autoheight
+          - [div]
+            contents:
+              - [textarea]
+                title: Candidats descripteurs
+                name: CanDes
+                class: fullwidth autoheight
+      - [fieldset]
+        title: Lien vers le document
+        contents:
+          - [textarea]
+            name: Lien
+            class: fullwidth autoheight
+      - [fieldset]
+        title: Producteur de la fiche
+        contents:
+          - [input]
+            name: ProdFich
+            class: fullwidth
+      - [fieldset]
+        title: Dates de création et de mise à jour de la notice
+        contents:
+          - [div]
+            contents:
+              - [text]
+                title: Date de création
+                contents: '[Creation]'
+                tag: p
+          - [div]
+            contents:
+              - [text]
+                title: Date de mise à jour
+                contents: '[LastUpdate]'
+                tag: p
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            action: submit
+            title: Enregistrer
+            class: submit
+  - [if]
+    test: "User::hasAccess('AdminBase')"
+    contents:
+      - [form]
+        method: post
+        action: delete
+        contents:
+          - [div]
+            contents:
+              - [hidden]
+                name: ref
+          - [div]
+            class: buttons
+            contents:
+              - [button]
+                action: submit
+                title: Supprimer
+                class: reset
+  - [text]
+    contents: '<script>ctrlInitialize("ControlsArticle");</script>'

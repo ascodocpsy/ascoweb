@@ -1,0 +1,139 @@
+contents:
+  - [fieldset]
+    title: Auteurs *
+    class: obl
+    contents:
+      - [textarea]
+        name: Aut
+        class: fullwidth autoheight
+        rows: 1
+  - [fieldset]
+    title: Titre *
+    class: obl
+    contents:
+      - [textarea]
+        name: Tit
+        class: fullwidth autoheight
+  - [fieldset]
+    title: Année du document *
+    class: obl
+    contents:
+      - [input]
+        name: Date
+        class: fullwidth
+  - [fieldset]
+    title: Nombre de pages *
+    class: obl
+    contents:
+      - [input]
+        name: Page
+        class: fullwidth
+  - [fieldset]
+    title: Edition
+    contents:
+      - [div]
+        contents:
+          - [textarea]
+            title: Editeur
+            name: Edit
+            class: fullwidth autoheight
+      - [div]
+        contents:
+          - [textarea]
+            title: Lieu d'édition
+            name: Lieu
+            class: fullwidth autoheight
+      - [div]
+        contents:
+          - [textarea]
+            title: Collection
+            name: Col
+            class: fullwidth autoheight
+      - [div]
+        contents:
+          - [textarea]
+            title: Mention d'édition
+            name: Reed
+            class: fullwidth autoheight
+  - [fieldset]
+    title : Périodique
+    contents:
+      - [div]
+        contents:
+          - [textarea]
+            title : Titre du périodique
+            name: Rev
+            class: fullwidth autoheight
+      - [div]
+        contents:
+          - [input]
+            title : Volume
+            name: Vol
+            class: fullwidth
+      - [div]
+        contents:
+          - [input]
+            title : Numéro
+            name: Num
+            class: fullwidth
+  - [fieldset]
+    title: ISBN / ISSN
+    contents:
+      - [input]
+        name: IsbnIssn
+        class: fullwidth
+  - [fieldset]
+    title: Notes bibliographiques
+    contents:
+      - [textarea]
+        name: Notes
+        class: fullwidth autoheight
+  - [fieldset]
+    title : Résumé
+    contents:
+      - [textarea]
+        name: Resu
+        class: fullwidth autoheight
+  - [fieldset]
+    title: Indexation
+    contents:
+      - [div]
+        contents:
+          - [textarea]
+            title: Thème *
+            name: Theme
+            class: fullwidth autoheight obl
+      - [div]
+        contents:
+          - [textarea]
+            title: Descripteurs *
+            name: MotCle
+            class: fullwidth autoheight obl
+      - [div]
+        contents:
+          - [textarea]
+            title: Noms propres
+            name: Nomp
+            class: fullwidth autoheight
+      - [div]
+        contents:
+          - [textarea]
+            title: Candidats descripteurs
+            name: CanDes
+            class: fullwidth autoheight
+  - [fieldset]
+    title: Lien vers le document *
+    class: obl
+    contents:
+      - [textarea]
+        name: Lien
+        class: fullwidth autoheight
+  - [fieldset]
+    title: Producteur de la fiche *
+    class: obl
+    contents:
+      - [input]
+        name: ProdFich
+        class: fullwidth
+  - [text]
+    contents: '<script type="text/javascript">ctrlInitialize("ControlsRapport");</script>'
