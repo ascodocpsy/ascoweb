@@ -619,7 +619,7 @@ class Base extends Database
         if (is_null($cmd))
             throw new Exception("La commande n'a pas été indiquée");
             
-        if ($cmd !='export' && $cmd!='mail' && $cmd !='show')
+        if ($cmd !='export' && $cmd!='mail')
             throw new Exception("Commande incorrecte");
 
         if ($cmd=='mail')
@@ -659,7 +659,7 @@ class Base extends Database
         );
         $data=ob_get_clean();
 
-        if ($cmd=='export' || $cmd=='show')
+        if ($cmd=='export')
         {        
             if (isset($format['layout']))
                 $this->setLayout($format['layout']);
