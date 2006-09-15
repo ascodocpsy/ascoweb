@@ -156,6 +156,13 @@ form.reset
 	width: 55em;
 }
 
+/*
+form.reset
+{
+	margin-top: -5em;
+}
+*/
+
 form.search div
 {
 	margin: 1em 0 1em 0;
@@ -178,10 +185,12 @@ form.search div span.check
 	margin: 0;
 }
 */
-form span.exemple
+form span.exemple,
+form p.exemple
 {
 	font-size: 0.8em;
-	margin-left: 21.5em;
+	margin: 0.1em 0 0 21.5em;
+	
 }
 
 form.search div input.text
@@ -343,7 +352,7 @@ a.fullrecord span,
 a.locate span,
 a.loadrecord span
 {
-    display: none;
+	display: none;
 }
 
 /* ========================================================================== */
