@@ -8,8 +8,7 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR. 'Cart.php';
 
 class Base extends Database
 {
-    // TODO : A la place du template 'templates/error/error.yaml' mettre en place
-    // un système de message d'erreur.
+    // TODO : A la place du template 'templates/error/error.yaml' mettre en place un système de message d'erreur.
     
     // TODO : Faire en sorte de récupérer le séparateur d'articles (à partir
     // du .def, de la config, ...
@@ -688,6 +687,7 @@ class Base extends Database
             require_once(Runtime::$fabRoot.'lib/htmlMimeMail5/htmlMimeMail5.php');
         
             $mail = new htmlMimeMail5();
+            //TODO : changer l'adresse e-mail
             $mail->setFrom('Site AscodocPsy <daniel.menard@bdsp.tm.fr>');
             $mail->setSubject($subject);
             $mail->setText($body);
@@ -703,7 +703,16 @@ class Base extends Database
         
             if ($mail->send( array($to)) )
             {
+//                $this->setLayout(Config::get('layout'));
+//                // Exécute le template
+//                Template::run
+//                (
+//                    'templates/export/mailsent.yaml',
+//                    array('to'=>$to)
+//                );
+                
                 echo '<p>Vos notices ont été envoyées à l\'adresse ', $to, '</p>';
+                echo '<p>Retour à la <a href="javascript:history.back()"> page précédente</a>.</p>';
             }
             else
             {
@@ -1186,17 +1195,11 @@ class Base extends Database
     {
         global $files;
         
-//        echo 'Je suis la tâche numéro [', TaskManager::$id, ']', "<br />\n";
         // Verrouille la base
         // TODO : Vérouiller la base
         
         $files=$this->adminFiles=$this->makeList();
 
-//        echo 'Fichiers : ';
-//        var_dump($files);
-//        echo "\n";
-//        die();
-        
         // 1. Ajout des notices
         
         // Ouvre la sélection
@@ -1215,24 +1218,39 @@ class Base extends Database
             
             // Lit la première ligne et récupère le nom des champs
             $fields=fgetcsv($f, 0, "\t", '"');
-                        
+            
+            // Compte le nombre de champs
+            $nbFields=count($fields);
+
             // Lit le fichier et met à jour la base
 //            $nbref=0;
             while (($data=fgetcsv($f, 0, "\t", '"')) !== false)
             {
+                // Ignore les lignes vides
+                $h=array_filter($data);
+                if (count($h)==0) continue;
+
+                // Initialise le nombre de champ de la notice
+                $nbRefFields=0;
+                
                 Taskmanager::progress(ftell($f));
                 usleep(200);
+
+                // Ajoute la notice
                 $selection->addnew();
                 
-                // Ajoute la notice
                 foreach ($data as $i=>$v)
                 {
+                    // Ignore les tabulations situées après le dernier champ
+                    $nbRefFields++;
+                    if ($nbRefFields>$nbFields) break;
+                    
                     $fieldname=$this->map[trim($fields[$i])];
                     $v=trim(str_replace('""', '"', $v));
                     $selection->setfield($fieldname, $v);
                 }
                 
-                // Initialise les champs Creation et LastUpdate si pas renseignés
+                // Initialise les champs Creation et LastUpdate
                 // On passe par une variable intermédiaire car le 2e arguement de setfield
                 // doit être passé par référence
                 $d=date('Ymd');
