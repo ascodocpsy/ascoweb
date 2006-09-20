@@ -211,6 +211,11 @@ form.form div.buttons input
 	padding: 0.3em;
 }
 
+form.form div.buttons input:hover
+{
+	background-color: #FFFFC0;
+}
+
 form.form div.buttons
 {
 	text-align: right;
@@ -224,11 +229,6 @@ form.form div.buttons input.submit
 form.form div.buttons input.reset
 {
 	float: left;
-}
-
-form.form div.buttons input:hover
-{
-	background-color: #FFFFC0;
 }
 
 label.field, 
@@ -280,6 +280,7 @@ li.record input.check
 	float: left;
 	width: 2em;
 	margin-left: 5em;
+/*	margin-top: 1.3em;*/
 }
 
 /* Libellé du champ */
@@ -317,18 +318,26 @@ a.fullrecord
     float: right;
     padding-left: 32px;
     padding-top: 32px;
-    background: url('voir.png') center center no-repeat;
+    background: url('voir.png') no-repeat center center;
     border: 1px solid white;
-/*    margin-left: 7.25em;
-    margin-right: 1em;*/
+    height: 0;
 }
 
-a.locate
+/* N'est lu que par IE grâce à *html */
+/* http://noyau.pixtyle.net/viewtopic.php?pid=11496 */
+/*
+*html a.fullrecord
 {
-    padding-left: 16px;
-    background: url('loc.png') center center no-repeat;
+    float: right;
+    padding-left: 32px;
+    padding-top: 32px;
     border: 1px solid white;
+    height: 0;
+    width: 10px;
+	background-image: none; 
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='voir.png', sizingMethod='scale'); 
 }
+*/
 
 a.loadrecord
 {
@@ -336,23 +345,44 @@ a.loadrecord
     padding-left: 32px;
     padding-top: 32px;
 	margin-right: 1em;
-    background: url('modifier.png') center center no-repeat;
+    background: url('modifier.png') no-repeat center center;
     border: 1px solid white;
+    height: 0;
 }
-   
+
+a.locate
+{
+    padding-left: 16px;
+    background: url('loc.png') no-repeat center center;
+    border: 1px solid white;
+    height: 50px;
+    width: 50px;
+}
+
 a.fullrecord:hover, 
-a.locate:hover,
-a.loadrecord:hover
+a.loadrecord:hover,
+a.locate:hover
 {
     border: 1px solid #eee;
     background-color: white;
 }
 
-a.fullrecord span, 
-a.locate span,
-a.loadrecord span
+/* Utilisation de la méthode de Paul Bohman, consistant à déplacer le span hors
+   de la zone de visualisation et à le réduire à une taille minimale pour plus
+   de sécurité
+   http://www.blog-and-blues.org/weblog/2004/08/19/277-mettre-un-titre-en-image
+   http://www.webaim.org/techniques/css/invisiblecontent/
+*/
+a.fullrecord span,
+a.loadrecord span,
+a.locate span
 {
-	display: none;
+	position: absolute;
+	left: 0px;
+	top: -500px;	
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
 }
 
 /* ========================================================================== */
