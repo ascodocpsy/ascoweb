@@ -87,8 +87,7 @@ importfiles:
 sort:
     access: cli, AdminBase
 #filter: ''
-#sortkey: 'Date:DateText:CongrDat,8,KeyDateBdsp ; Type,20,KeyTextIgnoreCase ; Rev,50,KeyTextIgnoreCase'
-    sortkey: 'Date:DateText:CongrDat,8,KeyDateBdsp ; Type,20,KeyTextIgnoreCase'
+    sortkey: 'Date:DateText:CongrDat,8,KeyDate,+ ; Type,20,KeyTextIgnoreCase,+ ; Rev,50,KeyTextIgnoreCase,-'
 
 # Panier de notices
 addToCart:
