@@ -12,6 +12,9 @@
 
 database: ascodocpsy
 
+# Url de base d'un article sous SPIP
+urlarticle: 'http://www.ascodocpsy.org/article.php3?id_article='
+
 filter:
     AdminBase:
     EditBase:
