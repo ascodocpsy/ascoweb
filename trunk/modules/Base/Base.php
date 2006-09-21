@@ -824,42 +824,43 @@ class Base extends Database
      * de la chaîne passée en paramètre
      * 
      * @param string $sortKey chaîne contenant les clés de tri, écrites sous la
-     * forme Champ1:Champ2:Champ3,Longueur de la clé (entier),Type;Autre clé
+     * forme Champ1:Champ2:Champ3,Longueur de la clé (entier),Type,Ordre de tri (+ ou -);Autre clé
      * 
      * @return array tableau contenant les clés de tri.
      * i => fieldnames => tableau contenant les champs utilisés pour construire la clé
      *                    array(0=>Champ1, 1=>Champ2, 2=>Champ3)
      *      length     => longeur de la clé de tri
      *      type       => type à utiliser pour créer la clé
+     *      order      => ordre du tri : ascendant (+) ou descendant (-)
      */
     private function createSortKey($sortKey)
     {
-        $key=array();
+        $keys=array();
         
         // Ajoute le champ REF comme dernier champ de la clé
-        $sortKey.=';Ref,6,KeyInteger';
+        $sortKey.=';Ref,6,KeyInteger,+';
         
         // Initialise tous les champs qui composent la clé
         $t=split(';', $sortKey);
-        $i=0;
-        foreach ($t as $value)
+        foreach ($t as $key=>$value)
         {
             $items=split(',', trim($value));
             
             // Extrait les noms de champs
-            $key[$i]['fieldnames']=split(':', trim($items[0]));
+            $keys[$key]['fieldnames']=split(':', trim($items[0]));
             
             // Extrait la longueur de clé
-            $key[$i]['length']=$items[1];
+            $keys[$key]['length']=trim($items[1]);
             
             // Extrait le type
-            $key[$i]['type']=trim($items[2]);
+            $keys[$key]['type']=trim($items[2]);
             
-            $i++;       
+            // Extrait l'ordre de tri
+            $keys[$key]['order']=trim($items[3]);
         }
         
         // Retourne le résultat
-        return $key;
+        return $keys;
     }
         
     /**
@@ -943,9 +944,9 @@ class Base extends Database
                         $value=str_pad($value, $nb, '0', STR_PAD_LEFT);
                     break;
             
-                // Traiter comme un champ date Bdsp au format AAAAMMJJ
-                case 'KeyDateBdsp':
-                    $value=str_replace('/', '', $value);  // AAAA/MM/JJ -> AAAAMMJJ
+                // Traiter comme un champ date au format AAAAMMJJ
+                case 'KeyDate':
+                    $value=strtr($value, '/-', '');      // AAAA/MM/JJ et AAAA-MM-JJ -> AAAAMMJJ
                     if (strlen($value) > $nb)
                         $value=substr($value, 0, $nb-1);
                     else
@@ -956,13 +957,27 @@ class Base extends Database
                     throw new Exception('Le type du champ n\'a pas été précisé.');
                     break;
                     // TODO : que faire par défaut ?
-                    
             }
+            
+            // Si tri descendant, commute la clé
+            if ($key[$i]['order']=='-')
+                $this->switchKey($value);
+
             $getKey.=$value;
         }
         return $getKey;
     }
 
+    private function switchKey(&$value)
+    {
+        if (! $value) return '';
+        
+        $value=str_split($value);
+        foreach($value as $key=>$char)
+            $value[$key]=chr(255-ord($char));
+        $value=implode('',$value);
+    }
+    
     // ------------------- IMPORT DE NOTICES -------------------
          
     // affiche la liste des fichiers à importer
@@ -1290,6 +1305,8 @@ class Base extends Database
 //        $this->actionSort();
 
         Routing::dispatch('/base/sort'); // TODO : workaround
+        
+        
 //        $id=TaskManager::addTask('/base/sort', 0, null, 'Tri de la base');
 ////        Runtime::redirect('/taskmanager/taskstatus?id='.$id);
 //        echo "Lancement d'une tâche pour trier la base obtenue...<br />";
