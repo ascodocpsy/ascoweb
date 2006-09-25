@@ -27,22 +27,25 @@ contents:
                     Utilisez la zone ci-dessous pour choisir des fichiers à importer.
           - [else]
               contents:
-                - [form]
-                  method: post
+                - [loop]
+                  on: array($files)
+                  order: asc
                   contents:
-                    - [loop]
-                      on: array($files)
-                      order: asc
+                    - [text]
+                      tag: li
                       contents:
-                        - [text]
-                          tag: li
+                        - [form]
+                          method: post
                           contents:
                             - [text]
                               contents: '<strong>[array.name]</strong> ([array.size] octets, envoyé au serveur le [array.time] par <strong>[array.ident]</strong>)'
-                            - [ignore]
-                              contents: '<button type="submit" name="delete" value="[array.index]"><img src="/images/delete.png" /></button>'
-                            - [text]
-                              contents: '<button type="submit" name="delete" value="[array.key]"><img src="/images/delete.png" /></button>'
+                            - [button]
+                              action: submit
+                              title: Supprimer le fichier...
+                              class: delete
+                            - [hidden]
+                              name: delete
+                              value: '[array.key]'
   - [opt]
     contents:
       - [fieldset]
@@ -107,7 +110,7 @@ contents:
     test: "User::hasAccess('AdminBase')"
     contents:
       - [form]
-        method: get
+        method: post
         contents:
           - [fieldset]
             title: Lancer l'import
