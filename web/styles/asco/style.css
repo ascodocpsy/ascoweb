@@ -155,14 +155,12 @@ form.reset
 {
 	width: 55em;
 }
-
 /*
 form.reset
 {
 	margin-top: -5em;
 }
 */
-
 form.search div
 {
 	margin: 1em 0 1em 0;
@@ -352,11 +350,10 @@ a.loadrecord
 
 a.locate
 {
-    padding-left: 16px;
+	padding-left: 16px;
     background: url('loc.png') no-repeat center center;
     border: 1px solid white;
-    height: 50px;
-    width: 50px;
+    height: 16px;
 }
 
 a.fullrecord:hover, 
@@ -498,6 +495,21 @@ form.load label.obl
 {
 	color: #FF0000;
 }
+
+/* ========================================================================== */
+/*                         FORMULAIRE D'IMPORT                                */
+/* ========================================================================== */
+input.delete
+{
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+	font-size: 0px;
+	color: #D4E6FD;
+	background: url('delete.png') no-repeat center center;
+	border: 0;
+}
+
 
 /* ========================================================================== */
 /*                                   LAYOUT                                   */
