@@ -49,6 +49,7 @@ contents:
                 name: format
                 value: '[array.key]'
                 title: '[array.title]'
+                id: 'format[array.key]'
                 tag: br/
       - [fieldset]
         title: 'Export/envoi'
