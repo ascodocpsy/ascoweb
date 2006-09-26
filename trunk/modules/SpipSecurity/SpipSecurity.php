@@ -8,34 +8,76 @@
 
 class SpipSecurity extends NoSecurity
 {
+    public $ident='';
+    public $login='';
+    public $email='';
+    
     public function __construct()
     {
-    	//print_r($_COOKIE);
-        $this->rights=empty($_COOKIE['user']) ? '' : $_COOKIE['user'];
+        if ($h=Utils::get($_COOKIE['user']))
+        {
+        	$t=@unserialize(base64_decode($h));
+            if ($t)
+            {
+                $this->ident=$t['ident'];
+                $this->login=$t['login'];
+                $this->email=$t['email'];
+                $this->rights=$t['rights'];
+            }
+        }
+        echo '<pre>', var_dump($this, true), '</pre>';
     }	
 
     public function preExecute()
     {
-//        Config::set('sessions.use', true);  
+        // on attend en querystring une chaine qui est la version base64 de la sérialisation du tableau suivant :
+        // $t=array (
+        //   'ident' => 'Asco1',
+        //   'login' => 'asco1',
+        //   'email' => 'nadine.carrasco@ch-montperrin.fr',
+        //   'statut' => '6forum',
+        // );
+        // Version sérialisée du tableau :
+        // a:4:{s:5:"ident";s:5:"Asco1";s:5:"login";s:5:"asco1";s:5:"email";s:32:"nadine.carrasco@ch-montperrin.fr";s:6:"statut";s:6:"6forum";}
+        // Version encodée en base 64 :
+        // YTo0OntzOjU6ImlkZW50IjtzOjU6IkFzY28xIjtzOjU6ImxvZ2luIjtzOjU6ImFzY28xIjtzOjU6ImVtYWlsIjtzOjMyOiJuYWRpbmUuY2FycmFzY29AY2gtbW9udHBlcnJpbi5mciI7czo2OiJzdGF0dXQiO3M6NjoiNmZvcnVtIjt9
 
-        switch(@$_REQUEST['statut'])
+
+        // décode et désérialise la query string qu'on nous a passée
+        $request=unserialize(base64_decode($_SERVER['QUERY_STRING']));
+
+        // Récupère l'ident, le login, l'email tel quel                
+        $t=array
+        (
+            'ident'=>Utils::get($request['ident']),
+            'login'=>Utils::get($request['login']),
+            'email'=>Utils::get($request['email']),
+        );
+        
+        // Détermine les droits en fonction du statut spip
+        switch(Utils::get($request['statut']))
         {
-            case '6forum': // visiteur
-                $rights='';
-                break;
-            case '1comite': // rédacteur
-                $rights='Edit';
+            case '6forum': // visiteur authentifié = membre du GIP pour Ascodocpsy
+                $t['rights']='Edit';
                 break;
             case '0minirezo': // administrateur
-                $rights='Admin';
+                $t['rights']='Admin';
                 break;
+//            case '1comite': // rédacteur, non utilisé
+//                $rights='';
+//                break;
             default:
-                throw new Exception('Connexion impossible');
+                $t['rights']='';
+                break;
         }
+         
+        // Crée un cookie 'user' contenant la version base64 de $t
+        setcookie('user', base64_encode(serialize($t)), 0, '/');
         
-        $url=empty($_REQUEST['url']) ? '/base/searchform' : $_REQUEST['url'];
+        // Détermine l'url de redirection
+        $url=Utils::get($request['url'], '/base/searchform');
         
-        setcookie('user', $rights, 0, '/');
+        //echo '<pre>', var_dump($t, true);
         Runtime::redirect($url);
     }
     
