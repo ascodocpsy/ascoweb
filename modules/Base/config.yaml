@@ -20,7 +20,6 @@ filter:
     EditBase:
     cli:
     default: '(* sauf type=periodique) and Valide=vrai'
-#    default: '(* sauf type=periodique)'
 
 searchform:
     template:
@@ -82,14 +81,13 @@ locate:
     errortemplate: templates/error/error.yaml
 
 import:
-    access: AdminBase
+    access: AdminBase,EditBase
 
 importfiles:
     access: cli
 
 sort:
     access: cli, AdminBase
-#filter: ''
     sortkey: 'Date:DateText:CongrDat,8,KeyDate,+ ; Type,20,KeyTextIgnoreCase,+ ; Rev,50,KeyTextIgnoreCase,-'
 
 # Panier de notices
