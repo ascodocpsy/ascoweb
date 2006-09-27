@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Module Base - Consultation de la base documentaire
  * Transfert vers BisDatabase
@@ -119,6 +120,7 @@ class Base extends Database
         
         // Ouvre la sélection
         $selection=self::openDatabase($this->equation);
+        if (is_null($selection)) return;
         
         // Si on n'a aucune réponse, erreur
         if ($selection->count == 0)
@@ -141,7 +143,7 @@ class Base extends Database
             $template,  
             array($this, $callback),
             'Template::selectionCallback'
-        );                
+        );
     }
 
     public function getField($name)
@@ -298,6 +300,11 @@ class Base extends Database
                 if (! $h=$selection->field($name)) return ;
                 return preg_replace('~(\d{4})[-]?(\d{2})[-]?(\d{2})~', '${3}/${2}/${1}', $h);
 
+//            case 'Loc':
+//            case 'ProdFich':
+//                if (! $h=$selection->field($name)) return '';             
+                
+                
             case 'Localisation': 
                if (! $h=$selection->field('Rev')) return '';
                
@@ -310,7 +317,7 @@ class Base extends Database
                 return str_replace('/', '<br />', $selection->field($name));
         }
     }
-    
+    // TODO: apparemment, jamais utilisé
     public function getDates($name)
     {
         global $selection;
@@ -384,12 +391,14 @@ class Base extends Database
         
         // Recherche la fiche Périodique
         $selection=self::openDatabase($eq);
+        if (is_null($selection)) return;
+        echo $eq, '   ', $selection->count;
 
         switch ($selection->count)
         {
             case 0:
                 return $this->showError('Aucune localisation n\'est disponible pour le périodique '.$rev.'.');
-                
+            
             default:
                 $revinit=$rev;
                 $rev=Utils::convertString($rev);
@@ -401,6 +410,7 @@ class Base extends Database
                     {
                         // Réouvre la sélection contenant uniquement la notice du périodique 
                         $selection=self::openDatabase('REF='. $selection->field(1), true);
+                        if (is_null($selection)) return;
                         
                         // Détermine le template à utiliser
                         if (! $template=$this->getTemplate())
@@ -478,8 +488,8 @@ class Base extends Database
     
     private function link($value, $lien, $title, $newwin=false)
     {
-        $toto=($newwin) ? ' onclick="window.open(this.href); return false;"' : '';       
-        return '<a href="' . Routing::linkFor($lien) . '"' . $toto . ' title="'.$title.'">'.$value.'</a>';        
+        $h=($newwin) ? ' onclick="window.open(this.href); return false;"' : '';       
+        return '<a href="' . Routing::linkFor($lien) . '"' . $h . ' title="'.$title.'">'.$value.'</a>';        
     }
 
     // ------------------- GESTION DU PANIER -------------------
@@ -501,6 +511,7 @@ class Base extends Database
         
         // Ouvre une sélection vide
         $selection=self::openDatabase('');
+        if (is_null($selection)) return;
 
         // Ajoute dans la sélection toutes les notices présentes dans le panier
 //        if ($this->cart->count())
@@ -551,6 +562,7 @@ class Base extends Database
             "templates/$tpl", 
             array($this, 'getField'),
             'Template::selectionCallback',
+            array('format'=>'commun'),
             array('body'=>'Les notices sélectionnées figurent dans le document joint') // TODO: à virer, uniquement parce que le génrateur ne prends pas correctement 'value' en compte
         );
     }
@@ -733,6 +745,7 @@ class Base extends Database
         // Ouvre la sélection
         // TODO : ouvrir la base en mode exclusif
         $selection=self::openDatabase('*', true);
+        if (is_null($selection)) return;
         
         // Récupère la clé de tri
         $sortKey=Config::get('sortkey');
@@ -764,12 +777,13 @@ class Base extends Database
         // TODO : Ecrire un createdatabase
         $database=Config::get('database');
         $dbPath=Runtime::$root . "data/db/$database.bed";
-        $dbSortPath=Runtime::$root . "data/db/$database.sort.bed";
+        $dbSortPath=Runtime::$root . "data/db/$database.sort";
         
         TaskManager::progress('3. Création de la base vide...');
         if (! copy(Runtime::$root . "data/db/${database}Vide.bed", $dbSortPath))
-            throw new Exception('La copie de la base n\'a pas réussi.');
-        $selSort=self::openDatabase('', false, "$database.sort.bed");       
+            throw new Exception('La copie de la base n\'a pas réussi.');       
+        $selSort=self::openDatabase('', false, $database.'sort');
+        if (is_null($selSort)) return;
         
         // Génère la base triée
         TaskManager::progress('4. Réécriture des enregistrements selon l\'ordre de tri...', count($sort));
@@ -816,7 +830,9 @@ class Base extends Database
         // Dévérrouille la base
         // TODO : Faire un unlock sur la base
         TaskManager::progress('Terminé');
-        echo '<a href="'.Routing::linkFor('/base/search').'">Interroger la nouvelle base...</a>';
+        
+        // TODO : Faire en sorte d'avoir un lien http://xxx
+        //echo '<a href="'.Routing::linkFor('/base/search').'">Interroger la nouvelle base...</a>';
     }
     
     /**
@@ -983,14 +999,27 @@ class Base extends Database
     // affiche la liste des fichiers à importer
     public function actionImport()
     {
+        // TODO : Améliorer le module d'import :
+        // - Permettre de choisir les fichiers à importer (case à cocher)
+        // - Avoir une case à cocher "Marquer les notices comme validées"
+        // - Avoir une case à cocher "Lancer le tri après l'import"
+        // - Avoir la possibilité de lancer un tri à tout moment
+        
         global $files, $error;
         
+        $error='';
+        
         // Importe les fichiers et trie la base
-        //if (isset($_REQUEST['import']) && (isset($this->adminFiles) && count($this->adminFiles)>0))
-        // TODO : Vérifier qu'il y a des fichies à importer
-        //if $this->makeList()
         if (! is_null(Utils::get($_REQUEST['import'])))
         {
+            // Vérifie qu'il y a des fichiers à importer
+            if (count($this->makeList())==0)
+            {
+                $error .= '<li>Il n\'y a aucun fichier à importer.</li>';
+                Template::run('templates/import/import.yaml','Template::varCallback');
+                return;
+            }
+            
             // Vérifie que le gestionnaire de tâche est démarré
             if (! TaskManager::isRunning())
                 throw new Exception('Le gestionnaire de tâches n\'est pas démarré.');
@@ -1017,6 +1046,7 @@ class Base extends Database
                     $timestamp=mktime($hour, $minutes, $seconds, $month, $day, $year);
                     
                     $id=TaskManager::addTask('/base/importfiles', $timestamp, null, 'Import des fichiers de notices');
+                    Runtime::redirect('/taskmanager/');
                     break;
                     
                 case 1: // maintenant
@@ -1030,8 +1060,6 @@ class Base extends Database
             Runtime::redirect('/taskmanager/taskstatus?id='.$id);
             return;
         }
-
-        $error='';
         
         // Charge la liste des fichiers à importer
         // Les administrateurs voient tous les fichiers
@@ -1219,6 +1247,7 @@ class Base extends Database
         
         // Ouvre la sélection
         $selection=self::openDatabase('*', false);
+        if (is_null($selection)) return;
 
         $nb=1;
         // Parcourt la liste des fichiers
@@ -1302,10 +1331,8 @@ class Base extends Database
 
         // 2. Tri de la base
         TaskManager::progress('Chargement terminé, démarrage du tri');
-//        $this->actionSort();
 
-        Routing::dispatch('/base/sort'); // TODO : workaround
-        
+        Routing::dispatch('/base/sort'); // TODO : workaround       
         
 //        $id=TaskManager::addTask('/base/sort', 0, null, 'Tri de la base');
 ////        Runtime::redirect('/taskmanager/taskstatus?id='.$id);
@@ -1314,7 +1341,7 @@ class Base extends Database
 //
 //        // Dévérouille la base
 //        // TODO : Dévérouiller la base si pas déjà fait
-//            TaskManager::progress('Terminé');
+          TaskManager::progress('Import terminé');
     }
     
     /**
