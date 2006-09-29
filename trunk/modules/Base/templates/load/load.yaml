@@ -7,10 +7,6 @@ contents:
     action: '/base/save'
     class: load
     contents:
-      - [div]
-        contents:
-          - [hidden]
-            name: ref
       - [fieldset]
         title: Type de document
         contents:
@@ -234,12 +230,6 @@ contents:
                 title: Lien vers le document
                 name: Lien
                 class: fullwidth autoheight
-          - [div]
-            contents:
-              - [textarea]
-                title: Lien vers l'annexe
-                name: LienAnne
-                class: fullwidth autoheight
       - [fieldset]
         title: Localisation du document
         contents:
@@ -257,25 +247,25 @@ contents:
         contents:
           - [div]
             contents:
-              - [hidden]
-                name: FinSaisie
-                value: ''
               - [check]
                 title: Notice à valider
                 name: FinSaisie
                 value: 1
+              - [hidden]
+                name: FinSaisie
+                value: ''
           - [if]
             test: "User::hasAccess('AdminBase')"
             contents:
               - [div]
                 contents:
-                  - [hidden]
-                    name: Valide
-                    value: ''
                   - [check]
                     title: Notice validée par un administrateur
                     name: Valide
                     value: 1
+                  - [hidden]
+                    name: Valide
+                    value: ''
       - [opt]
         contents:
           - [fieldset]
@@ -291,6 +281,10 @@ contents:
                   - [text]
                     contents: 'Mise à jour : [LastUpdate]'
                     tag: p
+      - [div]
+        contents:
+          - [hidden]
+            name: ref
       - [div]
         class: buttons
         contents:
