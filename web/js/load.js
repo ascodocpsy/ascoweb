@@ -118,7 +118,6 @@ function CheckDateValide(Value)
 	ctrlAlert("La date saisie est erronée. Vous ne pouvez saisir une date déjà passée !\n");
 	return false;
 }
-*/
 
 function CheckLienAnnexe(Value)
 {
@@ -130,6 +129,7 @@ function CheckLienAnnexe(Value)
 	}
 	return true;
 }
+*/
 
 function CheckForm(ControlsName)
 {
@@ -197,7 +197,6 @@ var Controls =
 ["Nomp"            , "Noms propres"                                     ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
 ["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
 ["Lien"            , "Lien vers le document"                            ,      ,       ,        ,       ,       , "reUrlIP"      ,                ],
-["LienAnne"        , "Lien vers l'annexe"                               ,      ,       ,        ,       ,       , "reUrlIP"      ,                ],
 ["Loc"             , "Localisation du document"                         ,      ,       ,        ,       ,       , "reNomCentre"  ,                ],
 ["ProdFich"        , "Producteur de la fiche"                           ,      ,       ,        ,       ,       , "reNomCentre"  ,                ]
 ]
@@ -363,7 +362,6 @@ var ControlsTexteOfficiel =
 ["Nomp"            , "Noms propres"                                     ,      ,       ,        ,       ,       , "reUpCase"     ,                   ],
 ["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,       ,       , "reUpCase"     ,                   ],
 ["Lien"            , "Lien vers le document"                            , true ,       ,        ,       ,       , "reUrlIP"      ,                   ],
-["LienAnne"        , "Lien vers l'annexe"                               ,      ,       ,        ,       ,       , "reUrlIP"      , "CheckLienAnnexe" ],
 ["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                   ]
 ]
 
