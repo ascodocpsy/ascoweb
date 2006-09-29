@@ -42,12 +42,8 @@ class Base extends Database
             $this->actionExportCart(true);
 
         // Récupère l'identifiant
-        // TODO : Récupérer l'identifiant
-        if (User::hasAccess('AdminBase'))
-            $this->ident='admin';
-        else
-            $this->ident='member';
-    
+        $this->ident=User::get('ident');
+        
         // TODO : je ne veux pas de ça ! (le jour où ils ajoutent un champ, faut mettre à jour le script)
         // prendre tous les champs de la base un par un et les mettre en maju, on devrait avoir la même chose
         $this->map=array
@@ -103,9 +99,18 @@ class Base extends Database
     public function actionSearch()
     {
         global $selection;
-        
+        echo '<pre><big>',
+            'login:', User::get('login'), "\n",
+            'ident:', User::get('ident'), "\n",
+            'email:', User::get('email'), "\n",
+            'rights:', User::get('rights'), "\n",
+            'toto:', User::get('toto'), "\n",
+            '</big></pre>';
+            
         // Construit l'équation de recherche
         $this->equation=$this->makeBisEquation();
+        
+        debug && Debug::log('Equation construite : %s', $this->equation); 
         
         // Si aucun paramètre de recherche n'a été passé, il faut afficher le formulaire
         // de recherche
@@ -210,11 +215,12 @@ class Base extends Database
                     return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
                 return;
             
-            case 'Annexe':
-                // Lien vers texte intégral
-                if (($tit=$selection->field($name)) && ($lien=$selection->field('LienAnne')))
-                    return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
-                return;
+            // TODO : revoir affichage avec le lien
+//            case 'Annexe':
+//                // Lien vers texte intégral
+//                if (($tit=$selection->field($name)) && ($lien=$selection->field('LienAnne')))
+//                    return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
+//                return;
     
             case 'Aut':
                 if (! $h=$selection->field($name)) return ;
@@ -302,8 +308,7 @@ class Base extends Database
 
 //            case 'Loc':
 //            case 'ProdFich':
-//                if (! $h=$selection->field($name)) return '';             
-                
+//                if (! $h=$selection->field($name)) return '';
                 
             case 'Localisation': 
                if (! $h=$selection->field('Rev')) return '';
@@ -311,12 +316,20 @@ class Base extends Database
                // Lien vers la fiche Périodique du titre de périodique contenu dans le champ Rev,
                // pour obtenir la localisation
                $lien='locate?rev='. urlencode($h);
-               return '<a class="locate" href="' . Routing::linkFor($lien) . '" title="Localiser le périodique"><span>Localiser</span></a>';
+               return '<a class="locate" href="' . Routing::linkFor($lien) . '" title="Localiser le périodique">&nbsp;<span>Localiser</span></a>';
 
             case 'EtatCol':
                 return str_replace('/', '<br />', $selection->field($name));
+                
+            case 'ShowModifyBtn':
+                if ($selection->field('FinSaisie') == false)
+                {
+                    
+                }
+            
         }
     }
+    
     // TODO: apparemment, jamais utilisé
     public function getDates($name)
     {
@@ -342,8 +355,20 @@ class Base extends Database
         switch ($name)
         {
             case 'FinSaisie':
-            case 'Valide':
                 if (Utils::get($_REQUEST[$name], false)) $value=true; else $value=false;
+                break;
+            
+            case 'Valide':
+                if (User::hasAccess('EditBase'))
+                {
+                    // Si la notice est modifiée par un membre du GIP, la notice repasse
+                    // en statut "à valider par un administrateur"
+                    $value=false;
+                }
+                else
+                {
+                    if (Utils::get($_REQUEST[$name], false)) $value=true; else $value=false;
+                }
                 break;
             
             case 'Creation':
@@ -1249,7 +1274,12 @@ class Base extends Database
         $selection=self::openDatabase('*', false);
         if (is_null($selection)) return;
 
+        // Initialise le compteur de fichiers
         $nb=1;
+        
+        // Initialise le nombre total de notices
+        $nbreftotal=0;
+        
         // Parcourt la liste des fichiers
         foreach ($files as $key=>$file)
         {
@@ -1267,7 +1297,7 @@ class Base extends Database
             $nbFields=count($fields);
 
             // Lit le fichier et met à jour la base
-//            $nbref=0;
+            $nbref=0;
             while (($data=fgetcsv($f, 0, "\t", '"')) !== false)
             {
                 // Ignore les lignes vides
@@ -1291,9 +1321,28 @@ class Base extends Database
                     
                     $fieldname=$this->map[trim($fields[$i])];
                     $v=trim(str_replace('""', '"', $v));
+                    
+                    // TODO : traitement pour textes officiels à supprimer
+                    // Traitement pour les textes officiels
+                    if ($fieldname=='LienAnne') continue;
+                    
+                    // Transformation des dates DATETEXT et DATEPUB de JJ/MM/AAAA en AAAA-MM-JJ
+                    if ($fieldname == 'DateText' || $fieldname == 'DatePub')
+                        $v=preg_replace('~(\d{2})/(\d{2})/(\d{4})~', '${3}-${2}-${1}', $v);
+                    
+                    // Concaténation des champs Annexe et LienAnne
+                    // Annexe1 <url1>/Annexe2 <url2>
+                    if ($fieldname=='Annexe')
+                    {
+                        $lienAnne=$data[array_search('LIENANNE', $fields)];
+                        if ($lienAnne)
+                            $v.=($v) ? ' <'.$lienAnne.'>' : '<'.$lienAnne.'>';
+
+                    }
+
                     $selection->setfield($fieldname, $v);
                 }
-                
+                                
                 // Initialise les champs Creation et LastUpdate
                 // On passe par une variable intermédiaire car le 2e arguement de setfield
                 // doit être passé par référence
@@ -1306,14 +1355,17 @@ class Base extends Database
                 // doit être passé par référence
                 $v=true;
                 $selection->setfield('FinSaisie', $v);
-                $v=false;
+                // TODO : remettre $v=false;
+                //$v=false;
+                $v=true;
                 $selection->setfield('Valide', $v);
                 
                 $selection->update();
-                
-//                Taskmanager::progress($nbref);
-//                $nbref++;
+
+                $nbref++;
             }
+            
+            TaskManager::progress('Fichier ' . $file['name'].' : '.$nbref.' notices intégrées');
             
             // Ferme le fichier
             fclose($f);
@@ -1323,14 +1375,16 @@ class Base extends Database
             
             $files=$this->adminFiles=$this->makeList();
             
+            // Met à jour les compteurs
             $nb++;
+            $nbreftotal=$nbreftotal+$nbref;
         }
         
         // Ferme la base
         unset($selection);
 
         // 2. Tri de la base
-        TaskManager::progress('Chargement terminé, démarrage du tri');
+        TaskManager::progress('Chargement terminé : '. $nbreftotal.' notices intégrées dans la base, démarrage du tri');
 
         Routing::dispatch('/base/sort'); // TODO : workaround       
         
