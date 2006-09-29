@@ -55,8 +55,11 @@ contents:
                     value: '[REF]'
                   - [text]
                     contents: '<a class="fullrecord" href="/base/show?ref=[REF]" title="Voir la notice complète"><span>Voir la notice complète</span></a>'
-                  - [text]
-                    contents: '<a class="loadrecord" href="/base/load?ref=[REF]" title="Modifier la notice"><span>Modifier la notice</span></a>'
+                  - [if]
+                    test: "User::hasAccess('AdminBase') || [ShowModifyBtn]"
+                    contents:
+                      - [text]
+                        contents: '<a class="loadrecord" href="/base/load?ref=[REF]" title="Modifier la notice"><span>Modifier la notice</span></a>'
                   - [text]
                     contents: '[template]'
               - [text]
