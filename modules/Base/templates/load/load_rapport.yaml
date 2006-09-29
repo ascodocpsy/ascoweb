@@ -1,33 +1,29 @@
 contents:
   - [fieldset]
     title: Auteurs *
-    class: obl
     contents:
       - [textarea]
         name: Aut
-        class: fullwidth autoheight
+        class: fullwidth autoheight mandatory
         rows: 1
   - [fieldset]
     title: Titre *
-    class: obl
     contents:
       - [textarea]
         name: Tit
-        class: fullwidth autoheight
+        class: fullwidth autoheight mandatory
   - [fieldset]
     title: Année du document *
-    class: obl
     contents:
       - [input]
         name: Date
-        class: fullwidth
+        class: fullwidth mandatory
   - [fieldset]
     title: Nombre de pages *
-    class: obl
     contents:
       - [input]
         name: Page
-        class: fullwidth
+        class: fullwidth mandatory
   - [fieldset]
     title: Edition
     contents:
@@ -102,13 +98,13 @@ contents:
           - [textarea]
             title: Thème *
             name: Theme
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
       - [div]
         contents:
           - [textarea]
             title: Descripteurs *
             name: MotCle
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
       - [div]
         contents:
           - [textarea]
@@ -123,17 +119,15 @@ contents:
             class: fullwidth autoheight
   - [fieldset]
     title: Lien vers le document *
-    class: obl
     contents:
       - [textarea]
         name: Lien
-        class: fullwidth autoheight
+        class: fullwidth autoheight mandatory
   - [fieldset]
     title: Producteur de la fiche *
-    class: obl
     contents:
       - [input]
         name: ProdFich
-        class: fullwidth
+        class: fullwidth mandatory
   - [text]
     contents: '<script type="text/javascript">ctrlInitialize("ControlsRapport");</script>'

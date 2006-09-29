@@ -1,32 +1,28 @@
 contents:
   - [fieldset]
     title : Titre du périodique *
-    class: obl
     contents:
       - [textarea]
         name: Rev
-        class: fullwidth autoheight
+        class: fullwidth autoheight mandatory
   - [fieldset]
     title: Date de vie et de mort *
-    class: obl
     contents:
       - [input]
         name: ViePerio
-        class: fullwidth
+        class: fullwidth mandatory
   - [fieldset]
     title: Etat de la collection *
-    class: obl
     contents:
       - [textarea]
         name: EtatCol
-        class: fullwidth autoheight
+        class: fullwidth autoheight mandatory
   - [fieldset]
     title: ISSN *
-    class: obl
     contents:
       - [input]
         name: IsbnIssn
-        class: fullwidth
+        class: fullwidth mandatory
   - [fieldset]
     title: Notes
     contents:
@@ -41,10 +37,9 @@ contents:
         class: fullwidth autoheight
   - [fieldset]
     title: Producteur de la fiche *
-    class: obl
     contents:
       - [input]
         name: ProdFich
-        class: fullwidth
+        class: fullwidth mandatory
   - [text]
     contents: '<script type="text/javascript">ctrlInitialize("ControlsPeriodique");</script>'

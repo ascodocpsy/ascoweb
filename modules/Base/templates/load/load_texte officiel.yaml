@@ -1,11 +1,11 @@
 contents:
   - [fieldset]
     title: Nature du texte officiel *
-    class: obl
     contents:
       - [radiolist]
         name: NatText
         table: nattext.txt
+        class: mandatory
   - [fieldset]
     title: Titres du document
     contents:
@@ -14,7 +14,7 @@ contents:
           - [textarea]
             title: Titre *
             name: Tit
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
       - [div]
         contents:
           - [textarea]
@@ -29,13 +29,13 @@ contents:
           - [input]
             title: Date du texte officiel *
             name: DateText
-            class: fullwidth obl
+            class: fullwidth mandatory
       - [div]
         contents:
           - [input]
             title: Date de publication du texte officiel *
             name: DatePub
-            class: fullwidth obl
+            class: fullwidth mandatory
       - [div]
         contents:
           - [input]
@@ -50,13 +50,13 @@ contents:
           - [textarea]
             title : Titre du périodique *
             name: Rev
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
       - [div]
         contents:
           - [input]
             title : Numéro *
             name: Num
-            class: fullwidth obl
+            class: fullwidth mandatory
   - [fieldset]
     title : Résumé
     contents:
@@ -71,13 +71,13 @@ contents:
           - [textarea]
             title: Thème *
             name: Theme
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
       - [div]
         contents:
           - [textarea]
             title: Descripteurs *
             name: MotCle
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
       - [div]
         contents:
           - [textarea]
@@ -98,13 +98,12 @@ contents:
           - [textarea]
             title: Lien vers le document *
             name: Lien
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
   - [fieldset]
     title: Producteur de la fiche *
-    class: obl
     contents:
       - [input]
         name: ProdFich
-        class: fullwidth
+        class: fullwidth mandatory
   - [text]
     contents: '<script type="text/javascript">ctrlInitialize("ControlsTexteOfficiel");</script>'

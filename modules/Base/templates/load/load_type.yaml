@@ -27,10 +27,6 @@ contents:
       - [div]
         contents:
           - [hidden]
-            name: ref
-      - [div]
-        contents:
-          - [hidden]
             name: Type
       - [text]
         contents: '[loadtemplate]'
@@ -74,6 +70,10 @@ contents:
                     contents: 'Mise à jour : [LastUpdate]'
                     tag: p
       - [div]
+        contents:
+          - [hidden]
+            name: ref
+      - [div]
         class: buttons
         contents:
           - [button]
@@ -87,6 +87,7 @@ contents:
         contents:
           - [form]
             method: post
+            class: reset
             action: '/base/delete'
             contents:
               - [div]
