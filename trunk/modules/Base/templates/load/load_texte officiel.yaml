@@ -99,12 +99,6 @@ contents:
             title: Lien vers le document *
             name: Lien
             class: fullwidth autoheight obl
-      - [div]
-        contents:
-          - [textarea]
-            title: Lien vers l'annexe
-            name: LienAnne
-            class: fullwidth autoheight
   - [fieldset]
     title: Producteur de la fiche *
     class: obl
