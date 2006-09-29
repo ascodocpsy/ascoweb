@@ -1,26 +1,23 @@
 contents:
   - [fieldset]
     title: Auteurs *
-    class: obl
     contents:
       - [textarea]
         name: Aut
-        class: fullwidth autoheight
+        class: fullwidth autoheight mandatory
         rows: 1
   - [fieldset]
     title: Titre *
-    class: obl
     contents:
       - [textarea]
         name: Tit
-        class: fullwidth autoheight
+        class: fullwidth autoheight mandatory
   - [fieldset]
     title: Spécialité du diplôme *
-    class: obl
     contents:
       - [textarea]
         name: DipSpe
-        class: fullwidth autoheight
+        class: fullwidth autoheight mandatory
   - [fieldset]
     title: Edition
     contents:
@@ -29,13 +26,13 @@ contents:
           - [textarea]
             title: Institution morale de rattachement *
             name: Edit
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
       - [div]
         contents:
           - [textarea]
             title: Lieu d'édition ou de soutenance *
             name: Lieu
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
   - [fieldset]
     title: Mentions bibliographiques
     contents:
@@ -44,7 +41,7 @@ contents:
           - [input]
             title: Nombre de pages *
             name: Page
-            class: fullwidth obl
+            class: fullwidth mandatory
       - [div]
         contents:
           - [textarea]
@@ -53,11 +50,10 @@ contents:
             class: fullwidth autoheight
   - [fieldset]
     title: Année de soutenance *
-    class: obl
     contents:
       - [input]
         name: Date
-        class: fullwidth
+        class: fullwidth mandatory
   - [fieldset]
     title : Résumé
     contents:
@@ -72,13 +68,13 @@ contents:
           - [textarea]
             title: Thème *
             name: Theme
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
       - [div]
         contents:
           - [textarea]
             title: Descripteurs *
             name: MotCle
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
       - [div]
         contents:
           - [textarea]
@@ -99,17 +95,15 @@ contents:
         class: fullwidth autoheight
   - [fieldset]
     title: Localisation du document *
-    class: obl
     contents:
       - [textarea]
         name: Loc
-        class: fullwidth autoheight
+        class: fullwidth autoheight mandatory
   - [fieldset]
     title: Producteur de la fiche *
-    class: obl
     contents:
       - [input]
         name: ProdFich
-        class: fullwidth
+        class: fullwidth mandatory
   - [text]
     contents: '<script type="text/javascript">ctrlInitialize("ControlsMemoire");</script>'

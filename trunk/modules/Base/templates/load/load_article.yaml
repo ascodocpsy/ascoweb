@@ -1,36 +1,33 @@
 contents:
   - [fieldset]
     title: Auteurs *
-    class: obl
     contents:
       - [textarea]
         name: Aut
-        class: fullwidth autoheight
+        class: fullwidth autoheight mandatory
         rows: 1
   - [fieldset]
     title: Titre de l'article *
-    class: obl
     contents:
       - [textarea]
         name: Tit
-        class: fullwidth autoheight
+        class: fullwidth autoheight mandatory
         rows: 1
   - [fieldset]
     title: Année du document *
-    class: obl
     contents:
       - [input]
         name: Date
-        class: fullwidth
+        class: fullwidth mandatory
   - [fieldset]
     title: Mentions bibliographiques
     contents:
       - [div]
         contents:
           - [input]
-            title: Page de début et page de fin *
+            title: Page début-fin *
             name: PdPf
-            class: fullwidth obl
+            class: fullwidth mandatory
       - [div]
         contents:
           - [textarea]
@@ -45,7 +42,7 @@ contents:
           - [textarea]
             title : Titre du périodique *
             name: Rev
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
       - [div]
         contents:
           - [input]
@@ -57,7 +54,7 @@ contents:
           - [input]
             title : Numéro *
             name: Num
-            class: fullwidth obl
+            class: fullwidth mandatory
   - [fieldset]
     title : Résumé
     contents:
@@ -72,13 +69,13 @@ contents:
           - [textarea]
             title: Thème *
             name: Theme
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
       - [div]
         contents:
           - [textarea]
             title: Descripteurs *
             name: MotCle
-            class: fullwidth autoheight obl
+            class: fullwidth autoheight mandatory
       - [div]
         contents:
           - [textarea]
@@ -99,10 +96,9 @@ contents:
         class: fullwidth autoheight
   - [fieldset]
     title: Producteur de la fiche *
-    class: obl
     contents:
       - [input]
         name: ProdFich
-        class: fullwidth
+        class: fullwidth mandatory
   - [text]
     contents: '<script type="text/javascript">ctrlInitialize("ControlsArticle");</script>'
