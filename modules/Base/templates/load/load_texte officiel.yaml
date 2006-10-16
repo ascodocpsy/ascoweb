@@ -58,6 +58,12 @@ contents:
             name: Num
             class: fullwidth mandatory
   - [fieldset]
+    title : Numéro du texte officiel
+    contents:
+      - [input]
+        name: NumTexOf
+        class: fullwidth
+  - [fieldset]
     title : Résumé
     contents:
       - [textarea]
