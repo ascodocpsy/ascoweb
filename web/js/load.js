@@ -181,6 +181,7 @@ var Controls =
 ["Rev"             , "Titre du périodique"                              ,      ,       ,        ,       ,       ,                ,                ],
 ["Vol"             , "Volume du périodique"                             ,      ,       ,        ,       ,       ,                ,                ],
 ["Num"             , "Numéro du périodique"                             ,      ,       ,        ,       ,       ,                ,                ],
+["NumTexOf"        , "Numéro du texte officiel"                         ,      ,       ,        ,       ,       ,                ,                ],
 ["ViePerio"        , "Date de vie et de mort du titre de périodique"	,      ,       ,        ,       ,       , "rePeriod"     ,                ],
 ["EtatCol"         , "Etat de la collection"                            ,      ,       ,        ,       ,       ,                ,                ],
 ["Page"            , "Nombre de pages"                                  ,      ,       ,        ,       ,       ,                ,                ],
@@ -347,22 +348,23 @@ var ControlsTexteOfficiel =
 [0, "FRE", "/", "CheckForm"],
 //        0           		1                                              2       3       4        5       6        7                  8
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
-["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                   ],
-["NatText"         , "Nature du texte officiel"                         , true ,       ,        ,       ,     1 ,                ,                   ],
-["Tit"             , "Titre"                                            , true ,       ,        ,       ,       ,                ,                   ],
-["Annexe"          , "Titre de l'annexe"                                ,      ,       ,        ,       ,       ,                ,                   ],
-["DateText"        , "Date du texte officiel"                           , true ,       ,        ,       ,       , "reDateUsual"  ,                   ],
-["DatePub"         , "Date de publication du texte officiel"            , true ,       ,        ,       ,       , "reDateUsual"  ,                   ],
-["DateVali"        , "Date de fin de validité du texte officiel"        ,      ,       ,        ,       ,       , "reDateUsual"  ,                   ],
-["Rev"             , "Titre du périodique"                              , true ,       ,        ,       ,       ,                ,                   ],
-["Num"             , "Numéro du périodique"                             , true ,       ,        ,       ,       ,                ,                   ],
-["Resu"            , "Résumé"                                           ,      ,       ,        ,       ,       ,                ,                   ],
-["Theme"           , "Thème"                                            , true ,       ,        ,       ,     1 , "reUpCase"     ,                   ],
-["MotCle"          , "Descripteurs"                                     , true ,       ,        ,       ,       , "reUpCase"     ,                   ],
-["Nomp"            , "Noms propres"                                     ,      ,       ,        ,       ,       , "reUpCase"     ,                   ],
-["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,       ,       , "reUpCase"     ,                   ],
-["Lien"            , "Lien vers le document"                            , true ,       ,        ,       ,       , "reUrlIP"      ,                   ],
-["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                   ]
+["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
+["NatText"         , "Nature du texte officiel"                         , true ,       ,        ,       ,     1 ,                ,                ],
+["Tit"             , "Titre"                                            , true ,       ,        ,       ,       ,                ,                ],
+["Annexe"          , "Titre de l'annexe"                                ,      ,       ,        ,       ,       ,                ,                ],
+["DateText"        , "Date du texte officiel"                           , true ,       ,        ,       ,       , "reDateUsual"  ,                ],
+["DatePub"         , "Date de publication du texte officiel"            , true ,       ,        ,       ,       , "reDateUsual"  ,                ],
+["DateVali"        , "Date de fin de validité du texte officiel"        ,      ,       ,        ,       ,       , "reDateUsual"  ,                ],
+["Rev"             , "Titre du périodique"                              , true ,       ,        ,       ,       ,                ,                ],
+["Num"             , "Numéro du périodique"                             , true ,       ,        ,       ,       ,                ,                ],
+["NumTexOf"        , "Numéro du texte officiel"                         ,      ,       ,        ,       ,       ,                ,                ],
+["Resu"            , "Résumé"                                           ,      ,       ,        ,       ,       ,                ,                ],
+["Theme"           , "Thème"                                            , true ,       ,        ,       ,     1 , "reUpCase"     ,                ],
+["MotCle"          , "Descripteurs"                                     , true ,       ,        ,       ,       , "reUpCase"     ,                ],
+["Nomp"            , "Noms propres"                                     ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
+["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
+["Lien"            , "Lien vers le document"                            , true ,       ,        ,       ,       , "reUrlIP"      ,                ],
+["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ]
 ]
 
 // Pour document Périodique
