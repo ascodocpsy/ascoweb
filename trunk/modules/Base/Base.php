@@ -42,7 +42,7 @@ class Base extends Database
             $this->actionExportCart(true);
 
         // Récupère l'identifiant
-        $this->ident=User::get('ident');
+        $this->ident=strtolower(User::get('login'));
         
         // TODO : je ne veux pas de ça ! (le jour où ils ajoutent un champ, faut mettre à jour le script)
         // prendre tous les champs de la base un par un et les mettre en maju, on devrait avoir la même chose
@@ -99,14 +99,7 @@ class Base extends Database
     public function actionSearch()
     {
         global $selection;
-        echo '<pre><big>',
-            'login:', User::get('login'), "\n",
-            'ident:', User::get('ident'), "\n",
-            'email:', User::get('email'), "\n",
-            'rights:', User::get('rights'), "\n",
-            'toto:', User::get('toto'), "\n",
-            '</big></pre>';
-            
+
         // Construit l'équation de recherche
         $this->equation=$this->makeBisEquation();
         
@@ -215,12 +208,43 @@ class Base extends Database
                     return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
                 return;
             
-            // TODO : revoir affichage avec le lien
-//            case 'Annexe':
-//                // Lien vers texte intégral
-//                if (($tit=$selection->field($name)) && ($lien=$selection->field('LienAnne')))
-//                    return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
-//                return;
+            case 'Annexe':
+                // TODO : revoir : ne marche pas avec Titre de l'annexe1 <http://www.lien.fr >/Titre de l'annexe2/< http://www.lien2.fr>
+                // Lien vers texte intégral
+                // Syntaxe du champ :
+                // Titre de l'annexe1 <http://www.lien.fr>/Titre de l'annexe2/<http://www.lien2.fr>
+                $value='';
+                $h=$selection->field($name);
+                while (strlen($h)>0)
+                {
+                    $pt=strpos($h, '>');
+                    // Cas 1 : on a Titre de l'annexe1 <http://www.lien.fr> ou <http://www.lien2.fr>
+                    if ($pt !== false)
+                    {
+                        // Extrait le titre et son lien
+                        $art=substr($h, 0, $pt);                        // Titre de l'annexe1 <http://www.lien.fr
+                        $tit=trim(substr($art, 0, strpos($art, '<')));  // Titre de l'annexe1
+                        $lien=trim(substr($art, strpos($art, '<')+1));  // http://www.lien.fr
+                        if (! $tit) $tit=$lien;
+                        if ($value) $value.=' ; ';
+                        $value.=$this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
+                        $h=trim(substr($h, $pt+1));
+                        if (strpos($h, self::SEPARATOR)==0)
+                            $h=trim(substr($h, 1));
+                    }
+                    // Cas 2 : on a uniquement Titre
+                    else
+                    {
+                        $pt=strpos($h, self::SEPARATOR);
+                        if ($pt === false)
+                            $pt=strlen($h);
+                        $tit=trim(substr($h, 0, $pt));
+                        if ($value) $value.=' ; ';
+                        $value.=$tit;
+                        $h=trim(substr($h, $pt+1));
+                    }
+                }
+                return $value;
     
             case 'Aut':
                 if (! $h=$selection->field($name)) return ;
@@ -322,11 +346,15 @@ class Base extends Database
                 return str_replace('/', '<br />', $selection->field($name));
                 
             case 'ShowModifyBtn':
-                if ($selection->field('FinSaisie') == false)
+                $h=1;
+                // Si la saisie de la notice n'est pas terminée, seul les membres
+                // spécifiés dans le champ ProdFich peuvent modifier la notice
+                if ($selection->field('FinSaisie') == 0)
                 {
-                    
+                    $t=split('/', $selection->field('ProdFich'));
+                    if (! in_array($this->ident, $t)) $h=0;
                 }
-            
+                return ($h == 1) ? true : false;
         }
     }
     
@@ -417,7 +445,6 @@ class Base extends Database
         // Recherche la fiche Périodique
         $selection=self::openDatabase($eq);
         if (is_null($selection)) return;
-        echo $eq, '   ', $selection->count;
 
         switch ($selection->count)
         {
@@ -681,12 +708,12 @@ class Base extends Database
         
         $template=$this->path . 'templates/export/'.$format['template'];
         if (! file_exists($template))
-            throw new Exception('Le fichier contenant les différents format n\'existe pas');
+            throw new Exception('Le fichier contenant les différents formats n\'existe pas');
 
         // Génère l'export, en bufferisant : si on a une erreur, elle s'affiche à l'écran, pas dans le fichier
         $this->selectionFromCart();
 
-        ob_start();        
+        ob_start();
         Template::run
         (
             $template, 
@@ -705,15 +732,12 @@ class Base extends Database
             if (isset($format['content-type']))
                 header('content-type: ' . $format['content-type']);
     
-            if ($cmd=='export')
-            {
-                header
-                (
-                    'content-disposition: attachment; filename="' 
-                    . (isset($format['filename']) ? $format['filename'] : 'notices.txt') 
-                    . '"'
-                );
-            }
+            header
+            (
+                'content-disposition: attachment; filename="' 
+                . (isset($format['filename']) ? $format['filename'] : 'notices.txt') 
+                . '"'
+            );
                         
             echo $data;
         }
@@ -1322,6 +1346,7 @@ class Base extends Database
                     $fieldname=$this->map[trim($fields[$i])];
                     $v=trim(str_replace('""', '"', $v));
                     
+                    /*
                     // TODO : traitement pour textes officiels à supprimer
                     // Traitement pour les textes officiels
                     if ($fieldname=='LienAnne') continue;
@@ -1339,7 +1364,7 @@ class Base extends Database
                             $v.=($v) ? ' <'.$lienAnne.'>' : '<'.$lienAnne.'>';
 
                     }
-
+                    */
                     $selection->setfield($fieldname, $v);
                 }
                                 
@@ -1354,11 +1379,9 @@ class Base extends Database
                 // On passe par des variables intermédiaires car le 2e arguement de setfield
                 // doit être passé par référence
                 $v=true;
-                $selection->setfield('FinSaisie', $v);
-                // TODO : remettre $v=false;
-                //$v=false;
-                $v=true;
-                $selection->setfield('Valide', $v);
+                $selection->setfield('FinSaisie', $v);  // La saisie des notices est terminée
+                $v=false;
+                $selection->setfield('Valide', $v);     // Les notices importées ne sont pas validées
                 
                 $selection->update();
 
