@@ -41,6 +41,12 @@ contents:
                 title: Titre de l'annexe
                 name: Annexe
                 class: fullwidth autoheight
+          - [div]
+            contents:
+              - [input]
+                title: Numéro du texte officiel
+                name: NumTexOf
+                class: fullwidth
       - [fieldset]
         title: Spécialité du diplôme
         contents:
