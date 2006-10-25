@@ -86,7 +86,7 @@ var reIsbnIssnFRE  = "L'ISBN doit être saisi sans tiret entre les chiffres.\nExe
 
 // Nom du centre au format ascoXXX
 var reNomCentre    = "asco[1-9][0-9]{0,2}"
-var reNomCentreFRE = "Le numéro attribué à la bibliothèque ou au centre de documentation doit être saisi sous la forme suivante : ascoXXX\nExemples : asco1, asco52"
+var reNomCentreFRE = "Le numéro attribué à la bibliothèque ou au centre de documentation doit être saisi sous la forme suivante : ascoXXX\nExemples : asco1/asco52"
 
 // Adresse IP
 var reIPByte	   = "[1-9]([0-9][0-9]?)?"
