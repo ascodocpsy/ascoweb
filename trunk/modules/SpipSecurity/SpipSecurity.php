@@ -25,7 +25,7 @@ class SpipSecurity extends NoSecurity
                 $this->rights=$t['rights'];
             }
         }
-        echo '<pre>', var_dump($this, true), '</pre>';
+        //echo '<pre>', var_dump($this, true), '</pre>';
     }	
 
     public function preExecute()
