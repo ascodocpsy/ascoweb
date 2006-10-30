@@ -18,7 +18,6 @@
             <ul class="menu">
                 <li>Base documentaire
                     <ul>
-                        <li><a href="/">Accueil démo</a></li>
                         <li><a href="/base/searchform">Recherche</a></li>
                         <if test="User::hasAccess('Edit,Admin')">
                             <li><a href="/base/showCart">Votre sélection</a></li>
@@ -45,6 +44,19 @@
                     </li>
                 </if>
             </ul>
+/*
+            <if test="User::hasAccess('Admin')">
+                <p>Accès administrateur</p>
+            </if>
+            <else>
+                <if test="User::hasAccess('Edit')">
+                    <p>Accès membres du GIP</p>
+                </if>
+                <else>
+                    <p>Accès grand public</p>
+                </else>
+            </else>
+*/
         </div>
         <div class="contents">
         <img src="/styles/asco/logo_web.jpeg" />
