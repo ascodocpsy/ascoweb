@@ -28,6 +28,10 @@
   module: base
   action: locate
 
+- url: /base/revue/[rev]/presentation
+  module: base
+  action: inform
+
 - url: /base/[ref]/modifier
   with:
     ref: \d+
@@ -77,11 +81,15 @@
   module: base
   action: clearCart
 
-- url: /panier/exporter
+- url: /panier/exporter*
   module: base
   action: exportCart
+  
+- url: /panier/exportertype*
+  module: base
+  action: exportCartByType
 
-- url: /connect/[statut]
+- url: /SpipSecurity/connect*
   module: SpipSecurity
   action: index
 
