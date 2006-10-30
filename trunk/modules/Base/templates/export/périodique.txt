@@ -1,0 +1,3 @@
+TYPE	REV	VIEPERIO	ETATCOL	ISBNISSN	NOTES	LIEN	PRODFICH
+<loop on="bis($selection)" order="asc">[Type]	[Rev]	[ViePerio]	[EtatCol]	[IsbnIssn]	[Notes]	[Lien]	[ProdFich]
+</loop>

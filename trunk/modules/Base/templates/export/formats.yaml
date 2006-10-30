@@ -6,7 +6,9 @@
 #
 # - title (obligatoire) : nom du format tel qu'il est affiché à l'utilisateur
 #
-# - template (obligatoire) : nom du template à utiliser
+# - template (obligatoire) : nom du template à utiliser.
+#   Possibilité de préciser un template différent suivant la valeur d'une clé
+#   (exemple : un template par type de document)
 #
 # - layout (optionnel) : nom du layout à utiliser. Si vide, le layout par défaut
 #   du module sera utilisé
@@ -16,18 +18,47 @@
 #
 # - filename (optionnel) : nom proposé par le navigateur si l'utilisateur
 #   choisit l'option 'enregistrer dans un fichier'
+#   Possibilité de préciser un nom différent suivant la valeur d'une clé
+#   (exemple : un nom pour chaque type de document)
 #
 
 commun:
-  title: Export en format commun (CSV)
-  template: 'commun.txt'
+  title: Export, par type de document, en format commun (texte tabulé)
+  template:
+    Article: 'article.txt'
+    Congrès: 'congrès.txt'
+    Livre: 'livre.txt'
+    Mémoire: 'mémoire.txt'
+    Périodique: 'périodique.txt'
+    Rapport: 'rapport.txt'
+    Texte officiel: 'texte officiel.txt'
+    Thèse: 'mémoire.txt'
+    default: 'commun.txt'
   layout: none
   content-type: text/plain
-  filename: ascodocpsy.txt
+  filename:
+    Article: 'ascodocpsy_article.txt'
+    Congrès: 'ascodocpsy_congres.txt'
+    Livre: 'ascodocpsy_livre.txt'
+    Mémoire: 'ascodocpsy_memoire.txt'
+    Périodique: 'ascodocpsy_periodique.txt'
+    Rapport: 'ascodocpsy_rapport.txt'
+    Texte officiel: 'ascodocpsy_texteofficiel.txt'
+    Thèse: 'ascodocpsy_these.txt'
+    default: 'ascodocpsy.txt'
 
 csv:
-  title: Export de tous les champs en format CSV
+  title: Export de tous les champs en format texte tabulé
   template: 'export.txt'
   layout: none
   content-type: text/plain
-  filename: ascodocpsy.csv
+  filename:
+    Article: 'ascodocpsy_article.txt'
+    Congrès: 'ascodocpsy_congres.txt'
+    Livre: 'ascodocpsy_livre.txt'
+    Mémoire: 'ascodocpsy_memoire.txt'
+    Périodique: 'ascodocpsy_periodique.txt'
+    Rapport: 'ascodocpsy_rapport.txt'
+    Texte officiel: 'ascodocpsy_texteofficiel.txt'
+    Thèse: 'ascodocpsy_these.txt'
+    default: 'ascodocpsy.txt'
