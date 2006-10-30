@@ -1,0 +1,3 @@
+TYPE	AUT	TIT	CONGRTIT	CONGRNUM	CONGRLIE	CONGRDAT	EDIT	LIEU	COL	REED	PAGE	DATE	MOTCLE	CANDES	THEME	NOMP	RESU	LIEN	NOTES	ISBNISSN	PRODFICH	LOC
+<loop on="bis($selection)" order="asc">[Type]	[Aut]	[Tit]	[CongrTit]	[CongrNum]	[CongrLie]	[CongrDat]	[Edit]	[Lieu]	[Col]	[Reed]	[Page]	[Date]	[MotCle]	[CanDes]	[Theme]	[Nomp]	[Resu]	[Lien]	[Notes]	[IsbnIssn]	[ProdFich]	[Loc]
+</loop>

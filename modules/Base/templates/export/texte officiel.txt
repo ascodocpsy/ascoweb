@@ -1,0 +1,3 @@
+TYPE	NATTEXT	DATETEXT	DATEPUB	TIT	REV	NUM	NUMTEXOF	MOTCLE	CANDES	THEME	NOMP	LIEN	ANNEXE	RESU	DATEVALI	PRODFICH
+<loop on="bis($selection)" order="asc">[Type]	[NatText]	[DateText]	[DatePub]	[Tit]	[Rev]	[Num]	[NumTexOf]	[MotCle]	[CanDes]	[Theme]	[Nomp]	[Lien]	[Annexe]	[Resu]	[DateVali]	[ProdFich]
+</loop>
