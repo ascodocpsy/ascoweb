@@ -91,6 +91,43 @@ contents:
                   - [file]
                     name: file3
                     title: 'Fichier :'
+              - [ignore]
+                contents:
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file4
+                        title: 'Fichier :'
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file5
+                        title: 'Fichier :'
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file6
+                        title: 'Fichier :'
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file7
+                        title: 'Fichier :'
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file8
+                        title: 'Fichier :'
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file9
+                        title: 'Fichier :'
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file10
+                        title: 'Fichier :'
       - [div]
         name: wait
         style: |
@@ -128,12 +165,15 @@ contents:
                     contents:
                       - [radio]
                         name: now
+                        id: after
                         value: 0
                         title: plus tard :
                       - [input]
                         name: delay
                         value: ''
                         size: 30
+                        onclick: document.getElementById('after').checked='checked';
+                        onfocus: document.getElementById('after').checked='checked';
                       - [text]
                         contents: 'saisir le jour et l'heure sous la forme JJ/MM/AAAA hh:mm:ss'
                   - [button]
