@@ -1,0 +1,203 @@
+contents:
+  - [text]
+    tag: h1
+    contents: Base documentaire - Recherche - Accès administrateur
+  - [form]
+    action: '/base/search'
+    class: search
+    contents:
+      - [div]
+        contents:
+          - [input]
+            name: Mots
+            title: Recherche tous champs
+      - [div]
+        contents:
+          - [input]
+            name: MotCle
+            title: Descripteur
+      - [div]
+        contents:
+          - [input]
+            name: Titres
+            title: Titre ou mots du titre
+      - [div]
+        contents:
+          - [input]
+            name: Aut
+            title: Auteur
+      - [div]
+        contents:
+          - [input]
+            name: Nomp
+            title: Nom propre
+      - [div]
+        contents:
+          - [input]
+            name: Resu
+            title: Résumé
+      - [div]
+        contents:
+          - [checklist]
+            name: Dates
+            table: date
+            title: Date du document
+          - [div]
+            class: date
+            contents:
+              - [select]
+                name: Dates
+                table: datelist
+                title: Autre
+                emptylabel: '-'
+      - [div]
+        contents:
+          - [input]
+            name: DateText
+            title: Date du texte officiel
+          - [text]
+            tag: p
+            contents: 'Format : AAAA-MM-JJ ou AAAA-MM ou AAAA'
+            class: exemple
+      - [div]
+        contents:
+          - [checklist]
+            name: Type
+            table: type
+            title: Type de document
+      - [div]
+        contents:
+          - [text]
+            tag: label
+            contents: Texte intégral
+            class: checklist
+          - [div]
+            contents:
+              - [check]
+                name: Liens
+                value: @notempty@
+                title: Documents en ligne uniquement
+      - [div]
+        contents:
+          - [input]
+            name: Rev
+            title: Titre du périodique
+      - [div]
+        contents:
+          - [input]
+            name: Edit
+            title: Editeur
+      - [div]
+        contents:
+          - [input]
+            name: Col
+            title: Collection
+      - [div]
+        contents:
+          - [input]
+            name: IsbnIssn
+            title: ISBN, ISSN
+      - [div]
+        contents:
+          - [input]
+            name: Numeros
+            title: Numéro (du périodique, du congrès, du texte officiel)
+      - [div]
+        contents:
+          - [input]
+            name: Vol
+            title : Numéro de volume
+      - [div]
+        contents:
+          - [input]
+            name: DipSpe
+            title : Spécialité du diplôme
+      - [div]
+        contents:
+          - [div]
+            contents:
+              - [selectmultiple]
+                name: NatText
+                table: nattext
+                title: Nature du texte officiel
+                size: 3
+    #                emptylabel: 'Tous'
+          - [div]
+            class: infonattext
+            contents:
+              - [text]
+                tag: p
+                contents: >
+                    Pour sélectionner plusieurs types de texte officiel, 
+                    appuyez sur la touche contrôle (Ctrl) et cliquez sur 
+                    les types souhaités. Procéder de même pour désélectionner.
+                class: exemple
+      - [div]
+        contents:
+          - [input]
+            name: Loc
+            title: Localisation
+      - [div]
+        contents:
+          - [input]
+            name: ProdFich
+            title: Producteur
+      - [div]
+        contents:
+          - [text]
+            tag: label
+            contents: Saisie de notices
+            class: checklist
+          - [div]
+            contents:
+              - [check]
+                name: FinSaisie
+                value: 'faux'
+                title: Notices en cours de saisie
+              - [check]
+                name: FinSaisie
+                value: 'vrai'
+                title: Notices terminées
+      - [div]
+        contents:
+          - [text]
+            tag: label
+            contents: Validation de notices
+            class: checklist
+          - [div]
+            contents:
+              - [check]
+                name: Valide
+                value: 'faux'
+                title: Notices à valider
+              - [check]
+                name: Valide
+                value: 'vrai'
+                title: Notices validées
+      - [div]
+        contents:
+          - [input]
+            name: Creation
+            title: Date de création
+      - [div]
+        contents:
+          - [input]
+            name: LastUpdate
+            title: Date de mise à jour
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            action: submit
+            title: Rechercher
+            class: submit
+  - [form]
+    class: reset
+    contents:
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            action: submit
+            title: Effacer tout
+            class: reset
