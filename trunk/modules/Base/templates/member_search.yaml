@@ -28,7 +28,7 @@ contents:
         contents:
           - [input]
             name: Titres
-            title: Titre
+            title: Titre ou mots du titre
       - [div]
         contents:
           - [input]
@@ -50,12 +50,41 @@ contents:
             name: Dates
             table: date
             title: Date du document
+          - [div]
+            class: date
+            contents:
+              - [select]
+                name: Dates
+                table: datelist
+                title: Autre
+                emptylabel: '-'
+      - [div]
+        contents:
+          - [input]
+            name: DateText
+            title: Date du texte officiel
+          - [text]
+            tag: p
+            contents: 'Format : AAAA-MM-JJ ou AAAA-MM ou AAAA'
+            class: exemple
       - [div]
         contents:
           - [checklist]
             name: Type
             table: type
             title: Type de document
+      - [div]
+        contents:
+          - [text]
+            tag: label
+            contents: Texte intégral
+            class: checklist
+          - [div]
+            contents:
+              - [check]
+                name: Liens
+                value: @notempty@
+                title: Documents en ligne uniquement
       - [div]
         contents:
           - [input]
@@ -90,7 +119,7 @@ contents:
                 table: nattext
                 title: Nature du texte officiel
                 size: 3
-    #            emptylabel: 'Tous'
+    #                emptylabel: 'Tous'
           - [div]
             class: infonattext
             contents:
@@ -99,18 +128,18 @@ contents:
                 contents: >
                     Pour sélectionner plusieurs types de texte officiel, 
                     appuyez sur la touche contrôle (Ctrl) et cliquez sur 
-                    les types souhaités.<br />
-                    Faire de même pour désélectionner.
+                    les types souhaités. Procéder de même pour désélectionner.
                 class: exemple
       - [div]
         contents:
           - [input]
-            name: DateText
-            title: Date du texte officiel
-          - [text]
-            tag: span
-            contents: 'Format : AAAA-MM-JJ'
-            class: exemple
+            name: Loc
+            title: Localisation
+      - [div]
+        contents:
+          - [input]
+            name: ProdFich
+            title: Producteur
       - [div]
         class: buttons
         contents:
