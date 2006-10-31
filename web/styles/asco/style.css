@@ -3,7 +3,6 @@
 /* ========================================================================== */
 /*                         STYLES GENERIQUES                                  */
 /* ========================================================================== */
-
 body
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -65,6 +64,58 @@ hr
 {
 	font-size: 0.95em;
 	text-align: right;
+}
+
+/* ========================================================================== */
+/*                                   LAYOUT                                   */
+/* ========================================================================== */
+div.menu
+{
+    float: left;
+    width: 16em;
+}
+div.menu ul
+{
+    border: 2px solid #ddd;
+    list-style: none url(none);
+    padding: 0;
+    margin: 0;
+}    
+
+div.menu ul.firstmenu
+{
+    margin-bottom: 1em;
+}
+    
+div.menu ul.firstmenu li
+{
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+    
+div.menu ul.menu
+{
+background-color: red;
+}
+
+ul.menu li
+{
+    background-color: #ff9;
+    font-weight: bold;
+}
+
+ul.menu li ul li
+{
+    background-color: white;
+    padding: 0 1em;
+    list-style: square inside;
+    margin: 0;
+    font-weight: normal;
+}
+
+ul.menu li ul li
+{
+    background-color: white;
 }
 
 /* ========================================================================== */
@@ -138,112 +189,6 @@ a:visited:hover {
                }
 
 /* ========================================================================== */
-/*                              FORMULAIRES                                   */
-/* ========================================================================== */
-.error
-{
-	color: red;
-}
-/*
-form.form input#Mots
-{
-	width: 47em;
-}
-*/
-form.search,
-form.reset
-{
-	width: 55em;
-}
-/*
-form.reset
-{
-	margin-top: -5em;
-}
-*/
-form.search div
-{
-	margin: 1em 0 1em 0;
-}
-
-/* Libellé du champ */
-form.search label.field, 
-form.search label.text, 
-form.search label.checklist,
-form.search label.select
-{
-	font-weight: bold;
-    width: 16em;
-	float: left;
-}
-/*
-form.search div span.check
-{
-	font-size: 1em;
-	margin: 0;
-}
-*/
-form span.exemple,
-form p.exemple
-{
-	font-size: 0.8em;
-	margin: 0.1em 0 0 21.5em;
-	
-}
-
-form.search div input.text
-{
-	width: 35em;
-	margin: 0;
-	padding: 0 0.2em;
-}
-
-form.search div.checklist,
-form.search div.select
-{
-    padding-left : 17em;
-}
-
-form.form div.buttons input
-{
-	padding: 0.3em;
-}
-
-form.form div.buttons input:hover
-{
-	background-color: #FFFFC0;
-}
-
-form.form div.buttons
-{
-	text-align: right;
-}
-
-form.form div.buttons input.submit
-{
-	float: right;
-}
-
-form.form div.buttons input.reset
-{
-	float: left;
-}
-
-label.field, 
-label.text, 
-label.checklist, 
-label.textarea,
-label.select
-{
-	font-weight: bold;
-    width: 10em;
-	float: left;
-	text-align: right;
-	padding-right: 1em;
-}
-
-
-/* ========================================================================== */
 /*                         AFFICHAGE DES NOTICES                              */
 /* ========================================================================== */
 
@@ -302,7 +247,7 @@ div.field
 
 div.checklist, div.radiolist
 {
-	padding-left: 15em;
+/*	padding-left: 15em;*/
 }
 
 span.check, span.radio
@@ -318,22 +263,16 @@ a.fullrecord
     padding-top: 32px;
     background: url('voir.png') no-repeat center center;
     border: 1px solid white;
-    height: 0;
+	height: 0;
 }
 
-/* N'est lu que par IE grâce à *html */
+/* N'est lu que par IE grâce à * html */
 /* http://noyau.pixtyle.net/viewtopic.php?pid=11496 */
 /*
-*html a.fullrecord
+* html a.fullrecord
 {
-    float: right;
-    padding-left: 32px;
-    padding-top: 32px;
-    border: 1px solid white;
-    height: 0;
-    width: 10px;
 	background-image: none; 
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='voir.png', sizingMethod='scale'); 
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://apache/asco/web/styles/asco/voir.png');
 }
 */
 
@@ -350,151 +289,35 @@ a.loadrecord
 
 a.locate
 {
-	padding-left: 16px;
-    background: url('loc.png') no-repeat center center;
+	padding-left: 10px; /* en théorie : 16px - 1em */
+	background: url('loc.png') no-repeat left center;
     border: 1px solid white;
-    height: 16px;
+}
+
+a.inform
+{
+	padding-left: 10px; /* en théorie : 16px - 1em */
+	background: url('inform.png') no-repeat left center;
+    border: 1px solid white;
 }
 
 a.fullrecord:hover, 
 a.loadrecord:hover,
-a.locate:hover
+a.locate:hover,
+a.inform:hover
 {
-    border: 1px solid #eee;
+    border: 1px solid #ccc;
     background-color: white;
 }
 
-/* Utilisation de la méthode de Paul Bohman, consistant à déplacer le span hors
-   de la zone de visualisation et à le réduire à une taille minimale pour plus
-   de sécurité
-   http://www.blog-and-blues.org/weblog/2004/08/19/277-mettre-un-titre-en-image
-   http://www.webaim.org/techniques/css/invisiblecontent/
-*/
 a.fullrecord span,
 a.loadrecord span,
-a.locate span
+a.locate span,
+a.inform span
 {
-	position: absolute;
-	left: 0px;
-	top: -500px;	
-	width: 1px;
-	height: 1px;
-	overflow: hidden;
+	display: none;
 }
 
-/* ========================================================================== */
-/*                        FORMULAIRE DE MODIFICATION                          */
-/* ========================================================================== */
-form.load
-{
-   width: 100%;
-}
-
-form.load fieldset
-{
-	border: 1px solid #663366;
-	background-color: #E9E4F1;
-	margin: 0.5em;
-}
-
-form.load fieldset legend
-{
-	font-weight: bold;
-	/*color: #663366;*/
-	color: #FFF;
-	padding: 0.05em 0.5em 0.1em 0.5em;
-/*   background-color: #FFFFC0;*/
-/*	background-color: #ffff99;*/
-	background-color: #663399;
-}
-
-/* DEBUT patch pour IE */
-/* lorsqu'on applique une couleur de fond à un fieldset, IE fait déborder la couleur au dessus du bord haut.
-pour corriger ça, on décale la légende vers le bas */ 
-/*
-form.load fieldset
-{
-    position: relative;
-    margin-top: 2em;
-}
-html>body form.load fieldset
-{    
-    margin-top: 1em;
-}
-form.load legend
-{
-    position: relative;
-    top: -0.5em;
-} 
- */  
-/* FIN patch pour IE */
-
-form.load div
-{
-    clear: left;
-	margin-bottom: 1px;
-}
-
-form.load label.text,
-form.load label.textarea
-{
-	font-weight: bold;
-    width: 15em;
-	float: left;
-	text-align: left;
-	padding-right: 1em;
-}
-
-form.load input.text,
-form.load textarea
-{
-   	border: 1px solid #a0a0a0;
-    font-size: 1em;
-    font-family: 'courier new', monospace;
-	padding: 0.2em 0.2em 0.2em 0.2em;
-}
-
-form.load input.fullwidth,
-form.load textarea.fullwidth
-{
-	width: 98%;
-}
-
-form.load fieldset div input.fullwidth,
-form.load fieldset div textarea.fullwidth
-{
-	width: 77%;
-}
-
-/* Libellé des champs */
-form.load div label,
-form.load div label.checklist,
-form.load div label.textarea
-{
-	width: 15em;
-}
-
-form.load div.checklist,
-form.load div.radiolist
-{
-	width: 100%;
-	padding: 0;
-}
-
-
-form.load input.text:focus,
-form.load textarea:focus,
-form.load input.text:active,
-form.load textarea:active
-{
-	background-color: #FFEFEF;
-}
-
-form.load fieldset.obl legend,
-form.load label.obl
-{
-	color: #FF0000;
-}
 
 /* ========================================================================== */
 /*                         FORMULAIRE D'IMPORT                                */
@@ -506,59 +329,7 @@ input.delete
 	height: 16px;
 	font-size: 0px;
 	color: #D4E6FD;
-	background: url('delete.png') no-repeat center center;
+	background: url('../../images/delete.png') no-repeat center center;
 	border: 0;
 }
 
-
-/* ========================================================================== */
-/*                                   LAYOUT                                   */
-/* ========================================================================== */
-div.menu
-{
-    float: left;
-    width: 16em;
-}
-div.menu ul
-{
-    border: 2px solid #ddd;
-    list-style: none url(none);
-    padding: 0;
-    margin: 0;
-}    
-
-div.menu ul.firstmenu
-{
-    margin-bottom: 1em;
-}
-    
-div.menu ul.firstmenu li
-{
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-    
-div.menu ul.menu
-{
-background-color: red;
-}
-
-ul.menu li
-{
-    background-color: #ff9;
-    font-weight: bold;
-}
-
-ul.menu li ul li
-{
-    background-color: white;
-    padding: 0 1em;
-    list-style: square inside;
-    margin: 0;
-    font-weight: normal;
-}
-
-ul.menu li ul li
-{
-    background-color: white;
-}
