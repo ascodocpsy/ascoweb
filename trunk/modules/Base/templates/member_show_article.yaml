@@ -27,7 +27,7 @@ contents:
       - [div]
         class: field
         title: Périodique
-        contents: '[Rev]<opt> [Localisation]</opt>'
+        contents: '[Rev]<opt> [Localisation]</opt><opt> [Presentation]</opt>'
   - [opt]
     contents:
       - [div]

@@ -8,7 +8,7 @@ contents:
     class: row
     contents:
       - [div]
-        contents: '[Rev]<opt>, [IsbnIssn]</opt>'
+        contents: '[Rev]<opt> [Presentation]</opt><opt>, [IsbnIssn]</opt>'
   - [opt]
     contents:
       - [div]
