@@ -17,21 +17,21 @@ contents:
       - [text]
         tag: p
         contents: >
-            Vous pouvez afficher, exporter ou envoyer par e-mail le contenu de 
-            votre panier.
+            <strong>Vous pouvez afficher, exporter ou envoyer par e-mail le contenu de 
+            votre panier.</strong>
             Pour cela, choisissez parmi les options suivantes puis cliquez sur
             le bouton 'Go !'.
       - [text]
         tag: p
         contents: >
-            Vous pouvez également supprimer certaines notices de votre panier en 
+            <strong>Vous pouvez également supprimer certaines notices de votre panier</strong> en 
             les cochant puis en cliquant sur le bouton 'supprimer les notices du 
             panier' qui figure en bas de page.
       - [text]
         tag: p
         contents: >
-            Si vous souhaitez vider complètement votre panier, 
-            <a href="/base/clearCart">cliquez ici</a>.
+            <strong>Si vous souhaitez vider complètement votre panier, 
+            <a href="/base/clearCart">cliquez ici</a>.</strong>
       - [opt]
         contents:
           - [text]
@@ -96,12 +96,21 @@ contents:
                       - [textarea]
                         name: body
                         title: 'Message :'
-                        value: 'Les notices sélectionnées figurent dans le document joint'
+                        value: 'Les notices sélectionnées figurent dans le(s) document(s) joint(s)'
                         style: 'width: 20em;'
   - [form]
     action: '/base/removeFromCart'
     method: post
     contents:
+      - [div]
+        class: buttons
+        contents:
+          - [button]
+            name: btnrem
+            action: submit
+            title: Supprimer les notices du panier
+      - [text]
+        contents: '<hr />'
       - [ul]
         class: shortlist
         contents:
@@ -119,8 +128,6 @@ contents:
                     value: '[REF]'
                   - [text]
                     contents: '<a class="fullrecord" href="/base/show?ref=[REF]" title="Voir la notice complète"><span>Voir la notice complète</span></a>'
-                  - [text]
-                    contents: '<a class="loadrecord" href="/base/load?ref=[REF]" title="Modifier la notice"><span>Modifier la notice</span></a>'
                   - [text]
                     contents: '[template]'
               - [text]
