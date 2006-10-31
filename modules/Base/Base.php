@@ -36,13 +36,22 @@ class Base extends Database
      */
     private $ident;
     
+    private $tblAsco=array();
+    
     public function preExecute()
     {
-        if ($this->action=='exportCart')
-            $this->actionExportCart(true);
+     //   if ($this->action=='exportCart')
+     //       $this->actionExportCart(true);
+        
+        if ($this->action=='exportCartByType')
+            $this->actionExportCartByType(true);
 
         // Récupère l'identifiant
         $this->ident=strtolower(User::get('login'));
+
+        // Charge la table de correspondances entre le numéro d'un centre (ascoX)
+        // et son numéro de l'article sur le site Ascodocpsy
+        $this->tblAsco=$this->loadTable('annuairegip');
         
         // TODO : je ne veux pas de ça ! (le jour où ils ajoutent un champ, faut mettre à jour le script)
         // prendre tous les champs de la base un par un et les mettre en maju, on devrait avoir la même chose
@@ -86,8 +95,48 @@ class Base extends Database
             'VOL' => 'Vol'
         );
     }
+
+/*
+ * Transforme un fichier texte tabulé en tableau
+ * Le fichier texte est de la forme suivante :
+ * 1ère ligne : Entête1[tab]Entête2
+ * lignes suivante : Valeur1[tab]Valeur2
+ */
+    private function loadTable($source)
+    {
+        $t=array();
+        
+        // Ajoute l'extension par défaut s'il y a lieu
+        Utils::defaultExtension($source, '.txt');
+                        
+        // Détermine le path exact de la table
+        $h=Utils::searchFile
+        (
+            $source,                                    // On recherche la table :
+            //dirname(self::$stateStack[1]['template']),  // dans le répertoire du script appellant
+            Runtime::$root . 'tables',                  // dans le répertoire 'tables' de l'application
+            Runtime::$fabRoot . 'tables'                // dans le répertoire 'tables du framework
+        );
+        if (! $h)
+            throw new Exception("Table non trouvée : '$source'");
+        
+        $file=@fopen($h, 'r');
+        if ($file === false)
+            throw new Exception('Impossible d\'ouvrir le fichier '. $source);
+
+        // Lit la ligne d'entête
+        $fields=fgetcsv($file, 4096, "\t", '"');
+
+        // Lit les enregistrements
+        while (($data=fgetcsv($file, 4096, "\t", '"')) !== false)
+            $t[$data[0]]=$data[1];
+
+        // Ferme la table
+        fclose($file);
     
-    
+        return $t;
+    }
+
     /**
      * Lance une recherche si une équation peut être construite à partir des 
      * paramètres passés et affiche les notices obtenues en utilisant le template 
@@ -122,7 +171,8 @@ class Base extends Database
         
         // Si on n'a aucune réponse, erreur
         if ($selection->count == 0)
-            return $this->showError("Aucune réponse. Equation : $this->equation");
+            //return $this->showError("Aucune réponse. Equation : $this->equation");
+            return $this->showError("Aucun document ne correspond à la requête : $this->equation", 'noanswertemplate');
 
         // Si on n'a qu'une seule réponse, affiche la notice complète
         if ($selection->count == 1)
@@ -150,15 +200,24 @@ class Base extends Database
         
         switch ($name)
         {
+            case 'array.key':
+                // Panier de notices
+                global $key;
+                return urlencode($key);
+            
+            case 'nbref':
+                // Panier de notices
+                global $value;
+                return count($value);
+                
             case 'equation': 
-                return $this->equation . '<br />eq. bis : ' . $selection->equation . '<br />Réponses : ' . $selection->count;
+                return $this->equation . '<br />Réponses : ' . $selection->count;
 
             // TODO : voir si error utilisé 
             case 'error':
                 return $this->error;
 
             case 'template':
-            //case 'carttemplate':
                 // Initialise le nom du template 
                 if (User::hasAccess('EditBase,AdminBase')) // TODO : SF : le template admin n'existe pas
                     $tpl='member';
@@ -170,12 +229,7 @@ class Base extends Database
 
                 // Définit le template en fonction du nombre de réponses
                 // TODO : problème pour le panier. On a show ou list suivant le nombre de notices dans le panier
-                // Mettre carttemplate dans member_cart
                 $tpl=($selection->count==1) ? "templates/${tpl}_show_$type.yaml" : "templates/${tpl}_list_$type.yaml";
-//                if ($name=='template')
-//                    $tpl=($selection->count==1) ? "templates/${tpl}_show_$type.yaml" : "templates/${tpl}_list_$type.yaml";
-//                else
-//                    $tpl="templates/${tpl}_list_$type.yaml";
                 
                 // Charge le template
                 Template::run
@@ -247,7 +301,7 @@ class Base extends Database
                 return $value;
     
             case 'Aut':
-                if (! $h=$selection->field($name)) return ;
+                if (! $h=$selection->field($name)) return '';
                 
                 $t=explode(trim(self::SEPARATOR),$h);
                 foreach ($t as $key=>$h)
@@ -305,21 +359,12 @@ class Base extends Database
                 }
                 return implode(self::SEPARATOR, $t);
                 
-            case 'Rev':            
-                if (Utils::convertString($selection->field('Type'))=='periodique' && ($lien=$selection->field('Lien')))
-                {
-                    // Lien vers texte intégral sur le titre du périodique
-                    return $this->link($selection->field($name), $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre', true);
-                }
-                else
-                {
-                    // Lien vers une nouvelle recherche "notices de ce périodique"
-                    if (! $h=$selection->field($name)) return ;
-                    $h=trim($h);
-                    $lien='search?rev='. urlencode($h);
-                    return $this->link($h, $lien, 'Notices du périodique '.$h);
-                };
-            
+            case 'Rev':
+                // Lien vers une nouvelle recherche "notices de ce périodique"
+                if (! $h=trim($selection->field($name))) return '';
+                $lien='search?rev='. urlencode($h);
+                return $this->link($h, $lien, 'Notices du périodique '.$h);
+                      
             case 'DateText':
             case 'DatePub':
             case 'DateVali':
@@ -330,11 +375,27 @@ class Base extends Database
                 if (! $h=$selection->field($name)) return ;
                 return preg_replace('~(\d{4})[-]?(\d{2})[-]?(\d{2})~', '${3}/${2}/${1}', $h);
 
-//            case 'Loc':
-//            case 'ProdFich':
-//                if (! $h=$selection->field($name)) return '';
+            case 'Loc':
+            case 'ProdFich':
+                if (! $h=$selection->field($name)) return '';
                 
-            case 'Localisation': 
+                $t=explode(trim(self::SEPARATOR),$h);
+                foreach ($t as $key=>$h)
+                {
+                    $h=trim($h);
+                    
+                    // Recherche le numéro de l'article correspondant à l'URL de la fiche de présentation du centre
+                    // et construit le lien
+                    if (isset ($this->tblAsco[$h]))
+                    {
+                        $lien=Config::get('urlarticle').$this->tblAsco[$h];
+                        $h=$this->link($h, $lien, 'Présentation du centre '.$h);
+                        $t[$key]=$h;
+                    }
+                }
+                return implode(self::SEPARATOR, $t);
+                
+            case 'Localisation':
                if (! $h=$selection->field('Rev')) return '';
                
                // Lien vers la fiche Périodique du titre de périodique contenu dans le champ Rev,
@@ -342,8 +403,58 @@ class Base extends Database
                $lien='locate?rev='. urlencode($h);
                return '<a class="locate" href="' . Routing::linkFor($lien) . '" title="Localiser le périodique">&nbsp;<span>Localiser</span></a>';
 
+            case 'Presentation':
+                if (! $h=$selection->field('Rev')) return '';
+                
+                // Notice d'un document type Périodique
+                if (Utils::convertString($selection->field('Type'))=='periodique')
+                {
+                    if (! $lien=$selection->field('Lien')) return '';
+                    
+                    if (strpos(strtolower($lien), 'ascodocpsy') !== false)
+                    {
+                        $title='Présentation du périodique';
+                        $newwin=false;
+                    }
+                    else
+                    {
+                        $title='Accéder au texte intégral (ouverture dans une nouvelle fenêtre)';
+                        $newwin=true;
+                    }
+                    // Lien vers la page de présentation de la revue ou vers le texte intégral
+                    return $this->link('&nbsp;<span>Présentation</span>', $lien, $title, $newwin, 'inform');
+                }
+                else
+                {
+                    // Lien vers la page de présentation de la revue sur le site d'Ascodocpsy
+                    $lien='inform?rev='. urlencode($h);
+                    return $this->link('&nbsp;<span>Présentation</span>', $lien, 'Présentation du périodique', false, 'inform');
+                }
+
             case 'EtatCol':
-                return str_replace('/', '<br />', $selection->field($name));
+                if (! $t=$selection->field($name)) return '';
+                
+                $t=explode(trim(self::SEPARATOR),$t);
+                foreach ($t as $key=>$h)
+                {
+                    $h=trim($h);
+                    
+                    // Extrait le numéro du centre asco (ex : "08 : 1996-2002(lac.)")
+                    $length= (strpos($h, ':') === false) ? strlen($h) : strpos($h, ':');
+                    $savCentre=trim(substr($h, 0, $length));    // 08
+                    
+                    // Construit le nom du centre
+                    $centre= (substr($savCentre, 0, 1) == '0') ? 'asco'.substr($savCentre, 1) : 'asco'.$savCentre;  // asco8
+                    
+                    // Recherche l'URL de la fiche de présentation du centre correspondant au numéro asco
+                    if (isset ($this->tblAsco[$centre]))
+                    {
+                        $lien=Config::get('urlarticle').$this->tblAsco[$centre];
+                        $savCentre=$this->link($savCentre, $lien, 'Présentation du centre '.$centre);
+                        $t[$key]=$savCentre.' '.substr($h, $length);
+                    }
+                }
+                return implode('<br />', $t);
                 
             case 'ShowModifyBtn':
                 $h=1;
@@ -457,10 +568,9 @@ class Base extends Database
                 $selection->movefirst();
                 while (! $selection->eof)
                 {
-                //echo "<li>compare [$rev] avec [" . $selection->field('Rev') . "]";
                     if ($rev == Utils::convertString($selection->field('Rev')))
                     {
-                        // Réouvre la sélection contenant uniquement la notice du périodique 
+                        // Réouvre la sélection contenant uniquement la notice du périodique
                         $selection=self::openDatabase('REF='. $selection->field(1), true);
                         if (is_null($selection)) return;
                         
@@ -483,6 +593,51 @@ class Base extends Database
                     $selection->movenext();
                 }
                 return $this->showError('Aucune localisation n\'est disponible pour le périodique '.$revinit.'.');
+        };
+    }
+    
+    public function actionInform()
+    {
+        global $selection;
+               
+        $rev=Utils::get($_REQUEST['rev']);
+        
+        // Si pas de nom de périodique
+        if (is_null($rev))
+            throw new Exception("Appel incorrect : aucun nom de périodique n'a été précisé.");
+        
+        // Construit l'équation de recherche
+        $eq='rev="'.$rev.'" et Type=periodique et Lien=ascodocpsy';
+        
+        // Recherche la fiche Périodique
+        $selection=self::openDatabase($eq);
+        if (is_null($selection)) return;
+
+        switch ($selection->count)
+        {
+            case 0:
+                return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$rev.'.');
+            
+            default:
+                $revinit=$rev;
+                $rev=Utils::convertString($rev);
+                $selection->movefirst();
+                while (! $selection->eof)
+                {
+                    if ($rev == Utils::convertString($selection->field('Rev')))
+                    {
+                        // Réouvre la sélection contenant uniquement la notice du périodique
+                        $selection=self::openDatabase('REF='. $selection->field(1), true);
+                        if (is_null($selection)) return;
+                        
+                        // Redirige vers l'URL du champ Lien (lien sur le site ascodocpsy.org)
+                        Runtime::redirect($selection->field('Lien'), true);
+
+                        exit;
+                    }
+                    $selection->movenext();
+                }
+                return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$revinit.'.');
         };
     }
     
@@ -538,10 +693,11 @@ class Base extends Database
 //            $value));
     }
     
-    private function link($value, $lien, $title, $newwin=false)
+    private function link($value, $lien, $title, $newwin=false, $class='')
     {
-        $h=($newwin) ? ' onclick="window.open(this.href); return false;"' : '';       
-        return '<a href="' . Routing::linkFor($lien) . '"' . $h . ' title="'.$title.'">'.$value.'</a>';        
+        $win=($newwin) ? ' onclick="window.open(this.href); return false;"' : '';
+        $c=($class) ? ' class="'.$class.'"' : '';
+        return '<a'. $c. ' href="' . Routing::linkFor($lien) . '"' . $win . ' title="'.$title.'">'.$value.'</a>';        
     }
 
     // ------------------- GESTION DU PANIER -------------------
@@ -555,41 +711,12 @@ class Base extends Database
             $this->cart=new Cart('selection');
     }
     
-    private function selectionFromCart()
-    {
-        global $selection;
-
-        $this->getCart();
-        
-        // Ouvre une sélection vide
-        $selection=self::openDatabase('');
-        if (is_null($selection)) return;
-
-        // Ajoute dans la sélection toutes les notices présentes dans le panier
-//        if ($this->cart->count())
-//            foreach ($this->cart->getItems() as $ref)
-//                $selection->add($ref);
-
-        if ($this->cart->count())
-            foreach ($this->cart->getItems() as $ref)
-                try
-                {
-                    $selection->add($ref);
-                }
-                catch (Exception $e)
-                {
-                    // Supprime la notice du panier
-                    $this->cart->remove($ref);
-                    $this->cart->count--;
-                }
-    } 
-    
     public function actionShowCart()
     {
+        global $selection;
+        
         $this->getCart();
-        
-        $this->selectionFromCart();
-        
+               
         if ($this->cart->count()==0)
         {
             Template::run('templates/empty_cart.yaml');
@@ -603,19 +730,35 @@ class Base extends Database
         
         // Définit le template d'affichage 
         if (User::hasAccess('EditBase,AdminBase')) // TODO: SF : le template admin n'existe pas
-            $tpl='member';
+            $tpl='member'; //'dm';
         else
             $tpl='public';
         $tpl.='_cart.yaml';
 
+        // Construit l'équation de recherche
+        $equation='';
+        foreach ($this->cart->getItems() as $type=>$items)
+        {
+            foreach($items as $ref)
+            {
+                if ($equation) $equation.=' ou ';
+                $equation.='ref='.$ref;
+            }
+        }
+        $selection=self::openDatabase($equation);
+        
         // Exécute le template
         Template::run
         (
             "templates/$tpl", 
             array($this, 'getField'),
             'Template::selectionCallback',
-            array('format'=>'commun'),
-            array('body'=>'Les notices sélectionnées figurent dans le document joint') // TODO: à virer, uniquement parce que le génrateur ne prends pas correctement 'value' en compte
+            array
+            (
+                'format'=>'commun',
+                'body'=>'Les notices sélectionnées figurent dans le(s) document(s) joint(s)', // TODO: à virer, uniquement parce que le génrateur ne prends pas correctement 'value' en compte
+//                'cart'=>$this->cart->getItems()
+            )
         );
     }
 
@@ -624,13 +767,57 @@ class Base extends Database
      */
     public function actionAddToCart()
     {
-        $art=Utils::get($_REQUEST['art']);
+        // Construit l'équation de recherche
+//        $this->equation=$this->makeBisEquation('btnadd');
+//        debug && Debug::log('Equation construite : %s', $this->equation); 
+//        
+//        // Aucun paramètre n'a été passé
+//        if (is_null($this->equation))
+//            return $this->showError('Pour constituer votre panier, vous devez cocher les notices qui vous intéressent.');
+//        
+//        // Des paramètres ont été passés, mais tous sont vides et l'équation obtenue est vide
+//        if ($this->equation==='')
+//            return $this->showError('Pour constituer votre panier, vous devez cocher les notices qui vous intéressent. BIS');
         
+        $art=Utils::get($_REQUEST['art']);
+
         if (is_null($art))
             return $this->showError('Pour constituer votre panier, vous devez cocher les notices qui vous intéressent.');
 
+        $equation='';
+        
+        // Construit l'équation de recherche
+        if (is_array($art))
+        {
+            foreach ($art as $value)
+            {
+                if ($equation) $equation.=' ou ';
+                $equation.='ref='.$value;
+            }
+        }
+        else
+        {
+            $equation='ref='. $art;
+        }        
+
+        // Ouvre la sélection
+        $selection=self::openDatabase($equation);
+        if (is_null($selection)) return;
+
+        // Ouvre ou crée le panier général
         $this->getCart();
-        $this->cart->add($art);
+        $carts= & $this->cart->getItems();
+        
+        // Ajoute toutes les notices de la sélection
+        while (! $selection->eof)
+        {
+            $type=$selection->field('Type');
+            $ref=$selection->field('REF');
+
+            $carts[$type][$ref]=$ref; // si $carts[$type] n'existe pas encore, il est créé 
+
+            $selection->moveNext();
+        }
         $this->actionShowCart();
     }
     
@@ -644,17 +831,33 @@ class Base extends Database
         if (is_null($art))
             return $this->showError('Vous devez cocher les notices à supprimer.');
 
+        // Ouvre le panier général
         $this->getCart();
+        $carts= & $this->cart->getItems();
 
-        if (is_array($art))
+        if (! is_array($art)) $art=array($art);
+
+        // Supprime les notices du panier
+        $selection=self::openDatabase('');
+        foreach ($art as $value)
         {
-            foreach ($art as $value)
-                $this->cart->remove($value);
+            $selection->equation='ref='.$value;
+            
+            // Si la notice n'existe plus dans la base
+            if ($selection->eof)
+            {
+                foreach ($carts as $key=>$ref)
+                {
+                    if (array_key_exists($value, $ref))
+                        unset($carts[$key][$value]);
+                }
+            }
+            // La notice existe dans la base
+            else
+                unset($carts[$selection->field('Type')][$value]);
         }
-        else
-        {
-            $this->cart->remove($art);
-        }
+
+        // Affiche le panier
         $this->actionShowCart();
     }
     
@@ -668,122 +871,268 @@ class Base extends Database
         $this->cart->clear();
         $this->actionShowCart();
     }
-    
-    public function actionExportCart($now=false)
+
+    private function exportCart($type, $format)
+    {
+        global $selection;
+     
+        if (is_null($type))
+            throw new Exception('Le type de document n\'a pas été indiqué.');
+
+        if (is_null($format))
+            throw new Exception('Le format d\'export n\'a pas été indiqué.');
+
+        // Récupère le panier du type $type
+        $this->getCart();
+        $carts=$this->cart->getItems();
+        $cart=$carts[$type];
+
+        // Construit l'équation de recherche
+        $equation='';
+        foreach ($cart as $ref)
+        {
+            if ($equation) $equation.=' ou ';
+            $equation.='ref='.$ref;
+        }
+        $selection=self::openDatabase($equation);
+
+        // Génère l'export
+        $template=$this->path . 'templates/export/'.$format;
+        ob_start();
+        Template::run
+        (
+            $template,
+            'Template::selectionCallback'
+        );
+        $data=ob_get_clean();
+        return $data;
+    }
+
+    // Déchargement des notices par type de document
+    public function actionExportCartByType($now=false)
     {
         if (! $now) return; // preExecute nous appelle avec now=true, on bosse, quand le framework nous appelle, rien à faire 
         // tout est fait dans preExecute
+
+        // Récupère le format d'export
         $format=Utils::get($_REQUEST['format']);
         if (is_null($format))
             // TODO : le message d'erreur s'affiche en premier sur la page html
             return $this->showError('Le format d\'export n\'a pas été indiqué.');
 
+        // Charge la liste des formats d'export disponibles
+        Config::load($this->path. 'templates/export/formats.yaml', 'formats');
+        if (! $format=Config::get("formats.$format"))
+            throw new Exception('Format incorrect');
+
+//        $template=$this->path . 'templates/export/'.$format['template'];
+//        if (! file_exists($template))
+//            throw new Exception('Le fichier contenant les différents formats n\'existe pas');
+
+        global $cart;
+        $this->getCart();
+        $cart=$this->cart->getItems();
+
+        $data='';
+        // Récupère le type de document
+        $type=Utils::get($_REQUEST['type']);
+
+        if (is_null($type))
+            return $this->showError('Le type du document n\'a pas été indiqué.');
+
+        if (! isset($cart[$type]))
+            return $this->showError('Le panier ne contient aucun document du type indiqué.');
+        
+        // Récupère le template
+        if (is_array($format['template']))
+        {
+            if (isset($format['template'][$type]))
+                $template=$format['template'][$type];              
+            elseif (isset($format['template']['default']))
+                $template=$format['template']['default'];
+        }
+        else
+            $template=$format['template'];
+
+        // Récupère le nom du fichier d'export
+        if (is_array($format['filename']))
+        {
+            if (isset($format['filename'][$type]))
+                $filename=$format['filename'][$type];              
+            elseif (isset($format['filename']['default']))
+                $filename=$format['filename']['default'];
+        }
+        else
+            $filename=$format['filename'];
+
+        if (isset($format['layout']))
+            $this->setLayout($format['layout']);
+        else
+            $this->setLayout($format['none']);
+
+        if (isset($format['content-type']))
+            header('content-type: ' . $format['content-type']);
+
+        header
+        (
+            'content-disposition: attachment; filename="' 
+            . (isset($filename) ? $filename : "notices{$type}.txt")
+            . '"'
+        );
+            
+        // Génère le contenu du fichier
+        $data=$this->exportCart($type, $template);              
+
+        echo $data;
+    }
+    
+   // public function actionExportCart($now=false)
+    public function actionExportCart()
+    {
+        //if (! $now) return; // preExecute nous appelle avec now=true, on bosse, quand le framework nous appelle, rien à faire 
+        // tout est fait dans preExecute
+
+        // Récupère l'action à effectuer
         $cmd=Utils::get($_REQUEST['cmd']);
         if (is_null($cmd))
             throw new Exception("La commande n'a pas été indiquée");
             
         if ($cmd !='export' && $cmd!='mail')
-            throw new Exception("Commande incorrecte");
+            throw new Exception('Commande incorrecte');
 
-        if ($cmd=='mail')
-        {
-            $to=Utils::get($_REQUEST['to']);
-            if (is_null($to))
-                // TODO : le message d'erreur s'affiche en premier sur la page html
-                return $this->showError('Le destinataire du mail n\'a pas été indiqué.');
+        // Récupère le format d'export
+        $format=Utils::get($_REQUEST['format']);
+        if (is_null($format))
+            // TODO : le message d'erreur s'affiche en premier sur la page html
+            return $this->showError('Le format d\'export n\'a pas été indiqué.');
 
-            $subject=Utils::get($_REQUEST['subject']);
-            if (is_null($subject))
-                $subject='Notices Ascodocpsy';
-
-            $body=Utils::get($_REQUEST['body']);
-            if (is_null($body))
-                $body='Le fichier ci-joint contient les notices sélectionnées';
-        }
-    
         // Charge la liste des formats d'export disponibles
         Config::load($this->path. 'templates/export/formats.yaml', 'formats');
         if (! $format=Config::get("formats.$format"))
             throw new Exception('Format incorrect');
-        
-        $template=$this->path . 'templates/export/'.$format['template'];
-        if (! file_exists($template))
-            throw new Exception('Le fichier contenant les différents formats n\'existe pas');
 
-        // Génère l'export, en bufferisant : si on a une erreur, elle s'affiche à l'écran, pas dans le fichier
-        $this->selectionFromCart();
+//        $template=$this->path . 'templates/export/'.$format['template'];
+//        if (! file_exists($template))
+//            throw new Exception('Le fichier contenant les différents formats n\'existe pas');
 
-        ob_start();
-        Template::run
-        (
-            $template, 
-           // array($this, 'getField'),
-            'Template::selectionCallback'
-        );
-        $data=ob_get_clean();
+        global $cart;
+        $this->getCart();
+        $cart=$this->cart->getItems();
 
-        if ($cmd=='export')
-        {        
-            if (isset($format['layout']))
-                $this->setLayout($format['layout']);
-            else
-                $this->setLayout($format['none']);
-    
-            if (isset($format['content-type']))
-                header('content-type: ' . $format['content-type']);
-    
-            header
-            (
-                'content-disposition: attachment; filename="' 
-                . (isset($format['filename']) ? $format['filename'] : 'notices.txt') 
-                . '"'
-            );
-                        
-            echo $data;
-        }
-        else
+        switch ($cmd)
         {
-            $this->setLayout('none');
-
-            require_once(Runtime::$fabRoot.'lib/htmlMimeMail5/htmlMimeMail5.php');
-        
-            $mail = new htmlMimeMail5();
-            //TODO : changer l'adresse e-mail
-            $mail->setFrom('Site AscodocPsy <daniel.menard@bdsp.tm.fr>');
-            $mail->setSubject($subject);
-            $mail->setText($body);
-            $mail->addAttachment
-            (
-                new stringAttachment
-                (
-                    $data,
-                    isset($format['filename']) ? $format['filename'] : 'notices.txt',
-                    isset($format['content-type']) ? $format['content-type'] : 'text/plain'
-                )
-            );
-        
-            if ($mail->send( array($to)) )
-            {
-//                $this->setLayout(Config::get('layout'));
-//                // Exécute le template
-//                Template::run
-//                (
-//                    'templates/export/mailsent.yaml',
-//                    array('to'=>$to)
-//                );
+            // Envoie les notices par mail
+            case 'mail':
+                // Récupère des informations pour l'envoi du mail
+                $to=Utils::get($_REQUEST['to']);
+                if (is_null($to))
+                    // TODO : le message d'erreur s'affiche en premier sur la page html
+                    return $this->showError('Le destinataire du mail n\'a pas été indiqué.');
+    
+                $subject=Utils::get($_REQUEST['subject']);
+                if (is_null($subject))
+                    $subject='Notices Ascodocpsy';
+    
+                $body=Utils::get($_REQUEST['body']);
+                if (is_null($body))
+                    $body='Le fichier ci-joint contient les notices sélectionnées';
                 
-                echo '<p>Vos notices ont été envoyées à l\'adresse ', $to, '</p>';
-                echo '<p>Retour à la <a href="javascript:history.back()"> page précédente</a>.</p>';
-            }
-            else
-            {
-                echo "<p>Impossible d'envoyer le mail à l'adresse '$to'</p>";
-            }
-            
-        }
-        
-    }
+                $data='';
 
+                $this->setLayout('none');
+    
+                require_once(Runtime::$fabRoot.'lib/htmlMimeMail5/htmlMimeMail5.php');
+            
+                $mail = new htmlMimeMail5();
+                //TODO : changer l'adresse e-mail
+                $mail->setHeader('Content-Type', 'multipart/mixed');
+                $mail->setFrom('Site AscodocPsy <gfaure@ch-st-jean-de-dieu-lyon.fr>');
+                $mail->setSubject($subject);
+                $mail->setText($body);
+                
+                // Génère les fichiers attachés
+                $this->getCart();
+                $carts=$this->cart->getItems();
+                
+                // Parcourt chaque panier
+                foreach ($carts as $type=>$cart)
+                {                
+                    // Récupère le template
+                    if (is_array($format['template']))
+                    {
+                        if (isset($format['template'][$type]))
+                            $template=$format['template'][$type];              
+                        elseif (isset($format['template']['default']))
+                            $template=$format['template']['default'];
+                    }
+                    else
+                        $template=$format['template'];
+    
+                    // Récupère le nom du fichier d'export
+                    if (is_array($format['filename']))
+                    {
+                        if (isset($format['filename'][$type]))
+                            $filename=$format['filename'][$type];              
+                        elseif (isset($format['filename']['default']))
+                            $filename=$format['filename']['default'];
+                    }
+                    else
+                        $filename=$format['filename'];
+    
+                    // Génère le contenu du fichier
+                    $data=$this->exportCart($type, $template);              
+    
+                    $mail->addAttachment
+                    (
+                        new stringAttachment
+                        (
+                            $data,
+                            isset($filename) ? $filename : "notices{$type}.txt",
+                            isset($format['content-type']) ? $format['content-type'] : 'text/plain'
+                        )
+                    );
+                }
+                
+                if ($mail->send( array($to)) )
+                {
+                    echo '<p>Vos notices ont été envoyées à l\'adresse ', $to, '</p>';
+                    echo '<p>Retour à la <a href="javascript:history.back()"> page précédente</a>.</p>';
+                }
+                else
+                {
+                    echo "<p>Impossible d'envoyer le mail à l'adresse '$to'</p>";
+                }
+                break;
+
+            // Affiche la liste des paniers (en fonction du type de document, avec liens pour télécharger les notices
+            case 'export':
+                // Définit le template d'affichage 
+                if (User::hasAccess('EditBase,AdminBase')) // TODO: SF : le template admin n'existe pas
+                    $tpl='member';
+                else
+                    $tpl='public';
+                $tpl.='_cart_type.yaml';
+                
+                global $cart;
+                $this->getCart();
+                $cart=$this->cart->getItems();
+
+                // Exécute le template
+                Template::run
+                (
+                    "templates/$tpl", 
+                    array($this, 'getField'),
+    //                'Template::selectionCallback',
+                    array
+                    (
+                        'cart'=>$this->cart->getItems(),
+                        'format'=>$_REQUEST['format']
+                    )
+                );            
+                break;
+        }
+    }           
+           
     // ------------------- TRI DE LA BASE -------------------
     public function actionSort()
     {
