@@ -1,0 +1,10 @@
+contents:
+  - [text]
+    tag: h1
+    contents: 'Aucune réponse'
+  - [text]
+    tag: p
+    contents: '[error]'
+  - [text]
+    tag: p
+    contents: 'Retournez sur la <a href="javascript:history.back()"> page précédente</a> pour vérifier votre équation de recherche.'
