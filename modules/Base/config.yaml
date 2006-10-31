@@ -35,7 +35,7 @@ search:
         EditBase: templates/member_list.yaml
         default: templates/public_list.yaml
     errortemplate: templates/error/error_base.yaml
-    noquerytemplate: templates/error/error_base_noquery.yaml
+    noanswertemplate: templates/error/error_base_noanswer.yaml
     JS: [asco.js]
 
 show:
