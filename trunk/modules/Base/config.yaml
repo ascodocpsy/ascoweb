@@ -3,6 +3,7 @@
 # nom des feuilles de style CSS à utiliser
 # doit être sous forme de tableau car on peut en avoir plusieurs
 #CSS: [xxx.css]
+CSS: [formulaire.css]
 
 # fichiers javascript à inclure
 # doit être sous forme de tableau car on peut en avoir plusieurs
@@ -23,23 +24,18 @@ filter:
 
 searchform:
     template:
-        AdminBase: templates/member_search.yaml
+        AdminBase: templates/admin_search.yaml
         EditBase: templates/member_search.yaml
         default: templates/public_search.yaml
     callback: none
 
 search:
-#   template:
-#        AdminBase: templates/member_search.yaml
-#        EditBase: templates/member_search.yaml
-#        default: templates/public_search.yaml
-
     template:
         AdminBase: templates/member_list.yaml
         EditBase: templates/member_list.yaml
         default: templates/public_list.yaml
-
     errortemplate: templates/error/error_base.yaml
+    noquerytemplate: templates/error/error_base_noquery.yaml
     JS: [asco.js]
 
 show:
@@ -80,6 +76,13 @@ locate:
         default: templates/public_show.yaml
     errortemplate: templates/error/error.yaml
 
+inform:
+    template:
+        AdminBase: templates/member_show.yaml
+        EditBase: templates/member_show.yaml
+        default: templates/public_show.yaml
+    errortemplate: templates/error/error.yaml
+
 import:
     access: AdminBase,EditBase
 
@@ -104,6 +107,11 @@ clearCart:
     use: true
 
 exportCart:
+  sessions:
+    use: true
+  errortemplate: templates/error/error.yaml
+
+exportCartByType:
   sessions:
     use: true
   errortemplate: templates/error/error.yaml
