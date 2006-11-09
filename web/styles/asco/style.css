@@ -333,3 +333,52 @@ input.delete
 	border: 0;
 }
 
+@media print
+{
+    div.contents
+    {
+        margin: 0;
+    }
+    div.menu
+    {
+        display: none;
+    }
+    
+    li.record input.check,  /* la case à cocher pour ajouter au panier */
+    a.fullrecord,           /* le lien afficher la notice complète */    
+    a.loadrecord,           /* le lien modifier la notice */
+    a.locate,               /* le lien localiser le périodique */
+    a.inform,               /* le lien afficher la fiche d'info du périodique */
+    div.buttons,            /* les boutons de formulaire */
+    p.top                   /* le lien "haut de page" qui figure à la fin */
+    {
+        display: none;
+    }
+    
+    div.page
+    {
+        padding: 0;
+    }
+    li.record
+    {
+        margin: 0;
+    }
+    ul, li
+    {
+        margin: 0;
+        padding: 0;
+    }
+    a:link, a:visited
+    {
+        color: #000; /* inherit serait mieux, mais ie met ses couleurs par défaut */
+        text-decoration: none;
+    	/* border-bottom: dotted 1px #ddd; */
+    }
+    a[href^="http://"]:after
+    {
+        content: " (" attr(href) ") ";
+        word-wrap: break-word;
+        font-size: 80%;
+    }
+      
+}
