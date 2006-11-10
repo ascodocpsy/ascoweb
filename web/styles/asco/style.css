@@ -71,8 +71,11 @@ hr
 /* ========================================================================== */
 div.menu
 {
-    float: left;
+/*    float: left; */
     width: 16em;
+    position: absolute;
+    top: 1em;
+    left: 1em;    
 }
 div.menu ul
 {
@@ -215,6 +218,10 @@ li.record
 div.row
 {
 	padding: 0.2em 0 0.2em 0;
+}
+ul.fulllist div.row
+{
+    clear: left;
 }
 
 /* Case à cocher */
