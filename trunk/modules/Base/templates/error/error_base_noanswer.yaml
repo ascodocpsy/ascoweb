@@ -7,4 +7,7 @@ contents:
     contents: '[error]'
   - [text]
     tag: p
-    contents: 'Retournez sur la <a href="javascript:history.back()"> page précédente</a> pour vérifier votre équation de recherche.'
+    contents: "Votre recherche est peut-être trop restrictive&nbsp;? Pensez à utiliser la zone &quot;Recherche tous champs&quot; du formulaire de recherche. Vérifiez également que vous n'avez pas introduit de fautes d'orthographe ou de critères inutiles dans votre équation de recherche."
+  - [text]
+    tag: p
+    contents: 'Retournez sur la <a href="javascript:history.back()"> page précédente</a> pour modifier vos critères.'
