@@ -381,11 +381,14 @@ input.delete
         text-decoration: none;
     	/* border-bottom: dotted 1px #ddd; */
     }
+/*    
+    Affiche le champ href des liens dans les pages imprimées
+    14/11/2006 : désactivé (mail NB->DM 12:00)
     a[href^="http://"]:after
     {
         content: " (" attr(href) ") ";
         word-wrap: break-word;
         font-size: 80%;
     }
-      
+*/      
 }
