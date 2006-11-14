@@ -93,6 +93,9 @@ sort:
     access: cli, AdminBase
     sortkey: 'Date:DateText:CongrDat,8,KeyDate,+ ; Type,20,KeyTextIgnoreCase,+ ; Rev,50,KeyTextIgnoreCase,-'
 
+validateall:
+    access: AdminBase
+
 # Panier de notices
 addToCart:
   sessions:

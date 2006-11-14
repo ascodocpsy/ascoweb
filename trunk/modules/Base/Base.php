@@ -1694,7 +1694,6 @@ class Base extends Database
                     
                     $fieldname=$this->map[trim($fields[$i])];
                     $v=trim(str_replace('""', '"', $v));
-                    
                     /*
                     // TODO : traitement pour textes officiels à supprimer
                     // Traitement pour les textes officiels
@@ -1798,5 +1797,33 @@ class Base extends Database
         
         return true; 
     } 
+
+    public function actionValidateAll()
+    {
+        // Ouvre la sélection
+        $selection=self::openDatabase('Valide=faux', false);
+        if (is_null($selection)) return;
+
+        // Vérifie qu'on a des réponses
+        if ($selection->count==0)
+        {
+            echo 'Aucune notice à valider';
+            return;
+        }
+        echo '<p>', $selection->count, ' notices à valider</p>';
+        echo '<ul>';
+        while (! $selection->eof())
+        {
+        	echo '<li>Validation de la notice ', $selection->field('ref'), '</li>';
+            $selection->edit();
+            $value=true;
+            $selection->setField('Valide',$value);
+            $selection->update();
+            
+            $selection->moveNext();
+        }
+        echo '</ul>';
+        $selection=null;
+    }    
 }
 ?>
