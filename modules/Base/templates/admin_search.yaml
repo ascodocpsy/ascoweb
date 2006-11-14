@@ -15,7 +15,7 @@ contents:
         contents:
           - [input]
             name: Motscles
-            title: Descripteurs (motscles, candesc, nomp, theme)
+            title: Descripteurs
           - [text]
             tag: p
             contents: '<a href="http://www.ascodocpsy.org/article.php3?id_article=691" target="_blank" title="Consulter le thesaurus SantéPsy (nouvelle fenêtre)">Pour connaître les descripteurs à utiliser, consultez le thesaurus SantéPsy</a>'
@@ -30,11 +30,6 @@ contents:
           - [input]
             name: Aut
             title: Auteur
-      - [div]
-        contents:
-          - [input]
-            name: Nomp
-            title: Nom propre
       - [div]
         contents:
           - [input]
