@@ -54,7 +54,7 @@ contents:
           - [div]
             class: field
             title: Descripteurs SantéPsy
-            contents: '<opt>[MotCle]</opt><opt>/[Theme]</opt><opt>/[Nomp]</opt>'
+            contents: '[MotCle]<opt>/[Theme]</opt>'
   - [opt]
     contents:
       - [div]
@@ -63,7 +63,7 @@ contents:
           - [div]
             class: field
             title: Autres descripteurs
-            contents: '[CanDes]'
+            contents: '[CanDes]<opt>/[Nomp]</opt>'
   - [opt]
     contents:
       - [div]
