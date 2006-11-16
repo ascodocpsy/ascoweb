@@ -2,8 +2,9 @@
 /**
  * Panier
  */
-
-class Cart
+// TODO: implémenter l'interface ArrayAccess
+// supprimer getitems , add, remove, count... et ajuster le code
+class Cart //implements ArrayAccess
 {
     /**
      * @var string Nombre maximum d'items autorisés dans le panier
@@ -59,7 +60,7 @@ class Cart
             throw new Exception("Le panier est plein, impossible d'ajouter qq chose");
             
         if (is_int($key) || ctype_digit($key)) $key=(int)$key;
-        if ($item)
+        if (! is_null($item))
         {
             $this->items[$key]=$item;
             $this->hasValues=true;
