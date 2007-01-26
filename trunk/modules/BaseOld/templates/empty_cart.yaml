@@ -1,9 +1,0 @@
-contents:
-  - [text]
-    tag: h1
-    contents: Votre panier est vide !
-  - [text]
-    tag: p
-    contents: >
-        Pour alimenter votre panier, lancez une recherche puis sélectionnez
-        les réponses qui vous intéressent.
