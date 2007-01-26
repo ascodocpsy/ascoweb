@@ -9,6 +9,9 @@ contents:
     tag: p
     contents: 'Equation : <code>[equation]</code>'
   - [text]
+    tag: p
+    contents: '<strong>Les documents sont triés par date et par type, les périodiques par ordre alphabétique.</strong>'
+  - [text]
     contents: '<hr />'
   - [ul]
     class: shortlist
