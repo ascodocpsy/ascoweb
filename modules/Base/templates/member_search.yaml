@@ -139,6 +139,10 @@ contents:
           - [input]
             name: ProdFich
             title: Producteur
+          - [text]
+            tag: p
+            contents: 'Producteur, localisation : format="asco5"'
+            class: exemple
       - [div]
         class: buttons
         contents:
