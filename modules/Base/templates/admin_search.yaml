@@ -183,6 +183,10 @@ contents:
           - [input]
             name: LastUpdate
             title: Date de mise à jour
+          - [text]
+            tag: p
+            contents: 'Exemples : 2006*, 200612*, 20061215'
+            class: exemple
       - [div]
         class: buttons
         contents:
