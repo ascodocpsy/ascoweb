@@ -81,6 +81,7 @@ class Base extends Database
             'NOMP' => 'Nomp',
             'NOTES' => 'Notes',
             'NUM' => 'Num',
+            'NUMTEXOF' => 'NumTexOf',
             'PAGE' => 'Page',
             'PDPF' => 'PdPf',
             'PRODFICH' => 'ProdFich',
@@ -1519,9 +1520,10 @@ class Base extends Database
                 case UPLOAD_ERR_OK:
                     //$path=Runtime::$root . self::dataPath . $file['name'];
                     $path=Runtime::$root . self::dataPath . $this->ident . '/' . $file['name'];
-                    if ($this->isValid($file['tmp_name'])== false)
+                    $h='';
+                    if ($this->isValid($file['tmp_name'], $h)== false)
                     {
-                        $error .= "<li>Le fichier '" . $file['name'] . "' n'est pas valide.</li>";
+                        $error .= "<li>Le fichier '" . $file['name'] . "' n'est pas valide : $h</li>";
                     }
                     else
                     {
@@ -1776,25 +1778,33 @@ class Base extends Database
      *  - la première ligne contient uniquement des noms de champs
      *  - chaque ligne contient autant de tabulations que la 1ère ligne
      */
-    private function isValid($path)
+    private function isValid($path, & $error="")
     {
         // Vérifie que le fichier n'est pas vide
         if (filesize($path) == 0)
+        {
+            $error='Le fichier est vide (zéro octets)';
             return false;
-        
+        }
         // Ouvre le fichier
         $f=fopen($path,'r');
 
         // Vérifie que c'est un fichier tabulé
         $fields=fgetcsv($f, 0, "\t", '"');
         if (! is_array($fields) || count($fields) < 2)
+        {
+            $error='La première ligne du fichier ne contient pas les noms de champs ou ne contient qu\'un seul nom';
             return false;
-        
+        }
         // Vérifie que la première ligne contient les noms de champs
         $fields=array_flip($fields);
-        if (count(array_diff_key($fields, $this->map)) > 0)
+        if (count($t=array_diff_key($fields, $this->map)) > 0)
+        {
+            //$error=print_r($t,true);
+            $error="champ(s) " . implode(', ', array_keys($t)) . " non géré(s)";
+            
             return false;
-        
+        }
         return true; 
     } 
 
@@ -1814,10 +1824,38 @@ class Base extends Database
         echo '<ul>';
         while (! $selection->eof())
         {
-        	echo '<li>Validation de la notice ', $selection->field('ref'), '</li>';
+            echo '<li>Validation de la notice ', $selection->field('ref'), '</li>';
             $selection->edit();
             $value=true;
             $selection->setField('Valide',$value);
+            $selection->update();
+            
+            $selection->moveNext();
+        }
+        echo '</ul>';
+        $selection=null;
+    }    
+    
+    public function actionFinSaisieTrue()
+    {
+        // Ouvre la sélection
+        $selection=self::openDatabase('FinSaisie=faux', false);
+        if (is_null($selection)) return;
+
+        // Vérifie qu'on a des réponses
+        if ($selection->count==0)
+        {
+            echo 'Aucune notice en cours de saisie';
+            return;
+        }
+        echo '<p>', $selection->count, ' notices en cours de saisie</p>';
+        echo '<ul>';
+        while (! $selection->eof())
+        {
+            echo '<li>FinSaisie=true pour la notice ', $selection->field('ref'), '</li>';
+            $selection->edit();
+            $value=true;
+            $selection->setField('FinSaisie',$value);
             $selection->update();
             
             $selection->moveNext();
