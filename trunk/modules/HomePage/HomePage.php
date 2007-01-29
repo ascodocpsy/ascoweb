@@ -12,7 +12,7 @@ class HomePage extends Module
     	switch ($this->action)
         {
             case 'home' :
-                $this->setLayout('homepage.htm');
+                $this->setLayout('homepage.html');
                 break;
             case 'index':
                 $password=Utils::get($_POST['password']);
@@ -32,7 +32,7 @@ class HomePage extends Module
     
     public function actionIndex()
     {
-        Template::run('login.yaml');
+        Template::run('login.html');
     }
 }
 ?>
