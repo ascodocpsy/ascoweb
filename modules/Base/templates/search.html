@@ -1,0 +1,100 @@
+<if test="User::hasAccess('AdminBase')">        /* Administrateur */
+    <h1>Base documentaire - Recherche - Accès administrateur</h1>
+</if>
+<elseif test="User::hasAccess('EditBase')">     /* Membre du GIP */
+    <h1>Base documentaire - Recherche - Accès membre du GIP</h1>
+</elseif>
+<else>
+    <h1>Base documentaire - Recherche - Accès public</h1>
+</else>
+
+<form class="form search" action="/base/search" method="get">
+	<field type="div text" name="Mots" title="Recherche tous champs" />
+
+    <field type="div text" name="Motscles" title="Descripteurs">
+        <p class="exemple"><a href="http://www.ascodocpsy.org/article.php3?id_article=691" target="_blank" title="Consulter le thesaurus SantéPsy (nouvelle fenêtre)">Pour connaître les descripteurs à utiliser, consultez le thesaurus SantéPsy</a></p>
+    </field>
+    
+	<field type="div text" name="Titres" title="Titre ou mots du titre" />
+	<field type="div text" name="Aut" title="Auteur" />
+	<field type="div text" name="Resu" title="Résumé" />
+    
+    <div>
+        <field type="checklist" name="Dates" src="new TextTable($this->path.'../../tables/date.txt')" title="Date du document" />
+        <div class="date">
+            <field type="select" name="Dates" src="new TextTable($this->path.'../../tables/datelist.txt')" emptylabel="true" title="Autre" />
+        </div>
+    </div>
+
+    <div>
+        <field type="text" name="DateText" title="Date du texte officiel" />
+        <span class="exemple">
+            Format : AAAA-MM-JJ ou AAAA-MM ou AAAA
+        </span>
+    </div>
+
+    <div>
+        <if test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
+            <field type="checklist" name="Type" src="new TextTable($this->path.'../../tables/type.txt')" title="Type de document" />
+        </if>
+        <else>
+            <field type="checklist" name="Type" src="new TextTable($this->path.'../../tables/public_type.txt')" title="Type de document" />
+        </else>
+    </div>
+
+    /* TODO : quickTable ? */
+    <field type="div checklist" name="Liens" src="array(array('code'=>'@notempty@', 'label'=>'Documents en ligne uniquement'))" title="Texte intégral" />
+    
+    <field type="div text" name="Rev" title="Titre ou périodique" />
+
+    <field test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" type="div text" name="Edit" title="Editeur" />
+    <field test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" type="div text" name="Col" title="Collection" />
+    <field test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" type="div text" name="IsbnIssn" title="ISBN, ISSN" />
+    <field test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" type="div text" name="Numeros" title="Numéro (du périodique, du congrès, du texte officiel)" />
+    <field test="User::hasAccess('AdminBase')" type="div text" name="Vol" title="Numéro de volume" />
+    <field test="User::hasAccess('AdminBase')" type="div text" name="DipSpe" title="Spécialité du diplôme" />
+    
+    <div>
+        <field type="select" name="NatText" src="new TextTable($this->path.'../../tables/nattext.txt')" title="Nature du texte officiel" size="3" multiple="true" />
+        <div class="infonattext">
+            <p class="exemple">
+                Pour sélectionner plusieurs types de texte officiel, 
+                appuyez sur la touche contrôle (Ctrl) et cliquez sur 
+                les types souhaités. Procéder de même pour désélectionner.
+            </p>
+        </div>
+    </div>
+
+    <field test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" type="div text" name="Loc" title="Localisation" />
+    
+    <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
+        <field type="text" name="ProdFich" title="Producteur" />
+        <p class="exemple">Producteur, localisation : format="asco5"</p>
+    </div>
+    
+    /* TODO : quickTable ? */
+    <field test="User::hasAccess('AdminBase')" type="div checklist" name="FinSaisie" src="array(array('code'=>'faux', 'label'=>'Notices en cours de saisie'), array('code'=>'vrai', 'label'=>'Notices terminées'))" title="Saisie de notices" />
+   
+    /* TODO : quickTable ? */
+    <field test="User::hasAccess('AdminBase')" type="div checklist" name="FinSaisie" src="array(array('code'=>'faux', 'label'=>'Notices à valider'), array('code'=>'vrai', 'label'=>'Notices validées'))" title="Validation de notices" />
+    
+    <field test="User::hasAccess('AdminBase')" type="div text" name="Creation" title="Date de création" />
+    
+    <div test="User::hasAccess('AdminBase')">
+        <field type="text" name="LastUpdate" title="Date de mise à jour" />
+        <p class="exemple">
+            Exemples : 2006*, 200612*, 20061215
+        </p>
+    </div>
+    
+    <div class="buttons">
+        <field type="submit" value="Rechercher" />    
+    </div>
+
+</form>
+
+<form class="reset">
+    <div class="buttons">
+        <field type="submit" value="Effacer tout" />
+    </div>
+</form>
