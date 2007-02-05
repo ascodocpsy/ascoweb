@@ -1,6 +1,6 @@
 /* Template pour afficher un <label> et une <div class="row"> dans une autre <div class="field"> */
-<template match="//row" label="" class="" value="">
-    <div class="row $class">
+<template match="//row" label="" class="" value="" test="">
+    <div test="$test" class="row $class">
         <label test="'$label'" class="field $class">$label</label>
         <div class="field $class">
             {select('string(@value)')}{select('.//node()')}{select('@*')}
@@ -8,72 +8,120 @@
     </div>
 </template>
 
+
 /* TODO : factoriser Type, Date, Tit, Aut si possible */
 
-
-<h1>Base documentaire - Recherche - Accès public</h1>
+<if test="User::hasAccess('AdminBase')">        /* Administrateur */
+    <h1>Base documentaire - Recherche - Accès administrateur</h1>
+</if>
+<elseif test="User::hasAccess('EditBase')">     /* Membre du GIP */
+    <h1>Base documentaire - Recherche - Accès membre du GIP</h1>
+</elseif>
+<else>
+    <h1>Base documentaire - Recherche - Accès public</h1>
+</else>
 
 /* Afficher le nombre de réponses obtenues ? */
 
 <h2>Liste des réponses obtenues</h2>
 <p>Equation : <code>$equation</code></p>
 <p><strong>Les documents sont triés par date et par type, les périodiques par ordre alphabétique.</strong></p>
-<hr />
 
-<ul class="shortlist">
-    <loop on="$selection" as="$rank, $record">
-        <li class="record">
-            <a class="fullrecord" href="show?ref=$REF" title="Voir la notice complète"><span>Voir la notice complète</span></a>
-            /* affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
-            <switch test="$type">
-            
-                <case test="'Article'">        
-                    <row >$Type, $Date</row>
-                    <row label="Titre">$Tit</row>
-                    <opt><row label="Auteur(s)">$Aut</row></opt>
-                    <row label="Périodique">$Rev<opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
-                </case>
+
+/* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
+<form if="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" action="/base/addToCart" method="post" name="answers">
+
+    <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" class="buttons">
+        <button name="btnselect" label="Tout sélectionner" onclick="selectAll(true)" />
+        <button name="btnunselect" label="Tout désélectionner" onclick="selectAll(false)" />
+        <submit name="btnadd" label="Ajouter les notices au panier" />
+    </div>    
+
+    <hr />
+
+    <ul class="shortlist">
+        <loop on="$selection" as="$rank, $record">
+            <li class="record">
+                <checkbox test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" name="art" value="$REF" />
                 
-                <case test="'Congrès'">
-                    <row>$Type, $Date</row>
-                    <row label="Titre">$Tit</row>
-                    <opt><row label="Auteur(s)">$Aut</row></opt>
-                    <opt><row label="Congrès"><opt>$CongrTit, </opt><opt>$CongrDat, </opt><opt>n°$CongrNum, </opt><opt>$CongrLie, </opt><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
-                </case>
+                <a class="fullrecord" href="show?ref=$REF" title="Voir la notice complète"><span>Voir la notice complète</span></a>
                 
-                <case test="'Livre'">
-                    <row>$Type, $Date</row>
-                    <row label="Titre">$Tit</row>
-                    <opt><row label="Auteur(s)">$Aut</row></opt>
-                    <opt><row label="Editeur"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
-                </case>
+                <if test="User::hasAccess('AdminBase') || $ShowModifyBtn">
+                    <a class="loadrecord" href="load?ref=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
+                </if>
                 
-                <case test="$type=='Mémoire' || $type=='Thèse'">
-                    <row>$Type, $Date</row>
-                    <row label="Titre">$Tit</row>
-                    <row label="Auteur(s)">$Aut</row>
-                    <opt><row><opt>$DipSpe, </opt><opt>$Lieu, </opt><opt>$Edit, </opt>$Page</row></opt>
-                </case>
+                /* affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
+                <switch test="$type">
                 
-                <case test="'Rapport'">
-                    <row>$Type, $Date</row>
-                    <row label="Titre">$Tit</row>
-                    <opt><row label="Auteur(s)">$Aut</row></opt>
-                    <opt><row label="Editeur"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
-                    <opt><row label="Périodique"><opt>$Rev</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
-                </case>
-                
-                <case test="'Texte officiel'">
-                    <row>$Type</row>
-                    <row label="Titre">$Tit<opt> / $Annexe</opt></row>
-                </case>
-                
-                <default>
+                    <case test="'Article'">        
+                        <row >$Type, $Date</row>
+                        <row label="Titre">$Tit</row>
+                        <opt><row label="Auteur(s)">$Aut</row></opt>
+                        <row test="! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))" label="Périodique">$Rev<opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
+                        <row test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" label="Périodique">$Rev<opt> $Localisation</opt><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
+                    </case>
                     
-                </default>
-            </switch>
-        </li>
-        <hr />
-    </loop>
-</ul>
+                    <case test="'Congrès'">
+                        <row>$Type, $Date</row>
+                        <row label="Titre">$Tit</row>
+                        <opt><row label="Auteur(s)">$Aut</row></opt>
+                        <opt><row label="Congrès"><opt>$CongrTit, </opt><opt>$CongrDat, </opt><opt>n°$CongrNum, </opt><opt>$CongrLie, </opt><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
+                        <opt><row test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" label="Localisation">$Loc</row></opt>
+                    </case>
+                    
+                    <case test="'Livre'">
+                        <row>$Type, $Date</row>
+                        <row label="Titre">$Tit</row>
+                        <opt><row label="Auteur(s)">$Aut</row></opt>
+                        <opt><row label="Editeur"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
+                        <opt><row test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" label="Localisation">$Loc</row></opt>
+                    </case>
+                    
+                    <case test="$type=='Mémoire' || $type=='Thèse'">
+                        <row>$Type, $Date</row>
+                        <row label="Titre">$Tit</row>
+                        <row label="Auteur(s)">$Aut</row>
+                        <opt><row><opt>$DipSpe, </opt><opt>$Lieu, </opt><opt>$Edit, </opt>$Page</row></opt>
+                        <opt><row test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" label="Localisation">$Loc</row></opt>
+                    </case>
+                    
+                    <case test="'Périodique'">
+                        <row>$Type<opt>, $ViePerio</opt></row>
+                        <row>$Rev<opt> $Presentation</opt><opt>, $IsbnIssn</opt></row>
+                        <opt><row>$Notes</row></opt>
+                    </case>
+                    
+                    <case test="'Rapport'">
+                        <row>$Type, $Date</row>
+                        <row label="Titre">$Tit</row>
+                        <opt><row label="Auteur(s)">$Aut</row></opt>
+                        <opt><row label="Editeur"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
+                        <opt><row test="! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))" label="Périodique"><opt>$Rev</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
+                        <opt><row test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" label="Périodique"><opt>$Rev</opt><opt> $Localisation</opt><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, $PageRev</row></opt>
+                    </case>
+                    
+                    <case test="'Texte officiel'">
+                        <row>$Type</row>
+                        <row test="! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))" label="Titre">$Tit<opt> / $Annexe</opt></row>
+                        <row test="User::hasAccess('EditBase')" label="Titre">$Tit<opt> ; $Annexe</opt></row>
+                        <opt><row test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" label="Périodique">$Rev<opt> du $DatePub</opt></row></opt>
+                    </case>
+                    
+                </switch>
+            </li>
+            <hr />
+        </loop>
+    </ul>
 
+    /* Répétition des boutons du dessus */
+    <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" class="buttons">
+        <button name="btnselect" label="Tout sélectionner" onclick="selectAll(true)" />
+        <button name="btnunselect" label="Tout désélectionner" onclick="selectAll(false)" />
+        <submit name="btnadd" label="Ajouter les notices au panier" />
+    </div>    
+
+</form>
+
+<p class="top">
+    <a href="#">Haut de page</a>
+</p>
