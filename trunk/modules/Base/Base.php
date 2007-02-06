@@ -262,45 +262,45 @@ class Base extends DatabaseModule
                 if (($tit=$this->selection[$name]) && ($lien=$this->selection['Lien']))
                     return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
                 return;
-//            
-//            case 'Annexe':
-//                // TODO : revoir : ne marche pas avec Titre de l'annexe1 <http://www.lien.fr >/Titre de l'annexe2/< http://www.lien2.fr>
-//                // Lien vers texte intégral
-//                // Syntaxe du champ :
-//                // Titre de l'annexe1 <http://www.lien.fr>/Titre de l'annexe2/<http://www.lien2.fr>
-//                $value='';
-//                $h=$selection->field($name);
-//                while (strlen($h)>0)
-//                {
-//                    $pt=strpos($h, '>');
-//                    // Cas 1 : on a Titre de l'annexe1 <http://www.lien.fr> ou <http://www.lien2.fr>
-//                    if ($pt !== false)
-//                    {
-//                        // Extrait le titre et son lien
-//                        $art=substr($h, 0, $pt);                        // Titre de l'annexe1 <http://www.lien.fr
-//                        $tit=trim(substr($art, 0, strpos($art, '<')));  // Titre de l'annexe1
-//                        $lien=trim(substr($art, strpos($art, '<')+1));  // http://www.lien.fr
-//                        if (! $tit) $tit=$lien;
-//                        if ($value) $value.=' ; ';
-//                        $value.=$this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
-//                        $h=trim(substr($h, $pt+1));
-//                        if (strpos($h, self::SEPARATOR)==0)
-//                            $h=trim(substr($h, 1));
-//                    }
-//                    // Cas 2 : on a uniquement Titre
-//                    else
-//                    {
-//                        $pt=strpos($h, self::SEPARATOR);
-//                        if ($pt === false)
-//                            $pt=strlen($h);
-//                        $tit=trim(substr($h, 0, $pt));
-//                        if ($value) $value.=' ; ';
-//                        $value.=$tit;
-//                        $h=trim(substr($h, $pt+1));
-//                    }
-//                }
-//                return $value;
-//    
+            
+            case 'Annexe':
+                // TODO : revoir : ne marche pas avec Titre de l'annexe1 <http://www.lien.fr >/Titre de l'annexe2/< http://www.lien2.fr>
+                // Lien vers texte intégral
+                // Syntaxe du champ :
+                // Titre de l'annexe1 <http://www.lien.fr>/Titre de l'annexe2/<http://www.lien2.fr>
+                $value='';
+                $h=$this->selection[$name];
+                while (strlen($h)>0)
+                {
+                    $pt=strpos($h, '>');
+                    // Cas 1 : on a Titre de l'annexe1 <http://www.lien.fr> ou <http://www.lien2.fr>
+                    if ($pt !== false)
+                    {
+                        // Extrait le titre et son lien
+                        $art=substr($h, 0, $pt);                        // Titre de l'annexe1 <http://www.lien.fr
+                        $tit=trim(substr($art, 0, strpos($art, '<')));  // Titre de l'annexe1
+                        $lien=trim(substr($art, strpos($art, '<')+1));  // http://www.lien.fr
+                        if (! $tit) $tit=$lien;
+                        if ($value) $value.=' ; ';
+                        $value.=$this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
+                        $h=trim(substr($h, $pt+1));
+                        if (strpos($h, self::SEPARATOR)==0)
+                            $h=trim(substr($h, 1));
+                    }
+                    // Cas 2 : on a uniquement Titre
+                    else
+                    {
+                        $pt=strpos($h, self::SEPARATOR);
+                        if ($pt === false)
+                            $pt=strlen($h);
+                        $tit=trim(substr($h, 0, $pt));
+                        if ($value) $value.=' ; ';
+                        $value.=$tit;
+                        $h=trim(substr($h, $pt+1));
+                    }
+                }
+                return $value;
+    
             case 'Aut':
                 if (! $h=$this->selection[$name]) return '';
                 
@@ -318,22 +318,22 @@ class Base extends DatabaseModule
                 return implode(self::SEPARATOR, $t);
             
             case 'Page':
-                if (! $h=$this->selection[$name]) return ;
+                if (! $h=$this->selection[$name]) return '';
                 
                 if (stripos($h, 'p.') === false && stripos($h, 'pagination') === false)
                     return trim($h).' p.';
-                return;
-//            
-//            case 'PageEdit':
-//                if (! $page=$selection->field('Page')) return;
-//                
-//                if ($selection->field('Type') == 'Rapport')
-//                {
-//                    if ($h=$selection->field('Lieu').$selection->field('Edit').$selection->field('Reed'))
-//                        return (stripos($page, 'p.') === false && stripos($page, 'pagination') === false) ? trim($page).' p.' : $page;
-//                }
-//                return '';    
-//            
+                return '';
+            
+            case 'PageEdit':
+                if (! $page=$this->selection['Page']) return '';
+                
+                if ($this->selection['Type'] == 'Rapport')
+                {
+                    if ($h=$this->selection['Lieu'].$this->selection['Edit'].$this->selection['Reed'])
+                        return (stripos($page, 'p.') === false && stripos($page, 'pagination') === false) ? trim($page).' p.' : $page;
+                }
+                return '';    
+            
             case 'PageRev':
                 if (! $page=$this->selection['Page']) return '';
                 
@@ -348,7 +348,7 @@ class Base extends DatabaseModule
             case 'Nomp':
             case 'CanDes':
             case 'Theme':
-                if (! $h=$this->selection[$name]) return;
+                if (! $h=$this->selection[$name]) return '';
     
                 $t=explode(trim(self::SEPARATOR), $h);
                 foreach ($t as $key=>$h)
@@ -365,17 +365,17 @@ class Base extends DatabaseModule
                 if (! $h=trim($this->selection[$name])) return '';
                 $lien='search?rev='. urlencode($h);
                 return $this->link($h, $lien, 'Notices du périodique '.$h);
-//                      
-//            case 'DateText':
-//            case 'DatePub':
-//            case 'DateVali':
-//            case 'Creation':
-//            case 'LastUpdate':
-//                if (! isset($selection)) return;
-//                // Affiche les dates AAAA-MM-JJ et AAAAMMJJ sous la forme JJ/MM/AAAA
-//                if (! $h=$selection->field($name)) return ;
-//                return preg_replace('~(\d{4})[-]?(\d{2})[-]?(\d{2})~', '${3}/${2}/${1}', $h);
-//
+                      
+            case 'DateText':
+            case 'DatePub':
+            case 'DateVali':
+            case 'Creation':
+            case 'LastUpdate':
+                if (! isset($this->selection)) return '';
+                // Affiche les dates AAAA-MM-JJ et AAAAMMJJ sous la forme JJ/MM/AAAA
+                if (! $h=$this->selection[$name]) return '';
+                return preg_replace('~(\d{4})[-]?(\d{2})[-]?(\d{2})~', '${3}/${2}/${1}', $h);
+
             case 'Loc':
             case 'ProdFich':
                 if (! $h=$this->selection[$name]) return '';
@@ -431,32 +431,32 @@ class Base extends DatabaseModule
                     $lien='inform?rev='. urlencode($h);
                     return $this->link('&nbsp;<span>Présentation</span>', $lien, 'Présentation du périodique', false, 'inform');
                 }
-//
-//            case 'EtatCol':
-//                if (! $t=$selection->field($name)) return '';
-//                
-//                $t=explode(trim(self::SEPARATOR),$t);
-//                foreach ($t as $key=>$h)
-//                {
-//                    $h=trim($h);
-//                    
-//                    // Extrait le numéro du centre asco (ex : "08 : 1996-2002(lac.)")
-//                    $length= (strpos($h, ':') === false) ? strlen($h) : strpos($h, ':');
-//                    $savCentre=trim(substr($h, 0, $length));    // 08
-//                    
-//                    // Construit le nom du centre
-//                    $centre= (substr($savCentre, 0, 1) == '0') ? 'asco'.substr($savCentre, 1) : 'asco'.$savCentre;  // asco8
-//                    
-//                    // Recherche l'URL de la fiche de présentation du centre correspondant au numéro asco
-//                    if (isset ($this->tblAsco[$centre]))
-//                    {
-//                        $lien=Config::get('urlarticle').$this->tblAsco[$centre];
-//                        $savCentre=$this->link($savCentre, $lien, 'Présentation du centre '.$centre);
-//                        $t[$key]=$savCentre.' '.substr($h, $length);
-//                    }
-//                }
-//                return implode('<br />', $t);
-//                
+
+            case 'EtatCol':
+                if (! $t=$this->selection[$name]) return '';
+                
+                $t=explode(trim(self::SEPARATOR),$t);
+                foreach ($t as $key=>$h)
+                {
+                    $h=trim($h);
+                    
+                    // Extrait le numéro du centre asco (ex : "08 : 1996-2002(lac.)")
+                    $length= (strpos($h, ':') === false) ? strlen($h) : strpos($h, ':');
+                    $savCentre=trim(substr($h, 0, $length));    // 08
+                    
+                    // Construit le nom du centre
+                    $centre= (substr($savCentre, 0, 1) == '0') ? 'asco'.substr($savCentre, 1) : 'asco'.$savCentre;  // asco8
+                    
+                    // Recherche l'URL de la fiche de présentation du centre correspondant au numéro asco
+                    if (isset ($this->tblAsco[$centre]))
+                    {
+                        $lien=Config::get('urlarticle').$this->tblAsco[$centre];
+                        $savCentre=$this->link($savCentre, $lien, 'Présentation du centre '.$centre);
+                        $t[$key]=$savCentre.' '.substr($h, $length);
+                    }
+                }
+                return implode('<br />', $t);
+                
             case 'ShowModifyBtn':
                 $h=1;
                 // Si la saisie de la notice n'est pas terminée, seul les membres
