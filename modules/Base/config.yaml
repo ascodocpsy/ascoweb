@@ -13,6 +13,8 @@ CSS: [formulaire.css]
 
 database: ascodocpsy
 
+autoinclude: templates/autoincludes/row.html
+
 # Url de base d'un article sous SPIP
 urlarticle: 'http://www.ascodocpsy.org/article.php3?id_article='
 
@@ -23,26 +25,17 @@ filter:
     default: '(* sauf type=periodique) and Valide=vrai'
 
 searchform:
-    template:
-        AdminBase: templates/admin_search.yaml
-        EditBase: templates/member_search.yaml
-        default: templates/public_search.yaml
+    template: templates/search.html
     callback: none
 
 search:
-    template:
-        AdminBase: templates/member_list.yaml
-        EditBase: templates/member_list.yaml
-        default: templates/public_list.yaml
-    errortemplate: templates/error/error_base.yaml
+    template: templates/list.html
+    errortemplate: templates/error/error_base.html
     noanswertemplate: templates/error/error_base_noanswer.yaml
     JS: [asco.js]
 
 show:
-    template:
-        AdminBase: templates/member_show.yaml
-        EditBase: templates/member_show.yaml
-        default: templates/public_show.yaml
+    template: templates/show.html
 
 load:
     access: AdminBase,EditBase
