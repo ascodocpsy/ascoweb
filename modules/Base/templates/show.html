@@ -9,6 +9,7 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
 
 
 
+
 /* Template pour factoriser l'affichage : pour presque tous les types de doc, il faut afficher
 $MotCle/$Theme, $CanDes, $Nomp et $Resu : permet de le faire en une seule ligne */
 <template match="//MTCNR">
@@ -48,7 +49,7 @@ $MotCle/$Theme, $CanDes, $Nomp et $Resu : permet de le faire en une seule ligne 
 </p>
 
 /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
-<form if="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" action="/base/addToCart" method="post" name="answers">
+<form if="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" action="addToCart" method="post" name="answers">
 
     <ul class="fulllist">
         <loop on="$selection" as="$rank, $record">
