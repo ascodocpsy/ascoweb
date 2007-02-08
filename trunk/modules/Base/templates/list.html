@@ -37,7 +37,7 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
 
 
 /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
-<form if="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" action="/base/addToCart" method="post" name="answers">
+<form if="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" action="addToCart" method="post" name="answers">
 
     <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" class="buttons">
         <button name="btnselect" label="Tout sélectionner" onclick="selectAll(true)" />
