@@ -469,6 +469,7 @@ class Base extends DatabaseModule
                 return ($h == 1) ? true : false;
         }
     }
+
     
     // TODO: apparemment, jamais utilisé
     public function getDates($name)
@@ -487,7 +488,8 @@ class Base extends DatabaseModule
                 return;                 
         }
     }
-   
+    
+    
     public function setField($name, &$value)
     {
         global $selection;
@@ -524,22 +526,6 @@ class Base extends DatabaseModule
         }
     }
   
-    public function actionNew()
-    {
-        // Détermine le template à utiliser
-        if (! $template=$this->getTemplate('template'))
-            throw new Exception('Le template à utiliser n\'a pas été indiqué');
-        
-        // Détermine le callback à utiliser
-        $callback=$this->getCallback();
-
-        // Exécute le template
-        Template::run
-        (
-            $template, 
-            array($this, $callback)
-        );
-    }
     
     public function actionLocate()
     {
@@ -720,7 +706,7 @@ class Base extends DatabaseModule
                
         if ($this->cart->count()==0)
         {
-            Template::run('templates/empty_cart.yaml');
+            Template::run('templates/empty_cart.html');
             return;
         }
 
@@ -763,6 +749,42 @@ class Base extends DatabaseModule
         );
     }
 
+
+    /**
+     * Affiche le formulaire permettrant de choisir le type du document à créer
+     * Surcharge l'action new de la classe DatabaseModule
+     */    
+    public function actionNew()
+    {
+        // si type non renseigné, affiche le formulaire pour le choisir
+        if (is_null(Utils::get($_REQUEST['Type'])))
+        {
+            Template::run
+            (
+                'templates/load/chooseType.html'
+            );
+        }
+        else    // sinon, appelle l'action par défaut
+        {
+            parent::actionNew();
+        }
+    }
+     
+     
+     /**
+      * Callback qui retourne une chaîne vide pour chaque champ de la nouvelle notice à créer
+      */
+     public function emptyString($name)
+     {
+        $type = Utils::get($_REQUEST['Type']);
+        
+        if($name == 'Type')
+            return $type[1];
+        else
+            return '';
+     }
+     
+     
     /**
      * Ajoute une ou plusieurs notices dans le panier
      */
@@ -1404,8 +1426,6 @@ class Base extends DatabaseModule
         // - Avoir une case à cocher "Lancer le tri après l'import"
         // - Avoir la possibilité de lancer un tri à tout moment
         
-        global $files, $error;
-        
         $error='';
         
         // Importe les fichiers et trie la base
@@ -1502,7 +1522,7 @@ class Base extends DatabaseModule
 
         // Affiche la liste et le reste
         // Si administrateur, affiche l'ensemble des listes
-        Template::run('templates/import/import.yaml','Template::varCallback');
+        Template::run('templates/import/import.html',array('files'=>$files, 'error'=>$error));
     }
     
     /**
