@@ -471,7 +471,7 @@ class Base extends DatabaseModule
     }
 
     
-    // TODO: apparemment, jamais utilisé
+    // Utilisé uniquement pour actionLoadFull (cf config.yaml)
     public function getDates($name)
     {
         global $selection;
@@ -490,34 +490,27 @@ class Base extends DatabaseModule
     }
     
     
+    // valider les données champ
     public function setField($name, &$value)
     {
-        global $selection;
-        
         switch ($name)
         {
             case 'FinSaisie':
-                if (Utils::get($_REQUEST[$name], false)) $value=true; else $value=false;
+                $value=is_null($value) ? false : true;
                 break;
             
             case 'Valide':
-                if (User::hasAccess('EditBase'))
-                {
+                if (User::hasAccess('AdminBase'))
+                    $value=is_null($value) ? false : true;
+                else
+                    $value=false;
                     // Si la notice est modifiée par un membre du GIP, la notice repasse
                     // en statut "à valider par un administrateur"
-                    $value=false;
-                }
-                else
-                {
-                    if (Utils::get($_REQUEST[$name], false)) $value=true; else $value=false;
-                }
                 break;
             
             case 'Creation':
-                if (! $selection->field($name))
-                    $value=date('Ymd');
-                else
-                    $value=$selection->field($name);
+                if ($this->selection[$name]) return false;
+                $value=date('Ymd');
                 break;
 
             case 'LastUpdate':
@@ -526,6 +519,30 @@ class Base extends DatabaseModule
         }
     }
   
+  // retourne null pour les champs dont on interdit la modif
+    public function validData($name, $oldValue, $newValue)
+    {
+        switch ($name)
+        {
+            case 'FinSaisie':
+                return is_null($newValue) ? false : true;  
+            
+            case 'Valide':
+                if (User::hasAccess('EditBase'))
+                {
+                    // Si la notice est modifiée par un membre du GIP, la notice repasse
+                    // en statut "à valider par un administrateur"
+                    return false;
+                }
+                return is_null($newValue) ? false : true;  
+            
+            case 'Creation':
+                return $oldValue ? null : date('Ymd');
+
+            case 'LastUpdate':
+                return date('Ymd');
+        }
+    }
     
     public function actionLocate()
     {

@@ -26,40 +26,42 @@ filter:
 
 searchform:
     template: templates/search.html
-    callback: none
 
 search:
     template: templates/list.html
     errortemplate: templates/error/error_base.html
-    noanswertemplate: templates/error/error_base_noanswer.yaml
+    noanswertemplate: templates/error/error_base_noanswer.html
     JS: [asco.js]
+    callback: getField
 
 show:
     template: templates/show.html
+    callback: getField
 
 load:
     access: AdminBase,EditBase
     JS: [autosize.js, controls.js, load.js]
-    template: templates/load/load_type.yaml
+#    template: templates/load/load_type.yaml
+    template: templates/load/load.html
 
 loadfull:
     action: load
     access: AdminBase
     JS: [autosize.js, controls.js, load.js]
     template: templates/load/load.yaml
-#    callback: none
     callback: getDates
-
+    
 new:
-    access: AdminBase,EditBase
-    template: templates/load/new.yaml
+    access: AdminBase, EditBase
+    template: templates/load/load.html
+    callback: emptyString
 
 save:
     access: AdminBase,EditBase
-
+	callback: validData
+	
 delete:
     access: AdminBase
-    callback: none
 
 locate:
     access: AdminBase,EditBase
@@ -67,7 +69,7 @@ locate:
         AdminBase: templates/member_show.yaml
         EditBase: templates/member_show.yaml
         default: templates/public_show.yaml
-    errortemplate: templates/error/error.yaml
+    errortemplate: templates/error/error.html
 
 inform:
     template:
