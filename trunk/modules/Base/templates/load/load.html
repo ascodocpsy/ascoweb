@@ -3,22 +3,23 @@
 */
 <template match="//AutTit" titLabel="Titre *">
     <fieldset label="Auteurs *">
-        <text name="Aut" rows="1" class="fullwidth autoheight mandatory" />
+        <text name="AUT" rows="1" class="fullwidth autoheight mandatory" />
     </fieldset>
     <fieldset label="$titLabel">
-        <text name="Tit" rows="1" class="fullwidth autoheight mandatory" />
+        <text name="TIT" rows="1" class="fullwidth autoheight mandatory" />
     </fieldset>
 </template>
+
 
 /* Raccourci pour la section Mentions bibliographiques
 @pageName : le nom de l'attribut du premier tag du fieldset
 @pageLabel : le label de l'attribut du premier tag du fieldset : ne pas oublier le caractère '*' dans le titre
 le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le libellé
 */
-<template match="//MentionsBib" pageName="Page" pageLabel="Nombre de pages *">
+<template match="//MentionsBib" pageName="PAGE" pageLabel="Nombre de pages *">
     <fieldset label="Mentions bibliographiques">
         <div><text name="$pageName" label="$pageLabel" class="fullwidth mandatory" /></div>
-        <div><text name="Notes" label="Notes bibliographiques" rows="1" class="fullwidth autoheight" /></div>
+        <div><text name="NOTES" label="Notes bibliographiques" rows="1" class="fullwidth autoheight" /></div>
     </fieldset>
 </template>
 
@@ -30,15 +31,15 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 <template match="//Periodique" revMandatory="true" volExists="true">
     <fieldset label="Périodique">
         <if test="$revMandatory == true">
-            <div><text name="Rev" label="Titre du périodique *" rows="1" class="fullwidth autoheight mandatory" /></div>
+            <div><text name="REV" label="Titre du périodique *" rows="1" class="fullwidth autoheight mandatory" /></div>
         </if>
         <else>
-            <div><text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight" /></div>
+            <div><text name="REV" label="Titre du périodique" rows="1" class="fullwidth autoheight" /></div>
         </else>
         <if test="$volExists == true">
-            <div><text name="Vol" label="Volume" class="fullwidth" /></div>
+            <div><text name="VOL" label="Volume" class="fullwidth" /></div>
         </if>
-        <div><text name="Num" label="Numéro *" class="fullwidth mandatory" /></div>
+        <div><text name="NUM" label="Numéro *" class="fullwidth mandatory" /></div>
     </fieldset>
 </template>
 
@@ -46,13 +47,13 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 /* Raccourci pour le champ Résumé et la section Indexation */
 <template match="//ResuIndexation">
     <fieldset label="Résumé">
-        <text name="Resu" rows="1" class="fullwidth autoheight" />
+        <text name="RESU" rows="1" class="fullwidth autoheight" />
     </fieldset>
     <fieldset label="Indexation">
-        <div><text name="Theme" rows="1" label="Thème *" class="fullwidth autoheight mandatory" /></div>
-        <div><text name="MotCle" rows="1" label="Descripteurs *" class="fullwidth autoheight mandatory" /></div>
-        <div><text name="Nomp" rows="1" label="Noms propres" class="fullwidth autoheight" /></div>
-        <div><text name="CanDes" rows="1" label="Candidats descripteurs" class="fullwidth autoheight" /></div>
+        <div><text name="THEME" rows="1" label="Thème *" class="fullwidth autoheight mandatory" /></div>
+        <div><text name="MOTCLE" rows="1" label="Descripteurs *" class="fullwidth autoheight mandatory" /></div>
+        <div><text name="NOMP" rows="1" label="Noms propres" class="fullwidth autoheight" /></div>
+        <div><text name="CANDES" rows="1" label="Candidats descripteurs" class="fullwidth autoheight" /></div>
     </fieldset>
 </template>
 
@@ -63,12 +64,12 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 <template match="//Lien" mandatory="false">
     <if test="$mandatory == true">
         <fieldset label="Lien vers le document *">
-            <text name="Lien" rows="1" class="fullwidth autoheight mandatory" />
+            <text name="LIEN" rows="1" class="fullwidth autoheight mandatory" />
         </fieldset>
     </if>
     <else>
         <fieldset label="Lien vers le document">
-            <text name="Lien" rows="1" class="fullwidth autoheight" />
+            <text name="LIEN" rows="1" class="fullwidth autoheight" />
         </fieldset>
     </else>
 </template>
@@ -78,7 +79,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 /* Raccourci pour le champ Producteur de la fiche */
 <template match="//ProdFich">
     <fieldset label="Producteur de la fiche *">
-        <text name="ProdFich" class="fullwidth mandatory" />
+        <text name="PRODFICH" class="fullwidth mandatory" />
     </fieldset>
 </template>
 
@@ -89,16 +90,16 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 <template match="//Congres" mandatory="false">
     <fieldset label="Congrès">
     <if test="$mandatory == true">
-        <div><text name="CongrTit" rows="1" label="Intitulé *" class="fullwidth autoheight mandatory" /></div>
-        <div><text name="CongrNum" label="Numéro *" class="fullwidth mandatory" /></div>
-        <div><text name="CongrLie" label="Ville *" class="fullwidth mandatory" /></div>
-        <div><text name="CongrDat" label="Année *" class="fullwidth mandatory" /></div>
+        <div><text name="CONGRTIT" rows="1" label="Intitulé *" class="fullwidth autoheight mandatory" /></div>
+        <div><text name="CONGRNUM" label="Numéro *" class="fullwidth mandatory" /></div>
+        <div><text name="CONGRLIE" label="Ville *" class="fullwidth mandatory" /></div>
+        <div><text name="CONGRDAT" label="Année *" class="fullwidth mandatory" /></div>
     </if>
     <else>
-        <div><text name="CongrTit" rows="1" label="Intitulé" class="fullwidth autoheight" /></div>
-        <div><text name="CongrNum" label="Numéro" class="fullwidth" /></div>
-        <div><text name="CongrLie" label="Ville" class="fullwidth" /></div>
-        <div><text name="CongrDat" label="Année" class="fullwidth" /></div>
+        <div><text name="CONGRTIT" rows="1" label="Intitulé" class="fullwidth autoheight" /></div>
+        <div><text name="CONGRNUM" label="Numéro" class="fullwidth" /></div>
+        <div><text name="CONGRLIE" label="Ville" class="fullwidth" /></div>
+        <div><text name="CONGRDAT" label="Année" class="fullwidth" /></div>
     </else>
     </fieldset>
 </template>
@@ -116,11 +117,11 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 
 <h1>Base documentaire - Ajout/Modification d'une notice</h1>
 
-<opt><h1>Document de type $Type</h1></opt>
+<opt><h1>Document de type $TYPE</h1></opt>
 
 <if test="User::hasAccess('AdminBase')">
     <if test="$REF > 0">
-        <a href="/base/loadfull?ref=[REF]" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
+        <a href="loadfull?ref=$REF" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
     </if>
     <else>
         <a href="/base/loadfull" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
@@ -128,8 +129,8 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 </if>
 
 
-<form method="post" action="save" class="form load">
-    <div><input type="hidden" name="Type" /></div>
+<form method="post" action="/base/save" class="form load">
+    <div><input type="hidden" name="TYPE" value="$TYPE"/></div>
     
     
     /* Contenu spécifique à chaque type de document */
@@ -140,36 +141,36 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
         <case test="'Article'">
             <AutTit titLabel="Titre de l*****article *" />
             <fieldset label="Année du document *">
-                <text name="Date" class="fullwidth mandatory" />
+                <text name="DATE" class="fullwidth mandatory" />
             </fieldset>
-            <MentionsBib pageName="PdPf" pageLabel="Page début-fin *" />
+            <MentionsBib pageName="PDPF" pageLabel="Page début-fin *" />
             <Periodique />
             <ResuIndexation />
             <Lien />
             <ProdFich />
-            <script type="text/javascript">ctrlInitialize("ControlsArticle");</script>            
+            <script type="text/javascript">ctrlInitialize("ControlsArticle");</script>      
         </case>
         
         <case test="'Congrès'">
             <AutTit titLabel="Titre du document *" />
             <Congres mandatory="true" />
             <fieldset label="Année du document *">
-                <text name="Date" class="fullwidth mandatory" />
+                <text name="DATE" class="fullwidth mandatory" />
             </fieldset>
             <MentionsBib />
             <fieldset label="Edition">
-                <div><text name="Edit" rows="1" label="Editeur(s) *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Lieu" rows="1" label="Lieu d*****édition *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Col" rows="1" label="Collection" class="fullwidth autoheight" /></div>
-                <div><text name="Reed" rows="1" label="Mention d*****édition" class="fullwidth autoheight" /></div>
+                <div><text name="EDIT" rows="1" label="Editeur(s) *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="LIEU" rows="1" label="Lieu d*****édition *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="COL" rows="1" label="Collection" class="fullwidth autoheight" /></div>
+                <div><text name="REED" rows="1" label="Mention d*****édition" class="fullwidth autoheight" /></div>
             </fieldset>
             <fieldset label="ISBN / ISSN *">
-                <text name="IsbnIssn" class="fullwidth mandatory" />
+                <text name="ISBNISSN" class="fullwidth mandatory" />
             </fieldset>
             <ResuIndexation />
             <Lien />
             <fieldset label="Localisation du document *">
-                <text name="Loc" rows="1" class="fullwidth autoheight mandatory" />
+                <text name="LOC" rows="1" class="fullwidth autoheight mandatory" />
             </fieldset>
             <ProdFich />
             <script type="text/javascript">ctrlInitialize("ControlsCongres");</script>
@@ -179,22 +180,22 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
             <AutTit titLabel="Titre du document *" />
             <Congres />
             <fieldset label="Année du document *">
-                <text name="Date" class="fullwidth mandatory" />
+                <text name="DATE" class="fullwidth mandatory" />
             </fieldset>
             <MentionsBib />
             <fieldset label="Edition">
-                <div><text name="Edit" rows="1" label="Editeur *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Lieu" rows="1" label="Lieu d*****édition *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Col" rows="1" label="Collection" class="fullwidth autoheight" /></div>
-                <div><text name="Reed" rows="1" label="Mention d*****édition" class="fullwidth autoheight" /></div>
+                <div><text name="EDIT" rows="1" label="Editeur *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="LIEU" rows="1" label="Lieu d*****édition *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="COL" rows="1" label="Collection" class="fullwidth autoheight" /></div>
+                <div><text name="REED" rows="1" label="Mention d*****édition" class="fullwidth autoheight" /></div>
             </fieldset>
             <fieldset label="ISBN / ISSN *">
-                <text name="IsbnIssn" class="fullwidth mandatory" />
+                <text name="ISBNISSN" class="fullwidth mandatory" />
             </fieldset>
             <ResuIndexation />
             <Lien />
             <fieldset label="Localisation du document *">
-                <text name="Loc" rows="1" class="fullwidth autoheight mandatory" />
+                <text name="LOC" rows="1" class="fullwidth autoheight mandatory" />
             </fieldset>
             <ProdFich />
             <script type="text/javascript">ctrlInitialize("ControlsLivres");</script>        
@@ -203,20 +204,20 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
         <case test="$type=='Mémoire' || $type=='Thèse'">
             <AutTit />
             <fieldset label="Spécialité du diplôme *">
-                <text name="DipSpe" rows="1" class="fullwidth autoheight mandatory" />
+                <text name="DIPSPE" rows="1" class="fullwidth autoheight mandatory" />
             </fieldset>
             <fieldset label="Edition">
-                <div><text name="Edit" rows="1" label="Institution morale de rattachement *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Lieu" rows="1" label="Lieu d*****édition ou de soutenance *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="EDIT" rows="1" label="Institution morale de rattachement *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="LIEU" rows="1" label="Lieu d*****édition ou de soutenance *" class="fullwidth autoheight mandatory" /></div>
             </fieldset>
             <MentionsBib />
             <fieldset label="Année de soutenance *">
-                <text name="Date" class="fullwidth mandatory" />
+                <text name="DATE" class="fullwidth mandatory" />
             </fieldset>
             <ResuIndexation />
             <Lien />
             <fieldset label="Localisation du document *">
-                <text name="Loc" rows="1" class="fullwidth autoheight mandatory" />
+                <text name="LOC" rows="1" class="fullwidth autoheight mandatory" />
             </fieldset>
             <ProdFich />
             <script type="text/javascript">ctrlInitialize("ControlsMemoire");</script>
@@ -225,19 +226,19 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
         
         <case test="'Périodique'">
             <fieldset label="Titre du périodique *">
-                <text name="Rev" rows="1" clas="fullwidth autoheight mandatory" />
+                <text name="REV" rows="1" clas="fullwidth autoheight mandatory" />
             </fieldset>
             <fieldset label="Date de vie et de mort *">
-                <text name="ViePerio" class="fullwidth mandatory" />
+                <text name="VIEPERIO" class="fullwidth mandatory" />
             </fieldset>
             <fieldset label="Etat de la collection *">
-                <text name="EtatCol" rows="1" class="fullwidth autoheight mandatory" />
+                <text name="ETATCOL" rows="1" class="fullwidth autoheight mandatory" />
             </fieldset>
             <fieldset label="ISSN *">
-                <text name="IsbnIssn" class="fullwidth mandatory" />
+                <text name="ISBNISSN" class="fullwidth mandatory" />
             </fieldset>
             <fieldset label="Notes">
-                <text name="Notes" rows="1" class="fullwidth autoheight" />
+                <text name="NOTES" rows="1" class="fullwidth autoheight" />
             </fieldset>
             <Lien />
             <ProdFich />
@@ -247,21 +248,21 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
         <case test="'Rapport'">
             <AutTit />
             <fieldset label="Année du document *">
-                <text name="Date" class="fullwidth mandatory" />
+                <text name="DATE" class="fullwidth mandatory" />
             </fieldset>
-            <fieldset label="Nombre de pages"><text name="Page" class="fullwidth mandatory" /></fieldset>
+            <fieldset label="Nombre de pages"><text name="PAGE" class="fullwidth mandatory" /></fieldset>
             <fieldset label="Edition">
-                <div><text name="Edit" rows="1" label="Editeur" class="fullwidth autoheight" /></div>
-                <div><text name="Lieu" rows="1" label="Lieu d*****édition" class="fullwidth autoheight" /></div>
-                <div><text name="Col" rows="1" label="Collection" class="fullwidth autoheight" /></div>
-                <div><text name="Reed" rows="1" label="Mention d*****édition" class="fullwidth autoheight" /></div>
+                <div><text name="EDIT" rows="1" label="Editeur" class="fullwidth autoheight" /></div>
+                <div><text name="LIEU" rows="1" label="Lieu d*****édition" class="fullwidth autoheight" /></div>
+                <div><text name="COL" rows="1" label="Collection" class="fullwidth autoheight" /></div>
+                <div><text name="REED" rows="1" label="Mention d*****édition" class="fullwidth autoheight" /></div>
             </fieldset>
             <Periodique revMandatory="false" />
             <fieldset label="ISBN / ISSN">
-                <text name="IsbnIssn" class="fullwidth" />
+                <text name="ISBNISSN" class="fullwidth" />
             </fieldset>
             <fieldset label="Notes bibliographiques">
-                <text name="Notes" rows="1" class="fullwidth autoheight" />
+                <text name="NOTES" rows="1" class="fullwidth autoheight" />
             </fieldset>
             <ResuIndexation />
             <Lien mandatory="true" />
@@ -271,29 +272,29 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
         
         <case test="'Texte officiel'">
             <fieldset label="Nature du texte officiel *">
-                <radiolist name="NatText" src="new TextTable($this->path.'../../tables/nattext.txt')" class="mandatory" />
+                <radiolist name="NATTEXT" src="new TextTable($this->path.'../../tables/nattext.txt')" class="mandatory" />
             </fieldset>
             <fieldset label="Titres du document">
-                <div><text name="Tit" rows="1" label="Titre * " class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Annexe" rows="1" label="Titre de l*****annexe" class="fullwidth autoheight" /></div>
+                <div><text name="TIT" rows="1" label="Titre * " class="fullwidth autoheight mandatory" /></div>
+                <div><text name="ANNEXE" rows="1" label="Titre de l*****annexe" class="fullwidth autoheight" /></div>
             </fieldset>
             <fieldset label="Dates">
-                <div><text name="DateText" label="Date du texte officiel *" class="fullwidth mandatory" /></div>
-                <div><text name="DatePub" label="Date de publication du texte officiel *" class="fullwidth mandatory" /></div>
-                <div><text name="DateVali" label="Date de fin de validité du texte officiel" class="fullwidth" /></div>
-            </fieldset> 
+                <div><text name="DATETEXT" label="Date du texte officiel *" class="fullwidth mandatory" /></div>
+                <div><text name="DATEPUB" label="Date de publication du texte officiel *" class="fullwidth mandatory" /></div>
+                <div><text name="DATEVALI" label="Date de fin de validité du texte officiel" class="fullwidth" /></div>
+            </fieldset>
             <Periodique volExists="false" />           
             <fieldset label="Numéro du texte officiel">
-                <text name="NumTexOf" class="fullwidth" />
+                <text name="NUMTEXOF" class="fullwidth" />
             </fieldset>
             <ResuIndexation />
             <fieldset label="Versions électroniques des documents">
-                <div><text name="Lien" rows="1" label="Lien vers le document *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="LIEN" rows="1" label="Lien vers le document *" class="fullwidth autoheight mandatory" /></div>
             </fieldset>
             <ProdFich />
             <script type="text/javascript">ctrlInitialize("ControlsTexteOfficiel");</script>
         </case>
-        
+      
     </switch>    
     
     
@@ -301,13 +302,11 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
     <fieldset>
         <opt><legend>Gestion de la notice</legend></opt> 
         <div>
-            <input type="hidden" name="FinSaisie" value="" />
             <checkbox name="FinSaisie" label="Notice à valider" value="1" />
         </div>
         <if test="User::hasAccess('AdminBase')">
             <div>
-                <input type="hidden" name="Valide" value="1" />
-                <checkbox name="Valide" label="Notice validée par un administrateur" value="1" />
+                <checkbox name="VALIDE" label="Notice validée par un administrateur" value="1" />
             </div>
         </if>
     </fieldset>
@@ -320,7 +319,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
         </fieldset>
     </opt>
     
-    <div><input type="hidden" name="ref" /></div>
+    <div><input type="hidden" name="REF" value="$REF" /></div>
     
     <div class="buttons">
         <submit label="Enregistrer" class="submit" />
