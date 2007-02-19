@@ -11,37 +11,37 @@
 <form class="form search" action="/base/search" method="get">
     
     <div>
-        <textbox name="MOTS" label="Recherche tous champs" />
+        <textbox name="Mots" label="Recherche tous champs" />
     </div>
     
     <div>
-        <textbox name="MOTSCLES" label="Descripteurs" />
+        <textbox name="MotsCles" label="Descripteurs" />
         <p class="exemple"><a href="http://www.ascodocpsy.org/article.php3?id_article=691" target="_blank" title="Consulter le thesaurus SantéPsy (nouvelle fenêtre)">Pour connaître les descripteurs à utiliser, consultez le thesaurus SantéPsy</a></p>
     </div>
 
     <div>
-        <textbox name="TITRES" label="Titre ou mots du titre" />
+        <textbox name="Titres" label="Titre ou mots du titre" />
     </div>
     
     <div>
-        <textbox name="AUT" label="Auteur" />
+        <textbox name="Aut" label="Auteur" />
     </div>
     
     <div>
-        <textbox name="RESU" label="Résumé" />
+        <textbox name="Resu" label="Résumé" />
     </div>
 
     <div>
-        <checklist name="DATES" label="Date du document" src="new TextTable($this->path.'../../tables/date.txt')" />
+        <checklist name="Dates" label="Date du document" src="new TextTable($this->path.'../../tables/date.txt')" />
         <div class="date">
-            <select name="DATES" label="Autre" src="new TextTable($this->path.'../../tables/datelist.txt')">
+            <select name="Dates" label="Autre" src="new TextTable($this->path.'../../tables/datelist.txt')">
                 <option value="">-</option>
             </select>
         </div>
     </div>
     
     <div>
-        <textbox name="DATETEXT" label="Date du texte officiel" />
+        <textbox name="DateText" label="Date du texte officiel" />
         <span class="exemple">
             Format : AAAA-MM-JJ ou AAAA-MM ou AAAA
         </span>
@@ -49,48 +49,48 @@
     
     <div>
         <if test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
-            <checklist name="TYPE" label="Type de document" src="new TextTable($this->path.'../../tables/type.txt')" />
+            <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/type.txt')" />
         </if>
         <else>
-            <checklist name="TYPE" label="Type de document" src="new TextTable($this->path.'../../tables/public_type.txt')" />
+            <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/public_type.txt')" />
         </else>
     </div>
     
     /* TODO : quickTable ? */
     <div>
-        <checklist name="LIENS" label="Texte intégral" src="array(array('code'=>'@notempty@', 'label'=>'Documents en ligne uniquement'))" />
+        <checklist name="Liens" label="Texte intégral" src="array(array('code'=>'@notempty@', 'label'=>'Documents en ligne uniquement'))" />
     </div>
     
     <div>
-        <textbox name="REV" label="Titre ou périodique" />
+        <textbox name="Rev" label="Titre ou périodique" />
     </div>
 
     <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
-        <textbox name="EDIT" label="Editeur" />
+        <textbox name="Edit" label="Editeur" />
     </div>
     
     <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
-        <textbox name="COL" label="Collection" />
+        <textbox name="Col" label="Collection" />
     </div>
     
     <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
-        <textbox name="ISBNISSN" label="ISBN, ISSN" />
+        <textbox name="IsbnIssn" label="ISBN, ISSN" />
     </div>
     
     <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
-        <textbox name="NUMEROS" label="Numéro (du périodique, du congrès, du texte officiel)" />
+        <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" />
     </div>
     
     <div test="User::hasAccess('AdminBase')">
-        <textbox name="VOL" label="Numéro de volume" />
+        <textbox name="Vol" label="Numéro de volume" />
     </div>
     
     <div test="User::hasAccess('AdminBase')">
-        <textbox name="DIPSPE" label="Spécialité du diplôme" />
+        <textbox name="DipSpe" label="Spécialité du diplôme" />
     </div>
 
     <div>
-        <select name="NATTEXT" label="Nature du texte officiel" src="new TextTable($this->path.'../../tables/nattext.txt')" size="3" multiple="true" />
+        <select name="NatText" label="Nature du texte officiel" src="new TextTable($this->path.'../../tables/nattext.txt')" size="3" multiple="true" />
         <div class="infonatext">
             <p class="exemple">
                 Pour sélectionner plusieurs types de texte officiel,
@@ -101,11 +101,11 @@
     </div>
     
     <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
-        <textbox name="LOC" label="Localisation" />
+        <textbox name="Loc" label="Localisation" />
     </div>
     
     <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
-        <textbox name="PRODFICH" label="Producteur" />
+        <textbox name="ProdFich" label="Producteur" />
         <p class="exemple">
             Producteur, localisation : format="asco5"
         </p>
@@ -113,19 +113,19 @@
     
     /* TODO : quickTable */
     <div test="User::hasAccess('AdminBase')">
-        <checklist name="FINSAISIE" label="Saisie de notices" src="array(array('code'=>'faux', 'label'=>'Notices en cours de saisie'), array('code'=>'vrai', 'label'=>'Notices terminées'))" />
+        <checklist name="FinSaisie" label="Saisie de notices" src="array(array('code'=>'faux', 'label'=>'Notices en cours de saisie'), array('code'=>'vrai', 'label'=>'Notices terminées'))" />
     </div>
     
     <div test="User::hasAccess('AdminBase')">
-        <checklist name="VALIDE" label="Validation de notices" src="array(array('code'=>'faux', 'label'=>'Notices à valider'), array('code'=>'vrai', 'label'=>'Notices validées'))" />
+        <checklist name="Valide" label="Validation de notices" src="array(array('code'=>'faux', 'label'=>'Notices à valider'), array('code'=>'vrai', 'label'=>'Notices validées'))" />
     </div>
     
     <div test="User::hasAccess('AdminBase')">
-        <textbox name="CREATION" label="Date de création" />
+        <textbox name="Creation" label="Date de création" />
     </div>
     
     <div test="User::hasAccess('AdminBase')">
-        <textbox name="LASTUPDATE" label="Date de mise à jour" />
+        <textbox name="LastUpdate" label="Date de mise à jour" />
         <p class="exemple">
             Exemples : 2006*, 200612*, 20061215
         </p>

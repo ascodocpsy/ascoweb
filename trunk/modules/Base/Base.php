@@ -490,20 +490,21 @@ class Base extends DatabaseModule
     }
     
     
-    // valider les données champ
-    public function setField($name, &$value)
+    // Filtre de validation des champs avant enregistrement dans la base
+    // retourne false pour les champs dont on accepte la modif, true sinon
+    public function validData($name, &$value)
     {
         switch ($name)
         {
             case 'FinSaisie':
-                $value=is_null($value) ? false : true;
+                $value=is_null($value) ? 0 : 1;
                 break;
             
             case 'Valide':
                 if (User::hasAccess('AdminBase'))
-                    $value=is_null($value) ? false : true;
+                    $value=is_null($value) ? 0 : 1;
                 else
-                    $value=false;
+                    $value=0;
                     // Si la notice est modifiée par un membre du GIP, la notice repasse
                     // en statut "à valider par un administrateur"
                 break;
@@ -517,32 +518,10 @@ class Base extends DatabaseModule
                 $value=date('Ymd');
                 break;
         }
+        return true;
     }
-  
-  // retourne null pour les champs dont on interdit la modif
-    public function validData($name, $oldValue, $newValue)
-    {
-        switch ($name)
-        {
-            case 'FinSaisie':
-                return is_null($newValue) ? false : true;  
-            
-            case 'Valide':
-                if (User::hasAccess('EditBase'))
-                {
-                    // Si la notice est modifiée par un membre du GIP, la notice repasse
-                    // en statut "à valider par un administrateur"
-                    return false;
-                }
-                return is_null($newValue) ? false : true;  
-            
-            case 'Creation':
-                return $oldValue ? null : date('Ymd');
-
-            case 'LastUpdate':
-                return date('Ymd');
-        }
-    }
+   
+   
     
     public function actionLocate()
     {
