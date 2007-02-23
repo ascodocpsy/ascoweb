@@ -32,7 +32,7 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
 /* Afficher le nombre de réponses obtenues ? */
 
 <h2>Liste des réponses obtenues</h2>
-<p>Equation : <code>$equation</code></p>
+<p>Equation : <code>$equationAnswers</code></p>
 <p><strong>Les documents sont triés par date et par type, les périodiques par ordre alphabétique.</strong></p>
 
 
@@ -43,10 +43,12 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
         <button name="btnselect" label="Tout sélectionner" onclick="selectAll(true)" />
         <button name="btnunselect" label="Tout désélectionner" onclick="selectAll(false)" />
         <submit name="btnadd" label="Ajouter les notices au panier" />
+        <a href="replaceform?equation=$equation">Chercher/remplacer dans ces notices...</a>
+        <a test="User::hasAccess('AdminBase')" href="delete?equation=$equation">Supprimer ces notices</a>
     </div>    
 
     <hr />
-
+    
     <ul class="shortlist">
         <loop on="$selection" as="$rank, $record">
             <li class="record">
@@ -110,6 +112,10 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
             <hr />
         </loop>
     </ul>
+    
+    <div>
+        {$this->getResNavigation(10, '&lt;', '&gt;', '&lt;&lt;', '&gt;&gt;')}
+    </div>
 
     /* Répétition des boutons du dessus */
     <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" class="buttons">

@@ -45,7 +45,7 @@ $MotCle/$Theme, $CanDes, $Nomp et $Resu : permet de le faire en une seule ligne 
 
 
 <p test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
-    Equation : $equation
+    Equation : $equationAnswers
 </p>
 
 /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
@@ -61,7 +61,7 @@ $MotCle/$Theme, $CanDes, $Nomp et $Resu : permet de le faire en une seule ligne 
                 </if>
             
                 /* affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
-                <switch test="$type">
+                <switch test="$Type">
                 
                     <case test="'Article'">        
                         <TDTA />

@@ -33,6 +33,13 @@ search:
     noanswertemplate: templates/error/error_base_noanswer.html
     JS: [asco.js]
     callback: getField
+    
+replaceform:
+    template: templates/replaceform.html
+    readonly: REF
+    
+replace:
+    template: templates/replaced.html
 
 show:
     template: templates/show.html
@@ -43,6 +50,7 @@ load:
     JS: [autosize.js, controls.js, load.js]
 #    template: templates/load/load_type.yaml
     template: templates/load/load.html
+    callback: getDates
 
 loadfull:
     action: load
@@ -58,24 +66,19 @@ new:
 
 save:
     access: AdminBase,EditBase
-	callback: validData
+    callback: validData
 	
 delete:
     access: AdminBase
+    template: templates/deleted.html
 
 locate:
     access: AdminBase,EditBase
-    template:
-        AdminBase: templates/member_show.yaml
-        EditBase: templates/member_show.yaml
-        default: templates/public_show.yaml
+    template: templates/show.html
     errortemplate: templates/error/error.html
 
 inform:
-    template:
-        AdminBase: templates/member_show.yaml
-        EditBase: templates/member_show.yaml
-        default: templates/public_show.yaml
+    template: templates/show.html
     errortemplate: templates/error/error.yaml
 
 import:

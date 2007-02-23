@@ -83,7 +83,6 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
     </fieldset>
 </template>
 
-
 /* Raccourci pour la section Congrès
 @mandatory indique si les attributs sont obligatoires ou non
 */
@@ -108,7 +107,12 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 
 /* Equivalent au <textbox /> sauf que l'attribut value est définit à partir de la valeur de l'attribut name */
 <template match="//text" name="" label="" rows="" class="">
-    <textbox name="$name" label="$label" rows="$rows" value="$$name" class="$class"></textbox>
+    <if test="'$rows' != ''">
+        <textbox name="$name" label="$label" rows="$rows" value="$$name" class="$class"></textbox>
+    </if>
+    <else>
+        <textbox name="$name" label="$label" value="$$name" class="$class"></textbox>
+    </else>
 </template>
 
 
@@ -311,7 +315,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
     </fieldset>
     
     <opt>
-        <fieldset>
+        <fieldset label="Dates de création et de mise à jour de la notice">
             <opt><legend>Dates de création et de mise à jour de la notice</legend></opt>
             <div><p>Création : $Creation</p></div>
             <div><p>Mise à jour : $LastUpdate</p></div>
