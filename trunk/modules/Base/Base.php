@@ -211,7 +211,7 @@ class Base extends DatabaseModule
 //                global $value;
 //                return count($value);
                 
-            case 'equation': 
+            case 'equationAnswers': 
                 return $this->equation . '<br />Réponses : ' . $this->selection->count();
 
 //            // TODO : voir si error utilisé 
@@ -473,14 +473,12 @@ class Base extends DatabaseModule
     
     // Utilisé uniquement pour actionLoadFull (cf config.yaml)
     public function getDates($name)
-    {
-        global $selection;
-        
+    {        
         switch ($name)
         {
             case 'Creation':
             case 'LastUpdate':
-                if (! isset($selection) || ! $h=$selection->field($name)) return;
+                if (! isset($this->selection) || ! $h=$this->selection[$name]) return;
                 // Affiche les dates AAAAMMJJ sous la forme JJ/MM/AAAA
                 return preg_replace('~(\d{4})(\d{2})(\d{2})~', '${3}/${2}/${1}', $h);
             
@@ -524,9 +522,7 @@ class Base extends DatabaseModule
    
     
     public function actionLocate()
-    {
-        global $selection;
-               
+    {               
         $rev=Utils::get($_REQUEST['rev']);
         
         // Si pas de nom de périodique
@@ -537,10 +533,12 @@ class Base extends DatabaseModule
         $eq='rev="'.$rev.'" et Type=periodique';
         
         // Recherche la fiche Périodique
-        $selection=self::openDatabase($eq);
-        if (is_null($selection)) return;
+        if (! $this->openSelection($eq))
+            return $this->showError("Aucune réponse. Equation : $eq");
+//        $this->selection=self::openDatabase($eq);
+//        if (is_null($this->selection)) return;
 
-        switch ($selection->count)
+        switch ($this->selection->count())
         {
             case 0:
                 return $this->showError('Aucune localisation n\'est disponible pour le périodique '.$rev.'.');
@@ -548,14 +546,16 @@ class Base extends DatabaseModule
             default:
                 $revinit=$rev;
                 $rev=Utils::convertString($rev);
-                $selection->movefirst();
-                while (! $selection->eof)
+                
+                foreach( $this->selection as $record)
                 {
-                    if ($rev == Utils::convertString($selection->field('Rev')))
+                    if ($rev == Utils::convertString($this->selection['Rev']))
                     {
                         // Réouvre la sélection contenant uniquement la notice du périodique
-                        $selection=self::openDatabase('REF='. $selection->field(1), true);
-                        if (is_null($selection)) return;
+                        if (! $this->openSelection('REF='. $this->selection['REF'], true))
+                            return $this->showError("Aucune réponse. Equation : $this->equation");
+//                        $this->selection=self::openDatabase('REF='. $this->selection->field(1), true);
+//                        if (is_null($this->selection)) return;
                         
                         // Détermine le template à utiliser
                         if (! $template=$this->getTemplate())
@@ -573,7 +573,6 @@ class Base extends DatabaseModule
                         );
                         exit;
                     }
-                    $selection->movenext();
                 }
                 return $this->showError('Aucune localisation n\'est disponible pour le périodique '.$revinit.'.');
         };
@@ -593,10 +592,12 @@ class Base extends DatabaseModule
         $eq='rev="'.$rev.'" et Type=periodique et Lien=ascodocpsy';
         
         // Recherche la fiche Périodique
-        $selection=self::openDatabase($eq);
-        if (is_null($selection)) return;
+        if (! $this->openSelection($eq))
+            return $this->showError("Aucune réponse. Equation : $eq");
+//        $selection=self::openDatabase($eq);
+//        if (is_null($selection)) return;
 
-        switch ($selection->count)
+        switch ($this->selection->count())
         {
             case 0:
                 return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$rev.'.');
@@ -604,21 +605,22 @@ class Base extends DatabaseModule
             default:
                 $revinit=$rev;
                 $rev=Utils::convertString($rev);
-                $selection->movefirst();
-                while (! $selection->eof)
+//                $selection->movefirst();
+                foreach($this->selection as $record)
                 {
-                    if ($rev == Utils::convertString($selection->field('Rev')))
+                    if ($rev == Utils::convertString($this->selection['Rev']))
                     {
                         // Réouvre la sélection contenant uniquement la notice du périodique
-                        $selection=self::openDatabase('REF='. $selection->field(1), true);
-                        if (is_null($selection)) return;
+//                        $this->selection=self::openDatabase('REF='. $this->selection['REF'], true);
+//                        if (is_null($this->selection)) return;
+                        if (! $this->openSelection('REF='. $this->selection['REF'], true))
+                            return $this->showError("Aucune réponse. Equation : $eq");
                         
                         // Redirige vers l'URL du champ Lien (lien sur le site ascodocpsy.org)
-                        Runtime::redirect($selection->field('Lien'), true);
+                        Runtime::redirect($this->selection['Lien'], true);
 
                         exit;
                     }
-                    $selection->movenext();
                 }
                 return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$revinit.'.');
         };
