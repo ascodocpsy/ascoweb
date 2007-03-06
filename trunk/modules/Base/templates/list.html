@@ -43,14 +43,14 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
         <button name="btnselect" label="Tout sélectionner" onclick="selectAll(true)" />
         <button name="btnunselect" label="Tout désélectionner" onclick="selectAll(false)" />
         <submit name="btnadd" label="Ajouter les notices au panier" />
-        <a href="replaceform?equation=$equation">Chercher/remplacer dans ces notices...</a>
-        <a test="User::hasAccess('AdminBase')" href="delete?equation=$equation">Supprimer ces notices</a>
+        <a href="replaceform?_equation={$this->equation}">Chercher/remplacer dans ces notices...</a>
+        <a test="User::hasAccess('AdminBase')" href="delete?_equation={$this->equation}">Supprimer ces notices</a>
     </div>    
 
     <hr />
     
     <ul class="shortlist">
-        <loop on="$selection" as="$rank, $record">
+        <loop on="{$this->selection}" as="$rank, $record">
             <li class="record">
                 <checkbox test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" name="Art" value="$REF" />
                 
