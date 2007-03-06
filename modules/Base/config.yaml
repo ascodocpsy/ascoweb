@@ -35,10 +35,11 @@ search:
     callback: getField
     
 replaceform:
+    access: AdminBase
     template: templates/replaceform.html
-    readonly: REF
     
 replace:
+    access: AdminBase
     template: templates/replaced.html
 
 show:
@@ -48,7 +49,6 @@ show:
 load:
     access: AdminBase,EditBase
     JS: [autosize.js, controls.js, load.js]
-#    template: templates/load/load_type.yaml
     template: templates/load/load.html
     callback: getDates
 
@@ -56,7 +56,7 @@ loadfull:
     action: load
     access: AdminBase
     JS: [autosize.js, controls.js, load.js]
-    template: templates/load/load.yaml
+    template: templates/load/load.html
     callback: getDates
     
 new:
@@ -65,7 +65,7 @@ new:
     callback: emptyString
 
 save:
-    access: AdminBase,EditBase
+#    access: AdminBase,EditBase
     callback: validData
 	
 delete:
@@ -79,7 +79,7 @@ locate:
 
 inform:
     template: templates/show.html
-    errortemplate: templates/error/error.yaml
+    errortemplate: templates/error/error.html
 
 import:
     access: AdminBase,EditBase
@@ -98,10 +98,10 @@ validateall:
 addToCart:
   sessions:
     use: true
-  errortemplate: templates/error/error.yaml
+  errortemplate: templates/error/error.html
 
 removeFromCart:
-  errortemplate: templates/error/error.yaml
+  errortemplate: templates/error/error.html
 
 clearCart:
   sessions:
@@ -110,12 +110,12 @@ clearCart:
 exportCart:
   sessions:
     use: true
-  errortemplate: templates/error/error.yaml
+  errortemplate: templates/error/error.html
 
 exportCartByType:
   sessions:
     use: true
-  errortemplate: templates/error/error.yaml
+  errortemplate: templates/error/error.html
 
 showCart:
   access: AdminBase, EditBase
