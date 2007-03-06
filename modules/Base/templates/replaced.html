@@ -1,0 +1,18 @@
+<!-- Template appelé au retour de l'action replace de DatabaseModule -->
+
+<if test="$count === false">
+    Une erreur est survenue : veuillez vérifiez la syntaxe de votre expression régulière.
+</if>
+<elseif test="$count === 0">
+    L'opération s'est déroulée avec succès mais rien n'a été remplacé (aucune occurence rencontrée).
+</elseif>
+<elseif test="$count === 1">
+    L'opération s'est déroulée avec succès : une occurence a été remplacée.
+</elseif>
+<else>
+    L'opération s'est déroulée avec succès : $count occurences ont été remplacées.
+</else>
+<br /><br />
+
+<a href="search?{$this->equation}">Retour à la liste des documents</a><br />
+<a href="search">Formulaire de recherche</a>
