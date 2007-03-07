@@ -259,9 +259,18 @@ class Base extends DatabaseModule
 //                            
             case 'Tit':
                 // Lien vers texte intégral
-                if (($tit=$this->selection[$name]) && ($lien=$this->selection['Lien']))
-                    return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
-                return;
+//                if (($tit=$this->selection[$name]) && ($lien=$this->selection['Lien']))
+//                    return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
+//                return;
+                if ($tit=$this->selection[$name])
+                {
+                    if ($lien=$this->selection['Lien'])
+                        return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
+                    else
+                        return $tit;   
+                }
+                else
+                    return '';
             
             case 'Annexe':
                 // TODO : revoir : ne marche pas avec Titre de l'annexe1 <http://www.lien.fr >/Titre de l'annexe2/< http://www.lien2.fr>
@@ -467,6 +476,18 @@ class Base extends DatabaseModule
                     if (! in_array($this->ident, $t)) $h=0;
                 }
                 return ($h == 1) ? true : false;
+                
+            // utilisé pour afficher une erreur dans les templates d'erreurs éventuellement
+            // indiqués dans la configuration
+            case 'error':
+                return;
+            
+            default:
+                if ($this->selection[$name])
+                    return $this->selection[$name];
+                else
+                    return '';
+
         }
     }
 
@@ -489,7 +510,7 @@ class Base extends DatabaseModule
     
     
     // Filtre de validation des champs avant enregistrement dans la base
-    // retourne false pour les champs dont on accepte la modif, true sinon
+    // retourne true pour les champs dont on accepte la modif, false sinon
     public function validData($name, &$value)
     {
         switch ($name)
@@ -579,9 +600,7 @@ class Base extends DatabaseModule
     }
     
     public function actionInform()
-    {
-        global $selection;
-               
+    {              
         $rev=Utils::get($_REQUEST['rev']);
         
         // Si pas de nom de périodique
