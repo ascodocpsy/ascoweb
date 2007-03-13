@@ -32,9 +32,11 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
 /* Afficher le nombre de réponses obtenues ? */
 
 <h2>Liste des réponses obtenues</h2>
-<p>Equation : <code>$equationAnswers</code></p>
+<p>
+    Equation : <code>{$this->equation}</code><br />
+    Réponses : <code>$equationAnswers</code>
+</p>
 <p><strong>Les documents sont triés par date et par type, les périodiques par ordre alphabétique.</strong></p>
-
 
 /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
 <form if="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" action="/base/addToCart" method="post" name="answers">
@@ -43,8 +45,8 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
         <button name="btnselect" label="Tout sélectionner" onclick="selectAll(true)" />
         <button name="btnunselect" label="Tout désélectionner" onclick="selectAll(false)" />
         <submit name="btnadd" label="Ajouter les notices au panier" />
-        <a href="replaceform?_equation={$this->equation}">Chercher/remplacer dans ces notices...</a>
-        <a test="User::hasAccess('AdminBase')" href="delete?_equation={$this->equation}">Supprimer ces notices</a>
+        <a href="replaceform?_equation={urlencode($this->equation)}">Chercher/remplacer dans ces notices...</a>
+        <a test="User::hasAccess('AdminBase')" href="delete?_equation={urlencode($this->equation)}">Supprimer ces notices</a>
     </div>    
 
     <hr />

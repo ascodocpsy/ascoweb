@@ -45,7 +45,8 @@ $MotCle/$Theme, $CanDes, $Nomp et $Resu : permet de le faire en une seule ligne 
 
 
 <p test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
-    Equation : $equationAnswers
+    Equation : <code>{$this->equation}</code><br />
+    Réponses : <code>$equationAnswers</code>
 </p>
 
 /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
@@ -147,6 +148,10 @@ $MotCle/$Theme, $CanDes, $Nomp et $Resu : permet de le faire en une seule ligne 
         </loop>
     </ul>
 
+    <div>
+        {$this->getResNavigation(10, '&lt;', '&gt;', '&lt;&lt;', '&gt;&gt;')}
+    </div>
+    
     <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')" class="buttons">
         <submit name="btnadd" label="Ajouter la notice au panier" />
     </div>

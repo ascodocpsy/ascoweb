@@ -212,7 +212,8 @@ class Base extends DatabaseModule
 //                return count($value);
                 
             case 'equationAnswers': 
-                return $this->equation . '<br />Réponses : ' . $this->selection->count();
+                return $this->selection->count();
+//                return $this->equation . '<br />Réponses : ' . $this->selection->count();
 
 //            // TODO : voir si error utilisé 
 //            case 'error':
@@ -479,7 +480,7 @@ class Base extends DatabaseModule
                 
             // utilisé pour afficher une erreur dans les templates d'erreurs éventuellement
             // indiqués dans la configuration
-            case 'error':
+            case 'error': case 'message':
                 return;
             
             default:
