@@ -45,7 +45,8 @@ replace:
 show:
     template: templates/show.html
     callback: getField
-
+    noanswertemplate: templates/error/error_base_noanswer.html
+	
 load:
     access: AdminBase,EditBase
     JS: [autosize.js, controls.js, load.js]
@@ -76,7 +77,8 @@ locate:
     access: AdminBase,EditBase
     template: templates/show.html
     errortemplate: templates/error/error.html
-
+    callback: getField
+    
 inform:
     template: templates/show.html
     errortemplate: templates/error/error.html

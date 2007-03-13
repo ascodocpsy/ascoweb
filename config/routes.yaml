@@ -6,9 +6,9 @@
   module: base
   action: search
 
-- url: /base/[ref]
+- url: /base/[REF]
   with:
-    ref: '\d+(,\d+){0,4}'
+    REF: '\d+(,\d+){0,4}'
   module: base
   action: show
   
@@ -47,11 +47,11 @@
 # pb si /base/nouveau/type
 - url: /base/nouveautype
   module: base
-  action: new
+  action: chooseType
 
 - url: /base/nouveau
   module: base
-  action: load
+  action: new
 
 - url: /base/nouveautout
   module: base
@@ -64,6 +64,14 @@
 - url: /base/supprimer
   module: base
   action: delete
+  
+- url: /base/formulaireremplacement
+  module: base
+  action: replaceform
+  
+- url: /base/remplacer
+  module: base
+  action: replace
 
 - url: /panier/
   module: base

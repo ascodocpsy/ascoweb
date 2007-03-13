@@ -1,5 +1,6 @@
 # Config spécifique à ASCODOCPSY
 defaultroutes:1
+smarturls: false
 
 admin:
   name: Séverine Ferron
