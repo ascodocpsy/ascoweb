@@ -108,7 +108,7 @@ class Base extends DatabaseModule
         $t=array();
         
         // Ajoute l'extension par défaut s'il y a lieu
-        Utils::defaultExtension($source, '.txt');
+        $source=Utils::defaultExtension($source, '.txt');
                         
         // Détermine le path exact de la table
         $h=Utils::searchFile
