@@ -115,7 +115,7 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
                     
                     <case test="Texte officiel">
                         <row>$Type</row>                       
-                        <row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))" label="Titre"><Tit /><opt> / $Annexe</opt></row>
+                        <row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Titre"><Tit /><opt> / $Annexe</opt></row>
                         <row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Titre"><Tit /><opt> ; $Annexe</opt></row>
                         <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique">$Rev<opt> du $DatePub</opt></row></opt>
                     </case>
