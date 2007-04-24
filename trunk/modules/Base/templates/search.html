@@ -1,7 +1,7 @@
-<if test="User::hasAccess('AdminBase')">        /* Administrateur */
+<if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
     <h1>Base documentaire - Recherche - Accès administrateur</h1>
 </if>
-<elseif test="User::hasAccess('EditBase')">     /* Membre du GIP */
+<elseif test="{User::hasAccess('EditBase')}">     /* Membre du GIP */
     <h1>Base documentaire - Recherche - Accès membre du GIP</h1>
 </elseif>
 <else>
@@ -35,7 +35,7 @@
         <checklist name="Dates" label="Date du document" src="new TextTable($this->path.'../../tables/date.txt')" />
         <div class="date">
             <select name="Dates" label="Autre" src="new TextTable($this->path.'../../tables/datelist.txt')">
-                <option value="">-</option>
+                <option></option>
             </select>
         </div>
     </div>
@@ -48,7 +48,7 @@
     </div>
     
     <div>
-        <if test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
+        <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
             <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/type.txt')" />
         </if>
         <else>
@@ -62,30 +62,30 @@
     </div>
     
     <div>
-        <textbox name="Rev" label="Titre ou périodique" />
+        <textbox name="Rev" label="Titre du périodique" />
     </div>
 
-    <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
+    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
         <textbox name="Edit" label="Editeur" />
     </div>
     
-    <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
+    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
         <textbox name="Col" label="Collection" />
     </div>
     
-    <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
+    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
         <textbox name="IsbnIssn" label="ISBN, ISSN" />
     </div>
     
-    <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
+    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
         <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" />
     </div>
     
-    <div test="User::hasAccess('AdminBase')">
+    <div test="{User::hasAccess('AdminBase')}">
         <textbox name="Vol" label="Numéro de volume" />
     </div>
     
-    <div test="User::hasAccess('AdminBase')">
+    <div test="{User::hasAccess('AdminBase')}">
         <textbox name="DipSpe" label="Spécialité du diplôme" />
     </div>
 
@@ -100,11 +100,11 @@
         </div>
     </div>
     
-    <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
+    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
         <textbox name="Loc" label="Localisation" />
     </div>
     
-    <div test="User::hasAccess('AdminBase') || User::hasAccess('EditBase')">
+    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
         <textbox name="ProdFich" label="Producteur" />
         <p class="exemple">
             Producteur, localisation : format="asco5"
@@ -112,19 +112,19 @@
     </div>
     
     /* TODO : quickTable */
-    <div test="User::hasAccess('AdminBase')">
+    <div test="{User::hasAccess('AdminBase')}">
         <checklist name="FinSaisie" label="Saisie de notices" src="array(array('code'=>'faux', 'label'=>'Notices en cours de saisie'), array('code'=>'vrai', 'label'=>'Notices terminées'))" />
     </div>
     
-    <div test="User::hasAccess('AdminBase')">
+    <div test="{User::hasAccess('AdminBase')}">
         <checklist name="Valide" label="Validation de notices" src="array(array('code'=>'faux', 'label'=>'Notices à valider'), array('code'=>'vrai', 'label'=>'Notices validées'))" />
     </div>
     
-    <div test="User::hasAccess('AdminBase')">
+    <div test="{User::hasAccess('AdminBase')}">
         <textbox name="Creation" label="Date de création" />
     </div>
     
-    <div test="User::hasAccess('AdminBase')">
+    <div test="{User::hasAccess('AdminBase')}">
         <textbox name="LastUpdate" label="Date de mise à jour" />
         <p class="exemple">
             Exemples : 2006*, 200612*, 20061215

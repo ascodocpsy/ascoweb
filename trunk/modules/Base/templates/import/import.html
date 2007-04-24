@@ -16,7 +16,7 @@
             </li>
         </if>
         <else>
-            <loop on="{$files}" as="$index,$file">
+            <loop on="$files" as="$index,$file">
                 <form method="post" class="form ">
                     <strong>{$file['name']}</strong> ({$file['size']} octets, envoyé au serveur le {$file['time']} par <strong>{$file['ident']}</strong>)
                     <submit label="Supprimer le fichier..." class="delete" />
@@ -53,7 +53,7 @@
     </div>
 </form>
 
-<if test="User::hasAccess('AdminBase')">
+<if test="{User::hasAccess('AdminBase')}">
     <form method="post" class="form ">
         <fieldset label="Lancer l*****import">
             <div>

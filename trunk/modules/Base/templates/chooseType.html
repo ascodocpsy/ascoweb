@@ -1,0 +1,15 @@
+<h1>Base documentaire - Ajout d'une notice</h1>
+
+<p>
+    Pour créer une nouvelle notice, vous devez choisir au préalable, 
+    dans la liste ci-dessous, le type du document que vous allez saisir.
+    Cliquez ensuite sur le bouton "Créer" pour obtenir le formulaire de
+    saisie.
+</p>
+
+<form method="post" action="/base/new" class="form ">
+    <fieldset label="Choix du type de document">
+        <select name="Type" src="new TextTable($this->path.'../../tables/type.txt')" />
+        <submit label="Créer..." />
+    </fieldset>
+</form>
