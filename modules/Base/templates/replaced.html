@@ -1,12 +1,12 @@
 <!-- Template appelé au retour de l'action replace de DatabaseModule -->
 
-<if test="$count === false">
+<if test="{$count === false}">
     Une erreur est survenue : veuillez vérifiez la syntaxe de votre expression régulière.
 </if>
-<elseif test="$count === 0">
+<elseif test="{$count === 0}">
     L'opération s'est déroulée avec succès mais rien n'a été remplacé (aucune occurence rencontrée).
 </elseif>
-<elseif test="$count === 1">
+<elseif test="{$count === 1}">
     L'opération s'est déroulée avec succès : une occurence a été remplacée.
 </elseif>
 <else>
