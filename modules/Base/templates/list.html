@@ -56,8 +56,8 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
         <button name="btnselect" label="Tout sélectionner" onclick="selectAll(true)" />
         <button name="btnunselect" label="Tout désélectionner" onclick="selectAll(false)" />
         <submit name="btnadd" label="Ajouter les notices au panier" />
-        <a href="replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans ces notices...</a>
-        <a test="{User::hasAccess('AdminBase')}" href="delete?_equation={urlencode($this->equation)}">Supprimer ces notices</a>
+        <a href="/base/replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans ces notices...</a>
+        <a test="{User::hasAccess('AdminBase')}" href="/base/delete?_equation={urlencode($this->equation)}">Supprimer ces notices</a>
     </div>    
 
     <hr />
@@ -67,10 +67,10 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
             <li class="record">
                 <checkbox test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" name="art" value="$REF" />
                 
-                <a class="fullrecord" href="show?REF=$REF" title="Voir la notice complète"><span>Voir la notice complète</span></a>
+                <a class="fullrecord" href="/base/show?REF=$REF" title="Voir la notice complète"><span>Voir la notice complète</span></a>
                 
                 <if test="{$this->hasEditRight()}">
-                    <a class="loadrecord" href="load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
+                    <a class="loadrecord" href="/base/load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
                 </if>
                 
                 /* affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
@@ -110,7 +110,13 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
                         <TDTA />
                         <opt><row label="Editeur"><opt>$Lieu: </opt><opt>$Edit, </opt><opt>$Reed, </opt>$PageEdit</row></opt>
                         <opt><row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Périodique"><opt>$Rev</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
-                        <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique"><opt>$Rev</opt><opt> $Localisation</opt><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, $PageRev</row></opt>
+                        <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique"><opt>$Rev</opt>
+
+                        <opt> $Localisation</opt>
+
+                        dm:<a class="locate" test="{$Rev}" href="{Routing::linkFor('locate?rev='. urlencode($this->selection['Rev']))}" title="Localiser le périodique">&#160;<span>Localiser</span></a>
+                        
+                        <opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, $PageRev</row></opt>
                     </case>
                     
                     <case test="Texte officiel">
