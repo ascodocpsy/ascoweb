@@ -32,15 +32,15 @@
   module: base
   action: inform
 
-- url: /base/[ref]/modifier
+- url: /base/[REF]/modifier
   with:
-    ref: \d+
+    REF: \d+
   module: base
   action: load
 
-- url: /base/[ref]/modifiertout
+- url: /base/[REF]/modifiertout
   with:
-    ref: \d+
+    REF: \d+
   module: base
   action: loadfull
 
@@ -61,11 +61,11 @@
   module: base
   action: save
 
-- url: /base/supprimer
+- url: /base/supprimer*
   module: base
   action: delete
   
-- url: /base/formulaireremplacement
+- url: /base/formulaireremplacement*
   module: base
   action: replaceform
   
