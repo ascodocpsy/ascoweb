@@ -125,7 +125,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 
 <if test="{User::hasAccess('AdminBase')}">
     <if test="{$REF > 0}">
-        <a href="loadfull?REF=$REF" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
+        <a href="/base/loadfull?REF=$REF" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
     </if>
     <else>
         <a href="/base/loadfull" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
@@ -330,7 +330,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 
 <opt>
     <if test="{User::hasAccess('AdminBase')}">
-        <form method="post" class="reset form" action="delete">
+        <form method="post" class="reset form" action="/base/delete">
             <div><input type="hidden" name="REF" /></div>
             <div class="buttons"><submit label="Supprimer" class="reset" /></div>
         </form>
