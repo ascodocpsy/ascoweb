@@ -13,7 +13,9 @@ CSS: [formulaire.css]
 
 database: ascodocpsy
 
-autoinclude: templates/autoincludes/row.html
+#templates:
+#  autoinclude: 
+#  - templates/autoincludes/row.html
 
 # Url de base d'un article sous SPIP
 urlarticle: 'http://www.ascodocpsy.org/article.php3?id_article='
@@ -33,6 +35,8 @@ search:
     noanswertemplate: templates/error/error_base_noanswer.html
     JS: [asco.js]
     callback: getField
+    sort: "-"      # ordre de tri par défaut
+    max: 10        # nombre maximum de réponses par page par défaut
     
 replaceform:
     access: AdminBase
@@ -41,6 +45,7 @@ replaceform:
 replace:
     access: AdminBase
     template: templates/replaced.html
+#    callback: validData
 
 show:
     template: templates/show.html
@@ -50,23 +55,23 @@ show:
 load:
     access: AdminBase,EditBase
     JS: [autosize.js, controls.js, load.js]
-    template: templates/load/load.html
+    template: templates/load.html
     callback: getDates
 
 loadfull:
     action: load
     access: AdminBase
     JS: [autosize.js, controls.js, load.js]
-    template: templates/load/load.html
+    template: templates/load.html
     callback: getDates
     
 new:
     access: AdminBase, EditBase
-    template: templates/load/load.html
+    template: templates/load.html
     callback: emptyString
 
 save:
-#    access: AdminBase,EditBase
+    access: AdminBase,EditBase
     callback: validData
 	
 delete:
@@ -80,7 +85,7 @@ locate:
     callback: getField
     
 inform:
-    template: templates/show.html
+#    template: templates/show.html
     errortemplate: templates/error/error.html
 
 import:
@@ -97,6 +102,9 @@ validateall:
     access: AdminBase
 
 # Panier de notices
+searchCart:
+  action: search
+
 addToCart:
   sessions:
     use: true
