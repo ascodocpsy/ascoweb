@@ -211,8 +211,8 @@ class Base extends DatabaseModule
 //                global $value;
 //                return count($value);
                 
-            case 'equationAnswers': 
-                return $this->selection->count();
+//            case 'equationAnswers': 
+//                return $this->selection->count();
 //                return $this->equation . '<br />Réponses : ' . $this->selection->count();
 
 //            // TODO : voir si error utilisé 
@@ -258,21 +258,21 @@ class Base extends DatabaseModule
 //                );
 //                return '';
 //                            
-            case 'Tit':
-                // Lien vers texte intégral
-//                if (($tit=$this->selection[$name]) && ($lien=$this->selection['Lien']))
-//                    return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
-//                return;
-                if ($tit=$this->selection[$name])
-                {
-                    if ($lien=$this->selection['Lien'])
-                        return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
-                    else
-                        return $tit;   
-                }
-                else
-                    return '';
-            
+//            case 'Tit':
+//                // Lien vers texte intégral
+////                if (($tit=$this->selection[$name]) && ($lien=$this->selection['Lien']))
+////                    return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
+////                return;
+//                if ($tit=$this->selection['Tit'])
+//                {
+//                    if ($lien=$this->selection['Lien'])
+//                        return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
+//                    else
+//                        return $tit;   
+//                }
+//                else
+//                    return '';
+
             case 'Annexe':
                 // TODO : revoir : ne marche pas avec Titre de l'annexe1 <http://www.lien.fr >/Titre de l'annexe2/< http://www.lien2.fr>
                 // Lien vers texte intégral
@@ -467,33 +467,23 @@ class Base extends DatabaseModule
                 }
                 return implode('<br />', $t);
                 
-            case 'ShowModifyBtn':
-                $h=1;
-                // Si la saisie de la notice n'est pas terminée, seul les membres
-                // spécifiés dans le champ ProdFich peuvent modifier la notice
-                if ($this->selection['FinSaisie'] == 0)
-                {
-                    $t=split('/', $this->selection['ProdFich']);
-                    if (! in_array($this->ident, $t)) $h=0;
-                }
-                return ($h == 1) ? true : false;
-                
             // utilisé pour afficher une erreur dans les templates d'erreurs éventuellement
             // indiqués dans la configuration
-            case 'error': case 'message':
+            case 'error':
+            case 'message':
                 return;
             
-            default:
-                if ($this->selection[$name])
-                    return $this->selection[$name];
-                else
-                    return '';
+//            default:
+//                if ($this->selection[$name])
+//                    return $this->selection[$name];
+//                else
+//                    return '';
 
         }
     }
 
     
-    // Utilisé uniquement pour actionLoadFull (cf config.yaml)
+    // Utilisé uniquement pour actionLoad et actionLoadFull (cf config.yaml)
     public function getDates($name)
     {        
         switch ($name)
@@ -504,6 +494,9 @@ class Base extends DatabaseModule
                 // Affiche les dates AAAAMMJJ sous la forme JJ/MM/AAAA
                 return preg_replace('~(\d{4})(\d{2})(\d{2})~', '${3}/${2}/${1}', $h);
             
+            case 'Type':
+                return Utils::get($_REQUEST['Type'], $this->selection['Type']);
+                        
             default:
                 return;                 
         }
@@ -513,7 +506,7 @@ class Base extends DatabaseModule
     // Filtre de validation des champs avant enregistrement dans la base
     // retourne true pour les champs dont on accepte la modif, false sinon
     public function validData($name, &$value)
-    {
+    {                    
         switch ($name)
         {
             case 'FinSaisie':
@@ -537,14 +530,40 @@ class Base extends DatabaseModule
             case 'LastUpdate':
                 $value=date('Ymd');
                 break;
+                
+            default: return false;
         }
         return true;
     }
    
-   
-    
+    /**
+     * Détermine les utilisateurs qui ont le droit de modifier une notice
+     */
+ 	public function hasEditRight()
+ 	{
+ 		// Administrateurs
+ 		if (User::hasAccess('AdminBase')) return true;
+ 		
+		// Membres du GIP
+ 		if (User::hasAccess('EditBase'))
+ 		{
+			// Si la saisie de la notice n'est pas terminée, seul les membres 
+			// spécifiés dans le champ ProdFich peuvent modifier la notice
+	        if ($this->selection['FinSaisie'] == 0)
+	        {
+	            $t=split(trim(self::SEPARATOR), $this->selection['ProdFich']);
+	            return (in_array($this->ident, $t)) ? true : false;
+	        }
+ 
+			// Si la saisie de la notice est terminée, tous les membres peuvent modifier la notice
+			return true;
+ 		}
+ 		
+ 		return false;
+ 	}
+ 
     public function actionLocate()
-    {               
+    {                       
         $rev=Utils::get($_REQUEST['rev']);
         
         // Si pas de nom de périodique
@@ -576,6 +595,7 @@ class Base extends DatabaseModule
                         // Réouvre la sélection contenant uniquement la notice du périodique
                         if (! $this->openSelection('REF='. $this->selection['REF'], true))
                             return $this->showError("Aucune réponse. Equation : $this->equation");
+
 //                        $this->selection=self::openDatabase('REF='. $this->selection->field(1), true);
 //                        if (is_null($this->selection)) return;
                         
@@ -585,15 +605,17 @@ class Base extends DatabaseModule
 
                         // Détermine le callback à utiliser
                         $callback=$this->getCallback();
-                
+
                         // Exécute le template
                         Template::run
                         (
                             $template,  
                             array($this, $callback),
-                            'Template::selectionCallback'
+                            $this->selection->record,
+                            array('selection',$this->selection)  
                         );
-                        exit;
+
+                        exit;                        
                     }
                 }
                 return $this->showError('Aucune localisation n\'est disponible pour le périodique '.$revinit.'.');
@@ -613,37 +635,32 @@ class Base extends DatabaseModule
         
         // Recherche la fiche Périodique
         if (! $this->openSelection($eq))
-            return $this->showError("Aucune réponse. Equation : $eq");
+            return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$rev.'.');
+            
 //        $selection=self::openDatabase($eq);
 //        if (is_null($selection)) return;
 
-        switch ($this->selection->count())
+        // En génaral, on obtient d'autres réponses que celles attendues : par exemple on recherche la revue "soins"
+        // (rev="soins") et on va obtenir les revues "soins", "Soins infirmier", "soins soins"
+        // on balaye donc la liste des réponses pour rechercher LA réponse qui correspond exactement à la
+        // revue recherchée
+        $revinit=$rev;
+        $rev=Utils::convertString($rev);
+        foreach($this->selection as $record)
         {
-            case 0:
-                return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$rev.'.');
-            
-            default:
-                $revinit=$rev;
-                $rev=Utils::convertString($rev);
-//                $selection->movefirst();
-                foreach($this->selection as $record)
-                {
-                    if ($rev == Utils::convertString($this->selection['Rev']))
-                    {
-                        // Réouvre la sélection contenant uniquement la notice du périodique
-//                        $this->selection=self::openDatabase('REF='. $this->selection['REF'], true);
-//                        if (is_null($this->selection)) return;
-                        if (! $this->openSelection('REF='. $this->selection['REF'], true))
-                            return $this->showError("Aucune réponse. Equation : $eq");
-                        
-                        // Redirige vers l'URL du champ Lien (lien sur le site ascodocpsy.org)
-                        Runtime::redirect($this->selection['Lien'], true);
+            if ($rev == Utils::convertString($this->selection['Rev']))
+            {
+                // Réouvre la sélection contenant uniquement la notice du périodique
+                if (! $this->openSelection('REF='. $this->selection['REF'], true))
+                    return $this->showError("Aucune réponse. Equation : $eq");
+                
+                // Redirige vers l'URL du champ Lien (lien sur le site ascodocpsy.org)
+                Runtime::redirect($this->selection['Lien'], true);
 
-                        exit;
-                    }
-                }
-                return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$revinit.'.');
-        };
+                exit;
+            }
+        }
+        return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$revinit.'.');
     }
     
     private function author($value)
@@ -732,13 +749,17 @@ class Base extends DatabaseModule
         Config::load($this->path. 'templates/export/formats.yaml', 'formats');
         global $formats; // pour que ce soit accessible dans le template 
         $formats=Config::get('formats');
+//        echo '<pre>';
+//        print_r($formats);
+//        echo '</pre>';
+//        die();
         
         // Définit le template d'affichage 
-        if (User::hasAccess('EditBase,AdminBase')) // TODO: SF : le template admin n'existe pas
-            $tpl='member'; //'dm';
-        else
-            $tpl='public';
-        $tpl.='_cart.yaml';
+//        if (User::hasAccess('EditBase,AdminBase')) // TODO: SF : le template admin n'existe pas
+//            $tpl='member'; //'dm';
+//        else
+//            $tpl='public';
+//        $tpl.='_cart.yaml';
 
         // Construit l'équation de recherche
         $equation='';
@@ -750,36 +771,39 @@ class Base extends DatabaseModule
                 $equation.='ref='.$ref;
             }
         }
-        $selection=self::openDatabase($equation);
-        
+
+        if (! $this->openSelection($equation))
+            return $this->showError("Aucune réponse. Equation : $equation");
+       
         // Exécute le template
         Template::run
         (
-            "templates/$tpl", 
-            array($this, 'getField'),
-            'Template::selectionCallback',
-            array
-            (
-                'format'=>'commun',
-                'body'=>'Les notices sélectionnées figurent dans le(s) document(s) joint(s)', // TODO: à virer, uniquement parce que le génrateur ne prends pas correctement 'value' en compte
-//                'cart'=>$this->cart->getItems()
-            )
+            'templates/cart.html',
+            array('formats'=>$formats)
+//            array($this, 'getField'),
+//            'Template::selectionCallback',
+//            array
+//            (
+//                'format'=>'commun',
+//                'body'=>'Les notices sélectionnées figurent dans le(s) document(s) joint(s)', // TODO: à virer, uniquement parce que le génrateur ne prends pas correctement 'value' en compte
+////                'cart'=>$this->cart->getItems()
+//            )
         );
     }
 
 
     /**
-     * Affiche le formulaire permettrant de choisir le type du document à créer
+     * Affiche le formulaire permettant de choisir le type du document à créer
      * Surcharge l'action new de la classe DatabaseModule
      */    
     public function actionNew()
-    {
+    {       
         // si type non renseigné, affiche le formulaire pour le choisir
         if (is_null(Utils::get($_REQUEST['Type'])))
         {
             Template::run
             (
-                'templates/load/chooseType.html'
+                'templates/chooseType.html'
             );
         }
         else    // sinon, appelle l'action par défaut
@@ -825,40 +849,49 @@ class Base extends DatabaseModule
         if (is_null($art))
             return $this->showError('Pour constituer votre panier, vous devez cocher les notices qui vous intéressent.');
 
-        $equation='';
+        $this->equation='';
         
         // Construit l'équation de recherche
         if (is_array($art))
         {
             foreach ($art as $value)
             {
-                if ($equation) $equation.=' ou ';
-                $equation.='ref='.$value;
+                if ($this->equation) $this->equation.=' ou ';
+                $this->equation.='ref='.$value;
             }
         }
         else
         {
-            $equation='ref='. $art;
+            $this->equation='ref='. $art;
         }        
 
-        // Ouvre la sélection
-        $selection=self::openDatabase($equation);
-        if (is_null($selection)) return;
+        echo "EQUATION = $this->equation<br />";
 
+        // Ouvre la sélection
+        if (! $this->openSelection($this->equation))
+            return $this->showErreur("Aucune réponse. Equation : $this->equation");
+        
+//        echo is_null($this->selection) ? "this->selection is null<br />" : "this->selection isn't null<br />";
+        
         // Ouvre ou crée le panier général
         $this->getCart();
         $carts= & $this->cart->getItems();
         
         // Ajoute toutes les notices de la sélection
-        while (! $selection->eof)
+        while ($this->selection->valid())
         {
-            $type=$selection->field('Type');
-            $ref=$selection->field('REF');
+//            die();
+//            echo 'SELECTION = ', var_export($this->selection);
+//            die();
+            
+            $type=$this->selection['Type'];
+            $ref=$this->selection['REF'];
 
-            $carts[$type][$ref]=$ref; // si $carts[$type] n'existe pas encore, il est créé 
+            $carts[$type][$ref]=$ref; // si $carts[$type] n'existe pas encore, il est créé
 
-            $selection->moveNext();
+            $this->selection->moveNext();
         }
+
         $this->actionShowCart();
     }
     
@@ -1665,7 +1698,7 @@ class Base extends DatabaseModule
         {
             $files=$this->files;
         }
-        
+
         return $files;
     }
     
