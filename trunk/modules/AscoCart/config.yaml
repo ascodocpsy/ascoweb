@@ -1,0 +1,14 @@
+# Fichier de configuration du module AscoCart
+
+# Nom du panier -> Intérêt ?
+#name: panier
+
+add:
+  template: added.html
+
+#remove:
+
+#clear:
+
+show:
+  template: show.html
