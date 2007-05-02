@@ -1,4 +1,7 @@
 <h1>Contenu du panier</h1>
-<loop on="{$this->cart} as="$key, $value">
+<loop on="{$this->cart}" as="$key, $value">
 	<p>Key : $key, Value : $value</p>
 </loop>
+
+
+<slot name="cart" action="/base/show" REF="{array_keys($this->cart)}" />
