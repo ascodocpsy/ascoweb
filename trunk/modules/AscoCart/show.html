@@ -1,7 +1,21 @@
-<h1>Contenu du panier</h1>
-<loop on="{$this->cart}" as="$key, $value">
-	<p>Key : $key, Value : $value</p>
-</loop>
-
-
-<slot name="cart" action="/base/show" REF="{array_keys($this->cart)}" />
+<if test="{count($this->cart)==0}">
+    <h1>Votre panier est vide</h1>
+	<p>Pour alimenter votre panier, lancez une recherche puis sélectionnez les réponses qui vous intéressent.</p>
+</if>
+<else>
+	<h1>Contenu de votre panier</h1>
+	
+	<if test="{is_null($category)}">
+		<ul>
+			<loop on="{$this->cart}" as="$category,$item">
+			<li><a href="/ascocart/show?category=$category">$category</a> : {count($item)} notice(s) - <a href="/ascocart/clear?category=$category">Supprimer cette catégorie</a></li>
+			</loop>
+		</ul>
+	</if>
+	<else>
+		<slot name="cart" action="/base/search" _equation="{'REF='.implode(' or REF=', array_keys($this->cart[$category]))}" />
+	</else>
+	/*<slot name="cart" action="/base/show" REF="{array_keys($this->cart)}" />*/
+	
+	/*<slot name="cart" action="/base/showcaddie" cart="$this" />*/
+</else>
