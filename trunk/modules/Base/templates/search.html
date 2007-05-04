@@ -81,7 +81,7 @@
         <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" />
     </div>
     
-    <div test="{User::hasAccess('AdminBase')}">
+    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
         <textbox name="Vol" label="Numéro de volume" />
     </div>
     
