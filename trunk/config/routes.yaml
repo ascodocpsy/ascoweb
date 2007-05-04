@@ -74,16 +74,24 @@
   action: replace
 
 - url: /panier/
-  module: base
-  action: showCart
+  module: ascocart
+  action: show
 
-- url: /panier/ajouter
-  module: base
-  action: addToCart
+- url: /panier/[category]
+  module: ascocart
+  action: show
 
-- url: /panier/enlever
-  module: base
-  action: removeFromCart
+- url: /panier/ajouter*
+  module: ascocart
+  action: add
+
+- url: /panier/supprimer*
+  module: ascocart
+  action: remove
+
+- url: /panier/supprimer/[category]
+  module: ascocart
+  action: clear
 
 - url: /panier/vider
   module: base
