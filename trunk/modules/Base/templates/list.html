@@ -24,6 +24,10 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
     <a test="{$Tit != ''}" strip="{$Lien == ''}" href="{Routing::linkFor($Lien)}" onclick="window.open(this.href); return false;" title="Accéder au texte intégral (ouverture dans une nouvelle fenêtre)">$Tit</a>
 </template>
 
+/* Template pour afficher le lien vers la localisation d'un titre de périodique */
+<template match="//Localisation">
+	<a class="locate" test="{$Rev}" href="{Routing::linkFor('locate?rev='. urlencode(Utils::convertString($this->selection['Rev'],'lower')))}" title="Localiser le périodique">&#160;<span>Localiser</span></a>
+</template>
 
 
 /* ========================================================================================================= */
@@ -81,7 +85,7 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
                     <case test="Article">
                         <TDTA />
                         <row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Périodique">$Rev<opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
-                        <row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique">$Rev<opt> $Localisation</opt><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
+                        <row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique">$Rev<Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
                     </case>
                     
                     <case test="Congrès">
@@ -110,14 +114,10 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
                     
                     <case test="Rapport">
                         <TDTA />
-                        <opt><row label="Editeur"><opt>$Lieu: </opt><opt>$Edit, </opt><opt>$Reed, </opt>$PageEdit</row></opt>
+                        <opt><row label="Editeur"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$PageEdit</row></opt>
                         <opt><row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Périodique"><opt>$Rev</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
                         <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique"><opt>$Rev</opt>
-
-                        <opt> $Localisation</opt>
-
-                        dm:<a class="locate" test="{$Rev}" href="{Routing::linkFor('locate?rev='. urlencode($this->selection['Rev']))}" title="Localiser le périodique">&#160;<span>Localiser</span></a>
-                        
+                        <Localisation />
                         <opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, $PageRev</row></opt>
                     </case>
                     
