@@ -373,7 +373,7 @@ class Base extends DatabaseModule
             case 'Rev':
                 // Lien vers une nouvelle recherche "notices de ce périodique"
                 if (! $h=trim($this->selection[$name])) return '';
-                $lien='search?rev='. urlencode($h);
+                $lien='search?rev='. urlencode(Utils::convertString($h,'lower'));
                 return $this->link($h, $lien, 'Notices du périodique '.$h);
                       
             case 'DateText':
@@ -406,13 +406,13 @@ class Base extends DatabaseModule
                 }
                 return implode(self::SEPARATOR, $t);
                 
-            case 'Localisation':
-               if (! $h=$this->selection['Rev']) return '';
-               
-               // Lien vers la fiche Périodique du titre de périodique contenu dans le champ Rev,
-               // pour obtenir la localisation
-               $lien='locate?rev='. urlencode($h);
-               return '<a class="locate" href="' . Routing::linkFor($lien) . '" title="Localiser le périodique">&nbsp;<span>Localiser</span></a>';
+//            case 'Localisation':
+//               if (! $h=$this->selection['Rev']) return '';
+//               
+//               // Lien vers la fiche Périodique du titre de périodique contenu dans le champ Rev,
+//               // pour obtenir la localisation
+//               $lien='locate?rev='. urlencode($h);
+//               return '<a class="locate" href="' . Routing::linkFor($lien) . '" title="Localiser le périodique">&nbsp;<span>Localiser</span></a>';
 
             case 'Presentation':
                 if (! $h=$this->selection['Rev']) return '';
@@ -531,7 +531,7 @@ class Base extends DatabaseModule
                 $value=date('Ymd');
                 break;
                 
-            default: return false;
+//            default: return false;
         }
         return true;
     }
@@ -722,6 +722,38 @@ class Base extends DatabaseModule
         return '<a'. $c. ' href="' . Routing::linkFor($lien) . '"' . $win . ' title="'.$title.'">'.$value.'</a>';        
     }
 
+    /**
+     * Affiche le formulaire permettant de choisir le type du document à créer
+     * Surcharge l'action new de la classe DatabaseModule
+     */    
+    public function actionNew()
+    {       
+        // si type non renseigné, affiche le formulaire pour le choisir
+        if (is_null(Utils::get($_REQUEST['Type'])))
+        {
+            Template::run
+            (
+                'templates/chooseType.html'
+            );
+        }
+        else    // sinon, appelle l'action par défaut
+        {
+            parent::actionNew();
+        }
+    }
+     
+     
+     /**
+      * Callback qui retourne une chaîne vide pour chaque champ de la nouvelle notice à créer
+      */
+     public function emptyString($name)
+     {
+        if($name==='Type')
+            return Utils::get($_REQUEST['Type']);
+        else
+            return '';
+     }
+
     // ------------------- GESTION DU PANIER -------------------
     
     private function getCart()
@@ -789,43 +821,7 @@ class Base extends DatabaseModule
 ////                'cart'=>$this->cart->getItems()
 //            )
         );
-    }
-
-
-    /**
-     * Affiche le formulaire permettant de choisir le type du document à créer
-     * Surcharge l'action new de la classe DatabaseModule
-     */    
-    public function actionNew()
-    {       
-        // si type non renseigné, affiche le formulaire pour le choisir
-        if (is_null(Utils::get($_REQUEST['Type'])))
-        {
-            Template::run
-            (
-                'templates/chooseType.html'
-            );
-        }
-        else    // sinon, appelle l'action par défaut
-        {
-            parent::actionNew();
-        }
-    }
-     
-     
-     /**
-      * Callback qui retourne une chaîne vide pour chaque champ de la nouvelle notice à créer
-      */
-     public function emptyString($name)
-     {
-        $type = Utils::get($_REQUEST['Type']);
-        
-        if($name == 'Type')
-            return $type[1];
-        else
-            return '';
-     }
-     
+    }    
      
     /**
      * Ajoute une ou plusieurs notices dans le panier
@@ -1471,21 +1467,30 @@ class Base extends DatabaseModule
     // affiche la liste des fichiers à importer
     public function actionImport()
     {
+/*
+ 
+ upload : uploader des fichiers
+ import : lancer l'import
+ delete : supprimer un fichier de la liste   
+ */
+echo '<pre><big>';
+var_export($_REQUEST);
+echo '</pre>';
         // TODO : Améliorer le module d'import :
         // - Permettre de choisir les fichiers à importer (case à cocher)
         // - Avoir une case à cocher "Marquer les notices comme validées"
         // - Avoir une case à cocher "Lancer le tri après l'import"
         // - Avoir la possibilité de lancer un tri à tout moment
         
-        $error='';
+        $errors=array();
         
         // Importe les fichiers et trie la base
-        if (! is_null(Utils::get($_REQUEST['import'])))
+        if (Utils::get($_REQUEST['import']))
         {
             // Vérifie qu'il y a des fichiers à importer
             if (count($this->makeList())==0)
             {
-                $error .= '<li>Il n\'y a aucun fichier à importer.</li>';
+                $errors[]= 'Il n\'y a aucun fichier à importer.';
                 Template::run('templates/import/import.yaml','Template::varCallback');
                 return;
             }
@@ -1495,12 +1500,13 @@ class Base extends DatabaseModule
                 throw new Exception('Le gestionnaire de tâches n\'est pas démarré.');
 
             // Définit le moment du lancement de l'import : maintenant ou plus tard
-            $timeImport=Utils::get($_REQUEST['now']);
-            if (is_null($timeImport))
-                throw new Exception('Le moment du lancement de l\'import n\'a pas été défini.');
-
-            switch ($timeImport)
+            switch (Utils::get($_REQUEST['now']))
             {
+                case 1: // maintenant
+                    //$id=TaskManager::addTask('/base/importfiles', 0, null, 'Import des fichiers de notices');
+                    //Runtime::redirect('/taskmanager/taskstatus?id='.$id);
+                    break;
+                
                 case 0: // plus tard
                     // Récupère la date et l'heure de lancement
                     // TODO : Vérifier que $datetime est dans le format attendu
@@ -1519,15 +1525,10 @@ class Base extends DatabaseModule
                     Runtime::redirect('/taskmanager/');
                     break;
                     
-                case 1: // maintenant
-                    $id=TaskManager::addTask('/base/importfiles', 0, null, 'Import des fichiers de notices');
-                    break;
-                
                 default:
                     throw new Exception('Choix non valide pour définir le moment du lancement de l\'import');
             }
             
-            Runtime::redirect('/taskmanager/taskstatus?id='.$id);
             return;
         }
         
@@ -1550,14 +1551,14 @@ class Base extends DatabaseModule
         
         // On a des fichiers uploadés -> ajoute à la liste
         if (count($_FILES)!=0)
-            $this->upload();
+            $this->upload($errors);
 
         // Enregistre la liste
         file_put_contents(Runtime::$root . self::dataPath . $this->ident . '/' . self::fileList, serialize($this->files));
 
         // Initialise $files avec la liste complète des fichiers, pour affichage
         // Pour les administrateurs, $files contient l'ensemble des fichiers chargés sur le serveur
-        $files=$this->makeList(); // HACK: les templates ne savent looper que sur des globaux
+        $files=$this->makeList();
         if (User::hasAccess('AdminBase')) $this->adminFiles=$files;
         
         // Supprime un fichier de la liste et enregistre la liste
@@ -1573,17 +1574,16 @@ class Base extends DatabaseModule
 
         // Affiche la liste et le reste
         // Si administrateur, affiche l'ensemble des listes
-        Template::run('templates/import/import.html',array('files'=>$files, 'error'=>$error));
+        Template::run('templates/import/import.html',array('files'=>$files, 'errors'=>$errors));
     }
     
     /**
      * Récupère les fichiers chargés uploadés
      * 
+     * @param array $errors en sortie la liste des erreurs éventuelles rencontrées
      */
-    private function upload()
+    private function upload(array & $errors=null)
     {
-        global $error;
-        
         foreach($_FILES as $file)
         {
             switch($file['error'])
@@ -1594,12 +1594,12 @@ class Base extends DatabaseModule
                     $h='';
                     if ($this->isValid($file['tmp_name'], $h)== false)
                     {
-                        $error .= "<li>Le fichier '" . $file['name'] . "' n'est pas valide : $h</li>";
+                        $errors[] = "Le fichier '" . $file['name'] . "' n'est pas valide : $h";
                     }
                     else
                     {
                         if (move_uploaded_file($file['tmp_name'], $path)==false)
-                            $error .= "<li>Impossible d'enregistrer le fichier '" . $file['name'] . "'.</li>";
+                            $errors[] = "Impossible d'enregistrer le fichier '" . $file['name'] . "'.";
                         else
                         {
                             $index=count($this->files);
@@ -1616,24 +1616,24 @@ class Base extends DatabaseModule
                     }
                     break;
                 case UPLOAD_ERR_INI_SIZE:
-                    $error .= "<li>Impossible de charger le fichier '" . $file['name'] . "' : la taille dépasse le maximum indiqué par upload_max_filesize.</li>";
+                    $errors[] = "Impossible de charger le fichier '" . $file['name'] . "' : la taille dépasse le maximum indiqué par upload_max_filesize.";
                     break;
                 case UPLOAD_ERR_FORM_SIZE:
-                    $error .= "<li>Impossible de charger le fichier '" . $file['name'] . "' : la taille dépasse la valeur MAX_FILE_SIZE du formulaire.</li>";
+                    $errors[] = "Impossible de charger le fichier '" . $file['name'] . "' : la taille dépasse la valeur MAX_FILE_SIZE du formulaire.";
                     break;
                 case UPLOAD_ERR_PARTIAL:
-                    $error .= "<li>Impossible de charger le fichier '" . $file['name'] . "' : le fichier n'a été que partiellement téléchargé.</li>";
+                    $errors[] = "Impossible de charger le fichier '" . $file['name'] . "' : le fichier n'a été que partiellement téléchargé.";
                     break;
                 case UPLOAD_ERR_NO_FILE: // le input file est vide
                     break;
                 case UPLOAD_ERR_NO_TMP_DIR:                    
-                    $error .= "<li>Impossible de charger le fichier '" . $file['name'] . "' : erreur de configuration, un dossier temporaire est manquant.</li>";
+                    $errors[] = "Impossible de charger le fichier '" . $file['name'] . "' : erreur de configuration, un dossier temporaire est manquant.";
                     break;
                 case UPLOAD_ERR_CANT_WRITE:                    
-                    $error .= "<li>Impossible de charger le fichier '" . $file['name'] . "' : Échec de l'écriture du fichier sur le disque.</li>";
+                    $errors[] = "Impossible de charger le fichier '" . $file['name'] . "' : Échec de l'écriture du fichier sur le disque.";
                     break;
                 default:
-                    $error .= "<li>Impossible de charger le fichier '" . $file['name'] . "' : erreur non gérée : '".$file['error']."'.</li>";
+                    $errors[] = "Impossible de charger le fichier '" . $file['name'] . "' : erreur non gérée : '".$file['error']."'.";
             } 
         }
     }
