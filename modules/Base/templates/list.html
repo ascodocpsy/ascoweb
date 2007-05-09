@@ -73,8 +73,8 @@ $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
                     <a class="loadrecord" href="/base/load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
                 </if>
                 
-                <p style="float:right;"><a href="/ascocart/add?category=$Type&amp;item=$REF">Ajouter au panier</a> / <a href="/ascocart/remove?category=$Type&amp;item=$REF">Supprimer du panier</a></p>
-                
+                <p style="float:right;"><a href="/ascocart/add?category={Utils::convertString($Type,'lower')}&amp;item=$REF">Ajouter au panier</a> / <a href="/ascocart/remove?category={Utils::convertString($Type,'lower')}&amp;item=$REF">Supprimer du panier</a></p>
+
                 /* affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
                 <switch test="$Type">
                 
