@@ -1,2 +1,12 @@
 <h1>Panier</h1>
-<p>La notice n°$item a été ajoutée au panier, dans la catégorie $category.</p>
+<if test="{count($item)>1}">
+	<p>Les notices suivantes ont été ajoutées au panier :</p>
+	<loop on="{$item}" as="$key, $value">
+		<ul>
+			<li>Catégorie {$category[$key]} : n°$value</li>
+		</ul>
+	</loop>
+</if>
+<else>
+	<p>La notice n°$item a été ajoutée au panier, dans la catégorie $category.</p>
+</else>
