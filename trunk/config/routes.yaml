@@ -94,8 +94,8 @@
   action: clear
 
 - url: /panier/vider
-  module: base
-  action: clearCart
+  module: ascocart
+  action: clear
 
 - url: /panier/exporter*
   module: base
