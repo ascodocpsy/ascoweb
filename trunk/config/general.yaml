@@ -21,7 +21,9 @@ CSS: [style.css]
 
 # fichiers javascript à inclure
 # doit être sous forme de tableau car on peut en avoir plusieurs
-#JS: [xxx.js]
+JS: 
+  - /fabweb/js/lib/jquery/1.1.2/jquery-latest.pack.js
+  - /fabweb/js/lib/interface/1.2/interface.js
 
 # module de sécurité à utiliser pour la protection du site
 security: 
