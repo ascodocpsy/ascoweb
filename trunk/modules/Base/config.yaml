@@ -13,9 +13,9 @@ CSS: [formulaire.css]
 
 database: ascodocpsy
 
-#templates:
-#  autoinclude: 
-#  - templates/autoincludes/row.html
+templates:
+  autoinclude: 
+    templates: templates/include/templates.html
 
 # Url de base d'un article sous SPIP
 urlarticle: 'http://www.ascodocpsy.org/article.php3?id_article='
@@ -102,20 +102,12 @@ validateall:
     access: AdminBase
 
 # Panier de notices
-searchCart:
+showcaddie:
+#access: AdminBase, EditBase
   action: search
-
-addToCart:
-  sessions:
-    use: true
-  errortemplate: templates/error/error.html
-
-removeFromCart:
-  errortemplate: templates/error/error.html
-
-clearCart:
-  sessions:
-    use: true
+  slots:
+    header: templates/caddieHeader.html
+  incart: true
 
 exportCart:
   sessions:
@@ -127,7 +119,4 @@ exportCartByType:
     use: true
   errortemplate: templates/error/error.html
 
-showCart:
-  access: AdminBase, EditBase
-  sessions:
-    use: true
+  
