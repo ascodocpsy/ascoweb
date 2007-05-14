@@ -1,155 +1,70 @@
-/* Template pour factoriser l'affichage : pour presque tous les types de doc, il faut afficher
-$Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */
-<template match="//TDTA">
-    <row >$Type, $Date</row>
-    <row label="Titre">
-        <Tit />
-    </row>
-    <opt><row label="Auteur(s)">$Aut</row></opt>
-</template>
+<slot name="header" count="{$this->selection->count()}">    
+    <if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
+        <h1>Base documentaire - Recherche - Accès administrateur</h1>
+    </if>
+    <elseif test="{User::hasAccess('EditBase')}">     /* Membre du GIP */
+        <h1>Base documentaire - Recherche - Accès membre du GIP</h1>
+    </elseif>
+    <else>
+        <h1>Base documentaire - Recherche - Accès public</h1>
+    </else>
+    
+    /* Afficher le nombre de réponses obtenues ? */
+    
+    <h2>Liste des réponses obtenues</h2>
+    <p>
+        Equation : <code>{$this->equation}</code><br />
+        Réponses : <code>{$this->selection->count()}</code>
+    </p>
 
-
-/* Template pour afficher un <label> et une <div class="row"> dans une autre <div class="field"> */
-<template match="//row" label="" class="" value="" test="{true}">
-    <div test="$test" class="row $class">
-        <label test="$label" class="field $class">$label</label>
-        <div class="field $class">
-            {select('string(@value)')}{select('./node()')}{select('@*')}
-        </div>
-    </div>
-</template>
-
-/* Template pour afficher un titre de document et son lien (s'il en a un) */
-<template match="//Tit">
-    <a test="{$Tit != ''}" strip="{$Lien == ''}" href="{Routing::linkFor($Lien)}" onclick="window.open(this.href); return false;" title="Accéder au texte intégral (ouverture dans une nouvelle fenêtre)">$Tit</a>
-</template>
-
-/* Template pour afficher le lien vers la localisation d'un titre de périodique */
-<template match="//Localisation">
-	<a class="locate" test="{$Rev}" href="{Routing::linkFor('locate?rev='. urlencode(Utils::convertString($this->selection['Rev'],'lower')))}" title="Localiser le périodique">&#160;<span>Localiser</span></a>
-</template>
-
-
-/* ========================================================================================================= */
-
-
-
-<if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
-    <h1>Base documentaire - Recherche - Accès administrateur</h1>
-</if>
-<elseif test="{User::hasAccess('EditBase')}">     /* Membre du GIP */
-    <h1>Base documentaire - Recherche - Accès membre du GIP</h1>
-</elseif>
-<else>
-    <h1>Base documentaire - Recherche - Accès public</h1>
-</else>
-
-/* Afficher le nombre de réponses obtenues ? */
-
-<h2>Liste des réponses obtenues</h2>
-<p>
-    Equation : <code>{$this->equation}</code><br />
-    Réponses : <code>{$this->selection->count()}</code>
-</p>
-<p><strong>Les documents sont triés par date et par type, les périodiques par ordre alphabétique.</strong></p>
+    <p><strong>Les documents sont triés par date et par type, les périodiques par ordre alphabétique.</strong></p>
+</slot>
 
 /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
-<form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/base/addToCart" method="post" id="answers">
-
-    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
-        <button name="btnselect" label="Tout sélectionner" onclick="selectAll(true)" />
-        <button name="btnunselect" label="Tout désélectionner" onclick="selectAll(false)" />
-        <submit name="btnadd" label="Ajouter les notices au panier" />
-        <a href="/base/replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans ces notices...</a>
-        <a test="{User::hasAccess('AdminBase')}" href="/base/delete?_equation={urlencode($this->equation)}">Supprimer ces notices</a>
-    </div>    
-
-    <hr />
-    
-    <ul class="shortlist">
-        <loop on="{$this->selection}" as="$rank, $record">
-            <li class="record">
-                <checkbox test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" name="art" value="$REF" />
-                
-                <a class="fullrecord" href="/base/show?REF=$REF" title="Voir la notice complète"><span>Voir la notice complète</span></a>
-                
-                <if test="{$this->hasEditRight()}">
-                    <a class="loadrecord" href="/base/load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
-                </if>
-                
-                <p style="float:right;"><a href="/ascocart/add?category={Utils::convertString($Type,'lower')}&amp;item=$REF">Ajouter au panier</a> / <a href="/ascocart/remove?category={Utils::convertString($Type,'lower')}&amp;item=$REF">Supprimer du panier</a></p>
-
-                /* affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
-                <switch test="$Type">
-                
-                    <case test="Article">
-                        <TDTA />
-                        <row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Périodique">$Rev<opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
-                        <row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique">$Rev<Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
-                    </case>
-                    
-                    <case test="Congrès">
-                        <TDTA />
-                        <opt><row label="Congrès"><opt>$CongrTit, </opt><opt>$CongrDat, </opt><opt>n°$CongrNum, </opt><opt>$CongrLie, </opt><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
-                        <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Localisation">$Loc</row></opt>
-                    </case>
-                    
-                    <case test="Livre">
-                        <TDTA />
-                        <opt><row label="Editeur"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
-                        <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Localisation">$Loc</row></opt>
-                    </case>
-                    
-                    <case test="{$Type=='Mémoire' || $Type=='Thèse'}">
-                        <TDTA />
-                        <opt><row><opt>$DipSpe, </opt><opt>$Lieu, </opt><opt>$Edit, </opt>$Page</row></opt>
-                        <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Localisation">$Loc</row></opt>
-                    </case>
-                    
-                    <case test="Périodique">
-                        <row>$Type<opt>, $ViePerio</opt></row>
-                        <row>$Rev<opt> $Presentation</opt><opt>, $IsbnIssn</opt></row>
-                        <opt><row>$Notes</row></opt>
-                    </case>
-                    
-                    <case test="Rapport">
-                        <TDTA />
-                        <opt><row label="Editeur"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$PageEdit</row></opt>
-                        <opt><row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Périodique"><opt>$Rev</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
-                        <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique"><opt>$Rev</opt>
-                        <Localisation />
-                        <opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, $PageRev</row></opt>
-                    </case>
-                    
-                    <case test="Texte officiel">
-                        <row>$Type</row>                       
-                        <row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Titre"><Tit /><opt> / $Annexe</opt></row>
-                        <row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Titre"><Tit /><opt> ; $Annexe</opt></row>
-                        <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique">$Rev<opt> du $DatePub</opt></row></opt>
-                    </case>
-                    <default>
-                        <p>La notice numéro $REF possède un type de document qui n'est pas géré : '$Type', impossible de l'afficher.</p>
-                    </default>
-                    
-                </switch>
-            </li>
-            <hr />
-        </loop>
-    </ul>
-    
-    <div>
-        {$this->getResNavigation(10, '&lt;', '&gt;', '&lt;&lt;', '&gt;&gt;')}
-    </div>
-
-    /* Répétition des boutons du dessus */
-    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
-        <button name="btnselect" label="Tout sélectionner" onclick="selectAll(true)" />
-        <button name="btnunselect" label="Tout désélectionner" onclick="selectAll(false)" />
-        <submit name="btnadd" label="Ajouter les notices au panier" />
-    </div>    
-
+<form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/add" method="post" id="answers">
+    <slot name="notice" action="templates/answers.html" />
 </form>
 
 <p class="top">
     <a href="#">Haut de page</a>
 </p>
+<style>
+.transferProduct
+\{
+	border: 1px solid #cc0;
+/*    background-color: #FFFFC0;*/
+\}
+</style>
+<script>
+function init()
+\{
+    jQuery('.navbar a').click(function()\{
+        jQuery('#answers').load(jQuery(this).attr('href'), init);
+        return false;
+    \})
+
+    jQuery('li p a').click(function()\{return false;\});
+    
+    jQuery('a.addtocart').click(function()\{
+        jQuery.post(jQuery(this).attr('href'));
+        /* .Highlight(200,'#FFFFC0') */
+        jQuery(this.parentNode).TransferTo
+        (
+            \{
+                to:'caddie',
+                className:'transferProduct',
+                duration: 500
+            \}
+        );
+        return false;
+    \});
+
+    jQuery('a.removefromcart').click(function()\{
+        jQuery.post(jQuery(this).attr('href'));
+        jQuery(this.parentNode).css('background-color','#FFFFC0').fadeOut(400, function()\{jQuery(this).remove().next().remove()\});
+        return false;
+    \});    
+\}
+
+jQuery('document').ready(init);
+</script>
