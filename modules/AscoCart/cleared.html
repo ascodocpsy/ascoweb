@@ -1,0 +1,9 @@
+<if test="{is_null($category)}">
+    <h1>Votre panier a été vidé</h1>
+	<p>Pour alimenter votre panier, lancez une recherche puis sélectionnez les réponses qui vous intéressent.</p>
+</if>
+<else>
+	<h1>Panier</h1>
+	<p>La catégorie $category a été supprimée du panier.</p>
+	<p><a href="/ascocart/show" title="Voir votre sélection">Voir votre sélection...</a></p>
+</else>
