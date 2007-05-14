@@ -5,8 +5,6 @@
  * Transfert vers BisDatabase
  */
 
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR. 'Cart.php';
-
 class Base extends DatabaseModule
 {
     // TODO : A la place du template 'templates/error/error.yaml' mettre en place un système de message d'erreur.
@@ -42,7 +40,15 @@ class Base extends DatabaseModule
     {
      //   if ($this->action=='exportCart')
      //       $this->actionExportCart(true);
-        
+        if (Utils::isAjax())
+        {
+            $this->setLayout('none');
+            Config::set('debug', false);
+            Config::set('showdebug', false);
+            header('Content-Type: text/html; charset=ISO-8859-1'); // TODO : avoir une rubrique php dans general.yaml permettant de "forcer" les options de php.ini
+            if ($this->action==='search') Config::set('template','templates/answers.html');
+        }
+         
         if ($this->action=='exportCartByType')
             $this->actionExportCartByType(true);
 
