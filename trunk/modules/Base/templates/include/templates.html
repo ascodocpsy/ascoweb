@@ -1,0 +1,40 @@
+<!--remarque : les fichiers include ne supportent pas les commentaires /* */-->
+
+<!--/* Template pour factoriser l'affichage : pour presque tous les types de doc, il faut afficher-->
+<!--$Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */-->
+<template match="//TDTA">
+    <row >$Type, $Date</row>
+    <row label="Titre">
+        <Tit />
+    </row>
+    <opt><row label="Auteur(s)">$Aut</row></opt>
+</template>
+
+<!--/* Template pour afficher un titre de document et son lien (s'il en a un) */-->
+<template match="//Tit">
+    <a test="{$Tit != ''}" strip="{$Lien == ''}" href="{Routing::linkFor($Lien)}" onclick="window.open(this.href); return false;" title="Accéder au texte intégral (ouverture dans une nouvelle fenêtre)">$Tit</a>
+</template>
+
+<!--/* Template pour le show.html */-->
+<!--/* Template pour factoriser l'affichage : pour presque tous les types de doc, il faut afficher-->
+<!--$MotCle/$Theme, $CanDes/$Nomp et $Resu : permet de le faire en une seule ligne */-->
+<template match="//MTCNR">
+    <opt><row label="Descripteurs SantéPsy">$MotCle<opt>/$Theme</opt></row></opt>
+    <opt><row label="Autres descripteurs">$Candes<opt>/$Nomp</opt></row></opt>
+    <opt><row label="Résumé">$Resu</row></opt>
+</template>
+
+<!--/* Template pour afficher un <label> et une <div class="row"> dans une autre <div class="field"> */-->
+<template match="//row" label="" class="" value="" test="{true}">
+    <div test="$test" class="row $class">
+        <label test="$label" class="field $class">$label</label>
+        <div class="field $class">
+            {select('string(@value)')}{select('./node()')}{select('@*')}
+        </div>
+    </div>
+</template>
+
+<!--/* Template pour afficher le lien vers la localisation d'un titre de périodique */-->
+<template match="//Localisation">
+    <a class="locate" test="{$Rev}" href="{Routing::linkFor('locate?rev='. urlencode(Utils::convertString($this->selection['Rev'],'lower')))}" title="Localiser le périodique">&#160;<span>Localiser</span></a>
+</template>
