@@ -1,10 +1,10 @@
 <h1>Panier</h1>
 /* Ajout de plusieurs notices en une seule fois */
-<if test="{count($item)>1}">
+<if test="{is_array($item)}">
 	<p>Les notices suivantes ont été ajoutées au panier :</p>
 	<loop on="{$item}" as="$key, $value">
 		<ul>
-			<if test="{count($category)>1}">
+			<if test="{is_array($category)}">
 				<li>Catégorie {$category[$key]} : n°$value</li>
 			</if>
 			<else>
