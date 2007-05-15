@@ -24,6 +24,7 @@ CSS: [style.css]
 JS: 
   - /fabweb/js/lib/jquery/1.1.2/jquery-latest.pack.js
   - /fabweb/js/lib/interface/1.2/interface.js
+  - /fabweb/js/lib/jquery.form/jquery.form.js
 
 # module de sécurité à utiliser pour la protection du site
 security: 
