@@ -15,17 +15,26 @@
 </p>
 
 /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
-<form if="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" action="/base/addToCart" method="post" name="answers">
+<form if="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" action="/ascocart/add" method="post" name="answers">
 
     <ul class="fulllist">
         <loop on="{$this->selection}" as="$rank, $record">
             <li class="record">
-            
+
+	            <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+	                <if test="{!Config::get('incart',false)}">
+	                    <a class="addtocart" href="/ascocart/add?category={Utils::convertString($Type,'lower')}&amp;item=$REF"><span>Ajouter au panier</span></a>
+	                </if>
+	                <else>
+	                    <a class="removefromcart" href="/ascocart/remove?category={Utils::convertString($Type,'lower')}&amp;item=$REF"><span>Supprimer du panier</span></a>
+	                </else>
+	            </if>                
+
                 <if test="{$this->hasEditRight()}">
                     <input type="hidden" name="art" value="$REF" />
                     <a class="loadrecord" href="/base/load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
                 </if>
-            
+
                 /* affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
                 <switch test="$Type">
                 
@@ -122,8 +131,44 @@
     <div>
         {$this->getResNavigation(10, '&lt;', '&gt;', '&lt;&lt;', '&gt;&gt;')}
     </div>
-    
-    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
-        <submit name="btnadd" label="Ajouter la notice au panier" />
-    </div>
 </form>
+<style>
+.transferProduct
+\{
+	border: 1px solid #cc0;
+/*    background-color: #FFFFC0;*/
+\}
+</style>
+<script>
+function init()
+\{
+    jQuery('.navbar a').click(function()\{
+        jQuery('#answers').load(jQuery(this).attr('href'), init);
+        return false;
+    \})
+
+    jQuery('li p a').click(function()\{return false;\});
+    
+    jQuery('a.addtocart').click(function()\{
+        jQuery.post(jQuery(this).attr('href'));
+        /* .Highlight(200,'#FFFFC0') */
+        jQuery(this.parentNode).TransferTo
+        (
+            \{
+                to:'caddie',
+                className:'transferProduct',
+                duration: 500
+            \}
+        );
+        return false;
+    \});
+
+    jQuery('a.removefromcart').click(function()\{
+        jQuery.post(jQuery(this).attr('href'));
+        jQuery(this.parentNode).css('background-color','#FFFFC0').fadeOut(400, function()\{jQuery(this).remove().next().remove()\});
+        return false;
+    \});
+\}
+
+jQuery('document').ready(init);
+</script>
