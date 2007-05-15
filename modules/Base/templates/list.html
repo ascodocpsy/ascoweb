@@ -63,7 +63,21 @@ function init()
         jQuery.post(jQuery(this).attr('href'));
         jQuery(this.parentNode).css('background-color','#FFFFC0').fadeOut(400, function()\{jQuery(this).remove().next().remove()\});
         return false;
-    \});    
+    \});
+
+	jQuery('#answers').submit(function()\{
+		jQuery(this).ajaxSubmit();
+        jQuery(this.parentNode).TransferTo
+        (
+            \{
+                to:'caddie',
+                className:'transferProduct',
+                duration: 500
+            \}
+        );
+		return false;
+	\});
+
 \}
 
 jQuery('document').ready(init);
