@@ -1,12 +1,19 @@
 <h1>Panier</h1>
+/* Ajout de plusieurs notices en une seule fois */
 <if test="{count($item)>1}">
 	<p>Les notices suivantes ont été ajoutées au panier :</p>
 	<loop on="{$item}" as="$key, $value">
 		<ul>
-			<li>Catégorie {$category[$key]} : n°$value</li>
+			<if test="{count($category)>1}">
+				<li>Catégorie {$category[$key]} : n°$value</li>
+			</if>
+			<else>
+				<li>Catégorie $category : n°$value</li>
+			</else>
 		</ul>
 	</loop>
 </if>
+/* Ajout d'une seule notice */
 <else>
 	<p>La notice n°$item a été ajoutée au panier, dans la catégorie $category.</p>
 </else>
