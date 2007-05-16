@@ -1,6 +1,11 @@
 <slot name="menubase">
 	<div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
-	    <submit name="btnadd" label="Ajouter les notices au panier" />
+        <if test="{!Config::get('incart',false)}">
+            <submit name="btnadd" class="addall" label="Ajouter les notices au panier" />
+        </if>
+        <else>
+	        <submit name="btnremove" class="removeall" label="Supprimer les notices du panier" />
+        </else>
 	    <a href="/base/replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans ces notices...</a>
 	    <a test="{User::hasAccess('AdminBase')}" href="/base/delete?_equation={urlencode($this->equation)}">Supprimer ces notices</a>
 	</div>    
@@ -88,6 +93,7 @@
                 </default>
                 
             </switch>
+            <slot name="xapianinfo" />
         </li>
         <hr />
     </loop>
@@ -98,6 +104,10 @@
 
 /* Répétition des boutons du dessus */
 <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
-    <submit name="btnadd" label="Ajouter les notices au panier" />
+       <if test="{!Config::get('incart',false)}">
+           <submit name="btnadd" class="addall" label="Ajouter les notices au panier" />
+       </if>
+       <else>
+        <submit name="btnremove" class="removeall" label="Supprimer les notices du panier" />
+       </else>
 </div>    
-
