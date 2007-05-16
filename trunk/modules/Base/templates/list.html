@@ -21,9 +21,16 @@
 </slot>
 
 /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
-<form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/add" method="post" id="answers">
-    <slot name="notice" action="templates/answers.html" />
-</form>
+<if test="{!Config::get('incart',false)}">
+    <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/add" method="post" id="answers">
+    	<slot name="notice" action="templates/answers.html" />
+	</form>
+</if>
+<else>
+	<form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/remove" method="post" id="answers">
+    	<slot name="notice" action="templates/answers.html" />
+	</form>
+</else>
 
 <p class="top">
     <a href="#">Haut de page</a>
