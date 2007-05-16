@@ -1293,9 +1293,11 @@ class Base extends DatabaseModule
  import : lancer l'import
  delete : supprimer un fichier de la liste   
  */
+/*
 echo '<pre><big>';
 var_export($_REQUEST);
 echo '</pre>';
+*/
         // TODO : Améliorer le module d'import :
         // - Permettre de choisir les fichiers à importer (case à cocher)
         // - Avoir une case à cocher "Marquer les notices comme validées"
@@ -1311,7 +1313,16 @@ echo '</pre>';
             if (count($this->makeList())==0)
             {
                 $errors[]= 'Il n\'y a aucun fichier à importer.';
-                Template::run('templates/import/import.yaml','Template::varCallback');
+                //Template::run('templates/import/import.yaml','Template::varCallback');
+                Template::run
+                (
+					'templates/import/import.html',
+					array
+					(
+						'errors'=>$errors,
+						'files'=>$this->files
+					)
+				);
                 return;
             }
             
@@ -1323,8 +1334,8 @@ echo '</pre>';
             switch (Utils::get($_REQUEST['now']))
             {
                 case 1: // maintenant
-                    //$id=TaskManager::addTask('/base/importfiles', 0, null, 'Import des fichiers de notices');
-                    //Runtime::redirect('/taskmanager/taskstatus?id='.$id);
+                    $id=TaskManager::addTask('/base/importfiles', 0, null, 'Import des fichiers de notices');
+                    Runtime::redirect('/taskmanager/taskstatus?id='.$id);
                     break;
                 
                 case 0: // plus tard
@@ -1537,8 +1548,8 @@ echo '</pre>';
         // 1. Ajout des notices
         
         // Ouvre la sélection
-        $selection=self::openDatabase('*', false);
-        if (is_null($selection)) return;
+        if (! $this->openSelection('*', false))
+        	return;
 
         // Initialise le compteur de fichiers
         $nb=1;
@@ -1577,7 +1588,7 @@ echo '</pre>';
                 usleep(200);
 
                 // Ajoute la notice
-                $selection->addnew();
+                $this->selection->addRecord();
                 
                 foreach ($data as $i=>$v)
                 {
@@ -1606,25 +1617,26 @@ echo '</pre>';
 
                     }
                     */
-                    $selection->setfield($fieldname, $v);
+                    
+                    $this->selection[$fieldname]=$v;
                 }
                                 
                 // Initialise les champs Creation et LastUpdate
                 // On passe par une variable intermédiaire car le 2e arguement de setfield
                 // doit être passé par référence
                 $d=date('Ymd');
-                $selection->setfield('Creation', $d);
-                $selection->setfield('LastUpdate', $d);
+                $this->selection['Creation']=$d;
+                $this->selection['LastUpdate']=$d;
                 
                 // Initialise les champs FinSaisie et Valide
                 // On passe par des variables intermédiaires car le 2e arguement de setfield
                 // doit être passé par référence
                 $v=true;
-                $selection->setfield('FinSaisie', $v);  // La saisie des notices est terminée
+                $this->selection['FinSaisie']=$v;  // La saisie des notices est terminée
                 $v=false;
-                $selection->setfield('Valide', $v);     // Les notices importées ne sont pas validées
+                $this->selection['Valide']=$v;      // Les notices importées ne sont pas validées
                 
-                $selection->update();
+                $this->selection->saveRecord();
 
                 $nbref++;
             }
@@ -1645,7 +1657,7 @@ echo '</pre>';
         }
         
         // Ferme la base
-        unset($selection);
+        unset($this->selection);
 
         // 2. Tri de la base
         TaskManager::progress('Chargement terminé : '. $nbreftotal.' notices intégrées dans la base, démarrage du tri');
@@ -1698,6 +1710,8 @@ echo '</pre>';
         }
         return true; 
     } 
+    
+    // FIN IMPORT DE NOTICES
 
     public function actionValidateAll()
     {
