@@ -80,7 +80,7 @@ div.menu
 div.menu ul
 {
     border: 2px solid #ddd;
-    list-style: none url(none);
+    list-style: none;
     padding: 0;
     margin: 0;
 }    
@@ -211,20 +211,20 @@ ul.fulllist
 li.record
 {
 	margin: 1em 0 1em 0;
-	list-style: none url(none);
+	list-style: none;
 }
 
 /* Champ de la notice (libellé + contenu) */
 div.row
 {
-	padding: 0.2em 0 0.2em 0;
+	padding: 0.2em 0 0.2em 2em;
 }
 ul.fulllist div.row
 {
     clear: left;
 }
 
-/* Case à cocher */
+/* Case à cocher - A supprimer */
 li.record input.check
 {
 	float: left;
@@ -262,15 +262,25 @@ span.check, span.radio
 	white-space: nowrap; /* empêche une checkbox/un radio d'être séparé de son label */
 }
 
-/* Lien vers "voir notice", "modifier notice", "localiser périodique" */
+/* Liens vers "voir notice", "modifier notice", "localiser périodique" */
 a.fullrecord
 {
     float: right;
     padding-left: 32px;
     padding-top: 32px;
-    background: url('voir.png') no-repeat center center;
+/*    background: url('voir.png') no-repeat center center;*/
     border: 1px solid white;
 	height: 0;
+}
+
+li.record:hover
+{
+    background-color:#FFFFE7;
+}
+
+li.record:hover a.fullrecord
+{
+    background: url('voir.png') no-repeat center center;
 }
 
 /* N'est lu que par IE grâce à * html */
@@ -289,11 +299,16 @@ a.loadrecord
     padding-left: 32px;
     padding-top: 32px;
 	margin-right: 1em;
-    background: url('modifier.png') no-repeat center center;
+/*    background: url('modifier.png') no-repeat center center;*/
     border: 1px solid white;
     height: 0;
 }
 
+li.record:hover a.loadrecord
+{
+    background: url('modifier.png') no-repeat center center;
+}
+	
 a.locate
 {
 	padding-left: 10px; /* en théorie : 16px - 1em */
@@ -325,6 +340,63 @@ a.inform span
 	display: none;
 }
 
+/* Panier */
+a.addtocart
+{
+	float: left;
+	padding-left: 25px;
+    padding-top: 25px;
+	background: url('cart_add.png') no-repeat center center;
+    border: 1px solid white;
+	height: 0;
+}
+
+a.removefromcart
+{
+	float: left;
+	padding-left: 25px;
+    padding-top: 25px;
+    background: url('cart_delete.png') no-repeat center center;
+    border: 1px solid white;
+	height: 0;
+}
+
+a.addtocart span,
+a.removefromcart span
+{
+	display: none;
+}
+
+input.addall
+{
+	cursor: pointer;
+	padding-left: 25px;
+	width: 16px;
+	height: 16px;
+	font-size: 0px;
+	/*color: #D4E6FD;*/
+	background: url('cart_put.png') no-repeat center center;
+	border: 0;
+}
+
+input.removeall
+{
+	cursor: pointer;
+	padding-left: 25px;
+	width: 16px;
+	height: 16px;
+	font-size: 0px;
+	background: url('cart_remove.png') no-repeat center center;
+	border: 0;
+}
+
+/*
+div.menubase
+{
+	float: right;
+}
+*/
+
 
 /* ========================================================================== */
 /*                         FORMULAIRE D'IMPORT                                */
@@ -339,6 +411,7 @@ input.delete
 	background: url('../../images/delete.png') no-repeat center center;
 	border: 0;
 }
+
 
 @media print
 {
