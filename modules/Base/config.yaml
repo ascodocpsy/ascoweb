@@ -9,7 +9,7 @@ CSS: [formulaire.css]
 # doit être sous forme de tableau car on peut en avoir plusieurs
 #JS: [xxx.js]
 
-#title: aaaaa
+#title: aaaaaa
 
 database: ascodocpsy
 
@@ -94,9 +94,6 @@ import:
 importfiles:
     access: cli
 
-# sort : temporairement désactivé, conflit de nom avec la clé sort utilisé
-# par DatabaseModule::search pour définir l'ordre de tri des réponses.
-# à réactiver pour le tri de la base, mais en utilisant un autre nom
 sortdb:
     access: cli, AdminBase
     sortkey: 'Date:DateText:CongrDat,8,KeyDate,+ ; Type,20,KeyTextIgnoreCase,+ ; Rev,50,KeyTextIgnoreCase,-'
