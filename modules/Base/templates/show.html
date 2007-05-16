@@ -41,7 +41,7 @@
                     <case test="Article">        
                         <TDTA />
                         <row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Périodique">$Rev</row>
-                        <row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique">$Rev<opt> DMDM Localisation</opt><opt> $Presentation</opt></row>
+                        <row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique">$Rev<Localisation /><opt> $Presentation</opt></row>
                         <opt><row><opt>vol $Vol, </opt><opt>n°$Num, </opt>p. $PdPf</row></opt>
                         <opt><row label="Notes">$Notes</row></opt>
                         <MTCNR />
@@ -103,7 +103,7 @@
                         <TDTA />
                         <opt><row label="Editeur"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$PageEdit</row></opt>
                         <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-                            <opt><row label="Périodique"><opt>$Rev</opt><opt> DMDM Localisation</opt><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
+                            <opt><row label="Périodique"><opt>$Rev</opt><Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
                         </if>
                         <else>
                             <opt><row label="Périodique"><opt>$Rev</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
