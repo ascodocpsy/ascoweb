@@ -249,7 +249,7 @@ class Base extends DatabaseModule
             case 'Rev':
                 // Lien vers une nouvelle recherche "notices de ce périodique"
                 if (! $h=trim($this->selection[$name])) return '';
-                $lien='search?rev='. urlencode(Utils::convertString($h,'lower'));
+                $lien='search?rev='. urlencode(Utils::convertString($h));
                 return $this->link($h, $lien, 'Notices du périodique '.$h);
                       
             case 'DateText':
@@ -306,7 +306,7 @@ class Base extends DatabaseModule
                 else
                 {
                     // Lien vers la page de présentation de la revue sur le site d'Ascodocpsy
-                    $lien='inform?rev='. urlencode($h);
+                    $lien='inform?rev='. urlencode(Utils::convertString($h,'lower'));
                     return $this->link('&nbsp;<span>Présentation</span>', $lien, 'Présentation du périodique', false, 'inform');
                 }
 
