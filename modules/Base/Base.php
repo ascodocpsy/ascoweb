@@ -144,141 +144,11 @@ class Base extends DatabaseModule
         return $t;
     }
 
-    /**
-     * Lance une recherche si une équation peut être construite à partir des 
-     * paramètres passés et affiche les notices obtenues en utilisant le template 
-     * indiqué dans la clé 'template' de la configuration.
-     * Si aucun paramètre n'a été passé, redirige vers le formulaire de recherche.
-     * Si erreur lors de la recherche, affiche l'erreur en utilisant le template
-     * indiqué dans la clé 'errortemplate' de la configuration. 
-     */
-//    public function actionSearch()
-//    {
-//        global $selection;
-//
-//        // Construit l'équation de recherche
-//        $this->equation=$this->makeBisEquation();
-//        
-//        debug && Debug::log('Equation construite : %s', $this->equation); 
-//        
-//        // Si aucun paramètre de recherche n'a été passé, il faut afficher le formulaire
-//        // de recherche
-//        if (is_null($this->equation))
-//        {
-//            Runtime::redirect('searchform');
-//        }
-//        
-//        // Des paramètres ont été passés, mais tous sont vides et l'équation obtenue est vide
-//        if ($this->equation==='')
-//            return $this->showError('Vous n\'avez indiqué aucun critère de recherche.');
-//        
-//        // Ouvre la sélection
-//        $selection=self::openDatabase($this->equation);
-//        if (is_null($selection)) return;
-//        
-//        // Si on n'a aucune réponse, erreur
-//        if ($selection->count == 0)
-//            //return $this->showError("Aucune réponse. Equation : $this->equation");
-//            return $this->showError("Aucun document ne correspond à la requête : $this->equation", 'noanswertemplate');
-//
-//        // Si on n'a qu'une seule réponse, affiche la notice complète
-//        if ($selection->count == 1)
-//            Runtime::redirect('show?ref='.$selection->field(1));
-//
-//        // Détermine le template à utiliser
-//        if (! $template=$this->getTemplate('template'))
-//            throw new Exception('Le template à utiliser n\'a pas été indiqué');
-//        
-//        // Détermine le callback à utiliser
-//        $callback=$this->getCallback();
-//
-//        // Exécute le template
-//        Template::run
-//        (
-//            $template,  
-//            array($this, $callback),
-//            'Template::selectionCallback'
-//        );
-//    }
 
     public function getField($name)
     {
-//        global $selection;
-//        
         switch ($name)
         {
-//            case 'array.key':
-//                // Panier de notices
-//                global $key;
-//                return urlencode($key);
-//            
-//            case 'nbref':
-//                // Panier de notices
-//                global $value;
-//                return count($value);
-                
-//            case 'equationAnswers': 
-//                return $this->selection->count();
-//                return $this->equation . '<br />Réponses : ' . $this->selection->count();
-
-//            // TODO : voir si error utilisé 
-//            case 'error':
-//                return $this->error;
-//
-//            case 'template':
-//                // Initialise le nom du template 
-//                if (User::hasAccess('EditBase,AdminBase')) // TODO : SF : le template admin n'existe pas
-//                    $tpl='member';
-//                else
-//                    $tpl='public';
-//
-//                // Même template pour les types Thèse et Mémoire
-//                $type=(strtolower($selection->field('Type')) == 'thèse') ? 'mémoire' : strtolower($selection->field('Type'));
-//
-//                // Définit le template en fonction du nombre de réponses
-//                // TODO : problème pour le panier. On a show ou list suivant le nombre de notices dans le panier
-//                $tpl=($selection->count==1) ? "templates/${tpl}_show_$type.yaml" : "templates/${tpl}_list_$type.yaml";
-//                
-//                // Charge le template
-//                Template::run
-//                (
-//                    $tpl, 
-//                    array($this, 'getField'),
-//                    'Template::selectionCallback'
-//                );
-//                return '';
-//
-//            case 'loadtemplate':
-//                // Récupère le type de document, à partir des paramètres ou à partir de la base
-//                if (! $type=strtolower(Utils::get($_REQUEST['Type'], ''))) $type=strtolower($selection->field('Type'));
-//                
-//                // Même template pour les type Thèse et Mémoire
-//                if ($type == 'thèse') $type= 'mémoire';
-//
-//                Template::run
-//                (
-//                    "templates/load/load_$type.yaml", 
-//                    'Template::selectionCallback',
-//                    'Template::emptyCallback',
-//                    'Template::requestCallback'
-//                );
-//                return '';
-//                            
-//            case 'Tit':
-//                // Lien vers texte intégral
-////                if (($tit=$this->selection[$name]) && ($lien=$this->selection['Lien']))
-////                    return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
-////                return;
-//                if ($tit=$this->selection['Tit'])
-//                {
-//                    if ($lien=$this->selection['Lien'])
-//                        return $this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
-//                    else
-//                        return $tit;   
-//                }
-//                else
-//                    return '';
-
             case 'Annexe':
                 // TODO : revoir : ne marche pas avec Titre de l'annexe1 <http://www.lien.fr >/Titre de l'annexe2/< http://www.lien2.fr>
                 // Lien vers texte intégral
@@ -412,14 +282,6 @@ class Base extends DatabaseModule
                 }
                 return implode(self::SEPARATOR, $t);
                 
-//            case 'Localisation':
-//               if (! $h=$this->selection['Rev']) return '';
-//               
-//               // Lien vers la fiche Périodique du titre de périodique contenu dans le champ Rev,
-//               // pour obtenir la localisation
-//               $lien='locate?rev='. urlencode($h);
-//               return '<a class="locate" href="' . Routing::linkFor($lien) . '" title="Localiser le périodique">&nbsp;<span>Localiser</span></a>';
-
             case 'Presentation':
                 if (! $h=$this->selection['Rev']) return '';
                 
