@@ -79,7 +79,7 @@ class Base extends DatabaseModule
             'EDIT' => 'Edit',
             'ETATCOL' => 'EtatCol',
             'ISBNISSN' => 'IsbnIssn',
-            'LIENANNE' => 'LienAnne',
+           // 'LIENANNE' => 'LienAnne',  // Supprimé, les liens sont mis dans le champ Tit
             'LIEU' => 'Lieu',
             'LOC' => 'Loc',
             'MOTCLE' => 'MotCle',
@@ -1024,36 +1024,42 @@ class Base extends DatabaseModule
     }           
            
     // ------------------- TRI DE LA BASE -------------------
-    public function actionSort()
+    /**
+     * Trie la base, selon la clé de tri sortkey défini dans le fichier
+     * de configuration.
+     */
+    public function actionSortDb()
     {
+		// TODO : à supprimer
+		set_time_limit(0);
+
         $start_time=microtime(true);
         
-        $sort=array();
+        // Ouvre la base
+        $database=Config::get('database');
+        if (is_null($database))
+            throw new Exception('La base de données à utiliser n\'a pas été indiquée dans le fichier de configuration du module');
         
-        // Ouvre la sélection
-        // TODO : ouvrir la base en mode exclusif
-        $selection=self::openDatabase('*', true);
-        if (is_null($selection)) return;
-        
-        // Récupère la clé de tri
-        $sortKey=Config::get('sortkey');
-                
+        $this->selection=Database::open($database, true);
+
+        if (! $this->selection->search('*', array('_max'=>-1)))
+        	die('La base à trier ne contient aucun enregistrement.');
+
         // Vérrouille la base
         // TODO : Faire le lock sur la base si pas déjà fait
         
         // Crée la clé de tri
-        $key=$this->createSortKey($sortKey);
+        $sortKey=$this->createSortKey(Config::get('sortkey'));
         
         // Parcourt toute la sélection en créant les clés de tri
-        TaskManager::progress('1. Calcul des clés de tri...', $selection->count);
+        TaskManager::progress('1. Calcul des clés de tri...', $this->selection->count());
         $i=0;
-        $selection->movefirst();
-        while (! $selection->eof())
-        {
-            $sort[$selection->field(1)]=$this->getKey($key, $selection);
-            TaskManager::progress(++$i, 'Notice ' . $selection->field('REF'));
-            $selection->movenext();
-        }
+		$sort=array();
+		foreach ($this->selection as $rank=>$record)
+		{
+		    $sort[$record['REF']]=$this->getKey($sortKey, $record);
+		    TaskManager::progress(++$i, 'Notice ' . $record['REF']);
+		}
 
         // Trie les clés
         TaskManager::progress('2. Tri des clés...');
@@ -1063,15 +1069,17 @@ class Base extends DatabaseModule
         // Pour le moment, on part d'une base vide
         // Copie la base vide vers la base résultat
         // TODO : Ecrire un createdatabase
-        $database=Config::get('database');
         $dbPath=Runtime::$root . "data/db/$database.bed";
-        $dbSortPath=Runtime::$root . "data/db/$database.sort";
+        $dbSortPath=Runtime::$root . "data/db/$database.sort.bed";
         
         TaskManager::progress('3. Création de la base vide...');
         if (! copy(Runtime::$root . "data/db/${database}Vide.bed", $dbSortPath))
             throw new Exception('La copie de la base n\'a pas réussi.');       
-        $selSort=self::openDatabase('', false, $database.'sort');
-        if (is_null($selSort)) return;
+        
+        //ascodocpsysort
+        $selSort=Database::open($dbSortPath, false, 'bis');
+        if (is_null($selSort))
+        	throw new Exception('Impossible d\'ouvrir la base résultat.');
         
         // Génère la base triée
         TaskManager::progress('4. Réécriture des enregistrements selon l\'ordre de tri...', count($sort));
@@ -1079,32 +1087,31 @@ class Base extends DatabaseModule
         $ref=1;
         foreach ($sort as $key=>$value)
         {
-            $selection->current=$key;
-            $selSort->addnew();
-            $selSort->setfield(1,$ref);
-            for ($i=2;$i<=$selection->fieldscount;$i++)
-            {
-                // On passe par une variable intermédiaire car le 2e argument de
-                // setfield doit être passé par référence
-                $h=$selection->field($i);
-                if ($h===null) $h='';
-                $selSort->setfield($i, $h);
-            }
-            $selSort->update();
-            $ref++;
+            if(! $this->selection->search("REF=$key"))
+            	die('ref non trouvée');
+            	
+            $selSort->addRecord();
+			foreach($this->selection->record as $fieldName=>$fieldValue)
+			    if ($fieldName!=='REF') $selSort[$fieldName]=$fieldValue;
+            $selSort->saveRecord();
+            
+            if ($ref==1) break;
             
             TaskManager::progress($ref, "Notice $ref");
+            $ref++;
         }
         echo '<p>tri réalisé en '. number_format(microtime(true) - $start_time, 2, '.', '')
              . '&nbsp;secondes</p>';
-        //TaskManager::progress('Tri de la base terminé.');
        
         TaskManager::progress('5. Fermeture et flush des bases...');
 
         // Ferme la base non triée
-        unset($selection);
+        unset($record);
+        unset($this->selection->record);
+        unset($this->selection);
         
         // Ferme la base triée
+        unset($selSort->record);
         unset($selSort);
         
         // Supprime la base non triée
@@ -1142,7 +1149,7 @@ class Base extends DatabaseModule
         $keys=array();
         
         // Ajoute le champ REF comme dernier champ de la clé
-        $sortKey.=';Ref,6,KeyInteger,+';
+        $sortKey.=';REF,6,KeyInteger,+';
         
         // Initialise tous les champs qui composent la clé
         $t=split(';', $sortKey);
@@ -1173,8 +1180,7 @@ class Base extends DatabaseModule
      * @param array $key tableau contenant les clés de tri
      * @param $selection la sélection en cours
      * 
-     * @return string la clé de l'enregistrement en cours
-     * 
+     * @return string la clé de l'enregistrement en cours 
      */
     private function getKey($key, $selection)
     {
@@ -1184,11 +1190,11 @@ class Base extends DatabaseModule
             // Récupère le premier champ rempli parmi la liste de champs
             for ($j=0;$j<=count($key[$i]['fieldnames'])-1;$j++)
             {
-                $value=$selection->field($key[$i]['fieldnames'][$j]);
+                $value=$selection[$key[$i]['fieldnames'][$j]];
                 if (strlen($value))
                     break;
             }
-            
+
             // Récupère la longueur de la clé
             $nb=$key[$i]['length'];
             
@@ -1266,7 +1272,7 @@ class Base extends DatabaseModule
             // Si tri descendant, commute la clé
             if ($key[$i]['order']=='-')
                 $this->switchKey($value);
-
+			
             $getKey.=$value;
         }
         return $getKey;
@@ -1662,7 +1668,7 @@ echo '</pre>';
         // 2. Tri de la base
         TaskManager::progress('Chargement terminé : '. $nbreftotal.' notices intégrées dans la base, démarrage du tri');
 
-        Routing::dispatch('/base/sort'); // TODO : workaround       
+        Routing::dispatch('/base/sortdb'); // TODO : workaround       
         
 //        $id=TaskManager::addTask('/base/sort', 0, null, 'Tri de la base');
 ////        Runtime::redirect('/taskmanager/taskstatus?id='.$id);
