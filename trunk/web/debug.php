@@ -1,6 +1,4 @@
 <?php
-global $start_time;
-$start_time=microtime(true);
-require_once('../../fab/Runtime.php');
+require_once(dirname(__FILE__).'/../../fab/Runtime.php');
 Runtime::setup('debug');
 ?>
