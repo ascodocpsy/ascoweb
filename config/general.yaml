@@ -17,7 +17,7 @@ title: Base documentaire ASCODOCPSY
 
 # nom des feuilles de style CSS à utiliser
 # doit être sous forme de tableau car on peut en avoir plusieurs
-CSS: [style.css]
+#CSS: [style.css]
 
 # fichiers javascript à inclure
 # doit être sous forme de tableau car on peut en avoir plusieurs
