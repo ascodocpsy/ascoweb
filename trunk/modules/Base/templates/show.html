@@ -1,13 +1,14 @@
 <if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
-    <h1>Base documentaire - Visualisation - Accès administrateur</h1>
+    <div class="titre">Base documentaire - Visualisation - Accès administrateur</div>
 </if>
 <elseif test="{User::hasAccess('EditBase')}">     /* Membre du GIP */
-    <h1>Base documentaire - Visualisation - Accès membre du GIP</h1>
+    <div class="titre">Base documentaire - Visualisation - Accès membre du GIP</div>
 </elseif>
 <else>
-    <h1>Base documentaire - Visualisation - Accès public</h1>
+    <div class="titre">Base documentaire - Visualisation - Accès public</div>
 </else>
 
+<div class="texte">
 
 <p test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
     Equation : <code>{$this->equation}</code><br />
@@ -132,6 +133,9 @@
         {$this->getResNavigation(10, '&lt;', '&gt;', '&lt;&lt;', '&gt;&gt;')}
     </div>
 </form>
+
+</div>
+
 <style>
 .transferProduct
 \{
