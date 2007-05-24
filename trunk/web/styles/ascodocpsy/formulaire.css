@@ -1,0 +1,297 @@
+/* Feuille de style ASCODOCPSY pour les formulaires */
+/* ========================================================================== */
+/*                              FORMULAIRES                                   */
+/* ========================================================================== */
+
+/* Libellé de champ */
+label.field,
+label.text, 
+label.checklist, 
+label.textarea,
+label.select
+{
+/*	font-weight: bold;*/
+    width: 12em;
+    display: block;
+	float: left;
+	text-align: right;
+	padding-right: 1em;
+}
+
+form.form div.buttons
+{
+	text-align: right;
+	margin: 0;
+}
+
+form.form div.buttons input
+{
+	padding: 0.3em;
+	height: 2.5em; /* garder synchro avec le top: affecté à input.reset */
+}
+
+input.reset
+{
+/*	width: 10em;*/
+	float: left;
+	clear: both;
+	position: relative;
+	top: -2.5em;
+	left: 0;
+}
+
+span.check, span.radio
+{
+	white-space: nowrap; /* empêche une checkbox/un radio d'être séparé de son label */
+}
+
+form span.exemple,
+form p.exemple
+{
+	font-size: 0.9em;
+	margin: 0.1em 0 0 16em;
+}
+
+/* ========================================================================== */
+/*                        FORMULAIRE DE RECHERCHE                             */
+/* ========================================================================== */
+
+/* Libellé de champ */
+form.search label.field,
+form.search label.text,
+form.search label.checklist,
+form.search label.select
+{
+	font-weight: bold;
+	width: 13em;
+}
+
+form.search div
+{
+	margin: 0 0 0.2em 0;
+	padding: 0;
+	clear: both;
+}
+
+form.search div input.text
+{
+	width: 25em;
+	margin: 0;
+	padding: 0 0.2em;
+}
+
+form.search div.checklist,
+form.search div.select
+{
+	margin-left: 14em;
+	clear: right;
+}
+
+form.search div.date
+{
+	margin-left: 4em;
+}
+
+/* Annule le font-weight: bold; de form.search label.select */
+form.search div.date label.select
+{
+	font-weight: normal;
+}
+
+/* ========================================================================== */
+/*                        AFFICHAGE DES REPONSES                              */
+/* ========================================================================== */
+
+/* Libellé du champ */
+li.record label.field, 
+li.record label.text, 
+li.record label.checklist, 
+li.record label.textarea
+{
+	font-weight: bold;
+    width: 4em;
+	float: left;
+	text-align: right;
+	padding-right: 1em;
+}
+
+/* Liens vers "voir notice", "modifier notice", "localiser périodique" */
+a.fullrecord
+{
+    float: right;
+    padding-left: 32px;
+    padding-top: 32px;
+/*    background: url('voir.png') no-repeat center center;*/
+    border: 1px solid white;
+	height: 0;
+}
+
+li.record:hover
+{
+    background-color:#FFFFE7;
+}
+
+li.record:hover a.fullrecord
+{
+    background: url('voir.png') no-repeat center center;
+}
+
+/* N'est lu que par IE grâce à * html */
+/* http://noyau.pixtyle.net/viewtopic.php?pid=11496 */
+/*
+* html a.fullrecord
+{
+	background-image: none; 
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://apache/asco/web/styles/asco/voir.png');
+}
+*/
+
+a.loadrecord
+{
+	float: right;
+    padding-left: 32px;
+    padding-top: 32px;
+	margin-right: 1em;
+/*    background: url('modifier.png') no-repeat center center;*/
+    border: 1px solid white;
+    height: 0;
+}
+
+li.record:hover a.loadrecord
+{
+    background: url('modifier.png') no-repeat center center;
+}
+	
+a.locate
+{
+	padding-left: 10px; /* en théorie : 16px - 1em */
+	background: url('loc.png') no-repeat left center;
+    border: 1px solid white;
+}
+
+a.inform
+{
+	padding-left: 10px; /* en théorie : 16px - 1em */
+	background: url('inform.png') no-repeat left center;
+    border: 1px solid white;
+}
+
+a.fullrecord:hover, 
+a.loadrecord:hover,
+a.locate:hover,
+a.inform:hover
+{
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+a.fullrecord span,
+a.loadrecord span,
+a.locate span,
+a.inform span
+{
+	display: none;
+}
+
+/* Panier */
+a.addtocart
+{
+	float: left;
+	padding-left: 25px;
+    padding-top: 25px;
+	background: url('cart_add.png') no-repeat center center;
+    border: 1px solid white;
+	height: 0;
+}
+
+a.removefromcart
+{
+	float: left;
+	padding-left: 25px;
+    padding-top: 25px;
+    background: url('cart_delete.png') no-repeat center center;
+    border: 1px solid white;
+	height: 0;
+}
+
+a.addtocart span,
+a.removefromcart span
+{
+	display: none;
+}
+
+input.addall
+{
+	cursor: pointer;
+	padding-left: 25px;
+	width: 16px;
+	height: 16px;
+	font-size: 0px;
+	background: url('cart_put.png') no-repeat center center;
+	border: 0;
+}
+
+input.removeall
+{
+	cursor: pointer;
+	padding-left: 25px;
+	width: 16px;
+	height: 16px;
+	font-size: 0px;
+	background: url('cart_remove.png') no-repeat center center;
+	border: 0;
+}
+
+/* ========================================================================== */
+/*                         AFFICHAGE DES NOTICES                              */
+/* ========================================================================== */
+
+/* Liste de réponses courtes */
+ul.shortlist
+{
+	padding: 0;
+}
+
+/* Liste de réponses complètes */
+ul.fulllist
+{
+	padding: 0;
+}
+
+/* Notice */
+li.record
+{
+	margin: 1em 0 1em 0;
+	list-style: none;
+}
+
+/* Champ de la notice (libellé + contenu) */
+div.row
+{
+	padding: 0.2em 0 0.2em 2em;
+}
+ul.fulllist div.row
+{
+    clear: left;
+}
+
+/* Case à cocher - A supprimer */
+li.record input.check
+{
+	float: left;
+	width: 2em;
+	margin-left: 5em;
+/*	margin-top: 1.3em;*/
+}
+
+
+/* Contenu du champ */
+div.field
+{
+    margin-left: 6em;
+}
+
+div.checklist, div.radiolist
+{
+/*	padding-left: 15em;*/
+}

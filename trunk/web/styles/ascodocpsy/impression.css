@@ -1,0 +1,249 @@
+/*Feuille de style d'impression appelée lorsque : Fichier > Imprimer */
+
+
+BODY {
+	padding-right: 0px; 
+	padding-left: 0px; 
+	padding-top: 0px; 
+	padding-bottom: 0px; 
+	margin: 0px; 
+	background-color: white;	
+	font: 11px/15px Tahoma, Verdana, Arial, Helvetica, sans-serif; 	
+	text-align: left;
+	}
+
+#principal {
+	background-color: #FFFFFF;
+	padding-right: 1px; 
+	padding-left: 0px; 
+	margin: 0px auto; 
+	width: 750px;
+	padding-top: 1px; 
+	border: 1px solid black;
+	}	
+
+#header {
+	margin-left: 350px;
+	}
+
+#contentRight {	
+	margin-top: 40px;
+	margin-right:5px;
+	margin-bottom: 8px;
+	padding-top: 8px;
+	padding-left: 0px;
+	padding-right: 120px;
+	padding-bottom: 8px;
+	width: 750px;
+	font-size: 100%;
+	text-align: justify;
+	}
+	
+#pied {
+   display: none;
+	}
+.spip-admin-float {
+	display: none;
+	}
+
+.ContentLeft {
+	display: none;
+	}
+
+	
+.blocnotes{
+	display: none;
+	}	
+
+.titre {
+	font-size: 120%;
+	font-weight: bold;
+	margin-top: 20px;
+	}
+	
+.texte{
+	padding: 0px 0px 0px 10px;
+	font-size: 100%;
+	text-align: left;
+	color:black;
+	}
+	
+.titre-sous-rubrique { /*style des sous rubriques dans rubrique.html*/
+	font-weight: bold;
+	margin-top: 5px;
+	}	
+	
+.ul_sous_rubrique { /*style des articles des sous rubriques dans rubrique.html*/
+	margin-left: 10px;
+	}
+	
+.impression {
+	display: none;
+	}
+	
+.texte-centrer{
+	padding: 10px 0px 10px 10px;
+	font-size: 100%;
+	text-align: center;
+	color: black;
+	font-weight: bold;
+	}	
+	
+.detail{  /*'article mis en ligne le, par exemple*/
+	padding-top: 0px;
+	padding-bottom: 20px;
+	padding-left: 0px;
+	padding-right: 0px;
+	font-size: 95%;
+	text-align: left;
+	}		
+
+.surtitre {  /*'utilisé dans les resultats de la page recherche*/
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-size: 120%;
+    font-weight: bold;
+    font-variant: small-caps;
+	}	
+
+.top {
+	display: none;
+	}	
+
+/*********** .ContentLeft link styles ***********/
+/*liens du bloc notes visités et non visités = meme couleur*/
+
+
+.texte a:link {
+	color: black;
+	text-decoration: none;
+	}
+	
+
+.texte a:visited {
+	color: black;
+	text-decoration: none;
+	}
+	
+/* fix for browsers that don't need the hack */
+html>body .ContentLeft li {
+	border-bottom: none;
+	}
+
+
+
+
+/************** styles appliqués aux documents joints *****************/
+.spip_documents{   /* style général appliqué aux documents joints*/
+	display: none;	
+	}
+
+.spip_doc_titre {  /* style appliqué au titre d'un document joint*/
+    display: none;
+	}
+				
+.spip_doc_descriptif {
+	display: none;
+	}
+.spip_documents_center{
+   display: none;
+	}
+
+.spip_documents_left{
+  display: none;
+    }
+
+.spip_documents_right{
+    display: none;
+    }
+
+	
+/************** styles appliqués aux tableaux générés par SPIP *****************/	
+	
+table.spip { /* comportement general du tableau (dimenions, marges, position)*/
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px dashed black;
+	border-collapse: separate;  /* 2 propriétés : separate donne de la profondeur aux cellules ; collapse ne donne aucune profondeur*/
+	}
+
+table.spip caption{  /* légende (optionnelle) du tableau*/
+	caption-side: top; /* bottom pas pris en compte par IE */
+	text-align: center;
+	margin-left: auto;                                                       
+	margin-right: auto;
+	padding: 3px;
+	font-weight: bold;
+	font-size : 70%;
+	}
+
+table.spip tr.row_first { /* concerne la première ligne du tableau*/
+	background-color: white;
+	text-align: center;
+	}
+
+table.spip tr.row_odd { /* style d'une ligne*/
+	background-color: white;
+	border-bottom: 1px dashed black;
+	}
+
+table.spip tr.row_even { /* style d'une autre ligne*/
+	background-color: white;
+	border-bottom:1px dashed black;
+	}
+
+table.spip td {  /* concerne les cellules du tableau*/
+	padding: 3px;
+	text-align: left;
+	vertical-align: middle;
+	}	
+	
+/************** styles appliqués aux formulaires*****************/		
+.reponse_formulaire {  /* message quand erreur de mot de passe*/
+    font-weight: bold;
+    color: red;
+    }
+		
+.spip_encadrer {
+	width : 95%;
+	background-color: #FFFFFF;
+	padding: 5px;
+	}	
+
+.forml { 
+	width: 70%; 
+	background-color: #DFDFDF;
+	}
+	
+.spip_bouton { 
+	background-color: #DFDFDF;
+	font-size: 90%;	
+	}
+
+/*
+ * Barre de raccourcis
+ */
+
+a.spip_barre img {
+	border-left: 1px solid #ffffff;
+	border-top: 1px solid #ffffff;
+	border-right: 1px solid #AA9966;
+	border-bottom: 1px solid #AA9966;
+	padding: 3px;
+	background-color: #FFDDAA;
+	}
+	
+a.spip_barre:hover img {
+	border: 1px solid #808080;
+	padding: 3px;
+	background-color: #F8F8F4;
+	}	
+	
+	
+/*********** Styles appliqués au plan ***********/		
+	
+.plan-sous-rubrique {
+	font-size: 100%;
+	clear: left;
+	padding-left: 10px;
+	}
