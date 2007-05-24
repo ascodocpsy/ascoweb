@@ -1,23 +1,23 @@
 <slot name="header" count="{$this->selection->count()}">    
     <if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
-        <h1>Base documentaire - Recherche - Accès administrateur</h1>
+        <div class="titre">Base documentaire - Recherche - Accès administrateur</div>
     </if>
     <elseif test="{User::hasAccess('EditBase')}">     /* Membre du GIP */
-        <h1>Base documentaire - Recherche - Accès membre du GIP</h1>
+        <div class="titre">Base documentaire - Recherche - Accès membre du GIP</div>
     </elseif>
     <else>
-        <h1>Base documentaire - Recherche - Accès public</h1>
+        <div class="titre">Base documentaire - Recherche - Accès public</div>
     </else>
     
     /* Afficher le nombre de réponses obtenues ? */
     
-    <h2>Liste des réponses obtenues</h2>
-    <p>
+    <div class="titre-sous-rubrique">Liste des réponses obtenues</div>
+    <p class="spip">
         Equation : <code>{$this->equation}</code><br />
         Réponses : <code>{$this->selection->count()}</code>
     </p>
 
-    <p><strong>Les documents sont triés par date et par type, les périodiques par ordre alphabétique.</strong></p>
+    <p class="spip"><strong class="spip">Les documents sont triés par date et par type, les périodiques par ordre alphabétique.</strong></p>
 </slot>
 
 /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
@@ -32,9 +32,6 @@
 	</form>
 </else>
 
-<p class="top">
-    <a href="#">Haut de page</a>
-</p>
 <style>
 .transferProduct
 \{

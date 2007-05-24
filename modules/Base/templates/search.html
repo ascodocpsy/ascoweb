@@ -1,12 +1,42 @@
 <if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
-    <h1>Base documentaire - Recherche - Accès administrateur</h1>
+    <div class="titre">Base documentaire - Recherche - Accès administrateur</div>
 </if>
 <elseif test="{User::hasAccess('EditBase')}">     /* Membre du GIP */
-    <h1>Base documentaire - Recherche - Accès membre du GIP</h1>
+    <div class="titre">Base documentaire - Recherche - Accès membre du GIP</div>
 </elseif>
 <else>
-    <h1>Base documentaire - Recherche - Accès public</h1>
+    <div class="titre">Base documentaire - Recherche - Accès public</div>
 </else>
+
+<div class="texte">
+
+<form class="form search" action="/base/search" method="get">
+    Equation xapian : <textbox name="_equation" cols="50" rows="3" /><br />
+    
+    Réponses par page : 
+    <select name="_max">
+        <option selected="selected">10</option>
+        <option>50</option>
+        <option>100</option>
+        <option>500</option>
+    </select>
+
+    Tri : 
+    <select name="_sort" 
+        src="{
+                array
+                (
+                    array('code'=>'-', 'label'=>'docid décroissants'),
+                    array('code'=>'+', 'label'=>'docid croissants'),
+                    array('code'=>'%', 'label'=>'par pertinence'),
+                )
+            }" />
+    <checkbox name="testdm" value="1" />testdm            
+    <br />
+    <submit label="Rechercher" />
+</form>
+
+<hr style="clear: both; margin-top: 10em; margin-bottom: 2em;" />
 
 <form class="form search" action="/base/search" method="get">
 
@@ -132,12 +162,14 @@
     </div>
     
     <div class="buttons">
-        <submit label="Rechercher" />
+        <submit label="Rechercher" class="spip_bouton" />
     </div>
 </form>
 
 <form class="form reset">
     <div class="buttons">
-        <submit label="Effacer tout" class="reset" />
+        <submit label="Effacer tout" class="reset spip_bouton" />
     </div>
 </form>
+
+</div>
