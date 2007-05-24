@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<title>$title</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
+	$CSS
+	$JS
+</head>
+
+<body>
+<div style="line-height: 0em">&#160;</div><!-- Bug Mozilla http://bugzilla.mozilla.org/show_bug.cgi?id=200510 -->
+
+<!-- Ancre du retour en haut de page-->
+<div id="top"></div>
+
+<div id="principal">
+	<!-- En tete : logo en flash et logo de la rubrique-->
+	<div id="header"> 	  
+		<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+			<tr> <td align="center"> <a href="sommaire.php3"> 
+			<img src="/styles/ascodocpsy/recherche.gif" />
+			 </a> </td> </tr>
+		</table>		
+	</div> <!-- ferme div id=header -->
+
+	<!-- Menu de navigation -->
+	<slot name="menu" action="menu.html" />
+
+	<div class="ContentLeft">
+		<p>Menu de gauche</p>
+	</div>
+
+	<div id="contentRight">
+	
+		$contents
+			
+		<!-- retour en haut de page -->
+		<div class="top"> <a href="#"> haut de page </a> </div>
+	
+	</div> <!-- fermeture de div id=contentright -->
+
+	<!-- Pied de page -->
+	<!--<INCLURE (pied.php3)>-->
+	<div id="pied" class="texte">
+		<p>Pied de page</p>
+	</div>
+
+</div> <!-- Ferme div id="principal" -->
+
+</body>
+</html>
