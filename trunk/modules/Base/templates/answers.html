@@ -9,8 +9,6 @@
 
 <hr />
 
-<div class="texte">
-
 <opt>
 	<div>
 	    {$this->getResNavigation(10, '&lt;', '&gt;', '&lt;&lt;', '&gt;&gt;')}
@@ -101,7 +99,7 @@
                     <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique">$Rev<opt> du $DatePub</opt></row></opt>
                 </case>
                 <default>
-                    <p>La notice numéro $REF possède un type de document qui n'est pas géré : '$Type', impossible de l'afficher.</p>
+                    <p class="spip">La notice numéro $REF possède un type de document qui n'est pas géré : '$Type', impossible de l'afficher.</p>
                 </default>
                 
             </switch>
@@ -126,5 +124,3 @@
 	    {$this->getResNavigation(10, '&lt;', '&gt;', '&lt;&lt;', '&gt;&gt;')}
 	</div>
 </opt>
-
-</div>
