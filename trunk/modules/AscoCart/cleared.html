@@ -1,9 +1,13 @@
 <if test="{is_null($category)}">
-    <h1>Votre panier a été vidé</h1>
-	<p>Pour alimenter votre panier, lancez une recherche puis sélectionnez les réponses qui vous intéressent.</p>
+    <div class="titre">Votre panier a été vidé</div>
+    <div class="texte">
+		<p class="spip">Pour alimenter votre panier, lancez une recherche puis sélectionnez les réponses qui vous intéressent.</p>
+	</div>
 </if>
 <else>
-	<h1>Panier</h1>
-	<p>La catégorie $category a été supprimée du panier.</p>
-	<p><a href="/ascocart/show" title="Voir votre sélection">Voir votre sélection...</a></p>
+	<div class="titre">Panier</div>
+    <div class="texte">	
+		<p class="spip">La catégorie $category a été supprimée du panier.</p>
+		<p class="spip"><a href="/ascocart/show" title="Voir votre sélection">Voir votre sélection...</a></p>
+	</div>
 </else>
