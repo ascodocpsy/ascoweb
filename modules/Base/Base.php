@@ -188,10 +188,10 @@ class Base extends DatabaseModule
                 return $value;
     
             case 'Aut':
-                if (! $t=$this->selection[$name]) return '';
-                
-//                $t=explode(trim(self::SEPARATOR),$h);
-                foreach ((array)$t as $key=>$h)
+            	if ($this->selection[$name]=='' ) return '';
+                if (!$t=(array)$this->selection[$name]) return '';
+
+                foreach ($t as $key=>$h)
                 {
                     $h=trim($h);
                     if ($aut=$this->author($h))
@@ -234,10 +234,10 @@ class Base extends DatabaseModule
             case 'Nomp':
             case 'CanDes':
             case 'Theme':
-                if (! $t=$this->selection[$name]) return '';
-    
-//                $t=explode(trim(self::SEPARATOR), $h);
-                foreach ((array)$t as $key=>$h)
+                if ($this->selection[$name]=='' ) return '';
+                if (! $t=(array)$this->selection[$name]) return '';
+                
+                foreach ($t as $key=>$h)
                 {
                     $h=trim($h);
                     $lien='search?motscles='. urlencode($h);
@@ -264,10 +264,10 @@ class Base extends DatabaseModule
 
             case 'Loc':
             case 'ProdFich':
-                if (! $t=$this->selection[$name]) return '';
-                
-//                $t=explode(trim(self::SEPARATOR),$h);
-                foreach ((array)$t as $key=>$h)
+            	if ($this->selection[$name]=='' ) return '';
+                if (! $t=(array)$this->selection[$name]) return '';
+
+                foreach ($t as $key=>$h)
                 {
                     $h=trim($h);
                     
@@ -311,10 +311,10 @@ class Base extends DatabaseModule
                 }
 
             case 'EtatCol':
-                if (! $t=$this->selection[$name]) return '';
+            	if ($this->selection[$name]=='' ) return '';
+                if (! $t=(array)$this->selection[$name]) return '';
                 
-//                $t=explode(trim(self::SEPARATOR),$t);
-                foreach ((array)$t as $key=>$h)
+                foreach ($t as $key=>$h)
                 {
                     $h=trim($h);
                     
