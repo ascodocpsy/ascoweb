@@ -1,18 +1,20 @@
 <!-- Template appelé au retour de l'action replace de DatabaseModule -->
 
-<if test="{$count === false}">
-    Une erreur est survenue : veuillez vérifiez la syntaxe de votre expression régulière.
-</if>
-<elseif test="{$count === 0}">
-    L'opération s'est déroulée avec succès mais rien n'a été remplacé (aucune occurence rencontrée).
-</elseif>
-<elseif test="{$count === 1}">
-    L'opération s'est déroulée avec succès : une occurence a été remplacée.
-</elseif>
-<else>
-    L'opération s'est déroulée avec succès : $count occurences ont été remplacées.
-</else>
-<br /><br />
-
-<a href="/base/search?_equation={urlencode($this->equation)}">Retour à la liste des documents</a><br />
-<a href="/base/searchform">Formulaire de recherche</a>
+<div class="titre">Remplacement en série</div>
+<div class="texte">
+	<if test="{$count === false}">
+		<p class="spip">Une erreur est survenue : veuillez vérifier la syntaxe de votre expression régulière.</p>
+	</if>
+	<elseif test="{$count === 0}">
+		<p class="spip">L'opération s'est déroulée avec succès mais rien n'a été remplacé (aucune occurence rencontrée).</p>
+	</elseif>
+	<elseif test="{$count === 1}">
+		<p class="spip">L'opération s'est déroulée avec succès : une occurence a été remplacée.</p>
+	</elseif>
+	<else>
+		<p class="spip">L'opération s'est déroulée avec succès : $count occurences ont été remplacées.</p>
+	</else>
+	
+	<p class="spip"><a href="/base/search?_equation={urlencode($this->equation)}">Retour à la liste des documents</a></p>
+	<p class="spip"><a href="/base/searchform">Formulaire de recherche</a></p>
+</div>
