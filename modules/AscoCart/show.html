@@ -1,22 +1,26 @@
 <if test="{count($this->cart)==0}">
-    <h1>Votre panier est vide</h1>
-	<p>Pour alimenter votre panier, lancez une recherche puis sélectionnez les réponses qui vous intéressent.</p>
+    <div class="titre">Votre panier est vide</div>
+    <div class="texte">
+		<p class="spip">Pour alimenter votre panier, lancez une recherche puis sélectionnez les réponses qui vous intéressent.</p>
+	</div>
 </if>
 <else>
-	<h1>Contenu de votre panier</h1>
+	<div class="titre">Contenu de votre panier</div>
 	
-	<if test="{is_null($category)}">
-		<ul>
-			<loop on="{$this->cart}" as="$category,$item">
-			<li><a href="/ascocart/show?category=$category">$category</a> : {count($item)} notice(s) - <a href="/ascocart/clear?category=$category">Supprimer cette catégorie</a></li>
-			</loop>
-		</ul>
-		<p><a href="/ascocart/clear">Vider le panier...</a></p>
-	</if>
-	<else>
-		<slot name="cart" action="/base/showcaddie" category="$category" _equation="{'REF='.implode(' or REF=', array_keys($this->cart[$category]))}" />
-	</else>
-	/*<slot name="cart" action="/base/show" REF="{array_keys($this->cart)}" />*/
-	
-	/*<slot name="cart" action="/base/showcaddie" cart="$this" />*/
+	<div class="texte">
+		<if test="{is_null($category)}">
+			<ul>
+				<loop on="{$this->cart}" as="$category,$item">
+					<li><a href="/ascocart/show?category=$category">$category</a> : {count($item)} notice(s) - <a href="/ascocart/clear?category=$category">Supprimer cette catégorie</a></li>
+				</loop>
+			</ul>
+			<p class="spip"><a href="/ascocart/clear">Vider le panier...</a></p>
+		</if>
+		<else>
+			<slot name="cart" action="/base/showcaddie" category="$category" _equation="{'REF='.implode(' or REF=', array_keys($this->cart[$category]))}" />
+		</else>
+		/*<slot name="cart" action="/base/show" REF="{array_keys($this->cart)}" />*/
+		
+		/*<slot name="cart" action="/base/showcaddie" cart="$this" />*/
+	</div>
 </else>

@@ -3,15 +3,16 @@
 # AscoCart est un pseudo module qui hérite de CartModule
 module: CartModule
 
-# Nom du panier -> Intérêt ?
-#name: panier
+CSS: [formulaire.css]
 
-add:
-  template: added.html
+#add:
+#  template: 
 
-#remove:
+remove:
+  template: removed.html
 
-#clear:
+clear:
+  template: cleared.html
 
 show:
   template: show.html
