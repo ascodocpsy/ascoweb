@@ -20,17 +20,19 @@
     <p class="spip"><strong class="spip">Les documents sont triés par date et par type, les périodiques par ordre alphabétique.</strong></p>
 </slot>
 
-/* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
-<if test="{!Config::get('incart',false)}">
-    <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/add" method="post" id="answers">
-    	<slot name="notice" action="templates/answers.html" />
-	</form>
-</if>
-<else>
-	<form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/remove" method="post" id="answers">
-    	<slot name="notice" action="templates/answers.html" />
-	</form>
-</else>
+<div class="texte">
+	/* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
+	<if test="{!Config::get('incart',false)}">
+	    <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/add" method="post" id="answers">
+	    	<slot name="notice" action="templates/answers.html" />
+		</form>
+	</if>
+	<else>
+		<form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/remove" method="post" id="answers">
+	    	<slot name="notice" action="templates/answers.html" />
+		</form>
+	</else>
+</div>
 
 <style>
 .transferProduct
