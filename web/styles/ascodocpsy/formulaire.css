@@ -1,4 +1,11 @@
 /* Feuille de style ASCODOCPSY pour les formulaires */
+
+li
+{
+	list-style-image: url('puce.gif');
+}
+
+
 /* ========================================================================== */
 /*                              FORMULAIRES                                   */
 /* ========================================================================== */
@@ -73,6 +80,7 @@ form.search div
 	clear: both;
 }
 
+/* Zone de texte */
 form.search div input.text
 {
 	width: 25em;
@@ -80,6 +88,7 @@ form.search div input.text
 	padding: 0 0.2em;
 }
 
+/* Case à cocher, liste déroulante */
 form.search div.checklist,
 form.search div.select
 {
@@ -87,6 +96,7 @@ form.search div.select
 	clear: right;
 }
 
+/* Liste déroulante 'Autre' pour le choix d'une date */
 form.search div.date
 {
 	margin-left: 4em;
@@ -99,147 +109,122 @@ form.search div.date label.select
 }
 
 /* ========================================================================== */
-/*                        AFFICHAGE DES REPONSES                              */
+/*                        FORMULAIRE DE MODIFICATION                          */
 /* ========================================================================== */
 
-/* Libellé du champ */
-li.record label.field, 
-li.record label.text, 
-li.record label.checklist, 
-li.record label.textarea
+form.load fieldset
+{
+	border: 1px solid #663366;
+	background-color: #E9E4F1;
+	margin: 0.5em;
+}
+
+form.load fieldset legend
 {
 	font-weight: bold;
-    width: 4em;
+	/*color: #663366;*/
+	color: #FFF;
+	padding: 0.05em 0.5em 0.1em 0.5em;
+	background-color: #663399;
+}
+
+/* DEBUT patch pour IE */
+/* lorsqu'on applique une couleur de fond à un fieldset, IE fait déborder la couleur au dessus du bord haut.
+pour corriger ça, on décale la légende vers le bas */ 
+
+form.load fieldset
+{
+    position: relative;
+    margin-top: 2em;
+}
+html>body form.load fieldset
+{    
+    margin-top: 1em;
+}
+form.load legend
+{
+    position: relative;
+    top: -0.6em;
+} 
+/* FIN patch pour IE */
+
+form.load div
+{
+    clear: left;
+	margin-bottom: 1px;
+}
+
+form.load label.text,
+form.load label.textarea
+{
+/*	font-weight: bold;*/
+    width: 8em;
 	float: left;
-	text-align: right;
+	text-align: left;
 	padding-right: 1em;
 }
 
-/* Liens vers "voir notice", "modifier notice", "localiser périodique" */
-a.fullrecord
+form.load input.text,
+form.load textarea
 {
-    float: right;
-    padding-left: 32px;
-    padding-top: 32px;
-/*    background: url('voir.png') no-repeat center center;*/
-    border: 1px solid white;
-	height: 0;
+   	border: 1px solid #a0a0a0;
+    font-size: 1em;
+    font-family: 'courier new', monospace;
+	padding: 0.2em 0.2em 0.2em 0.2em;
 }
 
-li.record:hover
+form.load input.fullwidth,
+form.load textarea.fullwidth
 {
-    background-color:#FFFFE7;
+	width: 98.5%;
 }
 
-li.record:hover a.fullrecord
+form.load fieldset div input.fullwidth,
+form.load fieldset div textarea.fullwidth
 {
-    background: url('voir.png') no-repeat center center;
+	width: 76%;
 }
 
-/* N'est lu que par IE grâce à * html */
-/* http://noyau.pixtyle.net/viewtopic.php?pid=11496 */
+form.load div.checklist,
+form.load div.radiolist
+{
+	width: 100%;
+	padding: 0;
+}
+
+form.load input.text:focus,
+form.load textarea:focus,
+form.load input.text:active,
+form.load textarea:active
+{
+	background-color: #FFEFEF;
+}
+
+form.load fieldset.mandatory legend,
+form.load label.mandatory
+{
+/*	color: #FF0000;*/
+/*    background-image: url('loc.png');*/
+/*    background-image: url('/asco/web/FabWeb/images/famfamfam/sylk/asterisk_orange.png');*/
 /*
-* html a.fullrecord
-{
-	background-image: none; 
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://apache/asco/web/styles/asco/voir.png');
-}
+	    background-image: url('arrow_right.gif');
+    
+    background-repeat: no-repeat;
+    background-position: top left;
+    text-indent: 20px;
 */
-
-a.loadrecord
-{
-	float: right;
-    padding-left: 32px;
-    padding-top: 32px;
-	margin-right: 1em;
-/*    background: url('modifier.png') no-repeat center center;*/
-    border: 1px solid white;
-    height: 0;
+/*    padding-left: 20px;*/
 }
 
-li.record:hover a.loadrecord
+textarea.mandatory,
+input.mandatory
 {
-    background: url('modifier.png') no-repeat center center;
-}
-	
-a.locate
-{
-	padding-left: 10px; /* en théorie : 16px - 1em */
-	background: url('loc.png') no-repeat left center;
-    border: 1px solid white;
+	border: 1px solid red!important;
 }
 
-a.inform
+label.mandatory
 {
-	padding-left: 10px; /* en théorie : 16px - 1em */
-	background: url('inform.png') no-repeat left center;
-    border: 1px solid white;
-}
-
-a.fullrecord:hover, 
-a.loadrecord:hover,
-a.locate:hover,
-a.inform:hover
-{
-    border: 1px solid #ccc;
-    background-color: white;
-}
-
-a.fullrecord span,
-a.loadrecord span,
-a.locate span,
-a.inform span
-{
-	display: none;
-}
-
-/* Panier */
-a.addtocart
-{
-	float: left;
-	padding-left: 25px;
-    padding-top: 25px;
-	background: url('cart_add.png') no-repeat center center;
-    border: 1px solid white;
-	height: 0;
-}
-
-a.removefromcart
-{
-	float: left;
-	padding-left: 25px;
-    padding-top: 25px;
-    background: url('cart_delete.png') no-repeat center center;
-    border: 1px solid white;
-	height: 0;
-}
-
-a.addtocart span,
-a.removefromcart span
-{
-	display: none;
-}
-
-input.addall
-{
-	cursor: pointer;
-	padding-left: 25px;
-	width: 16px;
-	height: 16px;
-	font-size: 0px;
-	background: url('cart_put.png') no-repeat center center;
-	border: 0;
-}
-
-input.removeall
-{
-	cursor: pointer;
-	padding-left: 25px;
-	width: 16px;
-	height: 16px;
-	font-size: 0px;
-	background: url('cart_remove.png') no-repeat center center;
-	border: 0;
+	font-weight: bold;
 }
 
 /* ========================================================================== */
@@ -275,23 +260,160 @@ ul.fulllist div.row
     clear: left;
 }
 
-/* Case à cocher - A supprimer */
-li.record input.check
-{
-	float: left;
-	width: 2em;
-	margin-left: 5em;
-/*	margin-top: 1.3em;*/
-}
-
-
 /* Contenu du champ */
 div.field
 {
-    margin-left: 6em;
+    margin-left: 8em;
 }
 
-div.checklist, div.radiolist
+/* Libellé du champ */
+li.record label.field, 
+li.record label.text, 
+li.record label.checklist, 
+li.record label.textarea
 {
-/*	padding-left: 15em;*/
+	font-weight: bold;
+    width: 7em;
+	float: left;
+	text-align: right;
+	padding-right: 0em;
+}
+
+li.record:hover
+{
+    background-color:#FFFFE7;
+}
+
+/* Lien vers "Voir la notice" */
+a.fullrecord
+{
+    float: right;
+    padding-left: 32px;
+    padding-top: 32px;
+/*    background: url('voir.png') no-repeat center center;*/
+    border: 1px solid white;
+	height: 0;
+}
+li.record:hover a.fullrecord
+{
+    background: url('voir.png') no-repeat center center;
+}
+/* N'est lu que par IE grâce à * html */
+/* http://noyau.pixtyle.net/viewtopic.php?pid=11496 */
+/*
+* html a.fullrecord
+{
+	background-image: none; 
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://apache/asco/web/styles/asco/voir.png');
+}
+*/
+
+/* Lien vers "Modifier la notice" */
+a.loadrecord
+{
+	float: right;
+    padding-left: 32px;
+    padding-top: 32px;
+	margin-right: 1em;
+/*    background: url('modifier.png') no-repeat center center;*/
+    border: 1px solid white;
+    height: 0;
+}
+li.record:hover a.loadrecord
+{
+    background: url('modifier.png') no-repeat center center;
+}
+
+/* Lien vers "Localiser le périodique" */
+a.locate
+{
+/*	padding-left: 10px;*/ /* en théorie : 16px - 1em */
+	padding-left: 12px;
+	padding-top: 1px;
+	background: url('loc.png') no-repeat left center;
+    border: 1px solid white;
+}
+
+/* Lien vers "Présentation du périodique" */
+a.inform
+{
+	/*padding-left: 10px;*/ /* en théorie : 16px - 1em */
+	padding-left: 12px;
+	padding-top: 1px;
+	background: url('inform.png') no-repeat left center;
+    border: 1px solid white;
+}
+
+/* Texte des liens caché - remplacé par des images */
+a.fullrecord span,
+a.loadrecord span,
+a.locate span,
+a.inform span
+{
+	display: none;
+}
+
+a.fullrecord:hover, 
+a.loadrecord:hover,
+a.locate:hover,
+a.inform:hover
+{
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+/* ========================================================================== */
+/*                              PANIER                                        */
+/* ========================================================================== */
+/* Lien "Ajouter au panier" */
+a.addtocart
+{
+	float: left;
+	padding-left: 25px;
+    padding-top: 25px;
+	background: url('cart_add.png') no-repeat center center;
+    border: 1px solid white;
+	height: 0;
+}
+
+/* Lien "Supprimer du panier" */
+a.removefromcart
+{
+	float: left;
+	padding-left: 25px;
+    padding-top: 25px;
+    background: url('cart_delete.png') no-repeat center center;
+    border: 1px solid white;
+	height: 0;
+}
+
+/* Texte des liens caché - remplacé par des images */
+a.addtocart span,
+a.removefromcart span
+{
+	display: none;
+}
+
+/* Bouton "Ajouter tout au panier" */
+input.addall
+{
+	cursor: pointer;
+	padding-left: 25px;
+	width: 16px;
+	height: 16px;
+	font-size: 0px;
+	background: url('cart_put.png') no-repeat center center;
+	border: 0;
+}
+
+/* Bouton "Supprimer tout du panier" */
+input.removeall
+{
+	cursor: pointer;
+	padding-left: 25px;
+	width: 16px;
+	height: 16px;
+	font-size: 0px;
+	background: url('cart_remove.png') no-repeat center center;
+	border: 0;
 }
