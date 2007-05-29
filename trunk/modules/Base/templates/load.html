@@ -168,29 +168,35 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </else>
     </else>
 </template>
-
+/* Fin des template match */
 
 
 <div class="titre">Base documentaire - Ajout/Modification d'une notice</div>
 
-<opt><div class="titre-sous-rubrique">Document de type $Type</div></opt>
+<if test="{!Config::get('allfields',false)}">
+	<opt><div class="titre-sous-rubrique">Document de type $Type</div></opt>
+</if>
 
 <div class="texte">
 
-<if test="{User::hasAccess('AdminBase')}">
-    <if test="{$REF > 0}">
-        <a href="/base/loadfull?REF=$REF" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
-    </if>
-    <else>
-        <a href="/base/loadfull" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
-    </else>
+<if test="{!Config::get('allfields',false)}">
+	<if test="{User::hasAccess('AdminBase')}">
+	    <if test="{$REF > 0}">
+	        <a href="/base/loadfull?REF=$REF" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
+	    </if>
+	    <else>
+	        <a href="/base/loadfull" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
+	    </else>
+	</if>
 </if>
 
-
 <form method="post" action="/base/save" class="form load">
+
+/* Modification d'une notice en fonction du type de document */
+<if test="{!Config::get('allfields',false)}">
+
     <div><input type="hidden" name="Type" value="$Type"/></div>
-    
-    
+       
     /* Contenu spécifique à chaque type de document */
     <switch test="$Type">
     
@@ -340,6 +346,70 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </default>
       
     </switch>    
+</if>
+
+/* Modification d'une notice avec tous les champs */
+<else>
+
+	<fieldset label="Type de document">
+        <fill values="$Type"><radiolist name="Type" src="new TextTable($this->path.'../../tables/type.txt')" /></fill>
+	</fieldset>
+    <fieldset label="Nature du texte officiel">
+        <fill values="$NatText"><radiolist name="NatText" src="new TextTable($this->path.'../../tables/nattext.txt')" /></fill>
+    </fieldset>
+    <fieldset label="Auteurs">
+        <text name="Aut" value="{implode('/',(array)$Aut)}" rows="1" class="fullwidth autoheight" />
+    </fieldset>
+    <fieldset label="Titres du document">
+        <div><text name="Tit" rows="1" label="Titre du document " class="fullwidth autoheight" /></div>
+        <div><text name="Annexe" rows="1" label="Titre de l'annexe" class="fullwidth autoheight" /></div>
+    	<div><text name="NumTexOf" label="Numéro du texte officiel" class="fullwidth" /></div>
+    </fieldset>
+    <fieldset label="Spécialité du diplôme">
+        <text name="DipSpe" rows="1" class="fullwidth autoheight" />
+    </fieldset>
+    <Congres />
+    <fieldset label="Dates">
+    	<div><text name="Date" label="Année du document ou de soutenance" class="fullwidth" /></div>
+        <div><text name="DateText" label="Date du texte officiel" class="fullwidth" /></div>
+        <div><text name="DatePub" label="Date de publication du texte officiel" class="fullwidth" /></div>
+        <div><text name="DateVali" label="Date de fin de validité du texte officiel" class="fullwidth" /></div>
+    </fieldset>
+    <fieldset label="Mentions bibliographiques">
+    	<div><text name="Page" label="Nombre de pages" class="fullwidth" /></div>
+        <div><text name="PdPf" label="Page de début et page de fin" class="fullwidth" /></div>
+        <div><text name="Notes" label="Notes bibliographiques" rows="1" class="fullwidth autoheight" /></div>
+    </fieldset>
+    <fieldset label="Edition">
+        <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur(s)" class="fullwidth autoheight" /></div>
+        <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition ou de soutenance" class="fullwidth autoheight" /></div>
+        <ColReed />
+    </fieldset>
+    <fieldset label="ISBN / ISSN">
+    	<text name="IsbnIssn" class="fullwidth" />
+    </fieldset>
+    <fieldset label="Périodique">
+	    <div><text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight" /></div>
+        <div><text name="Vol" label="Volume" class="fullwidth" /></div>
+        <div><text name="Num" label="Numéro" class="fullwidth" /></div>
+		<div><text name="ViePerio" label="Date de vie et de mort" class="fullwidth" /></div>
+		<div><text name="EtatCol" label="Etat de la collection" value="{implode('/',(array)$EtatCol)}" rows="1" class="fullwidth autoheight" /></div>
+    </fieldset>
+    <fieldset label="Résumé">
+        <text name="Resu" rows="1" class="fullwidth autoheight" />
+    </fieldset>
+    <fieldset label="Indexation">
+        <div><text name="Theme" rows="1" label="Thème" class="fullwidth autoheight" /></div>
+        <div><text name="MotCle" value="{implode('/',(array)$MotCle)}" rows="1" label="Descripteurs" class="fullwidth autoheight" /></div>
+        <div><text name="Nomp" value="{implode('/',(array)$Nomp)}" rows="1" label="Noms propres" class="fullwidth autoheight" /></div>
+        <div><text name="CanDes" value="{implode('/',(array)$CanDes)}" rows="1" label="Candidats descripteurs" class="fullwidth autoheight" /></div>
+    </fieldset>
+    <Lien />
+    <Loc mandatory="{false}" />
+    <ProdFich mandatory="{false}" />
+	<script type="text/javascript">ctrlInitialize("Controls");</script>
+
+</else>
 
     <fieldset>
         <opt><legend>Gestion de la notice</legend></opt> 
@@ -368,12 +438,14 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 </form>
 
 <opt>
-    <if test="{User::hasAccess('AdminBase')}">
-        <form method="post" class="reset form" action="/base/delete">
-            <div><input type="hidden" name="REF" value="$REF" /></div>
-            <div class="buttons"><submit label="Supprimer" class="reset spip_bouton" /></div>
-        </form>
-    </if>
+	<if test="{$REF!=0}">
+	    <if test="{User::hasAccess('AdminBase')}">
+	        <form method="post" class="reset form" action="/base/delete">
+	            <div><input type="hidden" name="REF" value="$REF" /></div>
+	            <div class="buttons"><submit label="Supprimer" class="reset spip_bouton" /></div>
+	        </form>
+	    </if>
+	</if>
 </opt>
 
 </div>
