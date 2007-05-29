@@ -32,6 +32,13 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 </template>
 
 
+/* Raccourci pour les champs Collection et Mention d'édition */
+<template match="//ColReed">
+	<div><text name="Col" rows="1" label="Collection" class="fullwidth autoheight" /></div>
+	<div><text name="Reed" rows="1" label="Mention d'édition" class="fullwidth autoheight" /></div>
+</template>
+
+
 /* Raccourci pour la section Périodique
 @revMandatory indique si le champ $Rev est obligatoire
 @volExists indique si on créé une div pour le champ $Vol
@@ -58,7 +65,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
         <text name="Resu" rows="1" class="fullwidth autoheight" />
     </fieldset>
     <fieldset label="Indexation">
-        <div><text name="Theme" value="{implode('/',(array)$Theme)}" rows="1" label="Thème *" class="fullwidth autoheight mandatory" /></div>
+        <div><text name="Theme" rows="1" label="Thème *" class="fullwidth autoheight mandatory" /></div>
         <div><text name="MotCle" value="{implode('/',(array)$MotCle)}" rows="1" label="Descripteurs *" class="fullwidth autoheight mandatory" /></div>
         <div><text name="Nomp" value="{implode('/',(array)$Nomp)}" rows="1" label="Noms propres" class="fullwidth autoheight" /></div>
         <div><text name="CanDes" value="{implode('/',(array)$CanDes)}" rows="1" label="Candidats descripteurs" class="fullwidth autoheight" /></div>
@@ -83,20 +90,39 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 </template>
 
 
-/* Raccourci pour le champ Localisation */
-<template match="//Loc">
-	<fieldset label="Localisation du document *">
-	    <text name="Loc" rows="1" class="fullwidth autoheight mandatory" />
-	</fieldset>
+/* Raccourci pour le champ Localisation
+@mandatory indique si les attributs sont obligatoires ou non
+*/
+<template match="//Loc" mandatory="{true}">
+	<if test="$mandatory">
+		<fieldset label="Localisation du document *">
+		    <text name="Loc" value="{implode('/',(array)$Loc)}" rows="1" class="fullwidth autoheight mandatory" />
+		</fieldset>
+	</if>
+	<else>
+		<fieldset label="Localisation du document">
+		    <text name="Loc" value="{implode('/',(array)$Loc)}" rows="1" class="fullwidth autoheight" />
+		</fieldset>	
+	</else>
 </template>
 
 
-/* Raccourci pour le champ Producteur de la fiche */
-<template match="//ProdFich">
-    <fieldset label="Producteur de la fiche *">
-        <text name="ProdFich" value="{implode('/',(array)$ProdFich)}" class="fullwidth mandatory" />
-    </fieldset>
+/* Raccourci pour le champ Producteur de la fiche
+@mandatory indique si les attributs sont obligatoires ou non
+*/
+<template match="//ProdFich" mandatory="{true}">
+	<if test="$mandatory">
+	    <fieldset label="Producteur de la fiche *">
+	        <text name="ProdFich" value="{implode('/',(array)$ProdFich)}" class="fullwidth mandatory" />
+	    </fieldset>
+	</if>
+	<else>
+	    <fieldset label="Producteur de la fiche">
+	        <text name="ProdFich" value="{implode('/',(array)$ProdFich)}" class="fullwidth" />
+	    </fieldset>
+	</else>
 </template>
+
 
 /* Raccourci pour la section Congrès
 @mandatory indique si les attributs sont obligatoires ou non
@@ -119,7 +145,6 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 </template>
 
 
-
 /* Equivalent au <textbox /> mais si l'attribut value n'est pas précisé, 
 alors il est défini à partir de l'attribut name.
 On précise un attribut value notamment pour les champs 'articles', pour
@@ -127,7 +152,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 */
 <template match="//text" name="" label="" rows="{false}" class="" value="">
     <if test="$rows">
-		<if test="$value!=''">
+		<if test="$value">
 	        <textbox name="$name" value="$value" label="$label" rows="$rows" class="$class" />
         </if>
         <else>
@@ -135,7 +160,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </else>
     </if>
     <else>
-		<if test="$value!=''">
+		<if test="$value">
 	        <textbox name="$name" value="$value" label="$label" class="$class" />
         </if>
         <else>
@@ -145,9 +170,10 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 </template>
 
 
+
 <div class="titre">Base documentaire - Ajout/Modification d'une notice</div>
 
-<opt><div class="titre-sous-rubrique">Document de type $TYPE</div></opt>
+<opt><div class="titre-sous-rubrique">Document de type $Type</div></opt>
 
 <div class="texte">
 
@@ -187,10 +213,9 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 			<Date />
             <MentionsBib />
             <fieldset label="Edition">
-                <div><text name="Edit" rows="1" label="Editeur(s) *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Lieu" rows="1" label="Lieu d'édition *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Col" rows="1" label="Collection" class="fullwidth autoheight" /></div>
-                <div><text name="Reed" rows="1" label="Mention d'édition" class="fullwidth autoheight" /></div>
+                <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur(s) *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition *" class="fullwidth autoheight mandatory" /></div>
+                <ColReed />
             </fieldset>
             <fieldset label="ISBN / ISSN *">
                 <text name="IsbnIssn" class="fullwidth mandatory" />
@@ -208,10 +233,9 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 			<Date />
             <MentionsBib />
             <fieldset label="Edition">
-                <div><text name="Edit" rows="1" label="Editeur *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Lieu" rows="1" label="Lieu d'édition *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Col" rows="1" label="Collection" class="fullwidth autoheight" /></div>
-                <div><text name="Reed" rows="1" label="Mention d'édition" class="fullwidth autoheight" /></div>
+                <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition *" class="fullwidth autoheight mandatory" /></div>
+				<ColReed />
             </fieldset>
             <fieldset label="ISBN / ISSN *">
                 <text name="IsbnIssn" class="fullwidth mandatory" />
@@ -229,8 +253,8 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
                 <text name="DipSpe" rows="1" class="fullwidth autoheight mandatory" />
             </fieldset>
             <fieldset label="Edition">
-                <div><text name="Edit" rows="1" label="Institution morale de rattachement *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Lieu" rows="1" label="Lieu d'édition ou de soutenance *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Institution morale de rattachement *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition ou de soutenance *" class="fullwidth autoheight mandatory" /></div>
             </fieldset>
             <MentionsBib />
             <fieldset label="Année de soutenance *">
@@ -245,13 +269,13 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         
         <case test="Périodique">
             <fieldset label="Titre du périodique *">
-                <text name="Rev" rows="1" clas="fullwidth autoheight mandatory" />
+                <text name="Rev" rows="1" class="fullwidth autoheight mandatory" />
             </fieldset>
             <fieldset label="Date de vie et de mort *">
                 <text name="ViePerio" class="fullwidth mandatory" />
             </fieldset>
             <fieldset label="Etat de la collection *">
-                <text name="EtatCol" rows="1" class="fullwidth autoheight mandatory" />
+                <text name="EtatCol" value="{implode('/',(array)$EtatCol)}" rows="1" class="fullwidth autoheight mandatory" />
             </fieldset>
             <fieldset label="ISSN *">
                 <text name="IsbnIssn" class="fullwidth mandatory" />
@@ -269,10 +293,9 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <Date />
             <fieldset label="Nombre de pages"><text name="Page" class="fullwidth mandatory" /></fieldset>
             <fieldset label="Edition">
-                <div><text name="Edit" rows="1" label="Editeur" class="fullwidth autoheight" /></div>
-                <div><text name="Lieu" rows="1" label="Lieu d'édition" class="fullwidth autoheight" /></div>
-                <div><text name="Col" rows="1" label="Collection" class="fullwidth autoheight" /></div>
-                <div><text name="Reed" rows="1" label="Mention d'édition" class="fullwidth autoheight" /></div>
+                <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur" class="fullwidth autoheight" /></div>
+                <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition" class="fullwidth autoheight" /></div>
+				<ColReed />
             </fieldset>
             <Periodique revMandatory="{false}" />
             <fieldset label="ISBN / ISSN">
@@ -317,7 +340,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </default>
       
     </switch>    
-    
+
     <fieldset>
         <opt><legend>Gestion de la notice</legend></opt> 
             <div>
@@ -347,7 +370,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 <opt>
     <if test="{User::hasAccess('AdminBase')}">
         <form method="post" class="reset form" action="/base/delete">
-            <div><input type="hidden" name="REF" /></div>
+            <div><input type="hidden" name="REF" value="$REF" /></div>
             <div class="buttons"><submit label="Supprimer" class="reset spip_bouton" /></div>
         </form>
     </if>
