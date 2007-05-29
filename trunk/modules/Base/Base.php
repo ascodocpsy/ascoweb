@@ -196,7 +196,7 @@ class Base extends DatabaseModule
                     $h=trim($h);
                     if ($aut=$this->author($h))
                     {
-                        $lien='search?aut='. urlencode('"'.$aut.'*"');
+                        $lien='search?aut='. urlencode('"'.$aut.'"');
                         $h=$this->link($h, $lien, 'Bibliographie de '.$h);
                     }
                     $t[$key]=$h;
@@ -377,6 +377,20 @@ class Base extends DatabaseModule
     {                    
         switch ($name)
         {
+			// Champs articles : on transforme le contenu en tableau
+        	case 'Aut':
+        	case 'MotCle':
+        	case 'Nomp':        	
+        	case 'CanDes':
+        	case 'Edit':
+        	case 'Lieu':
+        	case 'EtatCol':
+        	case 'Loc':
+        	case 'ProdFich':
+        		if ($value!='')
+        			$value=array_map("trim",explode(trim(self::SEPARATOR),$value));
+        		break;
+
             case 'FinSaisie':
                 $value=is_null($value) ? 0 : 1;
                 break;
