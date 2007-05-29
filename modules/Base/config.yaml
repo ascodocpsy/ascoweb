@@ -11,11 +11,12 @@ CSS: [formulaire.css]
 
 #title: aaaaaa
 
-database: ascoxapian
+database: ascotest
 
 templates:
   autoinclude: 
     templates: templates/include/templates.html
+#    loadtemplates: templates/include/loadtemplates.html
 
 # Url de base d'un article sous SPIP
 urlarticle: 'http://www.ascodocpsy.org/article.php3?id_article='
@@ -64,9 +65,11 @@ loadfull:
     JS: [autosize.js, controls.js, load.js]
     template: templates/load.html
     callback: getDates
+    allfields: true
     
 new:
     access: AdminBase, EditBase
+    JS: [autosize.js, controls.js, load.js]
     template: templates/load.html
     callback: emptyString
 
