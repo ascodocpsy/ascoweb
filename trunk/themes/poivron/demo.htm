@@ -21,11 +21,11 @@
             <li><a href="/base/search">Recherche simple</a></li>
             <li><a href="/base/advancedsearch">Recherche guidée</a></li>
             <li><a href="/base/showCart">Votre sélection</a></li>
-            <if test="User::hasAccess('Edit,Admin')">
+            <if test="{User::hasAccess('Edit,Admin')}">
                 <li><a href="/base/nouveau">Nouvelle notice</a></li>
                 <li><a href="/import/">Import de notices</a></li>
             </if>
-            <if test="User::hasAccess('Admin')">
+            <if test="{User::hasAccess('Admin')}">
                 <li><a href="/ConfigModule/">Configuration</a></li>
             </if>
         </ul>
