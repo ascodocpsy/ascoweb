@@ -1429,10 +1429,9 @@ echo '</pre>';
 
         // 1. Ajout des notices       
 
-        // Ouvre la sélection 
-        if (! $this->OpenSelection('', false))
-        	return;
-
+        // Ouvre la base
+        $this->openDatabase(false);
+        
         // Initialise le compteur de fichiers
         $nb=1;
         
@@ -1471,7 +1470,7 @@ echo '</pre>';
 
                 // Ajoute la notice
                 $this->selection->addRecord();
-                
+
                 foreach ($data as $i=>$v)
                 {
                     // Ignore les tabulations situées après le dernier champ
