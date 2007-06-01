@@ -3,7 +3,9 @@
 # nom des feuilles de style CSS à utiliser
 # doit être sous forme de tableau car on peut en avoir plusieurs
 #CSS: [xxx.css]
-CSS: [formulaire.css]
+CSS:
+  - formulaire.css
+  - rpc.css
 
 # fichiers javascript à inclure
 # doit être sous forme de tableau car on peut en avoir plusieurs
@@ -28,7 +30,12 @@ filter:
     default: '(* sauf type=periodique) and Valide=vrai'
 
 searchform:
-    template: templates/search.html
+  template: templates/search.html
+  JS: 
+    - /fabweb/js/rpc.js
+#    - /fabweb/js/lib/jquery.autocomplete-1.0alpha/jquery.bgiframe.min.js
+#    - /fabweb/js/lib/jquery.autocomplete-1.0alpha/dimensions.js
+#    - /fabweb/js/lib/jquery.autocomplete-1.0alpha/jquery.autocomplete.js
 
 search:
     template: templates/list.html
@@ -39,37 +46,37 @@ search:
     sort: "-"      # ordre de tri par défaut
     max: 10        # nombre maximum de réponses par page par défaut
     
-replaceform:
-    access: AdminBase
-    template: templates/replaceform.html
-    
-replace:
-    access: AdminBase
-    template: templates/replaced.html
-#    callback: validData
-
 show:
     template: templates/show.html
     callback: getField
+    errortemplate: templates/error/error_base.html
     noanswertemplate: templates/error/error_base_noanswer.html
 	
 load:
     access: AdminBase,EditBase
-    JS: [autosize.js, controls.js, load.js]
+    JS:
+      - /fabweb/js/rpc.js
+      - autosize.js
+      - controls.js
+      - load.js
     template: templates/load.html
+    errortemplate: templates/error/error_base.html
     callback: getDates
 
 loadfull:
     action: load
     access: AdminBase
-    JS: [autosize.js, controls.js, load.js]
     template: templates/load.html
     callback: getDates
     allfields: true
     
 new:
     access: AdminBase, EditBase
-    JS: [autosize.js, controls.js, load.js]
+    JS:
+      - /fabweb/js/rpc.js
+      - autosize.js
+      - controls.js
+      - load.js
     template: templates/load.html
     callback: emptyString
 
@@ -80,6 +87,16 @@ save:
 delete:
     access: AdminBase
     template: templates/deleted.html
+    errortemplate: templates/error/error_base.html
+
+replaceform:
+    access: AdminBase
+    template: templates/replaceform.html
+    
+replace:
+    access: AdminBase
+    template: templates/replaced.html
+#    callback: validData
 
 locate:
     access: AdminBase,EditBase
@@ -121,5 +138,4 @@ exportCartByType:
   sessions:
     use: true
   errortemplate: templates/error/error.html
-
   
