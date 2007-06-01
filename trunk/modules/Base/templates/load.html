@@ -448,4 +448,104 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 	</if>
 </opt>
 
-</div>
+</div> /* class="texte" */
+
+<script type="text/javascript">
+jQuery(document).ready(
+	function()
+	\{
+        jQuery('textarea[@name=Aut]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=auteurs&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=DipSpe]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=diplomes&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('input[@name=CongrLie]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=villes&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=Edit]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=editeurs&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=Lieu]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=lieux&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=Col]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=collections&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=Rev]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=revues&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=Theme]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=themes&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=MotCle]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=descripteurs&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=Nomp]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=nomspropres&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=CanDes]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=candes&amp;value=%s',
+            \{
+            \}
+        );
+        
+        jQuery('textarea[@name=Loc]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=producteurs&amp;value=%s',
+            \{
+            \}
+        );
+        
+        jQuery('input[@name=ProdFich]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=producteurs&amp;value=%s',
+            \{
+            \}
+        );
+
+	\}
+);
+
+</script>
