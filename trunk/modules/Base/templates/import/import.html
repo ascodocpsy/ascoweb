@@ -1,5 +1,8 @@
-<h1>Import de fichiers dans la base</h1>
-<p>
+<div class="titre">Import de fichiers dans la base</div>
+
+<div class="texte">
+
+<p class="spip">
         Ce module permet d'importer un ou plusieurs fichiers dans la base 
         de données. Etablissez tout d'abord la liste des fichiers à importer en
         transférant chaque fichier de votre poste de travail au serveur. Si vous
@@ -20,7 +23,7 @@
             	<li>
 	                <form method="post" class="form">
 	                    <strong>{$file['name']}</strong> ({$file['size']} octets, envoyé au serveur le {$file['time']} par <strong>{$file['ident']}</strong>)
-	                    <submit label="Supprimer le fichier..." class="delete" />
+	                    <submit label="Supprimer le fichier..." class="delete spip_bouton" />
 	                    <input type="hidden" name="delete" value="$index" />
 	                </form>
                 </li>
@@ -50,7 +53,7 @@
               Recommencez l'opération si vous avez plus de trois fichiers à importer.
         </div>
         <div>
-            <submit name="upload" label="Envoyer au serveur..." style="float: right" />
+            <submit name="upload" label="Envoyer au serveur..." class="spip_bouton" style="float: right" />
             <loop on="{range(1,3)}" as="$num">
                 <upload name="file$num" label="Fichier :" /><br />
             </loop>
@@ -73,7 +76,9 @@
                 <textbox name="delay" size="30" onclick="document.getElementById('after').checked='checked';" onfocus="document.getElementById('after').checked='checked';" />
                 <label>saisir le jour et l'heure sous la forme JJ/MM/AAAA hh:mm:ss</label>
             </div>
-            <submit name="import" label="Lancer l'import..." style="float: right;" />
+            <submit name="import" label="Lancer l'import..." class="spip_bouton" style="float: right;" />
         </div>
     </fieldset>
 </form>
+
+</div>
