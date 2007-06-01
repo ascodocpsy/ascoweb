@@ -26,6 +26,25 @@
 </div>    
 
 <hr />
+<small>
+    suggestions :
+    <ul>
+        <loop 
+            on="array
+                (
+                    'mots-clés'=>'descripteurs',
+                    'thèmes'=>'themes',
+                    'revues'=>'revues',
+                    'éditeurs'=>'editeurs',
+                    'auteurs'=>'auteurs',
+                    'noms propres'=>'nomspropres',
+                    'candes'=>'candes'
+                )"
+            as="$label,$table">
+            <opt min="2"><li>$label : {implode(', ', $this->selection->suggestTerms($table))}</li></opt>
+        </loop>
+    </ul>
+</small>
 
 <ul class="shortlist">
     <loop on="{$this->selection}" as="$rank, $record">
@@ -103,7 +122,13 @@
                 </default>
                 
             </switch>
-            <slot name="xapianinfo" />
+<small>
+    score : {$this->selection->iterator->get_percent()} %,
+    weight: {sprintf('%.2f',$this->selection->iterator->get_weight())}
+    (sur {sprintf('%.2f', $this->selection->mset->get_max_possible())}),
+    match : {implode(', ', $this->selection->enquire->get_matching_terms($this->selection->iterator))}
+</small>
+/*<big><pre>{print_r($this->selection->getTerms(),true)}</pre></big>*/
         </li>
         <hr />
     </loop>
