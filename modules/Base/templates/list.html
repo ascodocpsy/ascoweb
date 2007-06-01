@@ -46,26 +46,23 @@ function init()
 \{
     jQuery('.navbar a').click(function()\{
         jQuery('#answers').load(jQuery(this).attr('href'), init);
+//        jQuery('#answers').load(jQuery(this).attr('href'), function()\{init(); jQuery(this).fadeIn('fast');\});
+        jQuery('ul.shortlist').fadeTo("slow",0.2);
+//        jQuery('#answers').fadeOut(100).load(jQuery(this).attr('href'), function()\{init();jQuery(this).fadeIn(100);\});
         return false;
     \})
 
-    jQuery('li p a').click(function()\{return false;\});
-    
-    jQuery('a.addtocart').click(function()\{
+    // Lien "ajouter cette notice au caddie"
+    jQuery('a.addtocart').click(function()
+    \{
         jQuery.post(jQuery(this).attr('href'));
-        /* .Highlight(200,'#FFFFC0') */
-        jQuery(this.parentNode).TransferTo
-        (
-            \{
-                to:'caddie',
-                className:'transferProduct',
-                duration: 500
-            \}
-        );
+        jQuery(this).hide('normal', function()\{jQuery(this).show()\})
+        ;
         return false;
     \});
 
-    jQuery('a.removefromcart').click(function()\{
+    jQuery('a.removefromcart').click(function()
+    \{
         jQuery.post(jQuery(this).attr('href'));
         jQuery(this.parentNode).css('background-color','#FFFFC0').fadeOut(400, function()\{jQuery(this).remove().next().remove()\});
         return false;
@@ -73,14 +70,7 @@ function init()
 
 	jQuery('#answers').submit(function()\{
 		jQuery(this).ajaxSubmit();
-        jQuery(this.parentNode).TransferTo
-        (
-            \{
-                to:'caddie',
-                className:'transferProduct',
-                duration: 500
-            \}
-        );
+        jQuery('a.addtocart').hide('normal', function()\{jQuery(this).show()\});
 		return false;
 	\});
 
