@@ -1,8 +1,10 @@
 function selectAll(value)
 {
      var f = ElementById("answers");
+     if (f==null) return ;
+
      var nb = f.length ;
-     if (f[0]==null) alert("Désoleé mais votre navigateur ne supporte pas cette fonction...") ;
+
      for (var i=0;i<nb;i++)
      {
 		var e = f[i] ;
@@ -14,7 +16,7 @@ function selectAll(value)
 function ElementById(id)
 {
 	if (document.getElementById(id)) return document.getElementById(id);
-	if (document.all[id]) return document.all[id];
+	if (document.all && document.all[id]) return document.all[id];
 	if (document.layers && document.layers[id]) return document.layers[id];
 	return null;
 }
