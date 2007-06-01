@@ -240,7 +240,7 @@ class Base extends DatabaseModule
                 foreach ($t as $key=>$h)
                 {
                     $h=trim($h);
-                    $lien='search?motscles='. urlencode($h);
+                    $lien='search?motscles='. urlencode('"'.$h.'"');
                     $h=$this->link($h, $lien, 'Notices indexées au descripteur '.$h);
                     $t[$key]=$h;
                 }
@@ -249,7 +249,7 @@ class Base extends DatabaseModule
             case 'Rev':
                 // Lien vers une nouvelle recherche "notices de ce périodique"
                 if (! $h=trim($this->selection[$name])) return '';
-                $lien='search?rev='. urlencode(Utils::convertString($h));
+                $lien='search?rev='. urlencode('"'.Utils::convertString($h).'"');
                 return $this->link($h, $lien, 'Notices du périodique '.$h);
                       
             case 'DateText':
@@ -380,7 +380,7 @@ class Base extends DatabaseModule
 			// Champs articles : on transforme le contenu en tableau
         	case 'Aut':
         	case 'MotCle':
-        	case 'Nomp':        	
+        	case 'Nomp':
         	case 'CanDes':
         	case 'Edit':
         	case 'Lieu':
