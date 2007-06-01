@@ -1427,10 +1427,10 @@ echo '</pre>';
         
         $files=$this->adminFiles=$this->makeList();
 
-        // 1. Ajout des notices
-        
-        // Ouvre la sélection
-        if (! $this->openSelection('*', false))
+        // 1. Ajout des notices       
+
+        // Ouvre la sélection 
+        if (! $this->OpenSelection('', false))
         	return;
 
         // Initialise le compteur de fichiers
@@ -1500,23 +1500,34 @@ echo '</pre>';
                     }
                     */
                     
+                    // Champs articles : on transforme le contenu en tableau
+                    switch ($fieldname)                    
+			        {
+			        	case 'Aut':
+			        	case 'MotCle':
+			        	case 'Nomp':
+			        	case 'CanDes':
+			        	case 'Edit':
+			        	case 'Lieu':
+			        	case 'EtatCol':
+			        	case 'Loc':
+			        	case 'ProdFich':
+			        		if ($v!='')
+			        			$v=array_map("trim",explode(trim(self::SEPARATOR),$v));
+			        		break;
+			        }
+                    
                     $this->selection[$fieldname]=$v;
                 }
                                 
                 // Initialise les champs Creation et LastUpdate
-                // On passe par une variable intermédiaire car le 2e arguement de setfield
-                // doit être passé par référence
                 $d=date('Ymd');
                 $this->selection['Creation']=$d;
                 $this->selection['LastUpdate']=$d;
                 
                 // Initialise les champs FinSaisie et Valide
-                // On passe par des variables intermédiaires car le 2e arguement de setfield
-                // doit être passé par référence
-                $v=true;
-                $this->selection['FinSaisie']=$v;  // La saisie des notices est terminée
-                $v=false;
-                $this->selection['Valide']=$v;      // Les notices importées ne sont pas validées
+                $this->selection['FinSaisie']=true;  // La saisie des notices est terminée
+                $this->selection['Valide']=false;      // Les notices importées ne sont pas validées
                 
                 $this->selection->saveRecord();
 
@@ -1544,7 +1555,7 @@ echo '</pre>';
         // 2. Tri de la base
         TaskManager::progress('Chargement terminé : '. $nbreftotal.' notices intégrées dans la base, démarrage du tri');
 
-        Routing::dispatch('/base/sortdb'); // TODO : workaround       
+ //       Routing::dispatch('/base/sortdb'); // TODO : workaround       
         
 //        $id=TaskManager::addTask('/base/sort', 0, null, 'Tri de la base');
 ////        Runtime::redirect('/taskmanager/taskstatus?id='.$id);
