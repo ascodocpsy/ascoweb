@@ -23,7 +23,7 @@ title: Base documentaire ASCODOCPSY
 # doit être sous forme de tableau car on peut en avoir plusieurs
 JS: 
   - /fabweb/js/lib/jquery/1.1.2/jquery-latest.pack.js
-  - /fabweb/js/lib/interface/1.2/interface.js
+#  - /fabweb/js/lib/interface/1.2/interface.js
   - /fabweb/js/lib/jquery.form/jquery.form.js
 
 # module de sécurité à utiliser pour la protection du site
