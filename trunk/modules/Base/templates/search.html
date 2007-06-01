@@ -10,6 +10,7 @@
 
 <div class="texte">
 
+/*
 <form class="form search" action="/base/search" method="get">
     Equation xapian : <textbox name="_equation" cols="50" rows="3" /><br />
     
@@ -38,6 +39,7 @@
 
 <hr style="clear: both; margin-top: 10em; margin-bottom: 2em;" />
 
+*/
 <form class="form search" action="/base/search" method="get">
 
     <div>
@@ -160,10 +162,34 @@
             Exemples : 2006*, 200612*, 20061215
         </p>
     </div>
-    
+
+    <div>
+        <label class="text">Options</label>
+        <div>
+            Réponses par page : 
+            <select name="_max">
+                <option selected="selected">10</option>
+                <option>50</option>
+                <option>100</option>
+                <option>500</option>
+            </select>
+        
+            Ordre de tri : 
+            <select name="_sort" 
+                src="{
+                        array
+                        (
+                            array('code'=>'%', 'label'=>'par pertinence'),
+                            array('code'=>'-', 'label'=>'docid décroissants'),
+                            array('code'=>'+', 'label'=>'docid croissants'),
+                        )
+                    }" />
+        </div>
+    </div>    
     <div class="buttons">
         <submit label="Rechercher" class="spip_bouton" />
     </div>
+    
 </form>
 
 <form class="form reset">
@@ -173,3 +199,78 @@
 </form>
 
 </div>
+<script type="text/javascript">
+
+jQuery(document).ready(
+    function()
+    \{
+        jQuery('#MotsCles').autocomplete
+        (
+            'lookup?table=descripteurs&amp;value=%s',
+            \{
+            \}
+        );
+        
+        jQuery('#Aut').autocomplete
+        (
+            'lookup?table=auteurs&amp;value=%s',
+            \{
+            \}
+        );
+        jQuery('#Rev').autocomplete
+        (
+            'lookup?table=revues&amp;value=%s',
+            \{
+            \}
+        );
+        jQuery('#Edit').autocomplete
+        (
+            'lookup?table=editeurs&amp;value=%s',
+            \{
+            \}
+        );
+        jQuery('#DipSpe').autocomplete
+        (
+            'lookup?table=diplomes&amp;value=%s',
+            \{
+            \}
+        );
+
+    \}
+);
+</script>
+<style type="text/css" media="all">
+#autocompletePopup
+\{
+    border: 1px solid #6FBEFF;
+    background: #EFF8FF; 
+    overflow: hidden;
+    white-space: nowrap;
+/*    font-size: 0.9em;*/
+\}
+#autocompletePopup ul
+\{
+    padding: 0;
+    margin: 0;
+\}
+#autocompletePopup .selected
+\{
+    background-color: #d2fb8f;
+\}
+#autocompletePopup li
+\{
+    list-style-image:none;    
+    border-bottom: 1px solid #ddd;
+    padding-left: 0.2em;
+\}
+#autocompletePopup li span
+\{
+    color: #888;
+    float: left;
+    border-right: 1px solid #ddd;
+    width: 2em;
+    text-align: right;
+    padding-right: 0.2em; 
+/*    background-color: #fff;*/
+\}
+</style>
