@@ -1,3 +1,7 @@
+/*
+<script language="javascript" type="text/javascript" 
+            src="/fabweb/js/lib/firebug/firebug.js"></script>
+*/          
 <if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
     <div class="titre">Base documentaire - Recherche - Accès administrateur</div>
 </if>
@@ -259,7 +263,8 @@ jQuery(document).ready(
 \}
 #autocompletePopup li
 \{
-    list-style-image:none;    
+    list-style: none;
+/*    list-style-image: none;    */
     border-bottom: 1px solid #ddd;
     padding-left: 0.2em;
 \}
