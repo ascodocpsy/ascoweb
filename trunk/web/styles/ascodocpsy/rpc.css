@@ -21,6 +21,7 @@
 #autocompletePopup li
 {
     list-style-image:none;    
+    list-style: none;
     border-bottom: 1px solid #ddd;
     padding-left: 0.2em;
 }
