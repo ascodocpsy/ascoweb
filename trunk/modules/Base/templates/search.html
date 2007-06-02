@@ -212,6 +212,7 @@ jQuery(document).ready(
         (
             'lookup?table=descripteurs&amp;value=%s',
             \{
+                asValue: true
             \}
         );
         
@@ -219,12 +220,14 @@ jQuery(document).ready(
         (
             'lookup?table=auteurs&amp;value=%s',
             \{
+                asValue: true
             \}
         );
         jQuery('#Rev').autocomplete
         (
             'lookup?table=revues&amp;value=%s',
             \{
+                asExpression: true
             \}
         );
         jQuery('#Edit').autocomplete
@@ -243,39 +246,3 @@ jQuery(document).ready(
     \}
 );
 </script>
-<style type="text/css" media="all">
-#autocompletePopup
-\{
-    border: 1px solid #6FBEFF;
-    background: #EFF8FF; 
-    overflow: hidden;
-    white-space: nowrap;
-/*    font-size: 0.9em;*/
-\}
-#autocompletePopup ul
-\{
-    padding: 0;
-    margin: 0;
-\}
-#autocompletePopup .selected
-\{
-    background-color: #d2fb8f;
-\}
-#autocompletePopup li
-\{
-    list-style: none;
-/*    list-style-image: none;    */
-    border-bottom: 1px solid #ddd;
-    padding-left: 0.2em;
-\}
-#autocompletePopup li span
-\{
-    color: #888;
-    float: left;
-    border-right: 1px solid #ddd;
-    width: 3em;
-    text-align: right;
-    padding-right: 0.2em; 
-/*    background-color: #fff;*/
-\}
-</style>
