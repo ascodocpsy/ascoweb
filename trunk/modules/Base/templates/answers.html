@@ -6,26 +6,6 @@
 	    </ul>
 	</div>    
 </slot>
-
-<hr />
-
-<opt>
-	<div>
-	    {$this->getResNavigation(10, '&lt;', '&gt;', '&lt;&lt;', '&gt;&gt;')}
-	    <hr />
-	</div>
-</opt>
-
-<div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
-	<if test="{!Config::get('incart',false)}">
-	    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" />
-	</if>
-	<else>
-		<submit name="btnremove" class="removeall" label="Supprimer les notices du panier" />
-	</else>
-	<hr />
-</div>    
-
 <small>
     suggestions :
     <ul>
@@ -45,6 +25,25 @@
         </loop>
     </ul>
 </small>
+
+<hr />
+
+<opt>
+	<div>
+	    {$this->getResNavigation(10, '&lt;', '&gt;', '&lt;&lt;', '&gt;&gt;')}
+	    <hr />
+	</div>
+</opt>
+
+<div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
+	<if test="{!Config::get('incart',false)}">
+	    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" />
+	</if>
+	<else>
+		<submit name="btnremove" class="removeall" label="Supprimer les notices du panier" />
+	</else>
+	<hr />
+</div>    
 
 <ul class="shortlist">
     <loop on="{$this->selection}" as="$rank, $record">
