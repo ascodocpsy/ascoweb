@@ -387,8 +387,20 @@ class Base extends DatabaseModule
         	case 'EtatCol':
         	case 'Loc':
         	case 'ProdFich':
-        		if ($value!='')
-        			$value=array_map("trim",explode(trim(self::SEPARATOR),$value));
+        		if (is_array($value))
+        		{
+        			if (count($value)===0)
+        				$value=null;
+    				else
+	        			$value=array_map("trim",$value); // TODO : supprimer les articles vides ? (array_filter supprime trop de choses)
+        		}
+        		else
+        		{
+        			if ($value==='')
+        				$value=null;
+    				else
+	        			$value=array_map("trim",explode(trim(self::SEPARATOR),$value));
+        		}
         		break;
 
             case 'FinSaisie':
@@ -413,7 +425,9 @@ class Base extends DatabaseModule
                 $value=date('Ymd');
                 break;
                 
-//            default: return false;
+            default:
+            	if ($value==='' || (is_array($value) && count($value)===0))
+            		$value=null;
         }
         return true;
     }
@@ -432,10 +446,7 @@ class Base extends DatabaseModule
 			// Si la saisie de la notice n'est pas terminée, seul les membres 
 			// spécifiés dans le champ ProdFich peuvent modifier la notice
 	        if ($this->selection['FinSaisie'] == 0)
-	        {
-	            $t=split(trim(self::SEPARATOR), $this->selection['ProdFich']);
-	            return (in_array($this->ident, $t)) ? true : false;
-	        }
+	            return (in_array($this->ident, (array)$this->selection['ProdFich'])) ? true : false;
  
 			// Si la saisie de la notice est terminée, tous les membres peuvent modifier la notice
 			return true;
