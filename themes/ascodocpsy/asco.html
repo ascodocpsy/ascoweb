@@ -25,7 +25,7 @@
 	</div> <!-- ferme div id=header -->
 
 	<!-- Menu de navigation -->
-<!--	<slot name="menu" action="menu.html" />-->
+	<!--<slot name="menu" action="menu.html" />-->
 
 	<div class="ContentLeft">
          <div class="texte">
@@ -33,28 +33,20 @@
                 <li>Base documentaire
                     <ul>
                         <li><a href="/base/searchform">Recherche</a></li>
-                        <if test="User::hasAccess('Edit,Admin')">
+                        <if test="{User::hasAccess('Edit,Admin')}">
                             <li id="caddie"><a href="/ascocart/show">Votre sélection</a></li>
                             <li><a href="/base/new">Nouvelle notice</a></li>
                             <li><a href="/base/import">Import de notices</a></li>
                         </if>
                     </ul>
                 </li>
-                <if test="User::hasAccess('Admin')">
+                <if test="{User::hasAccess('Admin')}">
                     <li>Administrateurs
                         <ul>
                             <li><a href="/ConfigModule/">Configuration</a></li>
                             <li><a href="/TaskManager/">Gestionnaire de tâches</a></li>
                             <li><a href="/changes.txt">Liste des changements</a></li>
                         </ul>
-                    </li>
-                    <li>Special
-                        <ul>
-                            <li><a href="/Base/CreateXapianDatabase">Créer la base xapian</a></li>
-                        </ul>
-<!--                        <?php echo php_uname('n') ?>-->
-<!--                        <?php echo php_uname('s') ?>-->
-<!--                        <?php echo php_uname('r') ?>-->
                     </li>
                 </if>
             </ul>
