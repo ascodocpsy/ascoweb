@@ -36,7 +36,7 @@
                     array('code'=>'%', 'label'=>'par pertinence'),
                 )
             }" />
-    <checkbox name="testdm" value="1" />testdm            
+    <checkbox name="testdm" value="1" />testdm
     <br />
     <submit label="Rechercher" />
 </form>
@@ -47,7 +47,7 @@
 <form class="form search" action="/base/search" method="get">
 
     <div>
-        <textbox name="Mots" label="Recherche tous champs" />
+        <textbox name="all" label="Recherche tous champs" />
     </div>
     
     <div>
@@ -94,7 +94,7 @@
     
     /* TODO : quickTable ? */
     <div>
-        <checklist name="Liens" label="Texte intégral" src="array(array('code'=>'@notempty@', 'label'=>'Documents en ligne uniquement'))" />
+        <checklist name="Liens" label="Texte intégral" src="array(array('code'=>'*', 'label'=>'Documents en ligne uniquement'))" />
     </div>
     
     <div>
@@ -149,11 +149,11 @@
     
     /* TODO : quickTable */
     <div test="{User::hasAccess('AdminBase')}">
-        <checklist name="FinSaisie" label="Saisie de notices" src="array(array('code'=>'faux', 'label'=>'Notices en cours de saisie'), array('code'=>'vrai', 'label'=>'Notices terminées'))" />
+        <checklist name="FinSaisie" label="Saisie de notices" src="array(array('code'=>'0', 'label'=>'Notices en cours de saisie'), array('code'=>'1', 'label'=>'Notices terminées'))" />
     </div>
     
     <div test="{User::hasAccess('AdminBase')}">
-        <checklist name="Valide" label="Validation de notices" src="array(array('code'=>'faux', 'label'=>'Notices à valider'), array('code'=>'vrai', 'label'=>'Notices validées'))" />
+        <checklist name="Valide" label="Validation de notices" src="array(array('code'=>'0', 'label'=>'Notices à valider'), array('code'=>'1', 'label'=>'Notices validées'))" />
     </div>
     
     <div test="{User::hasAccess('AdminBase')}">
@@ -210,7 +210,7 @@ jQuery(document).ready(
     \{
         jQuery('#MotsCles').autocomplete
         (
-            'lookup?table=descripteurs&amp;value=%s',
+            '{Routing::linkFor("/base/lookup")}?table=motscles&amp;value=%s',
             \{
                 asValue: true
             \}
@@ -218,27 +218,37 @@ jQuery(document).ready(
         
         jQuery('#Aut').autocomplete
         (
-            'lookup?table=auteurs&amp;value=%s',
+            '{Routing::linkFor("/base/lookup")}?table=auteurs&amp;value=%s',
             \{
                 asValue: true
             \}
         );
         jQuery('#Rev').autocomplete
         (
-            'lookup?table=revues&amp;value=%s',
+            '{Routing::linkFor("/base/lookup")}?table=revues&amp;value=%s',
             \{
-                asExpression: true
+                asValue: true
             \}
         );
         jQuery('#Edit').autocomplete
         (
-            'lookup?table=editeurs&amp;value=%s',
+            '{Routing::linkFor("/base/lookup")}?table=editeurs&amp;value=%s',
             \{
             \}
         );
+        jQuery('#Col').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=collections&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('#Loc').autocomplete('{Routing::linkFor("/base/lookup")}?table=localisations&amp;value=%s');
+        jQuery('#ProdFich').autocomplete('{Routing::linkFor("/base/lookup")}?table=producteurs&amp;value=%s');
+        
         jQuery('#DipSpe').autocomplete
         (
-            'lookup?table=diplomes&amp;value=%s',
+            '{Routing::linkFor("/base/lookup")}?table=diplomes&amp;value=%s',
             \{
             \}
         );
