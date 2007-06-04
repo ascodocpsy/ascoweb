@@ -1,3 +1,18 @@
+/* Body du fichier menu.html */
+body {
+	margin: 5px;
+	padding: 0;
+	font: 12px Arial, sans-serif;
+}
+
+dt, dl, dd, ul, li {
+list-style-type: none;
+margin: 0 5px 0 0;
+padding: 0;
+text-decoration:none;
+}
+/* fin styles de menu.html */
+/*
 BODY {
 	padding-right: 0px; 
 	padding-left: 0px; 
@@ -8,7 +23,7 @@ BODY {
 	font: 11px/15px Tahoma, Verdana, Arial, Helvetica, sans-serif; 	
 	text-align: left;
 	}
-
+*/
 #principal {
 	background-color: #FFFFFF;
 	border-top: #DADADA 6px solid;
