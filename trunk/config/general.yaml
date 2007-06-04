@@ -7,17 +7,17 @@ admin:
   email: severine.ferron@bdsp.tm.fr
 
 # thème général du site (deux options possibles pour le moment: asco, poivron)
-theme: asco
+theme: ascodocpsy
 
 # structure générale des pages par défaut
-layout: demo.htm
+layout: asco.html
 
 # titre par défaut des pages
 title: Base documentaire ASCODOCPSY
 
 # nom des feuilles de style CSS à utiliser
 # doit être sous forme de tableau car on peut en avoir plusieurs
-#CSS: [style.css]
+CSS: [asco.css]
 
 # fichiers javascript à inclure
 # doit être sous forme de tableau car on peut en avoir plusieurs
