@@ -12,28 +12,30 @@
         <loop 
             on="array
                 (
-                    'mots-clés'=>'descripteurs',
-                    'thèmes'=>'themes',
-                    'revues'=>'revues',
-                    'éditeurs'=>'editeurs',
-                    'auteurs'=>'auteurs',
-                    'noms propres'=>'nomspropres',
-                    'candes'=>'candes'
+                    'mots-clés'=>array('descripteurs', 'motscles'),
+                    'thèmes'=>array('themes', 'motscles'),
+                    'revues'=>array('revues', 'rev'),
+                    'éditeurs'=>array('editeurs', 'edit'),
+                    'auteurs'=>array('auteurs', 'aut'),
+                    'noms propres'=>array('nomspropres', 'motscles'),
+                    'candes'=>array('candes', 'motscles'),
+                    'diplômes'=>array('diplomes', 'dipspe')
                 )"
-            as="$label,$table">
-            <opt min="2"><li>$label : {implode(', ', $this->selection->suggestTerms($table))}</li></opt>
+            as="$label,$t">
+            <opt min="2">
+                <li>$label : 
+                    <loop on="$this->selection->suggestTerms($t[0])" as="$i,$term">
+                        {$i>0 ? ' / ': ''}<a href="/base/search?_equation={urlencode($t[1].'=['.$term. '] et ('.$this->equation.')')}">$term</a>
+                    </loop>
+                </li>
+            </opt>
         </loop>
     </ul>
 </small>
 
 <hr />
 
-<opt>
-	<div>
-	    {$this->getResNavigation(10, '&lt;', '&gt;', '&lt;&lt;', '&gt;&gt;')}
-	    <hr />
-	</div>
-</opt>
+<big style="float: right">{$this->getSimpleNav()}</big>
 
 <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
 	<if test="{!Config::get('incart',false)}">
