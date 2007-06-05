@@ -196,12 +196,19 @@ class Base extends DatabaseModule
                     $h=trim($h);
                     if ($aut=$this->author($h))
                     {
+                        // Lien sur l'auteur : lance une nouvelle recherche
                         $lien='search?aut='. urlencode('"'.$aut.'"');
                         $h=$this->link($h, $lien, 'Bibliographie de '.$h);
                     }
                     $t[$key]=$h;
                 }
                 return implode(self::SEPARATOR, $t);
+            
+            case 'Edit':
+            case 'Lieu':
+            	if ($this->selection[$name]=='' ) return '';
+                if (!$t=(array)$this->selection[$name]) return '';
+            	return implode(self::SEPARATOR, $t);
             
             case 'Page':
                 if (! $h=$this->selection[$name]) return '';
@@ -240,7 +247,7 @@ class Base extends DatabaseModule
                 foreach ($t as $key=>$h)
                 {
                     $h=trim($h);
-                    $lien='search?motscles='. urlencode('"'.$h.'"');
+                    $lien='search?motscles='. urlencode('['.$h.']');
                     $h=$this->link($h, $lien, 'Notices indexées au descripteur '.$h);
                     $t[$key]=$h;
                 }
