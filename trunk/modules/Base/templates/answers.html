@@ -25,7 +25,7 @@
             <opt min="2">
                 <li>$label : 
                     <loop on="$this->selection->suggestTerms($t[0])" as="$i,$term">
-                        {$i>0 ? ' / ': ''}<a href="/base/search?_equation={urlencode($t[1].'=['.$term. '] et ('.$this->equation.')')}">$term</a>
+                        {$i>0 ? ' / ': ''}<a href="/base/search?_equation={urlencode($t[1].':['.$term. '] et ('.$this->equation.')')}">$term</a>
                     </loop>
                 </li>
             </opt>
