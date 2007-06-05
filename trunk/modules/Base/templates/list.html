@@ -25,7 +25,7 @@
 		</form>
 	</if>
 	<else>
-		<form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/remove" method="post" id="answers">
+		<form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/remove" method="get" id="answers">
 	    	<slot name="notice" action="templates/answers.html" />
 		</form>
 	</else>
@@ -38,6 +38,7 @@
 /*    background-color: #FFFFC0;*/
 \}
 </style>
+<!--
 <script>
 function init()
 \{
@@ -74,3 +75,4 @@ function init()
 
 jQuery('document').ready(init);
 </script>
+-->
