@@ -2,7 +2,7 @@
   module: base
   action: searchform
 
-- url: /base/recherche
+- url: /base/recherche*
   module: base
   action: search
 
