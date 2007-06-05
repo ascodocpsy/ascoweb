@@ -53,8 +53,7 @@ function init()
     jQuery('a.addtocart').click(function()
     \{
         jQuery.post(jQuery(this).attr('href'));
-        jQuery(this).hide('normal', function()\{jQuery(this).show()\})
-        ;
+        jQuery(this).hide('normal', function()\{jQuery(this).show()\});
         return false;
     \});
 
