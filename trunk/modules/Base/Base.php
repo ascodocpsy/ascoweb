@@ -1567,6 +1567,7 @@ echo '</pre>';
         }
         
         // Ferme la base
+        TaskManager::progress('Fermeture de la base... Veuillez patienter.');
         unset($this->selection);
 
         // 2. Tri de la base
