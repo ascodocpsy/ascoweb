@@ -10,6 +10,9 @@ CSS:
 # fichiers javascript à inclure
 # doit être sous forme de tableau car on peut en avoir plusieurs
 #JS: [xxx.js]
+JS: 
+  - /fabweb/js/lib/jquery/1.1.2/jquery-latest.pack.js
+  - /fabweb/js/lib/jquery.form/jquery.form.js
 
 #title: aaaaaa
 
@@ -27,7 +30,7 @@ filter:
     AdminBase:
     EditBase:
     cli:
-    default: '(* sauf type=periodique) and Valide=vrai'
+    default: '(* sauf type=periodique) and Valide=1'
 
 searchform:
   template: templates/search.html
