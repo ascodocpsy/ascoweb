@@ -2,7 +2,7 @@
 	<div test="{User::hasAccess('AdminBase')}" class="buttons menubase">
 		<ul>
 			<li><a href="/base/replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans ces notices...</a></li>
-	    	<li><a href="/base/delete?_equation={urlencode($this-&gt;equation)}">Supprimer ces notices</a></li>
+	    	<li><a href="/base/delete?_equation={urlencode($this-&gt;equation)}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer ces notices ?'));">Supprimer ces notices</a></li>
 	    </ul>
 	</div>    
 </slot>
