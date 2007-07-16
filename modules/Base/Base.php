@@ -256,7 +256,7 @@ class Base extends DatabaseModule
             case 'Rev':
                 // Lien vers une nouvelle recherche "notices de ce périodique"
                 if (! $h=trim($this->selection[$name])) return '';
-                $lien='search?rev='. urlencode('"'.Utils::convertString($h).'"');
+                $lien='search?rev='. urlencode('['.Utils::convertString($h).']');
                 return $this->link($h, $lien, 'Notices du périodique '.$h);
                       
             case 'DateText':
@@ -471,57 +471,34 @@ class Base extends DatabaseModule
             throw new Exception("Appel incorrect : aucun nom de périodique n'a été précisé.");
         
         // Construit l'équation de recherche
-        $eq='rev="'.$rev.'" et Type=periodique';
+        $eq='rev=['.$rev.'] et Type=periodique';
         
-        // Recherche la fiche Périodique
-        if (! $this->openSelection($eq))
-            return $this->showError("Aucune réponse. Equation : $eq");
-//        $this->selection=self::openDatabase($eq);
-//        if (is_null($this->selection)) return;
+        // Ouvre la base de données
+        $this->openDatabase();
 
-        switch ($this->selection->count())
-        {
-            case 0:
-                return $this->showError('Aucune localisation n\'est disponible pour le périodique '.$rev.'.');
-            
-            default:
-                $revinit=$rev;
-                $rev=Utils::convertString($rev);
-                
-                foreach( $this->selection as $record)
-                {
-                    if ($rev == Utils::convertString($this->selection['Rev']))
-                    {
-                        // Réouvre la sélection contenant uniquement la notice du périodique
-                        if (! $this->openSelection('REF='. $this->selection['REF'], true))
-                            return $this->showError("Aucune réponse. Equation : $this->equation");
+		// Fiche Périodique inexistante
+        if (! $this->select($eq))
+        	return $this->showError('Aucune localisation n\'est disponible pour le périodique '.$rev.'.');
+        
+        // Fiche Priodique existante 
+        
+        // Détermine le template à utiliser
+        if (! $template=$this->getTemplate())
+            throw new Exception('Le template à utiliser n\'a pas été indiqué');
 
-//                        $this->selection=self::openDatabase('REF='. $this->selection->field(1), true);
-//                        if (is_null($this->selection)) return;
-                        
-                        // Détermine le template à utiliser
-                        if (! $template=$this->getTemplate())
-                            throw new Exception('Le template à utiliser n\'a pas été indiqué');
+        // Détermine le callback à utiliser
+        $callback=$this->getCallback();
 
-                        // Détermine le callback à utiliser
-                        $callback=$this->getCallback();
-
-                        // Exécute le template
-                        Template::run
-                        (
-                            $template,  
-                            array($this, $callback),
-                            $this->selection->record,
-                            array('selection',$this->selection)  
-                        );
-
-                        exit;                        
-                    }
-                }
-                return $this->showError('Aucune localisation n\'est disponible pour le périodique '.$revinit.'.');
-        };
+        // Exécute le template
+        Template::run
+        (
+            $template,  
+            array($this, $callback),
+            $this->selection->record,
+            array('selection',$this->selection)  
+        );
     }
-    
+
     public function actionInform()
     {              
         $rev=Utils::get($_REQUEST['rev']);
@@ -531,38 +508,28 @@ class Base extends DatabaseModule
             throw new Exception("Appel incorrect : aucun nom de périodique n'a été précisé.");
         
         // Construit l'équation de recherche
-        $eq='rev="'.$rev.'" et Type=periodique et Lien=ascodocpsy';
+        $eq='rev=['.$rev.'] et Type=periodique';
         
-        // Recherche la fiche Périodique
-        if (! $this->openSelection($eq))
+        // Ouvre la base de données
+        $this->openDatabase();
+
+		// Fiche Périodique inexistante
+        if (! $this->select($eq))
             return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$rev.'.');
-            
-//        $selection=self::openDatabase($eq);
-//        if (is_null($selection)) return;
-
-        // En génaral, on obtient d'autres réponses que celles attendues : par exemple on recherche la revue "soins"
-        // (rev="soins") et on va obtenir les revues "soins", "Soins infirmier", "soins soins"
-        // on balaye donc la liste des réponses pour rechercher LA réponse qui correspond exactement à la
-        // revue recherchée
-        $revinit=$rev;
-        $rev=Utils::convertString($rev);
-        foreach($this->selection as $record)
-        {
-            if ($rev == Utils::convertString($this->selection['Rev']))
-            {
-                // Réouvre la sélection contenant uniquement la notice du périodique
-                if (! $this->openSelection('REF='. $this->selection['REF'], true))
-                    return $this->showError("Aucune réponse. Equation : $eq");
-                
-                // Redirige vers l'URL du champ Lien (lien sur le site ascodocpsy.org)
-                Runtime::redirect($this->selection['Lien'], true);
-
-                exit;
-            }
-        }
-        return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$revinit.'.');
+        
+        // Erreur si plusieurs notices pour le périodique
+        if ($this->selection->count() >= 2 )
+        	return $this->showError('Il existe plusieurs notices descriptives pour le périodique '.$rev.'.');
+        
+        // Fiche Périodique existante mais le champ Lien ne contient pas www.ascodocpsy.org
+        if (stripos($this->selection['Lien'], 'ascodocpsy') === false)
+        	return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$rev.'.');
+        
+        // Fiche Périodique existante, redirige vers l'URL du champ Lien (lien sur le site ascodocpsy.org)
+        Runtime::redirect($this->selection['Lien'], true);
     }
-    
+
+
     private function author($value)
     {
         $value=(str_ireplace(
