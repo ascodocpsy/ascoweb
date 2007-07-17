@@ -75,8 +75,7 @@
             
                 <case test="Article">
                     <TDTA />
-                    <row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Périodique">$Rev<opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
-                    <row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique">$Rev<Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
+                    <row label="Périodique">$Rev<Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
                 </case>
                 
                 <case test="Congrès">
@@ -105,11 +104,8 @@
                 
                 <case test="Rapport">
                     <TDTA />
-                    <opt><row label="Editeur"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$PageEdit</row></opt>
-                    <opt><row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Périodique"><opt>$Rev</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
-                    <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique"><opt>$Rev</opt>
-                    <Localisation />
-                    <opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, $PageRev</row></opt>
+                    <opt><row label="Editeur"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt><opt>$PageEdit</opt></row></opt>
+                    <opt><row label="Périodique"><opt>$Rev</opt><Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
                 </case>
                 
                 <case test="Texte officiel">
