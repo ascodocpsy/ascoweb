@@ -36,5 +36,7 @@
 
 <!--/* Template pour afficher le lien vers la localisation d'un titre de périodique */-->
 <template match="//Localisation">
-    <a class="locate" test="{$Rev}" href="{Routing::linkFor('locate?rev='. urlencode(Utils::convertString($this->selection['Rev'],'lower')))}" title="Localiser le périodique">&#160;<span>Localiser</span></a>
+	<if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+		<a class="locate" test="{$this->selection['Rev']}" href="{Routing::linkFor('locate?rev='. urlencode(Utils::convertString($this->selection['Rev'],'lower')))}" title="Localiser le périodique">&#160;<span>Localiser</span></a>
+	</if>
 </template>
