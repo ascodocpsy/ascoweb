@@ -3,13 +3,13 @@
             src="/fabweb/js/lib/firebug/firebug.js"></script>
 */          
 <if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
-    <div class="titre">Base documentaire - Recherche - Accès administrateur</div>
+    <div class="titre">Base SantéPsy - Recherche - Accès administrateur</div>
 </if>
 <elseif test="{User::hasAccess('EditBase')}">     /* Membre du GIP */
-    <div class="titre">Base documentaire - Recherche - Accès membre du GIP</div>
+    <div class="titre">Base SantéPsy - Recherche - Accès professionnel</div>
 </elseif>
 <else>
-    <div class="titre">Base documentaire - Recherche - Accès public</div>
+    <div class="titre">Base SantéPsy - Recherche - Accès public</div>
 </else>
 
 <div class="texte">
@@ -113,7 +113,8 @@
         <textbox name="IsbnIssn" label="ISBN, ISSN" />
     </div>
     
-    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+/*    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}"> */
+	<div>		
         <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" />
     </div>
     
@@ -208,6 +209,19 @@
 jQuery(document).ready(
     function()
     \{
+        var textof=jQuery('//input[@value="Texte officiel"]');
+        if (! textof.is(':checked'))
+        \{
+            jQuery('#DateText').parent().hide();
+            jQuery('#NatText').parent().hide();
+        \};
+        
+        textof.click(function()
+        \{
+            jQuery('#DateText').parent().toggle('normal'); // .val('')
+            jQuery('#NatText').parent().toggle('normal');
+        \});
+        
         jQuery('#MotsCles').autocomplete
         (
             '{Routing::linkFor("/base/lookup")}?table=motscles&amp;value=%s',
