@@ -35,17 +35,17 @@
 
 <hr />
 
-<big style="float: right">{$this->getSimpleNav()}</big>
+<big style="float:right;">{$this->getSimpleNav()}</big>
 
 <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
 	<if test="{!Config::get('incart',false)}">
-	    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" />
+	    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" title="Ajouter les notices de cette page au panier"/>
 	</if>
 	<else>
-		<submit name="btnremove" class="removeall" label="Supprimer les notices du panier" />
+		<submit name="btnremove" class="removeall" label="Supprimer les notices du panier" title="Supprimer les notices de cette page du panier"/>
 	</else>
-	<hr />
-</div>    
+</div>
+<hr style="clear:right;" />
 
 <ul class="shortlist">
     <loop on="{$this->selection}" as="$rank, $record">
@@ -53,10 +53,10 @@
 
             <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
                 <if test="{!Config::get('incart',false)}">
-                    <a class="addtocart" href="/ascocart/add?category={Utils::convertString($Type,'lower')}&amp;item=$REF"><span>Ajouter au panier</span></a>
+                    <a class="addtocart" href="/ascocart/add?category={Utils::convertString($Type,'lower')}&amp;item=$REF" title="Ajouter au panier"><span>Ajouter au panier</span></a>
                 </if>
                 <else>
-                    <a class="removefromcart" href="/ascocart/remove?category={Utils::convertString($Type,'lower')}&amp;item=$REF"><span>Supprimer du panier</span></a>
+                    <a class="removefromcart" href="/ascocart/remove?category={Utils::convertString($Type,'lower')}&amp;item=$REF" title="Supprimer du panier"><span>Supprimer du panier</span></a>
                 </else>
             </if>                
 
@@ -133,16 +133,12 @@
 
 <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
 	<if test="{!Config::get('incart',false)}">
-	    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" />
+	    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" title="Ajouter les notices de cette page au panier"/>
 	</if>
 	<else>
-		<submit name="btnremove" class="removeall" label="Supprimer les notices du panier" />
+		<submit name="btnremove" class="removeall" label="Supprimer les notices du panier" title="Supprimer les notices de cette page du panier"/>
 	</else>
 </div>    
 
-<opt>
-	<div>
-	    <hr />
-	    {$this->getResNavigation(10, '&lt;', '&gt;', '&lt;&lt;', '&gt;&gt;')}
-	</div>
-</opt>
+
+<big style="float:right;">{$this->getSimpleNav()}</big>
