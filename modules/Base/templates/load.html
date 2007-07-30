@@ -65,7 +65,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
         <text name="Resu" rows="1" class="fullwidth autoheight" />
     </fieldset>
     <fieldset label="Indexation">
-        <div><text name="Theme" rows="1" label="Thème *" class="fullwidth autoheight mandatory" /></div>
+        <div><text name="Theme" rows="1" label="Thème" class="fullwidth autoheight" /></div>
         <div><text name="MotCle" value="{implode('/',(array)$MotCle)}" rows="1" label="Descripteurs *" class="fullwidth autoheight mandatory" /></div>
         <div><text name="Nomp" value="{implode('/',(array)$Nomp)}" rows="1" label="Noms propres" class="fullwidth autoheight" /></div>
         <div><text name="CanDes" value="{implode('/',(array)$CanDes)}" rows="1" label="Candidats descripteurs" class="fullwidth autoheight" /></div>
@@ -171,7 +171,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 /* Fin des template match */
 
 
-<div class="titre">Base documentaire - Ajout/Modification d'une notice</div>
+<div class="titre">Base SantéPsy - Ajout/Modification d'une notice</div>
 
 <if test="{!Config::get('allfields',false)}">
 	<opt><div class="titre-sous-rubrique">Document de type $Type</div></opt>
