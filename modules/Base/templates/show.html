@@ -1,11 +1,11 @@
 <if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
-    <div class="titre">Base documentaire - Visualisation - Accès administrateur</div>
+    <div class="titre">Base SantéPsy - Visualisation - Accès administrateur</div>
 </if>
 <elseif test="{User::hasAccess('EditBase')}">     /* Membre du GIP */
-    <div class="titre">Base documentaire - Visualisation - Accès membre du GIP</div>
+    <div class="titre">Base SantéPsy - Visualisation - Accès professionnel</div>
 </elseif>
 <else>
-    <div class="titre">Base documentaire - Visualisation - Accès public</div>
+    <div class="titre">Base SantéPsy - Visualisation - Accès public</div>
 </else>
 
 <div class="texte">
@@ -50,7 +50,7 @@
                     <case test="Congrès">
                         <TDTA />
                         <opt><row label="Congrès"><opt>$CongrTit, </opt><opt>$CongrDat, </opt><opt>n°$CongrNum, </opt><opt>$CongrLie</opt></row></opt>
-                        <opt><row label="Editeur"><opt>$Lieu: </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
+                        <opt><row label="Editeur"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
                         <opt><row label="Collection">$Col</row></opt>
                         <opt><row label="Notes">$Notes</row></opt>
                         <MTCNR />
@@ -122,9 +122,6 @@
         </loop>
     </ul>
 
-    <div>
-        {$this->getResNavigation(10, '&lt;', '&gt;', '&lt;&lt;', '&gt;&gt;')}
-    </div>
 </form>
 
 </div>
