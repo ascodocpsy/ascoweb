@@ -22,12 +22,22 @@
         <loop on="{$this->selection}" as="$rank, $record">
             <li class="record">
 
+/*
 	            <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
 	                <if test="{!Config::get('incart',false)}">
 	                    <a class="addtocart" href="/ascocart/add?category={Utils::convertString($Type,'lower')}&amp;item=$REF"><span>Ajouter au panier</span></a>
 	                </if>
 	                <else>
 	                    <a class="removefromcart" href="/ascocart/remove?category={Utils::convertString($Type,'lower')}&amp;item=$REF"><span>Supprimer du panier</span></a>
+	                </else>
+	            </if>                
+*/
+	            <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+	                <if test="{!Config::get('incart',false)}">
+	                    <a class="addtocart" href="/ascocart/add?item=$REF"><span>Ajouter au panier</span></a>
+	                </if>
+	                <else>
+	                    <a class="removefromcart" href="/ascocart/remove?item=$REF"><span>Supprimer du panier</span></a>
 	                </else>
 	            </if>                
 
