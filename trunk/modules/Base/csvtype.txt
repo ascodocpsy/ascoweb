@@ -1,0 +1,33 @@
+<switch test="$Type">
+    <case test="Article"       ><export fields="{Config::get('formats.'.$format.'.fields.Article')}" /></case>
+    <case test="Congrès"       ><export fields="{Config::get('formats.'.$format.'.fields.Congrès')}" /></case>
+    <case test="Livre"         ><export fields="{Config::get('formats.'.$format.'.fields.Livre')}" /></case>
+    <case test="Mémoire"       ><export fields="{Config::get('formats.'.$format.'.fields.Mémoire')}" /></case>
+    <case test="Thèse"         ><export fields="{Config::get('formats.'.$format.'.fields.Mémoire')}" /></case>
+    <case test="Périodique"    ><export fields="{Config::get('formats.'.$format.'.fields.Périodique')}" /></case>
+    <case test="Rapport"       ><export fields="{Config::get('formats.'.$format.'.fields.Rapport')}" /></case>
+    <case test="Texte officiel"><export fields="{Config::get('formats.'.$format.'.fields.Texte officiel')}" /></case>
+    <default>Aucun format d'export n'est disponible pour ce type de document ($Type)</default>
+</switch>
+
+/*<export fields="{Config::get('formats.'.$format.'.fields.'.$Type)}" />*/
+
+<template match="//export" fields=""
+    ><header fields="$fields" 
+    /><loop on="$this->selection" as="$record"><record fields="$fields" /></loop>
+</template>
+
+<template match="//header" fields=""
+    ><loop on="$fields" as="$i,$field">{$i==0?'':"\t"}{strtoupper($field)}</loop>
+</template>
+
+<template match="//record" fields=""
+    ><loop on="$fields" as="$i,$field">{$i==0?'':"\t"}{
+        Utils::csvQuote
+        (
+            is_array($this->selection[$field]) 
+            ? implode(Config::get("formats.$format.sep"),$this->selection[$field])
+            : $this->selection[$field]
+        )
+    }</loop>
+</template>
