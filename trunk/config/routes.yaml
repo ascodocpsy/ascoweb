@@ -112,3 +112,12 @@
 - url:      /
   module:   HomePage
   action:   index
+
+- url: /base/exporter*
+  module: base
+  action: export
+  
+- url: /base/exportertype*
+  module: base
+  action: exportbytype
+  
