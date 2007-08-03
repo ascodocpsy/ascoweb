@@ -1,12 +1,12 @@
 <slot name="header" count="{$this->selection->count()}">    
     <if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
-        <div class="titre">Base documentaire - Recherche - Accès administrateur</div>
+        <div class="titre">Base SantéPsy - Recherche - Accès administrateur</div>
     </if>
     <elseif test="{User::hasAccess('EditBase')}">     /* Membre du GIP */
-        <div class="titre">Base documentaire - Recherche - Accès membre du GIP</div>
+        <div class="titre">Base SantéPsy - Recherche - Accès professionnel</div>
     </elseif>
     <else>
-        <div class="titre">Base documentaire - Recherche - Accès public</div>
+        <div class="titre">Base SantéPsy - Recherche - Accès public</div>
     </else>
     
     <div class="titre-sous-rubrique">Liste des réponses obtenues</div>
@@ -21,40 +21,82 @@
 	/* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
 	<if test="{!Config::get('incart',false)}">
 	    <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/add" method="post" id="answers">
-	    	<slot name="notice" action="templates/answers.html" />
+            <div id="list">
+	      	   <slot name="notice" action="templates/answers.html" />
+            </div>
 		</form>
 	</if>
 	<else>
 		<form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/remove" method="post" id="answers">
-	    	<slot name="notice" action="templates/answers.html" />
+            <div id="list">
+    	    	<slot name="notice" action="templates/answers.html" />
+            </div>
 		</form>
 	</else>
 </div>
 
-<style>
-.transferProduct
-\{
-	border: 1px solid #cc0;
-/*    background-color: #FFFFC0;*/
-\}
-</style>
+<div>
 
+</div>
 <script>
+function position(element, property)
+\{
+    var offset=0;
+    while (element)
+    \{
+        offset += element[property]; 
+        element=element.offsetParent;
+    \}
+    return offset;
+\};
+
+jQuery.fn.fly=function()\{
+    return this.each(function()\{
+        var left=0,top=0, element=this;
+        
+        while (element)
+        \{
+            left += element['offsetLeft']; 
+            top += element['offsetTop']; 
+            element=element.offsetParent;
+        \};
+        
+        e=jQuery(this);
+        var oldLeft=e.css('left'), oldTop=e.css('top'), oldPos=e.css('position');
+        
+        e
+        .css('left',left)
+        .css('top',top)
+        .css('position','absolute')
+        .animate
+        (
+            \{
+                top: 0,/*document.documentElement.scrollTop,*/
+                left: 0 /*jQuery('body').width() */
+            \},
+            'normal',
+            function()
+            \{
+                jQuery(this).css('position',oldPos).css('top',oldTop).css('left',oldLeft)
+            \}    
+        );
+    \});    
+\};
+
 function init()
 \{
     jQuery('.navbar a').click(function()\{
-        jQuery('#answers').load(jQuery(this).attr('href'), init);
-//        jQuery('#answers').load(jQuery(this).attr('href'), function()\{init(); jQuery(this).fadeIn('fast');\});
-        jQuery('ul.shortlist').fadeTo("slow",0.2);
-//        jQuery('#answers').fadeOut(100).load(jQuery(this).attr('href'), function()\{init();jQuery(this).fadeIn(100);\});
+        jQuery('#list').load(jQuery(this).attr('href'), init);
+        jQuery(this).css('background',"url('{Routing::linkFor('/fabweb/styles/loading.gif')}') top center no-repeat");
+//        jQuery('ul.shortlist').fadeTo("slow",0.2);
         return false;
     \})
 
     // Lien "ajouter cette notice au caddie"
-    jQuery('a.addtocart').click(function()
+    jQuery('a.addtocart').click(function(e)
     \{
         jQuery.post(jQuery(this).attr('href'));
-        jQuery(this).hide('normal', function()\{jQuery(this).show()\});
+        jQuery(this).fly();
         return false;
     \});
 
@@ -66,11 +108,23 @@ function init()
     \});
 
 	jQuery('#answers').submit(function()\{
-		jQuery(this).ajaxSubmit();
-        jQuery('a.addtocart').hide('normal', function()\{jQuery(this).show()\});
-		return false;
+        jQuery.ajax(\{
+            url: jQuery(this).attr('action'),
+            type: jQuery(this).attr('method'),
+            data: jQuery('input:hidden', this).serialize()
+        \});
+        
+        jQuery('a.addtocart').fly();
+        return false;
 	\});
-
+/*
+    version utilisant le plugin jQuery.form
+    jQuery('#answers').submit(function()\{
+        jQuery(this).ajaxSubmit();
+        jQuery('a.addtocart').hide('normal', function()\{jQuery(this).show()\});
+        return false;
+    \});
+*/
 \}
 
 jQuery('document').ready(init);
