@@ -8,7 +8,8 @@
 	<div class="titre">Contenu de votre panier</div>
 	
 	<div class="texte">
-		<if test="{is_null($category)}">
+	
+	/*	<if test="{is_null($category)}">
 			<ul>
 				<loop on="{$this->cart}" as="$category,$item">
 					<li><a href="/ascocart/show?category=$category">$category</a> : {count($item)} notice(s) - <a href="/ascocart/clear?category=$category">Supprimer cette catégorie</a></li>
@@ -16,9 +17,10 @@
 			</ul>
 			<p class="spip"><a href="/ascocart/clear">Vider le panier...</a></p>
 		</if>
-		<else>
-			<slot name="cart" action="/base/showcaddie" category="$category" _equation="{'REF='.implode(' or REF=', array_keys($this->cart[$category]))}" />
-		</else>
+		<else>*/
+/*			<slot name="cart" action="/base/showcaddie" category="$category" _equation="{'REF='.implode(' or REF=', array_keys($this->cart[$category]))}" />*/
+			<slot name="cart" action="/base/showcaddie" _equation="{'REF='.implode(' or REF=', array_keys($this->cart))}" />
+/*		</else>*/
 		/*<slot name="cart" action="/base/show" REF="{array_keys($this->cart)}" />*/
 		
 		/*<slot name="cart" action="/base/showcaddie" cart="$this" />*/
