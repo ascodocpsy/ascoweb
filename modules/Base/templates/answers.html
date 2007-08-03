@@ -51,12 +51,22 @@
     <loop on="{$this->selection}" as="$rank, $record">
         <li class="record">
 
+/*
             <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
                 <if test="{!Config::get('incart',false)}">
                     <a class="addtocart" href="/ascocart/add?category={Utils::convertString($Type,'lower')}&amp;item=$REF" title="Ajouter au panier"><span>Ajouter au panier</span></a>
                 </if>
                 <else>
                     <a class="removefromcart" href="/ascocart/remove?category={Utils::convertString($Type,'lower')}&amp;item=$REF" title="Supprimer du panier"><span>Supprimer du panier</span></a>
+                </else>
+            </if>                
+*/
+            <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+                <if test="{!Config::get('incart',false)}">
+                    <a class="addtocart" href="/ascocart/add?item=$REF" title="Ajouter au panier"><span>Ajouter au panier</span></a>
+                </if>
+                <else>
+                    <a class="removefromcart" href="/ascocart/remove?item=$REF" title="Supprimer du panier"><span>Supprimer du panier</span></a>
                 </else>
             </if>                
 
@@ -67,7 +77,7 @@
             </if>
             
             <hidden name="item" value="$REF" />
-            <hidden name="category" value="{Utils::convertString($Type,'lower')}" />
+/*            <hidden name="category" value="{Utils::convertString($Type,'lower')}" />*/
 /*            <hidden name="toadd" value="{addslashes(urlencode(serialize(array('item'=>$REF,'category'=>Utils::convertString($Type,'lower')))))}" />*/
             
             /* affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
@@ -142,3 +152,10 @@
 
 
 <big style="float:right;">{$this->getSimpleNav()}</big>
+
+<div>
+	<ul>
+		<li><a href="/base/export?_equation={urlencode($this-&gt;equation)}">Exporter tout</a></li>
+		<li><a href="/base/exportbytype?_equation={urlencode($this-&gt;equation)}">Exporter par type de document</a></li>
+	</ul>
+</div>
