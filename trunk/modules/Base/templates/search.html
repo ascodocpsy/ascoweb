@@ -52,7 +52,7 @@
     
     <div>
         <textbox name="MotsCles" label="Descripteurs" />
-        <p class="exemple"><a href="http://www.ascodocpsy.org/article.php3?id_article=691" target="_blank" title="Consulter le thesaurus SantéPsy (nouvelle fenêtre)">Pour connaître les descripteurs à utiliser, consultez le thesaurus SantéPsy</a></p>
+        <p class="exemple"><a href="http://www.ascodocpsy.org/article.php3?id_article=691" target="_blank" title="Consulter le thesaurus SantéPsy (nouvelle fenêtre)">Consultez les descripteurs utilisés dans la base SantéPsy</a></p>
     </div>
 
     <div>
@@ -68,7 +68,50 @@
     </div>
 
     <div>
+        <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+            <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/type.txt')" />
+        </if>
+        <else>
+            <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/public_type.txt')" />
+        </else>
+    </div>
+
+    /* TODO : quickTable ? */
+    <div>
+        <checklist name="Liens" label="Texte intégral" src="array(array('code'=>'*', 'label'=>'Documents en ligne uniquement'))" />
+    </div>
+
+    <div>
+        <select name="NatText" label="Nature du texte officiel" src="new TextTable($this->path.'../../tables/nattext.txt')" size="3" multiple="true" />
+        <div class="infonatext">
+            <p class="exemple">
+                Pour sélectionner plusieurs types de texte officiel,
+                appuyez sur la touche contrôle (Ctrl) et cliquez sur 
+                les types souhaités. Procéder de même pour désélectionner.
+            </p>
+        </div>
+    </div>
+
+    <div>
+        <textbox name="Rev" label="Titre du périodique" />
+    </div>
+
+/*    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}"> */
+	<div>		
+        <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" />
+    </div>
+
+    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+        <textbox name="Vol" label="Numéro de volume" />
+    </div>
+    
+    <div>
         <checklist name="Dates" label="Date du document" src="new TextTable($this->path.'../../tables/date.txt')" />
+
+        <div class="date">
+			<textbox name="Dates" label="Autre" />
+		</div>
+		
         <div class="date">
             <select name="Dates" label="Autre" src="new TextTable($this->path.'../../tables/datelist.txt')">
                 <option></option>
@@ -81,24 +124,6 @@
         <span class="exemple">
             Format : AAAA-MM-JJ ou AAAA-MM ou AAAA
         </span>
-    </div>
-    
-    <div>
-        <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-            <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/type.txt')" />
-        </if>
-        <else>
-            <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/public_type.txt')" />
-        </else>
-    </div>
-    
-    /* TODO : quickTable ? */
-    <div>
-        <checklist name="Liens" label="Texte intégral" src="array(array('code'=>'*', 'label'=>'Documents en ligne uniquement'))" />
-    </div>
-    
-    <div>
-        <textbox name="Rev" label="Titre du périodique" />
     </div>
 
     <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
@@ -114,30 +139,10 @@
         <span class="exemple">
             ISBN : 3338897556432, ISSN : 4444-7564
         </span>
-    </div>
-    
-/*    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}"> */
-	<div>		
-        <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" />
-    </div>
-    
-    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-        <textbox name="Vol" label="Numéro de volume" />
-    </div>
+    </div>   
     
     <div test="{User::hasAccess('AdminBase')}">
         <textbox name="DipSpe" label="Spécialité du diplôme" />
-    </div>
-
-    <div>
-        <select name="NatText" label="Nature du texte officiel" src="new TextTable($this->path.'../../tables/nattext.txt')" size="3" multiple="true" />
-        <div class="infonatext">
-            <p class="exemple">
-                Pour sélectionner plusieurs types de texte officiel,
-                appuyez sur la touche contrôle (Ctrl) et cliquez sur 
-                les types souhaités. Procéder de même pour désélectionner.
-            </p>
-        </div>
     </div>
     
     <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
