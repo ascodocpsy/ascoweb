@@ -1,19 +1,12 @@
 ascodocpsy:
-    type: bis
-    path: ascodocpsy.bed
+    type: xapian
+    path: ascodocpsy
 
 # Base intermédiaire utilisée lors du tri des notices
 ascodocpsysort:
     type: bis
     path: ascodocpsy.sort
 
-ascoxapian:
-  type: xapian
-  path: ascoxapian
-  
-ascotest:
-  type: xapian
-  path: test
 
 # Ce fichier décrit les bases de données utilisables dans le projet.
 # 
