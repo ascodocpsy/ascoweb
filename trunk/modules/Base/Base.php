@@ -38,14 +38,15 @@ class Base extends DatabaseModule
     
     public function preExecute()
     {
+        if (parent::preExecute()===true) return true;
      //   if ($this->action=='exportCart')
      //       $this->actionExportCart(true);
         if (Utils::isAjax())
         {
-            $this->setLayout('none');
-            Config::set('debug', false);
-            Config::set('showdebug', false);
-            header('Content-Type: text/html; charset=ISO-8859-1'); // TODO : avoir une rubrique php dans general.yaml permettant de "forcer" les options de php.ini
+//            $this->setLayout('none');
+//            Config::set('debug', false);
+//            Config::set('showdebug', false);
+//            header('Content-Type: text/html; charset=ISO-8859-1'); // TODO : avoir une rubrique php dans general.yaml permettant de "forcer" les options de php.ini
             if ($this->action==='search') Config::set('template','templates/answers.html');
         }
          
@@ -548,7 +549,7 @@ class Base extends DatabaseModule
             null,
             $value));
         
-        $value=preg_replace('~(.+)(?:(né|née)[ ].+)~','$1', $value);
+        $value=preg_replace('~(.+)(?:(né|née|ép.)[ ].+)~','$1', $value);
         
         return trim($value);
         
@@ -735,6 +736,103 @@ class Base extends DatabaseModule
         $data=$this->exportCart($type, $template);              
 
         echo $data;
+    }
+    
+    public function actionExportByType()
+    {
+        // Ouvre la base de données (le nouveau makeEquation en a besoin)
+        $this->openDatabase();
+
+        // Détermine la recherche à exécuter        
+        $this->equation=$this->selection->makeEquation(Utils::isGet() ? $_GET : $_POST);
+
+        // Pas d'équation : erreur
+        if (is_null($this->equation) || $this->equation==='')
+            return $this->showError('Aucun critère de recherche indiqué');
+
+        // Lance la recherche, si aucune réponse, erreur
+        if (! $this->select($this->equation, array('_sort'=>'+', '_start'=>0, '_max'=>1000000)))
+            return $this->showNoAnswer("La requête $this->equation n'a donné aucune réponse.");
+    	
+        // IDEA: on pourrait utiliser les "collapse key" de xapian pour faire la même chose
+        // de façon beaucoup plus efficace (collapser sur type : une seule réponse par type de
+        // document, get_collapse_count() donne une estimation du nombre de documents pour chaque
+        // type)
+        // A voir également : utiliser un MatchSpy (xapian 1.0.3)
+        echo "Equation initiale : $this->equation<br />";
+        $lastCount=$this->selection->count();
+        echo "Nombre total de notices : $lastCount<hr />";
+
+        $equation=$baseEquation='(' . $this->equation . ')';
+        
+        $catField='Type';
+        $catIndex='Type';
+        $phraseSearch=false;
+        
+//        $catField='Creation';
+//        $catIndex='Creation';
+//        $phraseSearch=false;
+
+//        $catField='MotCle';
+//        $catIndex='MotCle';
+//        $phraseSearch=false;
+        
+//        $catField='Rev';
+//        $catIndex='Rev';
+//        $phraseSearch=true;
+        
+        $categories=array();
+        for($i=0;$i<100;$i++)
+        {
+        	$name=$cat=$this->selection[$catField];
+            if (is_array($cat)) $name=$cat=reset($cat);
+            if (is_null($cat) || $cat===false || $cat==='')
+            {
+                $cat='@isempty';
+                $name='';
+            }
+            elseif($phraseSearch)
+                $cat="[$cat]";
+            elseif(strpos($cat, ' ')!==false)
+                $cat="($cat)";
+            echo "ref=",$this->selection['REF'],", $catField=$cat, titre=", $this->selection['Tit'], ", rev=", $this->selection['Rev'],"<br />";
+            
+            $equation.=" -$catIndex:$cat";
+            echo "equation de boucle : $equation<br />";
+            $found=$this->select($equation, array('_sort'=>'+', '_start'=>0, '_max'=>1000000));
+
+            $count=$this->selection->count();
+            $diff=$lastCount-$count;
+            if ($diff==0)
+                throw new Exception("Impossible de créer des catégories sur le champ $catField, l'équation $equation n'a pas diminué le nombre de réponses obtenues (index sans attribut count ?)");
+            if ($diff<0)
+                throw new Exception("Impossible de créer des catégories sur le champ $catField, l'équation $equation a augmenté le nombre de notices obtenues (utiliser l'option phraseSearch ?)");
+
+            echo "Réponses : $count<br />";
+            echo "différence : ", $diff, "<br />";
+            
+            $categories[$name]=array('equation'=>"$catIndex:$cat AND $baseEquation", 'count'=>$lastCount-$count);
+            $lastCount=$count;
+            echo "lastCount passe à : $lastCount<hr />";
+            echo "<hr />";
+
+            if (!$found) break;
+        }
+
+        echo "<hr />done<br />";
+        ksort($categories);
+        echo "<pre>";
+        var_export($categories);
+        echo "</pre>";
+        $all='';
+        foreach($categories as $name=>$cat)
+        {
+        	$url='exportbycat?_equation='.urlencode($cat['equation']);
+            echo "<li><a href='$url'>$name : $cat[count] notices</a></li>";
+            $all.='&_equation='.urlencode($cat['equation']) . '&filename='.urlencode($name);
+        }
+        $all=substr($all,1);
+        echo "<li><a href='exportbycat?$all'>Exporter les ", count($categories), " fichiers </a></li>";
     }
     
    // public function actionExportCart($now=false)
