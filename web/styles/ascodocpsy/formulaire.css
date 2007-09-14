@@ -249,6 +249,7 @@ input.delete
 ul.shortlist
 {
 	padding: 0;
+	clear: right;
 }
 
 /* Liste de réponses complètes */
