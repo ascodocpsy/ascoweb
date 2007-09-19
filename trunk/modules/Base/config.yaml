@@ -11,7 +11,7 @@ CSS:
 # doit être sous forme de tableau car on peut en avoir plusieurs
 #JS: [xxx.js]
 JS:
-  - /fabweb/js/lib/jquery/jquery-1.1.3.1.js
+  - /fabweb/js/lib/jquery/jquery-1.2.1.min.js
 #  - /fabweb/js/lib/jquery.form/jquery.form.js
 
 #title: aaaaaa
