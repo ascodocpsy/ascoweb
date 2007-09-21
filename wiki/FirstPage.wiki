@@ -1,0 +1,8 @@
+#labels Phase-Design
+=Création d'une première page, à fins de tests=
+
+Dans un premier temps, j'avais mis un nom de page qui contient un accent... c'est interdit :
+{{{
+The page name must be one alphanumeric word. E.g., WikiPageName
+}}} 
+ 
