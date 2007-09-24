@@ -1,8 +1,22 @@
 #labels Phase-Design
-=Création d'une première page, à fins de tests=
+=Migration du code vers Google=
+La migration du code du projet ascoweb vers GoogleCode a eu lieu le 21/09/2007.
 
-Dans un premier temps, j'avais mis un nom de page qui contient un accent... c'est interdit :
-{{{
-The page name must be one alphanumeric word. E.g., WikiPageName
-}}} 
- 
+=Code source=
+Le code source est disponible sur un dépôt Subversion :
+http://ascoweb.googlecode.com/svn/
+
+=Listes de discussion=
+
+2 listes de discussion ont été mises en place pour le projet :
+*une liste pour être informé des problèmes rencontrés, des améliorations à apporter (ascoweb-issues)
+*une liste pour être informé des modifications réalisées sur le projet (ascoweb-commits)
+
+Pour pouvoir être membre des listes de discussion, vous devez avoir une adresse sur le service de messagerie Gmail (http://gmail.com).
+Pour créer votre compte Google-Gmail, rendez-vous à l'adresse http://mail.google.com/mail/signup.
+
+Ensuite, pour vous inscrire aux listes de discussion, vous devez faire une demande d'adhésion, aux adresses suivantes :
+* liste ascoweb-issues : http://groups.google.com/group/ascoweb-issues
+* liste ascoweb-commites : http://groups.google.com/group/ascoweb-commits
+
+
