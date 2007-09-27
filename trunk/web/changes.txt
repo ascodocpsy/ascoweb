@@ -1,4 +1,4 @@
-Ce fichier liste les modifications apportées au site (les plus récentes en tête).
+ Ce fichier liste les modifications apportées au site (les plus récentes en tête).
 
 14/09/06, SF
 - Suppression du format d'export AJP
