@@ -7,7 +7,7 @@
 Page = 220 ou VIII-220 ou pagination multiple
 PdPf = 5-8 ou I-Xv ou "1 ; 3-11"
 Edit = [s.n.]
-Lieu = [s.l.] ou Paris
+Lieu = [s.l.] ou Paris 
 */
 
 // Chiffre
