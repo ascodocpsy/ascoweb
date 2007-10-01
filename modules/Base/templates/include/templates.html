@@ -1,7 +1,16 @@
 <!--remarque : les fichiers include ne supportent pas les commentaires /* */-->
 
-<!--/* Template pour factoriser l'affichage : pour presque tous les types de doc, il faut afficher-->
-<!--$Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne */-->
+<!--/* Template pour factoriser l'affichage (notice courte) : pour presque tous les types de doc, il faut afficher-->
+<!--$Type, $Date, $Aut, $Tit : permet de le faire en une seule ligne -->
+<!--$Aut et $Tit sont sur la même ligne /*-->
+<template match="//TDAT">
+    <row >$Type, $Date</row>
+    <row label="Auteur(s), titre"><opt>$Aut, </opt><Tit /></row>
+</template>
+
+<!--/* Template pour factoriser l'affichage (notice complète) : pour presque tous les types de doc, il faut afficher-->
+<!--$Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne -->
+<!--$Aut et $Tit sont sur 2 lignes différentes */-->
 <template match="//TDTA">
     <row >$Type, $Date</row>
     <row label="Titre">
