@@ -17,7 +17,7 @@ var reChiffre      = "[0-9]"
 var reYear         = "175_Chiffre_|1[8-9]_Chiffre_{2}|20[0-1]_Chiffre_"      // une année sur 4 chiffres (1750 à 2019)
 var reMonth	       = "(0[1-9]|1[0-2])"				        // un mois sur deux chiffres (01 à 12)
 var reDay	       = "(0[1-9]|[12][0-9]|3[01])"			    // un jour sur deux chiffres (01 à 31)
-var reYearFRE      = "La date doit être dans le format suivant : AAAA.\nExemple : 2005"
+var reYearFRE      = "La date doit être dans le format AAAA et supérieure ou égale à 1750.\nExemple : 2005"
 
 // Année evaluée au format [AAAA]
 var reYearEval     = "\\[_Year_\\]"
@@ -27,7 +27,7 @@ var reNoYear       = "\\[s.d.\\]"
 
 // Date au format Ascodocpsy (AAAA ou [AAAA] ou [s.d.])
 var reYearDoc      = "_Year_|_YearEval_|_NoYear_"
-var reYearDocFRE   = "L'année doit être dans l'un des formats suivants :\nAAAA si l'année est connue (exemple : 2006), elle doit être supérieure  à 1750\n[AAAA] si l'année est évaluée (exemple : [2006])\n[s.d.] dans le cas d'un document sans date."
+var reYearDocFRE   = "L'année doit être dans l'un des formats suivants :\nAAAA si l'année est connue (exemple : 2006), elle doit être supérieure ou égale à 1750\n[AAAA] si l'année est évaluée (exemple : [2006])\n[s.d.] dans le cas d'un document sans date."
 
 // Date au format AAAA-MM-JJ : format usuel
 var reDateUsual    = "_Year_-_Month_-_Day_"
