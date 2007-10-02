@@ -215,8 +215,8 @@ jQuery(document).ready(
         var textof=jQuery('input[@value="Texte officiel"]');
         if (! textof.is(':checked'))
         \{
-            jQuery('#DateText').parent().slideUp('normal');
-            jQuery('#NatText').parent().slideUp('normal');
+            jQuery('#DateText').parent().hide();
+            jQuery('#NatText').parent().hide();
         \};
         
         textof.click(function()
