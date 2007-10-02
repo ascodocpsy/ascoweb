@@ -16,7 +16,7 @@
         Réponses : <code>{$this->selection->count()}</code>*/
     </p>
 </slot>
-
+<div id="cartinfo" style="background-color: yellow; color: red; display: none; font-size: 1.5em; text-align: center; border: 1px solid red;">here</div>
 <div class="texte">
 	/* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
 	<if test="{!Config::get('incart',false)}">
@@ -35,9 +35,6 @@
 	</else>
 </div>
 
-<div>
-
-</div>
 <script>
 function position(element, property)
 \{
@@ -91,11 +88,33 @@ function init()
 //        jQuery('ul.shortlist').fadeTo("slow",0.2);
         return false;
     \})
-
+    
+    var cartinfo=function(data)
+    \{
+        jQuery('#cartinfo')
+            .html(data)
+            .slideDown
+            (
+                'normal', 
+                function()
+                \{
+                    window.setTimeout
+                    (
+                        function()
+                        \{
+                            jQuery('#cartinfo').slideUp('normal')
+                        \},
+                        2000
+                    )
+                \}
+            );
+    \}
+    
     // Lien "ajouter cette notice au caddie"
     jQuery('a.addtocart').click(function(e)
     \{
-        jQuery.post(jQuery(this).attr('href'));
+        jQuery.post(jQuery(this).attr('href'), null, cartinfo);
+        
         jQuery(this).fly();
         return false;
     \});
@@ -111,7 +130,8 @@ function init()
         jQuery.ajax(\{
             url: jQuery(this).attr('action'),
             type: jQuery(this).attr('method'),
-            data: jQuery('input:hidden', this).serialize()
+            data: jQuery('input:hidden', this).serialize(),
+            success: cartinfo
         \});
         
         jQuery('a.addtocart').fly();
