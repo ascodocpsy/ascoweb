@@ -20,7 +20,7 @@ label.select
 /*	font-weight: bold;*/
     width: 12em;
     display: block;
-	float: left;
+    float: left;
 	text-align: right;
 	padding-right: 1em;
 }
@@ -96,14 +96,19 @@ form.search div.select
 	clear: right;
 }
 
-/* Liste déroulante 'Autre' pour le choix d'une date */
+/* Zone de texte 'Autre' pour le choix d'une date */
 form.search div.date
 {
 	margin-left: 4em;
 }
+form.search div.date input.text
+{
+    width: 3em;
+}
 
-/* Annule le font-weight: bold; de form.search label.select */
-form.search div.date label.select
+/* Annule le font-weight: bold; de form.search label.* */
+form.search div.date label.select,
+form.search div.date label.text
 {
 	font-weight: normal;
 }
