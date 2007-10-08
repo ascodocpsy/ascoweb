@@ -32,6 +32,14 @@
   module: base
   action: inform
 
+- url: /base/producteur/[prodfich]
+  module: base
+  action: search
+
+- url: /base/localisation/[loc]
+  module: base
+  action: search
+
 - url: /base/[REF]/modifier
   with:
     REF: \d+

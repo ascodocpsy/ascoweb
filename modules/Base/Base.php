@@ -279,14 +279,31 @@ class Base extends DatabaseModule
                 {
                     $h=trim($h);
                     
+                    // 1. Lien sur le nom du centre : lance une nouvelle recherche
+                    $lien1=$this->link
+                    (
+                        $h,
+                        'search?'.strtolower($name).'='. urlencode($h),
+                        ($name=='Loc') ? 'Documents localisés au centre '.$h : 'Notices produites par le centre '.$h
+                    );
+
+                    // 2. Lien vers la présentation du centre                    
                     // Recherche le numéro de l'article correspondant à l'URL de la fiche de présentation du centre
                     // et construit le lien
                     if (isset ($this->tblAsco[$h]))
-                    {
-                        $lien=Config::get('urlarticle').$this->tblAsco[$h];
-                        $h=$this->link($h, $lien, 'Présentation du centre '.$h);
-                        $t[$key]=$h;
+                    {                       
+                        $lien2=$this->link
+                        (
+                            '&nbsp;<span>Présentation du centre '.$h.'</span>',
+                            Config::get('urlarticle').$this->tblAsco[$h], 
+                            'Présentation du centre '.$h.' (ouverture dans une nouvelle fenêtre)',
+                            true,
+                            'inform'
+                         );
                     }
+                    
+                    // Concatène les 2 liens
+                    $t[$key]=$lien1.'&nbsp;'.$lien2 ;
                 }
                 return implode(self::SEPARATOR, $t);
                 
