@@ -51,16 +51,6 @@
     <loop on="{$this->selection}" as="$rank, $record">
         <li class="record">
 
-/*
-            <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-                <if test="{!Config::get('incart',false)}">
-                    <a class="addtocart" href="/ascocart/add?category={Utils::convertString($Type,'lower')}&amp;item=$REF" title="Ajouter au panier"><span>Ajouter au panier</span></a>
-                </if>
-                <else>
-                    <a class="removefromcart" href="/ascocart/remove?category={Utils::convertString($Type,'lower')}&amp;item=$REF" title="Supprimer du panier"><span>Supprimer du panier</span></a>
-                </else>
-            </if>                
-*/
             <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
                 <if test="{!Config::get('incart',false)}">
                     <a class="addtocart" href="/ascocart/add?item=$REF" title="Ajouter au panier"><span>Ajouter au panier</span></a>
@@ -77,8 +67,6 @@
             </if>
             
             <hidden name="item" value="$REF" />
-/*            <hidden name="category" value="{Utils::convertString($Type,'lower')}" />*/
-/*            <hidden name="toadd" value="{addslashes(urlencode(serialize(array('item'=>$REF,'category'=>Utils::convertString($Type,'lower')))))}" />*/
             
             /* affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
             <switch test="$Type">
@@ -129,13 +117,6 @@
                 </default>
                 
             </switch>
-<small>
-    score : {$this->selection->iterator->get_percent()} %,
-    weight: {sprintf('%.2f',$this->selection->iterator->get_weight())}
-    (sur {sprintf('%.2f', $this->selection->mset->get_max_possible())}),
-    match : {implode(', ', $this->selection->enquire->get_matching_terms($this->selection->iterator))}
-</small>
-/*<big><pre>{print_r($this->selection->getTerms(),true)}</pre></big>*/
         </li>
         <hr />
     </loop>
