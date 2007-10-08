@@ -316,23 +316,19 @@ class Base extends DatabaseModule
                     if (! $lien=$this->selection['Lien']) return '';
                     
                     if (strpos(strtolower($lien), 'ascodocpsy') !== false)
-                    {
-                        $title='Présentation du périodique';
-                        $newwin=false;
-                    }
+                        $title='Présentation du périodique (ouverture dans une nouvelle fenêtre)';
                     else
-                    {
                         $title='Accéder au texte intégral (ouverture dans une nouvelle fenêtre)';
-                        $newwin=true;
-                    }
+
                     // Lien vers la page de présentation de la revue ou vers le texte intégral
-                    return $this->link('&nbsp;<span>Présentation</span>', $lien, $title, $newwin, 'inform');
+                    // avec ouverture dans une nouvelle fenêtre
+                    return $this->link('&nbsp;<span>Présentation</span>', $lien, $title, true, 'inform');
                 }
                 else
                 {
                     // Lien vers la page de présentation de la revue sur le site d'Ascodocpsy
                     $lien='inform?rev='. urlencode(Utils::convertString($h,'lower'));
-                    return $this->link('&nbsp;<span>Présentation</span>', $lien, 'Présentation du périodique', false, 'inform');
+                    return $this->link('&nbsp;<span>Présentation</span>', $lien, 'Présentation du périodique (ouverture dans une nouvelle fenêtre)', true, 'inform');
                 }
 
             case 'EtatCol':
