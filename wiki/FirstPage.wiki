@@ -17,4 +17,4 @@ Pour créer votre compte Google-Gmail, rendez-vous à l'adresse http://mail.goog
 
 Ensuite, pour vous inscrire aux listes de discussion, vous devez faire une demande d'adhésion, aux adresses suivantes :
   * liste ascoweb-issues : http://groups.google.com/group/ascoweb-issues
-  * liste ascoweb-commites : http://groups.google.com/group/ascoweb-commits
+  * liste ascoweb-commits : http://groups.google.com/group/ascoweb-commits
