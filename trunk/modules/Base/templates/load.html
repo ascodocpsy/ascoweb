@@ -200,7 +200,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
     <div><input type="hidden" name="Type" value="$Type"/></div>
        
     /* Contenu spécifique à chaque type de document */
-    <switch test="$Type">
+    <switch test="{$Type}">
     
     /* TODO : factoriser le switch : Congrès et Livre presque identiques */
     
@@ -444,7 +444,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 	    <if test="{User::hasAccess('AdminBase')}">
 	        <form method="post" class="reset form" action="/base/delete">
 	            <div><input type="hidden" name="REF" value="$REF" /></div>
-	            <div class="buttons"><submit label="Supprimer" class="reset spip_bouton" /></div>
+                <div class="buttons"><submit label="Supprimer" class="reset spip_bouton" onclick="return(confirm('Supprimer définitivement la notice ?'));" /></div>
 	        </form>
 	    </if>
 	</if>
