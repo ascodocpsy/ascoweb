@@ -3,11 +3,26 @@
 <div class="texte">
 
 <p class="spip">
-        Ce module permet d'importer un ou plusieurs fichiers dans la base 
-        de données. Etablissez tout d'abord la liste des fichiers à importer en
-        transférant chaque fichier de votre poste de travail au serveur. Si vous
-        transférez un fichier erroné, utiliser le bouton supprimer qui figure 
-        après son nom. Lancez l'import une fois que vous avez terminé.
+    Ce module permet d'importer un ou plusieurs fichiers dans la base de données.
+</p>
+
+<p class="spip">
+    Etablissez tout d'abord la liste des fichiers à importer en
+    transférant chaque fichier de votre poste de travail au serveur. Si vous
+    transférez un fichier erroné, utiliser le bouton "Supprimer" qui figure 
+    après son nom.
+</p>
+
+<p test="{User::hasAccess('AdminBase')}" class="spip">
+    Lancez l'import une fois que vous avez terminé.
+</p>
+<p test="{User::hasAccess('EditBase')}" class="spip">
+    L'import des fichiers sera ensuite lancé par un administrateur.
+</p>
+
+<p class="spip">
+    Remarque : les notices importées seront visibles par tout visiteur
+    uniquement après leur validation par un administrateur.
 </p>
 
 <fieldset label="Liste des fichiers à importer dans la base">
