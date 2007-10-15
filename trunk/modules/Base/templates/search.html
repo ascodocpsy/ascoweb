@@ -150,19 +150,14 @@
         </p>
     </div>
     
-    /* TODO : quickTable */
-    <div test="{User::hasAccess('AdminBase')}">
-        <checklist name="FinSaisie" label="Saisie de notices" src="array(array('code'=>'0', 'label'=>'Notices en cours de saisie'), array('code'=>'1', 'label'=>'Notices terminées'))" />
+    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+        <checklist name="Statut" label="Statut de la notice" src="new TextTable($this->path.'../../tables/statut.txt')" />
     </div>
-    
-    <div test="{User::hasAccess('AdminBase')}">
-        <checklist name="Valide" label="Validation de notices" src="array(array('code'=>'0', 'label'=>'Notices à valider'), array('code'=>'1', 'label'=>'Notices validées'))" />
-    </div>
-    
+
     <div test="{User::hasAccess('AdminBase')}">
         <textbox name="Creation" label="Date de création" />
     </div>
-    
+
     <div test="{User::hasAccess('AdminBase')}">
         <textbox name="LastUpdate" label="Date de mise à jour" />
         <p class="exemple">

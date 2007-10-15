@@ -30,7 +30,8 @@ filter:
     AdminBase:
     EditBase:
     cli:
-    default: '(* sauf type=periodique) and Valide=1'
+#    default: '(* sauf type=periodique) and Valide=1'
+    default: '(* sauf type=periodique) and Statut=valide'
 
 searchform:
   template: templates/search.html
@@ -53,7 +54,7 @@ show:
     callback: getField
     errortemplate: templates/error/error_base.html
     noanswertemplate: templates/error/error_base_noanswer.html
-	
+
 load:
     access: AdminBase,EditBase
     JS:
@@ -85,7 +86,7 @@ new:
 save:
     access: AdminBase,EditBase
     callback: validData
-	
+
 delete:
     access: AdminBase
     template: templates/deleted.html
