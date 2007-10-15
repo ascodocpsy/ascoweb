@@ -30,16 +30,12 @@
 	<div class="ContentLeft">
          <div class="texte">
             <ul class="menu">
-                <li>Base documentaire
-                    <ul>
-                        <li><a href="/base/searchform">Rechercher des documents</a></li>
-                        <if test="{User::hasAccess('Edit,Admin')}">
-                            <li id="caddie"><a href="/ascocart/show">Voir votre panier</a></li>
-                            <li><a href="/base/new">Créer une nouvelle notice</a></li>
-                            <li><a href="/base/import">Importer des notices</a></li>
-                        </if>
-                    </ul>
-                </li>
+                <li><a href="/base/searchform">Rechercher des documents</a></li>
+                <if test="{User::hasAccess('Edit,Admin')}">
+                    <li id="caddie"><a href="/ascocart/show">Voir votre panier</a></li>
+                    <li><a href="/base/new">Créer une nouvelle notice</a></li>
+                    <li><a href="/base/import">Importer des notices</a></li>
+                </if>
                 <if test="{User::hasAccess('Admin')}">
                     <li>Administrateurs
                         <ul>
