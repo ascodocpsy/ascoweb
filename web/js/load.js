@@ -134,25 +134,36 @@ function CheckLienAnnexe(Value)
 function CheckForm(ControlsName)
 {
 	var h ;
-	var Valid;
+	var Statut;
 
-        if ( ctrlFields(ControlsName) ) return true ;
-	Valid=document.forms[0].Valid;
+    if ( ctrlFields(ControlsName) ) return true ;
+	Statut=document.forms[0].Statut;
 
-	if ( Valid && ctrlGetFieldValue(Valid)=="" )
+	if ( ctrlGetFieldValue(Statut)=="valide" )
 	{
-		h  = "Impossible d'enregistrer la fiche : elle contient des erreurs et la fiche a été validée.\n"
-		h += "Pour enregistrer la fiche, corrigez les erreurs qu'elle contient ou rendez la fiche invisible.\n\n"
+		h  = "Impossible d'enregistrer la fiche : elle contient des erreurs et la fiche a été validée par un administrateur. "
+        h += "Elle est donc visible du grand public.\n"
+		h += "Pour enregistrer la fiche, corrigez les erreurs qu'elle contient.\n\n"
 		h += "Voici le texte de la première erreur :\n\n"+ctrlError
 		alert(h) ;
 		return false ;
 	}
+    else if ( ctrlGetFieldValue(Statut)=="" )
+    {        
+        h  = "Impossible d'enregistrer la fiche : elle contient des erreurs.\n"
+        h += "Vous n'avez notamment pas défini son statut.\n"
+        h += "Pour enregistrer la fiche, corrigez les erreurs qu'elle contient et définissez son statut.\n\n"
+        h += "Voici le texte de la première erreur :\n\n"+ctrlError
+        alert(h) ;
+        return false ;
+    }
 	else
 	{
 		h  = "Votre fiche contient une ou plusieurs erreurs. Voici le texte de la première :\n\n"
 		h += ctrlError
 		h += "\n\nNous vous conseillons de corriger votre fiche avant de l'enregistrer.\n"
-		h += "Néanmoins, comme elle n'est pas visible pour le moment, vous pouvez, si vous le souhaitez, "
+		h += "Néanmoins, comme, pour le moment, elle n'est pas visible du grand public "
+        h += "(car non validée par un administrateur), vous pouvez, si vous le souhaitez, "
 		h += "l'enregistrer dans son état actuel.\n"
 		h += "Cliquez sur OK pour enregistrer la fiche, sur Annuler pour la corriger."
 		return confirm( h ) ;
@@ -199,7 +210,8 @@ var Controls =
 ["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
 ["Lien"            , "Lien vers le document"                            ,      ,       ,        ,       ,       , "reUrlIP"      ,                ],
 ["Loc"             , "Localisation du document"                         ,      ,       ,        ,       ,       , "reNomCentre"  ,                ],
-["ProdFich"        , "Producteur de la fiche"                           ,      ,       ,        ,       ,       , "reNomCentre"  ,                ]
+["ProdFich"        , "Producteur de la fiche"                           ,      ,       ,        ,       ,       , "reNomCentre"  ,                ],
+["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
 ]
 
 // Pour document Article
@@ -223,7 +235,8 @@ var ControlsArticle =
 ["Nomp"            , "Noms propres"                                     ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
 ["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
 ["Lien"            , "Lien vers le document"                            ,      ,       ,        ,       ,       , "reUrlIP"      ,                ],
-["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ]
+["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
+["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
 ]
 
 // Pour document Livre
@@ -254,7 +267,8 @@ var ControlsLivre =
 ["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
 ["Lien"            , "Lien vers le document"                            ,      ,       ,        ,       ,       , "reUrlIP"      ,                ],
 ["Loc"             , "Localisation du document"                         , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
-["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ]
+["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
+["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
 ]
 
 // Pour document Congrès
@@ -285,7 +299,8 @@ var ControlsCongres =
 ["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
 ["Lien"            , "Lien vers le document"                            ,      ,       ,        ,       ,       , "reUrlIP"      ,                ],
 ["Loc"             , "Localisation du document"                         , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
-["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ]
+["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
+["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
 ]
 
 // Pour document Rapport
@@ -314,7 +329,8 @@ var ControlsRapport =
 ["Nomp"            , "Noms propres"                                     ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
 ["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
 ["Lien"            , "Lien vers le document"                            , true ,       ,        ,       ,       , "reUrlIP"      ,                ],
-["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ]
+["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
+["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
 ]
 
 // Pour documents Mémoire et Thèse
@@ -339,7 +355,8 @@ var ControlsMemoire =
 ["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
 ["Lien"            , "Lien vers le document"                            ,      ,       ,        ,       ,       , "reUrlIP"      ,                ],
 ["Loc"             , "Localisation du document"                         , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
-["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ]
+["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
+["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
 ]
 
 // Pour document Texte officiel
@@ -364,7 +381,8 @@ var ControlsTexteOfficiel =
 ["Nomp"            , "Noms propres"                                     ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
 ["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,       ,       , "reUpCase"     ,                ],
 ["Lien"            , "Lien vers le document"                            , true ,       ,        ,       ,       , "reUrlIP"      ,                ],
-["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ]
+["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
+["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
 ]
 
 // Pour document Périodique
@@ -380,5 +398,6 @@ var ControlsPeriodique =
 ["Notes"           , "Notes"                                            ,      ,       ,        ,       ,       ,                ,                ],
 ["IsbnIssn"        , "ISSN"                                             , true ,       ,        ,       ,     1 , "reIssnExt"    ,                ],
 ["Lien"            , "Lien vers le document"                            ,      ,       ,        ,       ,       , "reUrlIP"      ,                ],
-["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ]
+["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
+["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
 ]

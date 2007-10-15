@@ -190,7 +190,7 @@ class Base extends DatabaseModule
     
             case 'Aut':
             	if ($this->selection[$name]=='' ) return '';
-                if (!$t=(array)$this->selection[$name]) return '';
+                if (!$t=(array)$this->selection[$name]) return '';  // Cas où $this->selection[$name] est null
 
                 foreach ($t as $key=>$h)
                 {
@@ -277,33 +277,33 @@ class Base extends DatabaseModule
 
                 foreach ($t as $key=>$h)
                 {
-                    $h=trim($h);
-                    
-                    // 1. Lien sur le nom du centre : lance une nouvelle recherche
-                    $lien1=$this->link
-                    (
-                        $h,
-                        'search?'.strtolower($name).'='. urlencode($h),
-                        ($name=='Loc') ? 'Documents localisés au centre '.$h : 'Notices produites par le centre '.$h
-                    );
-
-                    // 2. Lien vers la présentation du centre                    
-                    // Recherche le numéro de l'article correspondant à l'URL de la fiche de présentation du centre
-                    // et construit le lien
-                    if (isset ($this->tblAsco[$h]))
-                    {                       
-                        $lien2=$this->link
+                    if ($h=trim($h))
+                    {
+                        // 1. Lien sur le nom du centre : lance une nouvelle recherche
+                        $lien1=$this->link
                         (
-                            '&nbsp;<span>Présentation du centre '.$h.'</span>',
-                            Config::get('urlarticle').$this->tblAsco[$h], 
-                            'Présentation du centre '.$h.' (ouverture dans une nouvelle fenêtre)',
-                            true,
-                            'inform'
-                         );
+                            $h,
+                            'search?'.strtolower($name).'='. urlencode($h),
+                            ($name=='Loc') ? 'Documents localisés au centre '.$h : 'Notices produites par le centre '.$h
+                        );
+                        $t[$key]=$lien1;
+                        
+                        // 2. Lien vers la présentation du centre                    
+                        // Recherche le numéro de l'article correspondant à l'URL de la fiche de présentation du centre
+                        // et construit le lien
+                        if (isset ($this->tblAsco[$h]))
+                        {                       
+                            $lien2=$this->link
+                            (
+                                '&nbsp;<span>Présentation du centre '.$h.'</span>',
+                                Config::get('urlarticle').$this->tblAsco[$h], 
+                                'Présentation du centre '.$h.' (ouverture dans une nouvelle fenêtre)',
+                                true,
+                                'inform'
+                             );
+                             $t[$key].='&nbsp;'.$lien2;
+                        }                        
                     }
-                    
-                    // Concatène les 2 liens
-                    $t[$key]=$lien1.'&nbsp;'.$lien2 ;
                 }
                 return implode(self::SEPARATOR, $t);
                 
@@ -408,35 +408,39 @@ class Base extends DatabaseModule
         	case 'EtatCol':
         	case 'Loc':
         	case 'ProdFich':
-        		if (is_array($value))
-        		{
-        			if (count($value)===0)
-        				$value=null;
-    				else
-	        			$value=array_map("trim",$value); // TODO : supprimer les articles vides ? (array_filter supprime trop de choses)
-        		}
-        		else
-        		{
-        			if ($value==='')
-        				$value=null;
-    				else
-	        			$value=array_map("trim",explode(trim(self::SEPARATOR),$value));
-        		}
-        		break;
-
-            case 'FinSaisie':
-                $value=is_null($value) ? 0 : 1;
-                break;
-            
-            case 'Valide':
-                if (User::hasAccess('AdminBase'))
-                    $value=is_null($value) ? 0 : 1;
+                if (is_array($value))
+                {
+                    if (count($value)===0)
+                        $value=null;
+                    else
+                        $value=array_map("trim",$value); // TODO : supprimer les articles vides ? (array_filter supprime trop de choses)
+                }
                 else
-                    $value=0;
-                    // Si la notice est modifiée par un membre du GIP, la notice repasse
-                    // en statut "à valider par un administrateur"
+                {
+                    if ($value==='')
+                        $value=null;
+                    else
+                        $value=array_map("trim",explode(trim(self::SEPARATOR),$value));
+                }
                 break;
+
+//            case 'FinSaisie':
+//                $value=is_null($value) ? 0 : 1;
+//                break;
+//            
+//            case 'Valide':
+//                if (User::hasAccess('AdminBase'))
+//                    $value=is_null($value) ? 0 : 1;
+//                else
+//                    $value=0;
+//                    // Si la notice est modifiée par un membre du GIP, la notice repasse
+//                    // en statut "à valider par un administrateur"
+//                break;
             
+        	case 'Statut':
+        	    if (is_null($value) && $this->selection[$name]) return false;
+        	    break;
+        	    
             case 'Creation':
                 if ($this->selection[$name]) return false;
                 $value=date('Ymd');
@@ -458,21 +462,22 @@ class Base extends DatabaseModule
      */
  	public function hasEditRight()
  	{
- 		// Administrateurs
+ 		// Administrateurs : peuvent modifier les notices quel que soit leur statut
  		if (User::hasAccess('AdminBase')) return true;
  		
 		// Membres du GIP
  		if (User::hasAccess('EditBase'))
  		{
-			// Si la saisie de la notice n'est pas terminée, seul les membres 
-			// spécifiés dans le champ ProdFich peuvent modifier la notice
-	        if ($this->selection['FinSaisie'] == 0)
+			// Si la notice n'a pas été validée par un administrateur, seul les
+			// membres spécifiés dans le champ ProdFich peuvent modifier la notice
+	        if ($this->selection['Statut'] != 'valide')
 	            return (in_array($this->ident, (array)$this->selection['ProdFich'])) ? true : false;
  
-			// Si la saisie de la notice est terminée, tous les membres peuvent modifier la notice
+			// Si la notice a été validée, tous les membres peuvent modifier la notice
 			return true;
  		}
- 		
+
+ 		// Grand public : ne peuvent pas modifier les notices
  		return false;
  	}
  
@@ -1621,11 +1626,14 @@ echo '</pre>';
                 $this->selection['LastUpdate']=$d;
                 
                 // Initialise les champs FinSaisie et Valide
-                $this->selection['FinSaisie']=true;  // La saisie des notices est terminée
-                $this->selection['Valide']=false;      // Les notices importées ne sont pas validées
+//                $this->selection['FinSaisie']=true;  // La saisie des notices est terminée
+//                $this->selection['Valide']=false;      // Les notices importées ne sont pas validées
+                
+                // Initialise le statut de la notice
+                // Les notices importées sont à valider par un administrateur
+                $this->selection['Statut']='avalider';
                 
                 $this->selection->saveRecord();
-
                 $nbref++;
             }
             
@@ -1704,6 +1712,8 @@ echo '</pre>';
 
     public function actionValidateAll()
     {
+        // TODO : cette fonction sert-elle encore ?
+        
         // Ouvre la sélection
         $selection=self::openDatabase('Valide=faux', false);
         if (is_null($selection)) return;
@@ -1732,6 +1742,8 @@ echo '</pre>';
     
     public function actionFinSaisieTrue()
     {
+        // TODO : cette fonction sert-elle encore ?
+        
         // Ouvre la sélection
         $selection=self::openDatabase('FinSaisie=faux', false);
         if (is_null($selection)) return;

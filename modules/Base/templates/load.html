@@ -123,6 +123,22 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 	</else>
 </template>
 
+/* Raccourci pour le champ Statut de la notice */
+<template match="//Statut">
+    <fieldset label="Statut de la notice">
+        <if test="{User::hasAccess('AdminBase')}">
+            <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'../../tables/statut.txt')" class="mandatory" /></fill>
+        </if>
+        <if test="{User::hasAccess('EditBase')}">
+            <if test="{$Statut=='valide'}">
+                <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'../../tables/statut.txt')" class="mandatory" /></fill>
+            </if>
+            <else>
+                <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'../../tables/membre_statut.txt')" class="mandatory" /></fill>
+            </else>
+        </if>
+    </fieldset>
+</template>
 
 /* Raccourci pour la section Congrès
 @mandatory indique si les attributs sont obligatoires ou non
@@ -197,7 +213,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 /* Modification d'une notice en fonction du type de document */
 <if test="{!Config::get('allfields',false)}">
 
-    <div><input type="hidden" name="Type" value="$Type"/></div>
+    <div><hidden name="Type" value="$Type" /></div>
        
     /* Contenu spécifique à chaque type de document */
     <switch test="{$Type}">
@@ -212,6 +228,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <ResuIndexation />
             <Lien />
             <ProdFich />
+            <Statut />
             <script type="text/javascript">ctrlInitialize("ControlsArticle");</script>      
         </case>
         
@@ -232,6 +249,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <Lien />
             <Loc />
             <ProdFich />
+            <Statut />
             <script type="text/javascript">ctrlInitialize("ControlsCongres");</script>
         </case>
         
@@ -252,6 +270,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <Lien />
             <Loc />
             <ProdFich />
+            <Statut />
             <script type="text/javascript">ctrlInitialize("ControlsLivre");</script>        
         </case>
         
@@ -272,6 +291,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <Lien />
             <Loc />
             <ProdFich />
+            <Statut />
             <script type="text/javascript">ctrlInitialize("ControlsMemoire");</script>
         </case>
         
@@ -293,6 +313,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             </fieldset>
             <Lien />
             <ProdFich />
+            <Statut />
             <script type="text/javascript">ctrlInitialize("ControlsPeriodique");</script>
         </case>
         
@@ -315,6 +336,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <ResuIndexation />
             <Lien mandatory="{true}" />
             <ProdFich />
+            <Statut />
             <script type="text/javascript">ctrlInitialize("ControlsRapport");</script>
         </case>
         
@@ -340,6 +362,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
                 <div><text name="Lien" rows="1" label="Lien vers le document *" class="fullwidth autoheight mandatory" /></div>
             </fieldset>
             <ProdFich />
+            <Statut />
             <script type="text/javascript">ctrlInitialize("ControlsTexteOfficiel");</script>
         </case>
 
@@ -409,22 +432,11 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
     <Lien />
     <Loc mandatory="{false}" />
     <ProdFich mandatory="{false}" />
+    <Statut />
 	<script type="text/javascript">ctrlInitialize("Controls");</script>
 
 </else>
 
-    <fieldset>
-        <opt><legend>Gestion de la notice</legend></opt> 
-            <div>
-                <fill values="$FinSaisie"><checkbox name="FinSaisie" label="Notice à valider" value="1" /></fill>
-            </div>
-            <if test="{User::hasAccess('AdminBase')}">
-                <div>
-                    <fill values="$Valide"><checkbox name="Valide" label="Notice validée par un administrateur" value="1" /></fill>
-                </div>
-            </if>
-    </fieldset>
-    
     <opt>
         <fieldset label="Dates de création et de mise à jour de la notice">
             <div><p>Création : $Creation</p></div>
@@ -432,7 +444,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </fieldset>
     </opt>
     
-    <div><input type="hidden" name="REF" value="$REF" /></div>
+    <div><hidden name="REF" value="$REF" /></div>
     
     <div class="buttons">
         <submit label="Enregistrer" class="submit spip_bouton" />
@@ -443,7 +455,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 	<if test="{$REF!=0}">
 	    <if test="{User::hasAccess('AdminBase')}">
 	        <form method="post" class="reset form" action="/base/delete">
-	            <div><input type="hidden" name="REF" value="$REF" /></div>
+                <div><hidden name="REF" value="$REF" /></div>
                 <div class="buttons"><submit label="Supprimer" class="reset spip_bouton" onclick="return(confirm('Supprimer définitivement la notice ?'));" /></div>
 	        </form>
 	    </if>
