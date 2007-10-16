@@ -107,9 +107,8 @@
                 </case>
                 
                 <case test="Texte officiel">
-                    <row>$Type</row>                       
-                    <row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Titre"><Tit /><opt> / $Annexe</opt></row>
-                    <row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Titre"><Tit /><opt> ; $Annexe</opt></row>
+                    <row>$Type</row>
+                    <opt><row label="Titre"><Tit /><opt> ; $Annexe</opt></row></opt>
                     <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique">$Rev<opt> du $DatePub</opt></row></opt>
                 </case>
                 <default>
