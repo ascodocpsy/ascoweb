@@ -111,9 +111,9 @@
                     
                     <case test="Texte officiel">
                         <row>$Type</row>
-                        <opt><row label="Titre">$Tit<opt> ; $Annexe</opt></row></opt>
-                        <opt><row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Source">$Rev $DatePub, n°$Num</row></opt>
-                        <opt><row test="{User::hasAccess('EditBase')}" label="Périodique">$Rev<opt>, n°$Num</opt><opt> du $DatePub</opt></row></opt>
+                        <opt><row label="Titre"><Tit /><opt> ; $Annexe</opt></row></opt>
+                        <opt><row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Source">$Rev du $DatePub, n°$Num</row></opt>
+                        <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Périodique">$Rev<opt>, n°$Num</opt><opt> du $DatePub</opt></row></opt>
                         <MTCNR />
                         <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Producteur">$ProdFich</row></opt>
                     </case>
