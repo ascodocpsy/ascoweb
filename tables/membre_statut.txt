@@ -1,0 +1,3 @@
+code	label
+encours	En cours de saisie
+avalider	A valider
