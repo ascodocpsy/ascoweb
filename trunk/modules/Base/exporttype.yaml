@@ -54,15 +54,20 @@ tableHtml:
   template: table.html
   content-type: text/html
   max: 2
+  sep:
+    LienAnne: " ; "
+    default: "/"
 
 csvParType:
   label: Format commun texte tabulé, par type de document - fichier
   access: AdminBase,EditBase
   template: csvtype.txt
   content-type: text/plain; charset=iso-8859-1
-  content-disposition: attachment; filename="export.csv"
+#  content-disposition: attachment; filename="export.csv"
   default: true
-  sep: "/"
+  sep:
+    LienAnne: " ; "
+    default: "/"
   max: -1
   fields:
     Article: [ Type, Aut, Tit, Rev, Vol, Num, PdPf, Date, MotCle, CanDes, Theme, Nomp, Resu, Lien, Notes, ProdFich ]
@@ -71,7 +76,7 @@ csvParType:
     Mémoire: [Type, Aut, Tit, DipSpe, Edit, Lieu, Page, Date, MotCle, CanDes, Theme, Nomp, Resu, Lien, Notes, ProdFich, Loc]
     Périodique: [Type, Rev, ViePerio, EtatCol, IsbnIssn, Notes, Lien, ProdFich]
     Rapport: [Type, Aut, Tit, Edit, Lieu, Col, Reed, Page, Rev, Vol, Num, Date, MotCle, CanDes, Theme, Nomp, Resu, Lien, Notes, IsbnIssn, ProdFich]
-    Texte officiel: [Type, NatText, DateText, DatePub, Tit, Rev, Num, NumTexOf, MotCle, CanDes, Theme, Nomp, Resu, Lien, Annexe, DateVali, ProdFich]
+    Texte officiel: [Type, NatText, DateText, DatePub, Tit, Rev, Num, NumTexOf, MotCle, CanDes, Theme, Nomp, Resu, Lien, Annexe, LienAnne, DateVali, ProdFich]
 #    Thèse: [Type, Aut, Tit, DipSpe, Edit, Lieu, Page, Date, MotCle, CanDes, Theme, Nomp, Resu, Lien, Notes, ProdFich, Loc]
 
 csv:

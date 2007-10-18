@@ -80,7 +80,7 @@ class Base extends DatabaseModule
             'EDIT' => 'Edit',
             'ETATCOL' => 'EtatCol',
             'ISBNISSN' => 'IsbnIssn',
-           // 'LIENANNE' => 'LienAnne',  // Supprimé, les liens sont mis dans le champ Tit
+            'LIENANNE' => 'LienAnne',
             'LIEU' => 'Lieu',
             'LOC' => 'Loc',
             'MOTCLE' => 'MotCle',
@@ -151,43 +151,29 @@ class Base extends DatabaseModule
         switch ($name)
         {
             case 'Annexe':
-                // TODO : revoir : ne marche pas avec Titre de l'annexe1 <http://www.lien.fr >/Titre de l'annexe2/< http://www.lien2.fr>
-                // Lien vers texte intégral
-                // Syntaxe du champ :
-                // Titre de l'annexe1 <http://www.lien.fr>/Titre de l'annexe2/<http://www.lien2.fr>
+                // Ce champ contient le ou les titres des annexes sous la forme :
+                // Titre annexe 1/Titre annexe 2/Titre annexe 3
+                // Il est couplé avec le champ LienAnne :
+                // http://url.annexe1.fr ; http://url.annexe2.fr ; http://url.annexe3.fr
+                // Si LienAnne renseigné alors, il y a toujours :
+                //  - un lien et un seul par annexe
+                //  - autant de titres d'annexe que de liens
+                 
+                if ($this->selection[$name]=='' ) return '';
+                if (!$annexe=(array)$this->selection[$name]) return '';   // Cas où $this->selection[$name] est null
+                
+                // Si pas de lien, on affiche uniquement les titres des annexes
+                if ($this->selection['LienAnne']=='') return implode(self::SEPARATOR, $annexe);
+                if (!$lien=(array)$this->selection['LienAnne']) return implode(self::SEPARATOR, $annexe);
+                
                 $value='';
-                $h=$this->selection[$name];
-                while (strlen($h)>0)
+                for ($i=0;$i<=count($annexe)-1;$i++)
                 {
-                    $pt=strpos($h, '>');
-                    // Cas 1 : on a Titre de l'annexe1 <http://www.lien.fr> ou <http://www.lien2.fr>
-                    if ($pt !== false)
-                    {
-                        // Extrait le titre et son lien
-                        $art=substr($h, 0, $pt);                        // Titre de l'annexe1 <http://www.lien.fr
-                        $tit=trim(substr($art, 0, strpos($art, '<')));  // Titre de l'annexe1
-                        $lien=trim(substr($art, strpos($art, '<')+1));  // http://www.lien.fr
-                        if (! $tit) $tit=$lien;
-                        if ($value) $value.=' ; ';
-                        $value.=$this->link($tit, $lien, 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
-                        $h=trim(substr($h, $pt+1));
-                        if (strpos($h, self::SEPARATOR)==0)
-                            $h=trim(substr($h, 1));
-                    }
-                    // Cas 2 : on a uniquement Titre
-                    else
-                    {
-                        $pt=strpos($h, self::SEPARATOR);
-                        if ($pt === false)
-                            $pt=strlen($h);
-                        $tit=trim(substr($h, 0, $pt));
-                        if ($value) $value.=' ; ';
-                        $value.=$tit;
-                        $h=trim(substr($h, $pt+1));
-                    }
+                    if ($value) $value.=self::SEPARATOR;
+                    $value.=$this->link($annexe[$i], $lien[$i], 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
                 }
                 return $value;
-    
+
             case 'Aut':
             	if ($this->selection[$name]=='' ) return '';
                 if (!$t=(array)$this->selection[$name]) return '';  // Cas où $this->selection[$name] est null
@@ -408,35 +394,31 @@ class Base extends DatabaseModule
         	case 'EtatCol':
         	case 'Loc':
         	case 'ProdFich':
+            case 'Annexe':
+            case 'LienAnne':
+                // Si le champ n'est pas renseigné, alors l'action Save renvoie la valeur NULL 
+                if (is_null($value)) break;
+                
                 if (is_array($value))
                 {
                     if (count($value)===0)
                         $value=null;
                     else
-                        $value=array_map("trim",$value); // TODO : supprimer les articles vides ? (array_filter supprime trop de choses)
+                        $value=array_map('trim',$value); // TODO : supprimer les articles vides ? (array_filter supprime trop de choses)
                 }
                 else
                 {
                     if ($value==='')
                         $value=null;
                     else
-                        $value=array_map("trim",explode(trim(self::SEPARATOR),$value));
+                    {
+                        // Le séparateur pour le champ LienAnne est ' ; ' et non pas le slash car LienAnne contient des URL
+                        $sep=($name=='LienAnne') ? ';' : trim(self::SEPARATOR);
+                        $value=array_map('trim',explode($sep,$value));
+                    }
                 }
                 break;
-
-//            case 'FinSaisie':
-//                $value=is_null($value) ? 0 : 1;
-//                break;
-//            
-//            case 'Valide':
-//                if (User::hasAccess('AdminBase'))
-//                    $value=is_null($value) ? 0 : 1;
-//                else
-//                    $value=0;
-//                    // Si la notice est modifiée par un membre du GIP, la notice repasse
-//                    // en statut "à valider par un administrateur"
-//                break;
-            
+        	    
         	case 'Statut':
         	    if (is_null($value) && $this->selection[$name]) return false;
         	    break;
@@ -1580,25 +1562,6 @@ echo '</pre>';
                     
                     $fieldname=$this->map[trim($fields[$i])];
                     $v=trim(str_replace('""', '"', $v));
-                    /*
-                    // TODO : traitement pour textes officiels à supprimer
-                    // Traitement pour les textes officiels
-                    if ($fieldname=='LienAnne') continue;
-                    
-                    // Transformation des dates DATETEXT et DATEPUB de JJ/MM/AAAA en AAAA-MM-JJ
-                    if ($fieldname == 'DateText' || $fieldname == 'DatePub')
-                        $v=preg_replace('~(\d{2})/(\d{2})/(\d{4})~', '${3}-${2}-${1}', $v);
-                    
-                    // Concaténation des champs Annexe et LienAnne
-                    // Annexe1 <url1>/Annexe2 <url2>
-                    if ($fieldname=='Annexe')
-                    {
-                        $lienAnne=$data[array_search('LIENANNE', $fields)];
-                        if ($lienAnne)
-                            $v.=($v) ? ' <'.$lienAnne.'>' : '<'.$lienAnne.'>';
-
-                    }
-                    */
                     
                     // Champs articles : on transforme le contenu en tableau
                     switch ($fieldname)                    
@@ -1612,9 +1575,17 @@ echo '</pre>';
 			        	case 'EtatCol':
 			        	case 'Loc':
 			        	case 'ProdFich':
+			        	case 'Annexe':
 			        		if ($v!='')
 			        			$v=array_map("trim",explode(trim(self::SEPARATOR),$v));
 			        		break;
+
+			        	case 'LienAnne':
+			        	    // Pour le champ LienAnne (Adresses Internet des annexes),
+			        	    // le séparateur d'articles est le ' ; '
+			        	    if ($v!='')
+			        	        $v=array_map("trim",explode(' ; ',$v));
+			        	    break;
 			        }
                     
                     $this->selection[$fieldname]=$v;
@@ -1624,10 +1595,6 @@ echo '</pre>';
                 $d=date('Ymd');
                 $this->selection['Creation']=$d;
                 $this->selection['LastUpdate']=$d;
-                
-                // Initialise les champs FinSaisie et Valide
-//                $this->selection['FinSaisie']=true;  // La saisie des notices est terminée
-//                $this->selection['Valide']=false;      // Les notices importées ne sont pas validées
                 
                 // Initialise le statut de la notice
                 // Les notices importées sont à valider par un administrateur

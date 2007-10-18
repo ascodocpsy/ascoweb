@@ -23,10 +23,19 @@
 
 <template match="//record" fields=""
     ><loop on="$fields" as="$i,$field">{$i==0?'':"\t"}{
+
         Utils::csvQuote
         (
-            is_array($this->selection[$field]) 
-            ? implode(Config::get("formats.$format.sep"),$this->selection[$field])
+            is_array($this->selection[$field])
+            ?
+                (is_array(Config::get("formats.$format.sep"))
+                ? 
+                    ( Config::get("formats.$format.sep.$field") 
+                    ? implode(Config::get("formats.$format.sep.$field"),$this->selection[$field])
+                    : implode(Config::get("formats.$format.sep.default"),$this->selection[$field])
+                    )
+                : implode(Config::get("formats.$format.sep"),$this->selection[$field])
+                )
             : $this->selection[$field]
         )
     }</loop>
