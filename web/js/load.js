@@ -37,99 +37,42 @@ function InitFields()
 /************************************************************
  Contrôles de saisie
  ************************************************************/
-/*
-function OpenUrl()
-{
-	alert("CheckUrl");
-	window.open(document.forms[0].Url.value);
-}
-
-
-function CheckThemes(Value)
-{
-	var t=Value.split(Controls[0][2]);
-	if (t.length <= 1) return true;
-
-	var h="," + Value + ",";
-	h=h.toUpperCase();
-
-	var Find="Santé publique - généralités"
-	Find=Find.toUpperCase();
-
-	if ( h.indexOf(Find) != -1)
-	{
-		ctrlAlert("Il est interdit de mentionner des thèmes lorsque la valeur '" + Find + "' est sélectionnée.") ;
-		return false;
-	}
-	return true;
-}
-
-function CheckActes(Value)
-{
-	h = Value;
-	h2 = ctrlGetFieldValue(document.forms[0].ActesInfo);   
-	h3 = ctrlGetFieldValue(document.forms[0].ActesContact);
-
-	if ( h == "1" ) 
-	{
-	   if ( ( h2 != "" & h3 == "") || ( h3 != "" & h2 == "") )     //si ActesInfo rempli et pas ActesContact ou inversement, OK
-	   {
-              return true ;
-	   }
-	   if ( h2 == "" & h3 == "")         //si ni ActesInfo rempli ni ActesContact, alerte
-	   {
-	      ctrlAlert("Vous devez remplir les champs Précisions et Contact pour les actes.\nCes champs sont obligatoires lorsque la publication d'actes est prévue.") ;
-              return false ;
-	   }
-	}
-	return true ;                     //ds les autres cas, OK
-}
-
-function CheckDateDebut(Value)
-{
-	if (document.forms[0].Valid) return true;				// on est en édition de fiche, pas de controle sur la date de début
-
-	var t=Value.split("/")							// Extrait le jour, le mois et l'année
-	if (new Date(t[2], t[1]-1, t[0], 23,59,59) >= new Date()) return true;	// Vérifie que la date est supérieure à la date du jour
-
-	ctrlAlert("La date du colloque est erronée. Vous ne pouvez saisir un colloque dont la date est déjà passée !\n");
-	return false;
-}
-
-function CheckDateFin(Value)
-{
-	if ( ! CheckDateDebut(Value) ) return false;
-	var t=ctrlGetFieldValue(document.forms[0].DateDebut).split("/");	// Date de début
-	var t2=Value.split("/")							// Date de fin
-	if (new Date(t[2], t[1]-1, t[0]) <= new Date(t2[2], t2[1]-1, t2[0])) return true;	// Vérifie que Debut <= Fin
-
-	ctrlAlert("La date de fin du colloque est erronée. \n Vous ne pouvez saisir un colloque dont la date de fin est antérieure à la date de début !\n");
-	return false;
-}
-
-function CheckDateValide(Value)
-{
-	if (Value.length == 0) return true;	// champ vide, pas de contrôles puisqu'il n'est pas obligatoire
-	if (document.forms[0].Valid) return true;	// on est en édition de fiche, pas de controle sur la date de début
-
-	var t=Value.split("/")							// Extrait le jour, le mois et l'année
-	if (new Date(t[2], t[1]-1, t[0], 23,59,59) >= new Date()) return true;	// Vérifie que la date est supérieure à la date du jour
-
-	ctrlAlert("La date saisie est erronée. Vous ne pouvez saisir une date déjà passée !\n");
-	return false;
-}
-
 function CheckLienAnnexe(Value)
 {
-	if (ctrlGetFieldValue(document.forms[0].Annexe))
+    var Annexe=ctrlGetFieldValue(document.forms[0].Annexe)
+
+	// Si des titres d'annexes ont été saisis, les liens vers les annexes sont obligatoires
+    //if (ctrlGetFieldValue(document.forms[0].Annexe))    
+    if (Annexe)
 	{
 		if (Value.length == 0)
-			ctrlAlert("Le lien vers l'annexe doit être obligatoirement renseigné si le titre de l'annexe a été indiqué.\n");
+        {
+			ctrlAlert("Les liens vers les annexes doivent être obligatoirement renseignés si des titres d'annexes ont été indiqués.\n");
 			return false;
+        }
 	}
+    // Et inversement, si des liens sont saisis, les titres d'annexes correspondants doivent être indiqués
+    else
+    {
+        if (Value)
+        {
+            ctrlAlert("Des liens vers les versions électroniques d'annexes ont été saisis mais aucun titre d'annexe n'a été indiqué.\n");
+            return false;
+        }
+    }
+    
+    // Il doit y avoir autant de titres d'annexes que de liens
+    var tLienAnne=Value.split(";");
+    var tAnnexe=Annexe.split(Controls[0][2]);
+
+    if (tLienAnne.length != tAnnexe.length)
+    {
+        ctrlAlert("Il doit y avoir autant de titres d'annexes que de liens vers les versions électroniques des annexes.\n");
+        return false;
+    }
+    
 	return true;
 }
-*/
 
 function CheckForm(ControlsName)
 {
@@ -169,6 +112,7 @@ function CheckForm(ControlsName)
 		return confirm( h ) ;
 	}
 }
+
 // Formulaire de saisie avec tous les champs
 var Controls =
 [
@@ -179,7 +123,8 @@ var Controls =
 ["NatText"         , "Nature du texte officiel"                         ,      ,       ,        ,       ,     1 ,                ,                ],
 ["Aut"             , "Auteurs"                                          ,      ,       ,        ,       ,       ,                ,                ],
 ["Tit"             , "Titre du document"                                ,      ,       ,        ,       ,       ,                ,                ],
-["Annexe"          , "Titre de l'annexe"                                ,      ,       ,        ,       ,       ,                ,                ],
+["Annexe"          , "Titres des annexes"                               ,      ,       ,        ,       ,       ,                ,                ],
+["LienAnne"        , "Adresses Internet des annexes"                    ,      ,       ,        ,       ,       ,                ,"CheckLienAnnexe"],
 ["CongrTit"        , "Intitulé du congrès"                              ,      ,       ,        ,       ,       ,                ,                ],
 ["CongrNum"        , "Numéro du congrès"                                ,      ,       ,        ,       ,       ,                ,                ],
 ["CongrDat"        , "Année du congrès"                                 ,      ,       ,        ,       ,     1 , "reYear"       ,                ],
@@ -368,7 +313,8 @@ var ControlsTexteOfficiel =
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
 ["NatText"         , "Nature du texte officiel"                         , true ,       ,        ,       ,     1 ,                ,                ],
 ["Tit"             , "Titre"                                            , true ,       ,        ,       ,       ,                ,                ],
-["Annexe"          , "Titre de l'annexe"                                ,      ,       ,        ,       ,       ,                ,                ],
+["Annexe"          , "Titres des annexes"                               ,      ,       ,        ,       ,       ,                ,                ],
+["LienAnne"        , "Adresses Internet des annexes"                    ,      ,       ,        ,       ,       ,                ,"CheckLienAnnexe"],
 ["DateText"        , "Date du texte officiel"                           , true ,       ,        ,       ,       , "reDateUsual"  ,                ],
 ["DatePub"         , "Date de publication du texte officiel"            , true ,       ,        ,       ,       , "reDateUsual"  ,                ],
 ["DateVali"        , "Date de fin de validité du texte officiel"        ,      ,       ,        ,       ,       , "reDateUsual"  ,                ],
