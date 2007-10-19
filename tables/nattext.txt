@@ -11,4 +11,4 @@ LETTRE CIRCULAIRE	Lettre circulaire
 LOI	Loi
 NOTE D'INFORMATION	Note d'information
 ORDONNANCE	Ordonnance
-RAPPORT	Rapport
+RAPPORT	Rapport publié au JO
