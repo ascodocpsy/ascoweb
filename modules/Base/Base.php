@@ -420,6 +420,7 @@ class Base extends DatabaseModule
                 break;
         	    
         	case 'Statut':
+        	    // On garde le statut actuel de la notice s'il n'est pas transmis lors de l'enregistrement de la notice
         	    if (is_null($value) && $this->selection[$name]) return false;
         	    break;
         	    
@@ -1563,10 +1564,10 @@ echo '</pre>';
                     $fieldname=$this->map[trim($fields[$i])];
                     $v=trim(str_replace('""', '"', $v));
                     
-                    // Champs articles : on transforme le contenu en tableau
                     switch ($fieldname)                    
 			        {
-			        	case 'Aut':
+			        	// Champs articles : on transforme le contenu en tableau
+			            case 'Aut':
 			        	case 'MotCle':
 			        	case 'Nomp':
 			        	case 'CanDes':
@@ -1576,30 +1577,32 @@ echo '</pre>';
 			        	case 'Loc':
 			        	case 'ProdFich':
 			        	case 'Annexe':
-			        		if ($v!='')
-			        			$v=array_map("trim",explode(trim(self::SEPARATOR),$v));
+			        		$v=($v=='') ? null : array_map("trim",explode(trim(self::SEPARATOR),$v));
 			        		break;
 
+			            // Champs articles : on transforme le contenu en tableau
 			        	case 'LienAnne':
 			        	    // Pour le champ LienAnne (Adresses Internet des annexes),
 			        	    // le séparateur d'articles est le ' ; '
-			        	    if ($v!='')
-			        	        $v=array_map("trim",explode(' ; ',$v));
+			        	    $v=($v=='') ? null : array_map("trim",explode(' ; ',$v));
 			        	    break;
+
+			        	default:
+			        	    if ($v=='') $v=null;
 			        }
                     
                     $this->selection[$fieldname]=$v;
                 }
-                                
-                // Initialise les champs Creation et LastUpdate
-                $d=date('Ymd');
-                $this->selection['Creation']=$d;
-                $this->selection['LastUpdate']=$d;
                 
-                // Initialise le statut de la notice
+                // Initialisation des champs de gestion
+                // Dates de création et de dernière modification
+                $this->selection['Creation']=$this->selection['LastUpdate']=date('Ymd');
+                
+                // Statut de la notice
                 // Les notices importées sont à valider par un administrateur
                 $this->selection['Statut']='avalider';
-                
+                 
+                // Enregistre la notice
                 $this->selection->saveRecord();
                 $nbref++;
             }
