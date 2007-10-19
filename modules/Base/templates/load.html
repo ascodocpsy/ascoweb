@@ -440,7 +440,12 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
     <opt>
         <fieldset label="Dates de création et de mise à jour de la notice">
             <div><p>Création : $Creation</p></div>
-            <div><p>Mise à jour : $LastUpdate</p></div>
+            <if test="{User::hasAccess('AdminBase')}">
+                <div><p>Mise à jour : $LastUpdate<opt> par $LastAuthor</opt></p></div>
+            </if>
+            <else>
+                <div><p>Mise à jour : $LastUpdate</p></div>
+            </else>
         </fieldset>
     </opt>
     
