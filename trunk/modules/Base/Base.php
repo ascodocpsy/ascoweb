@@ -432,7 +432,11 @@ class Base extends DatabaseModule
             case 'LastUpdate':
                 $value=date('Ymd');
                 break;
-                
+
+            case 'LastAuthor':
+                $value=$this->ident;
+                break;
+
             default:
             	if ($value==='' || (is_array($value) && count($value)===0))
             		$value=null;

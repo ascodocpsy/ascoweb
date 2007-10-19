@@ -118,6 +118,8 @@
                         <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Producteur">$ProdFich</row></opt>
                     </case>
                 </switch>
+                
+                <opt><row test="{User::hasAccess('AdminBase')}" label="Mise à jour">$LastUpdate<opt> par $LastAuthor</opt></row></opt>
             </li>
         </loop>
     </ul>
