@@ -51,10 +51,13 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
         <else>
             <div><text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight" /></div>
         </else>
-        <if test="$volExists">
-            <div><text name="Vol" label="Volume" class="fullwidth" /></div>
+        <div test="$volExists"><text name="Vol" label="Volume" class="fullwidth" /></div>
+        <if test="$revMandatory">
+            <div><text name="Num" label="Numéro *" class="fullwidth mandatory" /></div>
         </if>
-        <div><text name="Num" label="Numéro *" class="fullwidth mandatory" /></div>
+        <else>
+            <div><text name="Num" label="Numéro" class="fullwidth" /></div>
+        </else>
     </fieldset>
 </template>
 
