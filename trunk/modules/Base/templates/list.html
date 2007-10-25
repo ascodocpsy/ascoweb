@@ -1,4 +1,4 @@
-<slot name="header" count="{$this->selection->count()}">    
+<slot name="header" count="{$this->selection->count()}">  
     <if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
         <div class="titre">Base SantéPsy - Recherche - Accès administrateur</div>
     </if>
@@ -8,8 +8,7 @@
     <else>
         <div class="titre">Base SantéPsy - Recherche - Accès public</div>
     </else>
-    
-    <div class="titre-sous-rubrique">Liste des réponses obtenues</div>
+
     <p class="spip">
         Equation : <code>{$this->equation}</code>
 /*        <br />
