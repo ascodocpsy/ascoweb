@@ -52,7 +52,6 @@ span.check, span.radio
 	white-space: nowrap; /* empêche une checkbox/un radio d'être séparé de son label */
 }
 
-form span.exemple,
 form p.exemple
 {
 	font-size: 0.9em;
@@ -85,6 +84,14 @@ form.search div
 form.search div input.text
 {
     width: 25em;
+    margin: 0;
+    padding: 0 0.2em;
+}
+
+/* Zone de texte (petite) */
+form.search div input.smallbox
+{
+    width: 10em;
     margin: 0;
     padding: 0 0.2em;
 }
