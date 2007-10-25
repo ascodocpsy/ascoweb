@@ -67,7 +67,8 @@ form p.exemple
 form.search label.field,
 form.search label.text,
 form.search label.checklist,
-form.search label.select
+form.search label.select,
+form.search label.textarea
 {
 	font-weight: bold;
 	width: 13em;
@@ -83,7 +84,15 @@ form.search div
 /* Zone de texte */
 form.search div input.text
 {
-	width: 25em;
+    width: 25em;
+    margin: 0;
+    padding: 0 0.2em;
+}
+
+/* Zone de texte multiligne */
+form.search div textarea
+{
+	width: 25.6em;
 	margin: 0;
 	padding: 0 0.2em;
 }
@@ -324,7 +333,7 @@ li.record:hover a.fullrecord
 * html a.fullrecord
 {
 	background-image: none; 
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://apache/asco/web/styles/asco/voir.png');
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://apache/ascoweb/web/styles/asco/voir.png');
 }
 */
 
