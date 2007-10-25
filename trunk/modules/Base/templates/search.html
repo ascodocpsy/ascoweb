@@ -47,7 +47,12 @@
 <form class="form search" action="/base/search" method="get">
 
     <div>
-        <textbox name="all" label="Recherche dans toute la base" />
+        <if test="{User::hasAccess('AdminBase')}">
+            <textbox name="all" label="Recherche dans toute la base" rows="2" />
+        </if>
+        <else>
+            <textbox name="all" label="Recherche dans toute la base" />
+        </else>
     </div>
     
     <div>
