@@ -101,13 +101,12 @@
         <textbox name="Rev" label="Titre du périodique" />
     </div>
 
-/*    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}"> */
 	<div>		
-        <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" />
+        <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" class="smallbox" />
     </div>
 
     <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-        <textbox name="Vol" label="Numéro de volume" />
+        <textbox name="Vol" label="Numéro de volume" class="smallbox" />
     </div>
     
     <div>
@@ -119,10 +118,10 @@
     </div>
     
     <div>
-        <textbox name="DateText" label="Date du texte officiel" />
-        <span class="exemple">
+        <textbox name="DateText" label="Date du texte officiel" class="smallbox"/>
+        <p class="exemple">
             Format : AAAA-MM-JJ ou AAAA-MM ou AAAA
-        </span>
+        </p>
     </div>
 
     <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
@@ -135,9 +134,9 @@
     
     <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
         <textbox name="IsbnIssn" label="ISBN, ISSN" />
-        <span class="exemple">
+        <p class="exemple">
             ISBN : 3338897556432, ISSN : 4444-7564
-        </span>
+        </p>
     </div>   
     
     <div test="{User::hasAccess('AdminBase')}">
@@ -145,11 +144,11 @@
     </div>
     
     <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-        <textbox name="Loc" label="Localisation" />
+        <textbox name="Loc" label="Localisation" class="smallbox" />
     </div>
     
     <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-        <textbox name="ProdFich" label="Producteur" />
+        <textbox name="ProdFich" label="Producteur" class="smallbox" />
         <p class="exemple">
             Producteur, localisation : format="asco5"
         </p>
