@@ -11,7 +11,7 @@
     REF: '\d+(,\d+){0,4}'
   module: base
   action: show
-  
+
 - url: /base/auteur/[aut]
   module: base
   action: search
@@ -72,14 +72,22 @@
 - url: /base/supprimer*
   module: base
   action: delete
-  
+
 - url: /base/formulaireremplacement*
   module: base
   action: replaceform
-  
+
 - url: /base/remplacer
   module: base
   action: replace
+
+- url: /base/exporter*
+  module: base
+  action: export
+
+- url: /base/exportertype*
+  module: base
+  action: exportbytype
 
 - url: /panier/
   module: ascocart
@@ -105,14 +113,6 @@
   module: ascocart
   action: clear
 
-- url: /panier/exporter*
-  module: base
-  action: exportCart
-  
-- url: /panier/exportertype*
-  module: base
-  action: exportCartByType
-
 - url: /SpipSecurity/connect*
   module: SpipSecurity
   action: index
@@ -120,12 +120,3 @@
 - url:      /
   module:   HomePage
   action:   index
-
-- url: /base/exporter*
-  module: base
-  action: export
-  
-- url: /base/exportertype*
-  module: base
-  action: exportbytype
-  

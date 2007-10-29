@@ -132,10 +132,13 @@ showcaddie:
     header: templates/caddieHeader.html
   incart: true
 
-# Export
+# Exports
+export:
+  list: templates/export/export.yaml
+  
 exportbycat:
   action: export
-  list: exporttype.yaml
+  list: templates/export/exporttype.yaml
 
 #exportCart:
 #  sessions:
