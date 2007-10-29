@@ -6,7 +6,7 @@ module: CartModule
 CSS: [formulaire.css]
 
 JS:
-  - /fabweb/js/lib/jquery/1.1.2/jquery-latest.pack.js
+  - /fabweb/js/lib/jquery/jquery-1.2.1.min.js
 
 #add:
 #  template: 
