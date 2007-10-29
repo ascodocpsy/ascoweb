@@ -89,6 +89,10 @@
   module: base
   action: exportbytype
 
+- url: /panier*
+  module: base
+  action: showcaddie
+
 - url: /panier/
   module: ascocart
   action: show
