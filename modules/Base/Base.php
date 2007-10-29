@@ -764,9 +764,9 @@ class Base extends DatabaseModule
         // document, get_collapse_count() donne une estimation du nombre de documents pour chaque
         // type)
         // A voir également : utiliser un MatchSpy (xapian 1.0.3)
-        echo "Equation initiale : $this->equation<br />";
+//        echo "Equation initiale : $this->equation<br />";
         $lastCount=$this->selection->count();
-        echo "Nombre total de notices : $lastCount<hr />";
+//        echo "Nombre total de notices : $lastCount<hr />";
 
         $equation=$baseEquation='(' . $this->equation . ')';
         
@@ -800,10 +800,10 @@ class Base extends DatabaseModule
                 $cat="[$cat]";
             elseif(strpos($cat, ' ')!==false)
                 $cat="($cat)";
-            echo "ref=",$this->selection['REF'],", $catField=$cat, titre=", $this->selection['Tit'], ", rev=", $this->selection['Rev'],"<br />";
+//            echo "ref=",$this->selection['REF'],", $catField=$cat, titre=", $this->selection['Tit'], ", rev=", $this->selection['Rev'],"<br />";
             
             $equation.=" -$catIndex:$cat";
-            echo "equation de boucle : $equation<br />";
+//            echo "equation de boucle : $equation<br />";
             $found=$this->select($equation, array('_sort'=>'+', '_start'=>0, '_max'=>1000000));
 
             $count=$this->selection->count();
@@ -813,22 +813,22 @@ class Base extends DatabaseModule
             if ($diff<0)
                 throw new Exception("Impossible de créer des catégories sur le champ $catField, l'équation $equation a augmenté le nombre de notices obtenues (utiliser l'option phraseSearch ?)");
 
-            echo "Réponses : $count<br />";
-            echo "différence : ", $diff, "<br />";
+//            echo "Réponses : $count<br />";
+//            echo "différence : ", $diff, "<br />";
             
             $categories[$name]=array('equation'=>"$catIndex:$cat AND $baseEquation", 'count'=>$lastCount-$count);
             $lastCount=$count;
-            echo "lastCount passe à : $lastCount<hr />";
-            echo "<hr />";
+//            echo "lastCount passe à : $lastCount<hr />";
+//            echo "<hr />";
 
             if (!$found) break;
         }
 
-        echo "<hr />done<br />";
+//        echo "<hr />done<br />";
         ksort($categories);
-        echo "<pre>";
-        var_export($categories);
-        echo "</pre>";
+//        echo "<pre>";
+//        var_export($categories);
+//        echo "</pre>";
         $all='';
         foreach($categories as $name=>$cat)
         {
