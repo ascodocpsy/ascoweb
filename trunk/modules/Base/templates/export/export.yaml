@@ -54,7 +54,7 @@ csv:
   access: AdminBase,EditBase
   template: csv.txt
   content-type: text/plain; charset=iso-8859-1
-  content-disposition: attachment; filename="export%s.csv"
+  content-disposition: attachment; filename="export.csv"
   sep:
     LienAnne: " ; "
     default: "/"
@@ -65,13 +65,12 @@ csv:
 
 vancouver:
   label: Vancouver
-  template: vancouver.txt
+  template: templates/export/vancouver.txt
   content-type: text/plain; charset=iso-8859-1
-#  content-disposition: attachment; filename="export.txt"
+  content-disposition: attachment; filename="export.txt"
   sep: ", "
   max:
     AdminBase: -1
     EditBase: 3000
     default: 300
   callback: exportData
-
