@@ -1,3 +1,0 @@
-TYPE	AUT	TIT	REV	VOL	NUM	PDPF	DATE	MOTCLE	CANDES	THEME	NOMP	RESU	LIEN	NOTES	PRODFICH
-<loop on="bis($selection)" order="asc">[Type]	[Aut]	[Tit]	[Rev]	[Vol]	[Num]	[PdPf]	[Date]	[MotCle]	[CanDes]	[Theme]	[Nomp]	[Resu]	[Lien]	[Notes]	[ProdFich]
-</loop>

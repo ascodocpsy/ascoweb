@@ -629,119 +629,119 @@ class Base extends DatabaseModule
 
     // ------------------- GESTION DU PANIER -------------------
    
-    private function exportCart($type, $format)
-    {
-        global $selection;
-     
-        if (is_null($type))
-            throw new Exception('Le type de document n\'a pas été indiqué.');
+//    private function exportCart($type, $format)
+//    {
+//        global $selection;
+//     
+//        if (is_null($type))
+//            throw new Exception('Le type de document n\'a pas été indiqué.');
+//
+//        if (is_null($format))
+//            throw new Exception('Le format d\'export n\'a pas été indiqué.');
+//
+//        // Récupère le panier du type $type
+//        $this->getCart();
+//        $carts=$this->cart->getItems();
+//        $cart=$carts[$type];
+//
+//        // Construit l'équation de recherche
+//        $equation='';
+//        foreach ($cart as $ref)
+//        {
+//            if ($equation) $equation.=' ou ';
+//            $equation.='ref='.$ref;
+//        }
+//        $selection=self::openDatabase($equation);
+//
+//        // Génère l'export
+//        $template=$this->path . 'templates/export/'.$format;
+//        ob_start();
+//        Template::run
+//        (
+//            $template,
+//            'Template::selectionCallback'
+//        );
+//        $data=ob_get_clean();
+//        return $data;
+//    }
 
-        if (is_null($format))
-            throw new Exception('Le format d\'export n\'a pas été indiqué.');
-
-        // Récupère le panier du type $type
-        $this->getCart();
-        $carts=$this->cart->getItems();
-        $cart=$carts[$type];
-
-        // Construit l'équation de recherche
-        $equation='';
-        foreach ($cart as $ref)
-        {
-            if ($equation) $equation.=' ou ';
-            $equation.='ref='.$ref;
-        }
-        $selection=self::openDatabase($equation);
-
-        // Génère l'export
-        $template=$this->path . 'templates/export/'.$format;
-        ob_start();
-        Template::run
-        (
-            $template,
-            'Template::selectionCallback'
-        );
-        $data=ob_get_clean();
-        return $data;
-    }
-
-    // Déchargement des notices par type de document
-    public function actionExportCartByType($now=false)
-    {
-        if (! $now) return; // preExecute nous appelle avec now=true, on bosse, quand le framework nous appelle, rien à faire 
-        // tout est fait dans preExecute
-
-        // Récupère le format d'export
-        $format=Utils::get($_REQUEST['format']);
-        if (is_null($format))
-            // TODO : le message d'erreur s'affiche en premier sur la page html
-            return $this->showError('Le format d\'export n\'a pas été indiqué.');
-
-        // Charge la liste des formats d'export disponibles
-        Config::load($this->path. 'templates/export/formats.yaml', 'formats');
-        if (! $format=Config::get("formats.$format"))
-            throw new Exception('Format incorrect');
-
-//        $template=$this->path . 'templates/export/'.$format['template'];
-//        if (! file_exists($template))
-//            throw new Exception('Le fichier contenant les différents formats n\'existe pas');
-
-        global $cart;
-        $this->getCart();
-        $cart=$this->cart->getItems();
-
-        $data='';
-        // Récupère le type de document
-        $type=Utils::get($_REQUEST['type']);
-
-        if (is_null($type))
-            return $this->showError('Le type du document n\'a pas été indiqué.');
-
-        if (! isset($cart[$type]))
-            return $this->showError('Le panier ne contient aucun document du type indiqué.');
-        
-        // Récupère le template
-        if (is_array($format['template']))
-        {
-            if (isset($format['template'][$type]))
-                $template=$format['template'][$type];              
-            elseif (isset($format['template']['default']))
-                $template=$format['template']['default'];
-        }
-        else
-            $template=$format['template'];
-
-        // Récupère le nom du fichier d'export
-        if (is_array($format['filename']))
-        {
-            if (isset($format['filename'][$type]))
-                $filename=$format['filename'][$type];              
-            elseif (isset($format['filename']['default']))
-                $filename=$format['filename']['default'];
-        }
-        else
-            $filename=$format['filename'];
-
-        if (isset($format['layout']))
-            $this->setLayout($format['layout']);
-        else
-            $this->setLayout($format['none']);
-
-        if (isset($format['content-type']))
-            header('content-type: ' . $format['content-type']);
-
-        header
-        (
-            'content-disposition: attachment; filename="' 
-            . (isset($filename) ? $filename : "notices{$type}.txt")
-            . '"'
-        );
-            
-        // Génère le contenu du fichier
-        $data=$this->exportCart($type, $template);              
-
-        echo $data;
-    }
+//    // Déchargement des notices par type de document
+//    public function actionExportCartByType($now=false)
+//    {
+//        if (! $now) return; // preExecute nous appelle avec now=true, on bosse, quand le framework nous appelle, rien à faire 
+//        // tout est fait dans preExecute
+//
+//        // Récupère le format d'export
+//        $format=Utils::get($_REQUEST['format']);
+//        if (is_null($format))
+//            // TODO : le message d'erreur s'affiche en premier sur la page html
+//            return $this->showError('Le format d\'export n\'a pas été indiqué.');
+//
+//        // Charge la liste des formats d'export disponibles
+//        Config::load($this->path. 'templates/export/formats.yaml', 'formats');
+//        if (! $format=Config::get("formats.$format"))
+//            throw new Exception('Format incorrect');
+//
+////        $template=$this->path . 'templates/export/'.$format['template'];
+////        if (! file_exists($template))
+////            throw new Exception('Le fichier contenant les différents formats n\'existe pas');
+//
+//        global $cart;
+//        $this->getCart();
+//        $cart=$this->cart->getItems();
+//
+//        $data='';
+//        // Récupère le type de document
+//        $type=Utils::get($_REQUEST['type']);
+//
+//        if (is_null($type))
+//            return $this->showError('Le type du document n\'a pas été indiqué.');
+//
+//        if (! isset($cart[$type]))
+//            return $this->showError('Le panier ne contient aucun document du type indiqué.');
+//        
+//        // Récupère le template
+//        if (is_array($format['template']))
+//        {
+//            if (isset($format['template'][$type]))
+//                $template=$format['template'][$type];              
+//            elseif (isset($format['template']['default']))
+//                $template=$format['template']['default'];
+//        }
+//        else
+//            $template=$format['template'];
+//
+//        // Récupère le nom du fichier d'export
+//        if (is_array($format['filename']))
+//        {
+//            if (isset($format['filename'][$type]))
+//                $filename=$format['filename'][$type];              
+//            elseif (isset($format['filename']['default']))
+//                $filename=$format['filename']['default'];
+//        }
+//        else
+//            $filename=$format['filename'];
+//
+//        if (isset($format['layout']))
+//            $this->setLayout($format['layout']);
+//        else
+//            $this->setLayout($format['none']);
+//
+//        if (isset($format['content-type']))
+//            header('content-type: ' . $format['content-type']);
+//
+//        header
+//        (
+//            'content-disposition: attachment; filename="' 
+//            . (isset($filename) ? $filename : "notices{$type}.txt")
+//            . '"'
+//        );
+//            
+//        // Génère le contenu du fichier
+//        $data=$this->exportCart($type, $template);              
+//
+//        echo $data;
+//    }
     
     public function actionExportByType()
     {
@@ -836,156 +836,223 @@ class Base extends DatabaseModule
             echo "<li><a href='$url'>$name : $cat[count] notices</a></li>";
             $all.='&_equation='.urlencode($cat['equation']) . '&filename='.urlencode($name);
         }
-        $all=substr($all,1);
-        echo "<li><a href='exportbycat?$all'>Exporter les ", count($categories), " fichiers </a></li>";
+        if (1 < $nbCat=count($categories))
+        {
+            $all=substr($all,1);
+            echo "<li><a href='exportbycat?$all'>Exporter les ", $nbCat, " fichiers </a></li>";
+        }
+    }
+    
+    /*
+     * Callback utilisé pour les exports Vancouver
+     */
+    public function exportData($name)
+    {
+        switch ($name)
+        {
+            case 'Aut':
+                if ($this->selection[$name]=='' ) return '';
+                if (!$value=(array)$this->selection[$name]) return '';  // Cas où $this->selection[$name] est null
+                
+                // Récupère le format d'export
+                $format=Utils::get($_REQUEST['_format']);
+                
+                $i=6;
+                if (count($value)>$i)
+                {
+                    $value=array_slice($value,0,$i);
+                    $value[$i]='et al.';
+                    $value=implode(Config::get("formats.$format.sep"), $value);
+                }
+                else
+                {
+                    $value=implode(Config::get("formats.$format.sep"),$value).'.';
+                }   
+                return $value;
+                
+            case 'Tit':
+                if (! $value=$this->selection[$name]) return '';
+
+                // Ajoute un point à la fin du titre 
+                if (strpos('.!?',substr($value,-1,1))===false) return $value.'.';
+
+            case 'PdPf':
+                if (! $value=$this->selection[$name]) return '';
+                
+                // S'il n'y a qu'une seule page (19) ou si la pagination n'est pas continue (1 ; 3-5),
+                // on laisse tel quel
+                if (strpos($value,';')!==false || strpos($value,'-')===false) return $value;
+                
+                list($p1,$p2)=split('-',$value,2);
+                $p1=trim($p1);
+                $p2=trim($p2);
+                
+                // Si les 2 bornes de la pagination n'ont pas le même nombre de chiffres,
+                // (95-120), on laisse tel quel
+                if (strlen($p1)<>strlen($p2)) return $value;
+                
+                // Transforme la pagination (ex : 303-306 en 303-6) 
+                for ($i=0;$i<strlen($p1);$i++)
+                {
+                    if ($p1[$i]<>$p2[$i])
+                    {
+                        $p2=substr($p2,$i);
+                        break;
+                    }
+                }
+                return $p1.'-'.$p2;
+                
+            default:
+                return;
+        }
     }
     
    // public function actionExportCart($now=false)
-    public function actionExportCart()
-    {
-        //if (! $now) return; // preExecute nous appelle avec now=true, on bosse, quand le framework nous appelle, rien à faire 
-        // tout est fait dans preExecute
-
-        // Récupère l'action à effectuer
-        $cmd=Utils::get($_REQUEST['cmd']);
-        if (is_null($cmd))
-            throw new Exception("La commande n'a pas été indiquée");
-            
-        if ($cmd !='export' && $cmd!='mail')
-            throw new Exception('Commande incorrecte');
-
-        // Récupère le format d'export
-        $format=Utils::get($_REQUEST['format']);
-        if (is_null($format))
-            // TODO : le message d'erreur s'affiche en premier sur la page html
-            return $this->showError('Le format d\'export n\'a pas été indiqué.');
-
-        // Charge la liste des formats d'export disponibles
-        Config::load($this->path. 'templates/export/formats.yaml', 'formats');
-        if (! $format=Config::get("formats.$format"))
-            throw new Exception('Format incorrect');
-
-//        $template=$this->path . 'templates/export/'.$format['template'];
-//        if (! file_exists($template))
-//            throw new Exception('Le fichier contenant les différents formats n\'existe pas');
-
-        global $cart;
-        $this->getCart();
-        $cart=$this->cart->getItems();
-
-        switch ($cmd)
-        {
-            // Envoie les notices par mail
-            case 'mail':
-                // Récupère des informations pour l'envoi du mail
-                $to=Utils::get($_REQUEST['to']);
-                if (is_null($to))
-                    // TODO : le message d'erreur s'affiche en premier sur la page html
-                    return $this->showError('Le destinataire du mail n\'a pas été indiqué.');
-    
-                $subject=Utils::get($_REQUEST['subject']);
-                if (is_null($subject))
-                    $subject='Notices Ascodocpsy';
-    
-                $body=Utils::get($_REQUEST['body']);
-                if (is_null($body))
-                    $body='Le fichier ci-joint contient les notices sélectionnées';
-                
-                $data='';
-
-                $this->setLayout('none');
-    
-                require_once(Runtime::$fabRoot.'lib/htmlMimeMail5/htmlMimeMail5.php');
-            
-                $mail = new htmlMimeMail5();
-                //TODO : changer l'adresse e-mail
-                $mail->setHeader('Content-Type', 'multipart/mixed');
-                $mail->setFrom('Site AscodocPsy <gfaure@ch-st-jean-de-dieu-lyon.fr>');
-                $mail->setSubject($subject);
-                $mail->setText($body);
-                
-                // Génère les fichiers attachés
-                $this->getCart();
-                $carts=$this->cart->getItems();
-                
-                // Parcourt chaque panier
-                foreach ($carts as $type=>$cart)
-                {                
-                    // Récupère le template
-                    if (is_array($format['template']))
-                    {
-                        if (isset($format['template'][$type]))
-                            $template=$format['template'][$type];              
-                        elseif (isset($format['template']['default']))
-                            $template=$format['template']['default'];
-                    }
-                    else
-                        $template=$format['template'];
-    
-                    // Récupère le nom du fichier d'export
-                    if (is_array($format['filename']))
-                    {
-                        if (isset($format['filename'][$type]))
-                            $filename=$format['filename'][$type];              
-                        elseif (isset($format['filename']['default']))
-                            $filename=$format['filename']['default'];
-                    }
-                    else
-                        $filename=$format['filename'];
-    
-                    // Génère le contenu du fichier
-                    $data=$this->exportCart($type, $template);              
-    
-                    $mail->addAttachment
-                    (
-                        new stringAttachment
-                        (
-                            $data,
-                            isset($filename) ? $filename : "notices{$type}.txt",
-                            isset($format['content-type']) ? $format['content-type'] : 'text/plain'
-                        )
-                    );
-                }
-                
-                if ($mail->send( array($to)) )
-                {
-                    echo '<p>Vos notices ont été envoyées à l\'adresse ', $to, '</p>';
-                    echo '<p>Retour à la <a href="javascript:history.back()"> page précédente</a>.</p>';
-                }
-                else
-                {
-                    echo "<p>Impossible d'envoyer le mail à l'adresse '$to'</p>";
-                }
-                break;
-
-            // Affiche la liste des paniers (en fonction du type de document, avec liens pour télécharger les notices
-            case 'export':
-                // Définit le template d'affichage 
-                if (User::hasAccess('EditBase,AdminBase')) // TODO: SF : le template admin n'existe pas
-                    $tpl='member';
-                else
-                    $tpl='public';
-                $tpl.='_cart_type.yaml';
-                
-                global $cart;
-                $this->getCart();
-                $cart=$this->cart->getItems();
-
-                // Exécute le template
-                Template::run
-                (
-                    "templates/$tpl", 
-                    array($this, 'getField'),
-    //                'Template::selectionCallback',
-                    array
-                    (
-                        'cart'=>$this->cart->getItems(),
-                        'format'=>$_REQUEST['format']
-                    )
-                );            
-                break;
-        }
-    }           
+//    public function actionExportCart()
+//    {
+//        //if (! $now) return; // preExecute nous appelle avec now=true, on bosse, quand le framework nous appelle, rien à faire 
+//        // tout est fait dans preExecute
+//
+//        // Récupère l'action à effectuer
+//        $cmd=Utils::get($_REQUEST['cmd']);
+//        if (is_null($cmd))
+//            throw new Exception("La commande n'a pas été indiquée");
+//            
+//        if ($cmd !='export' && $cmd!='mail')
+//            throw new Exception('Commande incorrecte');
+//
+//        // Récupère le format d'export
+//        $format=Utils::get($_REQUEST['format']);
+//        if (is_null($format))
+//            // TODO : le message d'erreur s'affiche en premier sur la page html
+//            return $this->showError('Le format d\'export n\'a pas été indiqué.');
+//
+//        // Charge la liste des formats d'export disponibles
+//        Config::load($this->path. 'templates/export/formats.yaml', 'formats');
+//        if (! $format=Config::get("formats.$format"))
+//            throw new Exception('Format incorrect');
+//
+////        $template=$this->path . 'templates/export/'.$format['template'];
+////        if (! file_exists($template))
+////            throw new Exception('Le fichier contenant les différents formats n\'existe pas');
+//
+//        global $cart;
+//        $this->getCart();
+//        $cart=$this->cart->getItems();
+//
+//        switch ($cmd)
+//        {
+//            // Envoie les notices par mail
+//            case 'mail':
+//                // Récupère des informations pour l'envoi du mail
+//                $to=Utils::get($_REQUEST['to']);
+//                if (is_null($to))
+//                    // TODO : le message d'erreur s'affiche en premier sur la page html
+//                    return $this->showError('Le destinataire du mail n\'a pas été indiqué.');
+//    
+//                $subject=Utils::get($_REQUEST['subject']);
+//                if (is_null($subject))
+//                    $subject='Notices Ascodocpsy';
+//    
+//                $body=Utils::get($_REQUEST['body']);
+//                if (is_null($body))
+//                    $body='Le fichier ci-joint contient les notices sélectionnées';
+//                
+//                $data='';
+//
+//                $this->setLayout('none');
+//    
+//                require_once(Runtime::$fabRoot.'lib/htmlMimeMail5/htmlMimeMail5.php');
+//            
+//                $mail = new htmlMimeMail5();
+//                //TODO : changer l'adresse e-mail
+//                $mail->setHeader('Content-Type', 'multipart/mixed');
+//                $mail->setFrom('Site AscodocPsy <gfaure@ch-st-jean-de-dieu-lyon.fr>');
+//                $mail->setSubject($subject);
+//                $mail->setText($body);
+//                
+//                // Génère les fichiers attachés
+//                $this->getCart();
+//                $carts=$this->cart->getItems();
+//                
+//                // Parcourt chaque panier
+//                foreach ($carts as $type=>$cart)
+//                {                
+//                    // Récupère le template
+//                    if (is_array($format['template']))
+//                    {
+//                        if (isset($format['template'][$type]))
+//                            $template=$format['template'][$type];              
+//                        elseif (isset($format['template']['default']))
+//                            $template=$format['template']['default'];
+//                    }
+//                    else
+//                        $template=$format['template'];
+//    
+//                    // Récupère le nom du fichier d'export
+//                    if (is_array($format['filename']))
+//                    {
+//                        if (isset($format['filename'][$type]))
+//                            $filename=$format['filename'][$type];              
+//                        elseif (isset($format['filename']['default']))
+//                            $filename=$format['filename']['default'];
+//                    }
+//                    else
+//                        $filename=$format['filename'];
+//    
+//                    // Génère le contenu du fichier
+//                    $data=$this->exportCart($type, $template);              
+//    
+//                    $mail->addAttachment
+//                    (
+//                        new stringAttachment
+//                        (
+//                            $data,
+//                            isset($filename) ? $filename : "notices{$type}.txt",
+//                            isset($format['content-type']) ? $format['content-type'] : 'text/plain'
+//                        )
+//                    );
+//                }
+//                
+//                if ($mail->send( array($to)) )
+//                {
+//                    echo '<p>Vos notices ont été envoyées à l\'adresse ', $to, '</p>';
+//                    echo '<p>Retour à la <a href="javascript:history.back()"> page précédente</a>.</p>';
+//                }
+//                else
+//                {
+//                    echo "<p>Impossible d'envoyer le mail à l'adresse '$to'</p>";
+//                }
+//                break;
+//
+//            // Affiche la liste des paniers (en fonction du type de document, avec liens pour télécharger les notices
+//            case 'export':
+//                // Définit le template d'affichage 
+//                if (User::hasAccess('EditBase,AdminBase')) // TODO: SF : le template admin n'existe pas
+//                    $tpl='member';
+//                else
+//                    $tpl='public';
+//                $tpl.='_cart_type.yaml';
+//                
+//                global $cart;
+//                $this->getCart();
+//                $cart=$this->cart->getItems();
+//
+//                // Exécute le template
+//                Template::run
+//                (
+//                    "templates/$tpl", 
+//                    array($this, 'getField'),
+//    //                'Template::selectionCallback',
+//                    array
+//                    (
+//                        'cart'=>$this->cart->getItems(),
+//                        'format'=>$_REQUEST['format']
+//                    )
+//                );            
+//                break;
+//        }
+//    }           
            
     // ------------------- TRI DE LA BASE -------------------
     /**
