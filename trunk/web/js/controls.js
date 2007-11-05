@@ -1,14 +1,7 @@
 /************************************************************
- Validation
+ Ascodocpsy
+ Contrôles de saisie
  ************************************************************/
-
-// Ascodocpsy
-/*
-Page = 220 ou VIII-220 ou pagination multiple
-PdPf = 5-8 ou I-Xv ou "1 ; 3-11"
-Edit = [s.n.]
-Lieu = [s.l.] ou Paris 
-*/
 
 // Chiffre
 var reChiffre      = "[0-9]"
@@ -43,47 +36,6 @@ var reMajus        = "_Maju_+"                                // Texte comportan
 var reUpCase       = " *[-.*]? *_Char_*_Majus_ *[0-9]*"       // Texte comprenant des espaces ou des caractères ou des chiffres ou des majus
 var reUpCaseFRE    = "L'information doit être saisie entièrement en majuscules et doit comporter au moins 2 caractères."
 
-// Auteurs physiques
-// DELAISI DE PARSEVAL JL de Rôle
-// NOM P1P2[ particule][ Rôle][ ép.|né|née][ NOM] | COLLECTIF | [s.n.]
-/*
-- Collaborateur : Collab.
-- Directeur ou coordonnateur : Dir.
-- Editeur scientifique : Ed.
-- Illustrateur : Ill. 
-- Préfacier : Préf.
-- Traducteur : Trad.
-*/
-
-
-// Auteurs collectifs
-// MINISTERE DE LA SANTE
-
-
-// Lieu d'édition inconnu : s.l.
-var reSansLieu     = "\\[s.l.\\]"
-
-// Lieu d'édition au format Ascodocpsy
-//var reLieu         = 
-
-// Auteur ou éditeur inconnu : s.n.
-var reNoName       = "\\[s.n.\\]"
-
-// ISSN
-var reIssn         = "_Chiffre_{4}-_Chiffre_{3}[0-9X]"
-var reIssnExt      = "_Issn_|0000-0000"     // XXXX-XXXX, ou 0000-0000 si la revue ne possède pas d'ISSN
-var reIssnExtFRE   = "L'ISSN doit être saisi sous la forme XXXX-XXXX (exemple : 0339-7775).\n Si la revue ne possède pas d'ISSN, saisir 0000-0000."
-
-// ISBN (saisie sans les tirets entre les chiffres)
-var reIsbn10       = "_Chiffre_{10}"          // ISBN sur 10 chiffres pour les ouvrages parus avant le 31/12/2006
-var reIsbn13       = "_Chiffre_{13}"          // ISBN sur 13 chiffres pour les ouvrages parus après le 31/12/2006
-var reIsbn         = "_Isbn10_|_Isbn13_"
-var reIsbnFRE      = "L'ISBN doit être saisi sans tiret entre les chiffres.\nExemples :\nISBN à 10 chiffres : 2738494382 (ouvrages parus avant le 31/12/2006)\nISBN à 13 chiffres : 9782765409120 (ouvrages parus après le 31/12/2006)"
-
-// ISBN, ISSN
-var reIsbnIssn     = "_Isbn_|_Issn_"
-var reIsbnIssnFRE  = "L'ISBN doit être saisi sans tiret entre les chiffres.\nExemples :\nISBN à 10 chiffres : 2738494382 (ouvrages parus avant le 31/12/2006)\nISBN à 13 chiffres : 9782765409120 (ouvrages parus après le 31/12/2006)\n\nL'ISSN doit être saisi sous la forme XXXX-XXXX (exemple : 0339-7775)."
-
 // Nom du centre au format ascoXXX
 var reNomCentre    = "asco[1-9][0-9]{0,2}"
 var reNomCentreFRE = "Le numéro attribué à la bibliothèque ou au centre de documentation doit être saisi sous la forme suivante : ascoXXX\nExemples : asco1/asco52"
@@ -106,32 +58,6 @@ var reUrl	       = "_Protocol__Domain_(_Port_)?(_UrlPath_)?(_Bookmark_)?"	// url
 var reDomainIP	= "_Domain_|_IP_"
 var reUrlIP	= "_Protocol_(_DomainIP_)(_Port_)?(_UrlPath_)?(_Bookmark_)?"	// url complète
 var reUrlIPFRE     = "Indiquez l'url complète en incluant le préfixe http://, le nom de domaine du site et le chemin relatif de la page.\nExemple : http://www.ascodocpsy.org/article.php3?id_article=691"
-
-// Etat des collections de périodiques
-var reEtatCol      = ".*"
-
-// *************************
-
-
-// Texte en minuscules accentuées
-var reChar	= "(.|\\n)"
-var reMinu	= "[a-záàâäåãéèêëíìîïóòôöõøúùûüçÿýñ']"
-var reMinus	= "_Minu_+"
-var reLoCase	= " *[-.*]? *[A-Z0-9]_Char_*_Minus__Char_*_Minus__Char_*"		// un texte avec au moins 2 minuscules (= pas tout en maju)
-var reLoCaseFRE	= "L'information doit être saisie en minuscules accentuées (et non pas en tout majuscules), avec une majuscule au début."
-var reProperCase= "_LoCase_|[A-Z][A-Z]?[A-Z]?[A-Z]?[A-Z]?[A-Z]?[A-Z]?"	// Texte en minu avec une majuscule au début ou sigle
-var reProperCaseFRE="L'information doit être saisie en minuscules accentuées, avec une majuscule au début de chaque article."
-
-// Auteurs physiques, syntaxe Bdsp
-var rePrenom	= "(\\.|[A-Z]\\.(-?[A-Z]\\.)*|[A-Z]_Minus_(-[A-Z]_Minus_)*)"	// prénom en syntaxe bdsp
-var reAutPhys	= "[A-Z]+([- '][A-Z]+)* \\(_Prenom_\\)"		// un auteur physique
-
-// Auteurs moraux, syntaxe Bdsp
-var reMinus2	= "[0-9a-záàâäåãéèêëíìîïóòôöõøúùûüçÿýñ']+"
-var reSigle	= "\\(([A-Z]\\.)+\\)"
-var reAC	= "[A-Z]_Minus_([- '][A-Z]?_Minus2_)*"
-var reACS	= "_AC_\\. (_Sigle_\\. )?"
-var reAutColl	= "(_ACS_)+(_AC_\\. )?([A-Z][A-Z]\\. )?_CodeISO_"
 
 // --------------------------------------------------------------------------------
 // Exemple de contrôles
