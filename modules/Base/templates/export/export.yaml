@@ -50,7 +50,7 @@
 #
 
 csv:
-  label: Format CSV
+  label: Format texte tabulé
   access: AdminBase,EditBase
   template: csv.txt
   content-type: text/plain; charset=iso-8859-1
