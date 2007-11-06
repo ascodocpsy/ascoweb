@@ -1,21 +1,17 @@
 <div class="titre">Panier</div>
-/* Ajout de plusieurs notices en une seule fois */
+
 <div class="texte">
+    /* Ajout de plusieurs notices en une seule fois */
 	<if test="{is_array($item)}">
 		<p class="spip">Les notices suivantes ont été ajoutées au panier :</p>
-		<loop on="{$item}" as="$key, $value">
+		<loop on="{$item}" as="$value">
 			<ul>
-				<if test="{is_array($category)}">
-					<li>Catégorie {$category[$key]} : n°$value</li>
-				</if>
-				<else>
-					<li>Catégorie $category : n°$value</li>
-				</else>
+                <li>n°$value</li>
 			</ul>
 		</loop>
 	</if>
 	/* Ajout d'une seule notice */
 	<else>
-		<p class="spip">La notice n°$item a été ajoutée au panier, dans la catégorie $category.</p>
+		<p class="spip">La notice n°$item a été ajoutée au panier.</p>
 	</else>
 </div>
