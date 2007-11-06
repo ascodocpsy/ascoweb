@@ -97,21 +97,25 @@
   module: ascocart
   action: show
 
-- url: /panier/[category]
+- url: /panier/[item]/ajouter
+  with:
+    item: \d+
   module: ascocart
-  action: show
+  action: add
 
 - url: /panier/ajouter*
   module: ascocart
   action: add
 
-- url: /panier/supprimer*
+- url: /panier/[item]/supprimer
+  with:
+    item: \d+
   module: ascocart
   action: remove
 
-- url: /panier/supprimer/[category]
+- url: /panier/supprimer*
   module: ascocart
-  action: clear
+  action: remove
 
 - url: /panier/vider
   module: ascocart
