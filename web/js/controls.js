@@ -31,6 +31,7 @@ var rePeriod       = "(_Year_)-(_Year_)?"
 var rePeriodFRE    = "L'information doit être saisie sous la forme suivante :\n- AAAA- si le périodique n'a pas cessé de paraître (exemple : 1995-),\n- AAAA-AAAA si le périodique a cessé de paraître (exemple : 1985-2005)."
 
 // Texte en majuscules
+var reChar         = "(.|\\n)"
 var reMaju         = "[A-Z']"
 var reMajus        = "_Maju_+"                                // Texte comportant au moins 2 majuscules
 var reUpCase       = " *[-.*]? *_Char_*_Majus_ *[0-9]*"       // Texte comprenant des espaces ou des caractères ou des chiffres ou des majus
