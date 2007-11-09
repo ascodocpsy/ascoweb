@@ -398,25 +398,26 @@ class Base extends DatabaseModule
             case 'LienAnne':
                 // Si le champ n'est pas renseigné, alors l'action Save renvoie la valeur NULL 
                 if (is_null($value)) break;
+                if ( $value==='' || (is_array($value) && count($value)===0) )
+                { 
+                    $value=null;
+                    break;
+                };              
                 
-                if (is_array($value))
+                // Transforme en tableau
+                if (! is_array($value))
                 {
-                    if (count($value)===0)
-                        $value=null;
-                    else
-                        $value=array_map('trim',$value); // TODO : supprimer les articles vides ? (array_filter supprime trop de choses)
+                    // Le séparateur pour le champ LienAnne est ' ; ' et non pas le slash car LienAnne contient des URL
+                    $sep=($name=='LienAnne') ? ';' : trim(self::SEPARATOR);
+                    $value=explode($sep,$value);
                 }
-                else
-                {
-                    if ($value==='')
-                        $value=null;
-                    else
-                    {
-                        // Le séparateur pour le champ LienAnne est ' ; ' et non pas le slash car LienAnne contient des URL
-                        $sep=($name=='LienAnne') ? ';' : trim(self::SEPARATOR);
-                        $value=array_map('trim',explode($sep,$value));
-                    }
-                }
+                
+                // Supprime les chaînes vides
+                $t=array_map('trim',$value);
+                $value=array();
+                foreach($t as $v)
+                    if ($v!=='') $value[]=$v;
+
                 break;
         	    
         	case 'Statut':
@@ -1732,6 +1733,7 @@ echo '</pre>';
 
         // Vérifie que c'est un fichier tabulé
         $fields=fgetcsv($f, 0, "\t", '"');
+
         if (! is_array($fields) || count($fields) < 2)
         {
             $error='La première ligne du fichier ne contient pas les noms de champs ou ne contient qu\'un seul nom';
