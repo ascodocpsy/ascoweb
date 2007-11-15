@@ -41,8 +41,7 @@ function CheckLienAnnexe(Value)
 {
     var Annexe=ctrlGetFieldValue(document.forms[0].Annexe)
 
-	// Si des titres d'annexes ont été saisis, les liens vers les annexes sont obligatoires
-    //if (ctrlGetFieldValue(document.forms[0].Annexe))    
+	// Si des titres d'annexes ont été saisis, les liens vers les annexes sont obligatoires    
     if (Annexe)
 	{
 		if (Value.length == 0)
@@ -62,12 +61,14 @@ function CheckLienAnnexe(Value)
     }
     
     // Il doit y avoir autant de titres d'annexes que de liens
-    var tLienAnne=Value.split(";");
+    var tLienAnne=Value.split(" ; ");
     var tAnnexe=Annexe.split(Controls[0][2]);
 
     if (tLienAnne.length != tAnnexe.length)
     {
-        ctrlAlert("Il doit y avoir autant de titres d'annexes que de liens vers les versions électroniques des annexes.\n");
+        h  = "Il doit y avoir autant de titres d'annexes que de liens vers les versions électroniques des annexes.\n\n"
+        h += "Les différents liens doivent être séparés les uns des autres par le séparateur ' ; ' (espace, point-virgule, espace)."
+        ctrlAlert(h);
         return false;
     }
     
@@ -88,7 +89,7 @@ function CheckForm(ControlsName)
         h += "Elle est donc visible du grand public.\n"
 		h += "Pour enregistrer la fiche, corrigez les erreurs qu'elle contient.\n\n"
 		h += "Voici le texte de la première erreur :\n\n"+ctrlError
-		alert(h) ;
+		ctrlAlert(h) ;
 		return false ;
 	}
     else if ( ctrlGetFieldValue(Statut)=="" )
@@ -97,7 +98,7 @@ function CheckForm(ControlsName)
         h += "Vous n'avez notamment pas défini son statut.\n"
         h += "Pour enregistrer la fiche, corrigez les erreurs qu'elle contient et définissez son statut.\n\n"
         h += "Voici le texte de la première erreur :\n\n"+ctrlError
-        alert(h) ;
+        ctrlAlert(h) ;
         return false ;
     }
 	else
