@@ -56,10 +56,6 @@
   module: base
   action: new
 
-- url: /base/nouveautout
-  module: base
-  action: loadfull
-
 - url: /base/enregistrer
   module: base
   action: save
