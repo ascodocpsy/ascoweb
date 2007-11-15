@@ -52,11 +52,6 @@
   module: base
   action: loadfull
 
-# pb si /base/nouveau/type
-- url: /base/nouveautype
-  module: base
-  action: chooseType
-
 - url: /base/nouveau
   module: base
   action: new
