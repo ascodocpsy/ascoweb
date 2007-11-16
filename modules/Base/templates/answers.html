@@ -1,11 +1,3 @@
-<slot name="menubase">
-	<div test="{User::hasAccess('AdminBase')}" class="buttons menubase">
-		<ul>
-			<li><a href="/base/replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans ces notices...</a></li>
-	    	<li><a href="/base/delete?_equation={urlencode($this-&gt;equation)}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer ces notices ?'));">Supprimer ces notices</a></li>
-	    </ul>
-	</div>    
-</slot>
 <small>
     Suggestions :
     <ul>
@@ -121,6 +113,8 @@
     </loop>
 </ul>
 
+<big style="float:right;">{$this->getSimpleNav()}</big>
+
 <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
 	<if test="{!Config::get('incart',false)}">
 	    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" title="Ajouter les notices de cette page au panier"/>
@@ -128,14 +122,18 @@
 	<else>
 		<submit name="btnremove" class="removeall" label="Supprimer les notices du panier" title="Supprimer les notices de cette page du panier"/>
 	</else>
-</div>    
-
-
-<big style="float:right;">{$this->getSimpleNav()}</big>
-
-<div>
-	<ul>
-		<li><a href="/base/export?_equation={urlencode($this-&gt;equation)}">Exporter tout</a></li>
-		<li><a href="/base/exportbytype?_equation={urlencode($this-&gt;equation)}">Exporter par type de document</a></li>
-	</ul>
 </div>
+
+<hr style="clear:right;" />
+
+<slot name="menubase">
+    <div class="menubase">
+        <ul>
+            <li><a href="/base/export?_equation={urlencode($this-&gt;equation)}">Exporter toutes les notices</a></li>
+            <li><a href="/base/exportbytype?_equation={urlencode($this-&gt;equation)}">Exporter par type de document</a></li>
+            <li test="{User::hasAccess('AdminBase')}"><a href="/base/replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans toutes les notices...</a></li>
+            <li test="{User::hasAccess('AdminBase')}"><a href="/base/delete?_equation={urlencode($this-&gt;equation)}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer toutes les notices obtenues ?'));">Supprimer toutes les notices</a></li>
+        </ul>
+    </div>
+</slot>
+
