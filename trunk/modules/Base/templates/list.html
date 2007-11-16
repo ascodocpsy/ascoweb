@@ -1,4 +1,4 @@
-<slot name="header" count="{$this->selection->count()}">  
+<slot name="header" count="{$this->selection->count()}">
     <if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
         <div class="titre">Base SantéPsy - Recherche - Accès administrateur</div>
     </if>
@@ -17,21 +17,21 @@
 </slot>
 <div id="cartinfo" style="background-color: yellow; color: red; display: none; font-size: 1.5em; text-align: center; border: 1px solid red;">here</div>
 <div class="texte">
-	/* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
-	<if test="{!Config::get('incart',false)}">
-	    <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/add" method="post" id="answers">
+    /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
+    <if test="{!Config::get('incart',false)}">
+        <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/add" method="post" id="answers">
             <div id="list">
-	      	   <slot name="notice" action="templates/answers.html" />
+               <slot name="notice" action="templates/answers.html" />
             </div>
-		</form>
-	</if>
-	<else>
-		<form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/remove" method="post" id="answers">
+        </form>
+    </if>
+    <else>
+        <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/remove" method="post" id="answers">
             <div id="list">
-    	    	<slot name="notice" action="templates/answers.html" />
+                <slot name="notice" action="templates/answers.html" />
             </div>
-		</form>
-	</else>
+        </form>
+    </else>
 </div>
 
 <script>
@@ -125,7 +125,7 @@ function init()
         return false;
     \});
 
-	jQuery('#answers').submit(function()\{
+    jQuery('#answers').submit(function()\{
         jQuery.ajax(\{
             url: jQuery(this).attr('action'),
             type: jQuery(this).attr('method'),
@@ -135,7 +135,7 @@ function init()
         
         jQuery('a.addtocart').fly();
         return false;
-	\});
+    \});
 /*
     version utilisant le plugin jQuery.form
     jQuery('#answers').submit(function()\{
