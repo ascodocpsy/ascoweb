@@ -112,10 +112,10 @@ form.search div.select
 	clear: right;
 }
 
-/* Zone de texte 'Autre' pour le choix d'une date */
+/* Zone de texte 'Autre date' pour le choix d'une date */
 form.search div.date
 {
-	margin-left: 4em;
+	margin-left: 6em;
 }
 form.search div.date input.text
 {
@@ -397,6 +397,13 @@ a.inform:hover
     border: 1px solid #ccc;
     background-color: white;
 }
+
+/* Liste des actions possibles sur les notices (exporter, supprimer, etc.) */
+div.menubase
+{
+    margin: 2em 0 0 2em;
+}
+
 
 /* ========================================================================== */
 /*                              PANIER                                        */
