@@ -8,6 +8,8 @@ CSS: [formulaire.css]
 JS:
   - /fabweb/js/lib/jquery/jquery-1.2.1.min.js
 
+quantity: false
+
 add:
   template: added.html
 
