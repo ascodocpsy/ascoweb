@@ -44,25 +44,3 @@ $Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.</opt>
 </default>  
 </switch>
 </loop>
-
-/*
-<template match="//AutTit"
->{
-(count((array)$Aut) > 6 )
-? implode(Config::get("formats.$format.sep"), array($Aut[0],$Aut[1],$Aut[2],$Aut[3],$Aut[4],$Aut[5],'et al.'))
-: implode(Config::get("formats.$format.sep"),(array)$Aut).'.'
-}
-$Tit
-</template>
-*/
-
-<template match="//AutTit"
-><opt>$Aut
-</opt>$Tit</template>
-
-<template match="//Date"
-><opt> ; $Date</opt></template>
-
-<template match="//LieuEdit"
-><if test="{$Lieu}">{implode('/',(array)$Lieu)}<opt> : {implode('/',(array)$Edit)}</opt></if><else><opt>{implode('/',(array)$Edit)}</opt></else></template>
-

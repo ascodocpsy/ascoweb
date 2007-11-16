@@ -52,7 +52,7 @@
 csv:
   label: Format texte tabulé
   access: AdminBase,EditBase
-  template: csv.txt
+  template: templates/export/csv.txt
   content-type: text/plain; charset=iso-8859-1
   content-disposition: attachment; filename="export.csv"
   sep:
@@ -68,6 +68,7 @@ vancouver:
   template: templates/export/vancouver.txt
   content-type: text/plain; charset=iso-8859-1
   content-disposition: attachment; filename="export.txt"
+  default: true
   sep: ", "
   max:
     AdminBase: -1
