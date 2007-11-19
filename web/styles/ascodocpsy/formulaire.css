@@ -55,7 +55,7 @@ span.check, span.radio
 form p.exemple
 {
 	font-size: 0.9em;
-	margin: 0.1em 0 0 16em;
+	margin: 0.1em 0 0 18em;
 }
 
 /* ========================================================================== */
@@ -70,7 +70,7 @@ form.search label.select,
 form.search label.textarea
 {
 	font-weight: bold;
-	width: 13em;
+	width: 15em;
 }
 
 form.search div
@@ -83,7 +83,7 @@ form.search div
 /* Zone de texte */
 form.search div input.text
 {
-    width: 25em;
+    width: 23em;
     margin: 0;
     padding: 0 0.2em;
 }
@@ -99,7 +99,7 @@ form.search div input.smallbox
 /* Zone de texte multiligne */
 form.search div textarea
 {
-	width: 25.6em;
+	width: 23.6em;
 	margin: 0;
 	padding: 0 0.2em;
 }
@@ -108,7 +108,7 @@ form.search div textarea
 form.search div.checklist,
 form.search div.select
 {
-	margin-left: 14em;
+	margin-left: 16em;
 	clear: right;
 }
 
