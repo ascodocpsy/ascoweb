@@ -15,13 +15,11 @@
     Réponses : <code>{$this->selection->count()}</code>
 </p>
 
-/* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
-<form if="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" action="/ascocart/add" method="post" name="answers">
-
     <ul class="fulllist">
         <loop on="{$this->selection}" as="$rank, $record">
             <li class="record">
 
+                /* Boutons supplémentaires pour les membres du GIP et les administrateurs (actions à effectuer la notice) */
 	            <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
 	                <if test="{!Config::get('incart',false)}">
                         <a class="addtocart" href="/ascocart/add?item=$REF" title="Ajouter au panier"><span>Ajouter au panier</span></a>
@@ -31,12 +29,9 @@
 	                </else>
 	            </if>                
 
-                <if test="{$this->hasEditRight()}">
-                    <input type="hidden" name="art" value="$REF" />
-                    <a class="loadrecord" href="/base/load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
-                </if>
+                <a test="{$this->hasEditRight()}" class="loadrecord" href="/base/load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
 
-                /* affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
+                /* Affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
                 <switch test="$Type">
                 
                     <case test="Article">        
@@ -123,9 +118,6 @@
             </li>
         </loop>
     </ul>
-
-</form>
-
 </div>
 
 <style>
@@ -139,12 +131,6 @@
 <script>
 function init()
 \{
-    jQuery('.navbar a').click(function()\{
-        jQuery('#answers').load(jQuery(this).attr('href'), init);
-        jQuery('ul.shortlist').fadeTo("slow",0.2);
-        return false;
-    \})
-
     // Lien "ajouter cette notice au caddie"
     jQuery('a.addtocart').click(function()
     \{
@@ -160,13 +146,6 @@ function init()
         jQuery(this.parentNode).css('background-color','#FFFFC0').fadeOut(400, function()\{jQuery(this).remove().next().remove()\});
         return false;
     \});
-
-	jQuery('#answers').submit(function()\{
-		jQuery(this).ajaxSubmit();
-        jQuery('a.addtocart').hide('normal', function()\{jQuery(this).show()\});
-		return false;
-	\});
-
 \}
 
 jQuery('document').ready(init);
