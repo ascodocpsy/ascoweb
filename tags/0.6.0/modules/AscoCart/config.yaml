@@ -1,0 +1,23 @@
+# Fichier de configuration du module AscoCart
+
+# AscoCart est un pseudo module qui hérite de CartModule
+module: CartModule
+
+CSS: [formulaire.css]
+
+JS:
+  - /fabweb/js/lib/jquery/jquery-1.2.1.min.js
+
+quantity: false
+
+add:
+  template: added.html
+
+remove:
+  template: removed.html
+
+clear:
+  template: cleared.html
+
+show:
+  template: show.html

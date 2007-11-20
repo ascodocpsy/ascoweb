@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<title>$title</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
+	$CSS
+	$JS
+</head>
+
+<body>
+<div style="line-height: 0em">&#160;</div><!-- Bug Mozilla http://bugzilla.mozilla.org/show_bug.cgi?id=200510 -->
+
+<!-- Ancre du retour en haut de page-->
+<div id="top"></div>
+
+<div id="principal">
+	<!-- En tete : logo en flash et logo de la rubrique-->
+	<div id="header"> 	  
+		<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+			<tr> <td align="center"> <a href="http://www.ascodocpsy.org/TEST/sommaire.php3"> 
+			<img src="/styles/ascodocpsy/recherche.gif" />
+			 </a> </td> </tr>
+		</table>		
+	</div> <!-- ferme div id=header -->
+
+	<!-- Menu de navigation -->
+	<!--<slot name="menu" action="menu.html" />-->
+
+	<div class="ContentLeft">
+         <div class="texte">
+            <ul class="menu">
+                <li><a href="/base/searchform">Rechercher des documents</a></li>
+                <if test="{User::hasAccess('Edit,Admin')}">
+                    <li id="caddie"><a href="/ascocart/show">Voir votre panier</a></li>
+                    <li><a href="/base/new">Créer une nouvelle notice</a></li>
+                    <li><a href="/base/import">Importer des notices</a></li>
+                </if>
+                <if test="{User::hasAccess('Admin')}">
+                    <li>Administrateurs
+                        <ul>
+                            <li><a href="/ConfigModule/">Configuration</a></li>
+                            <li><a href="/TaskManager/">Gestionnaire de tâches</a></li>
+                            <li><a href="/changes.txt">Liste des changements</a></li>
+                        </ul>
+                    </li>
+                </if>
+            </ul>
+         </div>
+	</div>
+
+	<div id="contentRight">
+	
+		$contents
+			
+		<!-- retour en haut de page -->
+		<div class="top"> <a href="#"> haut de page </a> </div>
+	
+	</div> <!-- fermeture de div id=contentright -->
+
+	<!-- Pied de page -->
+	<!--<INCLURE (pied.php3)>-->
+	<div id="pied" class="texte">
+		<p>Pied de page</p>
+	</div>
+
+</div> <!-- Ferme div id="principal" -->
+
+</body>
+</html>

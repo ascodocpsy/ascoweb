@@ -1,0 +1,9 @@
+# thème général du site (deux options possibles pour le moment: asco, poivron)
+theme: ascodocpsy
+
+# structure générale des pages par défaut
+layout: asco.html
+
+# nom des feuilles de style CSS à utiliser
+# doit être sous forme de tableau car on peut en avoir plusieurs
+CSS: [asco.css]

@@ -1,0 +1,573 @@
+/* Raccourci pour les champs Aut et Tit
+@titLabel : le label pour le champ Tit : ne pas oublier le caractère '*'
+*/
+<template match="//AutTit" titLabel="Titre *">
+    <fieldset label="Auteurs *">
+        <text name="Aut" value="{implode('/',(array)$Aut)}" rows="1" class="fullwidth autoheight mandatory" />
+    </fieldset>
+    <fieldset label="$titLabel">
+        <text name="Tit" rows="1" class="fullwidth autoheight mandatory" />
+    </fieldset>
+</template>
+
+
+/* Raccourci pour la section Année du document */
+<template match="//Date">
+	<fieldset label="Année du document *">
+	    <text name="Date" class="fullwidth mandatory" />
+	</fieldset>
+</template>
+
+
+/* Raccourci pour la section Mentions bibliographiques
+@pageName : le nom de l'attribut du premier tag du fieldset
+@pageLabel : le label de l'attribut du premier tag du fieldset : ne pas oublier le caractère '*' dans le titre
+le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le libellé
+*/
+<template match="//MentionsBib" pageName="Page" pageLabel="Nombre de pages *">
+    <fieldset label="Mentions bibliographiques">
+        <div><text name="$pageName" label="$pageLabel" class="fullwidth mandatory" /></div>
+        <div><text name="Notes" label="Notes bibliographiques" rows="1" class="fullwidth autoheight" /></div>
+    </fieldset>
+</template>
+
+
+/* Raccourci pour les champs Collection et Mention d'édition */
+<template match="//ColReed">
+	<div><text name="Col" rows="1" label="Collection" class="fullwidth autoheight" /></div>
+	<div><text name="Reed" rows="1" label="Mention d'édition" class="fullwidth autoheight" /></div>
+</template>
+
+
+/* Raccourci pour la section Périodique
+@revMandatory indique si le champ $Rev est obligatoire
+@volExists indique si on créé une div pour le champ $Vol
+*/
+<template match="//Periodique" revMandatory="{true}" volExists="{true}">
+    <fieldset label="Périodique">
+        <if test="$revMandatory">
+            <div><text name="Rev" label="Titre du périodique *" rows="1" class="fullwidth autoheight mandatory" /></div>
+        </if>
+        <else>
+            <div><text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight" /></div>
+        </else>
+        <div test="$volExists"><text name="Vol" label="Volume" class="fullwidth" /></div>
+        <if test="$revMandatory">
+            <div><text name="Num" label="Numéro *" class="fullwidth mandatory" /></div>
+        </if>
+        <else>
+            <div><text name="Num" label="Numéro" class="fullwidth" /></div>
+        </else>
+    </fieldset>
+</template>
+
+        
+/* Raccourci pour le champ Résumé et la section Indexation */
+<template match="//ResuIndexation">
+    <fieldset label="Résumé">
+        <text name="Resu" rows="1" class="fullwidth autoheight" />
+    </fieldset>
+    <fieldset label="Indexation">
+        <div><text name="Theme" rows="1" label="Thème" class="fullwidth autoheight" /></div>
+        <div><text name="MotCle" value="{implode('/',(array)$MotCle)}" rows="1" label="Descripteurs *" class="fullwidth autoheight mandatory" /></div>
+        <div><text name="Nomp" value="{implode('/',(array)$Nomp)}" rows="1" label="Noms propres" class="fullwidth autoheight" /></div>
+        <div><text name="CanDes" value="{implode('/',(array)$CanDes)}" rows="1" label="Candidats descripteurs" class="fullwidth autoheight" /></div>
+    </fieldset>
+</template>
+
+
+/* Raccourci pour le champ Lien vers le document
+@mandatory : indique si le lien est obligatoire
+*/
+<template match="//Lien" mandatory="{false}">
+    <if test="$mandatory">
+        <fieldset label="Lien vers le document *">
+            <text name="Lien" rows="1" class="fullwidth autoheight mandatory" />
+        </fieldset>
+    </if>
+    <else>
+        <fieldset label="Lien vers le document">
+            <text name="Lien" rows="1" class="fullwidth autoheight" />
+        </fieldset>
+    </else>
+</template>
+
+
+/* Raccourci pour le champ Localisation
+@mandatory indique si les attributs sont obligatoires ou non
+*/
+<template match="//Loc" mandatory="{true}">
+	<if test="$mandatory">
+		<fieldset label="Localisation du document *">
+		    <text name="Loc" value="{implode('/',(array)$Loc)}" rows="1" class="fullwidth autoheight mandatory" />
+		</fieldset>
+	</if>
+	<else>
+		<fieldset label="Localisation du document">
+		    <text name="Loc" value="{implode('/',(array)$Loc)}" rows="1" class="fullwidth autoheight" />
+		</fieldset>	
+	</else>
+</template>
+
+
+/* Raccourci pour le champ Producteur de la fiche
+@mandatory indique si les attributs sont obligatoires ou non
+*/
+<template match="//ProdFich" mandatory="{true}">
+	<if test="$mandatory">
+	    <fieldset label="Producteur de la fiche *">
+	        <text name="ProdFich" value="{implode('/',(array)$ProdFich)}" class="fullwidth mandatory" />
+	    </fieldset>
+	</if>
+	<else>
+	    <fieldset label="Producteur de la fiche">
+	        <text name="ProdFich" value="{implode('/',(array)$ProdFich)}" class="fullwidth" />
+	    </fieldset>
+	</else>
+</template>
+
+/* Raccourci pour le champ Statut de la notice */
+<template match="//Statut">
+    <fieldset label="Statut de la notice">
+        <if test="{User::hasAccess('AdminBase')}">
+            <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'../../tables/statut.txt')" class="mandatory" /></fill>
+        </if>
+        <if test="{User::hasAccess('EditBase')}">
+            <if test="{$Statut=='valide'}">
+                <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'../../tables/statut.txt')" class="mandatory" /></fill>
+            </if>
+            <else>
+                <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'../../tables/membre_statut.txt')" class="mandatory" /></fill>
+            </else>
+        </if>
+    </fieldset>
+</template>
+
+/* Raccourci pour la section Congrès
+@mandatory indique si les attributs sont obligatoires ou non
+*/
+<template match="//Congres" mandatory="{false}">
+    <fieldset label="Congrès">
+    <if test="$mandatory">
+        <div><text name="CongrTit" rows="1" label="Intitulé *" class="fullwidth autoheight mandatory" /></div>
+        <div><text name="CongrNum" label="Numéro *" class="fullwidth mandatory" /></div>
+        <div><text name="CongrLie" label="Ville *" class="fullwidth mandatory" /></div>
+        <div><text name="CongrDat" label="Année *" class="fullwidth mandatory" /></div>
+    </if>
+    <else>
+        <div><text name="CongrTit" rows="1" label="Intitulé" class="fullwidth autoheight" /></div>
+        <div><text name="CongrNum" label="Numéro" class="fullwidth" /></div>
+        <div><text name="CongrLie" label="Ville" class="fullwidth" /></div>
+        <div><text name="CongrDat" label="Année" class="fullwidth" /></div>
+    </else>
+    </fieldset>
+</template>
+
+
+/* Equivalent au <textbox /> mais si l'attribut value n'est pas précisé, 
+alors il est défini à partir de l'attribut name.
+On précise un attribut value notamment pour les champs 'articles', pour
+lesquels il y a lieu de faire un traitement sur le contenu du champ.
+*/
+<template match="//text" name="" label="" rows="{false}" class="" value="">
+    <if test="$rows">
+		<if test="$value">
+	        <textbox name="$name" value="$value" label="$label" rows="$rows" class="$class" />
+        </if>
+        <else>
+	        <textbox name="$name" value="$$name" label="$label" rows="$rows" class="$class" />
+        </else>
+    </if>
+    <else>
+		<if test="$value">
+	        <textbox name="$name" value="$value" label="$label" class="$class" />
+        </if>
+        <else>
+	        <textbox name="$name" value="$$name" label="$label" class="$class" />
+        </else>
+    </else>
+</template>
+/* Fin des template match */
+
+
+<div class="titre">Base SantéPsy - Ajout/Modification d'une notice</div>
+
+<if test="{!Config::get('allfields',false)}">
+	<opt><div class="titre-sous-rubrique">Document de type $Type</div></opt>
+</if>
+
+<div class="texte">
+
+<if test="{!Config::get('allfields',false)}">
+	<if test="{User::hasAccess('AdminBase')}">
+	    <if test="{$REF > 0}">
+	        <a href="/base/loadfull?REF=$REF" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
+	    </if>
+/*
+	    <else>
+	        <a href="/base/loadfull" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
+	    </else>
+*/
+	</if>
+</if>
+
+<form method="post" action="/base/save" class="form load">
+
+/* Modification d'une notice en fonction du type de document */
+<if test="{!Config::get('allfields',false)}">
+
+    <div><hidden name="Type" value="$Type" /></div>
+       
+    /* Contenu spécifique à chaque type de document */
+    <switch test="{$Type}">
+    
+    /* TODO : factoriser le switch : Congrès et Livre presque identiques */
+    
+        <case test="Article">
+            <AutTit titLabel="Titre de l'article *" />
+            <Date />
+            <MentionsBib pageName="PdPf" pageLabel="Page début-fin *" />
+            <Periodique />
+            <ResuIndexation />
+            <Lien />
+            <ProdFich />
+            <Statut />
+            <script type="text/javascript">ctrlInitialize("ControlsArticle");</script>      
+        </case>
+        
+        <case test="Congrès">
+            <AutTit titLabel="Titre du document *" />
+            <Congres mandatory="{true}" />
+			<Date />
+            <MentionsBib />
+            <fieldset label="Edition">
+                <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur(s) *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition *" class="fullwidth autoheight mandatory" /></div>
+                <ColReed />
+            </fieldset>
+            <fieldset label="ISBN / ISSN *">
+                <text name="IsbnIssn" class="fullwidth mandatory" />
+            </fieldset>
+            <ResuIndexation />
+            <Lien />
+            <Loc />
+            <ProdFich />
+            <Statut />
+            <script type="text/javascript">ctrlInitialize("ControlsCongres");</script>
+        </case>
+        
+        <case test="Livre">
+            <AutTit titLabel="Titre du document *" />
+            <Congres />
+			<Date />
+            <MentionsBib />
+            <fieldset label="Edition">
+                <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition *" class="fullwidth autoheight mandatory" /></div>
+				<ColReed />
+            </fieldset>
+            <fieldset label="ISBN / ISSN *">
+                <text name="IsbnIssn" class="fullwidth mandatory" />
+            </fieldset>
+            <ResuIndexation />
+            <Lien />
+            <Loc />
+            <ProdFich />
+            <Statut />
+            <script type="text/javascript">ctrlInitialize("ControlsLivre");</script>        
+        </case>
+        
+        <case test="{$Type === 'Mémoire' || $Type === 'Thèse'}">
+            <AutTit />
+            <fieldset label="Spécialité du diplôme *">
+                <text name="DipSpe" rows="1" class="fullwidth autoheight mandatory" />
+            </fieldset>
+            <fieldset label="Edition">
+                <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Institution morale de rattachement *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition ou de soutenance *" class="fullwidth autoheight mandatory" /></div>
+            </fieldset>
+            <MentionsBib />
+            <fieldset label="Année de soutenance *">
+                <text name="Date" class="fullwidth mandatory" />
+            </fieldset>
+            <ResuIndexation />
+            <Lien />
+            <Loc />
+            <ProdFich />
+            <Statut />
+            <script type="text/javascript">ctrlInitialize("ControlsMemoire");</script>
+        </case>
+        
+        <case test="Périodique">
+            <fieldset label="Titre du périodique *">
+                <text name="Rev" rows="1" class="fullwidth autoheight mandatory" />
+            </fieldset>
+            <fieldset label="Date de vie et de mort *">
+                <text name="ViePerio" class="fullwidth mandatory" />
+            </fieldset>
+            <fieldset label="Etat de la collection *">
+                <text name="EtatCol" value="{implode('/',(array)$EtatCol)}" rows="1" class="fullwidth autoheight mandatory" />
+            </fieldset>
+            <fieldset label="ISSN *">
+                <text name="IsbnIssn" class="fullwidth mandatory" />
+            </fieldset>
+            <fieldset label="Notes">
+                <text name="Notes" rows="1" class="fullwidth autoheight" />
+            </fieldset>
+            <Lien />
+            <ProdFich />
+            <Statut />
+            <script type="text/javascript">ctrlInitialize("ControlsPeriodique");</script>
+        </case>
+        
+        <case test="Rapport">
+            <AutTit />
+            <Date />
+            <fieldset label="Nombre de pages"><text name="Page" class="fullwidth mandatory" /></fieldset>
+            <fieldset label="Edition">
+                <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur" class="fullwidth autoheight" /></div>
+                <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition" class="fullwidth autoheight" /></div>
+				<ColReed />
+            </fieldset>
+            <Periodique revMandatory="{false}" />
+            <fieldset label="ISBN / ISSN">
+                <text name="IsbnIssn" class="fullwidth" />
+            </fieldset>
+            <fieldset label="Notes bibliographiques">
+                <text name="Notes" rows="1" class="fullwidth autoheight" />
+            </fieldset>
+            <ResuIndexation />
+            <Lien mandatory="{true}" />
+            <ProdFich />
+            <Statut />
+            <script type="text/javascript">ctrlInitialize("ControlsRapport");</script>
+        </case>
+        
+        <case test="Texte officiel">
+            <fieldset label="Nature du texte officiel *">
+                <fill values="$NatText"><radiolist name="NatText" src="new TextTable($this->path.'../../tables/nattext.txt')" class="mandatory" /></fill>
+            </fieldset>
+            <fieldset label="Titres du document et liens vers les versions électroniques">
+                <div><text name="Tit" rows="1" label="Titre * " class="fullwidth autoheight mandatory" /></div>
+                <div><text name="Lien" rows="1" label="Lien vers le document *" class="fullwidth autoheight mandatory" /></div>
+                <div><text name="Annexe" value="{implode('/',(array)$Annexe)}" rows="1" label="Titres des annexes" class="fullwidth autoheight" /></div>
+                <div><text name="LienAnne" value="{implode(' ; ',(array)$LienAnne)}" rows="1" label="Liens vers les annexes" class="fullwidth autoheight" /></div>
+            </fieldset>
+            <fieldset label="Dates">
+                <div><text name="DateText" label="Date du texte officiel *" class="fullwidth mandatory" /></div>
+                <div><text name="DatePub" label="Date de publication du texte officiel *" class="fullwidth mandatory" /></div>
+                <div><text name="DateVali" label="Date de fin de validité du texte officiel" class="fullwidth" /></div>
+            </fieldset>
+            <Periodique volExists="{false}" />           
+            <fieldset label="Numéro du texte officiel">
+                <text name="NumTexOf" class="fullwidth" />
+            </fieldset>
+            <ResuIndexation />
+            <ProdFich />
+            <Statut />
+            <script type="text/javascript">ctrlInitialize("ControlsTexteOfficiel");</script>
+        </case>
+
+        <default>
+            <p>La notice numéro $REF possède un type de document qui n'est pas géré : '$Type', impossible de l'afficher.</p>
+        </default>
+      
+    </switch>    
+</if>
+
+/* Modification d'une notice avec tous les champs */
+<else>
+
+	<fieldset label="Type de document">
+        <fill values="$Type"><radiolist name="Type" src="new TextTable($this->path.'../../tables/type.txt')" /></fill>
+	</fieldset>
+    <fieldset label="Nature du texte officiel">
+        <fill values="$NatText"><radiolist name="NatText" src="new TextTable($this->path.'../../tables/nattext.txt')" /></fill>
+    </fieldset>
+    <fieldset label="Auteurs">
+        <text name="Aut" value="{implode('/',(array)$Aut)}" rows="1" class="fullwidth autoheight" />
+    </fieldset>
+    <fieldset label="Titres du document et liens vers les versions électroniques">
+        <div><text name="Tit" rows="1" label="Titre du document " class="fullwidth autoheight" /></div>
+        <div><text name="Lien" rows="1" label="Lien vers le document" class="fullwidth autoheight" /></div>
+        <div><text name="Annexe" value="{implode('/',(array)$Annexe)}" rows="1" label="Titres des annexes" class="fullwidth autoheight" /></div>
+        <div><text name="LienAnne" value="{implode(' ; ',(array)$LienAnne)}" rows="1" label="Liens vers les annexes" class="fullwidth autoheight" /></div>        
+    	<div><text name="NumTexOf" label="Numéro du texte officiel" class="fullwidth" /></div>
+    </fieldset>
+    <fieldset label="Spécialité du diplôme">
+        <text name="DipSpe" rows="1" class="fullwidth autoheight" />
+    </fieldset>
+    <Congres />
+    <fieldset label="Dates">
+    	<div><text name="Date" label="Année du document ou de soutenance" class="fullwidth" /></div>
+        <div><text name="DateText" label="Date du texte officiel" class="fullwidth" /></div>
+        <div><text name="DatePub" label="Date de publication du texte officiel" class="fullwidth" /></div>
+        <div><text name="DateVali" label="Date de fin de validité du texte officiel" class="fullwidth" /></div>
+    </fieldset>
+    <fieldset label="Mentions bibliographiques">
+    	<div><text name="Page" label="Nombre de pages" class="fullwidth" /></div>
+        <div><text name="PdPf" label="Page de début et page de fin" class="fullwidth" /></div>
+        <div><text name="Notes" label="Notes bibliographiques" rows="1" class="fullwidth autoheight" /></div>
+    </fieldset>
+    <fieldset label="Edition">
+        <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur(s)" class="fullwidth autoheight" /></div>
+        <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition ou de soutenance" class="fullwidth autoheight" /></div>
+        <ColReed />
+    </fieldset>
+    <fieldset label="ISBN / ISSN">
+    	<text name="IsbnIssn" class="fullwidth" />
+    </fieldset>
+    <fieldset label="Périodique">
+	    <div><text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight" /></div>
+        <div><text name="Vol" label="Volume" class="fullwidth" /></div>
+        <div><text name="Num" label="Numéro" class="fullwidth" /></div>
+		<div><text name="ViePerio" label="Date de vie et de mort" class="fullwidth" /></div>
+		<div><text name="EtatCol" label="Etat de la collection" value="{implode('/',(array)$EtatCol)}" rows="1" class="fullwidth autoheight" /></div>
+    </fieldset>
+    <fieldset label="Résumé">
+        <text name="Resu" rows="1" class="fullwidth autoheight" />
+    </fieldset>
+    <fieldset label="Indexation">
+        <div><text name="Theme" rows="1" label="Thème" class="fullwidth autoheight" /></div>
+        <div><text name="MotCle" value="{implode('/',(array)$MotCle)}" rows="1" label="Descripteurs" class="fullwidth autoheight" /></div>
+        <div><text name="Nomp" value="{implode('/',(array)$Nomp)}" rows="1" label="Noms propres" class="fullwidth autoheight" /></div>
+        <div><text name="CanDes" value="{implode('/',(array)$CanDes)}" rows="1" label="Candidats descripteurs" class="fullwidth autoheight" /></div>
+    </fieldset>
+    <Loc mandatory="{false}" />
+    <ProdFich mandatory="{false}" />
+    <Statut />
+	<script type="text/javascript">ctrlInitialize("Controls");</script>
+
+</else>
+
+    <opt>
+        <fieldset label="Dates de création et de mise à jour de la notice">
+            <div><p>Création : $Creation</p></div>
+            <if test="{User::hasAccess('AdminBase')}">
+                <div><p>Mise à jour : $LastUpdate<opt> par $LastAuthor</opt></p></div>
+            </if>
+            <else>
+                <div><p>Mise à jour : $LastUpdate</p></div>
+            </else>
+        </fieldset>
+    </opt>
+    
+    <div><hidden name="REF" value="$REF" /></div>
+    
+    <div class="buttons">
+        <submit label="Enregistrer" class="submit spip_bouton" />
+    </div>
+</form>
+
+<opt>
+	<if test="{$REF!=0}">
+	    <if test="{User::hasAccess('AdminBase')}">
+	        <form method="post" class="reset form" action="/base/delete">
+                <div><hidden name="REF" value="$REF" /></div>
+                <div class="buttons"><submit label="Supprimer" class="reset spip_bouton" onclick="return(confirm('Supprimer définitivement la notice ?'));" /></div>
+	        </form>
+	    </if>
+	</if>
+</opt>
+
+</div> /* class="texte" */
+
+<script type="text/javascript">
+jQuery(document).ready(
+	function()
+	\{
+        jQuery('textarea[@name=Aut]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=auteurs&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=DipSpe]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=diplomes&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('input[@name=CongrLie]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=villes&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=Edit]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=editeurs&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=Lieu]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=lieux&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=Col]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=collections&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=Rev]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=revues&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=Theme]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=themes&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=MotCle]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=motscles&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=Nomp]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=nomspropres&amp;value=%s',
+            \{
+            \}
+        );
+
+        jQuery('textarea[@name=CanDes]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=candes&amp;value=%s',
+            \{
+            \}
+        );
+        
+        jQuery('textarea[@name=Loc]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=localisations&amp;value=%s',
+            \{
+            \}
+        );
+        
+        jQuery('input[@name=ProdFich]').autocomplete
+        (
+            '{Routing::linkFor("/base/lookup")}?table=producteurs&amp;value=%s',
+            \{
+            \}
+        );
+
+	\}
+);
+
+</script>

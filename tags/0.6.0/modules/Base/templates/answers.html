@@ -1,0 +1,139 @@
+<small>
+    Suggestions :
+    <ul>
+        <loop 
+            on="array
+                (
+                    'mots-clés'=>array('descripteurs', 'motscles'),
+                    'thèmes'=>array('themes', 'motscles'),
+                    'revues'=>array('revues', 'rev'),
+                    'éditeurs'=>array('editeurs', 'edit'),
+                    'auteurs'=>array('auteurs', 'aut'),
+                    'noms propres'=>array('nomspropres', 'motscles'),
+                    'candes'=>array('candes', 'motscles'),
+                    'diplômes'=>array('diplomes', 'dipspe')
+                )"
+            as="$label,$t">
+            <opt min="2">
+                <li>$label : 
+                    <loop on="$this->selection->suggestTerms($t[0])" as="$i,$term">
+                        {$i>0 ? ' / ': ''}<a href="/base/search?_equation={urlencode($t[1].':['.$term. '] et ('.$this->equation.')')}">$term</a>
+                    </loop>
+                </li>
+            </opt>
+        </loop>
+    </ul>
+</small>
+
+<hr />
+
+<big style="float:right;">{$this->getSimpleNav()}</big>
+
+<div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
+	<if test="{!Config::get('incart',false)}">
+	    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" title="Ajouter les notices de cette page au panier"/>
+	</if>
+	<else>
+		<submit name="btnremove" class="removeall" label="Supprimer les notices du panier" title="Supprimer les notices de cette page du panier"/>
+	</else>
+</div>
+<hr style="clear:right;" />
+
+<ul class="shortlist">
+    <loop on="{$this->selection}" as="$rank, $record">
+        <li class="record">
+
+            <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+                <if test="{!Config::get('incart',false)}">
+                    <a class="addtocart" href="/ascocart/add?item=$REF" title="Ajouter au panier"><span>Ajouter au panier</span></a>
+                </if>
+                <else>
+                    <a class="removefromcart" href="/ascocart/remove?item=$REF" title="Supprimer du panier"><span>Supprimer du panier</span></a>
+                </else>
+            </if>                
+
+            <a class="fullrecord" href="/base/show?REF=$REF" title="Voir la notice complète"><span>Voir la notice complète</span></a>
+            
+            <if test="{$this->hasEditRight()}">
+                <a class="loadrecord" href="/base/load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
+            </if>
+            
+            <hidden name="item" value="$REF" />
+            
+            /* affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
+            <switch test="$Type">
+            
+                <case test="Article">
+                    <TDAT />
+                    <row label="Source">$Rev<Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
+                </case>
+                
+                <case test="Congrès">
+                    <TDAT />
+                    <opt><row label="Congrès"><opt>$CongrTit, </opt><opt>$CongrDat, </opt><opt>n°$CongrNum, </opt><opt>$CongrLie, </opt><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
+                    <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Localisation">$Loc</row></opt>
+                </case>
+                
+                <case test="Livre">
+                    <TDAT />
+                    <opt><row label="Source"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
+                    <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Localisation">$Loc</row></opt>
+                </case>
+                
+                <case test="{$Type=='Mémoire' || $Type=='Thèse'}">
+                    <TDAT />
+                    <opt><row><opt>$DipSpe, </opt><opt>$Lieu, </opt><opt>$Edit, </opt>$Page</row></opt>
+                    <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Localisation">$Loc</row></opt>
+                </case>
+                
+                <case test="Périodique">
+                    <row>$Type<opt>, $ViePerio</opt></row>
+                    <row>$Rev<opt> $Presentation</opt><opt>, $IsbnIssn</opt></row>
+                    <opt><row>$Notes</row></opt>
+                </case>
+                
+                <case test="Rapport">
+                    <TDAT />
+                    <opt><row label="Source"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt><opt>$PageEdit</opt></row></opt>
+                    <opt><row label="Source"><opt>$Rev</opt><Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
+                </case>
+                
+                <case test="Texte officiel">
+                    <row>$Type</row>
+                    <opt><row label="Titre"><Tit /><opt> ; $Annexe</opt></row></opt>
+                    <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Source">$Rev<opt> du $DatePub</opt></row></opt>
+                </case>
+                <default>
+                    <p class="spip">La notice numéro $REF possède un type de document qui n'est pas géré : '$Type', impossible de l'afficher.</p>
+                </default>
+                
+            </switch>
+        </li>
+        <hr />
+    </loop>
+</ul>
+
+<big style="float:right;">{$this->getSimpleNav()}</big>
+
+<div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" class="buttons">
+	<if test="{!Config::get('incart',false)}">
+	    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" title="Ajouter les notices de cette page au panier"/>
+	</if>
+	<else>
+		<submit name="btnremove" class="removeall" label="Supprimer les notices du panier" title="Supprimer les notices de cette page du panier"/>
+	</else>
+</div>
+
+<hr style="clear:right;" />
+
+<slot name="menubase">
+    <div class="menubase">
+        <ul>
+            <li><a href="/base/export?_equation={urlencode($this-&gt;equation)}">Exporter toutes les notices</a></li>
+            <li><a href="/base/exportbytype?_equation={urlencode($this-&gt;equation)}">Exporter par type de document</a></li>
+            <li test="{User::hasAccess('AdminBase')}"><a href="/base/replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans toutes les notices...</a></li>
+            <li test="{User::hasAccess('AdminBase')}"><a href="/base/delete?_equation={urlencode($this-&gt;equation)}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer toutes les notices obtenues ?'));">Supprimer toutes les notices</a></li>
+        </ul>
+    </div>
+</slot>
+

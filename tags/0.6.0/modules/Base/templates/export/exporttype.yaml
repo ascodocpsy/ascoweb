@@ -1,0 +1,86 @@
+# Ce fichier liste tous les formats d'export disponibles
+#
+# Chaque format disponible contient les éléments suivants :
+#
+# - une clé indiquant le nom de code du format (obligatoire, unique)
+#
+# - label (optionnel) : nom du format tel qu'il est affiché à l'utilisateur
+#   (si label est absent, le nom de code du format est utilisé à la place)
+#
+# - default (optionnel) : permet de définir le format d'export par défaut
+#   (celui qui sera pré-sélectionné dans la liste des formats disponibles)
+#   Un seul format doit avoir la clé default définie. (default=true).
+#
+# - access: les droits d'accès nécessaires pour pouvoir utiliser ce format
+#   (l'utilisateur ne verra dans la liste des formats disponibles que les
+#   formats auxquels il a accès).
+#
+# - content-type (optionnel) : type mime du document généré (envoyé sous la 
+#   forme d'un entête http content-type). Si vide, le type mime par défaut 
+#   est utilisé. Vous pouvez également définir içi le charset utilisé.
+#   Voir : http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17
+#
+# - content-disposition (optionnel) : disposition du fichier généré (inline ou 
+#   attachment, envoyé sous la forme d'un entête http 'content-disposition'. 
+#   Exemple : content-disposition: attachment; filename="export.csv"
+#   Voir : http://www.ietf.org/rfc/rfc2183.txt
+#
+# - max (optionnel) : le nombre maximum de notices qui peuvent être exportées
+#   par l'utilisateur (-1=pas de limite). Vous pouvez soit indiquer directement
+#   le nombre, soit donner un tableau qui donne la limite en fonction des droits
+#   de l'utilisateur (exemple : admin:-1, default: 100)
+#
+# - generator (optionnel) : nom de la méthode à appeller pour générer l'export
+#   le générateur par défaut se contente de faire un appel à Template::Run()
+#
+# Des options supplémentaires peuvent ensuite être ajoutées en fonction du
+# générateur utilisé.
+#
+# Options utilisées par le générateur par défaut :
+# - template (obligatoire) : nom du template à utiliser pour la génération
+#   de l'export. Vous pouvez soit indiquer directement le nom du template à
+#   utiliser, soit un tableau donnant le template à utiliser en fonction des
+#   droits de l'utilisateur (comme pour une action classique).
+#
+# - callback : nom du callback (nom d'une méthode publique du module en cours) 
+#   qui sera passé lors de l'appel à Template::run(). Comme pour le template,
+#   vous pouvez soit indiquer directement le nom du callback soit donner un
+#   tableau indiquant le callback à utiliser en fonction des droits de
+#   l'utilisateur
+#
+
+csvParType:
+  label: Format commun texte tabulé, par type de document
+  access: AdminBase,EditBase
+  template: templates/export/csvtype.txt
+  content-type: text/plain; charset=iso-8859-1
+  content-disposition: attachment; filename="export.csv"
+  default: true
+  sep:
+    LienAnne: " ; "
+    default: "/"
+  max:
+    AdminBase: -1
+    EditBase: 3000
+    default: 300
+  fields:
+    Article: [ Type, Aut, Tit, Rev, Vol, Num, PdPf, Date, MotCle, CanDes, Theme, Nomp, Resu, Lien, Notes, ProdFich ]
+    Congrès: [Type, Aut, Tit, CongrTit, CongrNum, CongrLie, CongrDat, Edit, Lieu, Col, Reed, Page, Date, MotCle, CanDes, Theme, Nomp, Resu, Lien, Notes, IsbnIssn, ProdFich, Loc]
+    Livre: [Type, Aut, Tit, CongrTit, CongrNum, CongrLie, CongrDat, Edit, Lieu, Col, Reed, Page, Date, MotCle, CanDes, Theme, Nomp, Resu, Lien, Notes, IsbnIssn, ProdFich, Loc]
+    Mémoire: [Type, Aut, Tit, DipSpe, Edit, Lieu, Page, Date, MotCle, CanDes, Theme, Nomp, Resu, Lien, Notes, ProdFich, Loc]
+    Périodique: [Type, Rev, ViePerio, EtatCol, IsbnIssn, Notes, Lien, ProdFich]
+    Rapport: [Type, Aut, Tit, Edit, Lieu, Col, Reed, Page, Rev, Vol, Num, Date, MotCle, CanDes, Theme, Nomp, Resu, Lien, Notes, IsbnIssn, ProdFich]
+    Texte officiel: [Type, NatText, DateText, DatePub, Tit, Rev, Num, NumTexOf, MotCle, CanDes, Theme, Nomp, Resu, Lien, Annexe, LienAnne, DateVali, ProdFich]
+#    Thèse: [Type, Aut, Tit, DipSpe, Edit, Lieu, Page, Date, MotCle, CanDes, Theme, Nomp, Resu, Lien, Notes, ProdFich, Loc]
+
+vancouver:
+  label: Format Vancouver, par type de document
+  template: templates/export/vancouver.txt
+  content-type: text/plain; charset=iso-8859-1
+  content-disposition: attachment; filename="export.txt"
+  sep: ", "
+  max:
+    AdminBase: -1
+    EditBase: 3000
+    default: 300
+  callback: exportData

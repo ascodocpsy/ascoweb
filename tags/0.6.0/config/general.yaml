@@ -1,0 +1,35 @@
+# Config spécifique à ASCODOCPSY
+defaultroutes:1
+smarturls: false
+
+admin:
+  name: Séverine Ferron
+  email: severine.ferron@bdsp.tm.fr
+
+# thème général du site (deux options possibles pour le moment: asco, poivron)
+theme: ascodocpsy
+
+# structure générale des pages par défaut
+layout: asco.html
+
+# titre par défaut des pages
+title: Base documentaire ASCODOCPSY
+
+# nom des feuilles de style CSS à utiliser
+# doit être sous forme de tableau car on peut en avoir plusieurs
+CSS: [asco.css]
+
+# fichiers javascript à inclure
+# doit être sous forme de tableau car on peut en avoir plusieurs
+#JS: 
+#  - /fabweb/js/lib/jquery/1.1.2/jquery-latest.pack.js
+#  - /fabweb/js/lib/interface/1.2/interface.js
+
+# module de sécurité à utiliser pour la protection du site
+security: 
+  handler: SpipSecurity
+
+# paramétrage des sessions utilisateurs
+sessions:
+  use: false
+  lifetime: 0

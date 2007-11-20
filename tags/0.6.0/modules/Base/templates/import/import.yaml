@@ -1,0 +1,183 @@
+contents:
+  - [text]
+    tag: h1
+    contents: Import de fichiers dans la base
+  - [text]
+    tag: p
+    contents: |
+        Ce module permet d'importer un ou plusieurs fichiers dans la base 
+        de données. Etablissez tout d'abord la liste des fichiers à importer en
+        transférant chaque fichier de votre poste de travail au serveur. Si vous
+        transférez un fichier erroné, utiliser le bouton supprimer qui figure 
+        après son nom. Lancez l'import une fois que vous avez terminé.
+  - [fieldset]
+    title: Liste des fichiers à importer dans la base
+    contents:
+      - [ul]
+        contents:
+          - [text]
+            contents: '<?php echo "<?php global \$files ?>" ?>'
+          - [if]
+            test: count($files)==0
+            contents: 
+              - [text]
+                tag: li
+                contents: |
+                    Pour le moment, il n'y a aucun fichier à importer.
+                    Utilisez la zone ci-dessous pour choisir des fichiers à importer.
+          - [else]
+              contents:
+                - [loop]
+                  on: array($files)
+                  order: asc
+                  contents:
+                    - [text]
+                      tag: li
+                      contents:
+                        - [form]
+                          method: post
+                          contents:
+                            - [text]
+                              contents: '<strong>[array.name]</strong> ([array.size] octets, envoyé au serveur le [array.time] par <strong>[array.ident]</strong>)'
+                            - [button]
+                              action: submit
+                              title: Supprimer le fichier...
+                              class: delete
+                            - [hidden]
+                              name: delete
+                              value: '[array.key]'
+  - [opt]
+    contents:
+      - [fieldset]
+        title: 'Erreur'
+        class: error
+        contents:
+         - [text]
+           tag: ul
+           contents: '[error]'
+  - [form]
+    method: post
+    enctype: multipart/form-data
+    name: uploadForm
+    contents:
+      - [fieldset]
+        title: Ajouter des fichiers
+        contents:
+          - [div]
+            contents: |
+              Cliquez sur le bouton "Parcourir" pour choisir chacun des fichiers à importer puis
+              cliquez sur le bouton "Envoyer au serveur" pour lancer le transfert de ces fichiers.<br />
+              Recommencez l'opération si vous avez plus de trois fichiers à importer.
+          - [div]
+            contents:
+              - [button]
+                action: submit
+                title: Envoyer au serveur...
+                style: 'float: right;'
+                onclick: |
+                    document.getElementById('wait').style.display='';
+              - [div]
+                contents:
+                  - [file]
+                    name: file1
+                    title: 'Fichier :'
+              - [div]
+                contents:
+                  - [file]
+                    name: file2
+                    title: 'Fichier :'
+              - [div]
+                contents:
+                  - [file]
+                    name: file3
+                    title: 'Fichier :'
+              - [ignore]
+                contents:
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file4
+                        title: 'Fichier :'
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file5
+                        title: 'Fichier :'
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file6
+                        title: 'Fichier :'
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file7
+                        title: 'Fichier :'
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file8
+                        title: 'Fichier :'
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file9
+                        title: 'Fichier :'
+                  - [div]
+                    contents:
+                      - [file]
+                        name: file10
+                        title: 'Fichier :'
+      - [div]
+        name: wait
+        style: |
+            display: none;
+            background-color: #eee;
+            position: absolute;
+            top: 40%;
+            left: 30%;
+            width: 40%;
+            border: 5px ridge #008;
+            padding: 1em;
+            text-align: center;
+        contents: |
+            <img id="progressbar" src="/images/progressbar2.gif" /><br />
+            Veuillez patienter pendant l'envoi des fichiers au serveur...
+  - [if]
+    test: "User::hasAccess('AdminBase')"
+    contents:
+      - [form]
+        method: post
+        contents:
+          - [fieldset]
+            title: Lancer l'import
+            contents:
+              - [div]
+                contents:
+                  - [div]
+                    contents:
+                      - [radio]
+                        name: now
+                        value: 1
+                        title: maintenant
+                        checked: checked
+                  - [div]
+                    contents:
+                      - [radio]
+                        name: now
+                        id: after
+                        value: 0
+                        title: plus tard :
+                      - [input]
+                        name: delay
+                        value: ''
+                        size: 30
+                        onclick: document.getElementById('after').checked='checked';
+                        onfocus: document.getElementById('after').checked='checked';
+                      - [text]
+                        contents: 'saisir le jour et l'heure sous la forme JJ/MM/AAAA hh:mm:ss'
+                  - [button]
+                    action: submit
+                    name: import
+                    title : Lancer l'import...
+                    style: 'float: right;'

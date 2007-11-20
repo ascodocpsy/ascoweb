@@ -1,0 +1,121 @@
+- url: /base/formulairerecherche
+  module: base
+  action: searchform
+
+- url: /base/recherche*
+  module: base
+  action: search
+
+- url: /base/[REF]
+  with:
+    REF: '\d+(,\d+){0,4}'
+  module: base
+  action: show
+
+- url: /base/auteur/[aut]
+  module: base
+  action: search
+
+- url: /base/motcle/[motscles]
+  module: base
+  action: search
+
+- url: /base/revue/[rev]
+  module: base
+  action: search
+
+- url: /base/revue/[rev]/localisation
+  module: base
+  action: locate
+
+- url: /base/revue/[rev]/presentation
+  module: base
+  action: inform
+
+- url: /base/producteur/[prodfich]
+  module: base
+  action: search
+
+- url: /base/localisation/[loc]
+  module: base
+  action: search
+
+- url: /base/[REF]/modifier
+  with:
+    REF: \d+
+  module: base
+  action: load
+
+- url: /base/[REF]/modifiertout
+  with:
+    REF: \d+
+  module: base
+  action: loadfull
+
+- url: /base/nouveau
+  module: base
+  action: new
+
+- url: /base/enregistrer
+  module: base
+  action: save
+
+- url: /base/supprimer*
+  module: base
+  action: delete
+
+- url: /base/formulaireremplacement*
+  module: base
+  action: replaceform
+
+- url: /base/remplacer
+  module: base
+  action: replace
+
+- url: /base/exporter*
+  module: base
+  action: export
+
+- url: /base/exportertype*
+  module: base
+  action: exportbytype
+
+- url: /panier*
+  module: base
+  action: showcaddie
+
+- url: /panier/
+  module: ascocart
+  action: show
+
+- url: /panier/[item]/ajouter
+  with:
+    item: \d+
+  module: ascocart
+  action: add
+
+- url: /panier/ajouter*
+  module: ascocart
+  action: add
+
+- url: /panier/[item]/supprimer
+  with:
+    item: \d+
+  module: ascocart
+  action: remove
+
+- url: /panier/supprimer*
+  module: ascocart
+  action: remove
+
+- url: /panier/vider
+  module: ascocart
+  action: clear
+
+- url: /SpipSecurity/connect*
+  module: SpipSecurity
+  action: index
+
+- url:      /
+  module:   HomePage
+  action:   index

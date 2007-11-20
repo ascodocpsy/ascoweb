@@ -1,0 +1,143 @@
+# Fichier de configuration du module Base
+
+# nom des feuilles de style CSS à utiliser
+# doit être sous forme de tableau car on peut en avoir plusieurs
+#CSS: [xxx.css]
+CSS:
+  - formulaire.css
+  - rpc.css
+
+# fichiers javascript à inclure
+# doit être sous forme de tableau car on peut en avoir plusieurs
+#JS: [xxx.js]
+JS:
+  - /fabweb/js/lib/jquery/jquery-1.2.1.min.js
+
+#title: aaaaaa
+
+database: ascodocpsy
+
+templates:
+  autoinclude: 
+    templates: templates/include/templates.html
+    csvtype: templates/include/csvtype.txt
+    csv: templates/include/csv.txt
+    vancouver: templates/include/vancouver.txt
+#    loadtemplates: templates/include/loadtemplates.html
+
+# Url de base d'un article sous SPIP
+urlarticle: 'http://www.ascodocpsy.org/article.php3?id_article='
+
+filter:
+    AdminBase:
+    EditBase:
+# EditBase : Producteur=MonIdent ou Statut=valide
+    cli:
+    default: '(* sauf type=periodique) and Statut=valide'
+
+searchform:
+  template: templates/search.html
+  JS: 
+    - /fabweb/js/rpc.js
+#    - /fabweb/js/lib/jquery.autocomplete-1.0alpha/jquery.bgiframe.min.js
+#    - /fabweb/js/lib/jquery.autocomplete-1.0alpha/dimensions.js
+#    - /fabweb/js/lib/jquery.autocomplete-1.0alpha/jquery.autocomplete.js
+
+search:
+    template: templates/list.html
+    errortemplate: templates/error/error_base.html
+    noanswertemplate: templates/error/error_base_noanswer.html
+    callback: getField
+    sort: "-"      # ordre de tri par défaut
+    max: 10        # nombre maximum de réponses par page par défaut
+    
+show:
+    template: templates/show.html
+    callback: getField
+    errortemplate: templates/error/error_base.html
+    noanswertemplate: templates/error/error_base_noanswer.html
+
+load:
+    access: AdminBase,EditBase
+    JS:
+      - /fabweb/js/rpc.js
+      - autosize.js
+      - controls.js
+      - load.js
+    template: templates/load.html
+    errortemplate: templates/error/error_base.html
+    callback: getDates
+
+loadfull:
+    action: load
+    access: AdminBase
+    template: templates/load.html
+    callback: getDates
+    allfields: true
+    
+new:
+    access: AdminBase, EditBase
+    JS:
+      - /fabweb/js/rpc.js
+      - autosize.js
+      - controls.js
+      - load.js
+    template: templates/load.html
+    callback: emptyString
+
+save:
+    access: AdminBase,EditBase
+    callback: validData
+
+delete:
+    access: AdminBase
+    template: templates/deleted.html
+    errortemplate: templates/error/error_base.html
+
+replaceform:
+    access: AdminBase
+    template: templates/replaceform.html
+    
+replace:
+    access: AdminBase
+    template: templates/replaced.html
+#    callback: validData
+
+locate:
+    access: AdminBase,EditBase
+    template: templates/show.html
+    errortemplate: templates/error/error.html
+    callback: getField
+    
+inform:
+#    template: templates/show.html
+    errortemplate: templates/error/error.html
+
+import:
+    access: AdminBase,EditBase
+
+importfiles:
+    access: cli
+
+sortdb:
+    access: cli, AdminBase
+    sortkey: 'Date:DateText:CongrDat,8,KeyDate,+ ; Type,20,KeyTextIgnoreCase,+ ; Rev,50,KeyTextIgnoreCase,-'
+
+validateall:
+    access: AdminBase
+
+# Panier de notices
+showcaddie:
+#access: AdminBase, EditBase
+  action: search
+  slots:
+    header: templates/caddieHeader.html
+  incart: true
+
+# Exports
+export:
+  list: templates/export/export.yaml
+  
+exportbycat:
+  action: export
+  list: templates/export/exporttype.yaml

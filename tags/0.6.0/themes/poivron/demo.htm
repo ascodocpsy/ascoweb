@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+    <title>[title]</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" /><opt>
+    [CSS]</opt><opt>
+    [JS]</opt>
+</head>
+<body>
+    <div class="page">
+        <ul style="float: right; margin-right: 1em;">
+            <li><a href="http://www.ascodocpsy.org/sommaire.php3" title="Accueil du site">Ascodocpsy.org</a></li>
+            <li><a href="http://www.ascodocpsy.org/article.php3?id_article=711" title="Contacter l'équipe de coordination du GIP Ascodocpsy">Contact</a></li>
+        </ul>
+<h1>
+        <img src="/styles/asco/logo_web.jpeg" />
+</h1>
+        <ul class="menu">
+            <li><a href="/HomePage/home">Accueil démo</a></li>
+            <li><a href="/base/search">Recherche simple</a></li>
+            <li><a href="/base/advancedsearch">Recherche guidée</a></li>
+            <li><a href="/base/showCart">Votre sélection</a></li>
+            <if test="{User::hasAccess('Edit,Admin')}">
+                <li><a href="/base/nouveau">Nouvelle notice</a></li>
+                <li><a href="/import/">Import de notices</a></li>
+            </if>
+            <if test="{User::hasAccess('Admin')}">
+                <li><a href="/ConfigModule/">Configuration</a></li>
+            </if>
+        </ul>
+        <div class="content">
+            [contents]
+        </div>
+    </div>
+</body>
+</html>

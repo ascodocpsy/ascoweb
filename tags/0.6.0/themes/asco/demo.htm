@@ -1,0 +1,56 @@
+<!DOCTYPE html 
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+    <title>$title</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
+    $CSS
+    $JS
+</head>
+<body>
+    <div class="page">
+        <div class="menu">
+            <ul class="firstmenu">
+                <li><a href="http://www.ascodocpsy.org/" title="Accueil du site">Ascodocpsy.org</a></li>
+                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=711" title="Contacter l'équipe de coordination du GIP Ascodocpsy">Contact</a></li>
+            </ul>
+    
+            <ul class="menu">
+                <li>Base documentaire
+                    <ul>
+                        <li><a href="/base/searchform">Recherche</a></li>
+                        <if test="User::hasAccess('Edit,Admin')">
+                            <li id="caddie"><a href="/ascocart/show">Votre sélection</a></li>
+                            <li><a href="/base/new">Nouvelle notice</a></li>
+                            <li><a href="/base/import">Import de notices</a></li>
+                        </if>
+                    </ul>
+                </li>
+                <if test="User::hasAccess('Admin')">
+                    <li>Administrateurs
+                        <ul>
+                            <li><a href="/ConfigModule/">Configuration</a></li>
+                            <li><a href="/TaskManager/">Gestionnaire de tâches</a></li>
+                            <li><a href="/changes.txt">Liste des changements</a></li>
+                        </ul>
+                    </li>
+                    <li>Special
+                        <ul>
+                            <li><a href="/Base/CreateXapianDatabase">Créer la base xapian</a></li>
+                        </ul>
+<!--                        <?php echo php_uname('n') ?>-->
+<!--                        <?php echo php_uname('s') ?>-->
+<!--                        <?php echo php_uname('r') ?>-->
+                    </li>
+                </if>
+            </ul>
+        </div>
+        <div class="contents">
+            <a href="http://www.ascodocpsy.org/" title="Accueil du site" style="background-color: transparent;">
+            <img src="/styles/asco/logo_web.jpeg" style="border: none;" /></a>
+            $contents
+        </div>
+    </div>
+</body>
+</html>

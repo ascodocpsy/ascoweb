@@ -1,0 +1,46 @@
+<loop on="{$this->selection}" as="$rank, $record"
+
+><switch test="$Type"
+
+><case test="Article"
+><AutTit />
+$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $PdPf.</opt>
+</case>
+
+<case test="Congrès"
+><AutTit />
+<opt>$CongrTit<opt>, n°$CongrNum</opt><opt> ; $CongrDat</opt><opt> ; $CongrLie</opt>.
+</opt><LieuEdit /><Date />.
+</case>
+
+<case test="Livre"
+><AutTit />
+<LieuEdit /><Date />.
+</case>
+
+<case test="{$Type=='Mémoire' || $Type=='Thèse'}"
+><AutTit/>
+<opt>{implode('/',(array)$Lieu)}</opt><opt> : $DipSpe</opt><Date />.
+</case>
+
+<case test="Rapport"
+><AutTit />
+<if test="{$Lieu || $Edit}"
+><LieuEdit /><Date />.
+</if
+><else>$Date.
+</else>
+<if test="{$Rev}">$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $Page.</opt></if>
+<opt>Disponible à partir de : $Lien</opt>
+</case>
+
+<case test="Texte officiel"
+>$Tit<opt>
+$Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.</opt>
+</case>
+
+/* Pas de format d'export Vancouver pour les documents de type Périodique */
+<default>Aucun format d'export n'est disponible pour ce type de document ($Type)
+</default>  
+</switch>
+</loop>

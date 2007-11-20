@@ -1,0 +1,11 @@
+<template match="//AutTit"
+><opt>$Aut
+</opt><opt>$Tit</opt>
+</template>
+
+<template match="//Date"
+><opt> ; $Date</opt>
+</template>
+
+<template match="//LieuEdit"
+><if test="{$Lieu}">{implode('/',(array)$Lieu)}<opt> : {implode('/',(array)$Edit)}</opt></if><else><opt>{implode('/',(array)$Edit)}</opt></else></template>
