@@ -33,7 +33,7 @@ filter:
     EditBase:
 # EditBase : Producteur=MonIdent ou Statut=valide
     cli:
-    default: '(* sauf type=periodique) and Statut=valide'
+    default: '(NOT Type:Periodique) AND Statut:valide'
 
 searchform:
   template: templates/search.html
@@ -48,9 +48,11 @@ search:
     errortemplate: templates/error/error_base.html
     noanswertemplate: templates/error/error_base_noanswer.html
     callback: getField
-    sort: "-"      # ordre de tri par défaut
-    max: 10        # nombre maximum de réponses par page par défaut
-    
+    # ordre de tri par défaut
+    sort: "-"
+    # nombre maximum de réponses par page par défaut
+    max: 10
+
 show:
     template: templates/show.html
     callback: getField
@@ -94,7 +96,7 @@ delete:
     template: templates/deleted.html
     errortemplate: templates/error/error_base.html
 
-replaceform:
+replaceForm:
     access: AdminBase
     template: templates/replaceform.html
     
