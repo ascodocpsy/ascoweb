@@ -88,9 +88,9 @@
   module: ascocart
   action: show
 
-- url: /panier/[item]/ajouter
+- url: /panier/[ref]/ajouter
   with:
-    item: \d+
+    ref: \d+
   module: ascocart
   action: add
 
@@ -98,9 +98,9 @@
   module: ascocart
   action: add
 
-- url: /panier/[item]/supprimer
+- url: /panier/[ref]/supprimer
   with:
-    item: \d+
+    ref: \d+
   module: ascocart
   action: remove
 
