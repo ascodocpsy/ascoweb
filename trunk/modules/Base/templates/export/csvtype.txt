@@ -6,6 +6,6 @@
     <case test="Thèse"         ><export fields="{Config::get('formats.'.$format.'.fields.Mémoire')}" /></case>
     <case test="Périodique"    ><export fields="{Config::get('formats.'.$format.'.fields.Périodique')}" /></case>
     <case test="Rapport"       ><export fields="{Config::get('formats.'.$format.'.fields.Rapport')}" /></case>
-    <case test="Texte officiel"><export fields="{Config::get('formats.'.$format.'.fields.Texte officiel')}" /></case>
+    <case test="Texte officiel"><export fields="{Config::get('formats.'.$format.'.fields.Texte_officiel')}" /></case>
     <default>Aucun format d'export n'est disponible pour ce type de document ($Type)</default>
 </switch>
