@@ -44,14 +44,13 @@
 <hr style="clear: both; margin-top: 10em; margin-bottom: 2em;" />
 
 */
-<form class="form search" action="/base/search" method="get">
-
+<form class="form search" action="search" method="get">
     <div>
         <if test="{User::hasAccess('AdminBase')}">
-            <textbox name="all" label="Recherche dans toute la base" rows="2" />
+            <textbox name="_equation" label="Recherche dans toute la base" rows="2" />
         </if>
         <else>
-            <textbox name="all" label="Recherche dans toute la base" />
+            <textbox name="_equation" label="Recherche dans toute la base" />
         </else>
     </div>
     
@@ -83,7 +82,7 @@
 
     /* TODO : quickTable ? */
     <div>
-        <checklist name="Liens" label="Texte intégral" src="array(array('code'=>'__has*', 'label'=>'Documents en ligne uniquement'))" />
+        <checklist name="_equation" label="Texte intégral" src="array(array('code'=>'(Liens:__has* NOT Type:Periodique)', 'label'=>'Documents en ligne uniquement'))" />
     </div>
 
     <div>
@@ -159,11 +158,11 @@
     </div>
 
     <div test="{User::hasAccess('AdminBase')}">
-        <textbox name="Creation" label="Date de création" />
+        <textbox name="Creation" label="Date de création" class="smallbox" />
     </div>
 
     <div test="{User::hasAccess('AdminBase')}">
-        <textbox name="LastUpdate" label="Date de mise à jour" />
+        <textbox name="LastUpdate" label="Date de mise à jour" class="smallbox" />
         <p class="exemple">
             Exemples : 2006*, 200612*, 20061215
         </p>
