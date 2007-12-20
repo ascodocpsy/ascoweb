@@ -1,46 +1,64 @@
-<loop on="{$this->selection}" as="$rank, $record"
+/*
+    Définit le(s) caractère utilisé(s) pour les retours à la ligne.
+    
+    idée : utiliser HTTP_USER_AGENT pour déterminer en automatique ?
+    exemple : 
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11
+    (on sait que c'est windows).
+    
+    A étudier. Pour le moment : génère CRLF
+*/<def name="nl" value='{"\r\n"}' />/*
 
-><switch test="$Type"
+    
+    
+    Templates match utilisés :
+    
+*/<div test="{false}">
+    
+    <template match="//AutTit"><opt>$Aut</opt>$nl<opt>$Tit</opt>$nl</template>
+    
+    <template match="//Date"><opt> ; $Date</opt></template>
+    
+    <template match="//LieuEdit"><if test="{$Lieu}">{implode('/',(array)$Lieu)}<opt> : {implode('/',(array)$Edit)}</opt></if><else><opt>{implode('/',(array)$Edit)}</opt></else></template>
+    
+    <template match="//Lien"><if test="$Lien">Disponible à partir de : $Lien$nl</if></template>
 
-><case test="Article"
-><AutTit />
-$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $PdPf.</opt>
-</case>
+</div>/*
 
-<case test="Congrès"
-><AutTit />
-<opt>$CongrTit<opt>, n°$CongrNum</opt><opt> ; $CongrDat</opt><opt> ; $CongrLie</opt>.
-</opt><LieuEdit /><Date />.
-</case>
 
-<case test="Livre"
-><AutTit />
-<LieuEdit /><Date />.
-</case>
 
-<case test="{$Type=='Mémoire' || $Type=='Thèse'}"
-><AutTit/>
-<opt>{implode('/',(array)$Lieu)}</opt><opt> : $DipSpe</opt><Date />.
-</case>
+    Boucle d'export des notices
+    
+*/<loop on="{$this->selection}" as="$rank, $record"><switch test="$Type">
 
-<case test="Rapport"
-><AutTit />
-<if test="{$Lieu || $Edit}"
-><LieuEdit /><Date />.
-</if
-><else>$Date.
-</else>
-<if test="{$Rev}">$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $Page.</opt></if>
-<opt>Disponible à partir de : $Lien</opt>
-</case>
+    <case test="Article"><AutTit />$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $PdPf.</opt>$nl<Lien /></case>
 
-<case test="Texte officiel"
->$Tit<opt>
-$Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.</opt>
-</case>
 
-/* Pas de format d'export Vancouver pour les documents de type Périodique */
-<default>Aucun format d'export n'est disponible pour ce type de document ($Type)
+    <case test="Congrès"><AutTit /><opt>$CongrTit<opt>, n°$CongrNum</opt><opt> ; $CongrDat</opt><opt> ; $CongrLie</opt>.$nl</opt><LieuEdit /><Date />.$nl<Lien /></case>
+
+
+    <case test="Livre"><AutTit /><LieuEdit /><Date />.$nl<Lien /></case>
+
+
+    <case test="{$Type=='Mémoire' || $Type=='Thèse'}"><AutTit/><opt>{implode('/',(array)$Lieu)}</opt><opt> : $DipSpe</opt><Date />.$nl<Lien /></case>
+
+
+    <case test="Rapport"><AutTit /><if test="{$Lieu || $Edit}"><LieuEdit /><Date />.$nl</if>
+        <else>$Date.$nl</else><if test="{$Rev}">$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $Page.</opt></if><Lien /></case>
+
+
+    <case test="Texte officiel">$Tit<opt>$nl$Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.$nl</opt>$nl<Lien /></case>
+
+
+    /* Pas de format d'export Vancouver pour les documents de type Périodique */
+    
+    <default>Aucun format d'export n'est disponible pour ce type de document ($Type)
 </default>  
-</switch>
-</loop>
+
+</switch>$nl</loop>/*
+
+
+
+    Pied de page
+    
+*/{$nl}Cette bibliographie est issue de la base SantéPsy : http://www.ascodocpsy.org
