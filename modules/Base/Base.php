@@ -41,20 +41,20 @@ class Base extends DatabaseModule
         if (parent::preExecute()===true) return true;
      //   if ($this->action=='exportCart')
      //       $this->actionExportCart(true);
-        if (Utils::isAjax())
+        if (Utils::isAjax() && $this->method==='actionSearch')
         {
-//            $this->setLayout('none');
-//            Config::set('debug', false);
-//            Config::set('showdebug', false);
-//            header('Content-Type: text/html; charset=ISO-8859-1'); // TODO : avoir une rubrique php dans general.yaml permettant de "forcer" les options de php.ini
-            if ($this->action==='search') Config::set('template','templates/answers.html');
+            Config::set('template','templates/answers.html');
         }
-         
-        if ($this->action=='exportCartByType')
+        
+        if ($this->method=='actionExportCartByType')
             $this->actionExportCartByType(true);
 
         // Récupère l'identifiant
         $this->ident=strtolower(User::get('login'));
+
+        // Filtre pour les membres du GIP
+        // Ils peuvent voir les notices validées et leurs propres notices si elles ne sont pas validées
+        Config::set('filter.EditBase', 'ProdFich:'.$this->ident.' OR Statut:valide');
 
         // Charge la table de correspondances entre le numéro d'un centre (ascoX)
         // et son numéro de l'article sur le site Ascodocpsy
@@ -358,7 +358,7 @@ class Base extends DatabaseModule
     }
 
     
-    // Utilisé uniquement pour actionLoad et actionLoadFull (cf config.yaml)
+    // Utilisé uniquement pour actionLoad et actionLoadFull (cf /config/Base.config)
     public function getDates($name)
     {        
         switch ($name)
@@ -469,9 +469,15 @@ class Base extends DatabaseModule
  		return false;
  	}
  
-    public function actionLocate()
+    /**
+     * Affiche la localisation d'une revue
+     *
+     * @param string $rev la revue à localiser
+     */
+ 	public function actionLocate($rev)
     {                       
-        $rev=Utils::get($_REQUEST['rev']);
+      //  $rev=Utils::get($_REQUEST['rev']);
+        $this->request->required('rev')->unique()->ok();
         
         // Si pas de nom de périodique
         if (is_null($rev))
@@ -487,7 +493,7 @@ class Base extends DatabaseModule
         if (! $this->select($eq))
         	return $this->showError('Aucune localisation n\'est disponible pour le périodique '.$rev.'.');
         
-        // Fiche Priodique existante 
+        // Fiche Périodique existante 
         
         // Détermine le template à utiliser
         if (! $template=$this->getTemplate())
@@ -744,20 +750,20 @@ class Base extends DatabaseModule
 //        echo $data;
 //    }
     
-    public function actionExportByType()
+    public function actionExportByType() // fixme: ne devrait pas être là. Mettre dans DatabaseModule un foction générique ('categorize()') et se contenter de l'appeller ici
     {
         // Ouvre la base de données (le nouveau makeEquation en a besoin)
         $this->openDatabase();
 
         // Détermine la recherche à exécuter        
-        $this->equation=$this->selection->makeEquation(Utils::isGet() ? $_GET : $_POST);
+        $this->equation=$this->getEquation();
 
         // Pas d'équation : erreur
-        if (is_null($this->equation) || $this->equation==='')
+        if (is_null($this->equation))
             return $this->showError('Aucun critère de recherche indiqué');
 
         // Lance la recherche, si aucune réponse, erreur
-        if (! $this->select($this->equation, array('_sort'=>'+', '_start'=>0, '_max'=>1000000)))
+        if (! $this->select($this->equation, -1))
             return $this->showNoAnswer("La requête $this->equation n'a donné aucune réponse.");
     	
         // IDEA: on pourrait utiliser les "collapse key" de xapian pour faire la même chose
@@ -805,7 +811,7 @@ class Base extends DatabaseModule
             
             $equation.=" -$catIndex:$cat";
 //            echo "equation de boucle : $equation<br />";
-            $found=$this->select($equation, array('_sort'=>'+', '_start'=>0, '_max'=>1000000));
+            $found=$this->select($equation, -1);
 
             $count=$this->selection->count();
             $diff=$lastCount-$count;
@@ -833,14 +839,14 @@ class Base extends DatabaseModule
         $all='';
         foreach($categories as $name=>$cat)
         {
-        	$url='exportbycat?_equation='.urlencode($cat['equation']);
+        	$url='ExportByCat?_equation='.urlencode($cat['equation']);
             echo "<li><a href='$url'>$name : $cat[count] notices</a></li>";
             $all.='&_equation='.urlencode($cat['equation']) . '&filename='.urlencode($name);
         }
         if (1 < $nbCat=count($categories))
         {
             $all=substr($all,1);
-            echo "<li><a href='exportbycat?$all'>Exporter les ", $nbCat, " fichiers </a></li>";
+            echo "<li><a href='ExportByCat?$all'>Exporter les ", $nbCat, " fichiers </a></li>";
         }
     }
     
@@ -1753,64 +1759,11 @@ echo '</pre>';
     
     // FIN IMPORT DE NOTICES
 
-    public function actionValidateAll()
+    public function actionSearch()
     {
-        // TODO : cette fonction sert-elle encore ?
-        
-        // Ouvre la sélection
-        $selection=self::openDatabase('Valide=faux', false);
-        if (is_null($selection)) return;
-
-        // Vérifie qu'on a des réponses
-        if ($selection->count==0)
-        {
-            echo 'Aucune notice à valider';
-            return;
-        }
-        echo '<p>', $selection->count, ' notices à valider</p>';
-        echo '<ul>';
-        while (! $selection->eof())
-        {
-            echo '<li>Validation de la notice ', $selection->field('ref'), '</li>';
-            $selection->edit();
-            $value=true;
-            $selection->setField('Valide',$value);
-            $selection->update();
-            
-            $selection->moveNext();
-        }
-        echo '</ul>';
-        $selection=null;
-    }    
-    
-    public function actionFinSaisieTrue()
-    {
-        // TODO : cette fonction sert-elle encore ?
-        
-        // Ouvre la sélection
-        $selection=self::openDatabase('FinSaisie=faux', false);
-        if (is_null($selection)) return;
-
-        // Vérifie qu'on a des réponses
-        if ($selection->count==0)
-        {
-            echo 'Aucune notice en cours de saisie';
-            return;
-        }
-        echo '<p>', $selection->count, ' notices en cours de saisie</p>';
-        echo '<ul>';
-        while (! $selection->eof())
-        {
-            echo '<li>FinSaisie=true pour la notice ', $selection->field('ref'), '</li>';
-            $selection->edit();
-            $value=true;
-            $selection->setField('FinSaisie',$value);
-            $selection->update();
-            
-            $selection->moveNext();
-        }
-        echo '</ul>';
-        $selection=null;
-    }    
+        $this->cart=Module::loadModule('AscoCart');
+        $this->cart->preExecute();
+        parent::actionSearch();   
+    }
 }
 ?>
