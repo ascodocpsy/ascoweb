@@ -29,25 +29,25 @@
 
     Boucle d'export des notices
     
-*/<loop on="{$this->selection}" as="$rank, $record"><switch test="$Type">
+*/<loop on="{$this->selection}" as="$rank, $record"><switch test="{strtolower($Type)}">
 
-    <case test="Article"><AutTit />$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $PdPf.</opt>$nl<Lien /></case>
-
-
-    <case test="Congrès"><AutTit /><opt>$CongrTit<opt>, n°$CongrNum</opt><opt> ; $CongrDat</opt><opt> ; $CongrLie</opt>.$nl</opt><LieuEdit /><Date />.$nl<Lien /></case>
+    <case test="article"><AutTit />$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $PdPf.</opt>$nl<Lien /></case>
 
 
-    <case test="Livre"><AutTit /><LieuEdit /><Date />.$nl<Lien /></case>
+    <case test="congrès"><AutTit /><opt>$CongrTit<opt>, n°$CongrNum</opt><opt> ; $CongrDat</opt><opt> ; $CongrLie</opt>.$nl</opt><LieuEdit /><Date />.$nl<Lien /></case>
 
 
-    <case test="{$Type=='Mémoire' || $Type=='Thèse'}"><AutTit/><opt>{implode('/',(array)$Lieu)}</opt><opt> : $DipSpe</opt><Date />.$nl<Lien /></case>
+    <case test="livre"><AutTit /><LieuEdit /><Date />.$nl<Lien /></case>
 
 
-    <case test="Rapport"><AutTit /><if test="{$Lieu || $Edit}"><LieuEdit /><Date />.$nl</if>
+    <case test="{strtolower($Type)=='mémoire' || strtolower($Type)=='thèse'}"><AutTit/><opt>{implode('/',(array)$Lieu)}</opt><opt> : $DipSpe</opt><Date />.$nl<Lien /></case>
+
+
+    <case test="rapport"><AutTit /><if test="{$Lieu || $Edit}"><LieuEdit /><Date />.$nl</if>
         <else>$Date.$nl</else><if test="{$Rev}">$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $Page.</opt></if><Lien /></case>
 
 
-    <case test="Texte officiel">$Tit<opt>$nl$Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.$nl</opt><Lien /></case>
+    <case test="texte officiel">$Tit<opt>$nl$Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.$nl</opt><Lien /></case>
 
 
     /* Pas de format d'export Vancouver pour les documents de type Périodique */
