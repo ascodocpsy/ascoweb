@@ -32,9 +32,9 @@
                 <a test="{$this->hasEditRight()}" class="loadrecord" href="/base/load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
 
                 /* Affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
-                <switch test="$Type">
+                <switch test="{strtolower($Type)}">
                 
-                    <case test="Article">        
+                    <case test="article">
                         <TDTA />
                         <row label="Source">$Rev<Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
                         <opt><row label="Notes">$Notes</row></opt>
@@ -42,7 +42,7 @@
                         <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Producteur">$ProdFich</row></opt>
                     </case>
                     
-                    <case test="Congrès">
+                    <case test="congrès">
                         <TDTA />
                         <opt><row label="Congrès"><opt>$CongrTit, </opt><opt>$CongrDat, </opt><opt>n°$CongrNum, </opt><opt>$CongrLie</opt></row></opt>
                         <opt><row label="Source"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
@@ -56,7 +56,7 @@
                         </if>
                     </case>
                     
-                    <case test="Livre">
+                    <case test="livre">
                         <TDTA />
                         <opt><row label="Source"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
                         <opt><row label="Collection">$Col</row></opt>
@@ -69,7 +69,7 @@
                         </if>
                     </case>
                     
-                    <case test="{$Type=='Mémoire' || $Type=='Thèse'}">
+                    <case test="{strtolower($Type)=='mémoire' || strtolower($Type)=='thèse'}">
                         <TDTA />
                         <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
                             <opt><row>$DipSpe</row></opt>
@@ -86,14 +86,14 @@
                         </if>
                     </case>
                     
-                    <case test="Périodique">
+                    <case test="périodique">
                         <div class="row"><div>$Type<opt>, $ViePerio</opt></div></div>
                         <div class="row"><div>$Rev<opt> $Presentation</opt><opt>, $IsbnIssn</opt></div></div>
                         <opt><row label="Localisation">$EtatCol</row></opt>
                         <opt><row label="Notes">$Notes</row></opt>
                     </case>
                     
-                    <case test="Rapport">
+                    <case test="rapport">
                         <TDTA />
                         <opt><row label="Source"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt><opt>$PageEdit</opt></row></opt>                        
                         <opt><row label="Source">$Rev<Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
@@ -104,7 +104,7 @@
                         <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Producteur">$ProdFich</row></opt>
                     </case>
                     
-                    <case test="Texte officiel">
+                    <case test="texte officiel">
                         <row>$Type</row>
                         <opt><row label="Titre"><Tit /><opt> ; $Annexe</opt></row></opt>
                         <opt><row test="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" label="Source">$Rev du $DatePub, n°$Num</row></opt>

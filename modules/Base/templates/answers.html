@@ -73,44 +73,44 @@
             <hidden name="item" value="$REF" />
             
             /* affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
-            <switch test="$Type">
+            <switch test="{strtolower($Type)}">
             
-                <case test="Article">
+                <case test="article">
                     <TDAT />
                     <row label="Source">$Rev<Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
                 </case>
                 
-                <case test="Congrès">
+                <case test="congrès">
                     <TDAT />
                     <opt><row label="Congrès"><opt>$CongrTit, </opt><opt>$CongrDat, </opt><opt>n°$CongrNum, </opt><opt>$CongrLie, </opt><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
                     <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Localisation">$Loc</row></opt>
                 </case>
                 
-                <case test="Livre">
+                <case test="livre">
                     <TDAT />
                     <opt><row label="Source"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
                     <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Localisation">$Loc</row></opt>
                 </case>
                 
-                <case test="{$Type=='Mémoire' || $Type=='Thèse'}">
+                <case test="{strtolower($Type)=='mémoire' || strtolower($Type)=='thèse'}">
                     <TDAT />
                     <opt><row><opt>$DipSpe, </opt><opt>$Lieu, </opt><opt>$Edit, </opt>$Page</row></opt>
                     <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Localisation">$Loc</row></opt>
                 </case>
                 
-                <case test="Périodique">
+                <case test="périodique">
                     <row>$Type<opt>, $ViePerio</opt></row>
                     <row>$Rev<opt> $Presentation</opt><opt>, $IsbnIssn</opt></row>
                     <opt><row>$Notes</row></opt>
                 </case>
                 
-                <case test="Rapport">
+                <case test="rapport">
                     <TDAT />
                     <opt><row label="Source"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt><opt>$PageEdit</opt></row></opt>
                     <opt><row label="Source"><opt>$Rev</opt><Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
                 </case>
                 
-                <case test="Texte officiel">
+                <case test="texte officiel">
                     <row>$Type</row>
                     <opt><row label="Titre"><strong><Tit /></strong><opt> ; $Annexe</opt></row></opt>
                     <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Source">$Rev<opt> du $DatePub</opt></row></opt>
