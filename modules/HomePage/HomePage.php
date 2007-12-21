@@ -9,18 +9,18 @@ class HomePage extends Module
 {
     public function preExecute()
     {
-    	switch ($this->action)
+    	switch ($this->method)
         {
-            case 'home' :
+            case 'actionHome' :
                 $this->setLayout('homepage.html');
                 break;
-            case 'index':
+            case 'actionIndex':
                 $password=Utils::get($_POST['password']);
                 if ($password=='poivron')
-                    Runtime::redirect('/HomePage/home');
+                    Runtime::redirect('/HomePage/Home');
                 $this->setLayout('default.htm');
                 break;
-            default: die();
+            default: die(__METHOD__.' : action non reconnue <pre>'.print_r($this,true));
         }
             
     }
