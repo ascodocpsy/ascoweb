@@ -55,12 +55,17 @@ span.check, span.radio
 form p.exemple
 {
 	font-size: 0.9em;
-	margin: 0.1em 0 0 18em;
+	margin: 0.1em 0 0 21em;
 }
 
 /* ========================================================================== */
 /*                        FORMULAIRE DE RECHERCHE                             */
 /* ========================================================================== */
+
+form.search
+{
+    margin-top: 2em;
+}
 
 /* Libellé de champ */
 form.search label.field,
@@ -70,7 +75,7 @@ form.search label.select,
 form.search label.textarea
 {
 	font-weight: bold;
-	width: 15em;
+	width: 17.5em;
 }
 
 form.search div
@@ -83,7 +88,7 @@ form.search div
 /* Zone de texte */
 form.search div input.text
 {
-    width: 23em;
+    width: 31em;
     margin: 0;
     padding: 0 0.2em;
 }
@@ -91,7 +96,7 @@ form.search div input.text
 /* Zone de texte (petite) */
 form.search div input.smallbox
 {
-    width: 10em;
+    width: 15em;
     margin: 0;
     padding: 0 0.2em;
 }
@@ -99,7 +104,7 @@ form.search div input.smallbox
 /* Zone de texte multiligne */
 form.search div textarea
 {
-	width: 23.6em;
+	width: 31em;
 	margin: 0;
 	padding: 0 0.2em;
 }
@@ -108,15 +113,15 @@ form.search div textarea
 form.search div.checklist,
 form.search div.select
 {
-	margin-left: 16em;
+	margin-left: 19em;
 	clear: right;
 }
 
 /* Zone de texte 'Autre date' pour le choix d'une date */
 form.search div.date
 {
-    margin-top: -1.5em;
-    margin-left: 14em;
+    /*margin-top: -1.4em;*/
+    margin-left: 7em;
 }
 form.search div.date input.text
 {
