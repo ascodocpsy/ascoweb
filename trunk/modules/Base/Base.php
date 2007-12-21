@@ -1720,11 +1720,18 @@ echo '</pre>';
     }
     
     /**
-     * Vérifie que le fichier chargé est valide :
-     *  - fichier non vide
-     *  - fichier tabulé
-     *  - la première ligne contient uniquement des noms de champs
-     *  - chaque ligne contient autant de tabulations que la 1ère ligne
+     * Vérifie que le fichier chargé pour l'import est valide.
+     * 
+     * Les vérifications sont faites dans l'ordre suivant :
+     * - le fichier n'est pas vide
+     * - la première ligne du fichier n'est pas vide
+     * - la première ligne fait une longueur maximum qui correspond à la longueur
+     *   de l'ensemble des noms des champs de la base séparés par des tabulations
+     * - la première ligne contient des tabulations
+     * - la première ligne contient les noms des champs de la base
+     *
+     * @param string $path chemin du fichier à charger sur le serveur
+     * @param string $error message de l'erreur
      */
     private function isValid($path, & $error="")
     {
@@ -1737,21 +1744,44 @@ echo '</pre>';
         // Ouvre le fichier
         $f=fopen($path,'r');
 
-        // Vérifie que c'est un fichier tabulé
-        $fields=fgetcsv($f, 0, "\t", '"');
+        // Lit la première ligne et supprime les espaces et les tabulations de début et fin
+        $fields=trim(fgets($f)," \t\r\n");
 
-        if (! is_array($fields) || count($fields) < 2)
+        // Vérifie que la ligne n'est pas vide
+        if ($fields=='')
         {
-            $error='La première ligne du fichier ne contient pas les noms de champs ou ne contient qu\'un seul nom';
+            $error='La première ligne du fichier est vide.';
             return false;
         }
-        // Vérifie que la première ligne contient les noms de champs
-        $fields=array_flip($fields);
-        if (count($t=array_diff_key($fields, $this->map)) > 0)
+        
+        // Calcule la longueur maximale de la première ligne (doit contenir les noms des champs)
+        // Ouvre la base de données et récupère les champs de la base
+        $this->openDatabase();
+        $dbFields=array_keys($this->selection->getStructure()->fields);
+        $maxLen=strlen(implode("\t",$dbFields));
+        
+        // Vérifie qu'elle fait moins de $maxLen
+        if (strlen($fields)>$maxLen)
         {
-            //$error=print_r($t,true);
-            $error="champ(s) " . implode(', ', array_keys($t)) . " non géré(s)";
-            
+            $error='La première ligne du fichier fait plus de '.$maxLen.' caractères. Elle ne contient pas les noms des champs.';
+            return false;
+        }
+        
+        // Vérifie qu'elle contient des tabulations
+        if (strpos($fields,"\t")===false)
+        {
+            $error='La première ligne du fichier ne contient pas les noms de champs ou ne contient qu\'un seul nom.';
+            return false;
+        }
+        
+        // Vérifie que la première ligne contient les noms de champs
+        $fields=explode("\t",$fields);
+        foreach ($fields as & $value) $value=trim($value,' "'); // Supprime les guillemets qui entourent les champs
+        $dbFields=array_map('strtoupper',$dbFields);
+
+        if (count($t=array_diff($fields, $dbFields)) > 0)
+        {
+            $error="champ(s) " . implode(', ', array_values($t)) . " non géré(s)";
             return false;
         }
         return true; 
