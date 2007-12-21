@@ -14,36 +14,6 @@
 
 <div class="texte">
 
-/*
-<form class="form search" action="/base/search" method="get">
-    Equation xapian : <textbox name="_equation" cols="50" rows="3" /><br />
-    
-    Réponses par page : 
-    <select name="_max">
-        <option selected="selected">10</option>
-        <option>50</option>
-        <option>100</option>
-        <option>500</option>
-    </select>
-
-    Tri : 
-    <select name="_sort" 
-        src="{
-                array
-                (
-                    array('code'=>'-', 'label'=>'docid décroissants'),
-                    array('code'=>'+', 'label'=>'docid croissants'),
-                    array('code'=>'%', 'label'=>'par pertinence'),
-                )
-            }" />
-    <checkbox name="testdm" value="1" />testdm
-    <br />
-    <submit label="Rechercher" />
-</form>
-
-<hr style="clear: both; margin-top: 10em; margin-bottom: 2em;" />
-
-*/
 <form class="form search" action="search" method="get">
     <div>
         <if test="{User::hasAccess('AdminBase')}">
@@ -55,7 +25,7 @@
     </div>
     
     <div>
-        <textbox name="MotsCles" label="Descripteurs" />
+        <textbox name="MotsCles" label="Descripteurs" rows="2" />
         <p class="exemple"><a href="http://www.ascodocpsy.org/article.php3?id_article=691" target="_blank" title="Consulter le thesaurus SantéPsy (nouvelle fenêtre)">Consultez les descripteurs utilisés dans la base SantéPsy</a></p>
     </div>
 
@@ -179,7 +149,8 @@
                 <option>500</option>
             </select>
         
-            Ordre de tri : 
+            Ordre de tri :
+/*
             <select name="_sort" 
                 src="{
                         array
@@ -189,6 +160,31 @@
                             array('code'=>'+', 'label'=>'docid croissants'),
                         )
                     }" />
+*/
+/*
+    Version produisant la liste complète ed tous les critères de tri possible                    
+            <select name="_sort">
+                <option value="%">Par pertinence</option>
+                <option value="-">Date d'ajout de la notice (décroissant)</option>
+                <option value="+">Date d'ajout de la notice (croissant)</option>
+                <loop on="{$this->selection->getStructure()->sortkeys}" as="$sortkey">
+                    <option value="{$sortkey->name}">Par {$sortkey->label:$sortkey->name} (croissant)</option>
+                    <option value="{$sortkey->name}">Par {$sortkey->label:$sortkey->name} (décroissant)</option>
+                    <option value="%{$sortkey->name}">Par pertinence puis par {$sortkey->label:$sortkey->name} (croissant)</option>
+                    <option value="%{$sortkey->name}">Par pertinence puis par {$sortkey->label:$sortkey->name} (décroissant)</option>
+                    <option value="{$sortkey->name}%">Par {$sortkey->label:$sortkey->name} (croissant) puis par pertinence</option>
+                    <option value="{$sortkey->name}%">Par {$sortkey->label:$sortkey->name} (décroissant) puis par pertinence</option>
+                </loop>
+            </select>
+*/
+            <select name="_sort">
+                <loop on="{$this->selection->getStructure()->sortkeys}" as="$sortkey">
+                    <option value="{$sortkey->name}">{$sortkey->label:$sortkey->name}</option>
+/*                    <option value="{$sortkey->name}+%">{$sortkey->label:$sortkey->name} puis par pertinence</option>*/
+                </loop>
+                <option value="%">Pertinence</option>
+                <option value="-">Ordre de la base</option>
+            </select>
         </div>
     </div>    
     <div class="buttons">
@@ -226,7 +222,7 @@ jQuery(document).ready(
         // Critères dont la liste des valeurs de la base est disponible
         jQuery('#MotsCles').autocomplete
         (
-            '{Routing::linkFor("/base/lookup")}?table=descripteurs&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=descripteurs&amp;value=%s',
             \{
                 asValue: true
             \}
@@ -234,37 +230,37 @@ jQuery(document).ready(
         
         jQuery('#Aut').autocomplete
         (
-            '{Routing::linkFor("/base/lookup")}?table=auteurs&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=auteurs&amp;value=%s',
             \{
                 asValue: true
             \}
         );
         jQuery('#Rev').autocomplete
         (
-            '{Routing::linkFor("/base/lookup")}?table=revues&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=revues&amp;value=%s',
             \{
                 asValue: true
             \}
         );
         jQuery('#Edit').autocomplete
         (
-            '{Routing::linkFor("/base/lookup")}?table=editeurs&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=editeurs&amp;value=%s',
             \{
             \}
         );
         jQuery('#Col').autocomplete
         (
-            '{Routing::linkFor("/base/lookup")}?table=collections&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=collections&amp;value=%s',
             \{
             \}
         );
 
-        jQuery('#Loc').autocomplete('{Routing::linkFor("/base/lookup")}?table=localisations&amp;value=%s');
-        jQuery('#ProdFich').autocomplete('{Routing::linkFor("/base/lookup")}?table=producteurs&amp;value=%s');
+        jQuery('#Loc').autocomplete('{Routing::linkFor("Lookup")}?table=localisations&amp;value=%s');
+        jQuery('#ProdFich').autocomplete('{Routing::linkFor("Lookup")}?table=producteurs&amp;value=%s');
         
         jQuery('#DipSpe').autocomplete
         (
-            '{Routing::linkFor("/base/lookup")}?table=diplomes&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=diplomes&amp;value=%s',
             \{
             \}
         );

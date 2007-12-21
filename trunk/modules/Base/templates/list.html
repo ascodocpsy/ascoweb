@@ -9,11 +9,29 @@
         <div class="titre">Base SantéPsy - Recherche - Accès public</div>
     </else>
 
-    <p class="spip">
+    <p>
         Equation : <code>{$this->equation}</code>
-/*        <br />
-        Réponses : <code>{$this->selection->count()}</code>*/
     </p>
+    
+    /* Affiche les mots-vides qui ont été ignorés dans l'équation */
+    <def name="stopwords" value="{$this->selection->searchInfo('stopwords')}" />
+    <switch test="{count($stopwords)}">
+        <case test="0" />
+        <case test="1"><p>Le mot "{$stopwords[0]}" a été ignoré dans votre recherche.</p></case>
+        <default><p>Les mots "{implode('", "', $stopwords)}" ont été ignorés dans votre recherche.</p></default>
+    </switch>
+    
+    /* Informations techniques sur la recherche (affichées en mode debug uniquement) */
+    <searchinfo for="StopWords" />  
+    <searchinfo for="InternalStopWords" />  
+    <searchinfo for="QueryTerms" />  
+    <searchinfo for="InternalQueryTerms" />  
+    <searchinfo for="MaxPossibleWeight" />  
+    <searchinfo for="MaxAttainedWeight" />  
+    <searchinfo for="InternalQuery" />  
+    <searchinfo for="InternalFilter" />  
+    <searchinfo for="InternalFinalQuery" />  
+    <searchinfo for="SortOrder" />
 </slot>
 <div id="cartinfo" style="background-color: yellow; color: red; display: none; font-size: 1.5em; text-align: center; border: 1px solid red;">here</div>
 <div class="texte">
@@ -83,7 +101,7 @@ function init()
 \{
     jQuery('.navbar a').click(function()\{
         jQuery('#list').load(jQuery(this).attr('href'), init);
-        jQuery(this).css('background',"url('{Routing::linkFor('/fabweb/styles/loading.gif')}') top center no-repeat");
+        jQuery(this).css('background',"url('{Routing::linkFor('/fabweb/images/loading.gif')}') top center no-repeat");
 //        jQuery('ul.shortlist').fadeTo("slow",0.2);
         return false;
     \})
