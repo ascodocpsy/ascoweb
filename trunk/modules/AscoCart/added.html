@@ -2,9 +2,9 @@
 
 <div class="texte">
     /* Ajout de plusieurs notices en une seule fois */
-	<if test="{is_array($item)}">
+	<if test="{count($item)>1}">
 		<p class="spip">Les notices suivantes ont été ajoutées au panier :</p>
-		<loop on="{$item}" as="$value">
+		<loop on="$item" as="$value">
 			<ul>
                 <li>n°$value</li>
 			</ul>
@@ -12,6 +12,6 @@
 	</if>
 	/* Ajout d'une seule notice */
 	<else>
-		<p class="spip">La notice n°$item a été ajoutée au panier.</p>
+		<p class="spip">La notice n°{$item[0]} a été ajoutée au panier.</p>
 	</else>
 </div>
