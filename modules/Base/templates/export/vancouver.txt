@@ -47,7 +47,7 @@
         <else>$Date.$nl</else><if test="{$Rev}">$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $Page.</opt></if><Lien /></case>
 
 
-    <case test="Texte officiel">$Tit<opt>$nl$Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.$nl</opt>$nl<Lien /></case>
+    <case test="Texte officiel">$Tit<opt>$nl$Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.$nl</opt><Lien /></case>
 
 
     /* Pas de format d'export Vancouver pour les documents de type Périodique */
