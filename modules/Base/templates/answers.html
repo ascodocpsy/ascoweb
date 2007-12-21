@@ -17,7 +17,12 @@
             <opt min="2">
                 <li>$label : 
                     <loop on="$this->selection->suggestTerms($t[0])" as="$i,$term">
-                        {$i>0 ? ' / ': ''}<a href="/base/search?_equation={urlencode($t[1].':['.$term. '] et ('.$this->equation.')')}">$term</a>
+                        /*
+                        Ancienne version :
+                        {$i>0 ? ' / ': ''}<a href="search?_equation={urlencode($t[1].':['.$term. '] et ('.$this->equation.')')}">$term</a>
+                        Nouvelle version DM :
+                        */
+                        {$i>0 ? ' / ': ''}<a href="?{$t[1]}=[{urlencode($term)}]&amp;_equation={urlencode($this->equation)}">$term</a>
                     </loop>
                 </li>
             </opt>
@@ -44,18 +49,25 @@
         <li class="record">
 
             <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+            /*
                 <if test="{!Config::get('incart',false)}">
                     <a class="addtocart" href="/ascocart/add?item=$REF" title="Ajouter au panier"><span>Ajouter au panier</span></a>
                 </if>
                 <else>
                     <a class="removefromcart" href="/ascocart/remove?item=$REF" title="Supprimer du panier"><span>Supprimer du panier</span></a>
                 </else>
+            */
+                <if test="{$this->cart->contains($REF)}">
+                    <a class="removefromcart" href="/ascocart/remove?item=$REF" title="Supprimer du panier"><span>Supprimer du panier</span></a>
+                </if>
+                <else>
+                    <a class="addtocart" href="/ascocart/add?item=$REF" title="Ajouter au panier"><span>Ajouter au panier</span></a>
+                </else>
             </if>                
-
-            <a class="fullrecord" href="/base/show?REF=$REF" title="Voir la notice complète"><span>Voir la notice complète</span></a>
+            <a class="fullrecord" href="show?REF=$REF" title="Voir la notice complète"><span>Voir la notice complète</span></a>
             
             <if test="{$this->hasEditRight()}">
-                <a class="loadrecord" href="/base/load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
+                <a class="loadrecord" href="load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
             </if>
             
             <hidden name="item" value="$REF" />
@@ -100,15 +112,21 @@
                 
                 <case test="Texte officiel">
                     <row>$Type</row>
-                    <opt><row label="Titre"><Tit /><opt> ; $Annexe</opt></row></opt>
+                    <opt><row label="Titre"><strong><Tit /></strong><opt> ; $Annexe</opt></row></opt>
                     <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Source">$Rev<opt> du $DatePub</opt></row></opt>
                 </case>
+
                 <default>
                     <p class="spip">La notice numéro $REF possède un type de document qui n'est pas géré : '$Type', impossible de l'afficher.</p>
                 </default>
-                
             </switch>
         </li>
+        <searchinfo for="DocId" />  
+        <searchinfo for="Score"> %</searchinfo>  
+        <searchinfo for="InternalScore" />  
+        <searchinfo for="MatchingTerms" />  
+        <searchinfo for="InternalMatchingTerms" />
+        <searchinfo for="SortKey" />  
         <hr />
     </loop>
 </ul>
@@ -129,10 +147,10 @@
 <slot name="menubase">
     <div class="menubase">
         <ul>
-            <li><a href="/base/export?_equation={urlencode($this-&gt;equation)}">Exporter toutes les notices</a></li>
-            <li><a href="/base/exportbytype?_equation={urlencode($this-&gt;equation)}">Exporter par type de document</a></li>
-            <li test="{User::hasAccess('AdminBase')}"><a href="/base/replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans toutes les notices...</a></li>
-            <li test="{User::hasAccess('AdminBase')}"><a href="/base/delete?_equation={urlencode($this-&gt;equation)}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer toutes les notices obtenues ?'));">Supprimer toutes les notices</a></li>
+            <li><a href="export?_equation={urlencode($this-&gt;equation)}">Exporter toutes les notices</a></li>
+            <li><a href="exportbytype?_equation={urlencode($this-&gt;equation)}">Exporter par type de document</a></li>
+            <li test="{User::hasAccess('AdminBase')}"><a href="replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans toutes les notices...</a></li>
+            <li test="{User::hasAccess('AdminBase')}"><a href="delete?_equation={urlencode($this-&gt;equation)}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer toutes les notices obtenues ?'));">Supprimer toutes les notices</a></li>
         </ul>
     </div>
 </slot>
