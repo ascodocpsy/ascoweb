@@ -18,8 +18,8 @@
 	<!-- En tete : logo en flash et logo de la rubrique-->
 	<div id="header"> 	  
 		<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-			<tr> <td align="center"> <a href="http://www.ascodocpsy.org/TEST/sommaire.php3"> 
-			<img src="/styles/ascodocpsy/recherche.gif" />
+			<tr> <td align="center"> <a href="http://www.ascodocpsy.org"> 
+			<img src="/images/base.jpg" border="0" />
 			 </a> </td> </tr>
 		</table>		
 	</div> <!-- ferme div id=header -->
@@ -27,23 +27,18 @@
 	<!-- Menu de navigation -->
 	<!--<slot name="menu" action="menu.html" />-->
 
-	<div class="ContentLeft">
+	<div id="ContentLeft">
          <div class="texte">
-            <ul class="menu">
-                <li><a href="/base/searchform">Rechercher des documents</a></li>
+            <ul>
+                <li><a href="/Base/SearchForm">Rechercher des documents</a></li>
                 <if test="{User::hasAccess('Edit,Admin')}">
-                    <li id="caddie"><a href="/ascocart/show">Voir votre panier</a></li>
-                    <li><a href="/base/new">Créer une nouvelle notice</a></li>
-                    <li><a href="/base/import">Importer des notices</a></li>
+                    <li id="caddie"><a href="/Ascocart/Show">Voir mon panier</a></li>
+                    <li><a href="/Base/New">Créer une nouvelle notice</a></li>
+                    <li><a href="/Base/Import">Importer des notices</a></li>
                 </if>
                 <if test="{User::hasAccess('Admin')}">
-                    <li>Administrateurs
-                        <ul>
-                            <li><a href="/ConfigModule/">Configuration</a></li>
-                            <li><a href="/TaskManager/">Gestionnaire de tâches</a></li>
-                            <li><a href="/changes.txt">Liste des changements</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/ConfigModule/">Configuration</a></li>
+                    <li><a href="/TaskManager/">Gestionnaire de tâches</a></li>
                 </if>
             </ul>
          </div>
