@@ -28,7 +28,7 @@ class SpipSecurity extends NoSecurity
         //echo '<pre>', var_dump($this, true), '</pre>';
     }	
 
-    public function preExecute()
+    public function actionConnect()
     {
         // on attend en querystring une chaine qui est la version base64 de la sérialisation du tableau suivant :
         // $t=array (
@@ -75,17 +75,9 @@ class SpipSecurity extends NoSecurity
         setcookie('user', base64_encode(serialize($t)), 0, '/');
         
         // Détermine l'url de redirection
-        $url=Utils::get($request['url'], '/base/searchform');
+        $url=Utils::get($request['url'], '/Base/SearchForm');
         
-        //echo '<pre>', var_dump($t, true);
         Runtime::redirect($url);
-    }
-    
-    public function index()
-    {
-        // tout est fait dans preExecute
-        
-        // TODO: permettre de dire 'stop' au framework quand on est dans preExecute
     }
 }
 
