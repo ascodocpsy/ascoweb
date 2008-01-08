@@ -1,0 +1,34 @@
+<!-- template affichant le formulaire de chercher/remplacer (action replaceform) -->
+
+<!-- Contenu de notre template -->
+
+<!-- TODO : faire en sorte que 'Rechercher la chaîne' soit sélectionné par défaut dans la radiolist-->
+<div class="titre">Chercher/remplacer dans XXXX notices</div>
+<div class="texte">
+	<p class="spip">{$this->equation}</p>
+	<form method="get" action="/base/replace" class="form">
+	
+	    <input type="hidden" name="_equation" value="{$this->equation}" />
+	    
+	    <textbox name="search" label="Rechercher" />(vide si vous voulez remplacer uniquement les champs vides)<br />
+	    <textbox name="replaceStr" label="Remplacer par" />
+	
+	    <fieldset>
+	        <legend>Options</legend>
+	        <checkbox name="regExp" label="Expression régulière" value="true" /> <br />
+	        <checkbox name="wholeWord" label="Mot entier (sans effet si Expression régulière est sélectionné)" value="true" /><br />
+	        <checkbox name="caseInsensitive" label="Insensible à la casse" value="true" /><br />
+	    </fieldset>
+	    
+	    <br />
+	    <fieldset>
+	        <legend>Dans les champs suivants</legend>
+	        <checklist style="width: 12em;float: left;" name="fields" size="8" src="$fieldList" />
+	    </fieldset>
+	
+	    <div class="buttons">
+	        <submit label="Remplacer" class="spip_bouton"/>
+	        <reset label="Initialiser le formulaire" class="spip_bouton"/>
+	    </div>
+	</form>
+</div>

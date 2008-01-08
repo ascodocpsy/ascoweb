@@ -1,0 +1,17 @@
+<div class="titre">Panier</div>
+
+<div class="texte">
+    /* Suppression de plusieurs notices en une seule fois */
+	<if test="{count($item)>1}">
+		<p class="spip">Les notices suivantes ont été supprimées du panier :</p>
+		<loop on="$item" as="$value">
+			<ul>
+                <li>n°$value</li>
+			</ul>
+		</loop>
+	</if>
+	/* Suppression d'une seule notice */
+	<else>
+		<p class="spip">La notice n°{$item[0]} a été supprimée du panier.</p>
+	</else>
+</div>

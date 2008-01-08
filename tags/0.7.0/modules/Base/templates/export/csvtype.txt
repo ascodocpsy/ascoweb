@@ -1,0 +1,11 @@
+<switch test="{strtolower($Type)}">
+    <case test="article"       ><export fields="{Config::get('formats.'.$format.'.fields.article')}" /></case>
+    <case test="congrès"       ><export fields="{Config::get('formats.'.$format.'.fields.congrès')}" /></case>
+    <case test="livre"         ><export fields="{Config::get('formats.'.$format.'.fields.livre')}" /></case>
+    <case test="mémoire"       ><export fields="{Config::get('formats.'.$format.'.fields.mémoire')}" /></case>
+    <case test="thèse"         ><export fields="{Config::get('formats.'.$format.'.fields.mémoire')}" /></case>
+    <case test="périodique"    ><export fields="{Config::get('formats.'.$format.'.fields.périodique')}" /></case>
+    <case test="rapport"       ><export fields="{Config::get('formats.'.$format.'.fields.rapport')}" /></case>
+    <case test="texte officiel"><export fields="{Config::get('formats.'.$format.'.fields.texte_officiel')}" /></case>
+    <default>Aucun format d'export n'est disponible pour ce type de document ($Type)</default>
+</switch>

@@ -1,0 +1,516 @@
+/* Feuille de style Editions ENSP */
+
+/* ========================================================================== */
+/*                         STYLES GENERIQUES                                  */
+/* ========================================================================== */
+
+/*
+	réinitialise les marges et la taille de tout pour que les styles de base
+	soient les mêmes quelque soit le navigateur 
+*/
+
+*
+{
+	margin: 0;
+	padding: 0;
+    font: 1em Arial, Verdana, Sans-Serif;
+	line-height: 1em;
+}
+
+em
+{
+	font-style: italic;
+	letter-spacing: 1px;
+}
+
+strong
+{
+	font-weight: bold;
+}
+
+code
+{
+    font: 1em 'courier new', courier, monospace;
+    background-color: #eee;
+    color: #444;
+}
+
+h1
+{
+	font-size: 2em;
+	padding-left: 0;
+	padding-right: 1.5em;
+	padding-top: 0;
+/*	line-height: 1.6em;*/
+/*	height: 3em;*/
+/*	color: rgb(233,141,0); */ /* Orange1 */
+	font-weight: bold;
+	background-color: white;
+}
+
+body
+{
+    font-size: 86%; /* ne pas changer 76, 86, 96*/
+                    /* http://www.thenoodleincident.com/tutorials/typography/ */
+	background-color: rgb(145,155,185); /* bleu2 */
+}
+
+div.spacer
+{
+    clear: both;
+}
+
+/* ========================================================================== */
+/*                         STRUCTURE GENERALE DE LA PAGE                      */
+/* ========================================================================== */
+.page
+{
+	height: 100%;
+
+	/*max-width:82em; *//* environ 1024 px */
+	/*
+    width:expression(document.documentElement.clientWidth>1024 ? "82em" : "auto" );
+    */
+    /*  émulation de max-width pour IE */
+
+	margin: 0 auto;
+
+    background-color: rgb(196,201,225);
+}
+
+/* ========================================================================== */
+/*                                MENUS HORIZONTAUX             			  */
+/* ========================================================================== */
+ul.menu
+{
+    padding: 0;
+    padding-left: 3.1em;
+    padding-right: 3.1em;
+    margin: 0;
+	border-top: 1px solid rgb(135,146,208); /* bleu1 */
+	border-bottom: 1px solid rgb(135,146,208); /* bleu1 */
+	background-color: rgb(233,141,0); /* Orange1 */
+	height: 2.3em;
+	clear: both;
+	margin-left: -1em;
+}
+
+.menu li
+{
+	list-style: none none;
+
+	display: block;
+	float: left;
+
+    padding: 0.3em 0em;
+	text-align: center;
+	overflow: hidden; /* 	pour que les textes ne bavent pas les uns sur les 
+							autres si la fenêtre est très peu large*/
+	margin: 0;
+	font-size: 1.1em;
+	color: #FFF !important;
+	
+}
+
+.menu li a,
+.menu li a:visited
+{
+	font-weight: bold;
+	display: block;
+    padding: 0.4em 1em;
+	text-decoration: none;
+	font-size: 0.9em;
+	color: #FFF !important;
+	border-right: 1px solid #fff;
+}
+
+.menu li.current a,
+.menu li a:hover,
+.menu li a:focus
+{
+    color: rgb(207,242,63) !important; /* vert2 */
+}
+
+/* ========================================================================== */
+/*                        CONTENT - CONTENU INFORMATIF DE LA PAGE             */
+/* ========================================================================== */
+.content
+{
+	clear: left;
+
+    padding: 0 3em 5em 3em;
+/*    margin-left: 12em;*/
+	min-height: 38em;
+}
+
+div.content{height: 38em;}               /* DEBUT hack min-height pour IE    */
+html>body div.content{height: auto;}      /* FIN hack min-height pour IE      */
+
+/* couleur de fond */
+.content
+{
+    background-color: rgb(246,250,229);
+}
+
+/* barre de titre */
+.content h1
+{
+    font: normal 1.1em/22px 'Arial black', Verdana, Helvetica, sans-serif;
+	color: #fff;
+    background-color: rgb(163,203,0);
+	padding: 0;
+	margin: 0;
+	padding-left: 2.7em;
+	margin: 0 -2.7em;
+	height: auto;
+}
+
+
+/* sous-titre */
+h2
+{
+    font: normal 1.1em/22px 'Arial Black', Arial, Verdana, Helvetica, sans-serif;
+    color: rgb(163,203,0);
+}
+
+
+h3
+{
+	font-weight: bold;
+	line-height: 22px;
+
+	margin: 0 0 0 2em;
+    color: rgb(163,203,0);
+}
+
+/* texte */
+p,li
+{
+	color: rgb(107,120,158); /* bleu3 */
+}
+
+p
+{
+	margin: 0 0 1em 0;
+	line-height: 1.3em;
+}
+
+li,
+li p
+{
+	line-height: 1.3em;
+}
+
+ul
+{
+	margin: 1.5em 0;
+}
+
+/* tous les liens ont le même look, qu'ils aient été visités ou non */
+
+a,
+a:hover,
+a:visited,
+a:active
+{
+	color: rgb(107,120,158) ;
+
+/* bleu3 */
+/*	color: inherit;*/
+}
+
+
+
+/* Listes à puce */
+
+ul
+{
+	margin-left: 1.3em;
+}
+ul ul
+{
+	padding-left: 1.3em;
+	padding-bottom: 0.5em;
+	margin-top:0.2em;
+	margin-bottom: 0.5em; 
+}
+
+/* puces de couleur spécifiques à chaque domaine - listes simples */
+
+li /* par défaut, les listes ont une puce verte */
+{
+    list-style: none url('images/PUCE-VERT.gif') outside;
+    padding-bottom: 0.5em;
+}
+
+
+
+/* Ligne de séparation entre deux notices */
+hr
+{
+	border-top: 2px dotted rgb(145,155,185); /* bleu2 */
+	margin: 1.5em 0;
+}
+
+.content h1, .content h2
+{
+	margin-bottom: 1em;
+}
+.content h3
+{
+	margin-bottom: 2em;
+}
+
+.content h1 + h2, .content h2 + h3
+{
+	margin-top: -1em;
+}
+
+.error
+{
+/*	border: 4px double red;
+	background-color: #eee;*/
+	color: red;
+	font-weight: bold;
+	/*padding: 2em;*/
+}
+
+/* ========================================================================== */
+/*                         FORMULAIRES                                        */
+/* ========================================================================== */
+
+form
+{
+/*    margin: 1em 5%;*/
+	width: 100%; /* il faut fixer une largeur pour form, sinon, sous IE, les textarea à 100% débordent ????? */
+}
+
+fieldset
+{
+    padding: 0em 0.5em 0.5em 0.5em;
+/*    padding-top: 0em;*/
+    background-color: #E9E4F1;
+    border: 1px solid #929BBA;
+/*	border: none;*/
+    clear: both;/* améliore un peu les choses sous opera 7.54 */
+/*	-moz-border-radius: 0.4em;*/
+	margin-top: 1em;
+}
+
+fieldset legend
+{
+    font-weight: bold;
+    padding: 0.2em 0.5em;
+    background-color: #929BBA;
+    color: #fff;
+    margin: 0 0 0.5em 0;
+	-moz-border-radius: 5px;
+    /*    margin-bottom: 0.2em;*/
+}
+
+/* DEBUT patch pour IE */
+/* lorsqu'on applique une couleur de fond à un fieldset, IE fait déborder la couleur au dessus du bord haut.
+pour corriger ça, on décale la légende vers le bas */ 
+
+fieldset
+{
+    position: relative;
+    margin-top: 2em;
+}
+html>fieldset
+{    
+    margin-top: 1em;
+}
+legend
+{
+    position: relative;
+    top: -0.5em;
+} 
+   
+/* FIN patch pour IE */
+
+
+/* les div de premier niveau (juste après les fieldset) sont toujours pleine largeur */
+form div
+{
+    clear: left;
+/*	padding-left: 12em;*/
+	margin-bottom: 1px;
+/*background: #ddd;*/
+/*border-bottom: 1px solid yellow;*/
+/*    border-bottom: 1px dotted #929BBA;*/
+}
+div.field
+{
+    margin-left: 20%;
+}
+
+/* les labels qu'elles contiennent sont flottés à gauche et alignés à droite */
+label
+{
+
+/*    width: 11.6em;*/
+    width: 19%;
+	padding-right: 1%;
+    float: left;
+/*	margin-left: -12em;*/
+    text-align: right;
+margin-top: 0px;
+}
+
+/* les div de second niveau ainsi que les div utilisées pour faire un affichage en 2 ou 3 colonnes flottent */
+form div div
+{
+	padding: 0;
+    clear: none;
+    border: 0;
+/*background: #0c0;*/
+}
+
+/* et leurs labels sont alignés à gauche. Idem pour les labels qui sont directement dans le fieldset */
+label.check,
+label.radio
+{
+	margin-left: 0;
+    width: auto;
+    float: none;
+    text-align: left;
+    padding-right: 0.4em;
+    border-bottom: 0;
+    display: inline;
+}
+
+form.form label
+{
+	color: #484D75;
+}
+
+/* juste pour ie : par défaut les zones ont une taille de police fixée en pixels. 
+comme ie ne peut pas retailler des pixels, la taille de la police ne change pas 
+lorsque l'utilisateur change la taille de la police. Le fait de fixer une police 
+en em ou en pourcentages fixe le problème.
+Source : http://www.aplus.co.yu/css/tip-input-sizing-in-ie/
+*/
+form.form input, 
+form.form textarea
+{
+    font-size: 1em;
+    font-family: 'courier new', monospace;         
+}
+
+form.form input.text:focus,
+form.form textarea:focus,
+form.form input.text:active,
+form.form textarea:active
+{
+    background-color: #CFF23F;
+}
+form.form label:hover
+{
+    color: rgb(107,120,158); /* bleu1 */
+}    
+form.form textarea.readonly
+{
+    border: 1px solid #369;
+    background-color: #eee;
+    color: #444;
+}
+
+form.form hr
+{
+    clear: both;
+    border: 0;
+    border-bottom: 2px ridge #369;
+    padding-top: 1em;
+}
+
+form.form div.buttons
+{
+	margin: 1em 0;
+}
+
+form.reset
+{
+	margin-top: -4.5em;
+}
+
+/* on utilise les classes submit parce que tous les navigateurs ne supportent pas encore les sélecteurs input[type=submit] */
+input.submit,
+input.reset
+{
+    padding: 0.5em;
+	color: rgb(107,120,158); /* bleu3 */
+}
+
+input.submit
+{
+    float: right;
+}
+input.reset
+{
+    float: left;
+}
+input.submit:hover,
+input.reset:hover
+{
+	color: red;
+}
+
+input.text,
+textarea
+{
+	background-color: #fff;
+	border: 0;/*1px inset #eee;*/
+	margin: 0;
+	padding: 0 0.2em;
+}
+
+.right
+{
+	text-align: right;
+}
+
+textarea
+{
+	padding-right: 0; /* ff met le padding entre l'ascenseur vertical et le bord... */
+}
+
+form.form label
+{
+    cursor: pointer;  /* hand-shaped cursor */
+    cursor: hand;  /* for IE 5.x */
+}
+
+form.form fieldset span
+{
+	font-size: 80%;
+/*	color: #008;*/
+	color: #6B789E;
+
+/*	font-style: italic;*/
+}
+
+input.fullwidth,
+textarea.fullwidth
+{
+	width: 99%;/* pas 100% sinon, avec les marges, on obtient un ascenseur horizontal */
+}
+
+fieldset div input.fullwidth,
+fieldset div textarea.fullwidth
+{
+	width: 79%;/* pas 100% sinon, avec les marges, on obtient un ascenseur horizontal */
+}
+
+form span
+{
+	font-size: 0.8em;
+	margin-left: 0.3em;
+	font-style: italic;
+    color: #888;
+}
+span.check
+{
+	font-size: 1em;
+	margin-left: 0;
+}

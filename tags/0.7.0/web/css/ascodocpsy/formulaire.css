@@ -1,0 +1,468 @@
+/* Feuille de style ASCODOCPSY pour les formulaires */
+
+li
+{
+	list-style-image: url('puce.gif');
+}
+
+
+/* ========================================================================== */
+/*                              FORMULAIRES                                   */
+/* ========================================================================== */
+
+/* Libellé de champ */
+label.field,
+label.text, 
+label.checklist, 
+label.textarea,
+label.select
+{
+/*	font-weight: bold;*/
+    width: 12em;
+    display: block;
+    float: left;
+	text-align: right;
+	padding-right: 1em;
+}
+
+form.form div.buttons
+{
+	text-align: right;
+	margin: 0;
+}
+
+form.form div.buttons input
+{
+	padding: 0.3em;
+	height: 2.5em; /* garder synchro avec le top: affecté à input.reset */
+}
+
+input.reset
+{
+/*	width: 10em;*/
+	float: left;
+	clear: both;
+	position: relative;
+	top: -2.5em;
+	left: 0;
+}
+
+span.check, span.radio
+{
+	white-space: nowrap; /* empêche une checkbox/un radio d'être séparé de son label */
+}
+
+form p.exemple
+{
+	font-size: 0.9em;
+	margin: 0.1em 0 0 21em;
+}
+
+/* ========================================================================== */
+/*                        FORMULAIRE DE RECHERCHE                             */
+/* ========================================================================== */
+
+form.search
+{
+    margin-top: 2em;
+}
+
+/* Libellé de champ */
+form.search label.field,
+form.search label.text,
+form.search label.checklist,
+form.search label.select,
+form.search label.textarea
+{
+	font-weight: bold;
+	width: 17.5em;
+}
+
+form.search div
+{
+	margin: 0 0 0.2em 0;
+	padding: 0;
+	clear: both;
+}
+
+/* Zone de texte */
+form.search div input.text
+{
+    width: 31em;
+    margin: 0;
+    padding: 0 0.2em;
+}
+
+/* Zone de texte (petite) */
+form.search div input.smallbox
+{
+    width: 15em;
+    margin: 0;
+    padding: 0 0.2em;
+}
+
+/* Zone de texte multiligne */
+form.search div textarea
+{
+	width: 31em;
+	margin: 0;
+	padding: 0 0.2em;
+}
+
+/* Case à cocher, liste déroulante */
+form.search div.checklist,
+form.search div.select
+{
+	margin-left: 19em;
+	clear: right;
+}
+
+/* Zone de texte 'Autre date' pour le choix d'une date */
+form.search div.date
+{
+    /*margin-top: -1.4em;*/
+    margin-left: 7em;
+}
+form.search div.date input.text
+{
+    width: 3em;
+}
+
+/* Annule le font-weight: bold; de form.search label.* */
+form.search div.date label.select,
+form.search div.date label.text
+{
+	font-weight: normal;
+}
+
+/* ========================================================================== */
+/*                        FORMULAIRE DE MODIFICATION                          */
+/* ========================================================================== */
+
+form.load fieldset
+{
+	border: 1px solid #663366;
+	background-color: #E9E4F1;
+	margin: 0.5em;
+}
+
+form.load fieldset legend
+{
+	font-weight: bold;
+	/*color: #663366;*/
+	color: #FFF;
+	padding: 0.05em 0.5em 0.1em 0.5em;
+	background-color: #663399;
+}
+
+/* DEBUT patch pour IE */
+/* lorsqu'on applique une couleur de fond à un fieldset, IE fait déborder la couleur au dessus du bord haut.
+pour corriger ça, on décale la légende vers le bas */ 
+
+form.load fieldset
+{
+    position: relative;
+    margin-top: 2em;
+}
+html>body form.load fieldset
+{    
+    margin-top: 1em;
+}
+form.load legend
+{
+    position: relative;
+    top: -0.6em;
+} 
+/* FIN patch pour IE */
+
+form.load div
+{
+    clear: left;
+	margin-bottom: 1px;
+}
+
+form.load label.text,
+form.load label.textarea
+{
+/*	font-weight: bold;*/
+    width: 8em;
+	float: left;
+	text-align: left;
+	padding-right: 1em;
+}
+
+form.load input.text,
+form.load textarea
+{
+   	border: 1px solid #a0a0a0;
+    font-size: 1em;
+    font-family: 'courier new', monospace;
+	padding: 0.2em 0.2em 0.2em 0.2em;
+}
+
+form.load input.fullwidth,
+form.load textarea.fullwidth
+{
+	width: 98.5%;
+}
+
+form.load fieldset div input.fullwidth,
+form.load fieldset div textarea.fullwidth
+{
+	width: 76%;
+}
+
+form.load div.checklist,
+form.load div.radiolist
+{
+	width: 100%;
+	padding: 0;
+}
+
+form.load input.text:focus,
+form.load textarea:focus,
+form.load input.text:active,
+form.load textarea:active
+{
+	background-color: #FFEFEF;
+}
+
+form.load fieldset.mandatory legend,
+form.load label.mandatory
+{
+/*	color: #FF0000;*/
+/*    background-image: url('loc.png');*/
+/*    background-image: url('/asco/web/FabWeb/images/famfamfam/sylk/asterisk_orange.png');*/
+/*
+	    background-image: url('arrow_right.gif');
+    
+    background-repeat: no-repeat;
+    background-position: top left;
+    text-indent: 20px;
+*/
+/*    padding-left: 20px;*/
+}
+
+textarea.mandatory,
+input.mandatory
+{
+	border: 1px solid red!important;
+}
+
+label.mandatory
+{
+	font-weight: bold;
+}
+
+/* ========================================================================== */
+/*                         FORMULAIRE D'IMPORT                                */
+/* ========================================================================== */
+input.delete
+{
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+	font-size: 0px;
+	color: #D4E6FD;
+	background: url('../../images/delete.png') no-repeat center center;
+	border: 0;
+}
+
+/* ========================================================================== */
+/*                         AFFICHAGE DES NOTICES                              */
+/* ========================================================================== */
+
+/* Liste de réponses courtes */
+ul.shortlist
+{
+	padding: 0;
+	clear: right;
+}
+
+/* Liste de réponses complètes */
+ul.fulllist
+{
+	padding: 0;
+}
+
+/* Notice */
+li.record
+{
+	margin: 1em 0 1em 0;
+	list-style: none;
+}
+
+/* Champ de la notice (libellé + contenu) */
+div.row
+{
+	padding: 0.2em 0 0.2em 2em;
+}
+ul.fulllist div.row
+{
+    clear: left;
+}
+
+/* Contenu du champ */
+div.field
+{
+    margin-left: 8em;
+}
+
+/* Libellé du champ */
+li.record label.field, 
+li.record label.text, 
+li.record label.checklist, 
+li.record label.textarea
+{
+	font-weight: bold;
+    width: 7em;
+	float: left;
+	text-align: right;
+	padding-right: 0em;
+}
+
+li.record:hover
+{
+    background-color:#FFFFE7;
+}
+
+/* Lien vers "Voir la notice" */
+a.fullrecord
+{
+    float: right;
+    padding-left: 32px;
+    padding-top: 32px;
+/*    background: url('voir.png') no-repeat center center;*/
+    border: 1px solid white;
+	height: 0;
+}
+li.record:hover a.fullrecord
+{
+    background: url('voir.png') no-repeat center center;
+}
+/* N'est lu que par IE grâce à * html */
+/* http://noyau.pixtyle.net/viewtopic.php?pid=11496 */
+/*
+* html a.fullrecord
+{
+	background-image: none; 
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://apache/ascoweb/web/styles/asco/voir.png');
+}
+*/
+
+/* Lien vers "Modifier la notice" */
+a.loadrecord
+{
+	float: right;
+    padding-left: 32px;
+    padding-top: 32px;
+	margin-right: 1em;
+/*    background: url('modifier.png') no-repeat center center;*/
+    border: 1px solid white;
+    height: 0;
+}
+li.record:hover a.loadrecord
+{
+    background: url('modifier.png') no-repeat center center;
+}
+
+/* Lien vers "Localiser le périodique" */
+a.locate
+{
+/*	padding-left: 10px;*/ /* en théorie : 16px - 1em */
+	padding-left: 12px;
+	padding-top: 1px;
+	background: url('loc.png') no-repeat left center;
+    border: 1px solid white;
+}
+
+/* Lien vers "Présentation du périodique" */
+a.inform
+{
+	/*padding-left: 10px;*/ /* en théorie : 16px - 1em */
+	padding-left: 12px;
+	padding-top: 1px;
+	background: url('inform.png') no-repeat left center;
+    border: 1px solid white;
+}
+
+/* Texte des liens caché - remplacé par des images */
+a.fullrecord span,
+a.loadrecord span,
+a.locate span,
+a.inform span
+{
+	display: none;
+}
+
+a.fullrecord:hover, 
+a.loadrecord:hover,
+a.locate:hover,
+a.inform:hover
+{
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+/* Liste des actions possibles sur les notices (exporter, supprimer, etc.) */
+div.menubase
+{
+    margin: 2em 0 0 2em;
+}
+
+
+/* ========================================================================== */
+/*                              PANIER                                        */
+/* ========================================================================== */
+/* Lien "Ajouter au panier" */
+a.addtocart
+{
+	float: left;
+	padding-left: 25px;
+    padding-top: 25px;
+	background: url('cart_add.png') no-repeat center center;
+    border: 1px solid white;
+	height: 0;
+}
+
+/* Lien "Supprimer du panier" */
+a.removefromcart
+{
+	float: left;
+	padding-left: 25px;
+    padding-top: 25px;
+    background: url('cart_delete.png') no-repeat center center;
+    border: 1px solid white;
+	height: 0;
+}
+
+/* Texte des liens caché - remplacé par des images */
+a.addtocart span,
+a.removefromcart span
+{
+	display: none;
+}
+
+/* Bouton "Ajouter tout au panier" */
+input.addall
+{
+	cursor: pointer;
+	padding-left: 25px;
+	width: 16px;
+	height: 16px;
+	font-size: 0px;
+	background: url('cart_put.png') no-repeat center center;
+	border: 0;
+}
+
+/* Bouton "Supprimer tout du panier" */
+input.removeall
+{
+	cursor: pointer;
+	padding-left: 25px;
+	width: 16px;
+	height: 16px;
+	font-size: 0px;
+	background: url('cart_remove.png') no-repeat center center;
+	border: 0;
+}

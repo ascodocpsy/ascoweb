@@ -1,0 +1,377 @@
+BODY {
+    padding-right: 0px; 
+    padding-left: 0px; 
+    padding-top: 0px; 
+    padding-bottom: 0px; 
+    margin: 0px; 
+    background-color: #e4e4e4;
+    font: 70%  Verdana, Arial, Tahoma, Helvetica, sans-serif;
+    text-align: left;
+    }
+
+#principal {
+    position: relative;
+    background-color:#ffffff;
+    border-top: #dadada 4px solid;
+    border-right: #dadada 4px solid; 
+    border-left: #d4d4d4 4px solid;
+    border-bottom: #dadada 4px solid; 
+    padding-right: 1px;
+    padding-left: 1px;
+    margin: 20px auto;
+    width: 800px;
+    padding-top: 1px; 
+    }
+    
+#principal a:link{
+    text-decoration: none;
+    color: #006699;
+    }   
+    
+#principal a:visited{
+    text-decoration: none;
+    text-decoration: none;
+    color: #006699;
+    }
+    
+#header {
+    padding-right: 0px; 
+    padding-left: 0px; 
+    padding-bottom: 0px; 
+    padding-top: 0px; 
+    margin: 0px auto;
+    background-color: #ffffff;  
+    width: 800px;   
+    height: 150px;
+    }
+    
+#header_infos { /*  Défilement des outils du GIP*/ 
+    width: 800px;
+    height: 20px;
+    }
+    
+.breadCrumb a:link {
+    color: #006699;
+    text-decoration: none;  
+    }
+    
+#ContentLeft {  
+    float: left;
+    width: 130px;
+    margin-top: 20px;
+    padding-right: 8px;
+    padding-bottom: 2px;    
+    border-right: 1px solid #cccccc;
+    }
+    
+#contentRight {
+    position: relative;
+    z-index: 1;
+    float : right;  
+    width: 640px;
+    margin-top: 0;
+    margin-right:0px;
+    padding-top: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 48px;   
+    font-size: 100%;
+    text-align: justify;    
+        }
+    
+#pied {     
+    clear: both;
+    position: relative;
+    margin-top:0;
+    padding:0;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-top: 1px solid #cccccc;
+    font-size: 100%;
+    background: #e8e8e8;
+    text-align: center; 
+    }
+
+#recherche {    
+    width: 30%;
+    margin-left: 550px;
+    margin-top: 0px; /* laisser le zéro pour  présentation identique dans IE et Firefox */ 
+    padding-top: 70px;
+    padding-bottom: 0px;
+    font-size: 100%;
+    text-align: right;  
+    }   
+    
+    
+.ContentLeft a:link {
+    color: #006699;
+    text-decoration: none;
+    }
+    
+.ContentLeft a:visited {
+    color: #006699;
+    text-decoration: none;
+    }
+    
+.blocnotes{
+    font-weight: normal;
+    font-size: 100%;
+    color: #006699;
+    }   
+
+.titre {
+    font-size: 120%;
+    font-weight: bold;
+    margin-top: 20px;
+    }
+    
+.texte{
+    padding:0;
+    font-size: 100%;
+    text-align: left;
+    color: #5a666f;
+    }
+    
+.titre-sous-rubrique { /*style des sous rubriques dans rubrique.html*/
+    font-weight: normal;
+    margin-top: 5px;
+    padding:0;
+    margin-left:0;  
+    }   
+    
+.ul_sous_rubrique { /*style des articles des sous rubriques dans rubrique.html*/
+    margin-left: 10px;
+    }
+    
+
+.texte-centrer{
+    padding: 10px 0px 10px 10px;
+    font-size: 100%;
+    text-align: center;
+    color: #006699;
+    font-weight: bold;
+    }   
+    
+.detail{  /*'article mis en ligne le, par exemple*/
+    padding-top: 0px;
+    padding-bottom: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-size: 95%;
+    text-align: left;
+    }       
+
+.surtitre {  /*'utilisé dans les resultats de la page recherche*/
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-size: 120%;
+    font-weight: bold;
+    font-variant: small-caps;
+    }   
+
+.top {
+    text-align: right;
+    margin-top: 60px;
+    font-size: 95%;
+    }   
+    
+.encadrer { /* utilise dans le formulaire de recherche des textes officiels*/ 
+    font-weight: bold;
+    border:1px dashed #000000;
+    padding-bottom:10px;
+    padding-top:10px;
+    }   
+
+/*********** .ContentLeft link styles ***********/
+/*liens du bloc notes visités et non visités = meme couleur*/
+
+
+.texte a:link {
+    color: #006699;
+    text-decoration: none;
+    }
+
+.texte a:visited {
+    color: #006699;
+    text-decoration: none;
+    }
+    
+/* fix for browsers that don't need the hack */
+html>body .ContentLeft li {
+    border-bottom: none;
+    }
+
+/*********** #sectionLinks styles ***********/
+#sectionLinks{
+    position: inherit;
+    margin: 0px;
+    padding-left: 10px;
+    font-size: 100%;
+    text-align: left;
+    }
+
+
+/************** styles appliqués aux documents joints *****************/
+.spip_documents{   /* style général appliqué aux documents joints*/     
+    text-align: center;
+    font-weight: normal;
+    }
+
+.spip_doc_titre {  /* style appliqué au titre d'un document joint*/
+    font-size: 90%;
+    text-align: center;
+    font-weight: normal;
+    }
+                
+.spip_doc_descriptif {
+    font-size: 80%;
+    }
+.spip_documents_center{
+    margin: auto;
+  }
+
+.spip_documents_left{
+    margin: auto;   
+    }
+
+.spip_documents_right{
+    margin: auto;
+      }
+
+    
+/************** styles appliqués aux tableaux générés par SPIP *****************/   
+    
+table.spip { /* comportement general du tableau (dimenions, marges, position)*/
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+        }
+
+table.spip tr.row_first { /* concerne la première ligne du tableau : ligne des titres de colonnes*/
+    text-align: center;
+    background-color: #fbe0d9;  
+    }
+
+table.spip tr.row_odd { /* style d'une ligne*/  
+    }
+
+table.spip tr.row_even { /* style d'une autre ligne*/
+    }
+
+table.spip td {  /* concerne les cellules du tableau*/
+    padding: 3px;
+    vertical-align: middle;
+    border: thin solid #E0E1D9;
+    }   
+    
+/************** styles appliqués aux formulaires*****************/      
+.reponse_formulaire {  /* message quand erreur de mot de passe*/
+    font-weight: bold;
+    color: red;
+    }
+        
+.spip_encadrer { /* pavé de connexion + envoi mail à auteur*/ 
+    width: 95%;
+    background-color: #ffffff;
+    padding: 5px;
+    }   
+
+.forml {  /* encadré de saisie du formulaire de connexion*/ 
+    width: 100px; 
+    background-color: #ffffff;
+    font: 11px/15px Tahoma, Verdana, Arial, Helvetica, sans-serif;  
+    }
+    
+.forml_mail{  /* encadré de saisie du formulaire pour envoi mail à auteur*/ 
+    width: 250px; 
+    background-color: #ffffff;
+    font: 11px/15px Tahoma, Verdana, Arial, Helvetica, sans-serif;  
+    }
+    
+.spip_bouton {  /* bouton valider : envoi mail à auteur*/ 
+    width: 60px;
+    margin-left: 100px;
+    text-align: center;
+    }
+    
+.formrecherche { /* formulaire de recherche de spip*/
+    color: #505030;
+    margin: 0px;
+    padding: 1px;
+    font-size: 10px;
+    }   
+
+/*
+ * Barre de raccourcis
+ */
+
+a.spip_barre img {
+    border-left: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
+    border-right: 1px solid #aa9966;
+    border-bottom: 1px solid #aa9966;
+    padding: 3px;
+    background-color: #ffddaa;
+    }
+    
+a.spip_barre:hover img {
+    border: 1px solid #808080;
+    padding: 3px;
+    background-color: #f8f8f4;
+    }   
+    
+/*  couleur surlignee des mots trouves par le moteur de recherche*/ 
+.spip_surligne { background-color: #ffff66; }  /* jaune*/ 
+
+    
+/*********** Styles appliqués au plan ***********/      
+    
+.plan-sous-rubrique {
+    font-size: 100%;
+    clear: left;
+    padding-left: 10px;
+    }
+    
+
+h3.spip { /* style de l'intertitre de la barre de raccourcis*/ 
+    font-weight: bold;
+    font-size: 120%;
+    text-align: center;
+    margin-top : 20px;
+    margin-bottom : 20px;
+    padding: 0em;
+    }
+
+a.spip_barre img {
+    border-left: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
+    border-right: 1px solid #aa9966;
+    border-bottom: 1px solid #aa9966;
+    padding: 3px;
+    background-color: #FFDDAA;
+    }
+    
+a.spip_barre:hover img {
+    border: 1px solid #808080;
+    padding: 3px;
+    background-color: #f8f8f4;
+    }
+
+.spip_puce { /* puce générée automatiquement lors de la saisie d'un article : fait appel à "puce.gif" a la racine*/ 
+    list-style-position: inside;
+    border-width: 0px;
+    margin-left: 20px;  
+    }
+
+hr.spip {
+    border:0;
+    padding: 20px;   
+    width: 50%;
+    margin-left:150px;  
+    background: transparent url(IMG/jpeg/separation.jpg) center center ;
+    }
+
+b.spip {
+    font-weight: strong;
+    }
+i.spip { }
