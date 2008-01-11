@@ -1,3 +1,40 @@
-<loop on="$this->selection->record" as="$field,$value">$field{"\t"}</loop>
-<loop on="$this->selection" as="$record"><recordcsv />
+/*
+    Définit le(s) caractère utilisé(s) pour les retours à la ligne.
+    
+    idée : utiliser HTTP_USER_AGENT pour déterminer en automatique ?
+    exemple : 
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11
+    (on sait que c'est windows).
+    
+    A étudier. Pour le moment : génère CRLF
+*/<def name="nl" value='{"\r\n"}' />/*
+
+
+    Templates match utilisés
+
+*/<div test="{false}">
+<template match="//recordcsv"
+    ><loop on="$record" as="$field,$value">{
+         Utils::csvQuote
+            (
+                is_array($value)
+                ?
+                    (is_array(Config::get("formats.$format.sep"))
+                    ? 
+                        ( Config::get("formats.$format.sep.$field") 
+                        ? implode(Config::get("formats.$format.sep.$field"),$value)
+                        : implode(Config::get("formats.$format.sep.default"),$value)
+                        )
+                    : implode(Config::get("formats.$format.sep"),$value)
+                    )
+                : $value
+            )
+            }{"\t"}</loop>
+</template>
+</div>/*
+
+
+    Boucle d'export des notices
+    
+*/<loop on="$this->selection->record" as="$field,$value">$field{"\t"}</loop>$nl<loop on="$this->selection" as="$record"><recordcsv />
 </loop>
