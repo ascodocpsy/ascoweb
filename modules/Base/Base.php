@@ -9,31 +9,32 @@ class Base extends DatabaseModule
 {
     // TODO : A la place du template 'templates/error/error.yaml' mettre en place un système de message d'erreur.
     
-    // TODO : Faire en sorte de récupérer le séparateur d'articles (à partir
-    // du .def, de la config, ...
-    // Séparateur d'articles
+    /**
+     * Séparateur d'articles
+     * 
+     * todo: récupérer le séparateur d'articles à partir de la config, ...
+     */
     const SEPARATOR=' / ';
     
-    private $error='';
-
     // Constantes et variables pour l'import de notices
     const dataPath='data/import/';
     const fileList='files.list';
-    
     private $files=array();
     private $adminFiles=array();
     
     /**
-     * Correspondances entre les champs des fichiers de notices
-     * et les champs de la base
-     */
-    private $map=array();
-    
-    /**
      * Identifiant de la personne connectée
+     * 
+     * @var string
      */
     private $ident;
     
+    /**
+     * Table de correspondances entre le numéro d'un centre (ascoX)
+     * et son numéro de l'article sur le site Ascodocpsy
+     *
+     * @var array
+     */
     private $tblAsco=array();
     
     public function preExecute()
@@ -59,93 +60,14 @@ class Base extends DatabaseModule
         // Charge la table de correspondances entre le numéro d'un centre (ascoX)
         // et son numéro de l'article sur le site Ascodocpsy
         $this->tblAsco=$this->loadTable('annuairegip');
-        
-        // TODO : je ne veux pas de ça ! (le jour où ils ajoutent un champ, faut mettre à jour le script)
-        // prendre tous les champs de la base un par un et les mettre en maju, on devrait avoir la même chose
-        $this->map=array
-        (
-            'ANNEXE' => 'Annexe',
-            'AUT' => 'Aut',
-            'CANDES' => 'CanDes',
-            'COL' => 'Col',
-            'CONGRDAT' => 'CongrDat',
-            'CONGRLIE' => 'CongrLie',
-            'CONGRNUM' => 'CongrNum',
-            'CONGRTIT' => 'CongrTit',
-            'DATE' => 'Date',
-            'DATETEXT' => 'DateText',
-            'DATEPUB' => 'DatePub',
-            'DATEVALI' => 'DateVali',
-            'DIPSPE' => 'DipSpe',
-            'EDIT' => 'Edit',
-            'ETATCOL' => 'EtatCol',
-            'ISBNISSN' => 'IsbnIssn',
-            'LIENANNE' => 'LienAnne',
-            'LIEU' => 'Lieu',
-            'LOC' => 'Loc',
-            'MOTCLE' => 'MotCle',
-            'NATTEXT' => 'NatText',
-            'NOMP' => 'Nomp',
-            'NOTES' => 'Notes',
-            'NUM' => 'Num',
-            'NUMTEXOF' => 'NumTexOf',
-            'PAGE' => 'Page',
-            'PDPF' => 'PdPf',
-            'PRODFICH' => 'ProdFich',
-            'REED' => 'Reed',
-            'RESU' => 'Resu',
-            'REV' => 'Rev',
-            'THEME' => 'Theme',
-            'TIT' => 'Tit',
-            'TYPE' => 'Type',
-            'LIEN' => 'Lien',
-            'VIEPERIO' => 'ViePerio',
-            'VOL' => 'Vol'
-        );
     }
 
-/*
- * Transforme un fichier texte tabulé en tableau
- * Le fichier texte est de la forme suivante :
- * 1ère ligne : Entête1[tab]Entête2
- * lignes suivante : Valeur1[tab]Valeur2
- */
-    private function loadTable($source)
-    {
-        $t=array();
-        
-        // Ajoute l'extension par défaut s'il y a lieu
-        $source=Utils::defaultExtension($source, '.txt');
-                        
-        // Détermine le path exact de la table
-        $h=Utils::searchFile
-        (
-            $source,                                    // On recherche la table :
-            //dirname(self::$stateStack[1]['template']),  // dans le répertoire du script appellant
-            Runtime::$root . 'tables',                  // dans le répertoire 'tables' de l'application
-            Runtime::$fabRoot . 'tables'                // dans le répertoire 'tables du framework
-        );
-        if (! $h)
-            throw new Exception("Table non trouvée : '$source'");
-        
-        $file=@fopen($h, 'r');
-        if ($file === false)
-            throw new Exception('Impossible d\'ouvrir le fichier '. $source);
-
-        // Lit la ligne d'entête
-        $fields=fgetcsv($file, 4096, "\t", '"');
-
-        // Lit les enregistrements
-        while (($data=fgetcsv($file, 4096, "\t", '"')) !== false)
-            $t[$data[0]]=$data[1];
-
-        // Ferme la table
-        fclose($file);
-    
-        return $t;
-    }
-
-
+    /**
+     * Callback utilisé pour l'affichage des notices.
+     *
+     * @param string $name nom de la balise mentionnée dans le template associé
+     * @return string la valeur à injecter à la place de la balise $name, dans le template associé
+     */
     public function getField($name)
     {
         switch ($name)
@@ -202,7 +124,7 @@ class Base extends DatabaseModule
                 
                 if (stripos($h, 'p.') === false && stripos($h, 'pagination') === false)
                     return trim($h).' p.';
-                return '';
+                return $h;
             
             case 'PageEdit':
                 if (! $page=$this->selection['Page']) return '';
@@ -357,8 +279,31 @@ class Base extends DatabaseModule
         }
     }
 
-    
-    // Utilisé uniquement pour actionLoad et actionLoadFull (cf /config/Base.config)
+    /**
+     * Callback qui retourne une chaîne vide pour chaque champ de la nouvelle
+     * notice à créer, excepté pour le champ Type pour lequel il retourne son contenu
+     *
+     * @param string $name nom du champ de la base
+     * @return string retourne une chaîne vide pour tous les champs de la base, 
+     * excepté pour le champ Type (retourne sa valeur)
+     */
+    public function emptyString($name)
+     {
+        if($name==='Type')
+            return $this->request->Type;
+        else
+            return '';
+     }
+
+    /**
+     * Callback utilisé lors de la création/modification d'une fiche. 
+     *
+     * Il affiche, dans le formulaire de modification, le type du document
+     * et les dates de création et de dernière modification.
+     * 
+     * @param string $name nom de la balise mentionnée dans le template associé
+     * @return string la valeur à injecter à la place de la balise $name, dans le template associé
+     */
     public function getDates($name)
     {        
         switch ($name)
@@ -370,16 +315,21 @@ class Base extends DatabaseModule
                 return preg_replace('~(\d{4})(\d{2})(\d{2})~', '${3}/${2}/${1}', $h);
             
             case 'Type':
-                return Utils::get($_REQUEST['Type'], $this->selection['Type']);
+                return $this->selection[$name];
                         
             default:
                 return;                 
         }
     }
-    
-    
-    // Filtre de validation des champs avant enregistrement dans la base
-    // retourne true pour les champs dont on accepte la modif, false sinon
+
+    /**
+     * Filtre de validation des champs avant enregistrement dans la base.
+     * 
+     * @param string $name nom du champ de la base
+     * @param string $value contenu du champ $name
+     * @return boolean Retourne true pour les champs dont on accepte la modification,
+     * false sinon
+     */
     public function validData($name, &$value)
     {                    
         switch ($name)
@@ -444,11 +394,73 @@ class Base extends DatabaseModule
         }
         return true;
     }
-   
+
     /**
-     * Détermine les utilisateurs qui ont le droit de modifier une notice
+     * Transforme un fichier texte tabulé en tableau.
+     * 
+     * Le fichier texte est de la forme suivante :
+     * 1ère ligne : Entête1[tab]Entête2
+     * lignes suivantes : Valeur1[tab]Valeur2
+     * 
+     * Le tableau retourné a :
+     *  - pour clé : les valeurs de la première colonne,
+     *  - pour valeur : les valeurs de la deuxième colonne. 
+     *
+     * @param string $source nom du fichier en précisant éventuellement l'extension.
+     * Si l'extension n'est pas mentionnée, l'extension .txt est ajoutée.
+     * @return array tableau correspondant au fichier tabulé
      */
- 	public function hasEditRight()
+    private function loadTable($source)
+    {
+        $t=array();
+        
+        // Ajoute l'extension par défaut s'il y a lieu
+        $source=Utils::defaultExtension($source, '.txt');
+                        
+        // Détermine le path exact de la table
+        $h=Utils::searchFile
+        (
+            $source,                                    // On recherche la table :
+            //dirname(self::$stateStack[1]['template']),  // dans le répertoire du script appellant
+            Runtime::$root . 'tables',                  // dans le répertoire 'tables' de l'application
+            Runtime::$fabRoot . 'tables'                // dans le répertoire 'tables du framework
+        );
+        if (! $h)
+            throw new Exception("Table non trouvée : '$source'");
+        
+        // Ouvre la table
+        $file=@fopen($h, 'r');
+        if ($file === false)
+            throw new Exception('Impossible d\'ouvrir le fichier '. $source);
+
+        // Lit la ligne d'entête
+        $fields=fgetcsv($file, 4096, "\t", '"');
+
+        // Lit les enregistrements
+        while (($data=fgetcsv($file, 4096, "\t", '"')) !== false)
+            $t[$data[0]]=$data[1];
+
+        // Ferme la table
+        fclose($file);
+    
+        return $t;
+    }
+    
+ 	/**
+ 	 * Détermine les utilisateurs qui ont le droit de modifier une notice
+ 	 * 
+ 	 * Les administrateurs peuvent modifier toutes les notices quelque soit leur
+ 	 * statut (en cours, avalider, valide).
+ 	 * 
+ 	 * Les membres du GIP peuvent modifier les notices validées. Si la notice
+ 	 * est en cours de saisie ou à valider, seuls les membres spécifiés dans le 
+ 	 * champ ProdFich peuvent modifier la notice.
+ 	 * 
+ 	 * Le grand public n'a aucun droit de modification des notices.
+ 	 *
+ 	 * @return boolean retourne true si la modification est autorisée
+ 	 */
+    public function hasEditRight()
  	{
  		// Administrateurs : peuvent modifier les notices quel que soit leur statut
  		if (User::hasAccess('AdminBase')) return true;
@@ -468,20 +480,86 @@ class Base extends DatabaseModule
  		// Grand public : ne peuvent pas modifier les notices
  		return false;
  	}
- 
+
     /**
-     * Affiche la localisation d'une revue
+     * Supprime, dans un auteur, les étiquettes de rôle, les mentions telles que 
+     * [s.n.], collectif et les indications de nom de naissance ou d'épouse.
+     * 
+     * Ces suppressions sont faites afin de créer, à partir de la notice, un lien 
+     * vers la bibliographie de l'auteur.
      *
+     * @param string $value l'auteur tel que saisi dans la notice
+     * @return string l'auteur après suppression des mentions non désirées
+     */
+    private function author($value)
+    {
+        $value=(str_ireplace(
+            array
+            (
+                '[s.n.]',
+                'collectif',
+                'collab.',
+                'coord.',
+                'dir.',
+                'ed.',
+                'ill.',
+                'préf.',
+                'trad.'
+            ),
+            null,
+            $value));
+        
+        $value=preg_replace('~(.+)(?:(né|née|ép.)[ ].+)~','$1', $value);
+        
+        return trim($value);        
+    }
+    
+    /**
+     * Génère le code html pour un lien
+     *
+     * @param string $value libellé du lien
+     * @param string $lien url du lien
+     * @param string $title titre du lien
+     * @param boolean $newwin ouverture ou non du lien dans une nouvelle fenêtre 
+     * (optionnel, valeur par défaut false)
+     * @param string $class nom de la class CSS associée au lien ((optionnel, 
+     * valeur par défaut chaîne vide)
+     * @return string code html du lien
+     */
+    private function link($value, $lien, $title, $newwin=false, $class='')
+    {
+        $win=($newwin) ? ' onclick="window.open(this.href); return false;"' : '';
+        $c=($class) ? ' class="'.$class.'"' : '';
+        return '<a'. $c. ' href="' . Routing::linkFor($lien) . '"' . $win . ' title="'.$title.'">'.$value.'</a>';        
+    }
+
+    /**
+     * Lance une recherche dans la base et affiche les réponses obtenues.
+     * Surcharge l'action Search de la classe DatabaseModule.
+     *
+     */
+    public function actionSearch()
+    {
+        $this->cart=Module::loadModule('AscoCart');
+        $this->cart->preExecute();
+        parent::actionSearch();   
+    }
+    
+    /**
+     * Affiche la localisation d'une revue.
+     * 
+     * Recherche, dans la base, la fiche Périodique de $rev.
+     * Si la fiche existe, elle est affichée en utilisant le template retourné 
+     * par la fonction {@link getTemplate()} et le callback indiqué par la 
+     * fonction {@link getCallback()}.
+     * 
+     * Dans le cas contraire, un message est affiché.
+     * 
      * @param string $rev la revue à localiser
      */
- 	public function actionLocate($rev)
-    {                       
-      //  $rev=Utils::get($_REQUEST['rev']);
+    public function actionLocate($rev)
+    {
         $this->request->required('rev')->unique()->ok();
-        
-        // Si pas de nom de périodique
-        if (is_null($rev))
-            throw new Exception("Appel incorrect : aucun nom de périodique n'a été précisé.");
         
         // Construit l'équation de recherche
         $eq='rev=['.$rev.'] et Type=periodique';
@@ -512,13 +590,24 @@ class Base extends DatabaseModule
         );
     }
 
-    public function actionInform()
+    /**
+     * Affiche la page de présentation d'une revue.
+     * 
+     * Recherche, dans la base, la fiche Périodique de $rev.
+     * Si la fiche existe et que l'URL spécifiée dans le champ Lien pointe bien
+     * vers le site www.ascodocpsy.org, redirige vers cette URL.
+     * 
+     * Un message d'erreur est affiché dans les cas suivants :
+     * - fiche inexistante
+     * - plusieurs fiches existent pour la revue
+     * - la fiche existe mais le lien ne pointe pas vers le site www.ascodocpsy.org
+     *
+     * @param string $rev la revue pour laquelle on veut afficher la page 
+     * de présentation
+     */
+    public function actionInform($rev)
     {              
-        $rev=Utils::get($_REQUEST['rev']);
-        
-        // Si pas de nom de périodique
-        if (is_null($rev))
-            throw new Exception("Appel incorrect : aucun nom de périodique n'a été précisé.");
+        $this->request->required('rev')->unique()->ok();
         
         // Construit l'équation de recherche
         $eq='rev=['.$rev.'] et Type=periodique';
@@ -542,74 +631,18 @@ class Base extends DatabaseModule
         Runtime::redirect($this->selection['Lien'], true);
     }
 
-
-    private function author($value)
-    {
-        $value=(str_ireplace(
-            array
-            (
-                '[s.n.]',
-                'collectif',
-                'collab.',
-                'coord.',
-                'dir.',
-                'ed.',
-                'ill.',
-                'préf.',
-                'trad.'
-            ),
-            null,
-            $value));
-        
-        $value=preg_replace('~(.+)(?:(né|née|ép.)[ ].+)~','$1', $value);
-        
-        return trim($value);
-        
-//        return trim(preg_replace(
-//            array
-//            (
-//                '~(.+)(?:(né|née)[ ].+)~',
-//                '/[s.n.]/',
-//                '/collectif/i',
-//                '/collab/i',
-//                '/coord/i',
-//                '/dir/i',
-//                '/ed/i',
-//                '/ill/i',
-//                '/préf/i',
-//                '/trad/i'
-//            ),
-//            array
-//            (
-//                '$1',
-//                '',
-//                '',
-//                '',
-//                '',
-//                '',
-//                '',
-//                '',
-//                '',
-//                ''
-//            ),
-//            $value));
-    }
-    
-    private function link($value, $lien, $title, $newwin=false, $class='')
-    {
-        $win=($newwin) ? ' onclick="window.open(this.href); return false;"' : '';
-        $c=($class) ? ' class="'.$class.'"' : '';
-        return '<a'. $c. ' href="' . Routing::linkFor($lien) . '"' . $win . ' title="'.$title.'">'.$value.'</a>';        
-    }
-
     /**
      * Affiche le formulaire permettant de choisir le type du document à créer
-     * Surcharge l'action new de la classe DatabaseModule
+     * Surcharge l'action New de la classe DatabaseModule
+     * 
+     * Si un type de document est spécifié en paramètre, affiche le formulaire 
+     * de création pour ce type, sinon affiche le formulaire pour choisir le 
+     * type de document à créer.
      */    
     public function actionNew()
-    {       
-        // si type non renseigné, affiche le formulaire pour le choisir
-        if (is_null(Utils::get($_REQUEST['Type'])))
+    {
+        // Si type non renseigné, affiche le formulaire pour le choisir
+        if (is_null($this->request->unique('Type')->ok()))
         {
             Template::run
             (
@@ -621,134 +654,9 @@ class Base extends DatabaseModule
             parent::actionNew();
         }
     }
-     
-     
-     /**
-      * Callback qui retourne une chaîne vide pour chaque champ de la nouvelle notice à créer
-      */
-     public function emptyString($name)
-     {
-        if($name==='Type')
-            return Utils::get($_REQUEST['Type']);
-        else
-            return '';
-     }
 
+    
     // ------------------- GESTION DU PANIER -------------------
-   
-//    private function exportCart($type, $format)
-//    {
-//        global $selection;
-//     
-//        if (is_null($type))
-//            throw new Exception('Le type de document n\'a pas été indiqué.');
-//
-//        if (is_null($format))
-//            throw new Exception('Le format d\'export n\'a pas été indiqué.');
-//
-//        // Récupère le panier du type $type
-//        $this->getCart();
-//        $carts=$this->cart->getItems();
-//        $cart=$carts[$type];
-//
-//        // Construit l'équation de recherche
-//        $equation='';
-//        foreach ($cart as $ref)
-//        {
-//            if ($equation) $equation.=' ou ';
-//            $equation.='ref='.$ref;
-//        }
-//        $selection=self::openDatabase($equation);
-//
-//        // Génère l'export
-//        $template=$this->path . 'templates/export/'.$format;
-//        ob_start();
-//        Template::run
-//        (
-//            $template,
-//            'Template::selectionCallback'
-//        );
-//        $data=ob_get_clean();
-//        return $data;
-//    }
-
-//    // Déchargement des notices par type de document
-//    public function actionExportCartByType($now=false)
-//    {
-//        if (! $now) return; // preExecute nous appelle avec now=true, on bosse, quand le framework nous appelle, rien à faire 
-//        // tout est fait dans preExecute
-//
-//        // Récupère le format d'export
-//        $format=Utils::get($_REQUEST['format']);
-//        if (is_null($format))
-//            // TODO : le message d'erreur s'affiche en premier sur la page html
-//            return $this->showError('Le format d\'export n\'a pas été indiqué.');
-//
-//        // Charge la liste des formats d'export disponibles
-//        Config::load($this->path. 'templates/export/formats.yaml', 'formats');
-//        if (! $format=Config::get("formats.$format"))
-//            throw new Exception('Format incorrect');
-//
-////        $template=$this->path . 'templates/export/'.$format['template'];
-////        if (! file_exists($template))
-////            throw new Exception('Le fichier contenant les différents formats n\'existe pas');
-//
-//        global $cart;
-//        $this->getCart();
-//        $cart=$this->cart->getItems();
-//
-//        $data='';
-//        // Récupère le type de document
-//        $type=Utils::get($_REQUEST['type']);
-//
-//        if (is_null($type))
-//            return $this->showError('Le type du document n\'a pas été indiqué.');
-//
-//        if (! isset($cart[$type]))
-//            return $this->showError('Le panier ne contient aucun document du type indiqué.');
-//        
-//        // Récupère le template
-//        if (is_array($format['template']))
-//        {
-//            if (isset($format['template'][$type]))
-//                $template=$format['template'][$type];              
-//            elseif (isset($format['template']['default']))
-//                $template=$format['template']['default'];
-//        }
-//        else
-//            $template=$format['template'];
-//
-//        // Récupère le nom du fichier d'export
-//        if (is_array($format['filename']))
-//        {
-//            if (isset($format['filename'][$type]))
-//                $filename=$format['filename'][$type];              
-//            elseif (isset($format['filename']['default']))
-//                $filename=$format['filename']['default'];
-//        }
-//        else
-//            $filename=$format['filename'];
-//
-//        if (isset($format['layout']))
-//            $this->setLayout($format['layout']);
-//        else
-//            $this->setLayout($format['none']);
-//
-//        if (isset($format['content-type']))
-//            header('content-type: ' . $format['content-type']);
-//
-//        header
-//        (
-//            'content-disposition: attachment; filename="' 
-//            . (isset($filename) ? $filename : "notices{$type}.txt")
-//            . '"'
-//        );
-//            
-//        // Génère le contenu du fichier
-//        $data=$this->exportCart($type, $template);              
-//
-//        echo $data;
-//    }
     
     public function actionExportByType() // fixme: ne devrait pas être là. Mettre dans DatabaseModule un foction générique ('categorize()') et se contenter de l'appeller ici
     {
@@ -850,8 +758,11 @@ class Base extends DatabaseModule
         }
     }
     
-    /*
+    /**
      * Callback utilisé pour les exports Vancouver
+     *
+     * @param string $name nom de la balise mentionnée dans le template associé
+     * @return string la valeur à injecter à la place de la balise $name, dans le template associé
      */
     public function exportData($name)
     {
@@ -881,7 +792,9 @@ class Base extends DatabaseModule
                 if (! $value=$this->selection[$name]) return '';
 
                 // Ajoute un point à la fin du titre 
-                if (strpos('.!?',substr($value,-1,1))===false) return $value.'.';
+                if (strpos('.!?',substr($value,-1,1))===false) $value.='.';
+                
+                return $value;
 
             case 'PdPf':
                 if (! $value=$this->selection[$name]) return '';
@@ -913,154 +826,7 @@ class Base extends DatabaseModule
                 return;
         }
     }
-    
-   // public function actionExportCart($now=false)
-//    public function actionExportCart()
-//    {
-//        //if (! $now) return; // preExecute nous appelle avec now=true, on bosse, quand le framework nous appelle, rien à faire 
-//        // tout est fait dans preExecute
-//
-//        // Récupère l'action à effectuer
-//        $cmd=Utils::get($_REQUEST['cmd']);
-//        if (is_null($cmd))
-//            throw new Exception("La commande n'a pas été indiquée");
-//            
-//        if ($cmd !='export' && $cmd!='mail')
-//            throw new Exception('Commande incorrecte');
-//
-//        // Récupère le format d'export
-//        $format=Utils::get($_REQUEST['format']);
-//        if (is_null($format))
-//            // TODO : le message d'erreur s'affiche en premier sur la page html
-//            return $this->showError('Le format d\'export n\'a pas été indiqué.');
-//
-//        // Charge la liste des formats d'export disponibles
-//        Config::load($this->path. 'templates/export/formats.yaml', 'formats');
-//        if (! $format=Config::get("formats.$format"))
-//            throw new Exception('Format incorrect');
-//
-////        $template=$this->path . 'templates/export/'.$format['template'];
-////        if (! file_exists($template))
-////            throw new Exception('Le fichier contenant les différents formats n\'existe pas');
-//
-//        global $cart;
-//        $this->getCart();
-//        $cart=$this->cart->getItems();
-//
-//        switch ($cmd)
-//        {
-//            // Envoie les notices par mail
-//            case 'mail':
-//                // Récupère des informations pour l'envoi du mail
-//                $to=Utils::get($_REQUEST['to']);
-//                if (is_null($to))
-//                    // TODO : le message d'erreur s'affiche en premier sur la page html
-//                    return $this->showError('Le destinataire du mail n\'a pas été indiqué.');
-//    
-//                $subject=Utils::get($_REQUEST['subject']);
-//                if (is_null($subject))
-//                    $subject='Notices Ascodocpsy';
-//    
-//                $body=Utils::get($_REQUEST['body']);
-//                if (is_null($body))
-//                    $body='Le fichier ci-joint contient les notices sélectionnées';
-//                
-//                $data='';
-//
-//                $this->setLayout('none');
-//    
-//                require_once(Runtime::$fabRoot.'lib/htmlMimeMail5/htmlMimeMail5.php');
-//            
-//                $mail = new htmlMimeMail5();
-//                //TODO : changer l'adresse e-mail
-//                $mail->setHeader('Content-Type', 'multipart/mixed');
-//                $mail->setFrom('Site AscodocPsy <gfaure@ch-st-jean-de-dieu-lyon.fr>');
-//                $mail->setSubject($subject);
-//                $mail->setText($body);
-//                
-//                // Génère les fichiers attachés
-//                $this->getCart();
-//                $carts=$this->cart->getItems();
-//                
-//                // Parcourt chaque panier
-//                foreach ($carts as $type=>$cart)
-//                {                
-//                    // Récupère le template
-//                    if (is_array($format['template']))
-//                    {
-//                        if (isset($format['template'][$type]))
-//                            $template=$format['template'][$type];              
-//                        elseif (isset($format['template']['default']))
-//                            $template=$format['template']['default'];
-//                    }
-//                    else
-//                        $template=$format['template'];
-//    
-//                    // Récupère le nom du fichier d'export
-//                    if (is_array($format['filename']))
-//                    {
-//                        if (isset($format['filename'][$type]))
-//                            $filename=$format['filename'][$type];              
-//                        elseif (isset($format['filename']['default']))
-//                            $filename=$format['filename']['default'];
-//                    }
-//                    else
-//                        $filename=$format['filename'];
-//    
-//                    // Génère le contenu du fichier
-//                    $data=$this->exportCart($type, $template);              
-//    
-//                    $mail->addAttachment
-//                    (
-//                        new stringAttachment
-//                        (
-//                            $data,
-//                            isset($filename) ? $filename : "notices{$type}.txt",
-//                            isset($format['content-type']) ? $format['content-type'] : 'text/plain'
-//                        )
-//                    );
-//                }
-//                
-//                if ($mail->send( array($to)) )
-//                {
-//                    echo '<p>Vos notices ont été envoyées à l\'adresse ', $to, '</p>';
-//                    echo '<p>Retour à la <a href="javascript:history.back()"> page précédente</a>.</p>';
-//                }
-//                else
-//                {
-//                    echo "<p>Impossible d'envoyer le mail à l'adresse '$to'</p>";
-//                }
-//                break;
-//
-//            // Affiche la liste des paniers (en fonction du type de document, avec liens pour télécharger les notices
-//            case 'export':
-//                // Définit le template d'affichage 
-//                if (User::hasAccess('EditBase,AdminBase')) // TODO: SF : le template admin n'existe pas
-//                    $tpl='member';
-//                else
-//                    $tpl='public';
-//                $tpl.='_cart_type.yaml';
-//                
-//                global $cart;
-//                $this->getCart();
-//                $cart=$this->cart->getItems();
-//
-//                // Exécute le template
-//                Template::run
-//                (
-//                    "templates/$tpl", 
-//                    array($this, 'getField'),
-//    //                'Template::selectionCallback',
-//                    array
-//                    (
-//                        'cart'=>$this->cart->getItems(),
-//                        'format'=>$_REQUEST['format']
-//                    )
-//                );            
-//                break;
-//        }
-//    }           
-           
+               
     // ------------------- TRI DE LA BASE -------------------
     /**
      * Trie la base, selon la clé de tri sortkey défini dans le fichier
@@ -1593,7 +1359,10 @@ echo '</pre>';
 
         // Ouvre la base
         $this->openDatabase(false);
-        
+
+        // Récupère les champs de la base à partir de la structure
+        $dbFields=$this->selection->getStructure()->fields;
+
         // Initialise le compteur de fichiers
         $nb=1;
         
@@ -1639,7 +1408,8 @@ echo '</pre>';
                     $nbRefFields++;
                     if ($nbRefFields>$nbFields) break;
                     
-                    $fieldname=$this->map[trim($fields[$i])];
+                    // Détermine le nom du champ dans la base
+                    $fieldname=$dbFields[strtolower($fields[$i])]->name;
                     $v=trim(str_replace('""', '"', $v));
                     
                     switch ($fieldname)                    
@@ -1788,12 +1558,5 @@ echo '</pre>';
     } 
     
     // FIN IMPORT DE NOTICES
-
-    public function actionSearch()
-    {
-        $this->cart=Module::loadModule('AscoCart');
-        $this->cart->preExecute();
-        parent::actionSearch();   
-    }
 }
 ?>
