@@ -7,7 +7,7 @@
 var reChiffre      = "[0-9]"
 
 // Année au format AAAA, Mois, Jour
-var reYear         = "175_Chiffre_|1[8-9]_Chiffre_{2}|20[0-1]_Chiffre_"      // une année sur 4 chiffres (1750 à 2019)
+var reYear         = "17[5-9]_Chiffre_|1[8-9]_Chiffre_{2}|20[0-1]_Chiffre_"      // une année sur 4 chiffres (1750 à 2019)
 var reMonth	       = "(0[1-9]|1[0-2])"				        // un mois sur deux chiffres (01 à 12)
 var reDay	       = "(0[1-9]|[12][0-9]|3[01])"			    // un jour sur deux chiffres (01 à 31)
 var reYearFRE      = "La date doit être dans le format AAAA et supérieure ou égale à 1750.\nExemple : 2005"
