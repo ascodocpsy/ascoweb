@@ -104,7 +104,7 @@ form.search div input.smallbox
 /* Zone de texte multiligne */
 form.search div textarea
 {
-	width: 31em;
+	width: 31.8em;
 	margin: 0;
 	padding: 0 0.2em;
 }
@@ -113,7 +113,7 @@ form.search div textarea
 form.search div.checklist,
 form.search div.select
 {
-	margin-left: 19em;
+	margin-left: 18.5em;
 	clear: right;
 }
 
@@ -203,13 +203,13 @@ form.load textarea
 form.load input.fullwidth,
 form.load textarea.fullwidth
 {
-	width: 98.5%;
+	width: 95%;
 }
 
 form.load fieldset div input.fullwidth,
 form.load fieldset div textarea.fullwidth
 {
-	width: 76%;
+	width: 79%;
 }
 
 form.load div.checklist,
@@ -252,6 +252,20 @@ input.mandatory
 label.mandatory
 {
 	font-weight: bold;
+}
+
+/* Lien vers l'aide à la saisie */
+a.help
+{
+    padding-left: 11px;
+    padding-top: 1px;
+    background: url('help.png') no-repeat center center;
+}
+
+/* Texte du lien vers l'aide caché - remplacé par une image */
+a.help span
+{
+    display: none;
 }
 
 /* ========================================================================== */
@@ -305,7 +319,7 @@ ul.fulllist div.row
 /* Contenu du champ */
 div.field
 {
-    margin-left: 8em;
+    margin-left: 11em;
 }
 
 /* Libellé du champ */
@@ -315,7 +329,7 @@ li.record label.checklist,
 li.record label.textarea
 {
 	font-weight: bold;
-    width: 7em;
+    width: 10em;
 	float: left;
 	text-align: right;
 	padding-right: 0em;
