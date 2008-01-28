@@ -89,15 +89,22 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 </template>
 
         
-/* Raccourci pour le champ Résumé et la section Indexation */
-<template match="//ResuIndexation">
+/* Raccourci pour le champ Résumé et la section Indexation 
+@themeMandatory indique si le champ $Theme est obligatoire
+*/
+<template match="//ResuIndexation" themeMandatory="{false}">
     <fieldset label="Résumé">
         <text name="Resu" rows="1" class="fullwidth autoheight" />
         <help name="Resu" />
     </fieldset>
     <fieldset label="Indexation">
         <div>
-            <text name="Theme" rows="1" label="Thème" class="fullwidth autoheight" />
+            <if test="$themeMandatory">
+                <text name="Theme" rows="1" label="Thème *" class="fullwidth autoheight mandatory" />
+            </if>
+            <else>
+                <text name="Theme" rows="1" label="Thème" class="fullwidth autoheight" />
+            </else>
             <help name="Theme" />
         </div>
         <div>
@@ -452,7 +459,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
                 <text name="Notes" rows="1" class="fullwidth autoheight" />
                 <help name="Notes" />
             </fieldset>
-            <ResuIndexation />
+            <ResuIndexation themeMandatory="{true}" />
             <Lien mandatory="{true}" />
             <ProdFich />
             <Statut />
@@ -500,7 +507,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
                 <text name="NumTexOf" class="fullwidth" />
                 <help name="NumTexOf" />
             </fieldset>
-            <ResuIndexation />
+            <ResuIndexation themeMandatory="{true}" />
             <ProdFich />
             <Statut />
             <script type="text/javascript">ctrlInitialize("ControlsTexteOfficiel");</script>
