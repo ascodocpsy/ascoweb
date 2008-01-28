@@ -4,9 +4,11 @@
 <template match="//AutTit" titLabel="Titre *">
     <fieldset label="Auteurs *">
         <text name="Aut" value="{implode('/',(array)$Aut)}" rows="1" class="fullwidth autoheight mandatory" />
+        <help name="Aut" />
     </fieldset>
     <fieldset label="$titLabel">
         <text name="Tit" rows="1" class="fullwidth autoheight mandatory" />
+        <help name="Tit" />
     </fieldset>
 </template>
 
@@ -15,6 +17,7 @@
 <template match="//Date">
 	<fieldset label="Année du document *">
 	    <text name="Date" class="fullwidth mandatory" />
+        <help name="Date" />
 	</fieldset>
 </template>
 
@@ -26,16 +29,28 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 */
 <template match="//MentionsBib" pageName="Page" pageLabel="Nombre de pages *">
     <fieldset label="Mentions bibliographiques">
-        <div><text name="$pageName" label="$pageLabel" class="fullwidth mandatory" /></div>
-        <div><text name="Notes" label="Notes bibliographiques" rows="1" class="fullwidth autoheight" /></div>
+        <div>
+            <text name="$pageName" label="$pageLabel" class="fullwidth mandatory" />
+            <help name="$pageName" />
+        </div>
+        <div>
+            <text name="Notes" label="Notes bibliographiques" rows="1" class="fullwidth autoheight" />
+            <help name="Notes" />
+        </div>
     </fieldset>
 </template>
 
 
 /* Raccourci pour les champs Collection et Mention d'édition */
 <template match="//ColReed">
-	<div><text name="Col" rows="1" label="Collection" class="fullwidth autoheight" /></div>
-	<div><text name="Reed" rows="1" label="Mention d'édition" class="fullwidth autoheight" /></div>
+	<div>
+        <text name="Col" rows="1" label="Collection" class="fullwidth autoheight" />
+        <help name="Col" />
+    </div>
+	<div>
+        <text name="Reed" rows="1" label="Mention d'édition" class="fullwidth autoheight" />
+        <help name="Reed" />
+    </div>
 </template>
 
 
@@ -46,17 +61,29 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 <template match="//Periodique" revMandatory="{true}" volExists="{true}">
     <fieldset label="Périodique">
         <if test="$revMandatory">
-            <div><text name="Rev" label="Titre du périodique *" rows="1" class="fullwidth autoheight mandatory" /></div>
+            <div>
+                <text name="Rev" label="Titre du périodique *" rows="1" class="fullwidth autoheight mandatory" />
+                <help name="Rev" />
+            </div>
         </if>
         <else>
-            <div><text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight" /></div>
+            <div>
+                <text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight" />
+                <help name="Rev" />
+            </div>
         </else>
-        <div test="$volExists"><text name="Vol" label="Volume" class="fullwidth" /></div>
+        <div test="$volExists"><text name="Vol" label="Volume" class="fullwidth" /><help name="Vol" /></div>
         <if test="$revMandatory">
-            <div><text name="Num" label="Numéro *" class="fullwidth mandatory" /></div>
+            <div>
+                <text name="Num" label="Numéro *" class="fullwidth mandatory" />
+                <help name="Num" />
+            </div>
         </if>
         <else>
-            <div><text name="Num" label="Numéro" class="fullwidth" /></div>
+            <div>
+                <text name="Num" label="Numéro" class="fullwidth" />
+                <help name="Num" />
+            </div>
         </else>
     </fieldset>
 </template>
@@ -66,12 +93,25 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 <template match="//ResuIndexation">
     <fieldset label="Résumé">
         <text name="Resu" rows="1" class="fullwidth autoheight" />
+        <help name="Resu" />
     </fieldset>
     <fieldset label="Indexation">
-        <div><text name="Theme" rows="1" label="Thème" class="fullwidth autoheight" /></div>
-        <div><text name="MotCle" value="{implode('/',(array)$MotCle)}" rows="1" label="Descripteurs *" class="fullwidth autoheight mandatory" /></div>
-        <div><text name="Nomp" value="{implode('/',(array)$Nomp)}" rows="1" label="Noms propres" class="fullwidth autoheight" /></div>
-        <div><text name="CanDes" value="{implode('/',(array)$CanDes)}" rows="1" label="Candidats descripteurs" class="fullwidth autoheight" /></div>
+        <div>
+            <text name="Theme" rows="1" label="Thème" class="fullwidth autoheight" />
+            <help name="Theme" />
+        </div>
+        <div>
+            <text name="MotCle" value="{implode('/',(array)$MotCle)}" rows="1" label="Descripteurs *" class="fullwidth autoheight mandatory" />
+            <help name="MotCle" />
+        </div>
+        <div>
+            <text name="Nomp" value="{implode('/',(array)$Nomp)}" rows="1" label="Noms propres" class="fullwidth autoheight" />
+            <help name="Nomp" />
+        </div>
+        <div>
+            <text name="CanDes" value="{implode('/',(array)$CanDes)}" rows="1" label="Candidats descripteurs" class="fullwidth autoheight" />
+            <help name="CanDes" />
+        </div>
     </fieldset>
 </template>
 
@@ -83,11 +123,13 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
     <if test="$mandatory">
         <fieldset label="Lien vers le document *">
             <text name="Lien" rows="2" class="fullwidth mandatory" />
+            <help name="Lien" />
         </fieldset>
     </if>
     <else>
         <fieldset label="Lien vers le document">
             <text name="Lien" rows="2" class="fullwidth" />
+            <help name="Lien" />
         </fieldset>
     </else>
 </template>
@@ -100,11 +142,13 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 	<if test="$mandatory">
 		<fieldset label="Localisation du document *">
 		    <text name="Loc" value="{implode('/',(array)$Loc)}" rows="1" class="fullwidth autoheight mandatory" />
+            <help name="Loc" />
 		</fieldset>
 	</if>
 	<else>
 		<fieldset label="Localisation du document">
 		    <text name="Loc" value="{implode('/',(array)$Loc)}" rows="1" class="fullwidth autoheight" />
+            <help name="Loc" />
 		</fieldset>	
 	</else>
 </template>
@@ -117,11 +161,13 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 	<if test="$mandatory">
 	    <fieldset label="Producteur de la fiche *">
 	        <text name="ProdFich" value="{implode('/',(array)$ProdFich)}" class="fullwidth mandatory" />
+            <help name="ProdFich" />
 	    </fieldset>
 	</if>
 	<else>
 	    <fieldset label="Producteur de la fiche">
 	        <text name="ProdFich" value="{implode('/',(array)$ProdFich)}" class="fullwidth" />
+            <help name="ProdFich" />
 	    </fieldset>
 	</else>
 </template>
@@ -149,20 +195,43 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 <template match="//Congres" mandatory="{false}">
     <fieldset label="Congrès">
     <if test="$mandatory">
-        <div><text name="CongrTit" rows="1" label="Intitulé *" class="fullwidth autoheight mandatory" /></div>
-        <div><text name="CongrNum" label="Numéro *" class="fullwidth mandatory" /></div>
-        <div><text name="CongrLie" label="Ville *" class="fullwidth mandatory" /></div>
-        <div><text name="CongrDat" label="Année *" class="fullwidth mandatory" /></div>
+        <div>
+            <text name="CongrTit" rows="1" label="Intitulé *" class="fullwidth autoheight mandatory" />
+            <help name="CongrTit" />
+        </div>
+        <div>
+            <text name="CongrNum" label="Numéro *" class="fullwidth mandatory" />
+            <help name="CongrNum" />
+        </div>
+        <div>
+            <text name="CongrLie" label="Ville *" class="fullwidth mandatory" />
+            <help name="CongrLie" />
+        </div>
+        <div>
+            <text name="CongrDat" label="Année *" class="fullwidth mandatory" />
+            <help name="CongrDat" />
+        </div>
     </if>
     <else>
-        <div><text name="CongrTit" rows="1" label="Intitulé" class="fullwidth autoheight" /></div>
-        <div><text name="CongrNum" label="Numéro" class="fullwidth" /></div>
-        <div><text name="CongrLie" label="Ville" class="fullwidth" /></div>
-        <div><text name="CongrDat" label="Année" class="fullwidth" /></div>
+        <div>
+            <text name="CongrTit" rows="1" label="Intitulé" class="fullwidth autoheight" />
+            <help name="CongrTit" />
+        </div>
+        <div>
+            <text name="CongrNum" label="Numéro" class="fullwidth" />
+            <help name="CongrNum" />
+        </div>
+        <div>
+            <text name="CongrLie" label="Ville" class="fullwidth" />
+            <help name="CongrLie" />
+        </div>
+        <div>
+            <text name="CongrDat" label="Année" class="fullwidth" />
+            <help name="CongrDat" />
+        </div>
     </else>
     </fieldset>
 </template>
-
 
 /* Equivalent au <textbox /> mais si l'attribut value n'est pas précisé, 
 alors il est défini à partir de l'attribut name.
@@ -187,6 +256,12 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </else>
     </else>
 </template>
+
+/* Lien vers la page d'aide */
+<template match="//help" name="">
+    <a href="{Config::get('help.'.$name)}" title="Aide sur le champ $name (nouvelle fenêtre/nouvel onglet)" target="helpbasesantepsy" class="help">&#160;<span>Aide</span></a>    
+</template>
+
 /* Fin des template match */
 
 
@@ -222,6 +297,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
        
     /* Contenu spécifique à chaque type de document */
     <switch test="{$Type}">
+   /* <switch test="{strtolower($Type)}">*/
     
     /* TODO : factoriser le switch : Congrès et Livre presque identiques */
     
@@ -243,12 +319,19 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 			<Date />
             <MentionsBib />
             <fieldset label="Edition">
-                <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur(s) *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition *" class="fullwidth autoheight mandatory" /></div>
+                <div>
+                    <text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur(s) *" class="fullwidth autoheight mandatory" />
+                    <help name="Edit" />
+                </div>
+                <div>
+                    <text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition *" class="fullwidth autoheight mandatory" />
+                    <help name="Lieu" />
+                </div>
                 <ColReed />
             </fieldset>
             <fieldset label="ISBN / ISSN *">
                 <text name="IsbnIssn" class="fullwidth mandatory" />
+                <help name="IsbnIssn" />
             </fieldset>
             <ResuIndexation />
             <Lien />
@@ -264,12 +347,19 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 			<Date />
             <MentionsBib />
             <fieldset label="Edition">
-                <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition *" class="fullwidth autoheight mandatory" /></div>
+                <div>
+                    <text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur *" class="fullwidth autoheight mandatory" />
+                    <help name="Edit" />
+                </div>
+                <div>
+                    <text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition *" class="fullwidth autoheight mandatory" />
+                    <help name="Lieu" />
+                </div>
 				<ColReed />
             </fieldset>
             <fieldset label="ISBN / ISSN *">
                 <text name="IsbnIssn" class="fullwidth mandatory" />
+                <help name="IsbnIssn" />
             </fieldset>
             <ResuIndexation />
             <Lien />
@@ -283,14 +373,22 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <AutTit />
             <fieldset label="Spécialité du diplôme *">
                 <text name="DipSpe" rows="1" class="fullwidth autoheight mandatory" />
+                <help name="DipSpe" />
             </fieldset>
             <fieldset label="Edition">
-                <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Institution morale de rattachement *" class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition ou de soutenance *" class="fullwidth autoheight mandatory" /></div>
+                <div>
+                    <text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Institution morale de rattachement *" class="fullwidth autoheight mandatory" />
+                    <help name="Edit" />
+                </div>
+                <div>
+                    <text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition ou de soutenance *" class="fullwidth autoheight mandatory" />
+                    <help name="Lieu" />
+                </div>
             </fieldset>
             <MentionsBib />
             <fieldset label="Année de soutenance *">
                 <text name="Date" class="fullwidth mandatory" />
+                <help name="Date" />
             </fieldset>
             <ResuIndexation />
             <Lien />
@@ -303,18 +401,23 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         <case test="Périodique">
             <fieldset label="Titre du périodique *">
                 <text name="Rev" rows="1" class="fullwidth autoheight mandatory" />
+                <help name="Rev" />
             </fieldset>
             <fieldset label="Date de vie et de mort *">
                 <text name="ViePerio" class="fullwidth mandatory" />
+                <help name="ViePerio" />
             </fieldset>
             <fieldset label="Etat de la collection *">
                 <text name="EtatCol" value="{implode('/',(array)$EtatCol)}" rows="1" class="fullwidth autoheight mandatory" />
+                <help name="EtatCol" />
             </fieldset>
             <fieldset label="ISSN *">
                 <text name="IsbnIssn" class="fullwidth mandatory" />
+                <help name="IsbnIssn" />
             </fieldset>
             <fieldset label="Notes">
                 <text name="Notes" rows="1" class="fullwidth autoheight" />
+                <help name="Notes" />
             </fieldset>
             <Lien />
             <ProdFich />
@@ -325,18 +428,29 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         <case test="Rapport">
             <AutTit />
             <Date />
-            <fieldset label="Nombre de pages"><text name="Page" class="fullwidth mandatory" /></fieldset>
+            <fieldset label="Nombre de pages">
+                <text name="Page" class="fullwidth mandatory" />
+                <help name="Page" />
+            </fieldset>
             <fieldset label="Edition">
-                <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur" class="fullwidth autoheight" /></div>
-                <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition" class="fullwidth autoheight" /></div>
+                <div>
+                    <text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur" class="fullwidth autoheight" />
+                    <help name="Edit" />
+                </div>
+                <div>
+                    <text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition" class="fullwidth autoheight" />
+                    <help name="Lieu" />
+                </div>
 				<ColReed />
             </fieldset>
             <Periodique revMandatory="{false}" />
             <fieldset label="ISBN / ISSN">
                 <text name="IsbnIssn" class="fullwidth" />
+                <help name="IsbnIssn" />
             </fieldset>
             <fieldset label="Notes bibliographiques">
                 <text name="Notes" rows="1" class="fullwidth autoheight" />
+                <help name="Notes" />
             </fieldset>
             <ResuIndexation />
             <Lien mandatory="{true}" />
@@ -350,19 +464,41 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
                 <fill values="$NatText"><radiolist name="NatText" src="new TextTable($this->path.'../../tables/nattext.txt')" class="mandatory" /></fill>
             </fieldset>
             <fieldset label="Titres du document et liens vers les versions électroniques">
-                <div><text name="Tit" rows="1" label="Titre * " class="fullwidth autoheight mandatory" /></div>
-                <div><text name="Lien" rows="2" label="Lien vers le document *" class="fullwidth mandatory" /></div>
-                <div><text name="Annexe" value="{implode('/',(array)$Annexe)}" rows="1" label="Titres des annexes" class="fullwidth autoheight" /></div>
-                <div><text name="LienAnne" value="{implode(' ; ',(array)$LienAnne)}" rows="2" label="Liens vers les annexes" class="fullwidth" /></div>
+                <div>
+                    <text name="Tit" rows="1" label="Titre * " class="fullwidth autoheight mandatory" />
+                    <help name="Tit" />
+                </div>
+                <div>
+                    <text name="Lien" rows="2" label="Lien vers le document *" class="fullwidth mandatory" />
+                    <help name="Lien" />
+                </div>
+                <div>
+                    <text name="Annexe" value="{implode('/',(array)$Annexe)}" rows="1" label="Titres des annexes" class="fullwidth autoheight" />
+                    <help name="Annexe" />
+                </div>
+                <div>
+                    <text name="LienAnne" value="{implode(' ; ',(array)$LienAnne)}" rows="2" label="Liens vers les annexes" class="fullwidth" />
+                    <help name="LienAnne" />
+                </div>
             </fieldset>
             <fieldset label="Dates">
-                <div><text name="DateText" label="Date du texte officiel *" class="fullwidth mandatory" /></div>
-                <div><text name="DatePub" label="Date de publication du texte officiel *" class="fullwidth mandatory" /></div>
-                <div><text name="DateVali" label="Date de fin de validité du texte officiel" class="fullwidth" /></div>
+                <div>
+                    <text name="DateText" label="Date du texte officiel *" class="fullwidth mandatory" />
+                    <help name="DateText" />
+                </div>
+                <div>
+                    <text name="DatePub" label="Date de publication du texte officiel *" class="fullwidth mandatory" />
+                    <help name="DatePub" />
+                </div>
+                <div>
+                    <text name="DateVali" label="Date de fin de validité du texte officiel" class="fullwidth" />
+                    <help name="DateVali" />
+                </div>
             </fieldset>
             <Periodique volExists="{false}" />           
             <fieldset label="Numéro du texte officiel">
                 <text name="NumTexOf" class="fullwidth" />
+                <help name="NumTexOf" />
             </fieldset>
             <ResuIndexation />
             <ProdFich />
@@ -388,52 +524,125 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
     </fieldset>
     <fieldset label="Auteurs">
         <text name="Aut" value="{implode('/',(array)$Aut)}" rows="1" class="fullwidth autoheight" />
+        <help name="Aut" />
     </fieldset>
     <fieldset label="Titres du document et liens vers les versions électroniques">
-        <div><text name="Tit" rows="1" label="Titre du document " class="fullwidth autoheight" /></div>
-        <div><text name="Lien" rows="1" label="Lien vers le document" class="fullwidth autoheight" /></div>
-        <div><text name="Annexe" value="{implode('/',(array)$Annexe)}" rows="1" label="Titres des annexes" class="fullwidth autoheight" /></div>
-        <div><text name="LienAnne" value="{implode(' ; ',(array)$LienAnne)}" rows="1" label="Liens vers les annexes" class="fullwidth autoheight" /></div>        
-    	<div><text name="NumTexOf" label="Numéro du texte officiel" class="fullwidth" /></div>
+        <div>
+            <text name="Tit" rows="1" label="Titre du document" class="fullwidth autoheight" />
+            <help name="Tit" />
+        </div>
+        <div>
+            <text name="Lien" rows="1" label="Lien vers le document" class="fullwidth autoheight" />
+            <help name="Lien" />
+        </div>        
+        <div>
+            <text name="Annexe" value="{implode('/',(array)$Annexe)}" rows="1" label="Titres des annexes" class="fullwidth autoheight" />
+            <help name="Annexe" />
+        </div>
+        <div>
+            <text name="LienAnne" value="{implode(' ; ',(array)$LienAnne)}" rows="1" label="Liens vers les annexes" class="fullwidth autoheight" />
+            <help name="LienAnne" />
+        </div>        
+    	<div>
+            <text name="NumTexOf" label="Numéro du texte officiel" class="fullwidth" />
+            <help name="NumTexOf" />
+        </div>
     </fieldset>
     <fieldset label="Spécialité du diplôme">
         <text name="DipSpe" rows="1" class="fullwidth autoheight" />
+        <help name="DipSpe" />
     </fieldset>
     <Congres />
     <fieldset label="Dates">
-    	<div><text name="Date" label="Année du document ou de soutenance" class="fullwidth" /></div>
-        <div><text name="DateText" label="Date du texte officiel" class="fullwidth" /></div>
-        <div><text name="DatePub" label="Date de publication du texte officiel" class="fullwidth" /></div>
-        <div><text name="DateVali" label="Date de fin de validité du texte officiel" class="fullwidth" /></div>
+    	<div>
+            <text name="Date" label="Année du document ou de soutenance" class="fullwidth" />
+            <help name="Date" />
+        </div>
+        <div>
+            <text name="DateText" label="Date du texte officiel" class="fullwidth" />
+            <help name="DateText" />
+        </div>
+        <div>
+            <text name="DatePub" label="Date de publication du texte officiel" class="fullwidth" />
+            <help name="DatePub" />
+        </div>
+        <div>
+            <text name="DateVali" label="Date de fin de validité du texte officiel" class="fullwidth" />
+            <help name="DateVali" />
+        </div>
     </fieldset>
     <fieldset label="Mentions bibliographiques">
-    	<div><text name="Page" label="Nombre de pages" class="fullwidth" /></div>
-        <div><text name="PdPf" label="Page de début et page de fin" class="fullwidth" /></div>
-        <div><text name="Notes" label="Notes bibliographiques" rows="1" class="fullwidth autoheight" /></div>
+    	<div>
+            <text name="Page" label="Nombre de pages" class="fullwidth" />
+            <help name="Page" />
+        </div>
+        <div>
+            <text name="PdPf" label="Page de début et page de fin" class="fullwidth" />
+            <help name="PdPf" />
+        </div>
+        <div>
+            <text name="Notes" label="Notes bibliographiques" rows="1" class="fullwidth autoheight" />
+            <help name="Notes" />
+        </div>
     </fieldset>
     <fieldset label="Edition">
-        <div><text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur(s)" class="fullwidth autoheight" /></div>
-        <div><text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition ou de soutenance" class="fullwidth autoheight" /></div>
+        <div>
+            <text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur(s)" class="fullwidth autoheight" />
+            <help name="Edit" />
+        </div>
+        <div>
+            <text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition ou de soutenance" class="fullwidth autoheight" />
+            <help name="Lieu" />
+        </div>
         <ColReed />
     </fieldset>
     <fieldset label="ISBN / ISSN">
     	<text name="IsbnIssn" class="fullwidth" />
+        <help name="IsbnIssn" />
     </fieldset>
     <fieldset label="Périodique">
-	    <div><text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight" /></div>
-        <div><text name="Vol" label="Volume" class="fullwidth" /></div>
-        <div><text name="Num" label="Numéro" class="fullwidth" /></div>
-		<div><text name="ViePerio" label="Date de vie et de mort" class="fullwidth" /></div>
-		<div><text name="EtatCol" label="Etat de la collection" value="{implode('/',(array)$EtatCol)}" rows="1" class="fullwidth autoheight" /></div>
+	    <div>
+            <text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight" />
+            <help name="Rev" />
+        </div>
+        <div>
+            <text name="Vol" label="Volume" class="fullwidth" />
+            <help name="Vol" />
+        </div>
+        <div>
+            <text name="Num" label="Numéro" class="fullwidth" />
+            <help name="Num" />
+        </div>
+		<div>
+            <text name="ViePerio" label="Date de vie et de mort" class="fullwidth" />
+            <help name="ViePerio" />
+        </div>
+		<div>
+            <text name="EtatCol" label="Etat de la collection" value="{implode('/',(array)$EtatCol)}" rows="1" class="fullwidth autoheight" />
+            <help name="EtatCol" />
+        </div>
     </fieldset>
     <fieldset label="Résumé">
         <text name="Resu" rows="1" class="fullwidth autoheight" />
+        <help name="Resu" />
     </fieldset>
     <fieldset label="Indexation">
-        <div><text name="Theme" rows="1" label="Thème" class="fullwidth autoheight" /></div>
-        <div><text name="MotCle" value="{implode('/',(array)$MotCle)}" rows="1" label="Descripteurs" class="fullwidth autoheight" /></div>
-        <div><text name="Nomp" value="{implode('/',(array)$Nomp)}" rows="1" label="Noms propres" class="fullwidth autoheight" /></div>
-        <div><text name="CanDes" value="{implode('/',(array)$CanDes)}" rows="1" label="Candidats descripteurs" class="fullwidth autoheight" /></div>
+        <div>
+            <text name="Theme" rows="1" label="Thème" class="fullwidth autoheight" />
+            <help name="Theme" />
+        </div>
+        <div>
+            <text name="MotCle" value="{implode('/',(array)$MotCle)}" rows="1" label="Descripteurs" class="fullwidth autoheight" />
+            <help name="MotCle" />
+        </div>
+        <div>
+            <text name="Nomp" value="{implode('/',(array)$Nomp)}" rows="1" label="Noms propres" class="fullwidth autoheight" />
+            <help name="Nomp" />
+        </div>
+        <div>
+            <text name="CanDes" value="{implode('/',(array)$CanDes)}" rows="1" label="Candidats descripteurs" class="fullwidth autoheight" />
+            <help name="CanDes" />
+        </div>
     </fieldset>
     <Loc mandatory="{false}" />
     <ProdFich mandatory="{false}" />
@@ -457,7 +666,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
     <div><hidden name="REF" value="$REF" /></div>
     
     <div class="buttons">
-        <submit label="Enregistrer" class="submit spip_bouton" />
+        <submit label="Enregistrer" class="submit" />
     </div>
 </form>
 
@@ -466,7 +675,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 	    <if test="{User::hasAccess('AdminBase')}">
 	        <form method="post" class="reset form" action="/base/delete">
                 <div><hidden name="REF" value="$REF" /></div>
-                <div class="buttons"><submit label="Supprimer" class="reset spip_bouton" onclick="return(confirm('Supprimer définitivement la notice ?'));" /></div>
+                <div class="buttons"><submit label="Supprimer" class="reset" onclick="return(confirm('Supprimer définitivement la notice ?'));" /></div>
 	        </form>
 	    </if>
 	</if>
