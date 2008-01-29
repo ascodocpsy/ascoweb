@@ -786,8 +786,9 @@ class Base extends DatabaseModule
         $all='';
         foreach($categories as $name=>$cat)
         {
-        	$url='ExportByCat?_equation='.urlencode($cat['equation']);
-            echo "<li><a href='$url'>$name : $cat[count] notices</a></li>";
+        	$url='ExportByCat?_equation='.urlencode($cat['equation']);            
+            $s=($cat['count']>1)? 's' : '';
+            echo "<li><a href='$url'>$name : $cat[count] notice$s</a></li>";
             $all.='&_equation='.urlencode($cat['equation']) . '&filename='.urlencode($name);
         }
         if (1 < $nbCat=count($categories))
