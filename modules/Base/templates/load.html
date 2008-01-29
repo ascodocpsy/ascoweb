@@ -53,6 +53,21 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
     </div>
 </template>
 
+/* Raccourci pour le champ IsbnIssn
+@label : le label pour le champ $IsbnIssn
+@mandatory : indique si le champ $IsbnIssn est obligatoire
+*/
+<template match="//IsbnIssn" label="ISBN / ISSN" mandatory="{false}">
+    <fieldset label="$label">
+        <if test="$mandatory">
+            <text name="IsbnIssn" value="{implode('/',(array)$IsbnIssn)}" class="fullwidth mandatory" />
+        </if>
+        <else>
+            <text name="IsbnIssn" value="{implode('/',(array)$IsbnIssn)}" class="fullwidth" />
+        </else>
+        <help name="IsbnIssn" />
+    </fieldset>
+</template>
 
 /* Raccourci pour la section Périodique
 @revMandatory indique si le champ $Rev est obligatoire
@@ -336,10 +351,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
                 </div>
                 <ColReed />
             </fieldset>
-            <fieldset label="ISBN / ISSN *">
-                <text name="IsbnIssn" class="fullwidth mandatory" />
-                <help name="IsbnIssn" />
-            </fieldset>
+            <IsbnIssn label="ISBN / ISSN *" mandatory="{true}" />
             <ResuIndexation />
             <Lien />
             <Loc />
@@ -364,10 +376,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
                 </div>
 				<ColReed />
             </fieldset>
-            <fieldset label="ISBN / ISSN *">
-                <text name="IsbnIssn" class="fullwidth mandatory" />
-                <help name="IsbnIssn" />
-            </fieldset>
+            <IsbnIssn label="ISBN / ISSN *" mandatory="{true}" />
             <ResuIndexation />
             <Lien />
             <Loc />
@@ -418,10 +427,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
                 <text name="EtatCol" value="{implode('/',(array)$EtatCol)}" rows="1" class="fullwidth autoheight mandatory" />
                 <help name="EtatCol" />
             </fieldset>
-            <fieldset label="ISSN *">
-                <text name="IsbnIssn" class="fullwidth mandatory" />
-                <help name="IsbnIssn" />
-            </fieldset>
+            <IsbnIssn label="ISSN *" mandatory="{true}" />
             <fieldset label="Notes">
                 <text name="Notes" rows="1" class="fullwidth autoheight" />
                 <help name="Notes" />
@@ -451,10 +457,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 				<ColReed />
             </fieldset>
             <Periodique revMandatory="{false}" />
-            <fieldset label="ISBN / ISSN">
-                <text name="IsbnIssn" class="fullwidth" />
-                <help name="IsbnIssn" />
-            </fieldset>
+            <IsbnIssn />
             <fieldset label="Notes bibliographiques">
                 <text name="Notes" rows="1" class="fullwidth autoheight" />
                 <help name="Notes" />
@@ -603,10 +606,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </div>
         <ColReed />
     </fieldset>
-    <fieldset label="ISBN / ISSN">
-    	<text name="IsbnIssn" class="fullwidth" />
-        <help name="IsbnIssn" />
-    </fieldset>
+    <IsbnIssn />
     <fieldset label="Périodique">
 	    <div>
             <text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight" />

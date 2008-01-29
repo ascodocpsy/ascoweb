@@ -345,6 +345,7 @@ class Base extends DatabaseModule
         	case 'ProdFich':
             case 'Annexe':
             case 'LienAnne':
+            case 'IsbnIssn':
                 // Si le champ n'est pas renseigné, alors l'action Save renvoie la valeur NULL 
                 if (is_null($value)) break;
                 if ( $value==='' || (is_array($value) && count($value)===0) )
@@ -1464,6 +1465,7 @@ echo '</pre>';
 			        	case 'Loc':
 			        	case 'ProdFich':
 			        	case 'Annexe':
+			        	case 'IsbnIssn':
 			        		$v=($v=='') ? null : array_map("trim",explode(trim(self::SEPARATOR),$v));
 			        		break;
 
@@ -1759,6 +1761,7 @@ echo '</pre>';
                     case 'loc':
                     case 'prodfich':
                     case 'annexe':
+                    case 'isbnissn':
                         $v=($v=='') ? null : array_map("trim",explode(trim(self::SEPARATOR),$v));
                         break;
 
