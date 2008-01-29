@@ -317,7 +317,7 @@ var ControlsTexteOfficiel =
 ["Annexe"          , "Titres des annexes"                               ,      ,       ,        ,       ,       ,                ,                ],
 ["LienAnne"        , "Adresses Internet des annexes"                    ,      ,       ,        ,       ,       ,                ,"CheckLienAnnexe"],
 ["DateText"        , "Date du texte officiel"                           , true ,       ,        ,       ,       , "reDateUsual"  ,                ],
-["DatePub"         , "Date de publication du texte officiel"            , true ,       ,        ,       ,       , "reDateUsual"  ,                ],
+["DatePub"         , "Date de publication du texte officiel"            ,      ,       ,        ,       ,       , "reDateUsual"  ,                ],
 ["DateVali"        , "Date de fin de validité du texte officiel"        ,      ,       ,        ,       ,       , "reDateUsual"  ,                ],
 ["Rev"             , "Titre du périodique"                              , true ,       ,        ,       ,       ,                ,                ],
 ["Num"             , "Numéro du périodique"                             , true ,       ,        ,       ,       ,                ,                ],
