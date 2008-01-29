@@ -100,7 +100,7 @@
                 
                 <case test="périodique">
                     <row>$Type<opt>, $ViePerio</opt></row>
-                    <row>$Rev<opt> $Presentation</opt><opt>, $IsbnIssn</opt></row>
+                    <row>$Rev<opt> $Presentation</opt><opt>, {implode(' / ',(array)$IsbnIssn)}</opt></row>
                     <opt><row>$Notes</row></opt>
                 </case>
                 

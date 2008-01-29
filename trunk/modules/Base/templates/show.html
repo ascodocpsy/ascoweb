@@ -49,7 +49,7 @@
                         <opt><row label="Collection">$Col</row></opt>
                         <opt><row label="Notes">$Notes</row></opt>
                         <MTCNR />
-                        <opt><row label="ISBN">$IsbnIssn</row></opt>
+                        <Isbn />
                         <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
                             <opt><row label="Localisation">$Loc</row></opt>
                             <opt><row label="Producteur">$ProdFich</row></opt>
@@ -62,7 +62,7 @@
                         <opt><row label="Collection">$Col</row></opt>
                         <opt><row label="Notes">$Notes</row></opt>
                         <MTCNR />
-                        <opt><row label="ISBN">$IsbnIssn</row></opt>
+                        <Isbn />
                         <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
                             <opt><row label="Localisation">$Loc</row></opt>
                             <opt><row label="Producteur">$ProdFich</row></opt>
@@ -88,7 +88,7 @@
                     
                     <case test="périodique">
                         <div class="row"><div>$Type<opt>, $ViePerio</opt></div></div>
-                        <div class="row"><div>$Rev<opt> $Presentation</opt><opt>, $IsbnIssn</opt></div></div>
+                        <div class="row"><div>$Rev<opt> $Presentation</opt><opt>, {implode(' / ',(array)$IsbnIssn)}</opt></div></div>
                         <opt><row label="Localisation">$EtatCol</row></opt>
                         <opt><row label="Notes">$Notes</row></opt>
                     </case>
@@ -100,7 +100,7 @@
                         <opt><row label="Collection">$Col</row></opt>
                         <opt><row label="Notes">$Notes</row></opt>
                         <MTCNR />
-                        <opt><row label="ISBN">$IsbnIssn</row></opt>
+                        <Isbn />
                         <opt><row test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}" label="Producteur">$ProdFich</row></opt>
                     </case>
                     

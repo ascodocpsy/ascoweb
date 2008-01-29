@@ -40,6 +40,11 @@
     <opt><row label="Résumé">$Resu</row></opt>
 </template>
 
+<!--/* Template pour afficher l'ISBN */ -->
+<template match="//Isbn">
+    <opt><row label="ISBN">{implode(' / ',(array)$IsbnIssn)}</row></opt>
+</template>
+
 <!--/* Template pour afficher un <label> et une <div class="row"> dans une autre <div class="field"> */-->
 <template match="//row" label="" class="" value="" test="{true}">
     <div test="$test" class="row $class">
