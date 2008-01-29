@@ -2,7 +2,6 @@
 
 /**
  * Module Base - Consultation de la base documentaire
- * Transfert vers BisDatabase
  */
 
 class Base extends DatabaseModule
@@ -535,8 +534,6 @@ class Base extends DatabaseModule
 
     /**
      * Lance une recherche dans la base et affiche les réponses obtenues.
-     * Surcharge l'action Search de la classe DatabaseModule.
-     *
      */
     public function actionSearch()
     {
@@ -655,6 +652,48 @@ class Base extends DatabaseModule
         }
     }
 
+//    public function actionNewsletter()
+//    {
+//        global $selection;
+//
+//        header('content-type: text/plain');
+//        
+//        if (is_null($equation=Utils::get($_REQUEST['equation'], null)))
+//        {
+//            echo "return 'Les paramètres requis n'ont pas été indiqués.';";
+//            return;
+//        }
+//
+//        // Ouvre la sélection
+//        ob_start();
+//        $selection=self::openDatabase($equation);
+//        $h=ob_get_clean();
+//        if ($h!=='' or is_null($selection))
+//        { 
+//            echo "return 'Impossible d\'ouvrir la base de données :<br />".addslashes($h)."';";
+//            return;
+//        }
+//        
+//        // Détermine le template à utiliser
+//        if (! $template=$this->getTemplate('template'))
+//        {
+//            echo "return 'Le template à utiliser n'a pas été indiqué';";
+//            return;
+//        }
+//        
+//        // Détermine le callback à utiliser
+//        $callback=$this->getCallback();
+//
+//        // Exécute le template
+//        Template::run
+//        (
+//            $template,  
+//            array($this, $callback),
+//            'Base::newsletterCallback'
+//        );
+//        
+//    }
+    
     
     // ------------------- GESTION DU PANIER -------------------
     
@@ -1092,7 +1131,7 @@ class Base extends DatabaseModule
         $value=implode('',$value);
     }
     
-    // ------------------- IMPORT DE NOTICES -------------------
+    // ------------------- IMPORT DE NOTICES (ancienne version) -------------------
          
     // affiche la liste des fichiers à importer
     public function actionImport()
@@ -1397,7 +1436,6 @@ echo '</pre>';
                 $nbRefFields=0;
                 
                 Taskmanager::progress(ftell($f));
-                usleep(200);
 
                 // Ajoute la notice
                 $this->selection->addRecord();
@@ -1515,7 +1553,7 @@ echo '</pre>';
         $f=fopen($path,'r');
 
         // Lit la première ligne et supprime les espaces et les tabulations de début et fin
-        $fields=trim(fgets($f)," \t\r\n");
+        $fields=trim(fgets($f, 4096)," \t\r\n");
 
         // Vérifie que la ligne n'est pas vide
         if ($fields=='')
@@ -1557,6 +1595,215 @@ echo '</pre>';
         return true; 
     } 
     
-    // FIN IMPORT DE NOTICES
+    // FIN IMPORT DE NOTICES (ancienne version)
+    
+    
+    // NOUVELLE VERSION DE L'IMPORT DE NOTICES (ImportModule)
+    
+    /**
+     * Vérifie que le fichier chargé pour l'import est valide.
+     * 
+     * Les vérifications sont faites dans l'ordre suivant :
+     * - le fichier n'est pas vide
+     * - la première ligne du fichier n'est pas vide
+     * - la première ligne fait une longueur maximum qui correspond à la longueur
+     *   de l'ensemble des noms des champs de la base séparés par des tabulations
+     * - la première ligne contient des tabulations
+     * - la première ligne contient les noms des champs de la base
+     *
+     * @param string $path chemin du fichier à charger sur le serveur
+     * @return string|bool message de l'erreur ou true si le fichier est valide
+     */
+    public function checkImportFile($path)
+    {
+        // Vérifie que le fichier n'est pas vide
+        if (filesize($path) == 0)
+            return 'Le fichier est vide (zéro octets)';
+
+        // Ouvre le fichier
+        $f=fopen($path,'r');
+
+        // Lit la première ligne et supprime les espaces et les tabulations de début et fin
+        $fields=trim(fgets($f, 4096)," \t\r\n");
+
+        // Vérifie que la ligne n'est pas vide
+        if ($fields=='')
+            return 'La première ligne du fichier est vide.';
+        
+        // Calcule la longueur maximale de la première ligne (doit contenir les noms des champs)
+        // Ouvre la base de données et récupère les champs de la base
+        $this->openDatabase();
+        $dbFields=array_keys($this->selection->getStructure()->fields);
+        $maxLen=strlen(implode("\t",$dbFields));
+        
+        // Vérifie qu'elle fait moins de $maxLen
+        if (strlen($fields)>$maxLen)
+            return 'La première ligne du fichier fait plus de '.$maxLen.' caractères. Elle ne contient pas les noms des champs.';
+        
+        // Vérifie qu'elle contient des tabulations
+        if (strpos($fields,"\t")===false)
+            return 'La première ligne du fichier ne contient pas les noms de champs ou ne contient qu\'un seul nom.';
+        
+        // Vérifie que la première ligne contient les noms de champs
+        $fields=explode("\t",$fields);
+        foreach ($fields as & $value) $value=trim($value,' "'); // Supprime les guillemets qui entourent les champs
+        $dbFields=array_map('strtoupper',$dbFields);
+
+        if (count($t=array_diff($fields, $dbFields)) > 0)
+            return 'Champ(s) ' . implode(', ', array_values($t)) . ' non géré(s)';
+
+        // La première ligne du fichier contient bien les noms des champs, on lit
+        // maintenant le reste du fichier
+        
+        // Initialise le rapport d'erreurs du fichier
+        $report='';
+        
+        // Parcourt le fichier
+        $ligne=1;
+        while (($data=fgetcsv($f, 4096, "\t", '"')) !== false)
+        { 
+            $ligne++;
+            $err='';
+            
+            // Vérifie que la ligne n'est pas vide
+            $h=array_filter($data);
+            if (count($h)==0)
+            {
+                $err='la ligne est vide.';
+            }
+            
+            // Vérifie qu'il y a autant de champs que sur la première ligne
+            else
+            {
+                if (count($data)<>count($fields))
+                    $err='il n\'y a pas autant de champs que sur la première ligne du fichier (noms des champs).';
+            }
+            
+            // Met à jour le rapport d'erreurs
+            if ($err) $report.='Ligne '.$ligne.' : '.$err;
+        }
+        
+        // Il y a des erreurs
+        if ($report) return $report; 
+        
+        // Le fichier est valide
+        return true; 
+    } 
+    
+
+    public function importFile($path, $errorPath)
+    {
+        // Ouvre le fichier
+        if (false === $f=fopen($path,'r'))
+        {
+            $execReport.=date('d/m/Y, H:i:s').' : Impossible d\'ouvrir le fichier '. $path.'. Le fichier n\'a pas été importé.';
+            return array(false,$execReport);
+        }
+        
+        // Heure de début de l'import
+        $execReport='Début de l\'import : '.date('d/m/Y, H:i:s')."\n";
+        
+        // Ouvre la base de données en écriture
+        $this->openDatabase(false);
+
+        // Lit le fichier
+        //TaskManager::progress($nb.'. Import du fichier ' . $file['name'], filesize($file['path']));
+       
+        // Lit la première ligne et récupère le nom des champs
+        $fields=fgetcsv($f, 4096, "\t", '"');
+        
+        // Compte le nombre de champs
+        $nbFields=count($fields);
+
+        // Lit le fichier et met à jour la base
+        $nbRef=0;
+        while (($data=fgetcsv($f, 4096, "\t", '"')) !== false)
+        {
+            // Ignore les lignes vides
+            $h=array_filter($data);
+            if (count($h)==0) continue;
+
+            // Initialise le nombre de champ de la notice
+            $nbRefFields=0;
+            
+            //Taskmanager::progress(ftell($f));
+
+            // Ajoute la notice
+            $this->selection->addRecord();
+
+            foreach ($data as $i=>$v)
+            {
+                // Ignore les tabulations situées après le dernier champ
+                $nbRefFields++;
+                if ($nbRefFields>$nbFields) break;
+
+                // Minusculise le nom des champs 
+                // On n'a pas besoin de déterminer le nom du champ à partir  
+                // de la structure de la base car, pour $selection['X'], 
+                // X est insensible à la casse
+                $fieldname=strtolower($fields[$i]);
+                
+                $v=trim(str_replace('""', '"', $v));
+                
+                switch ($fieldname)                    
+                {
+                    // Champs articles : on transforme le contenu en tableau
+                    case 'aut':
+                    case 'motcle':
+                    case 'nomp':
+                    case 'candes':
+                    case 'edit':
+                    case 'lieu':
+                    case 'etatcol':
+                    case 'loc':
+                    case 'prodfich':
+                    case 'annexe':
+                        $v=($v=='') ? null : array_map("trim",explode(trim(self::SEPARATOR),$v));
+                        break;
+
+                    // Champs articles : on transforme le contenu en tableau
+                    case 'lienanne':
+                        // Pour le champ LienAnne (Adresses Internet des annexes),
+                        // le séparateur d'articles est le ' ; '
+                        $v=($v=='') ? null : array_map("trim",explode(' ; ',$v));
+                        break;
+
+                    default:
+                        if ($v=='') $v=null;
+                }
+                
+                $this->selection[$fieldname]=$v;
+            }
+            
+            // Initialisation des champs de gestion
+            // Dates de création et de dernière modification
+            $this->selection['Creation']=$this->selection['LastUpdate']=date('Ymd');
+            
+            // Statut de la notice
+            // Les notices importées sont à valider par un administrateur
+            $this->selection['Statut']='avalider';
+             
+            // Enregistre la notice
+            $this->selection->saveRecord();
+            $nbRef++;
+        }
+            
+        //TaskManager::progress('Fichier ' . $file['name'].' : '.$nbref.' notices intégrées');
+        
+        // Ferme le fichier
+        fclose($f);
+
+        // Ferme la base
+        //TaskManager::progress('Fermeture de la base... Veuillez patienter.');
+        unset($this->selection);
+
+        //TaskManager::progress('Import terminé');
+        // Import terminé : toutes les notices ont été importées
+        $execReport.='Fin de l\'import : '.date('d/m/Y, H:i:s').".\n";
+        $execReport.=$nbRef. ' notices ont été importées.';
+        return array(true, $execReport);
+    }
+    
+    
 }
 ?>
