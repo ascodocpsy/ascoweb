@@ -318,12 +318,11 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
     <div><hidden name="Type" value="$Type" /></div>
        
     /* Contenu spécifique à chaque type de document */
-    <switch test="{$Type}">
-   /* <switch test="{strtolower($Type)}">*/
+    <switch test="{strtolower($Type)}">
     
     /* TODO : factoriser le switch : Congrès et Livre presque identiques */
     
-        <case test="Article">
+        <case test="article">
             <AutTit titLabel="Titre de l'article *" />
             <Date />
             <MentionsBib pageName="PdPf" pageLabel="Page début-fin *" />
@@ -335,7 +334,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <script type="text/javascript">ctrlInitialize("ControlsArticle");</script>      
         </case>
         
-        <case test="Congrès">
+        <case test="congrès">
             <AutTit titLabel="Titre du document *" />
             <Congres mandatory="{true}" />
 			<Date />
@@ -360,7 +359,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <script type="text/javascript">ctrlInitialize("ControlsCongres");</script>
         </case>
         
-        <case test="Livre">
+        <case test="livre">
             <AutTit titLabel="Titre du document *" />
             <Congres />
 			<Date />
@@ -385,7 +384,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <script type="text/javascript">ctrlInitialize("ControlsLivre");</script>        
         </case>
         
-        <case test="{$Type === 'Mémoire' || $Type === 'Thèse'}">
+        <case test="{strtolower($Type)==='mémoire' || strtolower($Type)==='thèse'}">
             <AutTit />
             <fieldset label="Spécialité du diplôme *">
                 <text name="DipSpe" rows="1" class="fullwidth autoheight mandatory" />
@@ -414,7 +413,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <script type="text/javascript">ctrlInitialize("ControlsMemoire");</script>
         </case>
         
-        <case test="Périodique">
+        <case test="périodique">
             <fieldset label="Titre du périodique *">
                 <text name="Rev" rows="1" class="fullwidth autoheight mandatory" />
                 <help name="Rev" />
@@ -438,7 +437,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <script type="text/javascript">ctrlInitialize("ControlsPeriodique");</script>
         </case>
         
-        <case test="Rapport">
+        <case test="rapport">
             <AutTit />
             <Date />
             <fieldset label="Nombre de pages">
@@ -469,7 +468,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <script type="text/javascript">ctrlInitialize("ControlsRapport");</script>
         </case>
         
-        <case test="Texte officiel">
+        <case test="texte officiel">
             <fieldset label="Nature du texte officiel *">
                 <fill values="$NatText"><radiolist name="NatText" src="new TextTable($this->path.'../../tables/nattext.txt')" class="mandatory" /></fill>
             </fieldset>
