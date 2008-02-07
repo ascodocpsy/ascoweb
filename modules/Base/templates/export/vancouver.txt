@@ -15,9 +15,9 @@
     
 */<div test="{false}">
     
-    <template match="//AutTit"><opt>$Aut</opt>$nl<opt>$Tit</opt>$nl</template>
+    <template match="//AutTit"><opt min="2">$Aut$nl</opt><opt min="2">$Tit$nl</opt></template>
     
-    <template match="//Date"><opt> ; $Date</opt></template>
+    <template match="//Date" sep=", "><opt>$sep$Date</opt></template>
     
     <template match="//LieuEdit"><if test="{$Lieu}">{implode('/',(array)$Lieu)}<opt> : {implode('/',(array)$Edit)}</opt></if><else><opt>{implode('/',(array)$Edit)}</opt></else></template>
     
@@ -34,26 +34,23 @@
     <case test="article"><AutTit />$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $PdPf.</opt>$nl<Lien /></case>
 
 
-    <case test="congrès"><AutTit /><opt>$CongrTit<opt>, n°$CongrNum</opt><opt> ; $CongrDat</opt><opt> ; $CongrLie</opt>.$nl</opt><LieuEdit /><Date />.$nl<Lien /></case>
+    <case test="congrès"><AutTit /><opt min="2">$CongrTit<opt>, n°$CongrNum</opt><opt>, $CongrDat</opt><opt>, $CongrLie</opt>.$nl</opt><LieuEdit /><Date />.$nl<Lien /></case>
 
 
-    <case test="livre"><AutTit /><LieuEdit /><Date />.$nl<Lien /></case>
+    <case test="livre"><AutTit /><LieuEdit /><Date sep=" ; " />.$nl<Lien /></case>
 
 
-    <case test="{strtolower($Type)=='mémoire' || strtolower($Type)=='thèse'}"><AutTit/><opt>{implode('/',(array)$Lieu)}</opt><opt> : $DipSpe</opt><Date />.$nl<Lien /></case>
+    <case test="{strtolower($Type)=='mémoire' || strtolower($Type)=='thèse'}"><AutTit/><opt>{implode('/',(array)$Lieu)}</opt><opt> : $DipSpe</opt><Date sep=" ; " />.$nl<Lien /></case>
 
+    <case test="rapport"><AutTit /><if test="{$Rev}">$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $Page.$nl</opt></if>
+        <else><if test="{$Lieu || $Edit}"><LieuEdit /><Date />.$nl</if><else><opt min="2">$Date.$nl</opt></else>
+        </else><Lien /></case>
 
-    <case test="rapport"><AutTit /><if test="{$Lieu || $Edit}"><LieuEdit /><Date />.$nl</if>
-        <else>$Date.$nl</else><if test="{$Rev}">$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $Page.</opt></if><Lien /></case>
+    <case test="texte officiel">$Tit{$nl}<opt min="2">$Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.$nl</opt><Lien /></case>
 
+    <case test="périodique">$Rev$nl<opt min="2">$Notes$nl</opt><opt min="2">ISSN : {implode(' / ',(array)$IsbnIssn)}{$nl}</opt><opt min="2">{implode($nl,(array)$EtatCol)}{$nl}</opt></case> 
 
-    <case test="texte officiel">$Tit<opt>$nl$Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.$nl</opt><Lien /></case>
-
-
-    /* Pas de format d'export Vancouver pour les documents de type Périodique */
-    
-    <default>Aucun format d'export n'est disponible pour ce type de document ($Type)
-</default>  
+    <default>Aucun format d'export n'est disponible pour ce type de document ($Type)</default>  
 
 </switch>$nl</loop>/*
 

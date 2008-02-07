@@ -13,15 +13,19 @@
     Templates match utilisés
 
 */<div test="{false}">
+
+<template match="//header"
+    ><def name="first" value="{true}" /><loop on="$this->selection->record" as="$field,$value"><if test="{! in_array($field,(array)Config::get('formats.'.$format.'.ignore'))}">{$first ?'':"\t"}{strtoupper($field)}<def name="first" value="{false}" /></if></loop>$nl</template>
+    
 <template match="//recordcsv"
-    ><loop on="$record" as="$field,$value">{
+    ><def name="first" value="{true}" /><loop on="$record" as="$field,$value"><if test="{! in_array($field,(array)Config::get('formats.'.$format.'.ignore'))}">{$first ?'':"\t"}{
          Utils::csvQuote
             (
                 is_array($value)
                 ?
                     (is_array(Config::get("formats.$format.sep"))
                     ? 
-                        ( Config::get("formats.$format.sep.$field") 
+                        ( Config::get("formats.$format.sep.$field")
                         ? implode(Config::get("formats.$format.sep.$field"),$value)
                         : implode(Config::get("formats.$format.sep.default"),$value)
                         )
@@ -29,12 +33,10 @@
                     )
                 : $value
             )
-            }{"\t"}</loop>
-</template>
+            }<def name="first" value="{false}" /></if></loop>$nl</template>
 </div>/*
 
 
     Boucle d'export des notices
     
-*/<loop on="$this->selection->record" as="$field,$value">$field{"\t"}</loop>$nl<loop on="$this->selection" as="$record"><recordcsv />
-</loop>
+*/<header /><loop on="$this->selection" as="$record"><recordcsv /></loop>
