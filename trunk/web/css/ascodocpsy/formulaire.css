@@ -335,9 +335,19 @@ li.record label.textarea
 	padding-right: 0em;
 }
 
+li.record.incart
+{
+    background-color: #ccc;
+}
+
 li.record:hover
 {
     background-color:#FFFFE7;
+}
+
+li.record.incart:hover
+{
+    background-color:#ccc;
 }
 
 /* Lien vers "Voir la notice" */
@@ -347,7 +357,7 @@ a.fullrecord
     padding-left: 32px;
     padding-top: 32px;
 /*    background: url('voir.png') no-repeat center center;*/
-    border: 1px solid white;
+/*    border: 1px solid white;*/
 	height: 0;
 }
 li.record:hover a.fullrecord
@@ -372,7 +382,7 @@ a.loadrecord
     padding-top: 32px;
 	margin-right: 1em;
 /*    background: url('modifier.png') no-repeat center center;*/
-    border: 1px solid white;
+/*    border: 1px solid white;*/
     height: 0;
 }
 li.record:hover a.loadrecord
@@ -387,7 +397,7 @@ a.locate
 	padding-left: 12px;
 	padding-top: 1px;
 	background: url('loc.png') no-repeat left center;
-    border: 1px solid white;
+/*    border: 1px solid white;*/
 }
 
 /* Lien vers "Présentation du périodique" */
@@ -397,7 +407,7 @@ a.inform
 	padding-left: 12px;
 	padding-top: 1px;
 	background: url('inform.png') no-repeat left center;
-    border: 1px solid white;
+/*    border: 1px solid white;*/
 }
 
 /* Texte des liens caché - remplacé par des images */
@@ -408,7 +418,7 @@ a.inform span
 {
 	display: none;
 }
-
+/*
 a.fullrecord:hover, 
 a.loadrecord:hover,
 a.locate:hover,
@@ -417,7 +427,7 @@ a.inform:hover
     border: 1px solid #ccc;
     background-color: white;
 }
-
+*/
 /* Liste des actions possibles sur les notices (exporter, supprimer, etc.) */
 div.menubase
 {
