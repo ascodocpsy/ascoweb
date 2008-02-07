@@ -816,7 +816,7 @@ class Base extends DatabaseModule
                 // Récupère le format d'export
                 $format=Utils::get($_REQUEST['_format']);
                 
-                $i=6;
+                $i=6;   // On n'affiche que les 6 premiers auteurs et on met 'et al.'
                 if (count($value)>$i)
                 {
                     $value=array_slice($value,0,$i);
@@ -825,7 +825,9 @@ class Base extends DatabaseModule
                 }
                 else
                 {
-                    $value=implode(Config::get("formats.$format.sep"),$value).'.';
+                    $value=implode(Config::get("formats.$format.sep"),$value);
+                    // N'ajoute pas de point final, si on a une mention d'auteur (Dir.)
+                    if (substr($value,-1,1)!='.') $value.='.';  
                 }   
                 return $value;
                 
@@ -1709,9 +1711,9 @@ echo '</pre>';
         // Ouvre la base de données en écriture
         $this->openDatabase(false);
 
-        // Lit le fichier
-        //TaskManager::progress($nb.'. Import du fichier ' . $file['name'], filesize($file['path']));
-       
+        // Stocke la taille du fichier pour la barre de progression
+        $filesize=filesize($path);
+        
         // Lit la première ligne et récupère le nom des champs
         $fields=fgetcsv($f, 4096, "\t", '"');
         
@@ -1719,9 +1721,12 @@ echo '</pre>';
         $nbFields=count($fields);
 
         // Lit le fichier et met à jour la base
-        $nbRef=0;
+        $nbRef=$firstRef=$lastRef=0;
         while (($data=fgetcsv($f, 4096, "\t", '"')) !== false)
         {
+            // Met à jour la barre de progression
+            Taskmanager::progress(ftell($f), $filesize);
+            
             // Ignore les lignes vides
             $h=array_filter($data);
             if (count($h)==0) continue;
@@ -1729,8 +1734,6 @@ echo '</pre>';
             // Initialise le nombre de champ de la notice
             $nbRefFields=0;
             
-            //Taskmanager::progress(ftell($f));
-
             // Ajoute la notice
             $this->selection->addRecord();
 
@@ -1788,20 +1791,25 @@ echo '</pre>';
             $this->selection['Statut']='avalider';
              
             // Enregistre la notice
-            $this->selection->saveRecord();
+            if ($firstRef===0)
+                $firstRef=$this->selection->saveRecord();
+            else
+                $lastRef=$this->selection->saveRecord();
+                
             $nbRef++;
         }
             
-        //TaskManager::progress('Fichier ' . $file['name'].' : '.$nbref.' notices intégrées');
-        
         // Ferme le fichier
         fclose($f);
 
+        echo '<p>', $nbRef, ' notices importées (REF ', $firstRef, ' à ', $lastRef, ')</p>';
+        
         // Ferme la base
-        //TaskManager::progress('Fermeture de la base... Veuillez patienter.');
         unset($this->selection);
 
-        //TaskManager::progress('Import terminé');
+        // Ferme la barre de progression
+        Taskmanager::progress();
+        
         // Import terminé : toutes les notices ont été importées
         $execReport.='Fin de l\'import : '.date('d/m/Y, H:i:s').".\n";
         $execReport.=$nbRef. ' notices ont été importées.';
