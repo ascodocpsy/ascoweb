@@ -31,13 +31,13 @@
          <div class="texte">
             <ul>
                 <li><a href="/Base/SearchForm">Rechercher des documents</a></li>
+                <li><a href="/ThesaurusModule">Thesaurus SantéPsy</a></li>
                 <if test="{User::hasAccess('Edit,Admin')}">
                     <li id="caddie"><a href="/Ascocart/Show">Voir mon panier</a></li>
                     <li><a href="/Base/New">Créer une nouvelle notice</a></li>
-                    <li><a href="/Base/Import">Importer des notices</a></li>
+                    <li><a href="/ImportAsco">Importer des notices</a></li>
                 </if>
                 <if test="{User::hasAccess('Admin')}">
-                    <li><a href="/ConfigModule/">Configuration</a></li>
                     <li><a href="/TaskManager/">Gestionnaire de tâches</a></li>
                 </if>
             </ul>
