@@ -120,22 +120,15 @@
     </ul>
 </div>
 
-<style>
-.transferProduct
-\{
-	border: 1px solid #cc0;
-/*    background-color: #FFFFC0;*/
-\}
-</style>
-
 <script>
 function init()
 \{
     // Lien "ajouter cette notice au caddie"
-    jQuery('a.addtocart').click(function()
+    jQuery('a.addtocart').click(function(e)
     \{
-        jQuery.post(jQuery(this).attr('href'));
-        jQuery(this).hide('normal', function()\{jQuery(this).show()\});
+        jQuery.post(this.href);
+        jQuery(this.parentNode).addClass('incart'); // parent=le li.record englobant
+        jQuery(this).remove();
         return false;
     \});
 

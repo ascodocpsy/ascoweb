@@ -33,7 +33,7 @@
     <searchinfo for="InternalFinalQuery" />  
     <searchinfo for="SortOrder" />
 </slot>
-<div id="cartinfo" style="background-color: yellow; color: red; display: none; font-size: 1.5em; text-align: center; border: 1px solid red;">here</div>
+
 <div class="texte">
     /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
     <if test="{!Config::get('incart',false)}">
@@ -53,50 +53,6 @@
 </div>
 
 <script>
-function position(element, property)
-\{
-    var offset=0;
-    while (element)
-    \{
-        offset += element[property]; 
-        element=element.offsetParent;
-    \}
-    return offset;
-\};
-
-jQuery.fn.fly=function()\{
-    return this.each(function()\{
-        var left=0,top=0, element=this;
-        
-        while (element)
-        \{
-            left += element['offsetLeft']; 
-            top += element['offsetTop']; 
-            element=element.offsetParent;
-        \};
-        
-        e=jQuery(this);
-        var oldLeft=e.css('left'), oldTop=e.css('top'), oldPos=e.css('position');
-        
-        e
-        .css('left',left)
-        .css('top',top)
-        .css('position','absolute')
-        .animate
-        (
-            \{
-                top: 0,/*document.documentElement.scrollTop,*/
-                left: 0 /*jQuery('body').width() */
-            \},
-            'normal',
-            function()
-            \{
-                jQuery(this).css('position',oldPos).css('top',oldTop).css('left',oldLeft)
-            \}    
-        );
-    \});    
-\};
-
 function init()
 \{
     jQuery('.navbar a').click(function()\{
@@ -106,33 +62,25 @@ function init()
         return false;
     \})
     
-    var cartinfo=function(data)
-    \{
-        jQuery('#cartinfo')
-            .html(data)
-            .slideDown
-            (
-                'normal', 
-                function()
-                \{
-                    window.setTimeout
-                    (
-                        function()
-                        \{
-                            jQuery('#cartinfo').slideUp('normal')
-                        \},
-                        2000
-                    )
-                \}
-            );
-    \}
-    
     // Lien "ajouter cette notice au caddie"
     jQuery('a.addtocart').click(function(e)
     \{
-        jQuery.post(jQuery(this).attr('href'), null, cartinfo);
-        
-        jQuery(this).fly();
+        jQuery.post(this.href);
+        jQuery(this.parentNode).addClass('incart'); // parent=le li.record englobant
+        jQuery(this).remove();
+/*
+version dynamique : le add devient un delete et vice versa        
+        if (jQuery(this).hasClass('addtocart'))
+        \{
+            jQuery(this).removeClass('addtocart').addClass('removefromcart').attr('href', this.href.replace('Ajouter','Supprimer')).attr('title', 'Supprimer du panier');
+            jQuery(this.parentNode).addClass('incart'); // parent=le li.record englobant
+        \}
+        else
+        \{
+            jQuery(this).removeClass('removefromcart').addClass('addtocart').attr('href', this.href.replace('Supprimer','Ajouter')).attr('title', 'Ajouter au panier');
+            jQuery(this.parentNode).removeClass('incart'); // parent=le li.record englobant
+        \}
+*/
         return false;
     \});
 
@@ -148,10 +96,12 @@ function init()
             url: jQuery(this).attr('action'),
             type: jQuery(this).attr('method'),
             data: jQuery('input:hidden', this).serialize(),
-            success: cartinfo
-        \});
-        
-        jQuery('a.addtocart').fly();
+            success: function()\{
+                jQuery('li.record').css('opacity','0.5');
+                jQuery('a.addtocart').css('display','none');
+                jQuery('input.addall').css('display','none');
+            \}
+        \});        
         return false;
     \});
 \}
