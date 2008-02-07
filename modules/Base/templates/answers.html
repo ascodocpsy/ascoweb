@@ -150,8 +150,8 @@
             <li><a href="export?_equation={urlencode($this-&gt;equation)}">Exporter toutes les notices</a></li>
             <li><a href="exportbytype?_equation={urlencode($this-&gt;equation)}">Exporter par type de document</a></li>
             <li test="{User::hasAccess('AdminBase')}"><a href="replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans toutes les notices...</a></li>
-            <li test="{User::hasAccess('AdminBase')}"><a href="delete?_equation={urlencode($this-&gt;equation)}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer toutes les notices obtenues ?'));">Supprimer toutes les notices</a></li>
+/*            <li test="{User::hasAccess('AdminBase')}"><a href="ConfirmDelete?_equation={urlencode($this-&gt;equation)}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer toutes les notices obtenues ?'));">Supprimer toutes les notices</a></li>*/
+            <li test="{User::hasAccess('AdminBase')}"><a href="ConfirmDelete?_equation={urlencode($this-&gt;equation)}">Supprimer toutes les notices</a></li>
         </ul>
     </div>
 </slot>
-
