@@ -10,33 +10,74 @@
 */<def name="nl" value='{"\r\n"}' />/*
 
 
+    Charge les paramètres du format
+
+*/<def name="fmt" value="{Config::get('formats.'.$format)}" />/*
+
+    
+    Définit la liste des champs de la base à exporter
+
+*/<def 
+    name="fields" 
+    value="{
+        array_diff_key
+        (
+            $this->selection->getStructure()->fields, 
+            array_flip
+            (
+                array_map
+                (
+                    'strtolower', 
+                    (array) $fmt['ignore']
+                )
+            )
+        )
+    }"
+    />/*
+
+
     Templates match utilisés
 
 */<div test="{false}">
 
 <template match="//header"
-    ><def name="first" value="{true}" /><loop on="$this->selection->record" as="$field,$value"><if test="{! in_array($field,(array)Config::get('formats.'.$format.'.ignore'))}">{$first ?'':"\t"}{strtoupper($field)}<def name="first" value="{false}" /></if></loop>$nl</template>
-    
-<template match="//recordcsv"
-    ><def name="first" value="{true}" /><loop on="$record" as="$field,$value"><if test="{! in_array($field,(array)Config::get('formats.'.$format.'.ignore'))}">{$first ?'':"\t"}{
-         Utils::csvQuote
-            (
-                is_array($value)
-                ?
-                    (is_array(Config::get("formats.$format.sep"))
-                    ? 
-                        ( Config::get("formats.$format.sep.$field")
-                        ? implode(Config::get("formats.$format.sep.$field"),$value)
-                        : implode(Config::get("formats.$format.sep.default"),$value)
-                        )
-                    : implode(Config::get("formats.$format.sep"),$value)
-                    )
-                : $value
-            )
-            }<def name="first" value="{false}" /></if></loop>$nl</template>
+    ><def name="tab" value="{''}" /><loop on="$fields" as="$field">{$tab}{strtoupper($field->name)}<def name="tab" value='{"\t"}' /></loop>$nl</template>
+
 </div>/*
 
 
     Boucle d'export des notices
+  
+  ;; Ligne d'entête
+*/<def name="tab" value="{''}" />/*
+*/<loop on="$fields" as="$field">/*
+    */{$tab}{strtoupper($field->name)}/*
+    */<def name="tab" value='{"\t"}' />/*
+*/</loop>$nl/*
+
+  ;; Pour chaque enreg
+*/<loop on="$this->selection" as="$record">/*
+    */<def name="tab" value="{''}" />/*
     
-*/<header /><loop on="$this->selection" as="$record"><recordcsv /></loop>
+      ;; Pour chaque champ
+    */<loop on="$fields" as="$field">$tab/*
+       */<def name="sep" value="{
+            (is_array($fmt['sep']))
+            ? $fmt['sep'][ isset($fmt['sep'][$field->name]) ? $field->name : 'default']
+            : $fmt['sep']
+       }" />/*
+       */{
+            Utils::csvQuote
+            (
+                implode
+                (
+                    $sep,
+                    (array)$record[$field->name]
+                )
+            )
+
+         }/*
+        */<def name="tab" value='{"\t"}' />/*
+    */</loop>/*
+    */$nl/*
+*/</loop>
