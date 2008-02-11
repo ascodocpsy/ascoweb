@@ -1,35 +1,3 @@
-<small>
-    Suggestions :
-    <ul>
-        <loop 
-            on="array
-                (
-                    'mots-clés'=>array('descripteurs', 'motscles'),
-                    'thèmes'=>array('themes', 'motscles'),
-                    'revues'=>array('revues', 'rev'),
-                    'éditeurs'=>array('editeurs', 'edit'),
-                    'auteurs'=>array('auteurs', 'aut'),
-                    'noms propres'=>array('nomspropres', 'motscles'),
-                    'candes'=>array('candes', 'motscles'),
-                    'diplômes'=>array('diplomes', 'dipspe')
-                )"
-            as="$label,$t">
-            <opt min="2">
-                <li>$label : 
-                    <loop on="$this->selection->suggestTerms($t[0])" as="$i,$term">
-                        /*
-                        Ancienne version :
-                        {$i>0 ? ' / ': ''}<a href="search?_equation={urlencode($t[1].':['.$term. '] et ('.$this->equation.')')}">$term</a>
-                        Nouvelle version DM :
-                        */
-                        {$i>0 ? ' / ': ''}<a href="?{$t[1]}=[{urlencode($term)}]&amp;_equation={urlencode($this->equation)}">$term</a>
-                    </loop>
-                </li>
-            </opt>
-        </loop>
-    </ul>
-</small>
-
 <hr />
 
 <big style="float:right;">{$this->getSimpleNav()}</big>
