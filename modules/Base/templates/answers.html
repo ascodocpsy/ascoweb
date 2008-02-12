@@ -12,7 +12,7 @@
 </div>
 <hr style="clear:right;" />
 
-<ul class="shortlist">
+<ol class="shortlist" start="{$this->selection->searchInfo('rank')}">
     <loop on="{$this->selection}" as="$rank, $record">
         <li class="record">
 
@@ -99,7 +99,7 @@
         <searchinfo for="SortKey" />  
         <hr />
     </loop>
-</ul>
+</ol>
 
 <big style="float:right;">{$this->getSimpleNav()}</big>
 
@@ -122,6 +122,7 @@
             <li test="{User::hasAccess('AdminBase')}"><a href="/{$this->module}/replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans toutes les notices...</a></li>
 /*            <li test="{User::hasAccess('AdminBase')}"><a href="/{$this->module}/ConfirmDelete?_equation={urlencode($this-&gt;equation)}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer toutes les notices obtenues ?'));">Supprimer toutes les notices</a></li>*/
             <li test="{User::hasAccess('AdminBase')}"><a href="/{$this->module}/ConfirmDelete?_equation={urlencode($this-&gt;equation)}">Supprimer toutes les notices</a></li>
+            <li test="{User::hasAccess('AdminBase')}"><a href="/{$this->module}/ValidateAll">Valider toutes les notices</a></li>
         </ul>
     </div>
 </slot>
