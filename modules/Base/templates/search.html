@@ -1,7 +1,10 @@
 /*
-<script language="javascript" type="text/javascript" 
-            src="/fabweb/js/lib/firebug/firebug.js"></script>
-*/          
+<template match="//form/autosave" name="">
+    <def name="form_uniq_id" value="{autoId('form').crc32($this->request)}" />
+    <input type="hidden" name="_autosave" value="$form_uniq_id" />
+    Données enregistrées dans la session pour le formulaire "$form_uniq_id" :<pre>{var_export($this->formData($form_uniq_id),true)}</pre>
+</template>
+*/
 <if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
     <div class="titre">Base SantéPsy - Recherche - Accès administrateur</div>
 </if>
@@ -11,193 +14,199 @@
 <else>
     <div class="titre">Base SantéPsy - Recherche - Accès public</div>
 </else>
-
 <div class="texte">
-
-<form class="form search" action="search" method="get">
-    <div>
-        <if test="{User::hasAccess('AdminBase')}">
-            <textbox name="_equation" label="Recherche dans toute la base" rows="2" />
-        </if>
-        <else>
-            <textbox name="_equation" label="Recherche dans toute la base" />
-        </else>
-    </div>
+    <form class="form search" action="search" method="get">
+/*        <autosave /> */
+        <div>
+            <if test="{User::hasAccess('AdminBase')}">
+                <textbox name="_equation" label="Recherche dans toute la base" rows="2" />
+            </if>
+            <else>
+                <textbox name="_equation" label="Recherche dans toute la base" />
+            </else>
+        </div>
+        
+        <div>
+            <textbox name="MotsCles" label="Descripteurs" rows="2" />
+            <p class="exemple"><a href="http://www.ascodocpsy.org/article.php3?id_article=691" target="_blank" title="Consulter le thesaurus SantéPsy (nouvelle fenêtre)">Consultez les descripteurs utilisés dans la base SantéPsy</a></p>
+        </div>
     
-    <div>
-        <textbox name="MotsCles" label="Descripteurs" rows="2" />
-        <p class="exemple"><a href="http://www.ascodocpsy.org/article.php3?id_article=691" target="_blank" title="Consulter le thesaurus SantéPsy (nouvelle fenêtre)">Consultez les descripteurs utilisés dans la base SantéPsy</a></p>
-    </div>
-
-    <div>
-        <textbox name="Titres" label="Titre ou mots du titre" />
-    </div>
+        <div>
+            <textbox name="Titres" label="Titre ou mots du titre" />
+        </div>
+        
+        <div>
+            <textbox name="Aut" label="Auteur" />
+        </div>
+        
+        <div>
+            <textbox name="Resu" label="Résumé" />
+        </div>
     
-    <div>
-        <textbox name="Aut" label="Auteur" />
-    </div>
+        <div>
+            <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+                <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/type.txt')" />
+            </if>
+            <else>
+                <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/public_type.txt')" />
+            </else>
+        </div>
     
-    <div>
-        <textbox name="Resu" label="Résumé" />
-    </div>
-
-    <div>
-        <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-            <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/type.txt')" />
-        </if>
-        <else>
-            <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/public_type.txt')" />
-        </else>
-    </div>
-
-    /* TODO : quickTable ? */
-    <div>
-        <checklist name="_equation" label="Texte intégral" src="array(array('code'=>'(Liens:__has* NOT Type:Periodique)', 'label'=>'Documents en ligne uniquement'))" />
-    </div>
-
-    <div>
-        <select name="NatText" label="Nature du texte officiel" src="new TextTable($this->path.'../../tables/nattext.txt')" size="3" multiple="true" />
-        <div class="infonatext">
+        /* TODO : quickTable ? */
+        <div>
+            <checklist name="_equation" label="Texte intégral" src="array(array('code'=>'(Liens:__has* NOT Type:Periodique)', 'label'=>'Documents en ligne uniquement'))" />
+        </div>
+    
+        <div>
+            <select name="NatText" label="Nature du texte officiel" src="new TextTable($this->path.'../../tables/nattext.txt')" size="3" multiple="true" />
+            <div class="infonatext">
+                <p class="exemple">
+                    Pour sélectionner plusieurs types de texte officiel,
+                    appuyez sur la touche contrôle (Ctrl) et cliquez sur 
+                    les types souhaités. Procéder de même pour désélectionner.
+                </p>
+            </div>
+        </div>
+    
+        <div>
+            <textbox name="DateText" label="Date du texte officiel" class="smallbox"/>
             <p class="exemple">
-                Pour sélectionner plusieurs types de texte officiel,
-                appuyez sur la touche contrôle (Ctrl) et cliquez sur 
-                les types souhaités. Procéder de même pour désélectionner.
+                Format : [AAAA-MM-JJ] ou [AAAA-MM*] ou [AAAA*]
             </p>
         </div>
-    </div>
-
-    <div>
-        <textbox name="DateText" label="Date du texte officiel" class="smallbox"/>
-        <p class="exemple">
-            Format : [AAAA-MM-JJ] ou [AAAA-MM*] ou [AAAA*]
-        </p>
-    </div>
-
-    <div>
-        <textbox name="Rev" label="Titre du périodique" />
-    </div>
-
-	<div>		
-        <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" class="smallbox" />
-    </div>
-
-    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-        <textbox name="Vol" label="Numéro de volume" class="smallbox" />
-    </div>
     
-    <div>
-        <checklist name="Dates" label="Date du document" src="new TextTable($this->path.'../../tables/date.txt')" />
-
-        <div class="date">
-			<textbox name="Dates" label="Autre date" />
-		</div>
-    </div>
-    
-    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-        <textbox name="Edit" label="Editeur" />
-    </div>
-    
-    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-        <textbox name="Col" label="Collection" />
-    </div>
-    
-    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-        <textbox name="IsbnIssn" label="ISBN, ISSN" />
-        <p class="exemple">
-            ISBN : 2-294-00377-2, ISSN : 4444-7564
-        </p>
-    </div>   
-    
-    <div test="{User::hasAccess('AdminBase')}">
-        <textbox name="DipSpe" label="Spécialité du diplôme" />
-    </div>
-    
-    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-        <textbox name="Loc" label="Localisation" class="smallbox" />
-    </div>
-    
-    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-        <textbox name="ProdFich" label="Producteur" class="smallbox" />
-        <p class="exemple">
-            Producteur, localisation : format="asco5"
-        </p>
-    </div>
-    
-    <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-        <checklist name="Statut" label="Statut de la notice" src="new TextTable($this->path.'../../tables/statut.txt')" />
-    </div>
-
-    <div test="{User::hasAccess('AdminBase')}">
-        <textbox name="Creation" label="Date de création" class="smallbox" />
-    </div>
-
-    <div test="{User::hasAccess('AdminBase')}">
-        <textbox name="LastUpdate" label="Date de mise à jour" class="smallbox" />
-        <p class="exemple">
-            Exemples : 2006*, 200612*, 20061215
-        </p>
-    </div>
-
-    <div>
-        <label class="text">Options</label>
         <div>
-            Réponses par page : 
-            <select name="_max">
-                <option selected="selected">10</option>
-                <option>50</option>
-                <option>100</option>
-                <option>500</option>
-            </select>
-        
-            Ordre de tri :
-/*
-            <select name="_sort" 
-                src="{
-                        array
-                        (
-                            array('code'=>'%', 'label'=>'par pertinence'),
-                            array('code'=>'-', 'label'=>'docid décroissants'),
-                            array('code'=>'+', 'label'=>'docid croissants'),
-                        )
-                    }" />
-*/
-/*
-    Version produisant la liste complète ed tous les critères de tri possible                    
-            <select name="_sort">
-                <option value="%">Par pertinence</option>
-                <option value="-">Date d'ajout de la notice (décroissant)</option>
-                <option value="+">Date d'ajout de la notice (croissant)</option>
-                <loop on="{$this->selection->getStructure()->sortkeys}" as="$sortkey">
-                    <option value="{$sortkey->name}">Par {$sortkey->label:$sortkey->name} (croissant)</option>
-                    <option value="{$sortkey->name}">Par {$sortkey->label:$sortkey->name} (décroissant)</option>
-                    <option value="%{$sortkey->name}">Par pertinence puis par {$sortkey->label:$sortkey->name} (croissant)</option>
-                    <option value="%{$sortkey->name}">Par pertinence puis par {$sortkey->label:$sortkey->name} (décroissant)</option>
-                    <option value="{$sortkey->name}%">Par {$sortkey->label:$sortkey->name} (croissant) puis par pertinence</option>
-                    <option value="{$sortkey->name}%">Par {$sortkey->label:$sortkey->name} (décroissant) puis par pertinence</option>
-                </loop>
-            </select>
-*/
-            <select name="_sort">
-                <loop on="{$this->selection->getStructure()->sortkeys}" as="$sortkey">
-                    <option value="{$sortkey->name}">{$sortkey->label:$sortkey->name}</option>
-/*                    <option value="{$sortkey->name}+%">{$sortkey->label:$sortkey->name} puis par pertinence</option>*/
-                </loop>
-                <option value="%">Pertinence</option>
-                <option value="-">Ordre de la base</option>
-            </select>
+            <textbox name="Rev" label="Titre du périodique" />
         </div>
-    </div>    
-    <div class="buttons">
-        <submit label="Rechercher" />
-    </div>
     
-</form>
+    	<div>		
+            <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" class="smallbox" />
+        </div>
+    
+        <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+            <textbox name="Vol" label="Numéro de volume" class="smallbox" />
+        </div>
+        
+        <div>
+            <checklist name="Dates" label="Date du document" src="new TextTable($this->path.'../../tables/date.txt')" />
+    
+            <div class="date">
+    			<textbox name="Dates" label="Autre date" />
+    		</div>
+        </div>
+        
+        <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+            <textbox name="Edit" label="Editeur" />
+        </div>
+        
+        <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+            <textbox name="Col" label="Collection" />
+        </div>
+        
+        <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+            <textbox name="IsbnIssn" label="ISBN, ISSN" />
+            <p class="exemple">
+                ISBN : 2-294-00377-2, ISSN : 4444-7564
+            </p>
+        </div>   
+        
+        <div test="{User::hasAccess('AdminBase')}">
+            <textbox name="DipSpe" label="Spécialité du diplôme" />
+        </div>
+        
+        <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+            <textbox name="Loc" label="Localisation" class="smallbox" />
+        </div>
+        
+        <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+            <textbox name="ProdFich" label="Producteur" class="smallbox" />
+            <p class="exemple">
+                Producteur, localisation : format="asco5"
+            </p>
+        </div>
+        
+        <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
+            <checklist name="Statut" label="Statut de la notice" src="new TextTable($this->path.'../../tables/statut.txt')" />
+        </div>
+    
+        <div test="{User::hasAccess('AdminBase')}">
+            <textbox name="Creation" label="Date de création" class="smallbox" />
+        </div>
+    
+        <div test="{User::hasAccess('AdminBase')}">
+            <textbox name="LastUpdate" label="Date de mise à jour" class="smallbox" />
+            <p class="exemple">
+                Exemples : 2006*, 200612*, 20061215
+            </p>
+        </div>
+    
+        <div>
+            <label class="text">Options</label>
+            <div>
+                Réponses par page : 
+                <select name="_max">
+                    <option selected="selected">10</option>
+                    <option>50</option>
+                    <option>100</option>
+                    <option>500</option>
+                </select>
+            
+                Ordre de tri :
+    /*
+                <select name="_sort" 
+                    src="{
+                            array
+                            (
+                                array('code'=>'%', 'label'=>'par pertinence'),
+                                array('code'=>'-', 'label'=>'docid décroissants'),
+                                array('code'=>'+', 'label'=>'docid croissants'),
+                            )
+                        }" />
+    */
+    /*
+        Version produisant la liste complète ed tous les critères de tri possible                    
+                <select name="_sort">
+                    <option value="%">Par pertinence</option>
+                    <option value="-">Date d'ajout de la notice (décroissant)</option>
+                    <option value="+">Date d'ajout de la notice (croissant)</option>
+                    <loop on="{$this->selection->getStructure()->sortkeys}" as="$sortkey">
+                        <option value="{$sortkey->name}">Par {$sortkey->label:$sortkey->name} (croissant)</option>
+                        <option value="{$sortkey->name}">Par {$sortkey->label:$sortkey->name} (décroissant)</option>
+                        <option value="%{$sortkey->name}">Par pertinence puis par {$sortkey->label:$sortkey->name} (croissant)</option>
+                        <option value="%{$sortkey->name}">Par pertinence puis par {$sortkey->label:$sortkey->name} (décroissant)</option>
+                        <option value="{$sortkey->name}%">Par {$sortkey->label:$sortkey->name} (croissant) puis par pertinence</option>
+                        <option value="{$sortkey->name}%">Par {$sortkey->label:$sortkey->name} (décroissant) puis par pertinence</option>
+                    </loop>
+                </select>
+    */
+                <select name="_sort">
+                    <loop on="{$this->selection->getStructure()->sortkeys}" as="$sortkey">
+                        <option value="{$sortkey->name}">{$sortkey->label:$sortkey->name}</option>
+    /*                    <option value="{$sortkey->name}+%">{$sortkey->label:$sortkey->name} puis par pertinence</option>*/
+                    </loop>
+                    <option value="%">Pertinence</option>
+                    <option value="-">Ordre de la base</option>
+                </select>
+            </div>
+        </div>    
+        <div class="buttons">
+            <submit label="Rechercher" />
+            <reset label="Effacer tout" />
+        </div>
+        
+        /* Historique des équations de recherche */
+        <slot name="searchhistory" action="templates/searchhistory.html" />
 
-<form class="form reset">
-    <div class="buttons">
-        <submit label="Effacer tout" class="reset" />
-    </div>
-</form>
+    </form>
+/*
+    à virer, conservé uniquement le temps de vérifier que le reset marche bien    
+    <form class="form reset">
+        <div class="buttons">
+            <submit label="Effacer tout" class="reset" />
+        </div>
+    </form>
+*/
+
 
 </div>
 <script type="text/javascript">
