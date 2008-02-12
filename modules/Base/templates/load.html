@@ -751,8 +751,11 @@ jQuery(document).ready(
 
         jQuery('textarea[@name=MotCle]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=motscles&amp;value=%s',
+            '{Routing::linkFor("/ThesaurusModule/ThesoLookup")}?fre=[%s] or [%s*]&amp;_max=25&amp;_sort=%',
             \{
+                asValue: false,
+                height: 300,
+                onload: ThesoLookup
             \}
         );
 
