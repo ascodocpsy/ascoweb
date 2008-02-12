@@ -153,18 +153,7 @@
             
                 Ordre de tri :
     /*
-                <select name="_sort" 
-                    src="{
-                            array
-                            (
-                                array('code'=>'%', 'label'=>'par pertinence'),
-                                array('code'=>'-', 'label'=>'docid décroissants'),
-                                array('code'=>'+', 'label'=>'docid croissants'),
-                            )
-                        }" />
-    */
-    /*
-        Version produisant la liste complète ed tous les critères de tri possible                    
+        Version produisant la liste complète de tous les critères de tri possible                    
                 <select name="_sort">
                     <option value="%">Par pertinence</option>
                     <option value="-">Date d'ajout de la notice (décroissant)</option>
@@ -180,12 +169,14 @@
                 </select>
     */
                 <select name="_sort">
-                    <loop on="{$this->selection->getStructure()->sortkeys}" as="$sortkey">
-                        <option value="{$sortkey->name}">{$sortkey->label:$sortkey->name}</option>
-    /*                    <option value="{$sortkey->name}+%">{$sortkey->label:$sortkey->name} puis par pertinence</option>*/
-                    </loop>
                     <option value="%">Pertinence</option>
-                    <option value="-">Ordre de la base</option>
+                    <option value="-">Ordre de la base</option>                    
+                    <option value="Type">Type du document</option>
+                    <option value="Auteur">Auteur</option>
+                    <option value="Date-">Date (décroissant)</option>
+                    <option value="TypeDate">Type de document et date</option>
+                    <option value="Titre">Titre</option>
+                    <option value="Revue">Titre du périodique</option>
                 </select>
             </div>
         </div>    
