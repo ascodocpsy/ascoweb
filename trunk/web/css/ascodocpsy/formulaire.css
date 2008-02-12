@@ -2,7 +2,7 @@
 
 li
 {
-	list-style-image: url('puce.gif');
+    list-style-image: url('puce.gif');
 }
 
 
@@ -17,45 +17,41 @@ label.checklist,
 label.textarea,
 label.select
 {
-/*	font-weight: bold;*/
+/*  font-weight: bold;*/
     width: 12em;
     display: block;
     float: left;
-	text-align: right;
-	padding-right: 1em;
+    text-align: right;
+    padding-right: 1em;
 }
 
 form.form div.buttons
 {
-	text-align: right;
-	margin: 0;
+    text-align: right;
+    margin: 0;
 }
 
-form.form div.buttons input
+form.form div.buttons input,
+form.form div.buttons button
 {
-	padding: 0.3em;
-	height: 2.5em; /* garder synchro avec le top: affecté à input.reset */
+    padding: 0.3em;
+    height: 2.5em; /* garder synchro avec le top: affecté à input.reset */
 }
 
-input.reset
+input.reset, button.reset
 {
-/*	width: 10em;*/
-	float: left;
-	clear: both;
-	position: relative;
-	top: -2.5em;
-	left: 0;
+    float: left;
 }
 
 span.check, span.radio
 {
-	white-space: nowrap; /* empêche une checkbox/un radio d'être séparé de son label */
+    white-space: nowrap; /* empêche une checkbox/un radio d'être séparé de son label */
 }
 
 form p.exemple
 {
-	font-size: 0.9em;
-	margin: 0.1em 0 0 21em;
+    font-size: 0.9em;
+    margin: 0.1em 0 0 21em;
 }
 
 /* ========================================================================== */
@@ -74,15 +70,15 @@ form.search label.checklist,
 form.search label.select,
 form.search label.textarea
 {
-	font-weight: bold;
-	width: 17.5em;
+    font-weight: bold;
+    width: 17.5em;
 }
 
 form.search div
 {
-	margin: 0 0 0.2em 0;
-	padding: 0;
-	clear: both;
+    margin: 0 0 0.2em 0;
+    padding: 0;
+    clear: both;
 }
 
 /* Zone de texte */
@@ -104,17 +100,17 @@ form.search div input.smallbox
 /* Zone de texte multiligne */
 form.search div textarea
 {
-	width: 31.5em;
-	margin: 0;
-	padding: 0 0.2em;
+    width: 31.5em;
+    margin: 0;
+    padding: 0 0.2em;
 }
 
 /* Case à cocher, liste déroulante */
 form.search div.checklist,
 form.search div.select
 {
-	margin-left: 18.5em;
-	clear: right;
+    margin-left: 18.5em;
+    clear: right;
 }
 
 /* Zone de texte 'Autre date' pour le choix d'une date */
@@ -132,7 +128,7 @@ form.search div.date input.text
 form.search div.date label.select,
 form.search div.date label.text
 {
-	font-weight: normal;
+    font-weight: normal;
 }
 
 /* ========================================================================== */
@@ -141,18 +137,18 @@ form.search div.date label.text
 
 form.load fieldset
 {
-	border: 1px solid #663366;
-	background-color: #E9E4F1;
-	margin: 0.5em;
+    border: 1px solid #663366;
+    background-color: #E9E4F1;
+    margin: 0.5em;
 }
 
 form.load fieldset legend
 {
-	font-weight: bold;
-	/*color: #663366;*/
-	color: #FFF;
-	padding: 0.05em 0.5em 0.1em 0.5em;
-	background-color: #663399;
+    font-weight: bold;
+    /*color: #663366;*/
+    color: #FFF;
+    padding: 0.05em 0.5em 0.1em 0.5em;
+    background-color: #663399;
 }
 
 /* DEBUT patch pour IE */
@@ -178,45 +174,45 @@ form.load legend
 form.load div
 {
     clear: left;
-	margin-bottom: 1px;
+    margin-bottom: 1px;
 }
 
 form.load label.text,
 form.load label.textarea
 {
-/*	font-weight: bold;*/
+/*  font-weight: bold;*/
     width: 8em;
-	float: left;
-	text-align: left;
-	padding-right: 1em;
+    float: left;
+    text-align: left;
+    padding-right: 1em;
 }
 
 form.load input.text,
 form.load textarea
 {
-   	border: 1px solid #a0a0a0;
+    border: 1px solid #a0a0a0;
     font-size: 1em;
     font-family: 'courier new', monospace;
-	padding: 0.2em 0.2em 0.2em 0.2em;
+    padding: 0.2em 0.2em 0.2em 0.2em;
 }
 
 form.load input.fullwidth,
 form.load textarea.fullwidth
 {
-	width: 95%;
+    width: 95%;
 }
 
 form.load fieldset div input.fullwidth,
 form.load fieldset div textarea.fullwidth
 {
-	width: 79%;
+    width: 79%;
 }
 
 form.load div.checklist,
 form.load div.radiolist
 {
-	width: 100%;
-	padding: 0;
+    width: 100%;
+    padding: 0;
 }
 
 form.load input.text:focus,
@@ -224,17 +220,17 @@ form.load textarea:focus,
 form.load input.text:active,
 form.load textarea:active
 {
-	background-color: #FFEFEF;
+    background-color: #FFEFEF;
 }
 
 form.load fieldset.mandatory legend,
 form.load label.mandatory
 {
-/*	color: #FF0000;*/
+/*  color: #FF0000;*/
 /*    background-image: url('loc.png');*/
 /*    background-image: url('/asco/web/FabWeb/images/famfamfam/sylk/asterisk_orange.png');*/
 /*
-	    background-image: url('arrow_right.gif');
+        background-image: url('arrow_right.gif');
     
     background-repeat: no-repeat;
     background-position: top left;
@@ -246,12 +242,12 @@ form.load label.mandatory
 textarea.mandatory,
 input.mandatory
 {
-	border: 1px solid red!important;
+    border: 1px solid red!important;
 }
 
 label.mandatory
 {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 /* Lien vers l'aide à la saisie */
@@ -273,13 +269,13 @@ a.help span
 /* ========================================================================== */
 input.delete
 {
-	cursor: pointer;
-	width: 16px;
-	height: 16px;
-	font-size: 0px;
-	color: #D4E6FD;
-	background: url('../../images/delete.png') no-repeat center center;
-	border: 0;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    font-size: 0px;
+    color: #D4E6FD;
+    background: url('../../images/delete.png') no-repeat center center;
+    border: 0;
 }
 
 /* ========================================================================== */
@@ -289,27 +285,31 @@ input.delete
 /* Liste de réponses courtes */
 ul.shortlist
 {
-	padding: 0;
-	clear: right;
+    padding: 0;
+    clear: right;
 }
 
 /* Liste de réponses complètes */
 ul.fulllist
 {
-	padding: 0;
+    padding: 0;
 }
 
 /* Notice */
 li.record
 {
-	margin: 1em 0 1em 0;
-	list-style: none;
+    margin: 1em 0 1em 0;
+    list-style: none;
 }
-
+ol li.record
+{
+    list-style: decimal;
+    list-style-image: none;
+}
 /* Champ de la notice (libellé + contenu) */
 div.row
 {
-	padding: 0.2em 0 0.2em 2.5em;
+    padding: 0.2em 0 0.2em 2.5em;
 }
 ul.fulllist div.row
 {
@@ -328,11 +328,11 @@ li.record label.text,
 li.record label.checklist, 
 li.record label.textarea
 {
-	font-weight: bold;
+    font-weight: bold;
     width: 10em;
-	float: left;
-	text-align: right;
-	padding-right: 0em;
+    float: left;
+    text-align: right;
+    padding-right: 0em;
 }
 
 li.record.incart
@@ -358,7 +358,7 @@ a.fullrecord
     padding-top: 32px;
 /*    background: url('voir.png') no-repeat center center;*/
 /*    border: 1px solid white;*/
-	height: 0;
+    height: 0;
 }
 li.record:hover a.fullrecord
 {
@@ -369,7 +369,7 @@ li.record:hover a.fullrecord
 /*
 * html a.fullrecord
 {
-	background-image: none; 
+    background-image: none; 
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://apache/ascoweb/web/styles/asco/voir.png');
 }
 */
@@ -377,10 +377,10 @@ li.record:hover a.fullrecord
 /* Lien vers "Modifier la notice" */
 a.loadrecord
 {
-	float: right;
+    float: right;
     padding-left: 32px;
     padding-top: 32px;
-	margin-right: 1em;
+    margin-right: 1em;
 /*    background: url('modifier.png') no-repeat center center;*/
 /*    border: 1px solid white;*/
     height: 0;
@@ -393,20 +393,20 @@ li.record:hover a.loadrecord
 /* Lien vers "Localiser le périodique" */
 a.locate
 {
-/*	padding-left: 10px;*/ /* en théorie : 16px - 1em */
-	padding-left: 12px;
-	padding-top: 1px;
-	background: url('loc.png') no-repeat left center;
+/*  padding-left: 10px;*/ /* en théorie : 16px - 1em */
+    padding-left: 12px;
+    padding-top: 1px;
+    background: url('loc.png') no-repeat left center;
 /*    border: 1px solid white;*/
 }
 
 /* Lien vers "Présentation du périodique" */
 a.inform
 {
-	/*padding-left: 10px;*/ /* en théorie : 16px - 1em */
-	padding-left: 12px;
-	padding-top: 1px;
-	background: url('inform.png') no-repeat left center;
+    /*padding-left: 10px;*/ /* en théorie : 16px - 1em */
+    padding-left: 12px;
+    padding-top: 1px;
+    background: url('inform.png') no-repeat left center;
 /*    border: 1px solid white;*/
 }
 
@@ -416,7 +416,7 @@ a.loadrecord span,
 a.locate span,
 a.inform span
 {
-	display: none;
+    display: none;
 }
 /*
 a.fullrecord:hover, 
@@ -441,52 +441,51 @@ div.menubase
 /* Lien "Ajouter au panier" */
 a.addtocart
 {
-	float: left;
-	padding-left: 25px;
-    padding-top: 25px;
-	background: url('cart_add.png') no-repeat center center;
-    border: 1px solid white;
-	height: 0;
+    float: left;
+    padding-left: 16px;
+    padding-top: 16px;
+    margin-left: 0.5em;
+    background: url('cart_add.png') no-repeat center center;
+    height: 0;
 }
 
 /* Lien "Supprimer du panier" */
 a.removefromcart
 {
-	float: left;
-	padding-left: 25px;
-    padding-top: 25px;
+    float: left;
+    padding-left: 16px;
+    padding-top: 16px;
     background: url('cart_delete.png') no-repeat center center;
-    border: 1px solid white;
-	height: 0;
+    height: 0;
 }
 
 /* Texte des liens caché - remplacé par des images */
 a.addtocart span,
 a.removefromcart span
 {
-	display: none;
+    display: none;
 }
 
 /* Bouton "Ajouter tout au panier" */
 input.addall
 {
-	cursor: pointer;
-	padding-left: 25px;
-	width: 16px;
-	height: 16px;
-	font-size: 0px;
-	background: url('cart_put.png') no-repeat center center;
-	border: 0;
+    cursor: pointer;
+    padding-left: 25px;
+    width: 16px;
+    height: 16px;
+    font-size: 0px;
+    background: url('cart_put.png') no-repeat center center;
+    border: 0;
 }
 
 /* Bouton "Supprimer tout du panier" */
 input.removeall
 {
-	cursor: pointer;
-	padding-left: 25px;
-	width: 16px;
-	height: 16px;
-	font-size: 0px;
-	background: url('cart_remove.png') no-repeat center center;
-	border: 0;
+    cursor: pointer;
+    padding-left: 25px;
+    width: 16px;
+    height: 16px;
+    font-size: 0px;
+    background: url('cart_remove.png') no-repeat center center;
+    border: 0;
 }
