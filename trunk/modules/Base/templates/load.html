@@ -311,6 +311,11 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 <p><strong>Les zones encadrées de rouge sont des zones obligatoires.</strong></p>
 
 <form method="post" action="/base/save" class="form load">
+    <div class="buttons">
+        <def name="deletelink" value="{Routing::linkFor('/Base/ConfirmDelete?REF='.$REF)}" />
+        <button test="{$REF!=0 AND User::hasAccess('AdminBase')}" type="button" onclick="window.location.replace('$deletelink');" class="reset">Supprimer</button>
+        <submit label="Enregistrer" class="submit" />
+    </div>
 
 /* Modification d'une notice en fonction du type de document */
 <if test="{!Config::get('allfields',false)}">
@@ -672,20 +677,11 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
     <div><hidden name="REF" value="$REF" /></div>
     
     <div class="buttons">
+        <def name="deletelink" value="{Routing::linkFor('/Base/ConfirmDelete?REF='.$REF)}" />
+        <button test="{$REF!=0 AND User::hasAccess('AdminBase')}" type="button" onclick="window.location.replace('$deletelink');" class="reset">Supprimer</button>
         <submit label="Enregistrer" class="submit" />
     </div>
 </form>
-
-<opt>
-	<if test="{$REF!=0}">
-	    <if test="{User::hasAccess('AdminBase')}">
-	        <form method="post" class="reset form" action="/base/delete">
-                <div><hidden name="REF" value="$REF" /></div>
-                <div class="buttons"><submit label="Supprimer" class="reset" onclick="return(confirm('Supprimer définitivement la notice ?'));" /></div>
-	        </form>
-	    </if>
-	</if>
-</opt>
 
 </div> /* class="texte" */
 
