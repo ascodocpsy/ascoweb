@@ -17,25 +17,27 @@
         <li class="record">
 
             <if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-            /*
+            
                 <if test="{!Config::get('incart',false)}">
                     <a class="addtocart" href="/ascocart/add?item=$REF" title="Ajouter au panier"><span>Ajouter au panier</span></a>
                 </if>
                 <else>
                     <a class="removefromcart" href="/ascocart/remove?item=$REF" title="Supprimer du panier"><span>Supprimer du panier</span></a>
                 </else>
-            */
+            
+            /*
                 <if test="{$this->cart->contains($REF)}">
                     <a class="removefromcart" href="/ascocart/remove?item=$REF" title="Supprimer du panier"><span>Supprimer du panier</span></a>
                 </if>
                 <else>
                     <a class="addtocart" href="/ascocart/add?item=$REF" title="Ajouter au panier"><span>Ajouter au panier</span></a>
                 </else>
+            */
             </if>                
-            <a class="fullrecord" href="show?REF=$REF" title="Voir la notice complète"><span>Voir la notice complète</span></a>
+            <a class="fullrecord" href="/{$this->module}/show?REF=$REF" title="Voir la notice complète"><span>Voir la notice complète</span></a>
             
             <if test="{$this->hasEditRight()}">
-                <a class="loadrecord" href="load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
+                <a class="loadrecord" href="/{$this->module}/load?REF=$REF" title="Modifier la notice"><span>Modifier la notice</span></a>
             </if>
             
             <hidden name="item" value="$REF" />
@@ -115,11 +117,11 @@
 <slot name="menubase">
     <div class="menubase">
         <ul>
-            <li><a href="export?_equation={urlencode($this-&gt;equation)}">Exporter toutes les notices</a></li>
-            <li><a href="exportbytype?_equation={urlencode($this-&gt;equation)}">Exporter par type de document</a></li>
-            <li test="{User::hasAccess('AdminBase')}"><a href="replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans toutes les notices...</a></li>
-/*            <li test="{User::hasAccess('AdminBase')}"><a href="ConfirmDelete?_equation={urlencode($this-&gt;equation)}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer toutes les notices obtenues ?'));">Supprimer toutes les notices</a></li>*/
-            <li test="{User::hasAccess('AdminBase')}"><a href="ConfirmDelete?_equation={urlencode($this-&gt;equation)}">Supprimer toutes les notices</a></li>
+            <li><a href="/{$this->module}/export?_equation={urlencode($this-&gt;equation)}">Exporter toutes les notices</a></li>
+            <li><a href="/{$this->module}/exportbytype?_equation={urlencode($this-&gt;equation)}">Exporter par type de document</a></li>
+            <li test="{User::hasAccess('AdminBase')}"><a href="/{$this->module}/replaceform?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans toutes les notices...</a></li>
+/*            <li test="{User::hasAccess('AdminBase')}"><a href="/{$this->module}/ConfirmDelete?_equation={urlencode($this-&gt;equation)}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer toutes les notices obtenues ?'));">Supprimer toutes les notices</a></li>*/
+            <li test="{User::hasAccess('AdminBase')}"><a href="/{$this->module}/ConfirmDelete?_equation={urlencode($this-&gt;equation)}">Supprimer toutes les notices</a></li>
         </ul>
     </div>
 </slot>

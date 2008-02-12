@@ -37,14 +37,14 @@
 <div class="texte">
     /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
     <if test="{!Config::get('incart',false)}">
-        <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/add" method="post" id="answers">
+        <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/AscoCart/Add" method="post" id="answers">
             <div id="list">
                <slot name="notice" action="templates/answers.html" />
             </div>
         </form>
     </if>
     <else>
-        <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/ascocart/remove" method="post" id="answers">
+        <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/Ascocart/Remove" method="post" id="incartanswers">
             <div id="list">
                 <slot name="notice" action="templates/answers.html" />
             </div>
@@ -84,22 +84,23 @@ version dynamique : le add devient un delete et vice versa
         return false;
     \});
 
+/*
     jQuery('a.removefromcart').click(function()
     \{
         jQuery.post(jQuery(this).attr('href'));
         jQuery(this.parentNode).css('background-color','#FFFFC0').fadeOut(400, function()\{jQuery(this).remove().next().remove()\});
         return false;
     \});
-
+*/
     jQuery('#answers').submit(function()\{
         jQuery.ajax(\{
             url: jQuery(this).attr('action'),
             type: jQuery(this).attr('method'),
             data: jQuery('input:hidden', this).serialize(),
             success: function()\{
-                jQuery('li.record').css('opacity','0.5');
-                jQuery('a.addtocart').css('display','none');
-                jQuery('input.addall').css('display','none');
+                jQuery('li.record').addClass('incart');
+                jQuery('a.addtocart').remove();
+                jQuery('input.addall').remove();
             \}
         \});        
         return false;
