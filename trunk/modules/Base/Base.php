@@ -105,7 +105,7 @@ class Base extends DatabaseModule
                     if ($aut=$this->author($h))
                     {
                         // Lien sur l'auteur : lance une nouvelle recherche
-                        $lien='search?aut='. urlencode('"'.$aut.'"');
+                        $lien='/' . $this->module . '/search?aut='. urlencode('"'.$aut.'"');
                         $h=$this->link($h, $lien, 'Bibliographie de '.$h);
                     }
                     $t[$key]=$h;
@@ -155,7 +155,7 @@ class Base extends DatabaseModule
                 foreach ($t as $key=>$h)
                 {
                     $h=trim($h);
-                    $lien='search?motscles='. urlencode('['.$h.']');
+                    $lien='/' . $this->module . '/search?motscles='. urlencode('['.$h.']');
                     $h=$this->link($h, $lien, 'Notices indexées au descripteur '.$h);
                     $t[$key]=$h;
                 }
@@ -164,7 +164,7 @@ class Base extends DatabaseModule
             case 'Rev':
                 // Lien vers une nouvelle recherche "notices de ce périodique"
                 if (! $h=trim($this->selection[$name])) return '';
-                $lien='search?rev='. urlencode('['.Utils::convertString($h).']');
+                $lien='/' . $this->module . '/search?rev='. urlencode('['.Utils::convertString($h).']');
                 return $this->link($h, $lien, 'Notices du périodique '.$h);
                       
             case 'DateText':
@@ -190,7 +190,7 @@ class Base extends DatabaseModule
                         $lien1=$this->link
                         (
                             $h,
-                            'search?'.strtolower($name).'='. urlencode($h),
+                            '/' . $this->module . '/search?'.strtolower($name).'='. urlencode($h),
                             ($name=='Loc') ? 'Documents localisés au centre '.$h : 'Notices produites par le centre '.$h
                         );
                         $t[$key]=$lien1;
@@ -234,7 +234,7 @@ class Base extends DatabaseModule
                 else
                 {
                     // Lien vers la page de présentation de la revue sur le site d'Ascodocpsy
-                    $lien='inform?rev='. urlencode(Utils::convertString($h,'lower'));
+                    $lien='/' . $this->module . '/inform?rev='. urlencode(Utils::convertString($h,'lower'));
                     return $this->link('&nbsp;<span>Présentation</span>', $lien, 'Présentation du périodique (ouverture dans une nouvelle fenêtre)', true, 'inform');
                 }
 
@@ -538,8 +538,8 @@ class Base extends DatabaseModule
      */
     public function actionSearch()
     {
-        $this->cart=Module::loadModule('AscoCart');
-        $this->cart->preExecute();
+//        $this->cart=Module::loadModule('AscoCart');
+//        $this->cart->preExecute();
         parent::actionSearch();   
     }
     
