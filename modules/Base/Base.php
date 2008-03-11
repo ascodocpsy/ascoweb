@@ -257,7 +257,7 @@ class Base extends DatabaseModule
                     if (isset ($this->tblAsco[$centre]))
                     {
                         $lien=Config::get('urlarticle').$this->tblAsco[$centre];
-                        $savCentre=$this->link($savCentre, $lien, 'Présentation du centre '.$centre);
+                        $savCentre=$this->link($savCentre, $lien, 'Présentation du centre '.$centre.' (ouverture dans une nouvelle fenêtre)', true);
                         $t[$key]=$savCentre.' '.substr($h, $length);
                     }
                 }
