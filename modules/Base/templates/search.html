@@ -106,7 +106,7 @@
         <div test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
             <textbox name="IsbnIssn" label="ISBN, ISSN" />
             <p class="exemple">
-                ISBN : 2-294-00377-2, ISSN : 4444-7564
+                ISBN : 2-294-00377-2 ou 978-2-294-00377-6, ISSN : 4444-7564
             </p>
         </div>   
         
@@ -153,7 +153,7 @@
             
                 Ordre de tri :
     /*
-        Version produisant la liste complète de tous les critères de tri possible                    
+                Version produisant la liste complète de tous les critères de tri possible                    
                 <select name="_sort">
                     <option value="%">Par pertinence</option>
                     <option value="-">Date d'ajout de la notice (décroissant)</option>
@@ -178,6 +178,7 @@
                     <option value="Titre">Titre</option>
                     <option value="Revue">Titre du périodique</option>
                 </select>
+                
             </div>
         </div>    
         <div class="buttons">
