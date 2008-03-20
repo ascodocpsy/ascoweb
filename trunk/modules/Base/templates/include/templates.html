@@ -37,12 +37,17 @@
 			$CanDes<opt> / $Nomp</opt>
 		</else>
     </row></opt>
-    <opt><row label="Résumé">$Resu</row></opt>
+    <opt><row label="Résumé">{Utils::autoLink($Resu)}</row><row label="Résumé"></row></opt>
 </template>
 
 <!--/* Template pour afficher l'ISBN */ -->
 <template match="//Isbn">
     <opt><row label="ISBN">{implode(' / ',(array)$IsbnIssn)}</row></opt>
+</template>
+
+<!--/* Template pour afficher le champ Notes en activant l'option autolink */ -->
+<template match="//Notes">
+    <opt><row label="Notes">{Utils::autoLink($Notes)}</row></opt>
 </template>
 
 <!--/* Template pour afficher un <label> et une <div class="row"> dans une autre <div class="field"> */-->
@@ -58,7 +63,7 @@
 <!--/* Template pour afficher le lien vers la localisation d'un titre de périodique */-->
 <template match="//Localisation">
 	<if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-		<a class="locate" test="{$Rev}" href="locate?rev={urlencode(Utils::convertString($this->selection['Rev'],'lower'))}" onclick="window.open(this.href); return false;" title="Localiser le périodique (ouverture dans une nouvelle fenêtre)">&#160;<span>Localiser</span></a>
+		<a class="locate" test="{$Rev}" href="Locate?rev={urlencode(Utils::convertString($this->selection['Rev'],'lower'))}" onclick="window.open(this.href); return false;" title="Localiser le périodique (ouverture dans une nouvelle fenêtre)">&#160;<span>Localiser</span></a>
 	</if>
 </template>
 
