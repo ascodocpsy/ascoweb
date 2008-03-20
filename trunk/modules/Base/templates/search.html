@@ -15,7 +15,7 @@
     <div class="titre">Base SantéPsy - Recherche - Accès public</div>
 </else>
 <div class="texte">
-    <form class="form search" action="search" method="get">
+    <form class="form search" action="/{$this->module}/Search" method="get">
 /*        <autosave /> */
         <div>
             <if test="{User::hasAccess('AdminBase')}">
@@ -28,7 +28,7 @@
         
         <div>
             <textbox name="MotsCles" label="Descripteurs" rows="2" />
-            <p class="exemple"><a href="http://www.ascodocpsy.org/article.php3?id_article=691" target="_blank" title="Consulter le thesaurus SantéPsy (nouvelle fenêtre)">Consultez les descripteurs utilisés dans la base SantéPsy</a></p>
+            <p class="exemple"><a href="/ThesaurusModule" target="_blank" title="Consultez le thesaurus SantéPsy (nouvelle fenêtre)">Consultez le thesaurus SantéPsy</a></p>
         </div>
     
         <div>
