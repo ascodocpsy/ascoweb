@@ -7,7 +7,7 @@
 var reChiffre      = "[0-9]"
 
 // Année au format AAAA, Mois, Jour
-var reYear         = "17[5-9]_Chiffre_|1[8-9]_Chiffre_{2}|20[0-1]_Chiffre_"      // une année sur 4 chiffres (1750 à 2019)
+var reYear         = "(17[5-9]_Chiffre_|1[8-9]_Chiffre_{2}|20[0-2]_Chiffre_)"      // une année sur 4 chiffres (1750 à 2019)
 var reMonth	       = "(0[1-9]|1[0-2])"				        // un mois sur deux chiffres (01 à 12)
 var reDay	       = "(0[1-9]|[12][0-9]|3[01])"			    // un jour sur deux chiffres (01 à 31)
 var reYearFRE      = "La date doit être dans le format AAAA et supérieure ou égale à 1750.\nExemple : 2005"
@@ -126,27 +126,14 @@ function CheckDate(Value)
 // --------------------------------------------------------------------------------
 var ctrlFRE=
 [
-/*0*/	"Le champ '%1' est obligatoire.", // Nom du champ
-/*1*/	"Le champ '%1' doit contenir au moins %2 caractères.", // Nom du champ, Longueur mini
-/*2*/	"La taille du champ '%1' est limitée à %2 caractères.", // Nom du champ, Longueur maxi
-/*3*/	"Vous devez indiquer au moins %2 articles dans le champ '%1' (%3 actuellement).", // Nom du champ, Nombre mini d'articles, nb actuel
-/*4*/	"Le champ '%1' est limité à %2 article(s) (%3 actuellement).", // Nom du champ, Nombre maxi d'articles, nb actuel
-/*5*/	"Valeur incorrecte pour le champ '%1'\nLes données ne respectent pas la syntaxe définie pour ce champ.", // Nom du champ
-/*6*/	"L'article '%2' du champ '%1' ne respecte pas la syntaxe définie pour ce champ.", // Nom du champ, article
+/*0*/	"Champ obligatoire.", // Nom du champ
+/*1*/	"%2 caractères minimum (%3 actuellement)", // Nom du champ, Longueur mini, longueur actuelle
+/*2*/	"Taille limitée à %2 caractères (%3 actuellement)", // Nom du champ, Longueur maxi, longueur actuelle
+/*3*/	"%2 article(s) minimum (%3 actuellement).", // Nom du champ, Nombre mini d'articles, nb actuel
+/*4*/	"%2 article(s) maximum (%3 actuellement).", // Nom du champ, Nombre maxi d'articles, nb actuel
+/*5*/	"Syntaxe incorrecte.", // Nom du champ
+/*6*/	'"%2" : ', // Nom du champ, article
 /*7*/	"Votre fiche comporte au moins une erreur. Voici le texte de la première erreur :\n\n%1\n\nEtes-vous sûr de vouloir enregistrer une fiche erronée ?", // Erreur
-""
-]
-
-var ctrlENG=
-[
-/*0*/	"A value is required for field '%1'", // Nom du champ
-/*1*/	"Field '%1' must contain at least %2 chars", // Nom du champ, Longueur mini
-/*2*/	"Field '%1' should not exceed %2 chars", // Nom du champ, Longueur maxi
-/*3*/	"Field '%1' must contain at least %2 articles  (%3 at the moment)", // Nom du champ, Nombre mini d'articles, nb actuel
-/*4*/	"Field '%1' should not exceed %2 articles (%3 at the moment)", // Nom du champ, Nombre maxi d'articles, nb actuel
-/*5*/	"Invalid value for field '%1'\nData does not match defined syntax", // Nom du champ
-/*6*/	"Field '%1': invalid syntax for '%2'", // Nom du champ, article
-/*7*/	"This record contains at least one error. Here is the first one:\n\n%1\n\nDo you want to save this bad record anyway?", // Erreur
 ""
 ]
 
@@ -167,23 +154,43 @@ function ctrlMessage(Controls,NumMessage)
 	return Msg
 }
 
+var ctrlCurrentField=null;
+
+function ctrlFormAlert(Message)
+{
+    alert(Message);
+}
+
 // --------------------------------------------------------------------------------
 // ctrlAlert
 //
 // Affiche ou stocke le message d'erreur retourné à l'utilisateur lorsqu'un champ
 // n'est pas correct. A utiliser à la place de la fonction js standard alert()
 // --------------------------------------------------------------------------------
-var ctrlAlertMode=1
-var ctrlError=""
-
 function ctrlAlert(Message)
 {
-	if (ctrlAlertMode == 1)
-	{
-		alert(Message) ;
-	}
-	else
-		ctrlError=Message ;
+    var parent=jQuery(ctrlCurrentField).eq(0).parent();
+    parent.addClass('hasError');
+    var div=jQuery('div.errorField', parent);
+    if (div.length===0)
+        parent.prepend('<div class="errorField">'+Message+'</div>');
+    else
+        div.html(Message);        
+}
+
+function ctrlNoAlert()
+{
+    var parent=jQuery(ctrlCurrentField).eq(0).parent();
+    parent.removeClass('hasError');
+    jQuery('div.errorField', parent).hide
+    (
+        'fast', 
+        function()
+        {
+            //$(this).parent().removeClass('hasError');
+            $(this).remove();
+        }
+    );
 }
 
 // --------------------------------------------------------------------------------
@@ -242,6 +249,14 @@ function ctrlRECompile(RE)
 // --------------------------------------------------------------------------------
 function ctrlInitialize(ControlsName)
 {
+/*
+    Remarque : fonctionne pour asco parce que tous les champs sont listés dans
+    le tableau défini dans load.js.
+    Dans le cas contraire, il faudrait ajouter un gestionnaire 
+    onfocus(ctrlPrevious) à tous les champs présents dans la form, que ceux-ci
+    aient ou non des contrôles.
+    A faire quand on aura porté la librairie vers jquery. 
+*/
 	Controls=eval(ControlsName); // var volontairement omis au cas ou l'utilisateur ait appellé son tableau Controls
 	var Form=document.forms[ Controls[0][0] ] ;
 	var c=Form.elements ;
@@ -263,11 +278,22 @@ function ctrlInitialize(ControlsName)
 		{
 			// Installe les gestionnaires d'événement
 			if ( e.length )
+            {
 				for (j=0; j<e.length; j++)
-					e[j].onblur=new Function("ctrlField(" + ControlsName + "," + i + ")") ;
-			else
-				e.onblur=new Function("ctrlField(" + ControlsName + "," + i + ")") ;
-
+                {
+                    e[j].onblur=new Function("ctrlSetPrevious(" + ControlsName + "," + i + ")") ;
+                    //e[j].onblur=new Function("ctrlField(" + ControlsName + "," + i + ")") ;
+                    e[j].onfocus=ctrlPrevious;
+                    jQuery(e[j]).focus(ctrlPrevious);
+                }
+			}
+            else
+            {
+                e.onblur=new Function("ctrlSetPrevious(" + ControlsName + "," + i + ")") ;
+//                e.onfocus=ctrlPrevious;
+                jQuery(e).focus(ctrlPrevious);
+            }
+            
 			// Compile les expressions régulières
 			if ( Controls[i][ctrlIdxRegExp] ) Controls[i][ctrlIdxCompRE]=ctrlRECompile( eval(Controls[i][ctrlIdxRegExp]) ) ;
 
@@ -276,6 +302,38 @@ function ctrlInitialize(ControlsName)
 
 		} else alert("Impossible de trouver le champ " + ctrlFriendlyName(Controls, i)) ;
 	}
+}
+var ctrlPreviousControls=null;
+var ctrlPreviousFieldIndex=null;
+
+function ctrlSetPrevious(Controls, FieldIndex)
+{
+    ctrlPreviousControls=Controls;
+    ctrlPreviousFieldIndex=FieldIndex;
+console.debug('lost focus', Controls[FieldIndex]);
+}
+
+function ctrlPrevious() // jQuery event
+{
+    if (! ctrlPreviousControls) return;
+
+    // si le champ en cours est égal à previous, exit
+    // évite que les erreurs soient affichées si :
+    // - on est dans un champ, il perd le focus, on reclique dans le champ
+    // - appel d'une table de lookup (même effet)
+    var FieldName=ctrlPreviousControls[ctrlPreviousFieldIndex][ctrlIdxName] ;
+    var Field=document.forms[ Controls[0][0] ].elements[FieldName] ;
+    if (this===Field) return;
+
+    var ret=ctrlField(ctrlPreviousControls, ctrlPreviousFieldIndex);
+    if (ret)
+    {
+        //console.info('OK');
+    }
+    else
+    {
+        return false;
+    }
 }
 
 // --------------------------------------------------------------------------------
@@ -352,17 +410,18 @@ function ctrlGetFieldValue(FieldObject, Sep)
 function ctrlField(Controls, FieldIndex)
 {
 	var FieldName=Controls[FieldIndex][ctrlIdxName] ;
-	var Field=document.forms[ Controls[0][0] ].elements[FieldName] ;
+	ctrlCurrentField=document.forms[ Controls[0][0] ].elements[FieldName] ;
 
-	Value=ctrlGetFieldValue(Field, Controls[0][2]) ;
-
+	Value=ctrlGetFieldValue(ctrlCurrentField, Controls[0][2]) ;
+/*
 	if ( Value == Controls[FieldIndex][ctrlIdxValue]) return true ;
 	Controls[FieldIndex][ctrlIdxValue] = Value ;
-
+*/
 	if ( ! ctrlLength  (Controls, FieldIndex, Value) ) return false;
 	if ( ! ctrlArticles(Controls, FieldIndex, Value) ) return false;
 	if ( ! ctrlRegExp  (Controls, FieldIndex, Value) ) return false;
 	if ( ! ctrlUserFn  (Controls, FieldIndex, Value) ) return false;
+    ctrlNoAlert();
 	return true;
 }
 
@@ -371,25 +430,30 @@ function ctrlField(Controls, FieldIndex)
 //
 // Vérifie tous les champs du formulaire
 // Si tout est OK, retourne true.
-// Sinon, retourne false et initialise ctrlError avec le premier message d'erreur
+// Sinon, retourne false
 // --------------------------------------------------------------------------------
 function ctrlFields(ControlsName)
 {
-	var i ;
-	Controls=eval(ControlsName); // var volontairement omis au cas ou l'utilisateur ait appellé son tableau Controls
-
-	ctrlAlertMode=2 ;
-	for (i=1; i<Controls.length; i++)
-	{
-		Controls[i][ctrlIdxValue]=NaN ;
-		if ( ! ctrlField(Controls, i) )
-		{
-			ctrlAlertMode=1 ;
-			return false
-		}
-	}
-	ctrlAlertMode=1 ;
-	return true ;
+    try
+    {
+    	var i, ok=true;
+    	Controls=eval(ControlsName); // var volontairement omis au cas ou l'utilisateur ait appellé son tableau Controls
+    
+    	for (i=1; i<Controls.length; i++)
+    	{
+    		Controls[i][ctrlIdxValue]=NaN ;
+    		if ( ! ctrlField(Controls, i) )
+    		{
+    			ok=false;
+    		}
+    	}
+    	return ok;
+    }
+    catch(e)
+    {
+        alert('exception !'); // à revoir. exécuter tout le code en gestion d'erreurs, afficher le message de l'exception
+        return false;
+    }
 }
 
 // --------------------------------------------------------------------------------
@@ -401,7 +465,7 @@ function ctrlFields(ControlsName)
 function ctrlForm(ControlsName)
 {
 	if ( ctrlFields(ControlsName) ) return true ;
-	return confirm( ctrlMessage(Controls, 7, ctrlError) ) ;
+	return confirm( ctrlMessage(Controls, 7) ) ;
 }
 
 // --------------------------------------------------------------------------------
@@ -426,13 +490,13 @@ function ctrlLength(Controls, FieldIndex, Value)
 
 	if ( Min && Value.length != 0 && Value.length < Min )
 	{
-		ctrlAlert( ctrlMessage(Controls, 1, ctrlFriendlyName(Controls, FieldIndex), Min) ) ;
+		ctrlAlert( ctrlMessage(Controls, 1, ctrlFriendlyName(Controls, FieldIndex), Min, Value.length) ) ;
 		return false ;
 	}
 
 	if ( Max && Value.length != 0 && Value.length > Max)
 	{
-		ctrlAlert( ctrlMessage(Controls, 2, ctrlFriendlyName(Controls, FieldIndex), Max) ) ;
+		ctrlAlert( ctrlMessage(Controls, 2, ctrlFriendlyName(Controls, FieldIndex), Max, Value.length) ) ;
 		return false ;
 	}
 	return true ;

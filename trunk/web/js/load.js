@@ -87,25 +87,22 @@ function CheckForm(ControlsName)
 	{
 		h  = "Impossible d'enregistrer la fiche : elle contient des erreurs et la fiche a été validée par un administrateur. "
         h += "Elle est donc visible du grand public.\n"
-		h += "Pour enregistrer la fiche, corrigez les erreurs qu'elle contient.\n\n"
-		h += "Voici le texte de la première erreur :\n\n"+ctrlError
-		ctrlAlert(h) ;
+		h += "Pour enregistrer la fiche, corrigez les erreurs qu'elle contient.\n"
+		ctrlFormAlert(h) ;
 		return false ;
 	}
     else if ( ctrlGetFieldValue(Statut)=="" )
     {        
         h  = "Impossible d'enregistrer la fiche : elle contient des erreurs.\n"
         h += "Vous n'avez notamment pas défini son statut.\n"
-        h += "Pour enregistrer la fiche, corrigez les erreurs qu'elle contient et définissez son statut.\n\n"
-        h += "Voici le texte de la première erreur :\n\n"+ctrlError
-        ctrlAlert(h) ;
+        h += "Pour enregistrer la fiche, corrigez les erreurs qu'elle contient et définissez son statut.\n"
+        ctrlFormAlert(h) ;
         return false ;
     }
 	else
 	{
-		h  = "Votre fiche contient une ou plusieurs erreurs. Voici le texte de la première :\n\n"
-		h += ctrlError
-		h += "\n\nNous vous conseillons de corriger votre fiche avant de l'enregistrer.\n"
+		h  = "Votre fiche contient une ou plusieurs erreurs. "
+		h += "Nous vous conseillons de corriger votre fiche avant de l'enregistrer.\n\n"
 		h += "Néanmoins, comme, pour le moment, elle n'est pas visible du grand public "
         h += "(car non validée par un administrateur), vous pouvez, si vous le souhaitez, "
 		h += "l'enregistrer dans son état actuel.\n"
