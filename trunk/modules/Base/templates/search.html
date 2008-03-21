@@ -170,10 +170,10 @@
     */
                 <select name="_sort">
                     <option value="%">Pertinence</option>
-                    <option value="-">Ordre de la base</option>                    
+                    <option value="-" test="{User::hasAccess('AdminBase')}">Ordre de la base</option>                    
                     <option value="Type">Type du document</option>
                     <option value="Auteur">Auteur</option>
-                    <option value="Date-">Date (décroissant)</option>
+                    <option value="Date-" selected="selected">Date (décroissant)</option>
                     <option value="TypeDate">Type de document et date</option>
                     <option value="Titre">Titre</option>
                     <option value="Revue">Titre du périodique</option>
