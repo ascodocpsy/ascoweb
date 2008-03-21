@@ -227,7 +227,7 @@ jQuery(document).ready(
             \{
                 asValue: true
             \}
-        );
+        ).addClass('autocomplete');
         
         jQuery('#Aut').autocomplete
         (
@@ -235,36 +235,36 @@ jQuery(document).ready(
             \{
                 asValue: true
             \}
-        );
+        ).addClass('autocomplete');
         jQuery('#Rev').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=revues&amp;value=%s',
             \{
                 asValue: true
             \}
-        );
+        ).addClass('autocomplete');
         jQuery('#Edit').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=editeurs&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
         jQuery('#Col').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=collections&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
 
-        jQuery('#Loc').autocomplete('{Routing::linkFor("Lookup")}?table=localisations&amp;value=%s');
-        jQuery('#ProdFich').autocomplete('{Routing::linkFor("Lookup")}?table=producteurs&amp;value=%s');
+        jQuery('#Loc').autocomplete('{Routing::linkFor("Lookup")}?table=localisations&amp;value=%s').addClass('autocomplete');
+        jQuery('#ProdFich').autocomplete('{Routing::linkFor("Lookup")}?table=producteurs&amp;value=%s').addClass('autocomplete');
         
         jQuery('#DipSpe').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=diplomes&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
 
     \}
 );
