@@ -54,6 +54,40 @@ form p.exemple
     margin: 0.1em 0 0 21em;
 }
 
+/* le style de la div qui affiche le message d'erreur pour un champ */
+form.form div.errorField 
+{
+    color:#af4c4c;
+    margin:0 0 0.5em 0; 
+    padding:0.5em;
+    background:#ffbfbf;
+}
+
+/* la classe appliquée au parent d'un champ en erreur */
+form.form .hasError    
+{
+  background:#ffdfdf;
+}
+
+form.form div.hasError    
+{
+  margin-top: 1em;
+}
+
+/*
+form.form .autocomplete:active,
+form.form .autocomplete:focus
+*/
+form.form .autocomplete
+{
+    background: #fff url('magnifier.png') no-repeat top right;
+}
+
+form.form textarea, form.form input.text
+{
+    border: 1px solid #a0a0a0;
+}
+
 /* ========================================================================== */
 /*                        FORMULAIRE DE RECHERCHE                             */
 /* ========================================================================== */
