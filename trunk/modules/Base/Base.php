@@ -38,16 +38,6 @@ class Base extends DatabaseModule
     
     public function preExecute()
     {
-        if (parent::preExecute()===true) return true;
-     //   if ($this->action=='exportCart')
-     //       $this->actionExportCart(true);
-        if (Utils::isAjax() && $this->method==='actionSearch')
-        {
-            Config::set('template','templates/answers.html');
-        }
-        if ($this->method=='actionExportCartByType')
-            $this->actionExportCartByType(true);
-
         // Récupère l'identifiant
         $this->ident=strtolower(User::get('login'));
 
@@ -55,6 +45,22 @@ class Base extends DatabaseModule
         // Ils peuvent voir les notices validées et leurs propres notices si elles ne sont pas validées
         Config::set('filter.EditBase', 'ProdFich:'.$this->ident.' OR Statut:valide');
         
+        // On définit le filtre de l'accès professionnel avant d'exécuter le parent::preExecute,
+        // pour que celui-ci soit pris en compte lors de la génération des fichiers d'export.
+        // En effet, lors de la génération des fichiers d'export, parent::preExecute() renvoie
+        // true et le code qui se trouve après n'est pas exécuté
+        // (cf issue 105 : http://code.google.com/p/ascoweb/issues/detail?id=105)
+        if (parent::preExecute()===true) return true;
+     //   if ($this->action=='exportCart')
+     //       $this->actionExportCart(true);
+        if (Utils::isAjax() && $this->method==='actionSearch')
+        {
+            Config::set('template','templates/answers.html');
+        }
+        
+        if ($this->method=='actionExportCartByType')
+            $this->actionExportCartByType(true);
+
         // Charge la table de correspondances entre le numéro d'un centre (ascoX)
         // et son numéro de l'article sur le site Ascodocpsy
         $this->tblAsco=$this->loadTable('annuairegip');
