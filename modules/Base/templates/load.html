@@ -298,11 +298,11 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 <if test="{!Config::get('allfields',false)}">
 	<if test="{User::hasAccess('AdminBase')}">
 	    <if test="{$REF > 0}">
-	        <a href="/base/loadfull?REF=$REF" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
+	        <a href="/Base/LoadFull?REF=$REF" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
 	    </if>
 /*
 	    <else>
-	        <a href="/base/loadfull" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
+	        <a href="/Base/LoadFull" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
 	    </else>
 */
 	</if>
@@ -310,7 +310,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 
 <p><strong>Les zones encadrées de rouge sont des zones obligatoires.</strong></p>
 
-<form method="post" action="/base/save" class="form load">
+<form method="post" action="/Base/Save" class="form load">
     <div class="buttons">
         <def name="deletelink" value="{Routing::linkFor('/Base/ConfirmDelete?REF='.$REF)}" />
         <button test="{$REF!=0 AND User::hasAccess('AdminBase')}" type="button" onclick="window.location.replace('$deletelink');" class="reset">Supprimer</button>
@@ -694,94 +694,95 @@ jQuery(document).ready(
             '{Routing::linkFor("/Base/Lookup")}?table=auteurs&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
 
         jQuery('textarea[@name=DipSpe]').autocomplete
         (
             '{Routing::linkFor("/Base/Lookup")}?table=diplomes&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
 
         jQuery('input[@name=CongrLie]').autocomplete
         (
             '{Routing::linkFor("/Base/Lookup")}?table=villes&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
 
         jQuery('textarea[@name=Edit]').autocomplete
         (
             '{Routing::linkFor("/Base/Lookup")}?table=editeurs&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
 
         jQuery('textarea[@name=Lieu]').autocomplete
         (
             '{Routing::linkFor("/Base/Lookup")}?table=lieux&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
 
         jQuery('textarea[@name=Col]').autocomplete
         (
             '{Routing::linkFor("/Base/Lookup")}?table=collections&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
 
         jQuery('textarea[@name=Rev]').autocomplete
         (
             '{Routing::linkFor("/Base/Lookup")}?table=revues&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
 
         jQuery('textarea[@name=Theme]').autocomplete
         (
             '{Routing::linkFor("/Base/Lookup")}?table=themes&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
 
+        ThesoLookupUrl='{Routing::linkFor("/ThesaurusModule/ThesoLookup")}';
         jQuery('textarea[@name=MotCle]').autocomplete
         (
-            '{Routing::linkFor("/ThesaurusModule/ThesoLookup")}?fre=[%s] or [%s*]&amp;_max=25&amp;_sort=%',
+            ThesoLookupUrl + '?fre=[%s] or [%s*]&amp;_max=25&amp;_sort=%',
             \{
                 asValue: false,
                 height: 300,
                 onload: ThesoLookup
             \}
-        );
+        ).addClass('autocomplete');
 
         jQuery('textarea[@name=Nomp]').autocomplete
         (
             '{Routing::linkFor("/Base/Lookup")}?table=nomspropres&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
 
         jQuery('textarea[@name=CanDes]').autocomplete
         (
             '{Routing::linkFor("/Base/Lookup")}?table=candes&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
         
         jQuery('textarea[@name=Loc]').autocomplete
         (
             '{Routing::linkFor("/Base/Lookup")}?table=localisations&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
         
         jQuery('input[@name=ProdFich]').autocomplete
         (
             '{Routing::linkFor("/Base/Lookup")}?table=producteurs&amp;value=%s',
             \{
             \}
-        );
+        ).addClass('autocomplete');
 
     \}
 );
