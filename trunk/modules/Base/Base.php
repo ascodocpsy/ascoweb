@@ -45,7 +45,6 @@ class Base extends DatabaseModule
         {
             Config::set('template','templates/answers.html');
         }
-        
         if ($this->method=='actionExportCartByType')
             $this->actionExportCartByType(true);
 
@@ -55,7 +54,7 @@ class Base extends DatabaseModule
         // Filtre pour les membres du GIP
         // Ils peuvent voir les notices validées et leurs propres notices si elles ne sont pas validées
         Config::set('filter.EditBase', 'ProdFich:'.$this->ident.' OR Statut:valide');
-
+        
         // Charge la table de correspondances entre le numéro d'un centre (ascoX)
         // et son numéro de l'article sur le site Ascodocpsy
         $this->tblAsco=$this->loadTable('annuairegip');
@@ -279,19 +278,30 @@ class Base extends DatabaseModule
     }
 
     /**
-     * Callback qui retourne une chaîne vide pour chaque champ de la nouvelle
-     * notice à créer, excepté pour le champ Type pour lequel il retourne son contenu
+     * Callback utilisé lors de la création d'une notice.
+     * 
+     * Retourne une chaîne vide pour chaque champ de la nouvelle notice à créer, 
+     * excepté :
+     * - pour le champ Type : retourne le type du document 
+     * - pour le champ ProdFich : retourne l'identifiant de la personne connectée 
      *
      * @param string $name nom du champ de la base
      * @return string retourne une chaîne vide pour tous les champs de la base, 
-     * excepté pour le champ Type (retourne sa valeur)
+     * excepté pour les champs Type et ProdFich
      */
     public function emptyString($name)
      {
-        if($name==='Type')
-            return $this->request->Type;
-        else
-            return '';
+        switch ($name)
+        {
+            case 'Type':
+                return $this->request->Type;
+            
+            case 'ProdFich':
+                return $this->ident;
+            
+            default:
+                return '';
+        }
      }
 
     /**
