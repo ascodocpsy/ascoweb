@@ -105,7 +105,7 @@ class Base extends DatabaseModule
                     if ($aut=$this->author($h))
                     {
                         // Lien sur l'auteur : lance une nouvelle recherche
-                        $lien='/' . $this->module . '/search?aut='. urlencode('"'.$aut.'"');
+                        $lien='/' . $this->module . '/Search?aut='. urlencode('"'.$aut.'"');
                         $h=$this->link($h, $lien, 'Bibliographie de '.$h);
                     }
                     $t[$key]=$h;
@@ -155,7 +155,7 @@ class Base extends DatabaseModule
                 foreach ($t as $key=>$h)
                 {
                     $h=trim($h);
-                    $lien='/' . $this->module . '/search?motscles='. urlencode('['.$h.']');
+                    $lien='/' . $this->module . '/Search?motscles='. urlencode('['.$h.']');
                     $h=$this->link($h, $lien, 'Notices indexées au descripteur '.$h);
                     $t[$key]=$h;
                 }
@@ -164,7 +164,7 @@ class Base extends DatabaseModule
             case 'Rev':
                 // Lien vers une nouvelle recherche "notices de ce périodique"
                 if (! $h=trim($this->selection[$name])) return '';
-                $lien='/' . $this->module . '/search?rev='. urlencode('['.Utils::convertString($h).']');
+                $lien='/' . $this->module . '/Search?rev='. urlencode('['.Utils::convertString($h).']');
                 return $this->link($h, $lien, 'Notices du périodique '.$h);
                       
             case 'DateText':
@@ -190,7 +190,7 @@ class Base extends DatabaseModule
                         $lien1=$this->link
                         (
                             $h,
-                            '/' . $this->module . '/search?'.strtolower($name).'='. urlencode($h),
+                            '/' . $this->module . '/Search?'.strtolower($name).'='. urlencode($h),
                             ($name=='Loc') ? 'Documents localisés au centre '.$h : 'Notices produites par le centre '.$h
                         );
                         $t[$key]=$lien1;
@@ -234,7 +234,7 @@ class Base extends DatabaseModule
                 else
                 {
                     // Lien vers la page de présentation de la revue sur le site d'Ascodocpsy
-                    $lien='/' . $this->module . '/inform?rev='. urlencode(Utils::convertString($h,'lower'));
+                    $lien='/' . $this->module . '/Inform?rev='. urlencode(Utils::convertString($h,'lower'));
                     return $this->link('&nbsp;<span>Présentation</span>', $lien, 'Présentation du périodique (ouverture dans une nouvelle fenêtre)', true, 'inform');
                 }
 
@@ -974,7 +974,7 @@ class Base extends DatabaseModule
         TaskManager::progress('Terminé');
         
         // TODO : Faire en sorte d'avoir un lien http://xxx
-        //echo '<a href="'.Routing::linkFor('/base/search').'">Interroger la nouvelle base...</a>';
+        //echo '<a href="'.Routing::linkFor('/Base/Search').'">Interroger la nouvelle base...</a>';
     }
     
     /**
@@ -1187,8 +1187,8 @@ echo '</pre>';
             switch (Utils::get($_REQUEST['now']))
             {
                 case 1: // maintenant
-                    $id=TaskManager::addTask('/base/importfiles', 0, null, 'Import des fichiers de notices');
-                    Runtime::redirect('/taskmanager/taskstatus?id='.$id);
+                    $id=TaskManager::addTask('/Base/ImportFiles', 0, null, 'Import des fichiers de notices');
+                    Runtime::redirect('/TaskManager/TaskStatus?id='.$id);
                     break;
                 
                 case 0: // plus tard
@@ -1205,8 +1205,8 @@ echo '</pre>';
                     // Calcul le timestamp
                     $timestamp=mktime($hour, $minutes, $seconds, $month, $day, $year);
                     
-                    $id=TaskManager::addTask('/base/importfiles', $timestamp, null, 'Import des fichiers de notices');
-                    Runtime::redirect('/taskmanager/');
+                    $id=TaskManager::addTask('/Base/ImportFiles', $timestamp, null, 'Import des fichiers de notices');
+                    Runtime::redirect('/TaskManager/');
                     break;
                     
                 default:
