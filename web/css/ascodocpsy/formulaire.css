@@ -273,12 +273,17 @@ form.load label.mandatory
 /*    padding-left: 20px;*/
 }
 
+/* Zones de saisie obligatoire */
 textarea.mandatory,
-input.mandatory
+input.text.mandatory
 {
     border: 1px solid red!important;
 }
-
+/* Supprime le style appliqué pour les input.text.mandatory (pour IE) */
+input.mandatory.radio
+{
+    border: 0px !important;
+}
 label.mandatory
 {
     font-weight: bold;

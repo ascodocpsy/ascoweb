@@ -196,7 +196,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 
 /* Raccourci pour le champ Statut de la notice */
 <template match="//Statut">
-    <fieldset label="Statut de la notice *">
+    <fieldset label="Statut de la notice *" style="border: 1px solid red;">
         <if test="{User::hasAccess('AdminBase')}">
             <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'../../tables/statut.txt')" class="mandatory" /></fill>
         </if>
@@ -474,7 +474,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </case>
         
         <case test="texte officiel">
-            <fieldset label="Nature du texte officiel *">
+            <fieldset label="Nature du texte officiel *" style="border: 1px solid red;">
                 <fill values="$NatText"><radiolist name="NatText" src="new TextTable($this->path.'../../tables/nattext.txt')" class="mandatory" /></fill>
             </fieldset>
             <fieldset label="Titres du document et liens vers les versions électroniques">
