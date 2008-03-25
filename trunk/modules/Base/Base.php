@@ -737,25 +737,12 @@ class Base extends DatabaseModule
         // A voir également : utiliser un MatchSpy (xapian 1.0.3)
 //        echo "Equation initiale : $this->equation<br />";
         $lastCount=$this->selection->count();
-//        echo "Nombre total de notices : $lastCount<hr />";
 
         $equation=$baseEquation='(' . $this->equation . ')';
         
         $catField='Type';
         $catIndex='Type';
         $phraseSearch=false;
-        
-//        $catField='Creation';
-//        $catIndex='Creation';
-//        $phraseSearch=false;
-
-//        $catField='MotCle';
-//        $catIndex='MotCle';
-//        $phraseSearch=false;
-        
-//        $catField='Rev';
-//        $catIndex='Rev';
-//        $phraseSearch=true;
         
         $categories=array();
         for($i=0;$i<100;$i++)
@@ -771,10 +758,8 @@ class Base extends DatabaseModule
                 $cat="[$cat]";
             elseif(strpos($cat, ' ')!==false)
                 $cat="($cat)";
-//            echo "ref=",$this->selection['REF'],", $catField=$cat, titre=", $this->selection['Tit'], ", rev=", $this->selection['Rev'],"<br />";
             
             $equation.=" -$catIndex:$cat";
-//            echo "equation de boucle : $equation<br />";
             $found=$this->select($equation, -1);
 
             $count=$this->selection->count();
@@ -784,35 +769,28 @@ class Base extends DatabaseModule
             if ($diff<0)
                 throw new Exception("Impossible de créer des catégories sur le champ $catField, l'équation $equation a augmenté le nombre de notices obtenues (utiliser l'option phraseSearch ?)");
 
-//            echo "Réponses : $count<br />";
-//            echo "différence : ", $diff, "<br />";
-            
             $categories[$name]=array('equation'=>"$catIndex:$cat AND $baseEquation", 'count'=>$lastCount-$count);
             $lastCount=$count;
-//            echo "lastCount passe à : $lastCount<hr />";
-//            echo "<hr />";
 
             if (!$found) break;
         }
 
-//        echo "<hr />done<br />";
         ksort($categories);
-//        echo "<pre>";
-//        var_export($categories);
-//        echo "</pre>";
-        $all='';
-        foreach($categories as $name=>$cat)
-        {
-        	$url='ExportByCat?_equation='.urlencode($cat['equation']);            
-            $s=($cat['count']>1)? 's' : '';
-            echo "<li><a href='$url'>$name : $cat[count] notice$s</a></li>";
-            $all.='&_equation='.urlencode($cat['equation']) . '&filename='.urlencode($name);
-        }
-        if (1 < $nbCat=count($categories))
-        {
-            $all=substr($all,1);
-            echo "<li><a href='ExportByCat?$all'>Exporter les ", $nbCat, " fichiers </a></li>";
-        }
+
+        // Détermine le template à utiliser
+        if (! $template=$this->getTemplate())
+            throw new Exception('Le template à utiliser n\'a pas été indiqué');
+
+        // Détermine le callback à utiliser
+        $callback=$this->getCallback();
+
+        // Exécute le template
+        Template::run
+        (
+            $template,  
+            array('categories'=>$categories)  
+        );
+        
     }
     
     /**
