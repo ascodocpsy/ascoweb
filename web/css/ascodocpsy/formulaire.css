@@ -316,13 +316,6 @@ input.delete
 /*                         AFFICHAGE DES NOTICES                              */
 /* ========================================================================== */
 
-/* Liste de réponses courtes */
-ul.shortlist
-{
-    padding: 0;
-    clear: right;
-}
-
 /* Liste de réponses complètes */
 ul.fulllist
 {
@@ -340,6 +333,7 @@ ol li.record
     list-style: decimal;
     list-style-image: none;
 }
+
 /* Champ de la notice (libellé + contenu) */
 div.row
 {
@@ -350,17 +344,8 @@ ul.fulllist div.row
     clear: left;
 }
 
-/* Contenu du champ */
-div.field
-{
-    margin-left: 11em;
-}
-
-/* Libellé du champ */
-li.record label.field, 
-li.record label.text, 
-li.record label.checklist, 
-li.record label.textarea
+/* Libellé du champ (notice courte) */
+ol.shortlist li.record div.row label.field
 {
     font-weight: bold;
     width: 10em;
@@ -369,19 +354,39 @@ li.record label.textarea
     padding-right: 0em;
 }
 
-li.record.incart
+/* Contenu du champ (notice courte) */
+ol.shortlist li.record div.row div.field
 {
-    background-color: #ccc;
+    margin-left: 11em;
 }
 
+/* Libellé du champ (notice longue) */
+ul.fulllist li.record div.row label.field
+{
+    font-weight: bold;
+    width: 14em;
+    float: left;
+    text-align: right;
+    padding-right: 0em;
+}
+
+/* Contenu du champ (notice longue) */
+ul.fulllist li.record div.row div.field
+{
+    margin-left: 15em;
+}
+
+/* Survol d'une notice */ 
 li.record:hover
 {
-    background-color:#FFFFE7;
+    background-color: #FFFFE7;
 }
 
+/* Marquage d'une notice ajoutée au panier */
+li.record.incart,
 li.record.incart:hover
 {
-    background-color:#ccc;
+    background-color: #ccc;
 }
 
 /* Lien vers "Voir la notice" */
@@ -403,8 +408,8 @@ li.record:hover a.fullrecord
 /*
 * html a.fullrecord
 {
-    background-image: none; 
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://apache/ascoweb/web/styles/asco/voir.png');
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://apache/ascoweb/web/css/ascodocpsy/voir.png');
 }
 */
 
