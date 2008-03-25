@@ -23,6 +23,7 @@
     
     <template match="//Lien"><if test="$Lien">Disponible à partir de : $Lien$nl</if></template>
 
+	<template match="//MclResu"><if test="{$fmt['plus']}"><opt min="2">{implode('/',(array)$MotCle)}$nl</opt><opt min="2">$Resu$nl</opt></if></template>
 </div>/*
 
 
@@ -31,22 +32,22 @@
     
 */<loop on="{$this->selection}" as="$rank, $record"><switch test="{strtolower($Type)}">
 
-    <case test="article"><AutTit />$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $PdPf.</opt>$nl<Lien /></case>
+    <case test="article"><AutTit />$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $PdPf.</opt>$nl<Lien /><MclResu /></case>
 
 
-    <case test="congrès"><AutTit /><opt min="2">$CongrTit<opt>, n°$CongrNum</opt><opt>, $CongrDat</opt><opt>, $CongrLie</opt>.$nl</opt><LieuEdit /><Date />.$nl<Lien /></case>
+    <case test="congrès"><AutTit /><opt min="2">$CongrTit<opt>, n°$CongrNum</opt><opt>, $CongrDat</opt><opt>, $CongrLie</opt>.$nl</opt><LieuEdit /><Date />.$nl<Lien /><MclResu /></case>
 
 
-    <case test="livre"><AutTit /><LieuEdit /><Date sep=" ; " />.$nl<Lien /></case>
+    <case test="livre"><AutTit /><LieuEdit /><Date sep=" ; " />.$nl<Lien /><MclResu /></case>
 
 
-    <case test="{strtolower($Type)=='mémoire' || strtolower($Type)=='thèse'}"><AutTit/><opt>{implode('/',(array)$Lieu)}</opt><opt> : $DipSpe</opt><Date sep=" ; " />.$nl<Lien /></case>
+    <case test="{strtolower($Type)=='mémoire' || strtolower($Type)=='thèse'}"><AutTit/><opt>{implode('/',(array)$Lieu)}</opt><opt> : $DipSpe</opt><Date sep=" ; " />.$nl<Lien /><MclResu /></case>
 
     <case test="rapport"><AutTit /><if test="{$Rev}">$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $Page.$nl</opt></if>
         <else><if test="{$Lieu || $Edit}"><LieuEdit /><Date />.$nl</if><else><opt min="2">$Date.$nl</opt></else>
-        </else><Lien /></case>
+        </else><Lien /><MclResu /></case>
 
-    <case test="texte officiel">$Tit{$nl}<opt min="2">$Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.$nl</opt><Lien /></case>
+    <case test="texte officiel">$Tit{$nl}<opt min="2">$Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.$nl</opt><Lien /><MclResu /></case>
 
     <case test="périodique">$Rev$nl<opt min="2">$Notes$nl</opt><opt min="2">ISSN : {implode(' / ',(array)$IsbnIssn)}{$nl}</opt><opt min="2">{implode($nl,(array)$EtatCol)}{$nl}</opt></case> 
 
