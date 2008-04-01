@@ -31,11 +31,16 @@ var rePeriod       = "(_Year_)-(_Year_)?"
 var rePeriodFRE    = "L'information doit être saisie sous la forme suivante :\n- AAAA- si le périodique n'a pas cessé de paraître (exemple : 1995-),\n- AAAA-AAAA si le périodique a cessé de paraître (exemple : 1985-2005)."
 
 // Texte en majuscules
-var reChar         = "(.|\\n)"
-var reMaju         = "[A-Z']"
-var reMajus        = "_Maju_+"                                // Texte comportant au moins 2 majuscules
-var reUpCase       = " *[-.*]? *_Char_*_Majus_ *[0-9]*"       // Texte comprenant des espaces ou des caractères ou des chiffres ou des majus
-var reUpCaseFRE    = "L'information doit être saisie entièrement en majuscules et doit comporter au moins 2 caractères."
+//var reChar         = "(.|\\n)"
+//var reMaju         = "[A-Z']"
+//var reMajus        = "_Maju_+"                                // Texte comportant au moins 2 majuscules
+//var reUpCase       = " *[-.*]? *_Char_*_Majus_ *[0-9]*"       // Texte comprenant des espaces ou des caractères ou des chiffres ou des majus
+//var reUpCaseFRE    = "L'information doit être saisie entièrement en majuscules et doit comporter au moins 2 caractères."
+
+// Mots clés. Caractères autorisés : lettres majuscules, chiffres, espaces et signes suivants : ',. ()[]+-
+//var reUpCase       = "[A-Z0-9',. ()\\[\\]+-]{2,}"
+var reUpCase         = "[A-Z0-9(\\[][A-Z0-9',. ()\\[\\]+-]+"    // Commence soit par une lettre, un chiffre, une parenthèse ouvrante, un crochet ouvrant.
+var reUpCaseFRE    = "L'information doit être saisie entièrement en majuscules et doit comporter au moins 2 caractères.\nSont autorisés : les lettres, les chiffres, les espaces et les signes suivants : ',.()[]+-"
 
 // Nom du centre au format ascoXXX
 var reNomCentre    = "asco[1-9][0-9]{0,2}"
@@ -310,7 +315,6 @@ function ctrlSetPrevious(Controls, FieldIndex)
 {
     ctrlPreviousControls=Controls;
     ctrlPreviousFieldIndex=FieldIndex;
-console.debug('lost focus', Controls[FieldIndex]);
 }
 
 function ctrlPrevious() // jQuery event
