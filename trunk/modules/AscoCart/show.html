@@ -9,6 +9,10 @@
 	
 	<div class="texte">
 			<p class="spip"><a href="/AscoCart/Clear">Vider le panier...</a></p>
-            <slot name="cart" action="/Base/ShowCaddie" _equation="{'REF:('.implode(' OR ', array_keys($this->cart)).')'}" />
+            {Config::set('equation','REF:('.implode(' OR ', array_keys($this->cart)).')')}
+            <slot 
+                name="cart" 
+                action="/Base/ShowCaddie" 
+            />
 	</div>
 </else>
