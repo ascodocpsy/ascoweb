@@ -571,21 +571,21 @@ class Base extends DatabaseModule
      * 
      * Dans le cas contraire, un message est affiché.
      * 
-     * @param string $rev la revue à localiser
+     * @param string $Rev la revue à localiser
      */
-    public function actionLocate($rev)
+    public function actionLocate($Rev)
     {
-        $this->request->required('rev')->unique()->ok();
+        $this->request->required('Rev')->unique()->ok();
         
         // Construit l'équation de recherche
-        $eq='rev=['.$rev.'] et Type=periodique';
+        $eq='rev=['.$Rev.'] et Type=periodique';
         
         // Ouvre la base de données
         $this->openDatabase();
 
 		// Fiche Périodique inexistante
         if (! $this->select($eq))
-        	return $this->showError('Aucune localisation n\'est disponible pour le périodique '.$rev.'.');
+        	return $this->showError('Aucune localisation n\'est disponible pour le périodique '.$Rev.'.');
         
         // Fiche Périodique existante 
         
@@ -618,30 +618,30 @@ class Base extends DatabaseModule
      * - plusieurs fiches existent pour la revue
      * - la fiche existe mais le lien ne pointe pas vers le site www.ascodocpsy.org
      *
-     * @param string $rev la revue pour laquelle on veut afficher la page 
+     * @param string $Rev la revue pour laquelle on veut afficher la page 
      * de présentation
      */
-    public function actionInform($rev)
+    public function actionInform($Rev)
     {              
-        $this->request->required('rev')->unique()->ok();
+        $this->request->required('Rev')->unique()->ok();
         
         // Construit l'équation de recherche
-        $eq='rev=['.$rev.'] et Type=periodique';
+        $eq='rev=['.$Rev.'] et Type=periodique';
         
         // Ouvre la base de données
         $this->openDatabase();
 
 		// Fiche Périodique inexistante
         if (! $this->select($eq))
-            return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$rev.'.');
+            return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$Rev.'.');
         
         // Erreur si plusieurs notices pour le périodique
         if ($this->selection->count() >= 2 )
-        	return $this->showError('Il existe plusieurs notices descriptives pour le périodique '.$rev.'.');
+        	return $this->showError('Il existe plusieurs notices descriptives pour le périodique '.$Rev.'.');
         
         // Fiche Périodique existante mais le champ Lien ne contient pas www.ascodocpsy.org
         if (stripos($this->selection['Lien'], 'ascodocpsy') === false)
-        	return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$rev.'.');
+        	return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$Rev.'.');
         
         // Fiche Périodique existante, redirige vers l'URL du champ Lien (lien sur le site ascodocpsy.org)
         Runtime::redirect($this->selection['Lien'], true);
