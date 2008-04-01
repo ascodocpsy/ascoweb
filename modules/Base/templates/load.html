@@ -287,7 +287,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 /* Fin des template match */
 
 
-<div class="titre">Base SantéPsy - Ajout/Modification d'une notice</div>
+<div class="titre">Ajout/Modification d'une notice</div>
 
 <if test="{!Config::get('allfields',false)}">
 	<opt><div class="titre-sous-rubrique">Document de type $Type</div></opt>
@@ -298,21 +298,16 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 <if test="{!Config::get('allfields',false)}">
 	<if test="{User::hasAccess('AdminBase')}">
 	    <if test="{$REF > 0}">
-	        <a href="/Base/LoadFull?REF=$REF" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
+	        <p><a href="LoadFull?REF=$REF" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a></p>
 	    </if>
-/*
-	    <else>
-	        <a href="/Base/LoadFull" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a>
-	    </else>
-*/
 	</if>
 </if>
 
 <p><strong>Les zones encadrées de rouge sont des zones obligatoires.</strong></p>
 
-<form method="post" action="/Base/Save" class="form load">
+<form method="post" action="Save" class="form load">
     <div class="buttons">
-        <def name="deletelink" value="{Routing::linkFor('/Base/ConfirmDelete?REF='.$REF)}" />
+        <def name="deletelink" value="{Routing::linkFor('ConfirmDelete?REF='.$REF)}" />
         <button test="{$REF!=0 AND User::hasAccess('AdminBase')}" type="button" onclick="window.location.replace('$deletelink');" class="reset">Supprimer</button>
         <submit label="Enregistrer" class="submit" />
     </div>
@@ -677,7 +672,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
     <div><hidden name="REF" value="$REF" /></div>
     
     <div class="buttons">
-        <def name="deletelink" value="{Routing::linkFor('/Base/ConfirmDelete?REF='.$REF)}" />
+        <def name="deletelink" value="{Routing::linkFor('ConfirmDelete?REF='.$REF)}" />
         <button test="{$REF!=0 AND User::hasAccess('AdminBase')}" type="button" onclick="window.location.replace('$deletelink');" class="reset">Supprimer</button>
         <submit label="Enregistrer" class="submit" />
     </div>
@@ -691,56 +686,56 @@ jQuery(document).ready(
 	\{
         jQuery('textarea[@name=Aut]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=auteurs&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=auteurs&amp;value=%s',
             \{
             \}
         ).addClass('autocomplete');
 
         jQuery('textarea[@name=DipSpe]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=diplomes&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=diplomes&amp;value=%s',
             \{
             \}
         ).addClass('autocomplete');
 
         jQuery('input[@name=CongrLie]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=villes&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=villes&amp;value=%s',
             \{
             \}
         ).addClass('autocomplete');
 
         jQuery('textarea[@name=Edit]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=editeurs&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=editeurs&amp;value=%s',
             \{
             \}
         ).addClass('autocomplete');
 
         jQuery('textarea[@name=Lieu]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=lieux&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=lieux&amp;value=%s',
             \{
             \}
         ).addClass('autocomplete');
 
         jQuery('textarea[@name=Col]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=collections&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=collections&amp;value=%s',
             \{
             \}
         ).addClass('autocomplete');
 
         jQuery('textarea[@name=Rev]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=revues&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=revues&amp;value=%s',
             \{
             \}
         ).addClass('autocomplete');
 
         jQuery('textarea[@name=Theme]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=themes&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=themes&amp;value=%s',
             \{
             \}
         ).addClass('autocomplete');
@@ -758,28 +753,28 @@ jQuery(document).ready(
 
         jQuery('textarea[@name=Nomp]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=nomspropres&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=nomspropres&amp;value=%s',
             \{
             \}
         ).addClass('autocomplete');
 
         jQuery('textarea[@name=CanDes]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=candes&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=candes&amp;value=%s',
             \{
             \}
         ).addClass('autocomplete');
         
         jQuery('textarea[@name=Loc]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=localisations&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=localisations&amp;value=%s',
             \{
             \}
         ).addClass('autocomplete');
         
         jQuery('input[@name=ProdFich]').autocomplete
         (
-            '{Routing::linkFor("/Base/Lookup")}?table=producteurs&amp;value=%s',
+            '{Routing::linkFor("Lookup")}?table=producteurs&amp;value=%s',
             \{
             \}
         ).addClass('autocomplete');
