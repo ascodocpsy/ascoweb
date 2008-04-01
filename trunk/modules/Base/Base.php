@@ -204,14 +204,14 @@ class Base extends DatabaseModule
                         // Recherche le numéro de l'article correspondant à l'URL de la fiche de présentation du centre
                         // et construit le lien
                         if (isset ($this->tblAsco[$h]))
-                        {                       
+                        {
+                            $img=Routing::linkFor('/css/ascodocpsy/inform.png');
                             $lien2=$this->link
                             (
-                                '&nbsp;<span>Présentation du centre '.$h.'</span>',
+                                '<img src="'.$img.'" align="top" alt="Présentation" />',
                                 Config::get('urlarticle').$this->tblAsco[$h], 
                                 'Présentation du centre '.$h.' (ouverture dans une nouvelle fenêtre)',
-                                true,
-                                'inform'
+                                true
                              );
                              $t[$key].='&nbsp;'.$lien2;
                         }                        
@@ -222,26 +222,34 @@ class Base extends DatabaseModule
             case 'Presentation':
                 if (! $h=$this->selection['Rev']) return '';
                 
+                // Path de l'image utilisée pour le lien
+                $img=Routing::linkFor('/css/ascodocpsy/inform.png');
+                
                 // Notice d'un document type Périodique
                 if (Utils::convertString($this->selection['Type'])=='periodique')
                 {
                     if (! $lien=$this->selection['Lien']) return '';
                     
                     if (strpos(strtolower($lien), 'ascodocpsy') !== false)
+                    {
                         $title='Présentation du périodique (ouverture dans une nouvelle fenêtre)';
+                        $alt='Présentation';
+                    }
                     else
+                    {
                         $title='Accéder au texte intégral (ouverture dans une nouvelle fenêtre)';
+                        $alt='Texte intégral';
+                    }
 
                     // Lien vers la page de présentation de la revue ou vers le texte intégral
                     // avec ouverture dans une nouvelle fenêtre
-                    return $this->link('&nbsp;<span>Présentation</span>', $lien, $title, true, 'inform');
+                    return $this->link('<img src="'.$img.'" align="top" alt="'.$alt.'" />', $lien, $title, true);
                 }
                 else
                 {
                     // Lien vers la page de présentation de la revue sur le site d'Ascodocpsy
                     $lien='/' . $this->module . '/Inform?Rev='. urlencode(Utils::convertString($h,'lower'));
-                    $img=Routing::linkFor('/css/ascodocpsy/inform.png');
-                    return $this->link('<img src="'.$img.'" align="top" />', $lien, 'Présentation du périodique (ouverture dans une nouvelle fenêtre)', true, 'inform');
+                    return $this->link('<img src="'.$img.'" align="top" alt="Présentation" />', $lien, 'Présentation du périodique (ouverture dans une nouvelle fenêtre)', true);
                 }
 
             case 'EtatCol':
