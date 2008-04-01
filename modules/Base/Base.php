@@ -110,7 +110,7 @@ class Base extends DatabaseModule
                     if ($aut=$this->author($h))
                     {
                         // Lien sur l'auteur : lance une nouvelle recherche
-                        $lien='/' . $this->module . '/Search?Aut='. urlencode('"'.$aut.'"');
+                        $lien='Search?Aut='. urlencode('"'.$aut.'"');
                         $h=$this->link($h, $lien, 'Bibliographie de '.$h);
                     }
                     $t[$key]=$h;
@@ -160,7 +160,7 @@ class Base extends DatabaseModule
                 foreach ($t as $key=>$h)
                 {
                     $h=trim($h);
-                    $lien='/' . $this->module . '/Search?MotsCles='. urlencode('['.$h.']');
+                    $lien='Search?MotsCles='. urlencode('['.$h.']');
                     $h=$this->link($h, $lien, 'Notices indexées au descripteur '.$h);
                     $t[$key]=$h;
                 }
@@ -169,7 +169,7 @@ class Base extends DatabaseModule
             case 'Rev':
                 // Lien vers une nouvelle recherche "notices de ce périodique"
                 if (! $h=trim($this->selection[$name])) return '';
-                $lien='/' . $this->module . '/Search?Rev='. urlencode('['.Utils::convertString($h).']');
+                $lien='Search?Rev='. urlencode('['.Utils::convertString($h).']');
                 return $this->link($h, $lien, 'Notices du périodique '.$h);
                       
             case 'DateText':
@@ -195,7 +195,7 @@ class Base extends DatabaseModule
                         $lien1=$this->link
                         (
                             $h,
-                            '/' . $this->module . '/Search?'.$name.'='. urlencode($h),
+                            'Search?'.$name.'='. urlencode($h),
                             ($name=='Loc') ? 'Documents localisés au centre '.$h : 'Notices produites par le centre '.$h
                         );
                         $t[$key]=$lien1;
@@ -248,7 +248,7 @@ class Base extends DatabaseModule
                 else
                 {
                     // Lien vers la page de présentation de la revue sur le site d'Ascodocpsy
-                    $lien='/' . $this->module . '/Inform?Rev='. urlencode(Utils::convertString($h,'lower'));
+                    $lien='Inform?Rev='. urlencode(Utils::convertString($h,'lower'));
                     return $this->link('<img src="'.$img.'" align="top" alt="Présentation" />', $lien, 'Présentation du périodique (ouverture dans une nouvelle fenêtre)', true);
                 }
 
