@@ -9,25 +9,10 @@
 /* Lien vers l'aide */
 <help href="http://www.ascodocpsy.org/article.php3?id_article=903" />
 
-<div class="titre">
-    Base SantéPsy - Recherche - Accès
-    {
-        User::hasAccess('AdminBase') 
-        ? 
-        'administrateur' 
-        : 
-        (
-            User::hasAccess('EditBase')
-            ?
-            'professionnel'
-            :
-            'public'
-        )
-    }
-</div>
+<div class="titre">Rechercher des documents</div>
 
 <div class="texte">
-    <form class="form search" action="/{$this->module}/Search" method="get">
+    <form class="form search" action="Search" method="get">
 /*        <autosave /> */
         <div>
             <textbox 
@@ -164,47 +149,15 @@
             </p>
         </div>
     
-        <div>
-            <label class="text">Options</label>
-            <div>
-                Réponses par page : 
-                <select name="_max">
-                    <option selected="selected">10</option>
-                    <option>50</option>
-                    <option>100</option>
-                    <option>500</option>
-                </select>
-            
-                Ordre de tri :
-    /*
-                Version produisant la liste complète de tous les critères de tri possible                    
-                <select name="_sort">
-                    <option value="%">Par pertinence</option>
-                    <option value="-">Date d'ajout de la notice (décroissant)</option>
-                    <option value="+">Date d'ajout de la notice (croissant)</option>
-                    <loop on="{$this->selection->getStructure()->sortkeys}" as="$sortkey">
-                        <option value="{$sortkey->name}">Par {$sortkey->label:$sortkey->name} (croissant)</option>
-                        <option value="{$sortkey->name}">Par {$sortkey->label:$sortkey->name} (décroissant)</option>
-                        <option value="%{$sortkey->name}">Par pertinence puis par {$sortkey->label:$sortkey->name} (croissant)</option>
-                        <option value="%{$sortkey->name}">Par pertinence puis par {$sortkey->label:$sortkey->name} (décroissant)</option>
-                        <option value="{$sortkey->name}%">Par {$sortkey->label:$sortkey->name} (croissant) puis par pertinence</option>
-                        <option value="{$sortkey->name}%">Par {$sortkey->label:$sortkey->name} (décroissant) puis par pertinence</option>
-                    </loop>
-                </select>
-    */
-                <select name="_sort">
-                    <option value="%">Pertinence</option>
-                    <option value="-" test="{User::hasAccess('AdminBase')}">Ordre de la base</option>                    
-                    <option value="Type">Type du document</option>
-                    <option value="Auteur">Auteur</option>
-                    <option value="Date-" selected="selected">Date (décroissant)</option>
-                    <option value="TypeDate">Type de document et date</option>
-                    <option value="Titre">Titre</option>
-                    <option value="Revue">Titre du périodique</option>
-                </select>
-                
-            </div>
-        </div>    
+        /* 
+            Si les options d'affichage ont été indiquées, on les récupère et on les transmet
+            lors de la recherche (comme ça, quand on fait 'modifier la recherche', on
+            conserve toutes les options définies par l'utilisateur
+        */ 
+        <hidden name="_fmt" value="{htmlspecialchars($this->request->defaults('_fmt','shortref')->ok())}" />
+        <hidden name="_sort" value="{htmlspecialchars($this->request->defaults('_sort','Date-')->ok())}" />
+        <hidden name="_max" value="{htmlspecialchars($this->request->defaults('_max',10)->ok())}" />
+
         <div class="buttons">
             <reset label="Effacer tout" onclick="window.location='{Routing::linkFor('SearchForm')}'" />
             <submit label="Rechercher" />
