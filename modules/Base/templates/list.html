@@ -123,7 +123,7 @@
                     <li><a href="ExportByType?_equation={urlencode($this-&gt;equation)}&amp;_sort={urlencode($this-&gt;selection-&gt;searchInfo('sortorder'))}">Exporter par type de document</a></li>
                     <li test="{User::hasAccess('AdminBase')}"><a href="ReplaceForm?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans toutes les notices...</a></li>
                     <li test="{User::hasAccess('AdminBase')}"><a href="ConfirmDelete?_equation={urlencode($this-&gt;equation)}">Supprimer toutes les notices</a></li>
-                    <li test="{User::hasAccess('AdminBase,EditBase')}"><a href="/AscoCart/Show">Voir mon panier</a></li>                    
+                    <li test="{!$incart and User::hasAccess('AdminBase,EditBase')}"><a href="/AscoCart/Show">Voir mon panier</a></li>                    
                 </ul>
             </div>
         </slot>
