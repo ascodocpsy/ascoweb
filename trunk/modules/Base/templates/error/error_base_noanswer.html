@@ -7,6 +7,6 @@
         <li>Vérifiez l’orthographe des mots recherchés.</li>
     </ol>
     
-    <p class="spip">Retournez sur la page précédente pour <a href="{$this->request->copy()->setAction('SearchForm')}">modifier vos critères de recherche</a>.</p>
+    <p class="spip">Retournez sur la page précédente pour <a href="{$this->request->copy()->clearNull()->setAction('SearchForm')}">modifier vos critères de recherche</a>.</p>
     
 </div>
