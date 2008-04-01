@@ -37,7 +37,7 @@
 			$CanDes<opt> / $Nomp</opt>
 		</else>
     </row></opt>
-    <opt><row label="Résumé">{Utils::autoLink($Resu)}</row><row label="Résumé"></row></opt>
+    <opt><row label="Résumé">{Utils::autoLink($Resu)}</row></opt>
 </template>
 
 <!--/* Template pour afficher l'ISBN */ -->
@@ -63,7 +63,18 @@
 <!--/* Template pour afficher le lien vers la localisation d'un titre de périodique */-->
 <template match="//Localisation">
 	<if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
-		<a class="locate" test="{$Rev}" href="Locate?rev={urlencode(Utils::convertString($this->selection['Rev'],'lower'))}" onclick="window.open(this.href); return false;" title="Localiser le périodique (ouverture dans une nouvelle fenêtre)">&#160;<span>Localiser</span></a>
+		<a 
+            class="locate" 
+            test="{$Rev}" 
+            href="/{$this->module}/Locate?Rev={urlencode(trim(Utils::convertString($this->selection['Rev']),'alphanum'))}"
+            onclick="window.open(this.href); return false;" 
+            title="Localiser le périodique (ouverture dans une nouvelle fenêtre)">
+            <img 
+                src="/css/ascodocpsy/loc.png" 
+                align="top" 
+                alt="Localisation"
+            />
+        </a>
 	</if>
 </template>
 
@@ -76,4 +87,17 @@
             {select('text()')}
         </code>
     </p>
+</template>
+
+<!-- Template pour afficher le lien vers l'aide en ligne (search, list, show) -->
+<template match="//help" href="" label="Aide" title="Afficher l'aide">
+    <a 
+        href="$href" 
+        title="$title (nouvelle fenêtre/nouvel onglet)" 
+        target="_blank" 
+        class="help" 
+        style="float: right;"
+        >
+        <strong style="padding-left: 4em">$label</strong>
+    </a>
 </template>

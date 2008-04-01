@@ -1,17 +1,26 @@
 <slot name="header" count="{$this->selection->count()}">
-    <if test="{User::hasAccess('AdminBase')}">        /* Administrateur */
-        <div class="titre">Base SantéPsy - Recherche - Accès administrateur</div>
-    </if>
-    <elseif test="{User::hasAccess('EditBase')}">     /* Membre du GIP */
-        <div class="titre">Base SantéPsy - Recherche - Accès professionnel</div>
-    </elseif>
-    <else>
-        <div class="titre">Base SantéPsy - Recherche - Accès public</div>
-    </else>
 
-    <p>
-        Equation : <code>{$this->equation}</code>
-    </p>
+    /* Lien vers l'aide */
+    <help href="http://www.ascodocpsy.org/article.php3?id_article=904" />
+
+    /* Titre de la page */
+    <div class="titre">Votre recherche</div>
+
+    /* Slot contenant les options de recherche (format, tri, notices par page...) */
+    <slot name="searchoptions" action="templates/searchoptions.html" />
+
+    /* Affichage de la requête utilisateur et lien pour la modifier */
+    <div style="font-size: 120%; background-color: #eee; padding: 0.5em; width: 65%; margin: 1em 0;">
+        <p style="margin: 0;">
+            {$this->equation}
+        </p>
+        <p style="margin-bottom: 0;">
+            <a href="{$this->request->copy()->clearNull()->setAction('SearchForm')}">
+                Modifier la recherche...
+            </a>
+        </p>
+    </div>
+        
     
     /* Affiche les mots-vides qui ont été ignorés dans l'équation */
     <def name="stopwords" value="{$this->selection->searchInfo('stopwords')}" />
@@ -34,78 +43,90 @@
     <searchinfo for="SortOrder" />
 </slot>
 
-<div class="texte">
-    /* Boutons supplémentaires pour les membres du GIP's et les admin (actions à effectuer sur les notices sélectionnées) */
-    <if test="{!Config::get('incart',false)}">
-        <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/AscoCart/Add" method="post" id="answers">
-            <div id="list">
-               <slot name="notice" action="templates/answers.html" />
+
+/* Détermine si on est dans le caddie ou non, définit l'action et l'id du formulaire en conséquence */
+<def name="incart" value="{Config::get('incart',false)}" />
+<def name="action" value="{$incart ? '/Ascocart/Remove' : '/Ascocart/Add'}" />
+<def name="formid" value="{$incart ? 'incartanswers' : 'answers'}" />
+
+/* Formulaire permettant d'ajouter/supprimer toutes les notices de la page dans/du panier */
+<form strip="{! User::hasAccess('AdminBase,EditBase')}" action="$action" method="post" id="$formid" class="texte" style="clear: both" >
+
+    <div id="list" class="texte">
+
+        /* Barre de navigation des pages + bouton ajouter au caddie */
+        <div style="padding: 0.5em 0; border-bottom: 1px solid #ccc;">
+            
+            <div test="{User::hasAccess('AdminBase,EditBase')}" style="float: left;">
+                <if test="$incart">
+                    <submit name="btnremove" class="removeall" label="Supprimer les notices du panier" title="Supprimer les notices de cette page du panier"/>
+                </if>
+                <else>
+                    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" title="Ajouter les notices de cette page au panier"/>                
+                </else>
             </div>
-        </form>
-    </if>
-    <else>
-        <form strip="{! (User::hasAccess('AdminBase') || User::hasAccess('EditBase'))}" action="/Ascocart/Remove" method="post" id="incartanswers">
-            <div id="list">
-                <slot name="notice" action="templates/answers.html" />
+            
+            <div class="pager" style="text-align: right;">
+                {$this->getNavigation()}
             </div>
-        </form>
-    </else>
-</div>
+        </div>
 
-<script>
-function init()
-\{
-    jQuery('.navbar a').click(function()\{
-        jQuery('#list').load(jQuery(this).attr('href'), init);
-        jQuery(this).css('background',"url('{Routing::linkFor('/fabweb/images/loading.gif')}') top center no-repeat");
-//        jQuery('ul.shortlist').fadeTo("slow",0.2);
-        return false;
-    \})
-    
-    // Lien "ajouter cette notice au caddie"
-    jQuery('a.addtocart').click(function(e)
-    \{
-        jQuery.post(this.href);
-        jQuery(this.parentNode).addClass('incart'); // parent=le li.record englobant
-        jQuery(this).remove();
-/*
-version dynamique : le add devient un delete et vice versa        
-        if (jQuery(this).hasClass('addtocart'))
-        \{
-            jQuery(this).removeClass('addtocart').addClass('removefromcart').attr('href', this.href.replace('Ajouter','Supprimer')).attr('title', 'Supprimer du panier');
-            jQuery(this.parentNode).addClass('incart'); // parent=le li.record englobant
-        \}
-        else
-        \{
-            jQuery(this).removeClass('removefromcart').addClass('addtocart').attr('href', this.href.replace('Supprimer','Ajouter')).attr('title', 'Ajouter au panier');
-            jQuery(this.parentNode).removeClass('incart'); // parent=le li.record englobant
-        \}
-*/
-        return false;
-    \});
+        /* Appelle le template d'affichage des notices en fonction du format demandé */
+        <switch test="{$this->request->unique('_fmt')->defaults('shortref')->ok()}">
+            <case test="shortref">
+                <slot name="answerlist" action="templates/shortref.html" />
+            </case>
+            
+            <case test="fullref">
+                <slot name="answerlist" action="templates/fullref.html" />
+            </case>
+            
+            <case test="csv">
+                <pre style="font-family: arial;"><slot name="answerlist" action="templates/export/csv.txt" /></pre>
+            </case>
+/*            
+            <case test="vancouver">
+                <pre style="font-family: arial;"><slot name="answerlist" action="templates/export/vancouver.txt" fmt="{array('plus'=>false)}"/></pre>
+            </case>
+            
+            <case test="vancouverplus">
+                <pre style="font-family: arial;"><slot name="answerlist" action="templates/export/vancouver.txt" fmt="{array('plus'=>true)}"/></pre>
+            </case>
+*/            
+            <default>
+                Impossible d'afficher les notices avec le format demandé : {$this->request->unique('_fmt')->defaults('court')->ok()}.
+            </default>
+        </switch>
+        
+        /* Barre de navigation des pages + bouton ajouter au caddie */
+        <div >
+            
+            <div test="{User::hasAccess('AdminBase,EditBase')}" style="float: left;">
+                <if test="$incart">
+                    <submit name="btnremove" class="removeall" label="Supprimer les notices du panier" title="Supprimer les notices de cette page du panier"/>
+                </if>
+                <else>
+                    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" title="Ajouter les notices de cette page au panier"/>                
+                </else>
+            </div>
+            
+            <div class="pager" style="text-align: right;">
+                {$this->getNavigation()}
+            </div>
+        </div>
 
-/*
-    jQuery('a.removefromcart').click(function()
-    \{
-        jQuery.post(jQuery(this).attr('href'));
-        jQuery(this.parentNode).css('background-color','#FFFFC0').fadeOut(400, function()\{jQuery(this).remove().next().remove()\});
-        return false;
-    \});
-*/
-    jQuery('#answers').submit(function()\{
-        jQuery.ajax(\{
-            url: jQuery(this).attr('action'),
-            type: jQuery(this).attr('method'),
-            data: jQuery('input:hidden', this).serialize(),
-            success: function()\{
-                jQuery('li.record').addClass('incart');
-                jQuery('a.addtocart').remove();
-                jQuery('input.addall').remove();
-            \}
-        \});        
-        return false;
-    \});
-\}
-
-jQuery('document').ready(init);
-</script>
+        /* Menu de bas de page (export, chercher/remplacer, suppression en série...) */
+        <slot name="menubase">
+            <div class="menubase">
+                <ul>
+                    <li><a href="Export?_equation={urlencode($this-&gt;equation)}&amp;_sort={urlencode($this-&gt;selection-&gt;searchInfo('sortorder'))}">Exporter toutes les notices</a></li>
+                    <li><a href="ExportByType?_equation={urlencode($this-&gt;equation)}&amp;_sort={urlencode($this-&gt;selection-&gt;searchInfo('sortorder'))}">Exporter par type de document</a></li>
+                    <li test="{User::hasAccess('AdminBase')}"><a href="ReplaceForm?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans toutes les notices...</a></li>
+                    <li test="{User::hasAccess('AdminBase')}"><a href="ConfirmDelete?_equation={urlencode($this-&gt;equation)}">Supprimer toutes les notices</a></li>
+                    <li test="{User::hasAccess('AdminBase,EditBase')}"><a href="/AscoCart/Show">Voir mon panier</a></li>                    
+                </ul>
+            </div>
+        </slot>
+       
+    </div>
+</form>
