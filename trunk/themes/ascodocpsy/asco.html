@@ -28,7 +28,7 @@
 	<!--<slot name="menu" action="menu.html" />-->
 
 	<div id="ContentLeft">
-         <div class="texte">
+         <div class="menu">
             <ul>
                 <li><a href="/Base/SearchForm">Rechercher des documents</a></li>
                 <li><a href="http://www.ascodocpsy.org/article.php3?id_article=906">Comment se procurer les documents</a></li>
@@ -47,6 +47,20 @@
                 </if>
             </ul>
          </div>
+
+        <p style="text-align: center; color:#888; margin-top: 2em; font-size: 86%;">
+            Accès<br />
+            <if test="{User::hasAccess('AdminBase')}">
+                administrateur
+            </if>
+            <elseif test="{User::hasAccess('EditBase')}">
+                professionnel
+            </elseif>
+            <else>
+                public
+            </else>
+         </p>
+                 
 	</div>
 
 	<div id="contentRight">
