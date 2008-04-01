@@ -31,8 +31,8 @@
         <def name="all" value="{$all . '&amp;_equation=' . urlencode($cat['equation']) . '&amp;filename=' .urlencode($name)}" />
     </loop>
 </ul>
-<ul test="{count($categories)}">
+<ul test="{count($categories)>1}">
     <li>
-        <a href="ExportByCat?{substr($all,1)}&amp;$sort">Exporter les {count($categories)} fichiers </a>
+        <a href="ExportByCat?{substr($all,1)}&amp;$sort">Exporter les {count($categories)} fichiers</a>
     </li>
 </ul>
