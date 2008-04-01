@@ -110,7 +110,7 @@ class Base extends DatabaseModule
                     if ($aut=$this->author($h))
                     {
                         // Lien sur l'auteur : lance une nouvelle recherche
-                        $lien='/' . $this->module . '/Search?aut='. urlencode('"'.$aut.'"');
+                        $lien='/' . $this->module . '/Search?Aut='. urlencode('"'.$aut.'"');
                         $h=$this->link($h, $lien, 'Bibliographie de '.$h);
                     }
                     $t[$key]=$h;
@@ -160,7 +160,7 @@ class Base extends DatabaseModule
                 foreach ($t as $key=>$h)
                 {
                     $h=trim($h);
-                    $lien='/' . $this->module . '/Search?motscles='. urlencode('['.$h.']');
+                    $lien='/' . $this->module . '/Search?MotsCles='. urlencode('['.$h.']');
                     $h=$this->link($h, $lien, 'Notices indexées au descripteur '.$h);
                     $t[$key]=$h;
                 }
@@ -169,7 +169,7 @@ class Base extends DatabaseModule
             case 'Rev':
                 // Lien vers une nouvelle recherche "notices de ce périodique"
                 if (! $h=trim($this->selection[$name])) return '';
-                $lien='/' . $this->module . '/Search?rev='. urlencode('['.Utils::convertString($h).']');
+                $lien='/' . $this->module . '/Search?Rev='. urlencode('['.Utils::convertString($h).']');
                 return $this->link($h, $lien, 'Notices du périodique '.$h);
                       
             case 'DateText':
@@ -195,7 +195,7 @@ class Base extends DatabaseModule
                         $lien1=$this->link
                         (
                             $h,
-                            '/' . $this->module . '/Search?'.strtolower($name).'='. urlencode($h),
+                            '/' . $this->module . '/Search?'.$name.'='. urlencode($h),
                             ($name=='Loc') ? 'Documents localisés au centre '.$h : 'Notices produites par le centre '.$h
                         );
                         $t[$key]=$lien1;
@@ -239,8 +239,9 @@ class Base extends DatabaseModule
                 else
                 {
                     // Lien vers la page de présentation de la revue sur le site d'Ascodocpsy
-                    $lien='/' . $this->module . '/Inform?rev='. urlencode(Utils::convertString($h,'lower'));
-                    return $this->link('&nbsp;<span>Présentation</span>', $lien, 'Présentation du périodique (ouverture dans une nouvelle fenêtre)', true, 'inform');
+                    $lien='/' . $this->module . '/Inform?Rev='. urlencode(Utils::convertString($h,'lower'));
+                    $img=Routing::linkFor('/css/ascodocpsy/inform.png');
+                    return $this->link('<img src="'.$img.'" align="top" />', $lien, 'Présentation du périodique (ouverture dans une nouvelle fenêtre)', true, 'inform');
                 }
 
             case 'EtatCol':
@@ -331,7 +332,7 @@ class Base extends DatabaseModule
             
             case 'Type':
                 return $this->selection[$name];
-                        
+
             default:
                 return;                 
         }
@@ -546,6 +547,7 @@ class Base extends DatabaseModule
     {
         $win=($newwin) ? ' onclick="window.open(this.href); return false;"' : '';
         $c=($class) ? ' class="'.$class.'"' : '';
+//        $lien.='&' . substr(Routing::buildQueryString($this->request->getParameters()),1);
         return '<a'. $c. ' href="' . Routing::linkFor($lien) . '"' . $win . ' title="'.$title.'">'.$value.'</a>';        
     }
 
@@ -1809,7 +1811,6 @@ echo '</pre>';
         $execReport.=$nbRef. ' notices ont été importées.';
         return array(true, $execReport);
     }
-    
-    
+
 }
 ?>
