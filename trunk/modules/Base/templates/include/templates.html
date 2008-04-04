@@ -82,7 +82,7 @@
 <template match="//searchinfo" for="">
     <p test="{debug}" style="color: #888; text-align: left; margin: 0 0 0.2em 0; padding: 0;">
         <strong>$for</strong> : 
-        <code style="background-color: #FFFFBB;">
+        <code style="background-color: #FFFFBB; font-size: 120%;">
             {implode(', ', (array)$this->selection->searchInfo($for))}
             {select('text()')}
         </code>
