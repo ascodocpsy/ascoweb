@@ -24,7 +24,14 @@
             <option value="Revue">Tri par revue</option>
             <option value="Titre">Tri par titre</option>
             <option value="Type">Tri par type</option>
-            <option value="TypeDate">Tri par type et date</option>
+            <option value="Type.Date-">Tri par type et date</option>
+            /*
+                Remarque : on ne peut pas utiliser une virgule ou un point-virgule
+                pour séparer Type et Date- dans l'option ci-dessus car sinon
+                le <fill></fill> coche l'option "date-" qui est au-dessus.
+                Les caractères '.' ou ':' fonctionnent parce qu'ils ne sont
+                pas dans la liste des séparateurs reconnus par le fill.
+            */
         </select>
     </fill>
     <br />
