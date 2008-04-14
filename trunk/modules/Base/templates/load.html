@@ -53,6 +53,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
     </div>
 </template>
 
+
 /* Raccourci pour le champ IsbnIssn
 @label : le label pour le champ $IsbnIssn
 @mandatory : indique si le champ $IsbnIssn est obligatoire
@@ -68,6 +69,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
         <help name="IsbnIssn" />
     </fieldset>
 </template>
+
 
 /* Raccourci pour la section Périodique
 @revMandatory indique si le champ $Rev est obligatoire
@@ -194,6 +196,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 	</else>
 </template>
 
+
 /* Raccourci pour le champ Statut de la notice */
 <template match="//Statut">
     <fieldset label="Statut de la notice *" style="border: 1px solid red;">
@@ -210,6 +213,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
         </if>
     </fieldset>
 </template>
+
 
 /* Raccourci pour la section Congrès
 @mandatory indique si les attributs sont obligatoires ou non
@@ -255,6 +259,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
     </fieldset>
 </template>
 
+
 /* Equivalent au <textbox /> mais si l'attribut value n'est pas précisé, 
 alors il est défini à partir de l'attribut name.
 On précise un attribut value notamment pour les champs 'articles', pour
@@ -279,6 +284,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
     </else>
 </template>
 
+
 /* Lien vers la page d'aide */
 <template match="//help" name="">
     <a href="{Config::get('help.'.$name)}" title="Aide sur le champ $name (nouvelle fenêtre/nouvel onglet)" target="_blank" class="help">&#160;<span>Aide</span></a>    
@@ -287,17 +293,26 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 /* Fin des template match */
 
 
-<div class="titre">Ajout/Modification d'une notice</div>
-
-<if test="{!Config::get('allfields',false)}">
-	<opt><div class="titre-sous-rubrique">Document de type $Type</div></opt>
-</if>
+/* Titre de la page : création/modification/duplication d'une notice (de type xxxx) */
+<div class="titre">
+    <switch test="{$this->method}">
+        <case test="actionNew">Création</case>
+        <case test="actionLoad">Modification</case>
+        <case test="actionDuplicate">Duplication</case>
+    </switch>
+    
+    d'une notice
+    
+    <if test="{!Config::get('allfields',false)}">
+        <opt>de type $Type</opt>
+    </if>
+</div>
 
 <div class="texte">
 
 <if test="{!Config::get('allfields',false)}">
 	<if test="{User::hasAccess('AdminBase')}">
-	    <if test="{$REF > 0}">
+	    <if test="{$REF > 0}"> /* on ne propose pas le lien si on est en train de créer ou de dupliquer une nouvelle notice */ 
 	        <p><a href="LoadFull?REF=$REF" title="Saisie de la notice avec tous les champs"><span>Saisie de la notice avec tous les champs</span></a></p>
 	    </if>
 	</if>
@@ -313,16 +328,19 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
     </div>
 
 /* Modification d'une notice en fonction du type de document */
-<if test="{!Config::get('allfields',false)}">
+<if test="{!is_null($Type) and !Config::get('allfields',false)}">
 
-    <div><hidden name="Type" value="$Type" /></div>
+    <hidden name="Type" value="$Type" />
        
+    /* Version en minu du type de la notice */
+    <def name="TypeMinu" value="{strtolower($Type)}" />
+    
     /* Contenu spécifique à chaque type de document */
-    <switch test="{strtolower($Type)}">
+    <switch test="{true}">
     
     /* TODO : factoriser le switch : Congrès et Livre presque identiques */
     
-        <case test="article">
+        <case test="{$TypeMinu==='article'}">
             <AutTit titLabel="Titre de l'article *" />
             <Date />
             <MentionsBib pageName="PdPf" pageLabel="Page début-fin *" />
@@ -334,7 +352,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <script type="text/javascript">ctrlInitialize("ControlsArticle");</script>      
         </case>
         
-        <case test="congrès">
+        <case test="{$TypeMinu==='congrès'}">
             <AutTit titLabel="Titre du document *" />
             <Congres mandatory="{true}" />
 			<Date />
@@ -359,7 +377,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <script type="text/javascript">ctrlInitialize("ControlsCongres");</script>
         </case>
         
-        <case test="livre">
+        <case test="{$TypeMinu==='livre'}">
             <AutTit titLabel="Titre du document *" />
             <Congres />
 			<Date />
@@ -383,8 +401,8 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <Statut />
             <script type="text/javascript">ctrlInitialize("ControlsLivre");</script>        
         </case>
-        
-        <case test="{strtolower($Type)==='mémoire' || strtolower($Type)==='thèse'}">
+
+        <case test="{$TypeMinu==='mémoire' || $TypeMinu==='thèse'}">
             <AutTit />
             <fieldset label="Spécialité du diplôme *">
                 <text name="DipSpe" rows="1" class="fullwidth autoheight mandatory" />
@@ -413,7 +431,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <script type="text/javascript">ctrlInitialize("ControlsMemoire");</script>
         </case>
         
-        <case test="périodique">
+        <case test="{$TypeMinu==='périodique'}">
             <fieldset label="Titre du périodique *">
                 <text name="Rev" rows="1" class="fullwidth autoheight mandatory" />
                 <help name="Rev" />
@@ -437,7 +455,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <script type="text/javascript">ctrlInitialize("ControlsPeriodique");</script>
         </case>
         
-        <case test="rapport">
+        <case test="{$TypeMinu==='rapport'}">
             <AutTit />
             <Date />
             <fieldset label="Nombre de pages">
@@ -468,7 +486,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             <script type="text/javascript">ctrlInitialize("ControlsRapport");</script>
         </case>
         
-        <case test="texte officiel">
+        <case test="{$TypeMinu==='texte officiel'}">
             <fieldset label="Nature du texte officiel *" style="border: 1px solid red;">
                 <fill values="$NatText"><radiolist name="NatText" src="new TextTable($this->path.'../../tables/nattext.txt')" class="mandatory" /></fill>
             </fieldset>
@@ -669,7 +687,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </fieldset>
     </opt>
     
-    <div><hidden name="REF" value="$REF" /></div>
+    <hidden name="REF" value="$REF" />
     
     <div class="buttons">
         <def name="deletelink" value="{Routing::linkFor('ConfirmDelete?REF='.$REF)}" />
