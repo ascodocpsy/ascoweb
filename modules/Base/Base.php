@@ -322,8 +322,8 @@ class Base extends DatabaseModule
     /**
      * Callback utilisé lors de la création/modification d'une fiche. 
      *
-     * Il affiche, dans le formulaire de modification, le type du document
-     * et les dates de création et de dernière modification.
+     * Il affiche, dans le formulaire de modification, les dates de création et 
+     * de dernière modification.
      * 
      * @param string $name nom de la balise mentionnée dans le template associé
      * @return string la valeur à injecter à la place de la balise $name, dans le template associé
@@ -338,9 +338,6 @@ class Base extends DatabaseModule
                 // Affiche les dates AAAAMMJJ sous la forme JJ/MM/AAAA
                 return preg_replace('~(\d{4})(\d{2})(\d{2})~', '${3}/${2}/${1}', $h);
             
-            case 'Type':
-                return $this->selection[$name];
-
             default:
                 return;                 
         }
