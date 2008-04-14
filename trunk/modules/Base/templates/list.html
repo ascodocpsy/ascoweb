@@ -31,15 +31,15 @@
     </switch>
     
     /* Informations techniques sur la recherche (affichées en mode debug uniquement) */
-    <searchinfo for="StopWords" />  
-    <searchinfo for="InternalStopWords" />  
-    <searchinfo for="QueryTerms" />  
-    <searchinfo for="InternalQueryTerms" />  
-    <searchinfo for="MaxPossibleWeight" />  
-    <searchinfo for="MaxAttainedWeight" />  
-    <searchinfo for="InternalQuery" />  
-    <searchinfo for="InternalFilter" />  
-    <searchinfo for="InternalFinalQuery" />  
+    <searchinfo for="StopWords" />
+    <searchinfo for="InternalStopWords" />
+    <searchinfo for="QueryTerms" />
+    <searchinfo for="InternalQueryTerms" />
+    <searchinfo for="MaxPossibleWeight" />
+    <searchinfo for="MaxAttainedWeight" />
+    <searchinfo for="InternalQuery" />
+    <searchinfo for="InternalFilter" />
+    <searchinfo for="InternalFinalQuery" />
     <searchinfo for="SortOrder" />
 </slot>
 
@@ -80,11 +80,11 @@
             <case test="fullref">
                 <slot name="answerlist" action="templates/fullref.html" />
             </case>
-            
+/*            
             <case test="csv">
                 <pre style="font-family: arial;"><slot name="answerlist" action="templates/export/csv.txt" /></pre>
             </case>
-/*            
+            
             <case test="vancouver">
                 <pre style="font-family: arial;"><slot name="answerlist" action="templates/export/vancouver.txt" fmt="{array('plus'=>false)}"/></pre>
             </case>
@@ -94,7 +94,7 @@
             </case>
 */            
             <default>
-                Impossible d'afficher les notices avec le format demandé : {$this->request->unique('_fmt')->defaults('court')->ok()}.
+                Impossible d'afficher les notices avec le format demandé : {$this->request->unique('_fmt')->defaults('shortref')->ok()}.
             </default>
         </switch>
         
