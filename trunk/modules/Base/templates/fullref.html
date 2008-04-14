@@ -36,14 +36,22 @@
                             <img src="/css/ascodocpsy/application_form_edit.png" align="top" alt="Modifier la notice" />
                             Modifier
                         </a>
+                        |
+                        <a href="Duplicate?REF=$REF">
+                            <img src="/css/ascodocpsy/application_form_add.png" align="top" alt="Dupliquer la notice" />
+                            Dupliquer
+                        </a>
                     </if>
                 </span>
             </span>
 
+            /* Version en minu du type de la notice */
+            <def name="TypeMinu" value="{strtolower($Type)}" />
+
             /* Affiche les informations appropriées en fonction du type de document et des drois utilisateurs */
-            <switch test="{strtolower($Type)}">
+            <switch test="{true}">
             
-                <case test="article">
+                <case test="{$TypeMinu==='article'}">
                     <TDTA />
                     <row label="Source">$Rev<Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt>, p. $PdPf</row>
                     <opt><row label="Notes">$Notes</row></opt>
@@ -51,7 +59,7 @@
                     <opt><row test="{User::hasAccess('AdminBase,EditBase')}" label="Producteur">$ProdFich</row></opt>
                 </case>
                 
-                <case test="congrès">
+                <case test="{$TypeMinu==='congrès'}">
                     <TDTA />
                     <opt><row label="Congrès"><opt>$CongrTit, </opt><opt>$CongrDat, </opt><opt>n°$CongrNum, </opt><opt>$CongrLie</opt></row></opt>
                     <opt><row label="Source"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
@@ -65,7 +73,7 @@
                     </if>
                 </case>
                 
-                <case test="livre">
+                <case test="{$TypeMinu==='livre'}">
                     <TDTA />
                     <opt><row label="Source"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt>$Page</row></opt>
                     <opt><row label="Collection">$Col</row></opt>
@@ -78,7 +86,7 @@
                     </if>
                 </case>
                 
-                <case test="{strtolower($Type)=='mémoire' || strtolower($Type)=='thèse'}">
+                <case test="{$TypeMinu==='mémoire' || $TypeMinu==='thèse'}">
                     <TDTA />
                     <if test="{User::hasAccess('AdminBase,EditBase')}">
                         <opt><row>$DipSpe</row></opt>
@@ -95,14 +103,14 @@
                     </if>
                 </case>
                 
-                <case test="périodique">
+                <case test="{$TypeMinu==='périodique'}">
                     <div class="row"><div>$Type<opt>, $ViePerio</opt></div></div>
                     <div class="row"><div>$Rev<opt> $Presentation</opt><opt>, {implode(' / ',(array)$IsbnIssn)}</opt></div></div>
                     <opt><row label="Localisation">$EtatCol</row></opt>
                     <opt><row label="Notes">$Notes</row></opt>
                 </case>
                 
-                <case test="rapport">
+                <case test="{$TypeMinu==='rapport'}">
                     <TDTA />
                     <opt><row label="Source"><opt>$Lieu : </opt><opt>$Edit, </opt><opt>$Reed, </opt><opt>$PageEdit</opt></row></opt>                        
                     <opt><row label="Source">$Rev<Localisation /><opt> $Presentation</opt><opt>, vol $Vol</opt><opt>, n°$Num</opt><opt>, $PageRev</opt></row></opt>
@@ -113,7 +121,7 @@
                     <opt><row test="{User::hasAccess('AdminBase,EditBase')}" label="Producteur">$ProdFich</row></opt>
                 </case>
                 
-                <case test="texte officiel">
+                <case test="{$TypeMinu==='texte officiel'}">
                     <row>$Type</row>
                     <opt><row label="Titre"><Tit /><opt> ; $Annexe</opt></row></opt>
                     <opt><row test="{! User::hasAccess('AdminBase,EditBase')}" label="Source">$Rev du $DatePub, n°$Num</row></opt>
@@ -121,6 +129,11 @@
                     <MTCNR />
                     <opt><row test="{User::hasAccess('AdminBase,EditBase')}" label="Producteur">$ProdFich</row></opt>
                 </case>
+
+                <default>
+                    <p class="spip">La notice numéro $REF possède un type de document qui n'est pas géré : '$Type', impossible de l'afficher.</p>
+                </default>
+
             </switch>
             
             <opt><row test="{User::hasAccess('AdminBase')}" label="Mise à jour">$LastUpdate<opt> par $LastAuthor</opt></row></opt>
