@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<title>$title</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
+	$CSS
+	$JS
+</head>
+
+<body>
+<div style="line-height: 0em">&#160;</div><!-- Bug Mozilla http://bugzilla.mozilla.org/show_bug.cgi?id=200510 -->
+
+<!-- Ancre du retour en haut de page-->
+<div id="top"></div>
+
+<div id="principal">
+	<!-- En tete : logo en flash et logo de la rubrique-->
+	<div id="header"> 	  
+		<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+			<tr> <td align="center"> <a href="http://www.ascodocpsy.org"> 
+			<img src="/images/base.jpg" border="0" />
+			 </a> </td> </tr>
+		</table>		
+	</div> <!-- ferme div id=header -->
+
+	<!-- Menu de navigation -->
+	<!--<slot name="menu" action="menu.html" />-->
+
+	<div id="ContentLeft">
+         <div class="menu">
+            <ul>
+                <li><a href="/Base/SearchForm">Rechercher des documents</a></li>
+                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=906">Comment se procurer les documents</a></li>
+                <li><a href="/ThesaurusModule">Consulter le thesaurus SantéPsy</a></li>
+                <if test="{User::hasAccess('Edit,Admin')}">
+                    <li id="caddie"><a href="/AscoCart/Show">Voir mon panier</a></li>
+                </if>
+                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=711">Contacter Ascodocpsy</a></li>
+                <if test="{User::hasAccess('Edit,Admin')}">
+                    <li><a href="/Base/New">Créer une nouvelle notice</a></li>
+                    <li><a href="/ImportAsco">Importer des notices</a></li>
+                </if>
+                <if test="{User::hasAccess('Admin')}">
+                    <li><a href="/Base/Replace?_equation={urlencode('Statut:avalider')}&amp;search=avalider&amp;replace=valide&amp;fields=Statut">Valider toutes les notices</a></li>
+                    <li><a href="/TaskManager/">Gestionnaire de tâches</a></li>
+                </if>
+            </ul>
+         </div>
+
+        <p style="text-align: center; color:#888; margin-top: 2em; font-size: 86%;">
+            Accès<br />
+            <if test="{User::hasAccess('AdminBase')}">
+                administrateur
+            </if>
+            <elseif test="{User::hasAccess('EditBase')}">
+                professionnel
+            </elseif>
+            <else>
+                public
+            </else>
+         </p>
+                 
+	</div>
+
+	<div id="contentRight">
+	
+		$contents
+			
+		<!-- retour en haut de page -->
+		<div class="top"> <a href="#"> haut de page </a> </div>
+	
+	</div> <!-- fermeture de div id=contentright -->
+
+	<!-- Pied de page -->
+	<!--<INCLURE (pied.php3)>-->
+	<div id="pied" class="texte">
+		<p>Pied de page</p>
+	</div>
+
+</div> <!-- Ferme div id="principal" -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-3864501-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

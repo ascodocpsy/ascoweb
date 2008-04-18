@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<database label="Base SantéPsy" version="1" description="Structure de la base SantePsy" creation="2007/11/09 19:12:17" lastupdate="2008/04/04 12:23:24">
+    <stopwords>ai aie aient aies ait as au aura aurai auraient aurais aurait auras aurez auriez aurions aurons auront aux avaient avais avait avec avez aviez avions avons ayant ayante ayantes ayants ayez ayons c ce ces d dans de des du elle en es est et eu eue eues eurent eus eusse eussent eusses eussiez eussions eut eux eûmes eût eûtes furent fus fusse fussent fusses fussiez fussions fut fûmes fût fûtes il j je l la le leur lui m ma mais me mes moi mon même n ne nos notre nous on ont ou par pas pour qu que qui s sa se sera serai seraient serais serait seras serez seriez serions serons seront ses soient sois soit sommes son sont soyez soyons suis sur t ta te tes toi ton tu un une vos votre vous y à étaient étais était étant étante étantes étants étiez étions été étée étées étés êtes</stopwords>
+    <fields>
+        <field name="REF" type="autonumber" label="Numéro de la notice" />
+        <field name="Type" label="Type de document" />
+        <field name="NatText" label="Nature du texte officiel" />
+        <field name="Aut" label="Auteurs" defaultstopwords="false" />
+        <field name="Tit" label="Titre" />
+        <field name="Annexe" label="Titres des annexes" />
+        <field name="LienAnne" label="Adresses Internet des annexes" />
+        <field name="CongrTit" label="Intitulé du congrès" />
+        <field name="CongrNum" label="Numéro du congrès" />
+        <field name="CongrDat" label="Année du congrès AAAA" />
+        <field name="CongrLie" label="Ville du congrès" />
+        <field name="DipSpe" label="Spécialité du diplôme" defaultstopwords="false" />
+        <field name="Date" label="Année du document ou de soutenance AAAA" />
+        <field name="DateText" label="Date du texte officiel AAAA-MM-JJ" />
+        <field name="DatePub" label="Date de publication du texte officiel AAAA-MM-JJ" />
+        <field name="DateVali" label="Date de fin de validité du texte officiel AAAA-MM-JJ" />
+        <field name="Rev" label="Titre du périodique" />
+        <field name="Vol" label="Volume du périodique" />
+        <field name="Num" label="Numéro du périodique" />
+        <field name="NumTexOf" label="Numéro du texte officiel" />
+        <field name="ViePerio" label="Date de vie et de mort d'un titre de périodique" />
+        <field name="EtatCol" label="Etat de la collection" />
+        <field name="Page" label="Nombre de pages" />
+        <field name="PdPf" label="Page début-page fin" />
+        <field name="Notes" label="Notes bibliographiques" />
+        <field name="Col" label="Collection" />
+        <field name="Edit" label="Editeur" />
+        <field name="Lieu" label="Lieu d'édition, de soutenance" />
+        <field name="Reed" label="Mention d'édition" />
+        <field name="IsbnIssn" label="ISBN, ISSN" />
+        <field name="Resu" label="Résumé" />
+        <field name="Theme" label="Thème" />
+        <field name="MotCle" label="Descripteurs" />
+        <field name="Nomp" label="Nom propre" />
+        <field name="CanDes" label="Candidats descripteurs" />
+        <field name="Lien" label="Adresse Internet" />
+        <field name="Loc" label="Localisation du document" />
+        <field name="ProdFich" label="Producteur de la fiche" />
+        <field name="Statut" label="Statut de la notice" description="Les statuts possibles sont : encours, avalider , valide." defaultstopwords="false" />
+        <field name="Doublon" type="bool" label="Doublons potentiels" description="true : Existence de doublons potentiels false : Pas de doublon" defaultstopwords="false" />
+        <field name="Creation" label="Date de création de la notice (AAAAMMJJ)" defaultstopwords="false" />
+        <field name="LastUpdate" label="Date de dernière mise à jour de la notice (AAAAMMJJ)" defaultstopwords="false" />
+        <field name="LastAuthor" label="Dernière personne à avoir modifié la notice" defaultstopwords="false" />
+    </fields>
+    <indices>
+        <index name="REF" label="Numéro de la notice">
+            <fields>
+                <field name="REF" words="true" />
+            </fields>
+        </index>
+        <index name="Type" label="Type de document">
+            <fields>
+                <field name="Type" words="true" phrases="true" values="true" weight="5" />
+            </fields>
+        </index>
+        <index name="NatText" label="Nature du texte officiel">
+            <fields>
+                <field name="NatText" words="true" phrases="true" values="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index name="Aut" label="Auteurs">
+            <fields>
+                <field name="Aut" words="true" phrases="true" values="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index name="Tit" label="Titre">
+            <fields>
+                <field name="Tit" words="true" phrases="true" global="true" weight="2" />
+            </fields>
+        </index>
+        <index name="Annexe" label="Titres des annexes">
+            <fields>
+                <field name="Annexe" words="true" phrases="true" global="true" />
+            </fields>
+        </index>
+        <index name="LienAnne" label="Adresses Internet des annexes">
+            <fields>
+                <field name="LienAnne" count="true" />
+            </fields>
+        </index>
+        <index name="CongrTit" label="Intitulé du congrès">
+            <fields>
+                <field name="CongrTit" words="true" phrases="true" global="true" weight="2" />
+            </fields>
+        </index>
+        <index name="CongrNum" label="Numéro du congrès">
+            <fields>
+                <field name="CongrNum" words="true" />
+            </fields>
+        </index>
+        <index name="CongrDat" label="Année du congrès AAAA">
+            <fields>
+                <field name="CongrDat" words="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index name="CongrLie" label="Ville du congrès">
+            <fields>
+                <field name="CongrLie" words="true" global="true" />
+            </fields>
+        </index>
+        <index name="DipSpe" label="Spécialité du diplôme">
+            <fields>
+                <field name="DipSpe" words="true" phrases="true" />
+            </fields>
+        </index>
+        <index name="Date" label="Année du document ou de soutenance">
+            <fields>
+                <field name="Date" words="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index name="DateText" label="Date du texte officiel">
+            <fields>
+                <field name="DateText" words="true" phrases="true" values="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index name="Rev" label="Titre du périodique">
+            <fields>
+                <field name="Rev" words="true" phrases="true" values="true" weight="5" />
+            </fields>
+        </index>
+        <index name="Vol" label="Volume du périodique">
+            <fields>
+                <field name="Vol" words="true" />
+            </fields>
+        </index>
+        <index name="Num" label="Numéro du périodique">
+            <fields>
+                <field name="Num" words="true" />
+            </fields>
+        </index>
+        <index name="NumTexOf" label="Numéro du texte officiel">
+            <fields>
+                <field name="NumTexOf" words="true" phrases="true" />
+            </fields>
+        </index>
+        <index name="Notes" label="Notes bibliographiques">
+            <fields>
+                <field name="Notes" words="true" phrases="true" />
+            </fields>
+        </index>
+        <index name="Col" label="Collection">
+            <fields>
+                <field name="Col" words="true" phrases="true" />
+            </fields>
+        </index>
+        <index name="Edit" label="Editeur">
+            <fields>
+                <field name="Edit" words="true" />
+            </fields>
+        </index>
+        <index name="Lieu" label="Lieu d'édition, de soutenance">
+            <fields>
+                <field name="Lieu" words="true" global="true" />
+            </fields>
+        </index>
+        <index name="IsbnIssn" label="ISBN, ISSN">
+            <fields>
+                <field name="IsbnIssn" words="true" phrases="true" />
+            </fields>
+        </index>
+        <index name="Resu" label="Résumé">
+            <fields>
+                <field name="Resu" words="true" phrases="true" global="true" />
+            </fields>
+        </index>
+        <index name="Theme" label="Thème">
+            <fields>
+                <field name="Theme" words="true" phrases="true" values="true" global="true" weight="10" />
+            </fields>
+        </index>
+        <index name="MotCle" label="Descripteurs">
+            <fields>
+                <field name="MotCle" words="true" phrases="true" values="true" count="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index name="Nomp" label="Nom propre">
+            <fields>
+                <field name="Nomp" words="true" phrases="true" values="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index name="CanDes" label="Candidats descripteurs">
+            <fields>
+                <field name="CanDes" words="true" phrases="true" values="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index name="Lien" label="Adresse Internet">
+            <fields>
+                <field name="Lien" count="true" />
+            </fields>
+        </index>
+        <index name="Loc" label="Localisation du document">
+            <fields>
+                <field name="Loc" words="true" />
+            </fields>
+        </index>
+        <index name="ProdFich" label="Producteur de la fiche">
+            <fields>
+                <field name="ProdFich" words="true" />
+            </fields>
+        </index>
+        <index name="Statut" label="Statut de la notice">
+            <fields>
+                <field name="Statut" words="true" />
+            </fields>
+        </index>
+        <index name="Doublon" label="Doublons potentiels">
+            <fields>
+                <field name="Doublon" words="true" />
+            </fields>
+        </index>
+        <index name="Creation" label="Date de création de la notice">
+            <fields>
+                <field name="Creation" words="true" />
+            </fields>
+        </index>
+        <index name="LastUpdate" label="Date de dernière mise à jour de la notice">
+            <fields>
+                <field name="LastUpdate" words="true" />
+            </fields>
+        </index>
+        <index name="LastAuthor" label="Dernière personne à avoir modifié la notice">
+            <fields>
+                <field name="LastAuthor" words="true" />
+            </fields>
+        </index>
+    </indices>
+    <lookuptables>
+        <lookuptable name="types" label="Types des documents">
+            <fields>
+                <field name="Type" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="nattext" label="Natures des textes officiels">
+            <fields>
+                <field name="NatText" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="auteurs" label="Auteurs">
+            <fields>
+                <field name="Aut" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="villes" label="Villes des congrès">
+            <fields>
+                <field name="CongrLie" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="diplomes" label="Spécialités des diplômes">
+            <fields>
+                <field name="DipSpe" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="revues" label="Titres des périodiques">
+            <fields>
+                <field name="Rev" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="collections" label="Collections">
+            <fields>
+                <field name="Col" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="editeurs" label="Editeurs">
+            <fields>
+                <field name="Edit" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="lieux" label="Lieux d'édition et de soutenance">
+            <fields>
+                <field name="Lieu" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="themes" label="Thèmes">
+            <fields>
+                <field name="Theme" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="motscles" label="Mots clés">
+            <fields>
+                <field name="MotCle" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="nomspropres" label="Noms propres">
+            <fields>
+                <field name="Nomp" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="candes" label="Candidats descripteurs">
+            <fields>
+                <field name="CanDes" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="descripteurs" label="Thème, descripteurs et candidats descripteurs">
+            <fields>
+                <field name="Theme" />
+                <field name="MotCle" />
+                <field name="Nomp" />
+                <field name="CanDes" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="localisations" label="Localisations des documents">
+            <fields>
+                <field name="Loc" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="producteurs" label="Producteurs des notices">
+            <fields>
+                <field name="ProdFich" />
+            </fields>
+        </lookuptable>
+        <lookuptable name="statuts" label="Statuts des notices">
+            <fields>
+                <field name="Statut" />
+            </fields>
+        </lookuptable>
+    </lookuptables>
+    <aliases>
+        <alias name="Motscles" label="Thème, descripteurs et candidats descripteurs">
+            <indices>
+                <index name="Theme" />
+                <index name="MotCle" />
+                <index name="Nomp" />
+                <index name="CanDes" />
+            </indices>
+        </alias>
+        <alias name="Titres" label="Titre du document/du congrès">
+            <indices>
+                <index name="Tit" />
+                <index name="CongrTit" />
+                <index name="Annexe" />
+            </indices>
+        </alias>
+        <alias name="Dates" label="Date du document/du congrès">
+            <indices>
+                <index name="Date" />
+                <index name="CongrDat" />
+            </indices>
+        </alias>
+        <alias name="Numeros" label="Numéro du périodique/du congrès/du texte officiel">
+            <indices>
+                <index name="Num" />
+                <index name="CongrNum" />
+                <index name="NumTexOf" />
+            </indices>
+        </alias>
+        <alias name="Mots" label="Mots de la notice">
+            <indices>
+                <index name="Tit" />
+                <index name="Annexe" />
+                <index name="CongrTit" />
+                <index name="CongrDat" />
+                <index name="CongrLie" />
+                <index name="Aut" />
+                <index name="Date" />
+                <index name="DateText" />
+                <index name="Lieu" />
+                <index name="NatText" />
+                <index name="Resu" />
+                <index name="MotCle" />
+                <index name="Nomp" />
+                <index name="CanDes" />
+                <index name="Theme" />
+            </indices>
+        </alias>
+        <alias name="Liens" label="Liens vers le texte intégral">
+            <indices>
+                <index name="Lien" />
+                <index name="LienAnne" />
+            </indices>
+        </alias>
+    </aliases>
+    <sortkeys>
+        <sortkey name="Type" label="Type du document" description="Extraction des 2 premiers caractères">
+            <fields>
+                <field name="Type" length="2" />
+            </fields>
+        </sortkey>
+        <sortkey name="Auteur" label="Auteur">
+            <description>Premier auteur mentionné dans la notice. Les mentions [s.n.] ne sont pas prises en compte.</description>
+            <fields>
+                <field name="Aut" end="[s.n.]" />
+            </fields>
+        </sortkey>
+        <sortkey name="Date" label="Date">
+            <description>Date du document ou date du texte officiel. Les mentions [s.d.] ne sont pas prises en compte.</description>
+            <fields>
+                <field name="Date, DateText" end="[s.d.]" />
+            </fields>
+        </sortkey>
+        <sortkey name="Titre" label="Titre">
+            <fields>
+                <field name="Tit" length="50" />
+            </fields>
+        </sortkey>
+        <sortkey name="Revue" label="Titre du périodique">
+            <fields>
+                <field name="Rev" />
+            </fields>
+        </sortkey>
+    </sortkeys>
+</database>

@@ -1,0 +1,18 @@
+code	label
+ARRETE	Arrêté
+AVENANT	Avenant
+AVIS	Avis
+CIRCULAIRE	Circulaire
+DECISION	Décision
+DECRET	Décret
+DELIBERATION	Délibération
+DIRECTIVE	Directive
+INSTRUCTION	Instruction
+LETTRE	Lettre
+LETTRE CABINET	Lettre Cabinet
+LETTRE CIRCULAIRE	Lettre circulaire
+LOI	Loi
+NOTE DE SERVICE	Note de service
+NOTE D'INFORMATION	Note d'information
+ORDONNANCE	Ordonnance
+RAPPORT	Rapport publié au JO

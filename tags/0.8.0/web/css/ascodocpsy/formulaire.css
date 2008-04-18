@@ -1,0 +1,84 @@
+/* Feuille de style pour les formulaires */
+
+/* ========================================================================== */
+/*                              FORMULAIRES                                   */
+/* ========================================================================== */
+
+/* Libellé de champ */
+label.field,
+label.text, 
+label.checklist, 
+label.textarea,
+label.select
+{
+/*  font-weight: bold;*/
+    width: 12em;
+    display: block;
+    float: left;
+    text-align: right;
+    padding-right: 1em;
+}
+
+form.form div.buttons
+{
+    text-align: right;
+    margin: 0;
+}
+
+form.form div.buttons input,
+form.form div.buttons button
+{
+    padding: 0.3em;
+    height: 2.5em; /* garder synchro avec le top: affecté à input.reset */
+}
+
+input.reset, button.reset
+{
+    float: left;
+}
+
+span.check, span.radio
+{
+    white-space: nowrap; /* empêche une checkbox/un radio d'être séparé de son label */
+}
+
+form p.exemple
+{
+    font-size: 0.9em;
+    margin: 0.1em 0 0 21em;
+}
+
+/* le style de la div qui affiche le message d'erreur pour un champ */
+form.form div.errorField 
+{
+    color:#af4c4c;
+    margin:0 0 0.5em 0; 
+    padding:0.5em;
+    background:#ffbfbf;
+}
+
+/* la classe appliquée au parent d'un champ en erreur */
+form.form .hasError    
+{
+  background:#ffdfdf;
+}
+
+form.form div.hasError    
+{
+  margin-top: 1em;
+}
+
+/*
+form.form .autocomplete:active,
+form.form .autocomplete:focus
+*/
+form.form .autocomplete
+{
+    background: #fff url('magnifier.png') no-repeat top right;
+}
+
+form.form textarea, form.form input.text
+{
+    border: 1px solid #a0a0a0;
+}
+
