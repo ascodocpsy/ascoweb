@@ -1,16 +1,14 @@
-<!--remarque : les fichiers include ne supportent pas les commentaires /* */-->
-
-<!--/* Template pour factoriser l'affichage (notice courte) : pour presque tous les types de doc, il faut afficher-->
-<!--$Type, $Date, $Aut, $Tit : permet de le faire en une seule ligne -->
-<!--$Aut et $Tit sont sur la même ligne /*-->
+/* Template pour factoriser l'affichage (notice courte) : pour presque tous les types de doc, il faut afficher
+$Type, $Date, $Aut, $Tit : permet de le faire en une seule ligne
+$Aut et $Tit sont sur la même ligne */
 <template match="//TDAT">
     <row >$Type, $Date</row>
     <row label="Auteur(s), titre"><opt>$Aut, </opt><strong><Tit /></strong></row>
 </template>
 
-<!--/* Template pour factoriser l'affichage (notice complète) : pour presque tous les types de doc, il faut afficher-->
-<!--$Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne -->
-<!--$Aut et $Tit sont sur 2 lignes différentes */-->
+/* Template pour factoriser l'affichage (notice complète) : pour presque tous les types de doc, il faut afficher
+$Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne
+$Aut et $Tit sont sur 2 lignes différentes */
 <template match="//TDTA">
     <row >$Type, $Date</row>
     <row label="Titre">
@@ -19,14 +17,14 @@
     <opt><row label="Auteur(s)">$Aut</row></opt>
 </template>
 
-<!--/* Template pour afficher un titre de document et son lien (s'il en a un) */-->
+/* Template pour afficher un titre de document et son lien (s'il en a un) */
 <template match="//Tit">
     <a test="{$Tit != ''}" strip="{$Lien == ''}" href="{Routing::linkFor($Lien)}" onclick="window.open(this.href); return false;" title="Accéder au texte intégral (ouverture dans une nouvelle fenêtre)">$Tit</a>
 </template>
 
-<!--/* Template pour le show.html */-->
-<!--/* Template pour factoriser l'affichage : pour presque tous les types de doc, il faut afficher-->
-<!--$MotCle/$Theme, $CanDes/$Nomp et $Resu : permet de le faire en une seule ligne */-->
+/* Template pour l'affichage long des notices 
+Template pour factoriser l'affichage : pour presque tous les types de doc, il faut afficher
+$MotCle/$Theme, $CanDes/$Nomp et $Resu : permet de le faire en une seule ligne */
 <template match="//MTCNR">
     <opt><row label="Descripteurs SantéPsy">$MotCle<opt> / $Theme</opt></row></opt>
     <opt><row label="Autres descripteurs">
@@ -40,17 +38,17 @@
     <opt><row label="Résumé">{Utils::autoLink($Resu)}</row></opt>
 </template>
 
-<!--/* Template pour afficher l'ISBN */ -->
+/* Template pour afficher l'ISBN */
 <template match="//Isbn">
     <opt><row label="ISBN">{implode(' / ',(array)$IsbnIssn)}</row></opt>
 </template>
 
-<!--/* Template pour afficher le champ Notes en activant l'option autolink */ -->
+/* Template pour afficher le champ Notes en activant l'option autolink */
 <template match="//Notes">
     <opt><row label="Notes">{Utils::autoLink($Notes)}</row></opt>
 </template>
 
-<!--/* Template pour afficher un <label> et une <div class="row"> dans une autre <div class="field"> */-->
+/* Template pour afficher un <label> et une <div class="row"> dans une autre <div class="field"> */
 <template match="//row" label="" class="" value="" test="{true}">
     <div test="$test" class="row $class">
         <label test="$label" class="field $class">$label</label>
@@ -60,7 +58,7 @@
     </div>
 </template>
 
-<!--/* Template pour afficher le lien vers la localisation d'un titre de périodique */-->
+/* Template pour afficher le lien vers la localisation d'un titre de périodique */
 <template match="//Localisation">
 	<if test="{User::hasAccess('AdminBase') || User::hasAccess('EditBase')}">
 		<a 
@@ -78,7 +76,7 @@
 	</if>
 </template>
 
-<!-- Template pour afficher les informations techniques sur la requête et la réponse en cours (debug uniquement) -->
+/* Template pour afficher les informations techniques sur la requête et la réponse en cours (debug uniquement) */
 <template match="//searchinfo" for="">
     <p test="{debug}" style="color: #888; text-align: left; margin: 0 0 0.2em 0; padding: 0;">
         <strong>$for</strong> : 
@@ -89,7 +87,7 @@
     </p>
 </template>
 
-<!-- Template pour afficher le lien vers l'aide en ligne (search, list, show) -->
+/* Template pour afficher le lien vers l'aide en ligne (search, list, show) */
 <template match="//help" href="" label="Aide" title="Afficher l'aide">
     <a 
         href="$href" 
