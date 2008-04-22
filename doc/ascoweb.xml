@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
+<sect1 id="ascoweb">
+  <sect1info>
+    <releaseinfo>$Id$</releaseinfo>
+  </sect1info>
+
+  <title>Application ascoweb</title>
+
+  <sect2 id="ascoweb.introduction">
+    <title>Introduction</title>
+
+    <para>Basé sur fab. Ensemble de modules = ensemble d'actions.</para>
+
+    <para>Importance de la config</para>
+
+    <para>Parler des URL du type Module/Action (routes) + tableau URL =
+    Module/Action</para>
+  </sect2>
+
+  <sect2 id="ascoweb.configuration">
+    <title>Configuration</title>
+
+    <para>Config general.config, db.config</para>
+  </sect2>
+
+  <sect2 id="ascoweb.templates">
+    <title>Templates</title>
+
+    <para>Parler des templates</para>
+  </sect2>
+
+  <sect2 id="ascoweb.tables">
+    <title>Tables</title>
+
+    <para>Décrire le format des tables</para>
+  </sect2>
+
+  <sect2 id="ascoweb.security">
+    <title>Sécurité</title>
+
+    <para>Gestion des droits utilisateurs</para>
+  </sect2>
+</sect1>
