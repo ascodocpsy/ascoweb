@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
+<sect1 id="modules">
+
+    <sect1info>
+        <releaseinfo>XXX</releaseinfo>
+    </sect1info>
+
+    <title>Répertoire modules</title>
+ 
+    <sect2 id="modules.introduction">
+    
+        <title>Introduction</title>
+        
+    </sect2>
+
+    <sect2 id="modules.ascocart">
+        <title>Répertoire AscoCart</title>
+        <para>
+            AscoCart est un pseudo-module du module <ulink url="?class=CartModule">CartModule</ulink> de fab. Ce module
+            permet de gérer le panier de notices.
+        </para>
+        
+        <para>
+            Pour l'application ascoweb, seuls les templates ont été redéfinis.
+        </para>
+        
+        <table>
+            <title>Liste des templates utilisés par le module AscoCart</title>
+            <tgroup cols="2">
+                <thead>
+                    <row>
+                        <entry>Fichier</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>added.html</entry>
+                        <entry>
+                             Template associé à l'action <ulink url="?class=CartModule#actionAdd">Add</ulink>.
+                             
+                             <para>
+                                 Cette page s'affiche lorsqu'une ou plusieurs notices
+                                 sont ajoutées au panier, mais uniquement si  
+                                 JavaScript est désactivé dans le navigateur 
+                                 Internet utilisé. 
+                             </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>cleared.html</entry>
+                        <entry>
+                            Template associé à l'action <ulink url="?class=CartModule#actionClear">Clear</ulink>.
+                            
+                            <para>
+                                Cette page s'affiche après que l'utilisateur ait
+                                choisi de vider son panier.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>removed.html</entry>
+                        <entry>
+                            Template associé à l'action <ulink url="?class=CartModule#actionRemove">Remove</ulink>.
+                            
+                            <para>
+                                Si JavaScript est activé dans le navigateur Internet, 
+                                ce template redirige l'utilisateur vers l'affichage 
+                                du panier.
+                             </para>
+                             <para>
+                                <caution>
+                                REVOIR : Si JavaScript est désactivé, cette page s'affiche 
+                                lorsqu'une ou plusieurs notices sont supprimées 
+                                du panier.
+                                </caution>
+                            </para> 
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>show.html</entry>
+                        <entry>
+                            Template associé à l'action <ulink url="?class=CartModule#actionShow">Show</ulink>.
+                            
+                            <para>
+                                Il permet à la fois de préciser que le panier est
+                                vide si aucune notice n'y a été ajouté et d'obtenir 
+                                le contenu du panier. Les notices sont affichées 
+                                sous la même forme qu'une liste de réponses.
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        
+    </sect2>
+    
+    <sect2 id="modules.base">
+        <title>Répertoire Base</title>
+        
+        <sect3 id="modules.base.fichier">
+            <title>Fichier Base.php</title>
+        </sect3>
+        
+        <sect3 id="modules.base.templates">
+            <title>Sous répertoire templates</title>
+
+            <sect4 id="modules.base.templates.search">
+                <title>Templates associés au formulaire de recherche</title>
+
+                <table>
+                    <title>liste</title>
+                    <tgroup cols="2">
+                        <thead>
+                            <row>
+                                <entry>Fichier</entry>
+                                <entry>Description</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>search.html</entry>
+                                <entry>
+                                    Template associé à l'action SearchForm.
+                                    
+                                    <para>
+                                        Il gère l'affichage du formulaire de 
+                                        recherche pour les trois modes d'accès.
+                                        Les critères de recherche sont affichés 
+                                        ou non en fonction des droits de l'utilisateur.
+                                    </para>
+                                    <para>
+                                        Il affiche également l'historique des 
+                                        recherches en utilisant le template
+                                        <emphasis>searchhistory.html</emphasis>
+                                    </para>
+                                    <para>
+                                        Le code JavaScript présent à la fin du 
+                                        template :
+                                        <itemizedlist>
+                                            <listitem>
+                                                <para>
+                                                    gère l'affichage des critères <emphasis>Nature 
+                                                    du texte officiel</emphasis> et 
+                                                    <emphasis>Date du texte officiel</emphasis>
+                                                    suivant que l'utilisateur a coché ou non
+                                                    la case <emphasis>Texte officiel</emphasis>
+                                                    du critère <emphasis>Type de document</emphasis>.
+                                                </para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>
+                                                    associe une table de lookup (index de la base)
+                                                    à certains critères.
+                                                </para>
+                                            </listitem>
+                                        </itemizedlist>
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>searchhistory.html</entry>
+                                <entry>
+                                    Ce template affiche l'historique des recherches.
+                                    Il est utilisé dans le template <emphasis>search.html</emphasis>
+                                    pour afficher l'historique à la suite du formulaire 
+                                    de recherche.
+                                </entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+
+            </sect4>
+
+
+            <sect4 id="modules.base.templates.show">
+                <title>Templates associés à l'affichage des notices</title>
+
+                <table>
+                    <tgroup cols="2">
+                        <thead>
+                            <row>
+                                <entry>Fichier</entry>
+                                <entry>Description</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>fullref.html</entry>
+                                <entry>
+                                    Template utilisé pour afficher une ou plusieurs notices
+                                    au format long.
+                                    
+                                    <para>
+                                        Pour chaque notice, il affiche :
+                                        <itemizedlist>
+                                            <listitem>
+                                                <para>Le numéro de la réponse,</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>
+                                                    Le bouton "Ajouter au panier" ou "Supprimer du panier"
+                                                    (suivant que l'on est dans l'affichage des résultats
+                                                    de la recherche ou dans l'affichage des notices du 
+                                                    panier) si l'utilisateur a les droits requis pour cette action,
+                                                </para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>
+                                                    Le bouton "Modifier la notice", si l'utilisateur
+                                                    a les droits requis pour cette action,
+                                                </para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>
+                                                    Les informations de la notice en fonction 
+                                                    du type de document et des drois utilisateurs.
+                                                </para>
+                                            </listitem>                                            
+                                        </itemizedlist>
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>list.html</entry>
+                                <entry>
+                                    Il s'agit de la page complète d'affichage des
+                                    réponses.
+                                    
+                                    <para>
+                                        Au début du template, un slot affiche le début
+                                        de la page : 
+                                        <itemizedlist>
+                                            <listitem>
+                                                <para>Titre,</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>Lien vers l'aide en ligne,</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>Rappel de l'équation de recherche,</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>Lien pour modifier la recherche,</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>Mots vides ignorés lors de la recherche</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>
+                                                    Options de recherche (format d'affichage, 
+                                                    ordre de tri, nombre de notices par page) 
+                                                    à l'aide du template <emphasis>searchoptions.html</emphasis>.
+                                                </para>
+                                            </listitem>                                            
+                                            <listitem>
+                                                <para>
+                                                    Informations techniques sur la recherche 
+                                                    (affichées en mode debug uniquement)
+                                                </para>                                                
+                                            </listitem>
+                                        </itemizedlist>
+                                    </para>
+                                    <para>
+                                        Il affiche ensuite une barre de navigation permettant 
+                                        de parcourir les résultats page par page, et un bouton 
+                                        permettant d'ajouter au panier ou de supprimer du panier
+                                        toutes les notices visibles sur la page en cours (suivant 
+                                        que l'on est dans l'affichage des résultats de la 
+                                        recherche ou dans l'affichage des notices du panier).
+                                    </para>
+                                    <para>
+                                        Il appelle ensuite le template d'affichage des 
+                                        notices en fonction du format demandé. Pour 
+                                        l'affichage court des notices, on emploie le 
+                                        template <emphasis>shortref.html</emphasis>.
+                                        Pour l'affichage long, on emploie le template
+                                        <emphasis>fullref.html</emphasis>.
+                                    </para>
+                                    <para>
+                                        La barre de navigation et le bouton mentionnés
+                                        ci-dessus sont répétés à la suite des notices.
+                                    </para>
+                                    <para>
+                                        En fin de page, il affiche une liste de liens
+                                        vers des actions sur la base de données (export
+                                        de notices, modification et suppression en série)
+                                        et un lien vers l'affichage du panier.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>searchoptions.html</entry>
+                                <entry>
+                                    Template utilisé pour afficher le formulaire 
+                                    permettant de changer les options de recherche 
+                                    (format d'affichage, ordre de tri, nombre de notices par page).
+                                    <para>
+                                        Il est référencé dans le template <emphasis>list.html</emphasis>.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>shortref.html</entry>
+                                <entry>
+                                    Template utilisé pour afficher une ou plusieurs notices
+                                    au format court.
+                                    
+                                    <para>
+                                        Pour chaque notice, il affiche :
+                                        <itemizedlist>
+                                            <listitem>
+                                                <para>Le numéro de la réponse,</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>
+                                                    Le bouton "Ajouter au panier" ou "Supprimer du panier",
+                                                    si l'utilisateur a les droits requis pour cette action,
+                                                </para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>Le bouton "Notice complète",</para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>
+                                                    Le bouton "Modifier la notice", si l'utilisateur
+                                                    a les droits requis pour cette action,
+                                                </para>
+                                            </listitem>
+                                            <listitem>
+                                                <para>
+                                                    Les informations de la notice en fonction 
+                                                    du type de document et des drois utilisateurs.
+                                                </para>
+                                            </listitem>                                            
+                                        </itemizedlist>
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>show.html</entry>
+                                <entry>
+                                    Template associé aux actions Show et Locate.
+                                    <para>
+                                        Permet d'afficher une seule notice au format long,
+                                        en utilisant le template <emphasis>fullref.html</emphasis>
+                                    </para>
+                                </entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+
+            </sect4>
+
+            <sect4 id="modules.base.templates.load">
+                <title>Templates associés à la saisie des notices</title>
+                
+                <table>
+                    <tgroup cols="2">
+                        <thead>
+                            <row>
+                                <entry>Fichier</entry>
+                                <entry>Description</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>chooseType.html</entry>
+                                <entry>
+                                    Template associé à l'action New (saisie d'une nouvelle
+                                    notice).
+                                 
+                                    <para>
+                                        Il permet de choisir le masque de saisie à 
+                                        afficher en fonction du type du document
+                                        à créer.
+                                    </para>    
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>deleted.html</entry>
+                                <entry>
+                                    N'EST PLUS UTILISE
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>load.html</entry>
+                                <entry>
+                                    Template associé aux actions Load et New et à 
+                                    la pseudo-action LoadFull.
+                                    
+                                    <para>
+                                        Il affiche à la fois le formulaire de saisie
+                                        de chaque type de document et celui contenant
+                                        tous les champs (réservé aux administateurs).
+                                    </para>
+                                    <para>
+                                        Le template débute par la déclaration des 
+                                        template match qui sont utilisés par la suite.
+                                    </para>
+                                    <para>
+                                        Le code JavaScript présent à la fin du template 
+                                        associe une table de lookup (index de la base) 
+                                        à certains champs du formulaire de saisie.
+                                    </para>
+
+                                </entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+
+            </sect4>
+
+            <sect4 id="modules.base.templates.export">
+                <title>Templates associés à l'export des notices</title>
+
+                <table>
+                    <tgroup cols="2">
+                        <thead>
+                            <row>
+                                <entry>Fichier</entry>
+                                <entry>Description</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>exportbytype.html</entry>
+                                <entry>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>export/csv.txt</entry>
+                                <entry>
+                                    Template utilisé pour l'export au format texte
+                                    tabulé, tous types de document confondus.
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>export/csvtype.txt</entry>
+                                <entry>
+                                    Template utilisé pour l'export au format texte
+                                    tabulé par type de document.
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>export/vancouver.txt</entry>
+                                <entry>
+                                    Template utilisé à la fois pour l'export Vancouver
+                                    et l'export "Vancouver plus".
+                                </entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+
+            </sect4>
+
+            <sect4 id="modules.base.templates.error">
+                <title>Templates d'erreurs (répertoire error)</title>
+                
+                <table>
+                    <tgroup cols="2">
+                        <thead>
+                            <row>
+                                <entry>Fichier</entry>
+                                <entry>Description</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>error_base_noanswer.html</entry>
+                                <entry>
+                                    Page affichée lorsque une recherche n'a donné
+                                    aucun résultat.
+                                    <para>
+                                        Actions concernées : Search, Show
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>error_base.html</entry>
+                                <entry>
+                                    Page affichée lorsqu'une erreur intervient lors
+                                    de l'interrogation de la base de données.
+                                    $error : généré PAR QUI ?
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>error.html</entry>
+                                <entry>
+                                    
+                                </entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+
+            </sect4>
+
+            <sect4 id="modules.base.templates.include">
+                <title>Templates match (répertoire include)</title>
+
+                <table>
+                    <tgroup cols="2">
+                        <thead>
+                            <row>
+                                <entry>Fichier</entry>
+                                <entry>Description</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>templates.html</entry>
+                                <entry>
+                                </entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+            </sect4>
+
+        </sect3>
+        
+    </sect2>
+
+    <sect2 id="modules.homepage">
+        <title>Répertoire HomePage</title>
+
+        <table>
+            <tgroup cols="2">
+                <thead>
+                    <row>
+                        <entry>Fichier</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>HomePage.php</entry>
+                        <entry>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>login.html</entry>
+                        <entry>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+
+    </sect2>
+
+    <sect2 id="modules.importasco">
+        <title>Répertoire ImportAsco</title>
+
+        <table>
+            <tgroup cols="2">
+                <thead>
+                    <row>
+                        <entry>Fichier</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>ImportAsco.php</entry>
+                        <entry>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+
+    </sect2>
+
+    <sect2 id="modules.spipsecurityt">
+        <title>Répertoire SpipSecurity</title>
+        
+        <table>
+            <tgroup cols="2">
+                <thead>
+                    <row>
+                        <entry>Fichier</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>SpipSecurity.php</entry>
+                        <entry>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+
+    </sect2>
+
+</sect1>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
+<sect1 id="ascoweb.module.base">
+  <sect1info>
+    <releaseinfo>$Id$</releaseinfo>
+  </sect1info>
+
+  <title>Module Base</title>
+
+  <sect2>
+    <title>Configuration</title>
+
+    <para>Configuration du module Base :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>defaultop, js, database, filter, etc.</para>
+      </listitem>
+
+      <listitem>
+        <para>config des différentes actions</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionSearchForm">
+    <title>Action SearchForm</title>
+
+    <para>Formulaire de recherche</para>
+
+    <sect3>
+      <title>Configuration</title>
+
+      <para></para>
+    </sect3>
+
+    <sect3>
+      <title>Templates</title>
+
+      <para></para>
+    </sect3>
+
+    <sect3>
+      <title>Tables</title>
+
+      <para></para>
+    </sect3>
+
+    <sect3>
+      <title>Feuilles de style et images</title>
+
+      <para></para>
+    </sect3>
+
+    <sect3>
+      <title>Scripts JavaScript</title>
+
+      <para></para>
+    </sect3>
+  </sect2>
+
+  <sect2 id="id.de.sect1.plus.autre2">
+    <title>Action Search</title>
+
+    <para>Paragraphe</para>
+  </sect2>
+
+  <sect2 id="id.de.sect1.plus.autre3">
+    <title>sect1.plus.autre1</title>
+
+    <para>Paragraphe</para>
+  </sect2>
+
+  <sect2 id="id.de.sect1.plus.autre4">
+    <title>sect1.plus.autre1</title>
+
+    <para>Paragraphe</para>
+  </sect2>
+
+  <sect2 id="id.de.sect1.plus.autre5">
+    <title>sect1.plus.autre1</title>
+
+    <para>Paragraphe</para>
+  </sect2>
+
+  <sect2 id="id.de.sect1.plus.autre6">
+    <title>sect1.plus.autre1</title>
+
+    <para>actionSearchForm</para>
+
+    <para>actionSearch</para>
+
+    <para>actionShow</para>
+
+    <para>actionLoad</para>
+
+    <para>actionLoadFull</para>
+
+    <para> actionNew</para>
+
+    <para>actionDuplicate</para>
+
+    <para>actionSave</para>
+
+    <para>actionConfirmDelete</para>
+
+    <para>actionDelete</para>
+
+    <para>actionReplaceForm</para>
+
+    <para>actionReplace</para>
+
+    <para>actionLocate</para>
+
+    <para>actionInform</para>
+
+    <para>actionImport</para>
+
+    <para>actionImportFiles</para>
+
+    <para>actionValidateAll</para>
+
+    <para>actionShowCaddie</para>
+
+    <para>actionExport</para>
+
+    <para>actionExportByType</para>
+
+    <para>actionExportByCat</para>
+
+    <para></para>
+
+    <para>actionClearSearchHistory (fab)</para>
+  </sect2>
+</sect1>
