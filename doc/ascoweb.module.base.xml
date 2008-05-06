@@ -4,7 +4,8 @@
 <?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
 <sect1 id="ascoweb.module.base">
   <sect1info>
-    <releaseinfo>$Id$</releaseinfo>
+    <releaseinfo>$Id: ascoweb.module.base.xml 510 2008-04-30 13:57:28Z
+    daniel.menard.bdsp $</releaseinfo>
   </sect1info>
 
   <title>Module Base</title>
@@ -23,6 +24,260 @@
         <para>config des différentes actions</para>
       </listitem>
     </itemizedlist>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionClearSearchHistory">
+    <title>Action ClearSearchHistory</title>
+
+    <para>L'application ascoweb utilise l'action <ulink
+    url="?class=DatabaseModule#actionClearSearchHistory">ClearSearchHistory</ulink>
+    définie dans le module DatabaseModule de fab.</para>
+
+    <para>Aucun fichier concernant cette action ne se trouve donc dans
+    l'application ascoweb.</para>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionConfirmDelete">
+    <title>Action ConfirmDelete</title>
+
+    <para>L'action ConfirmDelete est une pseudo action définie dans fab et
+    appelée à partir de l'action <ulink
+    url="?class=DatabaseModule#actionDelete">Delete</ulink> du module
+    DatabaseModule de fab pour demander une confirmation lors de la
+    suppression de notices.</para>
+
+    <para>Au niveau de l'application ascoweb, cette action étant réservée aux
+    administrateurs, le droit d'accès est précisé dans le fichier de
+    configuration <filename>Base.config</filename> du répertoire
+    <filename>/config</filename>.</para>
+
+    <programlisting role="xml">    &lt;actionConfirmDelete&gt;
+        &lt;access&gt;AdminBase&lt;/access&gt;
+    &lt;/actionConfirmDelete&gt;</programlisting>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionDelete">
+    <title>Action Delete</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionDuplicate">
+    <title>Action Duplicate</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionExport">
+    <title>Action Export</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionExportByCat">
+    <title>Action ExportByCat</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionExportByType">
+    <title>Action ExportByType</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionImport">
+    <title>Action Import</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionImportFiles">
+    <title>Action ImportFiles</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionInform">
+    <title>Action Inform</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionLoad">
+    <title>Action Load</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionLoadFull">
+    <title>Action LoadFull</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionLocate">
+    <title>Action Locate</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionNew">
+    <title>Action New</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionReplace">
+    <title>Action Replace</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionReplaceForm">
+    <title>Action ReplaceForm</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionSave">
+    <title>Action Save</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionSearch">
+    <title>Action Search</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
   </sect2>
 
   <sect2 id="ascoweb.module.base.actionSearchForm">
@@ -61,77 +316,45 @@
     </sect3>
   </sect2>
 
-  <sect2 id="id.de.sect1.plus.autre2">
-    <title>Action Search</title>
-
-    <para>Paragraphe</para>
-  </sect2>
-
-  <sect2 id="id.de.sect1.plus.autre3">
-    <title>sect1.plus.autre1</title>
-
-    <para>Paragraphe</para>
-  </sect2>
-
-  <sect2 id="id.de.sect1.plus.autre4">
-    <title>sect1.plus.autre1</title>
-
-    <para>Paragraphe</para>
-  </sect2>
-
-  <sect2 id="id.de.sect1.plus.autre5">
-    <title>sect1.plus.autre1</title>
-
-    <para>Paragraphe</para>
-  </sect2>
-
-  <sect2 id="id.de.sect1.plus.autre6">
-    <title>sect1.plus.autre1</title>
-
-    <para>actionSearchForm</para>
-
-    <para>actionSearch</para>
-
-    <para>actionShow</para>
-
-    <para>actionLoad</para>
-
-    <para>actionLoadFull</para>
-
-    <para> actionNew</para>
-
-    <para>actionDuplicate</para>
-
-    <para>actionSave</para>
-
-    <para>actionConfirmDelete</para>
-
-    <para>actionDelete</para>
-
-    <para>actionReplaceForm</para>
-
-    <para>actionReplace</para>
-
-    <para>actionLocate</para>
-
-    <para>actionInform</para>
-
-    <para>actionImport</para>
-
-    <para>actionImportFiles</para>
-
-    <para>actionValidateAll</para>
-
-    <para>actionShowCaddie</para>
-
-    <para>actionExport</para>
-
-    <para>actionExportByType</para>
-
-    <para>actionExportByCat</para>
+  <sect2 id="ascoweb.module.base.actionShow">
+    <title>Action Show</title>
 
     <para></para>
 
-    <para>actionClearSearchHistory (fab)</para>
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionShowCaddie">
+    <title>Action ShowCaddie</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
+  </sect2>
+
+  <sect2 id="ascoweb.module.base.actionValidateAll">
+    <title>Action ValidateAll</title>
+
+    <para></para>
+
+    <sect3>
+      <title />
+    </sect3>
+
+    <sect3>
+      <title />
+    </sect3>
   </sect2>
 </sect1>

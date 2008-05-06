@@ -4,18 +4,132 @@
 <?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
 <sect1 id="ascoweb.module.ascocart">
   <sect1info>
-    <releaseinfo>$Id$</releaseinfo>
+    <releaseinfo>$Id: ascoweb.module.ascocart.xml 510 2008-04-30 13:57:28Z
+    daniel.menard.bdsp $</releaseinfo>
   </sect1info>
 
   <title>Module AscoCart</title>
 
+  <toc></toc>
+
   <sect2 id="ascoweb.module.ascocart.introduction">
     <title>Introduction</title>
 
+    <para>AscoCart est un pseudo-module du module <ulink
+    url="?class=CartModule">CartModule</ulink> de fab. Ce module permet de
+    gérer le panier de notices.</para>
+
+    <para>Pour l'application ascoweb, les templates ont été redéfinis pour
+    chacune des actions.</para>
   </sect2>
 
   <sect2 id="ascoweb.module.ascocart.configuration">
     <title>Configuration</title>
 
+    <para>Le fichier de configuration <filename>AscoCart.config</filename> se
+    trouve dans le répertoire <filename>/config</filename> de l'application
+    ascoweb.</para>
+  </sect2>
+
+  <sect2 id="ascoweb.module.ascocart.actionadd">
+    <title>Action Add</title>
+
+    <para>Pour la documentation sur l'action Add, voir l'<ulink
+    url="?class=CartModule#actionAdd">API du module CartModule de
+    fab</ulink>.</para>
+
+    <para>Le template associé à l'action Add, <filename>added.html</filename>,
+    se trouve dans le répertoire
+    <filename>/modules/AscoCart</filename>.</para>
+
+    <para>Cette page s'affiche lorsqu'une ou plusieurs notices sont ajoutées
+    au panier, mais uniquement si JavaScript est désactivé dans le navigateur
+    Internet utilisé.</para>
+  </sect2>
+
+  <sect2 id="ascoweb.module.ascocart.actionclear">
+    <title>Action Clear</title>
+
+    <para>Pour la documentation sur l'action Clear, voir l'<ulink
+    url="?class=CartModule#actionClear">API du module CartModule de
+    fab</ulink>.</para>
+
+    <para>Le template associé à l'action Clear,
+    <filename>cleared.html</filename>, se trouve dans le répertoire
+    <filename>/modules/AscoCart</filename>.</para>
+
+    <para>Cette page s'affiche après que l'utilisateur ait choisi de vider son
+    panier.</para>
+  </sect2>
+
+  <sect2 id="ascoweb.module.ascocart.actionremove">
+    <title>Action Remove</title>
+
+    <para>Pour la documentation sur l'action Remove, voir l'<ulink
+    url="?class=CartModule#actionRemove">API du module CartModule de
+    fab</ulink>.</para>
+
+    <para>Le template associé à l'action Remove,
+    <filename>removed.html</filename>, se trouve dans le répertoire
+    <filename>/modules/AscoCart</filename>.</para>
+
+    <para>Si JavaScript est activé dans le navigateur Internet, ce template
+    redirige l'utilisateur vers l'affichage du panier.</para>
+
+    <caution>
+      <para>TODO : Si JavaScript est désactivé, cette page s'affiche
+      lorsqu'une ou plusieurs notices sont supprimées du panier.</para>
+    </caution>
+  </sect2>
+
+  <sect2 id="ascoweb.module.ascocart.actionshow">
+    <title>Action Show</title>
+
+    <para>Pour la documentation sur l'action Show, voir l'<ulink
+    url="?class=CartModule#actionShow">API du module CartModule de
+    fab</ulink></para>
+
+    <sect3>
+      <title id="ascoweb.module.ascocart.actionshow.tpl">Template</title>
+
+      <para>Le template associé à l'action Show,
+      <filename>show.html</filename>, se trouve dans le répertoire
+      <filename>/modules/AscoCart</filename>.</para>
+
+      <para>Il permet à la fois de préciser que le panier est vide si aucune
+      notice n'y a été ajouté et d'obtenir le contenu du panier. Les notices
+      sont affichées sous la même forme qu'une liste de réponses.</para>
+
+      <caution>
+        <para>TODO : faire lien vers ShowCaddie du module Base</para>
+      </caution>
+    </sect3>
+
+    <sect3>
+      <title id="ascoweb.module.ascocart.actionshow.css">Feuille de style
+      CSS</title>
+
+      <para>Une feuille de style de fab
+      (<filename>/fabweb/css/pager/simple.css</filename>) est utilisée pour
+      mettre en forme la barre de navigation permettant de passer d'une page
+      de notices à une autre.</para>
+    </sect3>
+
+    <sect3>
+      <title id="ascoweb.module.ascocart.actionshow.js">Scripts
+      Javascript</title>
+
+      <para>L'effet de survol fait sur une notice (la couleur de fond de la
+      notice devient jaune quand on passe la souris dessus) est réalisé dans
+      le fichier <filename>answers.js</filename> se trouvant dans le
+      répertoire <filename>/web/js</filename>.</para>
+
+      <para>Le code étant écrit à l'aide de la bibliothèque JavaScript,
+      JQuery, cette dernière est donc nécessaire. Elle est référencée dans la
+      configuration de l'action Show sous la forme de l'alias
+      <filename>jquery.js</filename>. Cet alias est défini dans fab et
+      référence la bibliothèque JQuery qui se trouve également dans
+      fab.</para>
+    </sect3>
   </sect2>
 </sect1>

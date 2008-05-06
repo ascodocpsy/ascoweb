@@ -489,7 +489,7 @@
                                 <entry>
                                     Page affichée lorsqu'une erreur intervient lors
                                     de l'interrogation de la base de données.
-                                    $error : généré PAR QUI ?
+                                    \$error : généré PAR QUI ?
                                 </entry>
                             </row>
                             <row>
