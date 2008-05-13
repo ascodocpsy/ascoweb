@@ -2,7 +2,7 @@
 @titLabel : le label pour le champ Tit : ne pas oublier le caractère '*'
 */
 <template match="//AutTit" titLabel="Titre *">
-    <fieldset label="Auteurs *">
+    <fieldset label="Auteurs">
         <text name="Aut" value="{implode('/',(array)$Aut)}" rows="1" class="fullwidth autoheight mandatory" />
         <help name="Aut" />
     </fieldset>
@@ -15,7 +15,7 @@
 
 /* Raccourci pour la section Année du document */
 <template match="//Date">
-    <fieldset label="Année du document *">
+    <fieldset label="Année du document">
         <text name="Date" class="fullwidth mandatory" />
         <help name="Date" />
     </fieldset>
@@ -27,7 +27,7 @@
 @pageLabel : le label de l'attribut du premier tag du fieldset : ne pas oublier le caractère '*' dans le titre
 le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le libellé
 */
-<template match="//MentionsBib" pageName="Page" pageLabel="Nombre de pages *">
+<template match="//MentionsBib" pageName="Page" pageLabel="Nombre de pages">
     <fieldset label="Mentions bibliographiques">
         <div>
             <text name="$pageName" label="$pageLabel" class="fullwidth mandatory" />
@@ -79,7 +79,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
     <fieldset label="Périodique">
         <if test="$revMandatory">
             <div>
-                <text name="Rev" label="Titre du périodique *" rows="1" class="fullwidth autoheight mandatory" />
+                <text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight mandatory" />
                 <help name="Rev" />
             </div>
         </if>
@@ -92,7 +92,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
         <div test="$volExists"><text name="Vol" label="Volume" class="fullwidth" /><help name="Vol" /></div>
         <if test="$revMandatory">
             <div>
-                <text name="Num" label="Numéro *" class="fullwidth mandatory" />
+                <text name="Num" label="Numéro" class="fullwidth mandatory" />
                 <help name="Num" />
             </div>
         </if>
@@ -117,7 +117,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
     <fieldset label="Indexation">
         <div>
             <if test="$themeMandatory">
-                <text name="Theme" rows="1" label="Thème *" class="fullwidth autoheight mandatory" />
+                <text name="Theme" rows="1" label="Thème" class="fullwidth autoheight mandatory" />
             </if>
             <else>
                 <text name="Theme" rows="1" label="Thème" class="fullwidth autoheight" />
@@ -125,7 +125,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
             <help name="Theme" />
         </div>
         <div>
-            <text name="MotCle" value="{implode('/',(array)$MotCle)}" rows="1" label="Descripteurs *" class="fullwidth autoheight mandatory" />
+            <text name="MotCle" value="{implode('/',(array)$MotCle)}" rows="1" label="Descripteurs" class="fullwidth autoheight mandatory" />
             <help name="MotCle" />
         </div>
         <div>
@@ -145,7 +145,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 */
 <template match="//Lien" mandatory="{false}">
     <if test="$mandatory">
-        <fieldset label="Lien vers le document *">
+        <fieldset label="Lien vers le document">
             <text name="Lien" rows="2" class="fullwidth mandatory" />
             <help name="Lien" />
         </fieldset>
@@ -164,7 +164,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 */
 <template match="//Loc" mandatory="{true}">
 	<if test="$mandatory">
-		<fieldset label="Localisation du document *">
+		<fieldset label="Localisation du document">
 		    <text name="Loc" value="{implode('/',(array)$Loc)}" rows="1" class="fullwidth autoheight mandatory" />
             <help name="Loc" />
 		</fieldset>
@@ -183,7 +183,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 */
 <template match="//ProdFich" mandatory="{true}">
 	<if test="$mandatory">
-	    <fieldset label="Producteur de la fiche *">
+	    <fieldset label="Producteur de la fiche">
 	        <text name="ProdFich" value="{implode('/',(array)$ProdFich)}" class="fullwidth mandatory" />
             <help name="ProdFich" />
 	    </fieldset>
@@ -199,7 +199,7 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 
 /* Raccourci pour le champ Statut de la notice */
 <template match="//Statut">
-    <fieldset label="Statut de la notice *" style="border: 1px solid red;">
+    <fieldset label="Statut de la notice" style="border: 1px solid red;">
         <if test="{User::hasAccess('AdminBase')}">
             <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'../../tables/statut.txt')" class="mandatory" /></fill>
         </if>
@@ -222,19 +222,19 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
     <fieldset label="Congrès">
     <if test="$mandatory">
         <div>
-            <text name="CongrTit" rows="1" label="Intitulé *" class="fullwidth autoheight mandatory" />
+            <text name="CongrTit" rows="1" label="Intitulé" class="fullwidth autoheight mandatory" />
             <help name="CongrTit" />
         </div>
         <div>
-            <text name="CongrNum" label="Numéro *" class="fullwidth mandatory" />
+            <text name="CongrNum" label="Numéro" class="fullwidth mandatory" />
             <help name="CongrNum" />
         </div>
         <div>
-            <text name="CongrLie" label="Ville *" class="fullwidth mandatory" />
+            <text name="CongrLie" label="Ville" class="fullwidth mandatory" />
             <help name="CongrLie" />
         </div>
         <div>
-            <text name="CongrDat" label="Année *" class="fullwidth mandatory" />
+            <text name="CongrDat" label="Année" class="fullwidth mandatory" />
             <help name="CongrDat" />
         </div>
     </if>
@@ -268,18 +268,18 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 <template match="//text" name="" label="" rows="{false}" class="" value="">
     <if test="$rows">
 		<if test="$value">
-	        <textbox name="$name" value="$value" label="$label" rows="$rows" class="$class" />
+	        <textbox name="$name" value="$value" label="$label" rows="$rows" class="$class">{select('@*')}</textbox>
         </if>
         <else>
-	        <textbox name="$name" value="$$name" label="$label" rows="$rows" class="$class" />
+	        <textbox name="$name" value="$$name" label="$label" rows="$rows" class="$class">{select('@*')}</textbox>
         </else>
     </if>
     <else>
 		<if test="$value">
-	        <textbox name="$name" value="$value" label="$label" class="$class" />
+	        <textbox name="$name" value="$value" label="$label" class="$class">{select('@*')}</textbox>
         </if>
         <else>
-	        <textbox name="$name" value="$$name" label="$label" class="$class" />
+	        <textbox name="$name" value="$$name" label="$label" class="$class">{select('@*')}</textbox>
         </else>
     </else>
 </template>
@@ -287,7 +287,13 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 
 /* Lien vers la page d'aide */
 <template match="//help" name="">
-    <a href="{Config::get('help.'.$name)}" title="Aide sur le champ $name (nouvelle fenêtre/nouvel onglet)" target="_blank" class="help">&#160;<span>Aide</span></a>    
+    <a tabindex="32767" href="{Config::get('help.'.$name)}" title="Aide sur le champ $name (nouvelle fenêtre/nouvel onglet)" target="_blank" class="help">&#160;<span>Aide</span></a>
+    /* 
+        On affecte aux liens "aide" le plus grand tabindex possible de façon à ce qu'on
+        puisse naviguer de champ en champ avec la touche tabulation sans passer par ces 
+        liens. Ceux-ci figurent toujours dans la séquence de tabulation, mais se retrouvent
+        tout à la fin.
+    */
 </template>
 
 /* Fin des template match */
@@ -341,9 +347,9 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
     /* TODO : factoriser le switch : Congrès et Livre presque identiques */
     
         <case test="{$TypeMinu==='article'}">
-            <AutTit titLabel="Titre de l'article *" />
+            <AutTit titLabel="Titre de l'article" />
             <Date />
-            <MentionsBib pageName="PdPf" pageLabel="Page début-fin *" />
+            <MentionsBib pageName="PdPf" pageLabel="Page début-fin" />
             <Periodique />
             <ResuIndexation />
             <Lien />
@@ -353,22 +359,22 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </case>
         
         <case test="{$TypeMinu==='congrès'}">
-            <AutTit titLabel="Titre du document *" />
+            <AutTit titLabel="Titre du document" />
             <Congres mandatory="{true}" />
 			<Date />
             <MentionsBib />
             <fieldset label="Edition">
                 <div>
-                    <text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur(s) *" class="fullwidth autoheight mandatory" />
+                    <text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur(s)" class="fullwidth autoheight mandatory" />
                     <help name="Edit" />
                 </div>
                 <div>
-                    <text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition *" class="fullwidth autoheight mandatory" />
+                    <text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition" class="fullwidth autoheight mandatory" />
                     <help name="Lieu" />
                 </div>
                 <ColReed />
             </fieldset>
-            <IsbnIssn label="ISBN / ISSN *" mandatory="{true}" />
+            <IsbnIssn label="ISBN / ISSN" mandatory="{true}" />
             <ResuIndexation />
             <Lien />
             <Loc />
@@ -378,22 +384,22 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </case>
         
         <case test="{$TypeMinu==='livre'}">
-            <AutTit titLabel="Titre du document *" />
+            <AutTit titLabel="Titre du document" />
             <Congres />
 			<Date />
             <MentionsBib />
             <fieldset label="Edition">
                 <div>
-                    <text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur *" class="fullwidth autoheight mandatory" />
+                    <text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Editeur" class="fullwidth autoheight mandatory" />
                     <help name="Edit" />
                 </div>
                 <div>
-                    <text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition *" class="fullwidth autoheight mandatory" />
+                    <text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition" class="fullwidth autoheight mandatory" />
                     <help name="Lieu" />
                 </div>
 				<ColReed />
             </fieldset>
-            <IsbnIssn label="ISBN / ISSN *" mandatory="{true}" />
+            <IsbnIssn label="ISBN / ISSN" mandatory="{true}" />
             <ResuIndexation />
             <Lien />
             <Loc />
@@ -404,22 +410,22 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 
         <case test="{$TypeMinu==='mémoire' || $TypeMinu==='thèse'}">
             <AutTit />
-            <fieldset label="Spécialité du diplôme *">
+            <fieldset label="Spécialité du diplôme">
                 <text name="DipSpe" rows="1" class="fullwidth autoheight mandatory" />
                 <help name="DipSpe" />
             </fieldset>
             <fieldset label="Edition">
                 <div>
-                    <text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Institution morale de rattachement *" class="fullwidth autoheight mandatory" />
+                    <text name="Edit" value="{implode('/',(array)$Edit)}" rows="1" label="Institution morale de rattachement" class="fullwidth autoheight mandatory" />
                     <help name="Edit" />
                 </div>
                 <div>
-                    <text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition ou de soutenance *" class="fullwidth autoheight mandatory" />
+                    <text name="Lieu" value="{implode('/',(array)$Lieu)}" rows="1" label="Lieu d'édition ou de soutenance" class="fullwidth autoheight mandatory" />
                     <help name="Lieu" />
                 </div>
             </fieldset>
             <MentionsBib />
-            <fieldset label="Année de soutenance *">
+            <fieldset label="Année de soutenance">
                 <text name="Date" class="fullwidth mandatory" />
                 <help name="Date" />
             </fieldset>
@@ -432,19 +438,19 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </case>
         
         <case test="{$TypeMinu==='périodique'}">
-            <fieldset label="Titre du périodique *">
+            <fieldset label="Titre du périodique">
                 <text name="Rev" rows="1" class="fullwidth autoheight mandatory" />
                 <help name="Rev" />
             </fieldset>
-            <fieldset label="Date de vie et de mort *">
+            <fieldset label="Date de vie et de mort">
                 <text name="ViePerio" class="fullwidth mandatory" />
                 <help name="ViePerio" />
             </fieldset>
-            <fieldset label="Etat de la collection *">
+            <fieldset label="Etat de la collection">
                 <text name="EtatCol" value="{implode('/',(array)$EtatCol)}" rows="1" class="fullwidth autoheight mandatory" />
                 <help name="EtatCol" />
             </fieldset>
-            <IsbnIssn label="ISSN *" mandatory="{true}" />
+            <IsbnIssn label="ISSN" mandatory="{true}" />
             <fieldset label="Notes">
                 <text name="Notes" rows="1" class="fullwidth autoheight" />
                 <help name="Notes" />
@@ -487,7 +493,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         </case>
         
         <case test="{$TypeMinu==='texte officiel'}">
-            <fieldset label="Nature du texte officiel *" style="border: 1px solid red;">
+            <fieldset label="Nature du texte officiel" style="border: 1px solid red;">
                 <fill values="$NatText"><radiolist name="NatText" src="new TextTable($this->path.'../../tables/nattext.txt')" class="mandatory" /></fill>
             </fieldset>
             <fieldset label="Titres du document et liens vers les versions électroniques">
@@ -496,7 +502,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
                     <help name="Tit" />
                 </div>
                 <div>
-                    <text name="Lien" rows="2" label="Lien vers le document *" class="fullwidth mandatory" />
+                    <text name="Lien" rows="2" label="Lien vers le document" class="fullwidth mandatory" />
                     <help name="Lien" />
                 </div>
                 <div>
@@ -510,7 +516,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
             </fieldset>
             <fieldset label="Dates">
                 <div>
-                    <text name="DateText" label="Date du texte officiel *" class="fullwidth mandatory" />
+                    <text name="DateText" label="Date du texte officiel" class="fullwidth mandatory" />
                     <help name="DateText" />
                 </div>
                 <div>
@@ -702,61 +708,71 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 jQuery(document).ready(
 	function()
 	\{
+        var title="Un index d'aide à la saisie est disponible pour ce champ.";
+        
         jQuery('textarea[@name=Aut]').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=auteurs&amp;value=%s',
             \{
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
 
         jQuery('textarea[@name=DipSpe]').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=diplomes&amp;value=%s',
             \{
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
 
         jQuery('input[@name=CongrLie]').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=villes&amp;value=%s',
             \{
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
 
         jQuery('textarea[@name=Edit]').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=editeurs&amp;value=%s',
             \{
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
 
         jQuery('textarea[@name=Lieu]').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=lieux&amp;value=%s',
             \{
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
 
         jQuery('textarea[@name=Col]').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=collections&amp;value=%s',
             \{
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
 
         jQuery('textarea[@name=Rev]').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=revues&amp;value=%s',
             \{
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
 
         jQuery('textarea[@name=Theme]').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=themes&amp;value=%s',
             \{
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
 
         ThesoLookupUrl='{Routing::linkFor("/ThesaurusModule/ThesoLookup")}';
         jQuery('textarea[@name=MotCle]').autocomplete
@@ -765,37 +781,42 @@ jQuery(document).ready(
             \{
                 asValue: false,
                 height: 300,
-                onload: ThesoLookup
+                onload: ThesoLookup,
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
 
         jQuery('textarea[@name=Nomp]').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=nomspropres&amp;value=%s',
             \{
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
 
         jQuery('textarea[@name=CanDes]').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=candes&amp;value=%s',
             \{
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
         
         jQuery('textarea[@name=Loc]').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=localisations&amp;value=%s',
             \{
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
         
         jQuery('input[@name=ProdFich]').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=producteurs&amp;value=%s',
             \{
+                title: title
             \}
-        ).addClass('autocomplete');
+        );
 
     \}
 );
