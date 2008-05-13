@@ -74,7 +74,7 @@ form.form .autocomplete:focus
 */
 form.form .autocomplete
 {
-    background: #fff url('magnifier.png') no-repeat top right;
+    background: #fff url('bullet_key.png') no-repeat right top;
 }
 
 form.form textarea, form.form input.text
