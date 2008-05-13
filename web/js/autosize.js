@@ -1,3 +1,40 @@
+jQuery(document).ready
+(
+    function()
+    {
+        jQuery('textarea.autoheight').each
+        (
+            function()
+            {
+                var autosize=function()
+                {
+                    var maxHeight=400;
+
+                    var scrollTop=this.scrollTop;
+                    
+                    jQuery(this).height(1);
+
+                    var scrollHeight=this.scrollHeight;
+                    if (scrollHeight > maxHeight)
+                    {
+                        jQuery(this).height(maxHeight).
+                        css('overflow', 'scroll');
+                    }
+                    else
+                    {
+                        jQuery(this).height(scrollHeight).
+                        css('overflow', 'hidden');
+                    }
+                    this.scrollTop=scrollTop;
+                };
+                this.autosize=autosize;
+                jQuery(this).keyup(autosize).keydown(autosize);
+                this.autosize();
+            }
+        );
+    }
+);
+/*
 function autosizeInit()
 {
     var c = document.getElementsByTagName("textarea");
@@ -69,3 +106,4 @@ function autosizeevent(e)
 	autosize(target);
 	return false;
 }
+*/
