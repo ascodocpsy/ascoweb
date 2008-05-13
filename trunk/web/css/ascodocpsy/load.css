@@ -66,13 +66,15 @@ form.load textarea
 form.load input.fullwidth,
 form.load textarea.fullwidth
 {
-    width: 95%;
+    width: 52em;
+    max-width: 95%;
 }
 
 form.load fieldset div input.fullwidth,
 form.load fieldset div textarea.fullwidth
 {
-    width: 79%;
+    width: 43.5em;
+    max-width: 78.8%;
 }
 
 form.load div.checklist,
