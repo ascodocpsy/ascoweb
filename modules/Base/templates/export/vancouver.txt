@@ -28,24 +28,25 @@
 
 
 
+    Boucle d'export des notices
+    
+*/<loop on="{$this->selection}" as="$rank, $record">/*
+
+
 	Version en minu du type de la notice
 	
 */<def name="TypeMinu" value="{strtolower($Type)}" />/*
 
 
+	Affiche les informations appropriées en fonction du type de document
 
-    Boucle d'export des notices
-    
-*/<loop on="{$this->selection}" as="$rank, $record"><switch test="{true}">
+*/<switch test="{true}">
 
     <case test="{$TypeMinu==='article'}"><AutTit />$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $PdPf.</opt>$nl<Lien /><MclResu /></case>
 
-
     <case test="{$TypeMinu==='congrès'}"><AutTit /><opt min="2">$CongrTit<opt>, n°$CongrNum</opt><opt>, $CongrDat</opt><opt>, $CongrLie</opt>.$nl</opt><LieuEdit /><Date />.$nl<Lien /><MclResu /></case>
 
-
     <case test="{$TypeMinu==='livre'}"><AutTit /><LieuEdit /><Date sep=" ; " />.$nl<Lien /><MclResu /></case>
-
 
     <case test="{$TypeMinu==='mémoire' || $TypeMinu==='thèse'}"><AutTit/><opt>{implode('/',(array)$Lieu)}</opt><opt> : $DipSpe</opt><Date sep=" ; " />.$nl<Lien /><MclResu /></case>
 
