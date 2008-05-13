@@ -34,7 +34,8 @@ form.search div input.text
 }
 
 /* Zone de texte (petite) */
-form.search div input.smallbox
+form.search div input.smallbox,
+form.search div textarea.smallbox
 {
     width: 15em;
     margin: 0;

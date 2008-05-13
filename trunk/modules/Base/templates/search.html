@@ -18,26 +18,26 @@
             <textbox 
                 name="_equation" 
                 label="Recherche dans toute la base" 
-                rows="{User::hasAccess('AdminBase') ? 2 : 1}" 
-                value="{htmlspecialchars($this->request->get('_equation'))}" 
+                rows="1" class="autoheight" 
+                value="{htmlspecialchars($this->request->get('_equation'))}"
             />
         </div>
         
         <div>
-            <textbox name="MotsCles" label="Descripteurs" rows="2" value="{htmlspecialchars($this->request->get('MotsCles'))}" />
+            <textbox name="MotsCles" label="Descripteurs"  rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('MotsCles'))}" />
             <p class="exemple"><a href="/ThesaurusModule" target="_blank" title="Consultez le thesaurus SantéPsy (nouvelle fenêtre)">Consultez le thesaurus SantéPsy</a></p>
         </div>
     
         <div>
-            <textbox name="Titres" label="Titre ou mots du titre" value="{htmlspecialchars($this->request->get('Titres'))}" />
+            <textbox name="Titres" label="Titre ou mots du titre" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Titres'))}" />
         </div>
         
         <div>
-            <textbox name="Aut" label="Auteur" value="{htmlspecialchars($this->request->get('Aut'))}" />
+            <textbox name="Aut" label="Auteur" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Aut'))}" />
         </div>
         
         <div>
-            <textbox name="Resu" label="Résumé" value="{htmlspecialchars($this->request->get('Resu'))}" />
+            <textbox name="Resu" label="Résumé" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Resu'))}" />
         </div>
     
         <div>
@@ -56,7 +56,7 @@
         /* TODO : quickTable ? */
         <div>
             <fill values="{htmlspecialchars($this->request->get('Liens'))}">
-                <checklist name="Liens" label="Texte intégral" src="array(array('code'=>'__has* NOT Type:Periodique', 'label'=>'Documents en ligne uniquement'))" />
+                <checklist name="Liens" label="Texte intégral" rows="1" class="autoheight" src="array(array('code'=>'__has* NOT Type:Periodique', 'label'=>'Documents en ligne uniquement'))" />
             </fill>
         </div>
     
@@ -74,59 +74,59 @@
         </div>
     
         <div>
-            <textbox name="DateText" label="Date du texte officiel" value="{htmlspecialchars($this->request->get('DateText'))}" class="smallbox"/>
+            <textbox name="DateText" label="Date du texte officiel" value="{htmlspecialchars($this->request->get('DateText'))}" rows="1" class="autoheight smallbox"/>
             <p class="exemple">
                 Format : [AAAA-MM-JJ] ou [AAAA-MM*] ou [AAAA*]
             </p>
         </div>
     
         <div>
-            <textbox name="Rev" label="Titre du périodique" value="{htmlspecialchars($this->request->get('Rev'))}" />
+            <textbox name="Rev" label="Titre du périodique" value="{htmlspecialchars($this->request->get('Rev'))}" rows="1" class="autoheight" />
         </div>
     
     	<div>		
-            <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" value="{htmlspecialchars($this->request->get('Numeros'))}" class="smallbox" />
+            <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" value="{htmlspecialchars($this->request->get('Numeros'))}" rows="1" class="autoheight smallbox" />
         </div>
     
         <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="Vol" label="Numéro de volume" value="{htmlspecialchars($this->request->get('Vol'))}" class="smallbox" />
+            <textbox name="Vol" label="Numéro de volume" value="{htmlspecialchars($this->request->get('Vol'))}" rows="1" class="autoheight smallbox" />
         </div>
         
         <div>
             <fill values="{$this->request->asArray('Dates')->ok()}">
-                <checklist name="Dates" label="Date du document" src="new TextTable($this->path.'../../tables/date.txt')" />
+                <checklist name="Dates" label="Date du document&lt;br /&gt;(sauf texte officiel)" src="new TextTable($this->path.'../../tables/date.txt')" />
 
                 <div class="date">
-        			<textbox name="Dates" label="Autre date" value="$fill" />
+        			<textbox name="Dates" label="Autre date" value="$fill" rows="1" class="autoheight smallbox" />
         		</div>
             </fill>
         </div>
         
         <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="Edit" label="Editeur" value="{htmlspecialchars($this->request->get('Edit'))}" />
+            <textbox name="Edit" label="Editeur" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Edit'))}" />
         </div>
         
         <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="Col" label="Collection" value="{htmlspecialchars($this->request->get('Col'))}" />
+            <textbox name="Col" label="Collection" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Col'))}" />
         </div>
         
         <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="IsbnIssn" label="ISBN, ISSN" value="{htmlspecialchars($this->request->get('IsbnIssn'))}" />
+            <textbox name="IsbnIssn" label="ISBN, ISSN" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('IsbnIssn'))}" />
             <p class="exemple">
                 ISBN : 2-294-00377-2 ou 978-2-294-00377-6, ISSN : 4444-7564
             </p>
         </div>   
         
         <div test="{User::hasAccess('AdminBase')}">
-            <textbox name="DipSpe" label="Spécialité du diplôme" value="{htmlspecialchars($this->request->get('DipSpe'))}" />
+            <textbox name="DipSpe" label="Spécialité du diplôme" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('DipSpe'))}" />
         </div>
         
         <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="Loc" label="Localisation" value="{htmlspecialchars($this->request->get('Loc'))}" class="smallbox" />
+            <textbox name="Loc" label="Localisation" rows="1" class="autoheight smallbox" value="{htmlspecialchars($this->request->get('Loc'))}" />
         </div>
         
         <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="ProdFich" label="Producteur" value="{htmlspecialchars($this->request->get('ProdFich'))}" class="smallbox" />
+            <textbox name="ProdFich" label="Producteur" value="{htmlspecialchars($this->request->get('ProdFich'))}" rows="1" class="autoheight smallbox" />
             <p class="exemple">
                 Producteur, localisation : format="asco5"
             </p>
@@ -139,11 +139,11 @@
         </div>
     
         <div test="{User::hasAccess('AdminBase')}">
-            <textbox name="Creation" label="Date de création" value="{htmlspecialchars($this->request->get('Creation'))}" class="smallbox" />
+            <textbox name="Creation" label="Date de création" value="{htmlspecialchars($this->request->get('Creation'))}" rows="1" class="autoheight smallbox" />
         </div>
     
         <div test="{User::hasAccess('AdminBase')}">
-            <textbox name="LastUpdate" label="Date de mise à jour" value="{htmlspecialchars($this->request->get('LastUpdate'))}" class="smallbox" />
+            <textbox name="LastUpdate" label="Date de mise à jour" value="{htmlspecialchars($this->request->get('LastUpdate'))}" rows="1" class="autoheight smallbox" />
             <p class="exemple">
                 Exemples : 2006*, 200612*, 20061215
             </p>
@@ -194,7 +194,7 @@ jQuery(document).ready(
             \{
                 asValue: true
             \}
-        ).addClass('autocomplete');
+        );
         
         jQuery('#Aut').autocomplete
         (
@@ -202,37 +202,36 @@ jQuery(document).ready(
             \{
                 asValue: true
             \}
-        ).addClass('autocomplete');
+        );
         jQuery('#Rev').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=revues&amp;value=%s',
             \{
                 asValue: true
             \}
-        ).addClass('autocomplete');
+        );
         jQuery('#Edit').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=editeurs&amp;value=%s',
             \{
             \}
-        ).addClass('autocomplete');
+        );
         jQuery('#Col').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=collections&amp;value=%s',
             \{
             \}
-        ).addClass('autocomplete');
+        );
 
-        jQuery('#Loc').autocomplete('{Routing::linkFor("Lookup")}?table=localisations&amp;value=%s').addClass('autocomplete');
-        jQuery('#ProdFich').autocomplete('{Routing::linkFor("Lookup")}?table=producteurs&amp;value=%s').addClass('autocomplete');
+        jQuery('#Loc').autocomplete('{Routing::linkFor("Lookup")}?table=localisations&amp;value=%s');
+        jQuery('#ProdFich').autocomplete('{Routing::linkFor("Lookup")}?table=producteurs&amp;value=%s');
         
         jQuery('#DipSpe').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=diplomes&amp;value=%s',
             \{
             \}
-        ).addClass('autocomplete');
-
+        );
     \}
 );
 </script>
