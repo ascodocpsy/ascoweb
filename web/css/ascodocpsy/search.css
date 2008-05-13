@@ -64,15 +64,11 @@ form.search div.date
     /*margin-top: -1.4em;*/
     margin-left: 7em;
 }
-form.search div.date input.text
-{
-    width: 3em;
-}
 
 /* Annule le font-weight: bold; de form.search label.* */
 form.search div.date label.select,
-form.search div.date label.text
+form.search div.date label.text,
+form.search div.date label.textarea
 {
     font-weight: normal;
 }
-
