@@ -173,6 +173,8 @@
 jQuery(document).ready(
     function()
     \{
+        var title="Un index d'aide à la saisie est disponible pour ce champ.";
+
         // Affichage conditionnel de critères
         var textof=jQuery('input[@value="Texte officiel"]');
         if (! textof.is(':checked'))
@@ -192,7 +194,8 @@ jQuery(document).ready(
         (
             '{Routing::linkFor("Lookup")}?table=descripteurs&amp;value=%s',
             \{
-                asValue: true
+                asValue: true,
+                title: title
             \}
         );
         
@@ -200,36 +203,53 @@ jQuery(document).ready(
         (
             '{Routing::linkFor("Lookup")}?table=auteurs&amp;value=%s',
             \{
-                asValue: true
+                asValue: true,
+                title: title
             \}
         );
         jQuery('#Rev').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=revues&amp;value=%s',
             \{
-                asValue: true
+                asValue: true,
+                title: title
             \}
         );
         jQuery('#Edit').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=editeurs&amp;value=%s',
             \{
+                title: title
             \}
         );
         jQuery('#Col').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=collections&amp;value=%s',
             \{
+                title: title
             \}
         );
 
-        jQuery('#Loc').autocomplete('{Routing::linkFor("Lookup")}?table=localisations&amp;value=%s');
-        jQuery('#ProdFich').autocomplete('{Routing::linkFor("Lookup")}?table=producteurs&amp;value=%s');
+        jQuery('#Loc').autocomplete
+        (
+            '{Routing::linkFor("Lookup")}?table=localisations&amp;value=%s',
+            \{
+                title: title
+            \}
+        );
+        jQuery('#ProdFich').autocomplete
+        (
+            '{Routing::linkFor("Lookup")}?table=producteurs&amp;value=%s',
+            \{
+                title: title
+            \}
+        );
         
         jQuery('#DipSpe').autocomplete
         (
             '{Routing::linkFor("Lookup")}?table=diplomes&amp;value=%s',
             \{
+                title: title
             \}
         );
     \}
