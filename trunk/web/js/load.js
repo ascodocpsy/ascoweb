@@ -119,7 +119,7 @@ var Controls =
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
 ["NatText"         , "Nature du texte officiel"                         ,      ,       ,        ,       ,     1 ,                ,                ],
-["Aut"             , "Auteurs"                                          ,      ,       ,        ,     1 ,       ,                ,                ],
+["Aut"             , "Auteurs"                                          ,      ,       ,        ,     1 ,       , "reAuteur"     ,                ],
 ["Tit"             , "Titre du document"                                ,      ,       ,        ,       ,       ,                ,                ],
 ["Annexe"          , "Titres des annexes"                               ,      ,       ,        ,       ,       ,                ,                ],
 ["LienAnne"        , "Adresses Internet des annexes"                    ,      ,       ,        ,       ,       ,                ,"CheckLienAnnexe"],
@@ -164,7 +164,7 @@ var ControlsArticle =
 //        0           		1                                              2       3       4        5       6        7                  8
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
-["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       ,                ,                ],
+["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , "reAuteur"     ,                ],
 ["Tit"             , "Titre de l'article"                               , true ,       ,        ,       ,       ,                ,                ],
 ["Date"            , "Année du document"                                , true ,       ,        ,       ,     1 , "reYear"       ,                ],
 ["Rev"             , "Titre du périodique"                              , true ,       ,        ,       ,       ,                ,                ],
@@ -189,7 +189,7 @@ var ControlsLivre =
 //        0           		1                                              2       3       4        5       6        7                  8
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
-["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       ,                ,                ],
+["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , "reAuteur"     ,                ],
 ["Tit"             , "Titre du document"                                , true ,       ,        ,       ,       ,                ,                ],
 ["CongrTit"        , "Intitulé du congrès"                              ,      ,       ,        ,       ,       ,                ,                ],
 ["CongrNum"        , "Numéro du congrès"                                ,      ,       ,        ,       ,       ,                ,                ],
@@ -221,7 +221,7 @@ var ControlsCongres =
 //        0           		1                                              2       3       4        5       6        7                  8
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
-["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       ,                ,                ],
+["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , "reAuteur"     ,                ],
 ["Tit"             , "Titre du document"                                , true ,       ,        ,       ,       ,                ,                ],
 ["CongrTit"        , "Intitulé du congrès"                              , true ,       ,        ,       ,       ,                ,                ],
 ["CongrNum"        , "Numéro du congrès"                                , true ,       ,        ,       ,       ,                ,                ],
@@ -253,7 +253,7 @@ var ControlsRapport =
 //        0           		1                                              2       3       4        5       6        7                  8
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
-["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       ,                ,                ],
+["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , "reAuteur"     ,                ],
 ["Tit"             , "Titre"                                            , true ,       ,        ,       ,       ,                ,                ],
 ["Date"            , "Année du document"                                , true ,       ,        ,       ,     1 , "reYearDoc"    ,                ],
 ["Rev"             , "Titre du périodique"                              ,      ,       ,        ,       ,       ,                ,                ],
@@ -283,7 +283,7 @@ var ControlsMemoire =
 //        0           		1                                              2       3       4        5       6        7                  8
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
-["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       ,                ,                ],
+["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , "reAuteur"     ,                ],
 ["Tit"             , "Titre"                                            , true ,       ,        ,       ,       ,                ,                ],
 ["DipSpe"          , "Spécialité du diplôme"                            , true ,       ,        ,       ,       ,                ,                ],
 ["Date"            , "Année de soutenance"                              , true ,       ,        ,       ,     1 , "reYearDoc"    ,                ],
