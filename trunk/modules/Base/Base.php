@@ -1697,13 +1697,24 @@ echo '</pre>';
     } 
     
 
+    /**
+     * Callback d'import d'un fichier de notices
+     *
+     * @param string $path le path et le nom du fichier à importer
+     * @param string $errorPath le path du fichier dans lequel sont stockées les notices erronées
+     * @return array tableau contenant :
+     * - le résultat de l'exécution : true si l'import s'est bien déroulé, false sinon
+     * - le rapport d'exécution
+     * - le numéro de la première notice importée
+     * - le numéro de la dernière notice importée
+     */
     public function importFile($path, $errorPath)
     {
         // Ouvre le fichier
         if (false === $f=fopen($path,'r'))
         {
             $execReport.=date('d/m/Y, H:i:s').' : Impossible d\'ouvrir le fichier '. $path.'. Le fichier n\'a pas été importé.';
-            return array(false,$execReport);
+            return array(false,$execReport,null,null);
         }
         
         // Heure de début de l'import
@@ -1803,7 +1814,11 @@ echo '</pre>';
         // Ferme le fichier
         fclose($f);
 
-        echo '<p>', $nbRef, ' notices importées (REF ', $firstRef, ' à ', $lastRef, ')</p>';
+        // Affiche le nombre de notices importées
+        if ($nbRef==1)
+            echo '<p>1 notice importée (REF ', $firstRef, ')</p>';
+        else
+            echo '<p>', $nbRef, ' notices importées (REF ', $firstRef, ' à ', $lastRef, ')</p>';
         
         // Ferme la base
         unset($this->selection);
@@ -1813,8 +1828,12 @@ echo '</pre>';
         
         // Import terminé : toutes les notices ont été importées
         $execReport.='Fin de l\'import : '.date('d/m/Y, H:i:s').".\n";
-        $execReport.=$nbRef. ' notices ont été importées.';
-        return array(true, $execReport);
+        if ($nbRef==1)
+            $execReport.='1 notice a été importée (REF '.$firstRef.').';
+        else
+            $execReport.=$nbRef. ' notices ont été importées (REF '.$firstRef.' à '.$lastRef.').';
+        
+        return array(true, $execReport, $firstRef, $lastRef);
     }
 
 }
