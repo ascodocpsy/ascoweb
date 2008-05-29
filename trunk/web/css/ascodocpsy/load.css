@@ -138,3 +138,19 @@ a.help span
     display: none;
 }
 
+/* Liste des doublons potentiels */
+form.load #DuplicatesContainer
+{
+    display: none;
+    border: 2px solid #000;
+    background-color: #eee;
+    padding: 0em;
+    margin-top: 1em;
+}
+
+/* Liste des doublons potentiels : bouton Fermer */
+form.load #DuplicatesContainer button
+{
+   float: right;
+   margin: 1em 1em 0 0;
+}
