@@ -330,8 +330,15 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
     <div class="buttons">
         <def name="deletelink" value="{Routing::linkFor('ConfirmDelete?REF='.$REF)}" />
         <button test="{$REF!=0 AND User::hasAccess('AdminBase')}" type="button" onclick="window.location.replace('$deletelink');" class="reset">Supprimer</button>
+        <button type="button" onclick="checkDuplicate();" class="reset">Doublons potentiels</button>
         <submit label="Enregistrer" class="submit" />
     </div>
+
+/* Liste des doublons potentiels */
+<div id="DuplicatesContainer">
+    <button type="button" onclick="jQuery('#DuplicatesContainer').hide('slow')">Fermer</button>
+    <div id="Duplicates"></div>
+</div>
 
 /* Modification d'une notice en fonction du type de document */
 <if test="{!is_null($Type) and !Config::get('allfields',false)}">
