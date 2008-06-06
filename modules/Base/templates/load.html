@@ -784,7 +784,7 @@ jQuery(document).ready(
         ThesoLookupUrl='{Routing::linkFor("/ThesaurusModule/ThesoLookup")}';
         jQuery('textarea[@name=MotCle]').autocomplete
         (
-            ThesoLookupUrl + '?fre=[%s] or [%s*]',
+            ThesoLookupUrl + '?fre=[%s] or [%s*]&amp;_max=25&amp;_sort=%',
             \{
                 asValue: false,
                 height: 300,

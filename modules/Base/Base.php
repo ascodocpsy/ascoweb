@@ -1404,8 +1404,8 @@ echo '</pre>';
         // Ouvre la base
         $this->openDatabase(false);
 
-        // Récupère les champs de la base à partir du schéma de la base
-        $dbFields=$this->selection->getSchema()->fields;
+        // Récupère les champs de la base à partir de la structure
+        $dbFields=$this->selection->getStructure()->fields;
 
         // Initialise le compteur de fichiers
         $nb=1;
@@ -1571,7 +1571,7 @@ echo '</pre>';
         // Calcule la longueur maximale de la première ligne (doit contenir les noms des champs)
         // Ouvre la base de données et récupère les champs de la base
         $this->openDatabase();
-        $dbFields=array_keys($this->selection->getSchema()->fields);
+        $dbFields=array_keys($this->selection->getStructure()->fields);
         $maxLen=strlen(implode("\t",$dbFields));
         
         // Vérifie qu'elle fait moins de $maxLen
@@ -1639,7 +1639,7 @@ echo '</pre>';
         // Calcule la longueur maximale de la première ligne (doit contenir les noms des champs)
         // Ouvre la base de données et récupère les champs de la base
         $this->openDatabase();
-        $dbFields=array_keys($this->selection->getSchema()->fields);
+        $dbFields=array_keys($this->selection->getStructure()->fields);
         $maxLen=strlen(implode("\t",$dbFields));
         
         // Vérifie qu'elle fait moins de $maxLen
@@ -1757,7 +1757,7 @@ echo '</pre>';
 
                 // Minusculise le nom des champs 
                 // On n'a pas besoin de déterminer le nom du champ à partir  
-                // du schéma de la base car, pour $selection['X'], 
+                // de la structure de la base car, pour $selection['X'], 
                 // X est insensible à la casse
                 $fieldname=strtolower($fields[$i]);
                 
