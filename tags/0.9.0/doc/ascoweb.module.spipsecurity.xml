@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
+<sect1 id="ascoweb.module.spipsecurity">
+  <sect1info>
+    <releaseinfo>$Id$</releaseinfo>
+  </sect1info>
+
+  <title>Module SpipSecurity</title>
+
+  <toc></toc>
+
+  <sect2 id="ascoweb.module.spipsecurity.introduction">
+    <title>Introduction</title>
+
+    <para>Le module SpipSecurity gère la connexion des utilisateurs SPIP
+    depuis le site web d'Ascodocpsy.</para>
+
+    <para>Pour la documentation, voir l'<ulink url="?class=NoSecurity">API de
+    NoSecurity de fab</ulink> dont hérite le module SpipSecurity.</para>
+  </sect2>
+
+  <sect2 id="ascoweb.module.spipsecurity.configuration">
+    <title>Configuration</title>
+
+    <para>Le fichier de configuration <filename>SpipSecurity.config</filename>
+    se trouve dans le répertoire <filename>/config</filename> de l'application
+    ascoweb.</para>
+  </sect2>
+</sect1>

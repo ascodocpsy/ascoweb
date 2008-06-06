@@ -1,0 +1,18 @@
+<if test="{count($this->cart)==0}">
+    <div class="titre">Votre panier est vide</div>
+    <div class="texte">
+		<p class="spip">Pour alimenter votre panier, lancez une recherche puis sélectionnez les réponses qui vous intéressent.</p>
+	</div>
+</if>
+<else>
+	<div class="titre">Contenu de votre panier</div>
+	
+	<div class="texte">
+			<p class="spip"><a href="/AscoCart/Clear">Vider le panier...</a></p>
+            {Config::set('equation','REF:('.implode(' OR ', array_keys($this->cart)).')')}
+            <slot 
+                name="cart" 
+                action="/Base/ShowCaddie" 
+            />
+	</div>
+</else>

@@ -1,0 +1,74 @@
+/* ========================================================================== */
+/*                        FORMULAIRE DE RECHERCHE                             */
+/* ========================================================================== */
+
+form.search
+{
+    margin-top: 2em;
+}
+
+/* Libellé de champ */
+form.search label.field,
+form.search label.text,
+form.search label.checklist,
+form.search label.select,
+form.search label.textarea
+{
+    font-weight: bold;
+    width: 17.5em;
+}
+
+form.search div
+{
+    margin: 0 0 0.2em 0;
+    padding: 0;
+    clear: both;
+}
+
+/* Zone de texte */
+form.search div input.text
+{
+    width: 31em;
+    margin: 0;
+    padding: 0 0.2em;
+}
+
+/* Zone de texte (petite) */
+form.search div input.smallbox,
+form.search div textarea.smallbox
+{
+    width: 15em;
+    margin: 0;
+    padding: 0 0.2em;
+}
+
+/* Zone de texte multiligne */
+form.search div textarea
+{
+    width: 31.5em;
+    margin: 0;
+    padding: 0 0.2em;
+}
+
+/* Case à cocher, liste déroulante */
+form.search div.checklist,
+form.search div.select
+{
+    margin-left: 18.5em;
+    clear: right;
+}
+
+/* Zone de texte 'Autre date' pour le choix d'une date */
+form.search div.date
+{
+    /*margin-top: -1.4em;*/
+    margin-left: 7em;
+}
+
+/* Annule le font-weight: bold; de form.search label.* */
+form.search div.date label.select,
+form.search div.date label.text,
+form.search div.date label.textarea
+{
+    font-weight: normal;
+}

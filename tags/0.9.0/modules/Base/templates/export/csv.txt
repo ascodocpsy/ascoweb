@@ -1,0 +1,83 @@
+/*
+    Définit le(s) caractère utilisé(s) pour les retours à la ligne.
+    
+    idée : utiliser HTTP_USER_AGENT pour déterminer en automatique ?
+    exemple : 
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11
+    (on sait que c'est windows).
+    
+    A étudier. Pour le moment : génère CRLF
+*/<def name="nl" value='{"\r\n"}' />/*
+
+
+    Charge les paramètres du format
+
+*/<def name="fmt" value="{Config::get('formats.'.$format)}" />/*
+
+    
+    Définit la liste des champs de la base à exporter
+
+*/<def 
+    name="fields" 
+    value="{
+        array_diff_key
+        (
+            $this->selection->getStructure()->fields, 
+            array_flip
+            (
+                array_map
+                (
+                    'strtolower', 
+                    (array) $fmt['ignore']
+                )
+            )
+        )
+    }"
+    />/*
+
+
+    Templates match utilisés
+
+*/<div test="{false}">
+
+<template match="//header"
+    ><def name="tab" value="{''}" /><loop on="$fields" as="$field">{$tab}{strtoupper($field->name)}<def name="tab" value='{"\t"}' /></loop>$nl</template>
+
+</div>/*
+
+
+    Boucle d'export des notices
+  
+  ;; Ligne d'entête
+*/<def name="tab" value="{''}" />/*
+*/<loop on="$fields" as="$field">/*
+    */{$tab}{strtoupper($field->name)}/*
+    */<def name="tab" value='{"\t"}' />/*
+*/</loop>$nl/*
+
+  ;; Pour chaque enreg
+*/<loop on="$this->selection" as="$record">/*
+    */<def name="tab" value="{''}" />/*
+    
+      ;; Pour chaque champ
+    */<loop on="$fields" as="$field">$tab/*
+       */<def name="sep" value="{
+            (is_array($fmt['sep']))
+            ? $fmt['sep'][ isset($fmt['sep'][$field->name]) ? $field->name : 'default']
+            : $fmt['sep']
+       }" />/*
+       */{
+            Utils::csvQuote
+            (
+                implode
+                (
+                    $sep,
+                    (array)$record[$field->name]
+                )
+            )
+
+         }/*
+        */<def name="tab" value='{"\t"}' />/*
+    */</loop>/*
+    */$nl/*
+*/</loop>

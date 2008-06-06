@@ -1,0 +1,99 @@
+<div class="titre">Import de fichiers dans la base SantéPsy</div>
+
+<div class="texte">
+
+<p class="spip">
+    Ajoutez le ou les fichier(s) à importer en les transférant sur le serveur.
+</p>
+
+<p class="spip">
+    Vous pouvez supprimer un fichier en cliquant sur le bouton "Supprimer" 
+    placé après son nom.
+</p>
+
+<p test="{User::hasAccess('AdminBase')}" class="spip">
+    Lancez l'import une fois que vous avez terminé.
+</p>
+<p test="{User::hasAccess('EditBase')}" class="spip">
+    L'import des fichiers est ensuite lancé par un administrateur.
+</p>
+
+<p class="spip">
+    Rappel : les notices importées sont visibles par tout visiteur uniquement 
+    après leur validation par un administrateur.    
+</p>
+
+<fieldset label="Liste des fichiers à importer">
+    <ul>
+        <if test="{count($files) == 0}">
+            <li>
+                Pas de fichier actuellement.
+            </li>
+            <li>
+                Utilisez la zone ci-dessous pour choisir des fichiers à importer.
+            </li>
+        </if>
+        <else>
+            <loop on="{$files}" as="$index,$file">
+            	<li>
+	                <form method="post" class="form">
+	                    <strong>{$file['name']}</strong> ({$file['size']} octets, envoyé au serveur le {$file['time']} par <strong>{$file['ident']}</strong>)
+	                    <submit label="Supprimer le fichier..." class="delete" />
+	                    <input type="hidden" name="delete" value="$index" />
+	                </form>
+                </li>
+            </loop>
+        </else>
+    </ul>
+</fieldset>
+
+<fieldset test="{count($errors)}" label="Erreur" class="error">
+    <ul>
+        <loop on="$errors" as="$error">
+            $error
+        </loop>
+    </ul>
+</fieldset>
+ 
+<form 
+    method="post" 
+    enctype="multipart/form-data" 
+    name="uploadForm" 
+    onsubmit="getElementById('wait').style.display='';return true;"
+    >
+    <fieldset label="Ajouter des fichiers">
+        <div>
+            Cliquez sur le bouton "Parcourir" pour choisir le ou les fichier(s) à importer.<br />
+            Cliquez sur le bouton "Envoyer au serveur" pour lancer le transfert de ces fichiers.<br />
+            Recommencez l'opération si vous avez plus de trois fichiers à importer.
+        </div>
+        <div>
+            <submit name="upload" label="Envoyer au serveur..." style="float: right" />
+            <loop on="{range(1,3)}" as="$num">
+                <upload name="file$num" label="Fichier :" /><br />
+            </loop>
+        </div>
+    </fieldset>
+    <div id="wait" style="display: none; background-color: #eee; position: absolute; top: 40%; left: 30%; width: 40%; border: 5px ridge #008; padding: 1em; text-align: center;">
+        <img id="progressbar" src="/images/progressbar2.gif" /><br />
+        Veuillez patienter pendant l'envoi des fichiers au serveur...
+    </div>
+</form>
+
+<form test="{User::hasAccess('AdminBase')}" method="post" class="form">
+    <fieldset label="Lancer l'import">
+        <div>
+            <div>
+                <radio name="now" label="maintenant" value="1" checked="checked" />
+            </div>
+            <div>
+                <radio name="now" label="plus tard" value="0" id="after" />
+                <textbox name="delay" size="30" onclick="document.getElementById('after').checked='checked';" onfocus="document.getElementById('after').checked='checked';" />
+                <label>saisir le jour et l'heure sous la forme JJ/MM/AAAA hh:mm:ss</label>
+            </div>
+            <submit name="import" label="Lancer l'import..." style="float: right;" />
+        </div>
+    </fieldset>
+</form>
+
+</div>

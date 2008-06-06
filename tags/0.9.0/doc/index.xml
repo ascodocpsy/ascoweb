@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
+<sect1 id="index">
+  <sect1info>
+    <releaseinfo>$Id$</releaseinfo>
+  </sect1info>
+
+  <title>Documentation de l'application ascoweb</title>
+
+  <tip>
+    <title>Sommaire</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><ulink url="?filename=ascoweb">Présentation de l'application
+        ascoweb</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="?filename=ascoweb.module.ascocart">Module
+        AscoCart</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="?filename=ascoweb.module.base">Module
+        Base</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="?filename=ascoweb.module.importasco">Module
+        ImportAsco</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="?filename=ascoweb.module.spipsecurity">Module
+        SpipSecurity</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="?filename=ascoweb.module.taskmanager">Module
+        TaskManager</ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink url="?filename=ascoweb.module.thesaurusmodule">Module
+        ThesaurusModule</ulink></para>
+      </listitem>
+    </itemizedlist>
+  </tip>
+</sect1>

@@ -1,0 +1,48 @@
+/*
+
+    Templates match utilisés
+
+*/<div test="{false}">
+<template match="//export" fields=""
+><header fields="$fields" />
+<loop on="$this->selection" as="$record"><record fields="$fields" />
+</loop></template>
+
+<template match="//header" fields=""
+    ><loop on="$fields" as="$i,$field">{$i==0?'':"\t"}{strtoupper($field)}</loop>
+</template>
+
+<template match="//record" fields=""
+    ><loop on="$fields" as="$i,$field">{$i==0?'':"\t"}{
+        Utils::csvQuote
+        (
+            is_array($this->selection[$field])
+            ?
+                (is_array(Config::get("formats.$format.sep"))
+                ? 
+                    ( Config::get("formats.$format.sep.$field") 
+                    ? implode(Config::get("formats.$format.sep.$field"),$this->selection[$field])
+                    : implode(Config::get("formats.$format.sep.default"),$this->selection[$field])
+                    )
+                : implode(Config::get("formats.$format.sep"),$this->selection[$field])
+                )
+            : $this->selection[$field]
+        )
+    }</loop>
+</template>
+</div>/*
+
+
+    Boucle d'export des notices
+    
+*/<switch test="{strtolower($Type)}">
+    <case test="article"       ><export fields="{Config::get('formats.'.$format.'.fields.article')}" /></case>
+    <case test="congrès"       ><export fields="{Config::get('formats.'.$format.'.fields.congrès')}" /></case>
+    <case test="livre"         ><export fields="{Config::get('formats.'.$format.'.fields.livre')}" /></case>
+    <case test="mémoire"       ><export fields="{Config::get('formats.'.$format.'.fields.mémoire')}" /></case>
+    <case test="thèse"         ><export fields="{Config::get('formats.'.$format.'.fields.mémoire')}" /></case>
+    <case test="périodique"    ><export fields="{Config::get('formats.'.$format.'.fields.périodique')}" /></case>
+    <case test="rapport"       ><export fields="{Config::get('formats.'.$format.'.fields.rapport')}" /></case>
+    <case test="texte officiel"><export fields="{Config::get('formats.'.$format.'.fields.texte_officiel')}" /></case>
+    <default>Aucun format d'export n'est disponible pour ce type de document ($Type)</default>
+</switch>

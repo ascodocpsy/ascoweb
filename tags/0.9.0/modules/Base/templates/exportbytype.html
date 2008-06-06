@@ -1,0 +1,38 @@
+<h1>Export par type de document</h1>
+
+/*
+    Le tableau '$categories' passé en paramètre au template a la 
+    structure suivante :
+    
+    array
+    (
+        'Article' => array
+        (
+            'equation' => 'Type:Article AND (((rémission)))',
+            'count' => 38,
+        ),
+        'Livre' =>array
+        (
+            'equation' => 'Type:Livre AND (((rémission)))',
+            'count' => 2,
+        )
+    )
+*/
+
+<def name="sort" value="_sort={htmlspecialchars($this->request->unique('_sort')->ok())}" />
+<def name="all" value="{''}" />
+<ul>
+    <loop on="$categories" as="$name,$cat">
+        <li>
+            <a href="ExportByCat?_equation={urlencode($cat['equation'])}&amp;$sort&amp;filename={urlencode($name)}">
+                $name : {$cat['count']} notice<if test="{$cat['count']>1}">s</if>
+            </a>
+        </li>
+        <def name="all" value="{$all . '&amp;_equation=' . urlencode($cat['equation']) . '&amp;filename=' .urlencode($name)}" />
+    </loop>
+</ul>
+<ul test="{count($categories)>1}">
+    <li>
+        <a href="ExportByCat?{substr($all,1)}&amp;$sort">Exporter les {count($categories)} fichiers</a>
+    </li>
+</ul>

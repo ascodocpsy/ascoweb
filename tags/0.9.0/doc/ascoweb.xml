@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
+<sect1 id="ascoweb">
+  <sect1info>
+    <releaseinfo>$Id: ascoweb.xml 510 2008-04-30 13:57:28Z daniel.menard.bdsp
+    $</releaseinfo>
+  </sect1info>
+
+  <title>Application ascoweb</title>
+
+  <sect2 id="ascoweb.introduction">
+    <title>Introduction</title>
+
+    <para>Basé sur fab. Ensemble de modules = ensemble d'actions.</para>
+
+    <para>Importance de la config</para>
+
+    <para></para>
+
+    <para></para>
+
+    <para>L'application ascoweb est basée sur un framework nommé fab. Il
+    s'agit d'un ensemble de modules, chaque module étant un ensemble
+    d'actions.</para>
+
+    <para>Ainsi, l'application ascoweb est de même un ensemble
+    d'actions...</para>
+
+    <para>Les URL du site désignent un module et une action et sont de la
+    forme :</para>
+
+    <screen>http://domaine/Module/Action</screen>
+
+    <para>Un ou plusieurs paramètres peuvent être passés à l'action pour
+    former une query string, dans ce cas, l'URL est de la forme (exemple pour
+    3 paramètres) :</para>
+
+    <screen>http://domaine/Module/Action?nom1=val1&amp;nom2=val2&amp;nom3=val3</screen>
+
+    <para>Pour vous référez à l'aide en ligne de l'action A du module M, vous
+    devez donc identifier, à partir de l'URL, le nom du module et celui de
+    l'action.</para>
+
+    <example>
+      <title></title>
+
+      <para>http://domaine/Base/Export?_equation=Type%3A%28Article%29&amp;_sort=date-
+      : le module est Base, l'action est Export. L'aide de l'action Export se
+      trouve dans l'<ulink
+      url="?filename=ascoweb.module.base#actionExport">aide du module
+      Base</ulink></para>
+    </example>
+
+    <para>Cependant, certaines URL n'ont pas la forme présentée ci-dessus ou
+    le nom du module et/ou de l'action sont différents de ceux définis dans
+    l'interface de programmation.</para>
+
+    <para>En effet, fab fournit un <ulink url="?filename=routing">système de
+    routage</ulink>.</para>
+
+    <table>
+      <title>Routes définies pour l'application ascoweb</title>
+
+      <tgroup cols="2">
+        <thead>
+          <row>
+            <entry align="center">URL</entry>
+
+            <entry align="center">Module/Action</entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry>/Base/FormulaireRecherche</entry>
+
+            <entry>Base/SearchForm</entry>
+          </row>
+
+          <row>
+            <entry>/Base/Recherche</entry>
+
+            <entry>Base/Search</entry>
+          </row>
+
+          <row>
+            <entry>/Base/REF (avec REF = un nombre entier (ex :
+            /Base/1256))</entry>
+
+            <entry>Base/Show</entry>
+          </row>
+
+          <row>
+            <entry>/Panier</entry>
+
+            <entry>AscoCart/Show</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+  </sect2>
+
+  <sect2 id="ascoweb.configuration">
+    <title>Configuration</title>
+
+    <para>L'application ascoweb utilisant en grande partie les actions
+    définies dans le frameword fab, c'est grâce aux fichiers de configuration
+    que l'application va pouvoir être paramétrée.</para>
+
+    <para>Hormis les fichiers de configuration qui existent pour chaque
+    module, l'application présente deux fichiers de configuration générale
+    :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><filename>general.config</filename> : Configuration générale de
+        l'application. On y définit le modèle de mise en page (layout), les
+        feuilles de style, les fichiers javascript utilisés par l'application,
+        etc.</para>
+      </listitem>
+
+      <listitem>
+        <para><filename>db.config</filename> : Configuration des bases de
+        données. Elle permet de définir les bases utilisées par
+        l'application.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Tous les fichiers de configuration de l'application se trouve dans
+    le répertoire <filename>/config</filename>.</para>
+
+    <para>Dans ces fichiers de configuration, on trouve la configuration des
+    actions sous la forme (exemple pour l'action Search) :</para>
+
+    <programlisting role="xml">    &lt;actionSearch&gt;
+        &lt;template&gt;templates/list.html&lt;/template&gt;
+        &lt;css&gt;
+            &lt;item&gt;/fabweb/css/pager/simple.css&lt;/item&gt;
+        &lt;/css&gt;
+        &lt;js&gt;
+            &lt;item&gt;/js/answers.js&lt;/item&gt;
+        &lt;/js&gt;
+        &lt;errortemplate&gt;templates/error/error_base.html&lt;/errortemplate&gt;
+        &lt;noanswertemplate&gt;templates/error/error_base_noanswer.html&lt;/noanswertemplate&gt;
+        &lt;callback&gt;getField&lt;/callback&gt;
+        &lt;sort&gt;-&lt;/sort&gt;
+        &lt;max&gt;10&lt;/max&gt;
+        &lt;history&gt;true&lt;/history&gt;
+    &lt;/actionSearch&gt;</programlisting>
+  </sect2>
+
+  <sect2 id="ascoweb.templates">
+    <title>Templates</title>
+
+    <para>Fab dispose d'un <ulink
+    url="?filename=template.introduction">système de templates</ulink>
+    (modèles) qui permettent d'avoir une séparation nette entre la
+    présentation et le code.</para>
+
+    <para>Les templates peuvent être utilisés pour générer n'importe quelle
+    sortie au format texte (texte brut, xml, html, rtf, etc.).</para>
+
+    <para>Ainsi, tous les affichages des pages du site (formulaire de
+    recherche, affichage des notices, etc.), la génération des fichiers
+    d'export sont réalisés à partir de templates.</para>
+  </sect2>
+
+  <sect2 id="ascoweb.tables">
+    <title>Tables</title>
+
+    <para>Les formulaires de recherche et de saisie de l'application ascoweb
+    présentent à l'utilisateur des listes sous formes de cases à cocher ou de
+    boutons radio (types de document, dates, statut de la notice, etc.). Pour
+    éviter la répétition du code dans ces formulaires et faciliter la
+    maintenance de ces listes, celles-ci ont été créées sous la forme de
+    fichiers, dans le répertoire <filename>tables</filename>.</para>
+
+    <para>Les tables sont des fichiers texte tabulé :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>La première ligne est la ligne de titre. Elle contient les
+        libellés des champs, séparés les uns des autres par une
+        tabulation.</para>
+      </listitem>
+
+      <listitem>
+        <para>Les lignes suivantes contiennent les enregistrements, dont les
+        champs sont séparés par des tabulations.</para>
+      </listitem>
+    </itemizedlist>
+
+    <example>
+      <title>Fichier texte tabulé <emphasis>type.txt</emphasis></title>
+
+      <para><screen>
+                code    label
+                Article Article
+                Livre   Livre
+                Congrès Congrès
+                Rapport Rapport
+                Mémoire Mémoire
+                Thèse   Thèse
+                Texte officiel  Texte officiel
+                Périodique  Titre de périodique            
+            </screen></para>
+    </example>
+  </sect2>
+
+  <sect2 id="ascoweb.security">
+    <title>Sécurité</title>
+
+    <para>Fab intègre une <ulink url="?filename=user.introduction">gestion des
+    droits utilisateurs</ulink>.</para>
+
+    <para>Pour l'application ascoweb, elle permet de distinguer trois types
+    d'utilisateurs :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>le grand public</para>
+      </listitem>
+
+      <listitem>
+        <para>les membres du GIP (accès professionnel)</para>
+      </listitem>
+
+      <listitem>
+        <para>les administrateurs</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+</sect1>
