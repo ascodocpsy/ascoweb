@@ -43,8 +43,9 @@
                     <li><a href="/ImportAsco">Importer des notices</a></li>
                 </if>
                 <if test="{User::hasAccess('Admin')}">
-                    <li><a href="/Base/Replace?_equation={urlencode('Statut:avalider')}&amp;search=avalider&amp;replace=valide&amp;fields=Statut">Valider toutes les notices</a></li>
+                    <li><a href="/Base/Validate">Valider toutes les notices</a></li>
                     <li><a href="/TaskManager/">Gestionnaire de tâches</a></li>
+                    <li><a href="/Admin/">Administration</a></li>
                 </if>
             </ul>
          </div>
