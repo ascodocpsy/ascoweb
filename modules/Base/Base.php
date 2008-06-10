@@ -676,6 +676,58 @@ class Base extends DatabaseModule
         }
     }
 
+    /**
+     * Valide des notices.
+     *
+     * C'est en fait un chercher/remplacer : chercher "avalider", remplacer par 
+     * "valide" dans le champ "Statut".
+     * 
+     * Affiche une demande de confirmation si l'utilisateur n'a pas confirmé la 
+     * validation des notices.
+     *  
+     * @param string $_equation l'équation de recherche qui définit les notices
+     * à valider.
+     * 
+     * @param bool $confirm un booléen indiquant si l'action a été confirmée.
+     * Lorsque <code>$confirm</code> est à <code>false</code>, une confirmation 
+     * est demandée à l'utilisateur. Lorsque <code>$confirm</code> 
+     * est à <code>true</code>, l'action Replace est lancée.
+     */
+    public function actionValidate($_equation='', $confirm=false)
+    {
+        // Récupère l'équation 
+        $eq=$this->request->get('_equation');
+
+        // Demande confirmation à l'utilisateur
+        if (! $confirm)
+        {
+            // Ajoute, à l'équation, un filtre sur les notices à valider
+            $filter='Statut:avalider';
+            $this->equation=$eq ? '('.$eq.') AND '.$filter : $filter;       
+            
+            // Vérifie qu'il y a des notices à valider
+            $this->openDatabase(false);
+            if (! $this->select($this->equation, -1) )
+                return $this->showError('La recherche '. $this->equation. ' ne contient aucune notice à valider, dans la base '. Config::get('database'). '.');
+
+            // Affiche le template de confirmation
+            Template::run
+            (
+            	'templates/confirmValidate.html'
+            );
+            return;
+        }
+
+        // Valide les notices
+        
+        // fixme : on devrait pouvoir appeler l'action Replace de la façon suivante :
+        // parent::actionReplace($eq, 'avalider', 'valide', array('Statut'));
+        // Pb : les paramètres de la fonction sont récupérés à partir de Request.
+        // Dans le template confirmValidate, on doit donc passer les paramètres au
+        // formulaire.
+        parent::actionReplace($eq);
+    }
+        
 //    public function actionNewsletter()
 //    {
 //        global $selection;
@@ -1835,6 +1887,6 @@ echo '</pre>';
         
         return array(true, $execReport, $firstRef, $lastRef);
     }
-
+   
 }
 ?>
