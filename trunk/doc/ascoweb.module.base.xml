@@ -27,102 +27,6 @@
 
     <para></para>
 
-    <table>
-      <title>Images de l'application</title>
-
-      <tgroup cols="2">
-        <thead>
-          <row>
-            <entry align="center">Fichier</entry>
-
-            <entry align="center">Description</entry>
-          </row>
-        </thead>
-
-        <tbody>
-          <row>
-            <entry>/web/css/ascodocpsy/application_form_add.png</entry>
-
-            <entry>Icone du lien "Dupliquer la notice"</entry>
-          </row>
-
-          <row>
-            <entry>/web/css/ascodocpsy/application_form_edit.png</entry>
-
-            <entry>Icone du lien "Modifier la notice"</entry>
-          </row>
-
-          <row>
-            <entry>/web/css/ascodocpsy/application_form_magnify.png</entry>
-
-            <entry>Icone du lien "Voir la notice complète"</entry>
-          </row>
-
-          <row>
-            <entry>/web/css/ascodocpsy/bullet_key.png</entry>
-
-            <entry>Icone apparaissant dans les zones de saisie pour lesquelles
-            un index d'aide à la saisie est disponible</entry>
-          </row>
-
-          <row>
-            <entry>/web/css/ascodocpsy/cart_add.png</entry>
-
-            <entry>Icone du lien "Ajouter la notice au panier" présent sur
-            l'affichage de chaque notice</entry>
-          </row>
-
-          <row>
-            <entry>/web/css/ascodocpsy/cart_delete.png</entry>
-
-            <entry>Icone du lien "Supprimer la notice du panier" présent sur
-            l'affichage de chaque notice, lorsque l'on visualise le contenu du
-            panier</entry>
-          </row>
-
-          <row>
-            <entry>/web/css/ascodocpsy/cart_put.png</entry>
-
-            <entry>Icone du lien "Ajouter toutes les notices de la page au
-            panier" présent au début et à la fin d'une page de
-            réponses</entry>
-          </row>
-
-          <row>
-            <entry>/web/css/ascodocpsy/cart_remove.png</entry>
-
-            <entry>Icone du lien "Supprimer du panier toutes les notices de la
-            page" présent au début et à la fin d'une page de notices lorsque
-            l'on visualise le contenu du panier</entry>
-          </row>
-
-          <row>
-            <entry>/web/css/ascodocpsy/help.png</entry>
-
-            <entry>Icone pour le lien vers l'aide sur un champ</entry>
-          </row>
-
-          <row>
-            <entry>/web/css/ascodocpsy/inform.png</entry>
-
-            <entry>Icone pour les différents lien permettant d'obtenir des
-            informations </entry>
-          </row>
-
-          <row>
-            <entry>/web/css/ascodocpsy/loc.png</entry>
-
-            <entry>Icone pour le lien "Localiser le périodique"</entry>
-          </row>
-
-          <row>
-            <entry>/web/css/ascodocpsy/puce.gif</entry>
-
-            <entry></entry>
-          </row>
-        </tbody>
-      </tgroup>
-    </table>
   </sect2>
 
   <sect2 id="ascoweb.module.base.errortpl">
@@ -248,8 +152,8 @@
       <filename>/config/Base.config</filename>.</para>
 
       <para>Par défaut, tous les champs de la notice sont dupliqués (la clé
-      default a la valeur true) sauf ceux qui sont indiqués dans la
-      configuration.</para>
+      <filename>default</filename> a la valeur true) sauf ceux qui sont
+      indiqués dans la configuration.</para>
 
       <para>Si un nouveau champ est ajouté à la base de données, son contenu
       apparaîtra dans la notice dupliquée. S'il ne doit pas y apparaître, il
@@ -278,7 +182,7 @@
 
           <tbody>
             <row>
-              <entry>/modules/Base/templates/load.htmlT</entry>
+              <entry>/modules/Base/templates/load.html</entry>
 
               <entry>Template utilisé pour afficher le formulaire de saisie de
               la notice.<para>Il permet d'afficher :</para><itemizedlist>
@@ -439,7 +343,15 @@
   <sect2 id="ascoweb.module.base.actionExport">
     <title>Action Export</title>
 
-    <para></para>
+    <para>L'application utilise l'action <ulink
+    url="?class=DatabaseModule#actionExport">Export</ulink> définie dans le
+    module DatabaseModule de fab.</para>
+
+    <sect3>
+      <title>Configuration</title>
+
+      <para>Les formats d'export disponibles sont mentionnés </para>
+    </sect3>
 
     <sect3>
       <title />
@@ -697,7 +609,7 @@
   </sect2>
 
   <sect2 id="ascoweb.module.base.actionValidateAll">
-    <title>Action ValidateAll</title>
+    <title>Action Validate</title>
 
     <para></para>
 
@@ -709,4 +621,102 @@
       <title />
     </sect3>
   </sect2>
+  
+      <table>
+      <title>Images de l'application</title>
+
+      <tgroup cols="2">
+        <thead>
+          <row>
+            <entry align="center">Fichier</entry>
+
+            <entry align="center">Description</entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry>/web/css/ascodocpsy/application_form_add.png</entry>
+
+            <entry>Icone du lien "Dupliquer la notice"</entry>
+          </row>
+
+          <row>
+            <entry>/web/css/ascodocpsy/application_form_edit.png</entry>
+
+            <entry>Icone du lien "Modifier la notice"</entry>
+          </row>
+
+          <row>
+            <entry>/web/css/ascodocpsy/application_form_magnify.png</entry>
+
+            <entry>Icone du lien "Voir la notice complète"</entry>
+          </row>
+
+          <row>
+            <entry>/web/css/ascodocpsy/bullet_key.png</entry>
+
+            <entry>Icone apparaissant dans les zones de saisie pour lesquelles
+            un index d'aide à la saisie est disponible</entry>
+          </row>
+
+          <row>
+            <entry>/web/css/ascodocpsy/cart_add.png</entry>
+
+            <entry>Icone du lien "Ajouter la notice au panier" présent sur
+            l'affichage de chaque notice</entry>
+          </row>
+
+          <row>
+            <entry>/web/css/ascodocpsy/cart_delete.png</entry>
+
+            <entry>Icone du lien "Supprimer la notice du panier" présent sur
+            l'affichage de chaque notice, lorsque l'on visualise le contenu du
+            panier</entry>
+          </row>
+
+          <row>
+            <entry>/web/css/ascodocpsy/cart_put.png</entry>
+
+            <entry>Icone du lien "Ajouter toutes les notices de la page au
+            panier" présent au début et à la fin d'une page de
+            réponses</entry>
+          </row>
+
+          <row>
+            <entry>/web/css/ascodocpsy/cart_remove.png</entry>
+
+            <entry>Icone du lien "Supprimer du panier toutes les notices de la
+            page" présent au début et à la fin d'une page de notices lorsque
+            l'on visualise le contenu du panier</entry>
+          </row>
+
+          <row>
+            <entry>/web/css/ascodocpsy/help.png</entry>
+
+            <entry>Icone pour le lien vers l'aide sur un champ</entry>
+          </row>
+
+          <row>
+            <entry>/web/css/ascodocpsy/inform.png</entry>
+
+            <entry>Icone pour les différents lien permettant d'obtenir des
+            informations</entry>
+          </row>
+
+          <row>
+            <entry>/web/css/ascodocpsy/loc.png</entry>
+
+            <entry>Icone pour le lien "Localiser le périodique"</entry>
+          </row>
+
+          <row>
+            <entry>/web/css/ascodocpsy/puce.gif</entry>
+
+            <entry></entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+  
 </sect1>
