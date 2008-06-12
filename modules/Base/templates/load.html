@@ -201,14 +201,14 @@ le titre du label pour le champ Tit : ne pas oublier le caractère '*' dans le li
 <template match="//Statut">
     <fieldset label="Statut de la notice" style="border: 1px solid red;">
         <if test="{User::hasAccess('AdminBase')}">
-            <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'../../tables/statut.txt')" class="mandatory" /></fill>
+            <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'tables/statut.txt')" class="mandatory" /></fill>
         </if>
         <if test="{User::hasAccess('EditBase')}">
             <if test="{$Statut=='valide'}">
-                <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'../../tables/statut.txt')" class="mandatory" /></fill>
+                <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'tables/statut.txt')" class="mandatory" /></fill>
             </if>
             <else>
-                <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'../../tables/membre_statut.txt')" class="mandatory" /></fill>
+                <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'tables/membre_statut.txt')" class="mandatory" /></fill>
             </else>
         </if>
     </fieldset>
@@ -501,7 +501,7 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
         
         <case test="{$TypeMinu==='texte officiel'}">
             <fieldset label="Nature du texte officiel" style="border: 1px solid red;">
-                <fill values="$NatText"><radiolist name="NatText" src="new TextTable($this->path.'../../tables/nattext.txt')" class="mandatory" /></fill>
+                <fill values="$NatText"><radiolist name="NatText" src="new TextTable($this->path.'tables/nattext.txt')" class="mandatory" /></fill>
             </fieldset>
             <fieldset label="Titres du document et liens vers les versions électroniques">
                 <div>
@@ -557,10 +557,10 @@ lesquels il y a lieu de faire un traitement sur le contenu du champ.
 <else>
 
 	<fieldset label="Type de document">
-        <fill values="$Type"><radiolist name="Type" src="new TextTable($this->path.'../../tables/type.txt')" /></fill>
+        <fill values="$Type"><radiolist name="Type" src="new TextTable($this->path.'tables/type.txt')" /></fill>
 	</fieldset>
     <fieldset label="Nature du texte officiel">
-        <fill values="$NatText"><radiolist name="NatText" src="new TextTable($this->path.'../../tables/nattext.txt')" /></fill>
+        <fill values="$NatText"><radiolist name="NatText" src="new TextTable($this->path.'tables/nattext.txt')" /></fill>
     </fieldset>
     <fieldset label="Auteurs">
         <text name="Aut" value="{implode('/',(array)$Aut)}" rows="1" class="fullwidth autoheight" />
