@@ -15,12 +15,6 @@ class Base extends DatabaseModule
      */
     const SEPARATOR=' / ';
     
-    // Constantes et variables pour l'import de notices
-    const dataPath='data/import/';
-    const fileList='files.list';
-    private $files=array();
-    private $adminFiles=array();
-    
     /**
      * Identifiant de la personne connectée
      * 
@@ -442,8 +436,8 @@ class Base extends DatabaseModule
         // Détermine le path exact de la table
         $h=Utils::searchFile
         (
-            $source,                                    // On recherche la table :
-            //dirname(self::$stateStack[1]['template']),  // dans le répertoire du script appellant
+            $source,                                    // On recherche la table :  
+            Runtime::$root . 'modules/Base/tables',     // dans le répertoire du script appellant. TODO : path codé en dur. A corriger
             Runtime::$root . 'tables',                  // dans le répertoire 'tables' de l'application
             Runtime::$fabRoot . 'tables'                // dans le répertoire 'tables du framework
         );
@@ -1419,6 +1413,6 @@ class Base extends DatabaseModule
         
         return array(true, $execReport, $firstRef, $lastRef);
     }
-   
+    
 }
 ?>

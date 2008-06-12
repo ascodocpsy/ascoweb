@@ -43,12 +43,12 @@
         <div>
             <if test="{User::hasAccess('AdminBase,EditBase')}">
                 <fill values="{$this->request->asArray('Type')->ok()}">
-                    <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/type.txt')" />
+                    <checklist name="Type" label="Type de document" src="new TextTable($this->path.'tables/type.txt')" />
                 </fill>
             </if>
             <else>
                 <fill values="{$this->request->asArray('Type')->ok()}"> 
-                    <checklist name="Type" label="Type de document" src="new TextTable($this->path.'../../tables/public_type.txt')" />
+                    <checklist name="Type" label="Type de document" src="new TextTable($this->path.'tables/public_type.txt')" />
                 </fill>
             </else>
         </div>
@@ -62,7 +62,7 @@
     
         <div>
             <fill values="{$this->request->asArray('NatText')->ok()}">
-                <select name="NatText" label="Nature du texte officiel" src="new TextTable($this->path.'../../tables/nattext.txt')" size="3" multiple="true" />
+                <select name="NatText" label="Nature du texte officiel" src="new TextTable($this->path.'tables/nattext.txt')" size="3" multiple="true" />
             </fill>
             <div class="infonatext">
                 <p class="exemple">
@@ -94,7 +94,7 @@
         
         <div>
             <fill values="{$this->request->asArray('Dates')->ok()}">
-                <checklist name="Dates" label="Date du document&lt;br /&gt;(sauf texte officiel)" src="new TextTable($this->path.'../../tables/date.txt')" />
+                <checklist name="Dates" label="Date du document&lt;br /&gt;(sauf texte officiel)" src="new TextTable($this->path.'tables/date.txt')" />
 
                 <div class="date">
         			<textbox name="Dates" label="Autre date" value="$fill" rows="1" class="autoheight smallbox" />
@@ -134,7 +134,7 @@
         
         <div test="{User::hasAccess('AdminBase,EditBase')}">
             <fill values="{$this->request->asArray('Statut')->ok()}">
-                <checklist name="Statut" label="Statut de la notice" src="new TextTable($this->path.'../../tables/statut.txt')" />
+                <checklist name="Statut" label="Statut de la notice" src="new TextTable($this->path.'tables/statut.txt')" />
             </fill>
         </div>
     
