@@ -1,0 +1,257 @@
+/*
+<template match="//form/autosave" name="">
+    <def name="form_uniq_id" value="{autoId('form').crc32($this->request)}" />
+    <input type="hidden" name="_autosave" value="$form_uniq_id" />
+    Données enregistrées dans la session pour le formulaire "$form_uniq_id" :<pre>{var_export($this->formData($form_uniq_id),true)}</pre>
+</template>
+*/
+
+/* Lien vers l'aide */
+<help href="http://www.ascodocpsy.org/article.php3?id_article=903" />
+
+<div class="titre">Rechercher des documents</div>
+
+<div class="texte">
+    <form class="form search" action="Search" method="get">
+/*        <autosave /> */
+        <div>
+            <textbox 
+                name="_equation" 
+                label="Recherche dans toute la base" 
+                rows="1" class="autoheight" 
+                value="{htmlspecialchars($this->request->get('_equation'))}"
+            />
+        </div>
+        
+        <div>
+            <textbox name="MotsCles" label="Descripteurs"  rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('MotsCles'))}" />
+            <p class="exemple"><a href="/ThesaurusModule" target="_blank" title="Consultez le thesaurus SantéPsy (nouvelle fenêtre)">Consultez le thesaurus SantéPsy</a></p>
+        </div>
+    
+        <div>
+            <textbox name="Titres" label="Titre ou mots du titre" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Titres'))}" />
+        </div>
+        
+        <div>
+            <textbox name="Aut" label="Auteur" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Aut'))}" />
+        </div>
+        
+        <div>
+            <textbox name="Resu" label="Résumé" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Resu'))}" />
+        </div>
+    
+        <div>
+            <if test="{User::hasAccess('AdminBase,EditBase')}">
+                <fill values="{$this->request->asArray('Type')->ok()}">
+                    <checklist name="Type" label="Type de document" src="new TextTable($this->path.'tables/type.txt')" />
+                </fill>
+            </if>
+            <else>
+                <fill values="{$this->request->asArray('Type')->ok()}"> 
+                    <checklist name="Type" label="Type de document" src="new TextTable($this->path.'tables/public_type.txt')" />
+                </fill>
+            </else>
+        </div>
+    
+        /* TODO : quickTable ? */
+        <div>
+            <fill values="{htmlspecialchars($this->request->get('Liens'))}">
+                <checklist name="Liens" label="Texte intégral" rows="1" class="autoheight" src="array(array('code'=>'__has* NOT Type:Periodique', 'label'=>'Documents en ligne uniquement'))" />
+            </fill>
+        </div>
+    
+        <div>
+            <fill values="{$this->request->asArray('NatText')->ok()}">
+                <select name="NatText" label="Nature du texte officiel" src="new TextTable($this->path.'tables/nattext.txt')" size="3" multiple="true" />
+            </fill>
+            <div class="infonatext">
+                <p class="exemple">
+                    Pour sélectionner plusieurs types de texte officiel,
+                    appuyez sur la touche contrôle (Ctrl) et cliquez sur 
+                    les types souhaités. Procéder de même pour désélectionner.
+                </p>
+            </div>
+        </div>
+    
+        <div>
+            <textbox name="DateText" label="Date du texte officiel" value="{htmlspecialchars($this->request->get('DateText'))}" rows="1" class="autoheight smallbox"/>
+            <p class="exemple">
+                Format : [AAAA-MM-JJ] ou [AAAA-MM*] ou [AAAA*]
+            </p>
+        </div>
+    
+        <div>
+            <textbox name="Rev" label="Titre du périodique" value="{htmlspecialchars($this->request->get('Rev'))}" rows="1" class="autoheight" />
+        </div>
+    
+    	<div>		
+            <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" value="{htmlspecialchars($this->request->get('Numeros'))}" rows="1" class="autoheight smallbox" />
+        </div>
+    
+        <div test="{User::hasAccess('AdminBase,EditBase')}">
+            <textbox name="Vol" label="Numéro de volume" value="{htmlspecialchars($this->request->get('Vol'))}" rows="1" class="autoheight smallbox" />
+        </div>
+        
+        <div>
+            <fill values="{$this->request->asArray('Dates')->ok()}">
+                <checklist name="Dates" label="Date du document&lt;br /&gt;(sauf texte officiel)" src="new TextTable($this->path.'tables/date.txt')" />
+
+                <div class="date">
+        			<textbox name="Dates" label="Autre date" value="$fill" rows="1" class="autoheight smallbox" />
+        		</div>
+            </fill>
+        </div>
+        
+        <div test="{User::hasAccess('AdminBase,EditBase')}">
+            <textbox name="Edit" label="Editeur" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Edit'))}" />
+        </div>
+        
+        <div test="{User::hasAccess('AdminBase,EditBase')}">
+            <textbox name="Col" label="Collection" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Col'))}" />
+        </div>
+        
+        <div test="{User::hasAccess('AdminBase,EditBase')}">
+            <textbox name="IsbnIssn" label="ISBN, ISSN" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('IsbnIssn'))}" />
+            <p class="exemple">
+                ISBN : 2-294-00377-2 ou 978-2-294-00377-6, ISSN : 4444-7564
+            </p>
+        </div>   
+        
+        <div test="{User::hasAccess('AdminBase')}">
+            <textbox name="DipSpe" label="Spécialité du diplôme" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('DipSpe'))}" />
+        </div>
+        
+        <div test="{User::hasAccess('AdminBase,EditBase')}">
+            <textbox name="Loc" label="Localisation" rows="1" class="autoheight smallbox" value="{htmlspecialchars($this->request->get('Loc'))}" />
+        </div>
+        
+        <div test="{User::hasAccess('AdminBase,EditBase')}">
+            <textbox name="ProdFich" label="Producteur" value="{htmlspecialchars($this->request->get('ProdFich'))}" rows="1" class="autoheight smallbox" />
+            <p class="exemple">
+                Producteur, localisation : format="asco5"
+            </p>
+        </div>
+        
+        <div test="{User::hasAccess('AdminBase,EditBase')}">
+            <fill values="{$this->request->asArray('Statut')->ok()}">
+                <checklist name="Statut" label="Statut de la notice" src="new TextTable($this->path.'tables/statut.txt')" />
+            </fill>
+        </div>
+    
+        <div test="{User::hasAccess('AdminBase')}">
+            <textbox name="Creation" label="Date de création" value="{htmlspecialchars($this->request->get('Creation'))}" rows="1" class="autoheight smallbox" />
+        </div>
+    
+        <div test="{User::hasAccess('AdminBase')}">
+            <textbox name="LastUpdate" label="Date de mise à jour" value="{htmlspecialchars($this->request->get('LastUpdate'))}" rows="1" class="autoheight smallbox" />
+            <p class="exemple">
+                Exemples : 2006*, 200612*, 20061215
+            </p>
+        </div>
+    
+        /* 
+            Si les options d'affichage ont été indiquées, on les récupère et on les transmet
+            lors de la recherche (comme ça, quand on fait 'modifier la recherche', on
+            conserve toutes les options définies par l'utilisateur
+        */ 
+        <hidden name="_fmt" value="{htmlspecialchars($this->request->defaults('_fmt','shortref')->ok())}" />
+        <hidden name="_sort" value="{htmlspecialchars($this->request->defaults('_sort','Date-')->ok())}" />
+        <hidden name="_max" value="{htmlspecialchars($this->request->defaults('_max',10)->ok())}" />
+
+        <div class="buttons">
+            <reset label="Effacer tout" onclick="window.location='{Routing::linkFor('SearchForm')}'" />
+            <submit label="Rechercher" />
+        </div>
+        
+        /* Historique des équations de recherche */
+        <slot name="searchhistory" action="templates/searchhistory.html" />
+
+    </form>
+</div>
+<script type="text/javascript">
+
+jQuery(document).ready(
+    function()
+    \{
+        var title="Un index d'aide à la saisie est disponible pour ce champ.";
+
+        // Affichage conditionnel de critères
+        var textof=jQuery('input[@value="Texte officiel"]');
+        if (! textof.is(':checked'))
+        \{
+            jQuery('#DateText').parent().hide();
+            jQuery('#NatText').parent().hide();
+        \};
+        
+        textof.click(function()
+        \{
+            jQuery('#DateText').parent().slideToggle('normal');
+            jQuery('#NatText').parent().slideToggle('normal');
+        \});
+        
+        // Critères dont la liste des valeurs de la base est disponible
+        jQuery('#MotsCles').autocomplete
+        (
+            '{Routing::linkFor("Lookup")}?table=descripteurs&amp;value=%s',
+            \{
+                asValue: true,
+                title: title
+            \}
+        );
+        
+        jQuery('#Aut').autocomplete
+        (
+            '{Routing::linkFor("Lookup")}?table=auteurs&amp;value=%s',
+            \{
+                asValue: true,
+                title: title
+            \}
+        );
+        jQuery('#Rev').autocomplete
+        (
+            '{Routing::linkFor("Lookup")}?table=revues&amp;value=%s',
+            \{
+                asValue: true,
+                title: title
+            \}
+        );
+        jQuery('#Edit').autocomplete
+        (
+            '{Routing::linkFor("Lookup")}?table=editeurs&amp;value=%s',
+            \{
+                title: title
+            \}
+        );
+        jQuery('#Col').autocomplete
+        (
+            '{Routing::linkFor("Lookup")}?table=collections&amp;value=%s',
+            \{
+                title: title
+            \}
+        );
+
+        jQuery('#Loc').autocomplete
+        (
+            '{Routing::linkFor("Lookup")}?table=localisations&amp;value=%s',
+            \{
+                title: title
+            \}
+        );
+        jQuery('#ProdFich').autocomplete
+        (
+            '{Routing::linkFor("Lookup")}?table=producteurs&amp;value=%s',
+            \{
+                title: title
+            \}
+        );
+        
+        jQuery('#DipSpe').autocomplete
+        (
+            '{Routing::linkFor("Lookup")}?table=diplomes&amp;value=%s',
+            \{
+                title: title
+            \}
+        );
+    \}
+);
+</script>

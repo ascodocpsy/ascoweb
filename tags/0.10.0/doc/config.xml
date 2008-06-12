@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
+<sect1 id="config">
+
+    <sect1info>
+        <releaseinfo>XXX</releaseinfo>
+    </sect1info>
+
+    <title>Répertoire config : fichiers de configuration</title>
+ 
+    <sect2 id="config.introduction">
+    
+        <title>Introduction</title>
+        
+        <para>
+            Le répertoire <emphasis>config</emphasis> contient l'ensemble des 
+            fichiers de configuration permettant de paramétrer l'application :
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Configuration générale,
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Configuration des bases de données,
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Configuration des routes (lien vers fab/doc/routing.xml),
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Un fichier de configuration pour chaque module de l'application.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </sect2>
+
+    <sect2 id="config.liste">
+    
+        <title>Liste des fichiers de configuration</title>
+        
+        <table>
+            <tgroup cols="2">
+                <thead>
+                    <row>
+                        <entry>Fichier</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>AscoCart.config</entry>
+                        <entry>
+                            Configuration du module CartModule de fab pour ascoweb.
+                            Ce module permet de gérer le panier de notices.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>Base.config</entry>
+                        <entry>
+                            Configuration du module Base qui gère les actions 
+                            sur la base de données bibliographique (recherche, 
+                            affichage, création, modification, export, etc.).
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>db.config</entry>
+                        <entry>
+                            Configuration des bases de données : permet de définir
+                            les bases utilisées par l'application.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>general.config</entry>
+                        <entry>
+                            Configuration générale de l'application. On y 
+                            définit le modèle de mise en page (layout), les feuilles
+                            de style, les fichiers javascript utilisés par 
+                            l'application, etc.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>HomePage.confg</entry>
+                        <entry>SERA SUPPRIME ?????</entry>
+                    </row>
+                    <row>
+                        <entry>ImportAsco</entry>
+                        <entry>
+                            Configuration du module ImportModule de fab pour ascoweb.
+                            Ce module gère l'import des notices dans la base de données
+                            bibliographique.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>routes.config</entry>
+                        <entry>
+                            Configuration des routes.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>SpipSecurity.config</entry>
+                        <entry>
+                            Configuration du module SpipSecurity qui gère la 
+                            connexion des utilisateurs SPIP depuis le site web
+                            d'Ascodocpsy.
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+
+    </sect2>
+
+</sect1>
