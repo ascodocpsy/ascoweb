@@ -58,7 +58,7 @@
 
     <case test="{$TypeMinu==='texte officiel'}">$Tit{$nl}<opt min="2">$Rev<opt> n°$Num</opt><opt> du $DatePub</opt>.$nl</opt><Lien /><MclResu /></case>
 
-    <default>Aucun format d'export n'est disponible pour ce type de document ($Type)</default>  
+    <default>Notice $REF : Aucun format d'export n'est disponible pour ce type de document ($Type)</default>  
 
 </switch>$nl</loop>/*
 
