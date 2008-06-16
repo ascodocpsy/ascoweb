@@ -5,7 +5,7 @@
 */<div test="{false}">
 <template match="//export" fields=""
 ><header fields="$fields" />
-<loop on="$this->selection" as="$record"><record fields="$fields" />
+<loop on="{$this->selection}" as="$record"><record fields="$fields" />
 </loop></template>
 
 <template match="//header" fields=""
@@ -33,6 +33,12 @@
 </div>/*
 
 
+    Définit le(s) caractère utilisé(s) pour les retours à la ligne.
+   
+    Génère CRLF
+*/<def name="nl" value='{"\r\n"}' />/*
+
+
     Boucle d'export des notices
     
 */<switch test="{strtolower($Type)}">
@@ -44,5 +50,5 @@
     <case test="périodique"    ><export fields="{Config::get('formats.'.$format.'.fields.périodique')}" /></case>
     <case test="rapport"       ><export fields="{Config::get('formats.'.$format.'.fields.rapport')}" /></case>
     <case test="texte officiel"><export fields="{Config::get('formats.'.$format.'.fields.texte_officiel')}" /></case>
-    <default>Aucun format d'export n'est disponible pour ce type de document ($Type)</default>
+    <default><loop on="{$this->selection}" as="$record">Notice $REF : Aucun format d'export n'est disponible pour ce type de document ($Type){$nl}</loop></default>
 </switch>

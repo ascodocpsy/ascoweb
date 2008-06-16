@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<database label="Base SantéPsy" version="1" description="Structure de la base SantePsy" creation="2007/11/09 19:12:17" lastupdate="2008/05/29 20:06:19">
+<database label="Base SantéPsy" version="1" description="Structure de la base SantePsy" creation="2007/11/09 19:12:17" lastupdate="2008/06/16 12:40:20">
     <stopwords>ai aie aient aies ait as au aura aurai auraient aurais aurait auras aurez auriez aurions aurons auront aux avaient avais avait avec avez aviez avions avons ayant ayante ayantes ayants ayez ayons c ce ces d dans de des du elle en es est et eu eue eues eurent eus eusse eussent eusses eussiez eussions eut eux eûmes eût eûtes furent fus fusse fussent fusses fussiez fussions fut fûmes fût fûtes il j je l la le leur lui m ma mais me mes moi mon même n ne nos notre nous on ont ou par pas pour qu que qui s sa se sera serai seraient serais serait seras serez seriez serions serons seront ses soient sois soit sommes son sont soyez soyons suis sur t ta te tes toi ton tu un une vos votre vous y à étaient étais était étant étante étantes étants étiez étions été étée étées étés êtes</stopwords>
     <_lastid field="43" index="36" alias="6" lookuptable="17" sortkey="7" />
     <fields>
@@ -54,7 +54,7 @@
         </index>
         <index _id="2" name="Type" label="Type de document">
             <fields>
-                <field _id="2" name="Type" words="true" phrases="true" values="true" weight="5" />
+                <field _id="2" name="Type" words="true" phrases="true" values="true" count="true" weight="5" />
             </fields>
         </index>
         <index _id="3" name="NatText" label="Nature du texte officiel">

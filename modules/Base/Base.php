@@ -804,8 +804,8 @@ class Base extends DatabaseModule
             if (is_array($cat)) $name=$cat=reset($cat);
             if (is_null($cat) || $cat===false || $cat==='')
             {
-                $cat='@isempty';
-                $name='';
+                $cat='__empty';
+                $name='Sans type';
             }
             elseif($phraseSearch)
                 $cat="[$cat]";
