@@ -22,7 +22,7 @@
     value="{
         array_diff_key
         (
-            $this->selection->getStructure()->fields, 
+            $this->selection->getSchema()->fields, 
             array_flip
             (
                 array_map
@@ -56,7 +56,7 @@
 */</loop>$nl/*
 
   ;; Pour chaque enreg
-*/<loop on="$this->selection" as="$record">/*
+*/<loop on="{$this->selection}" as="$record">/*
     */<def name="tab" value="{''}" />/*
     
       ;; Pour chaque champ
