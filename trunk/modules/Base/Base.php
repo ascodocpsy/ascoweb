@@ -647,14 +647,15 @@ class Base extends DatabaseModule
     }
 
     /**
-     * Affiche le formulaire permettant de choisir le type du document à créer
-     * Surcharge l'action New de la classe DatabaseModule
+     * Affiche le formulaire permettant de choisir le type du document à créer.
      * 
      * Si un type de document est spécifié en paramètre, affiche le formulaire 
      * de création pour ce type, sinon affiche le formulaire pour choisir le 
      * type de document à créer.
+     * 
+     * @param string $Type le type du document à créer.
      */    
-    public function actionNew()
+    public function actionNew($Type='')
     {
         // Si type non renseigné, affiche le formulaire pour le choisir
         if (is_null($this->request->unique('Type')->ok()))
@@ -769,7 +770,7 @@ class Base extends DatabaseModule
     
     public function actionExportByType() // fixme: ne devrait pas être là. Mettre dans DatabaseModule un foction générique ('categorize()') et se contenter de l'appeller ici
     {
-        // Ouvre la base de données (le nouveau makeEquation en a besoin)
+        // Ouvre la base de données
         $this->openDatabase();
 
         // Détermine la recherche à exécuter        
