@@ -3,7 +3,126 @@
  Load.js
  Ajout/Modification d'une notice
  Gestion de l'aide et contrôles de saisie
+ Affichage des index d'aide à la saisie (tables de lookup)
  ************************************************************/
+
+/************************************************************
+ Affichage des index d'aide à la saisie (tables de lookup)
+ ************************************************************/
+jQuery(document).ready(
+    function()
+    {
+        var title="Un index d'aide à la saisie est disponible pour ce champ.";
+        
+        jQuery('textarea[@name=Aut]').autocomplete
+        (
+            'Lookup?table=auteurs&value=%s',
+            {
+                title: title
+            }
+        );
+
+        jQuery('textarea[@name=DipSpe]').autocomplete
+        (
+            'Lookup?table=diplomes&value=%s',
+            {
+                title: title
+            }
+        );
+
+        jQuery('input[@name=CongrLie]').autocomplete
+        (
+            'Lookup?table=villes&value=%s',
+            {
+                title: title
+            }
+        );
+
+        jQuery('textarea[@name=Edit]').autocomplete
+        (
+            'Lookup?table=editeurs&value=%s',
+            {
+                title: title
+            }
+        );
+
+        jQuery('textarea[@name=Lieu]').autocomplete
+        (
+            'Lookup?table=lieux&value=%s',
+            {
+                title: title
+            }
+        );
+
+        jQuery('textarea[@name=Col]').autocomplete
+        (
+            'Lookup?table=collections&value=%s',
+            {
+                title: title
+            }
+        );
+
+        jQuery('textarea[@name=Rev]').autocomplete
+        (
+            'Lookup?table=revues&value=%s',
+            {
+                title: title
+            }
+        );
+
+        jQuery('textarea[@name=Theme]').autocomplete
+        (
+            'Lookup?table=themes&value=%s',
+            {
+                title: title
+            }
+        );
+
+        ThesoLookupUrl='../ThesaurusModule/ThesoLookup';
+        jQuery('textarea[@name=MotCle]').autocomplete
+        (
+            ThesoLookupUrl + '?fre=[%s] or [%s*]',
+            {
+                asValue: false,
+                height: 300,
+                onload: ThesoLookup,
+                title: title
+            }
+        );
+
+        jQuery('textarea[@name=Nomp]').autocomplete
+        (
+            'Lookup?table=nomspropres&value=%s',
+            {
+                title: title
+            }
+        );
+
+        jQuery('textarea[@name=CanDes]').autocomplete
+        (
+            'Lookup?table=candes&value=%s',
+            {
+                title: title
+            }
+        );
+        
+        jQuery('textarea[@name=Loc]').autocomplete
+        (
+            'Lookup?table=localisations&value=%s',
+            {
+                title: title
+            }
+        );
+        
+        jQuery('input[@name=ProdFich]').autocomplete
+        (
+            'Lookup?table=producteurs&value=%s',
+            {
+                title: title
+            }
+        );
+    }
+);
 
 
 /************************************************************

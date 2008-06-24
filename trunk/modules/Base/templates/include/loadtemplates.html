@@ -1,0 +1,281 @@
+/* Raccourci pour les champs Aut et Tit
+@titLabel : le label pour le champ Tit
+*/
+<template match="//AutTit" titLabel="Titre">
+    <fieldset label="Auteurs">
+        <text name="Aut" value="{implode('/',(array)$Aut)}" rows="1" class="fullwidth autoheight mandatory" />
+        <help name="Aut" />
+    </fieldset>
+    <fieldset label="$titLabel">
+        <text name="Tit" rows="1" class="fullwidth autoheight mandatory" />
+        <help name="Tit" />
+    </fieldset>
+</template>
+
+
+/* Raccourci pour la section Année du document */
+<template match="//Date">
+    <fieldset label="Année du document">
+        <text name="Date" class="fullwidth mandatory" />
+        <help name="Date" />
+    </fieldset>
+</template>
+
+
+/* Raccourci pour la section Mentions bibliographiques
+@pageName : le nom de l'attribut du premier tag du fieldset
+@pageLabel : le label de l'attribut du premier tag du fieldset
+*/
+<template match="//MentionsBib" pageName="Page" pageLabel="Nombre de pages">
+    <fieldset label="Mentions bibliographiques">
+        <div>
+            <text name="$pageName" label="$pageLabel" class="fullwidth mandatory" />
+            <help name="$pageName" />
+        </div>
+        <div>
+            <text name="Notes" label="Notes bibliographiques" rows="1" class="fullwidth autoheight" />
+            <help name="Notes" />
+        </div>
+    </fieldset>
+</template>
+
+
+/* Raccourci pour les champs Collection et Mention d'édition */
+<template match="//ColReed">
+	<div>
+        <text name="Col" rows="1" label="Collection" class="fullwidth autoheight" />
+        <help name="Col" />
+    </div>
+	<div>
+        <text name="Reed" rows="1" label="Mention d'édition" class="fullwidth autoheight" />
+        <help name="Reed" />
+    </div>
+</template>
+
+
+/* Raccourci pour le champ IsbnIssn
+@label : le label pour le champ $IsbnIssn
+@mandatory : indique si le champ $IsbnIssn est obligatoire
+*/
+<template match="//IsbnIssn" label="ISBN / ISSN" mandatory="{false}">
+    <fieldset label="$label">
+        <if test="$mandatory">
+            <text name="IsbnIssn" value="{implode('/',(array)$IsbnIssn)}" class="fullwidth mandatory" />
+        </if>
+        <else>
+            <text name="IsbnIssn" value="{implode('/',(array)$IsbnIssn)}" class="fullwidth" />
+        </else>
+        <help name="IsbnIssn" />
+    </fieldset>
+</template>
+
+
+/* Raccourci pour la section Périodique
+@revMandatory indique si le champ $Rev est obligatoire
+@volExists indique si on créé une div pour le champ $Vol
+*/
+<template match="//Periodique" revMandatory="{true}" volExists="{true}">
+    <fieldset label="Périodique">
+        <if test="$revMandatory">
+            <div>
+                <text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight mandatory" />
+                <help name="Rev" />
+            </div>
+        </if>
+        <else>
+            <div>
+                <text name="Rev" label="Titre du périodique" rows="1" class="fullwidth autoheight" />
+                <help name="Rev" />
+            </div>
+        </else>
+        <div test="$volExists"><text name="Vol" label="Volume" class="fullwidth" /><help name="Vol" /></div>
+        <if test="$revMandatory">
+            <div>
+                <text name="Num" label="Numéro" class="fullwidth mandatory" />
+                <help name="Num" />
+            </div>
+        </if>
+        <else>
+            <div>
+                <text name="Num" label="Numéro" class="fullwidth" />
+                <help name="Num" />
+            </div>
+        </else>
+    </fieldset>
+</template>
+
+        
+/* Raccourci pour le champ Résumé et la section Indexation 
+@themeMandatory indique si le champ $Theme est obligatoire
+*/
+<template match="//ResuIndexation" themeMandatory="{false}">
+    <fieldset label="Résumé">
+        <text name="Resu" rows="1" class="fullwidth autoheight" />
+        <help name="Resu" />
+    </fieldset>
+    <fieldset label="Indexation">
+        <div>
+            <if test="$themeMandatory">
+                <text name="Theme" rows="1" label="Thème" class="fullwidth autoheight mandatory" />
+            </if>
+            <else>
+                <text name="Theme" rows="1" label="Thème" class="fullwidth autoheight" />
+            </else>
+            <help name="Theme" />
+        </div>
+        <div>
+            <text name="MotCle" value="{implode('/',(array)$MotCle)}" rows="1" label="Descripteurs" class="fullwidth autoheight mandatory" />
+            <help name="MotCle" />
+        </div>
+        <div>
+            <text name="Nomp" value="{implode('/',(array)$Nomp)}" rows="1" label="Noms propres" class="fullwidth autoheight" />
+            <help name="Nomp" />
+        </div>
+        <div>
+            <text name="CanDes" value="{implode('/',(array)$CanDes)}" rows="1" label="Candidats descripteurs" class="fullwidth autoheight" />
+            <help name="CanDes" />
+        </div>
+    </fieldset>
+</template>
+
+
+/* Raccourci pour le champ Lien vers le document
+@mandatory : indique si le lien est obligatoire
+*/
+<template match="//Lien" mandatory="{false}">
+    <if test="$mandatory">
+        <fieldset label="Lien vers le document">
+            <text name="Lien" rows="2" class="fullwidth mandatory" />
+            <help name="Lien" />
+        </fieldset>
+    </if>
+    <else>
+        <fieldset label="Lien vers le document">
+            <text name="Lien" rows="2" class="fullwidth" />
+            <help name="Lien" />
+        </fieldset>
+    </else>
+</template>
+
+
+/* Raccourci pour le champ Localisation
+@mandatory indique si les attributs sont obligatoires ou non
+*/
+<template match="//Loc" mandatory="{true}">
+	<if test="$mandatory">
+		<fieldset label="Localisation du document">
+		    <text name="Loc" value="{implode('/',(array)$Loc)}" rows="1" class="fullwidth autoheight mandatory" />
+            <help name="Loc" />
+		</fieldset>
+	</if>
+	<else>
+		<fieldset label="Localisation du document">
+		    <text name="Loc" value="{implode('/',(array)$Loc)}" rows="1" class="fullwidth autoheight" />
+            <help name="Loc" />
+		</fieldset>	
+	</else>
+</template>
+
+
+/* Raccourci pour le champ Producteur de la fiche
+@mandatory indique si les attributs sont obligatoires ou non
+*/
+<template match="//ProdFich" mandatory="{true}">
+	<if test="$mandatory">
+	    <fieldset label="Producteur de la fiche">
+	        <text name="ProdFich" value="{implode('/',(array)$ProdFich)}" class="fullwidth mandatory" />
+            <help name="ProdFich" />
+	    </fieldset>
+	</if>
+	<else>
+	    <fieldset label="Producteur de la fiche">
+	        <text name="ProdFich" value="{implode('/',(array)$ProdFich)}" class="fullwidth" />
+            <help name="ProdFich" />
+	    </fieldset>
+	</else>
+</template>
+
+
+/* Raccourci pour le champ Statut de la notice */
+<template match="//Statut">
+    <fieldset label="Statut de la notice" style="border: 1px solid red;">
+        <if test="{User::hasAccess('AdminBase')}">
+            <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'tables/statut.txt')" class="mandatory" /></fill>
+        </if>
+        <if test="{User::hasAccess('EditBase')}">
+            <if test="{$Statut=='valide'}">
+                <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'tables/statut.txt')" class="mandatory" /></fill>
+            </if>
+            <else>
+                <fill values="$Statut"><radiolist name="Statut" src="new TextTable($this->path.'tables/membre_statut.txt')" class="mandatory" /></fill>
+            </else>
+        </if>
+    </fieldset>
+</template>
+
+
+/* Raccourci pour la section Congrès
+@mandatory indique si les attributs sont obligatoires ou non
+*/
+<template match="//Congres" mandatory="{false}">
+    <fieldset label="Congrès">
+    <if test="$mandatory">
+        <div>
+            <text name="CongrTit" rows="1" label="Intitulé" class="fullwidth autoheight mandatory" />
+            <help name="CongrTit" />
+        </div>
+        <div>
+            <text name="CongrNum" label="Numéro" class="fullwidth mandatory" />
+            <help name="CongrNum" />
+        </div>
+        <div>
+            <text name="CongrLie" label="Ville" class="fullwidth mandatory" />
+            <help name="CongrLie" />
+        </div>
+        <div>
+            <text name="CongrDat" label="Année" class="fullwidth mandatory" />
+            <help name="CongrDat" />
+        </div>
+    </if>
+    <else>
+        <div>
+            <text name="CongrTit" rows="1" label="Intitulé" class="fullwidth autoheight" />
+            <help name="CongrTit" />
+        </div>
+        <div>
+            <text name="CongrNum" label="Numéro" class="fullwidth" />
+            <help name="CongrNum" />
+        </div>
+        <div>
+            <text name="CongrLie" label="Ville" class="fullwidth" />
+            <help name="CongrLie" />
+        </div>
+        <div>
+            <text name="CongrDat" label="Année" class="fullwidth" />
+            <help name="CongrDat" />
+        </div>
+    </else>
+    </fieldset>
+</template>
+
+
+/* Equivalent au <textbox /> mais si l'attribut value n'est pas précisé, 
+alors il est défini à partir de l'attribut name.
+On précise un attribut value notamment pour les champs 'articles', pour
+lesquels il y a lieu de faire un traitement sur le contenu du champ.
+*/
+<template match="//text" name="" label="" rows="{false}" class="" value="">
+    <textbox name="$name" value="{$value ? $value : '$'.$name}" label="$label" rows="$rows" class="$class">{select('node()|@*')}</textbox>
+</template>
+
+
+/* Lien vers la page d'aide */
+<template match="//help" name="">
+    <a tabindex="32767" href="{Config::get('help.'.$name)}" title="Aide sur le champ $name (nouvelle fenêtre/nouvel onglet)" target="_blank" class="help">&#160;<span>Aide</span></a>
+    /* 
+        On affecte aux liens "aide" le plus grand tabindex possible de façon à ce qu'on
+        puisse naviguer de champ en champ avec la touche tabulation sans passer par ces 
+        liens. Ceux-ci figurent toujours dans la séquence de tabulation, mais se retrouvent
+        tout à la fin.
+    */
+</template>
