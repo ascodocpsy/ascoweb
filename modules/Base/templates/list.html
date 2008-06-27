@@ -125,7 +125,7 @@
                     <li test="{User::hasAccess('AdminBase')}"><a href="Validate?_equation={urlencode($this-&gt;equation)}">Valider toutes ces notices</a></li>
                     <li test="{User::hasAccess('AdminBase')}"><a href="ConfirmDelete?_equation={urlencode($this-&gt;equation)}">Supprimer toutes ces notices</a></li>
                     <li test="{User::hasAccess('AdminBase')}"><a href="/DedupModule/Index?_equation={urlencode($this-&gt;equation)}">Rechercher des doublons potentiels pour ces notices</a></li>
-                    <li test="{!$incart and User::hasAccess('AdminBase,EditBase')}"><a href="/AscoCart/Show">Voir mon panier</a></li>
+                    <li test="{!$incart and User::hasAccess('AdminBase,EditBase')}"><a href="/Base/ShowCaddie">Voir mon panier</a></li>
                 </ul>
             </div>
         </slot>
