@@ -6,7 +6,7 @@
 
 class Base extends DatabaseModule
 {
-    // TODO : A la place du template 'templates/error/error.yaml' mettre en place un système de message d'erreur.
+    // TODO : A la place du template 'templates/error/error.html' mettre en place un système de message d'erreur.
     
     /**
      * Séparateur d'articles
@@ -63,8 +63,9 @@ class Base extends DatabaseModule
     /**
      * Callback utilisé pour l'affichage des notices.
      *
-     * @param string $name nom de la balise mentionnée dans le template associé
-     * @return string la valeur à injecter à la place de la balise $name, dans le template associé
+     * @param string $name nom de la balise mentionnée dans le template associé.
+     * @return string la valeur à injecter à la place de la balise $name, dans 
+     * le template associé.
      */
     public function getField($name)
     {
@@ -294,9 +295,9 @@ class Base extends DatabaseModule
      * - pour le champ Type : retourne le type du document 
      * - pour le champ ProdFich : retourne l'identifiant de la personne connectée 
      *
-     * @param string $name nom du champ de la base
+     * @param string $name nom du champ de la base.
      * @return string retourne une chaîne vide pour tous les champs de la base, 
-     * excepté pour les champs Type et ProdFich
+     * excepté pour les champs Type et ProdFich.
      */
     public function emptyString($name)
      {
@@ -319,8 +320,9 @@ class Base extends DatabaseModule
      * Il affiche, dans le formulaire de modification, les dates de création et 
      * de dernière modification.
      * 
-     * @param string $name nom de la balise mentionnée dans le template associé
-     * @return string la valeur à injecter à la place de la balise $name, dans le template associé
+     * @param string $name nom de la balise mentionnée dans le template associé.
+     * @return string la valeur à injecter à la place de la balise $name, dans 
+     * le template associé.
      */
     public function getDates($name)
     {        
@@ -340,10 +342,10 @@ class Base extends DatabaseModule
     /**
      * Filtre de validation des champs avant enregistrement dans la base.
      * 
-     * @param string $name nom du champ de la base
-     * @param string $value contenu du champ $name
-     * @return boolean Retourne true pour les champs dont on accepte la modification,
-     * false sinon
+     * @param string $name nom du champ de la base.
+     * @param string $value contenu du champ $name.
+     * @return bool retourne true pour les champs dont on accepte la modification,
+     * false sinon.
      */
     public function validData($name, &$value)
     {                    
@@ -424,7 +426,7 @@ class Base extends DatabaseModule
      *
      * @param string $source nom du fichier en précisant éventuellement l'extension.
      * Si l'extension n'est pas mentionnée, l'extension .txt est ajoutée.
-     * @return array tableau correspondant au fichier tabulé
+     * @return array tableau correspondant au fichier tabulé.
      */
     private function loadTable($source)
     {
@@ -463,7 +465,7 @@ class Base extends DatabaseModule
     }
     
  	/**
- 	 * Détermine les utilisateurs qui ont le droit de modifier une notice
+ 	 * Détermine les utilisateurs qui ont le droit de modifier une notice.
  	 * 
  	 * Les administrateurs peuvent modifier toutes les notices quelque soit leur
  	 * statut (en cours, avalider, valide).
@@ -474,7 +476,7 @@ class Base extends DatabaseModule
  	 * 
  	 * Le grand public n'a aucun droit de modification des notices.
  	 *
- 	 * @return boolean retourne true si la modification est autorisée
+ 	 * @return bool retourne true si la modification est autorisée.
  	 */
     public function hasEditRight()
  	{
@@ -504,8 +506,8 @@ class Base extends DatabaseModule
      * Ces suppressions sont faites afin de créer, à partir de la notice, un lien 
      * vers la bibliographie de l'auteur.
      *
-     * @param string $value l'auteur tel que saisi dans la notice
-     * @return string l'auteur après suppression des mentions non désirées
+     * @param string $value l'auteur tel que saisi dans la notice.
+     * @return string l'auteur après suppression des mentions non désirées.
      */
     private function author($value)
     {
@@ -531,16 +533,16 @@ class Base extends DatabaseModule
     }
     
     /**
-     * Génère le code html pour un lien
+     * Génère le code html pour un lien.
      *
-     * @param string $value libellé du lien
-     * @param string $lien url du lien
-     * @param string $title titre du lien
-     * @param boolean $newwin ouverture ou non du lien dans une nouvelle fenêtre 
-     * (optionnel, valeur par défaut false)
+     * @param string $value libellé du lien.
+     * @param string $lien url du lien.
+     * @param string $title titre du lien.
+     * @param bool $newwin ouverture ou non du lien dans une nouvelle fenêtre 
+     * (optionnel, valeur par défaut false).
      * @param string $class nom de la class CSS associée au lien ((optionnel, 
-     * valeur par défaut chaîne vide)
-     * @return string code html du lien
+     * valeur par défaut chaîne vide).
+     * @return string code html du lien.
      */
     private function link($value, $lien, $title, $newwin=false, $class='')
     {
@@ -553,12 +555,13 @@ class Base extends DatabaseModule
     /**
      * Affiche la localisation d'une revue.
      * 
-     * Recherche, dans la base, la fiche Périodique de $rev.
+     * Recherche, dans la base, la fiche Périodique de <code>$Rev</code>.
      * Si la fiche existe, elle est affichée en utilisant le template retourné 
      * par la fonction {@link getTemplate()} et le callback indiqué par la 
      * fonction {@link getCallback()}.
      * 
-     * Dans le cas contraire, un message est affiché.
+     * Dans le cas contraire, un message est affiché, en utilisant le template 
+     * spécifié dans la clé <code><errortemplate></code> du fichier de configuration.
      * 
      * @param string $Rev la revue à localiser
      */
@@ -574,7 +577,10 @@ class Base extends DatabaseModule
 
 		// Fiche Périodique inexistante
         if (! $this->select($eq))
-        	return $this->showError('Aucune localisation n\'est disponible pour le périodique '.$Rev.'.');
+        {
+        	$this->showError('Aucune localisation n\'est disponible pour le périodique '.$Rev.'.');
+        	return;
+        }
         
         // Fiche Périodique existante 
         
@@ -603,12 +609,12 @@ class Base extends DatabaseModule
      * vers le site www.ascodocpsy.org, redirige vers cette URL.
      * 
      * Un message d'erreur est affiché dans les cas suivants :
-     * - fiche inexistante
-     * - plusieurs fiches existent pour la revue
-     * - la fiche existe mais le lien ne pointe pas vers le site www.ascodocpsy.org
+     * - fiche inexistante,
+     * - plusieurs fiches existent pour la revue,
+     * - la fiche existe mais le lien ne pointe pas vers le site www.ascodocpsy.org.
      *
      * @param string $Rev la revue pour laquelle on veut afficher la page 
-     * de présentation
+     * de présentation.
      */
     public function actionInform($Rev)
     {              
@@ -622,15 +628,24 @@ class Base extends DatabaseModule
 
 		// Fiche Périodique inexistante
         if (! $this->select($eq))
-            return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$Rev.'.');
+        {
+            $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$Rev.'.');
+            return;
+        }
         
         // Erreur si plusieurs notices pour le périodique
         if ($this->selection->count() >= 2 )
-        	return $this->showError('Il existe plusieurs notices descriptives pour le périodique '.$Rev.'.');
+        {
+        	$this->showError('Il existe plusieurs notices descriptives pour le périodique '.$Rev.'.');
+        	return;
+        }
         
         // Fiche Périodique existante mais le champ Lien ne contient pas www.ascodocpsy.org
         if (stripos($this->selection['Lien'], 'ascodocpsy') === false)
-        	return $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$Rev.'.');
+        {
+        	$this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$Rev.'.');
+        	return;
+        }
         
         // Fiche Périodique existante, redirige vers l'URL du champ Lien (lien sur le site ascodocpsy.org)
         Runtime::redirect($this->selection['Lien'], true);
@@ -695,7 +710,10 @@ class Base extends DatabaseModule
             // Vérifie qu'il y a des notices à valider
             $this->openDatabase(false);
             if (! $this->select($this->equation, -1) )
-                return $this->showError('La recherche '. $this->equation. ' ne contient aucune notice à valider, dans la base '. Config::get('database'). '.');
+            {
+                $this->showError('La recherche '. $this->equation. ' ne contient aucune notice à valider, dans la base '. Config::get('database'). '.');
+                return;
+            }
 
             // Affiche le template de confirmation
             Template::run
@@ -727,7 +745,7 @@ class Base extends DatabaseModule
         $ascoCart=Module::getModuleFor(Request::create()->setModule('AscoCart')->setAction('Show'));
         $ascoCart->preExecute();
         
-        // Le module en cours devient Base et l'action Search
+        // Le module en cours devient Base et l'action en cours devient Search
         $base=Module::getModuleFor($this->request->copy()->setModule('Base')->setAction('Search'));
         
         // Charge la configuration de l'action ShowCaddie
@@ -796,6 +814,10 @@ class Base extends DatabaseModule
     
     // ------------------- GESTION DU PANIER -------------------
     
+    /**
+     * Exporte des notices par type de documents.
+     *
+     */
     public function actionExportByType() // fixme: ne devrait pas être là. Mettre dans DatabaseModule un foction générique ('categorize()') et se contenter de l'appeller ici
     {
         // Ouvre la base de données
@@ -806,18 +828,23 @@ class Base extends DatabaseModule
 
         // Pas d'équation : erreur
         if (is_null($this->equation))
-            return $this->showError('Aucun critère de recherche indiqué');
+        {
+            $this->showError('Aucun critère de recherche indiqué.');
+            return;
+        }
 
         // Lance la recherche, si aucune réponse, erreur
         if (! $this->select($this->equation, -1))
-            return $this->showNoAnswer("La requête $this->equation n'a donné aucune réponse.");
+        {
+            $this->showNoAnswer("La requête $this->equation n'a donné aucune réponse.");
+            return;
+        }
     	
         // IDEA: on pourrait utiliser les "collapse key" de xapian pour faire la même chose
         // de façon beaucoup plus efficace (collapser sur type : une seule réponse par type de
         // document, get_collapse_count() donne une estimation du nombre de documents pour chaque
         // type)
         // A voir également : utiliser un MatchSpy (xapian 1.0.3)
-//        echo "Equation initiale : $this->equation<br />";
         $lastCount=$this->selection->count();
 
         $equation=$baseEquation='(' . $this->equation . ')';
@@ -876,10 +903,11 @@ class Base extends DatabaseModule
     }
     
     /**
-     * Callback utilisé pour les exports Vancouver
+     * Callback utilisé pour les exports Vancouver.
      *
-     * @param string $name nom de la balise mentionnée dans le template associé
-     * @return string la valeur à injecter à la place de la balise $name, dans le template associé
+     * @param string $name nom de la balise mentionnée dans le template associé.
+     * @return string la valeur à injecter à la place de la balise $name, dans 
+     * le template associé.
      */
     public function exportData($name)
     {
@@ -945,287 +973,23 @@ class Base extends DatabaseModule
                 return;
         }
     }
-               
-    // ------------------- TRI DE LA BASE -------------------
-    /**
-     * Trie la base, selon la clé de tri sortkey défini dans le fichier
-     * de configuration.
-     */
-    public function actionSortDb()
-    {
-		// TODO : à supprimer
-		set_time_limit(0);
-
-        $start_time=microtime(true);
-        
-        // Ouvre la base
-        $database=Config::get('database');
-        if (is_null($database))
-            throw new Exception('La base de données à utiliser n\'a pas été indiquée dans le fichier de configuration du module');
-        
-        $this->selection=Database::open($database, true);
-
-        if (! $this->selection->search('*', array('_max'=>-1)))
-        	die('La base à trier ne contient aucun enregistrement.');
-
-        // Vérrouille la base
-        // TODO : Faire le lock sur la base si pas déjà fait
-        
-        // Crée la clé de tri
-        $sortKey=$this->createSortKey(Config::get('sortkey'));
-        
-        // Parcourt toute la sélection en créant les clés de tri
-        TaskManager::progress('1. Calcul des clés de tri...', $this->selection->count());
-        $i=0;
-		$sort=array();
-		foreach ($this->selection as $rank=>$record)
-		{
-		    $sort[$record['REF']]=$this->getKey($sortKey, $record);
-		    TaskManager::progress(++$i, 'Notice ' . $record['REF']);
-		}
-
-        // Trie les clés
-        TaskManager::progress('2. Tri des clés...');
-        asort($sort);
-        
-        // Crée et ouvre la base résultat
-        // Pour le moment, on part d'une base vide
-        // Copie la base vide vers la base résultat
-        // TODO : Ecrire un createdatabase
-        $dbPath=Runtime::$root . "data/db/$database.bed";
-        $dbSortPath=Runtime::$root . "data/db/$database.sort.bed";
-        
-        TaskManager::progress('3. Création de la base vide...');
-        if (! copy(Runtime::$root . "data/db/${database}Vide.bed", $dbSortPath))
-            throw new Exception('La copie de la base n\'a pas réussi.');       
-        
-        //ascodocpsysort
-        $selSort=Database::open($dbSortPath, false, 'bis');
-        if (is_null($selSort))
-        	throw new Exception('Impossible d\'ouvrir la base résultat.');
-        
-        // Génère la base triée
-        TaskManager::progress('4. Réécriture des enregistrements selon l\'ordre de tri...', count($sort));
-        
-        $ref=1;
-        foreach ($sort as $key=>$value)
-        {
-            if(! $this->selection->search("REF=$key"))
-            	die('ref non trouvée');
-            	
-            $selSort->addRecord();
-			foreach($this->selection->record as $fieldName=>$fieldValue)
-			    if ($fieldName!=='REF') $selSort[$fieldName]=$fieldValue;
-            $selSort->saveRecord();
-            
-            if ($ref==1) break;
-            
-            TaskManager::progress($ref, "Notice $ref");
-            $ref++;
-        }
-        echo '<p>tri réalisé en '. number_format(microtime(true) - $start_time, 2, '.', '')
-             . '&nbsp;secondes</p>';
-       
-        TaskManager::progress('5. Fermeture et flush des bases...');
-
-        // Ferme la base non triée
-        unset($record);
-        unset($this->selection->record);
-        unset($this->selection);
-        
-        // Ferme la base triée
-        unset($selSort->record);
-        unset($selSort);
-        
-        // Supprime la base non triée
-        if (! unlink($dbPath))
-            throw new Exception('La base non triée n\'a pas pu être supprimée.');
-        
-        // Renomme la base triée
-        if (! rename($dbSortPath, $dbPath))
-            throw new Exception('La base triée n\'a pas pu être renommée.');
-        
-        // Dévérrouille la base
-        // TODO : Faire un unlock sur la base
-        TaskManager::progress('Terminé');
-        
-        // TODO : Faire en sorte d'avoir un lien http://xxx
-        //echo '<a href="'.Routing::linkFor('/Base/Search').'">Interroger la nouvelle base...</a>';
-    }
     
-    /**
-     * Crée un tableau contenant les clés utilisées pour le tri, à partir
-     * de la chaîne passée en paramètre
-     * 
-     * @param string $sortKey chaîne contenant les clés de tri, écrites sous la
-     * forme Champ1:Champ2:Champ3,Longueur de la clé (entier),Type,Ordre de tri (+ ou -);Autre clé
-     * 
-     * @return array tableau contenant les clés de tri.
-     * i => fieldnames => tableau contenant les champs utilisés pour construire la clé
-     *                    array(0=>Champ1, 1=>Champ2, 2=>Champ3)
-     *      length     => longeur de la clé de tri
-     *      type       => type à utiliser pour créer la clé
-     *      order      => ordre du tri : ascendant (+) ou descendant (-)
-     */
-    private function createSortKey($sortKey)
-    {
-        $keys=array();
-        
-        // Ajoute le champ REF comme dernier champ de la clé
-        $sortKey.=';REF,6,KeyInteger,+';
-        
-        // Initialise tous les champs qui composent la clé
-        $t=split(';', $sortKey);
-        foreach ($t as $key=>$value)
-        {
-            $items=split(',', trim($value));
-            
-            // Extrait les noms de champs
-            $keys[$key]['fieldnames']=split(':', trim($items[0]));
-            
-            // Extrait la longueur de clé
-            $keys[$key]['length']=trim($items[1]);
-            
-            // Extrait le type
-            $keys[$key]['type']=trim($items[2]);
-            
-            // Extrait l'ordre de tri
-            $keys[$key]['order']=trim($items[3]);
-        }
-        
-        // Retourne le résultat
-        return $keys;
-    }
-        
-    /**
-     * Crée la clé de l'enregistrement en cours de la sélection $selection
-     * 
-     * @param array $key tableau contenant les clés de tri
-     * @param $selection la sélection en cours
-     * 
-     * @return string la clé de l'enregistrement en cours 
-     */
-    private function getKey($key, $selection)
-    {
-        $getKey='';
-        for ($i=0;$i<=count($key)-1;$i++)
-        {
-            // Récupère le premier champ rempli parmi la liste de champs
-            for ($j=0;$j<=count($key[$i]['fieldnames'])-1;$j++)
-            {
-                $value=$selection[$key[$i]['fieldnames'][$j]];
-                if (strlen($value))
-                    break;
-            }
-
-            // Récupère la longueur de la clé
-            $nb=$key[$i]['length'];
-            
-            // Construit la clé
-            switch ($key[$i]['type'])
-            {
-                // Prendre le champ tel quel sur n caractères
-                case 'KeyText':
-                    if (strlen($value) > $nb)
-                        $value=substr($value, 0, $nb-1);
-                    else
-                        $value=str_pad($value, $nb, ' ');
-                    break;
-
-                // Idem mais ignorer la casse des caractères
-                case 'KeyTextIgnoreCase':
-                    if (strlen($value) > $nb)
-                        $value=substr($value, 0, $nb-1);
-                    else
-                        $value=str_pad($value, $nb, ' ');
-                    $value=Utils::convertString($value, 'lower');
-                    break;
-            
-                // Prendre le premier article tel quel et padder sur n caractères
-                case 'KeyArticle':
-                    // TODO : remplacer la chaîne du séparateur par la variable
-                    $pt=strpos($value, trim(self::SEPARATOR));
-                    if ($pt !== false)
-                        $value=trim(substr($value, 0, $pt-1)); 
-                    if (strlen($value) > $nb)
-                        $value=substr($value, 0, $nb-1);
-                    else
-                        $value=str_pad($value, $nb, ' ');
-                    break;
-                    
-                // Idem mais ignorer la casse des caractères
-                case 'KeyArticleIgnoreCase':
-                    // TODO : remplacer la chaîne du séparateur par la variable
-                    $pt=strpos($value, trim(self::SEPARATOR));
-                    if ($pt !== false)
-                        $value=trim(substr($value, 0, $pt-1)); 
-                    if (strlen($value) > $nb)
-                        $value=substr($value, 0, $nb-1);
-                    else
-                        $value=str_pad($value, $nb, ' ');
-                    $value=Utils::convertString($value, 'lower');
-                    break;
-
-                // Traiter comme un entier (padder avec des zéros sur n caractères)
-                case 'KeyInteger':
-                    $pt=strpos($value, trim(self::SEPARATOR));
-                    if ($pt !== false)
-                        $value=trim(substr($value, 0, $pt-1)); 
-                    if (strlen($value) > $nb)
-                        $value=substr($value, 0, $nb-1);
-                    else
-                        $value=str_pad($value, $nb, '0', STR_PAD_LEFT);
-                    break;
-            
-                // Traiter comme un champ date au format AAAAMMJJ
-                case 'KeyDate':
-                    $value=strtr($value, '/-', '');      // AAAA/MM/JJ et AAAA-MM-JJ -> AAAAMMJJ
-                    if (strlen($value) > $nb)
-                        $value=substr($value, 0, $nb-1);
-                    else
-                        $value=str_pad($value, $nb, ' ');                    
-                    break;
-                    
-                default:
-                    throw new Exception('Le type du champ n\'a pas été précisé.');
-                    break;
-                    // TODO : que faire par défaut ?
-            }
-            
-            // Si tri descendant, commute la clé
-            if ($key[$i]['order']=='-')
-                $this->switchKey($value);
-			
-            $getKey.=$value;
-        }
-        return $getKey;
-    }
-
-    private function switchKey(&$value)
-    {
-        if (! $value) return '';
-        
-        $value=str_split($value);
-        foreach($value as $key=>$char)
-            $value[$key]=chr(255-ord($char));
-        $value=implode('',$value);
-    }
-        
+               
     // ------------------- IMPORT DE NOTICES -------------------
     
     /**
      * Vérifie que le fichier chargé pour l'import est valide.
      * 
      * Les vérifications sont faites dans l'ordre suivant :
-     * - le fichier n'est pas vide
-     * - la première ligne du fichier n'est pas vide
+     * - le fichier n'est pas vide,
+     * - la première ligne du fichier n'est pas vide,
      * - la première ligne fait une longueur maximum qui correspond à la longueur
-     *   de l'ensemble des noms des champs de la base séparés par des tabulations
-     * - la première ligne contient des tabulations
-     * - la première ligne contient les noms des champs de la base
+     *   de l'ensemble des noms des champs de la base séparés par des tabulations,
+     * - la première ligne contient des tabulations,
+     * - la première ligne contient les noms des champs de la base.
      *
-     * @param string $path chemin du fichier à charger sur le serveur
-     * @return string|bool message de l'erreur ou true si le fichier est valide
+     * @param string $path chemin du fichier à charger sur le serveur.
+     * @return string|bool message de l'erreur ou true si le fichier est valide.
      */
     public function checkImportFile($path)
     {
@@ -1305,10 +1069,11 @@ class Base extends DatabaseModule
     
 
     /**
-     * Callback d'import d'un fichier de notices
+     * Callback d'import d'un fichier de notices.
      *
-     * @param string $path le path et le nom du fichier à importer
-     * @param string $errorPath le path du fichier dans lequel sont stockées les notices erronées
+     * @param string $path le path et le nom du fichier à importer.
+     * @param string $errorPath le path du fichier dans lequel sont stockées les 
+     * notices erronées.
      * @return array tableau contenant :
      * - le résultat de l'exécution : true si l'import s'est bien déroulé, false sinon
      * - le rapport d'exécution
