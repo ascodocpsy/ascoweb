@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
+<sect1 id="un.id.unique">
+
+    <sect1info>
+        <releaseinfo><![CDATA[$Id$]]></releaseinfo>
+    </sect1info>
+
+    <title>Titre de la page</title>
+ 
+    <sect2 id="id.de.sect1.plus.autre1">
+    
+        <title>sect1.plus.autre1</title>
+        
+        <para>Paragraphe</para>
+        
+    </sect2>
+
+    <sect2 id="id.de.sect1.plus.autre2">
+    
+        <title>sect1.plus.autre1</title>        
+        
+        <para>Paragraphe</para>
+        
+    </sect2>
+
+    <sect2 id="id.de.sect1.plus.autre3">
+    
+        <title>sect1.plus.autre1</title>        
+        
+        <para>Paragraphe</para>
+        
+    </sect2>
+
+    <sect2 id="id.de.sect1.plus.autre4">
+    
+        <title>sect1.plus.autre1</title>        
+        
+        <para>Paragraphe</para>
+        
+    </sect2>
+
+    <sect2 id="id.de.sect1.plus.autre5">
+    
+        <title>sect1.plus.autre1</title>        
+        
+        <para>Paragraphe</para>
+        
+    </sect2>
+
+    <sect2 id="id.de.sect1.plus.autre6">
+    
+        <title>sect1.plus.autre1</title>        
+        
+        <para>Paragraphe</para>
+        
+    </sect2>
+
+</sect1>
