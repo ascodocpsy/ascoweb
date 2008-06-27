@@ -25,60 +25,7 @@
       </listitem>
     </itemizedlist>
 
-    <para></para>
-
-  </sect2>
-
-  <sect2 id="ascoweb.module.base.errortpl">
-    <title>Templates d'erreur</title>
-
-    <para>Des <ulink url="?filename=template.introduction">templates</ulink>
-    permettant d'afficher des messages d'erreur sont utilisés par plusieurs
-    actions. Ils se trouvent dans le répertoire
-    <filename>/modules/Base/templates/error</filename>.</para>
-
-    <table>
-      <title>Templates d'erreur</title>
-
-      <tgroup cols="2">
-        <thead>
-          <row>
-            <entry align="center">Fichier</entry>
-
-            <entry align="center">Description</entry>
-          </row>
-        </thead>
-
-        <tbody>
-          <row>
-            <entry>error_base_noanswer.html</entry>
-
-            <entry>Page affichée lorsque une recherche dans la base de données
-            n'a donné aucun résultat.<para>Actions concernées : <ulink
-            url="#ascoweb.module.base.actionSearch">Search</ulink>, <ulink
-            url="#ascoweb.module.base.actionShow">Show</ulink></para></entry>
-          </row>
-
-          <row>
-            <entry>error_base.html</entry>
-
-            <entry>Page affichée lorsqu'une erreur intervient lors de
-            l'interrogation de la base de données.<warning>
-                <para>\$error : généré PAR QUI ?</para>
-              </warning></entry>
-          </row>
-
-          <row>
-            <entry>error.html</entry>
-
-            <entry>Template simple permettant d'afficher uniquement le message
-            d'erreur.<para>Actions concernées : <ulink
-            url="#ascoweb.module.base.actionInform">Inform</ulink>, <ulink
-            url="#ascoweb.module.base.actionLocate">Locate</ulink></para></entry>
-          </row>
-        </tbody>
-      </tgroup>
-    </table>
+    <para />
   </sect2>
 
   <sect2 id="ascoweb.module.base.actionClearSearchHistory">
@@ -268,7 +215,7 @@
     <sect3 id="ascoweb.module.base.actionDuplicate.img">
       <title>Images</title>
 
-      <para></para>
+      <para />
 
       <table>
         <title>Images utilisées par l'action Duplicate</title>
@@ -350,7 +297,7 @@
     <sect3>
       <title>Configuration</title>
 
-      <para>Les formats d'export disponibles sont mentionnés </para>
+      <para>Les formats d'export disponibles sont mentionnés</para>
     </sect3>
 
     <sect3>
@@ -365,7 +312,7 @@
   <sect2 id="ascoweb.module.base.actionExportByCat">
     <title>Action ExportByCat</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -379,7 +326,7 @@
   <sect2 id="ascoweb.module.base.actionExportByType">
     <title>Action ExportByType</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -393,7 +340,7 @@
   <sect2 id="ascoweb.module.base.actionImport">
     <title>Action Import</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -407,7 +354,7 @@
   <sect2 id="ascoweb.module.base.actionImportFiles">
     <title>Action ImportFiles</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -421,7 +368,7 @@
   <sect2 id="ascoweb.module.base.actionInform">
     <title>Action Inform</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -435,7 +382,7 @@
   <sect2 id="ascoweb.module.base.actionLoad">
     <title>Action Load</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -449,7 +396,7 @@
   <sect2 id="ascoweb.module.base.actionLoadFull">
     <title>Action LoadFull</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -463,7 +410,7 @@
   <sect2 id="ascoweb.module.base.actionLocate">
     <title>Action Locate</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -477,7 +424,7 @@
   <sect2 id="ascoweb.module.base.actionNew">
     <title>Action New</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -491,7 +438,7 @@
   <sect2 id="ascoweb.module.base.actionReplace">
     <title>Action Replace</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -505,7 +452,7 @@
   <sect2 id="ascoweb.module.base.actionReplaceForm">
     <title>Action ReplaceForm</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -519,7 +466,7 @@
   <sect2 id="ascoweb.module.base.actionSave">
     <title>Action Save</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -533,7 +480,7 @@
   <sect2 id="ascoweb.module.base.actionSearch">
     <title>Action Search</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -552,38 +499,38 @@
     <sect3>
       <title>Configuration</title>
 
-      <para></para>
+      <para />
     </sect3>
 
     <sect3>
       <title>Templates</title>
 
-      <para></para>
+      <para />
     </sect3>
 
     <sect3>
       <title>Tables</title>
 
-      <para></para>
+      <para />
     </sect3>
 
     <sect3>
       <title>Feuilles de style et images</title>
 
-      <para></para>
+      <para />
     </sect3>
 
     <sect3>
       <title>Scripts JavaScript</title>
 
-      <para></para>
+      <para />
     </sect3>
   </sect2>
 
   <sect2 id="ascoweb.module.base.actionShow">
     <title>Action Show</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -597,7 +544,7 @@
   <sect2 id="ascoweb.module.base.actionShowCaddie">
     <title>Action ShowCaddie</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -611,7 +558,7 @@
   <sect2 id="ascoweb.module.base.actionValidateAll">
     <title>Action Validate</title>
 
-    <para></para>
+    <para />
 
     <sect3>
       <title />
@@ -621,102 +568,100 @@
       <title />
     </sect3>
   </sect2>
-  
-      <table>
-      <title>Images de l'application</title>
 
-      <tgroup cols="2">
-        <thead>
-          <row>
-            <entry align="center">Fichier</entry>
+  <table>
+    <title>Images de l'application</title>
 
-            <entry align="center">Description</entry>
-          </row>
-        </thead>
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry align="center">Fichier</entry>
 
-        <tbody>
-          <row>
-            <entry>/web/css/ascodocpsy/application_form_add.png</entry>
+          <entry align="center">Description</entry>
+        </row>
+      </thead>
 
-            <entry>Icone du lien "Dupliquer la notice"</entry>
-          </row>
+      <tbody>
+        <row>
+          <entry>/web/css/ascodocpsy/application_form_add.png</entry>
 
-          <row>
-            <entry>/web/css/ascodocpsy/application_form_edit.png</entry>
+          <entry>Icone du lien "Dupliquer la notice"</entry>
+        </row>
 
-            <entry>Icone du lien "Modifier la notice"</entry>
-          </row>
+        <row>
+          <entry>/web/css/ascodocpsy/application_form_edit.png</entry>
 
-          <row>
-            <entry>/web/css/ascodocpsy/application_form_magnify.png</entry>
+          <entry>Icone du lien "Modifier la notice"</entry>
+        </row>
 
-            <entry>Icone du lien "Voir la notice complète"</entry>
-          </row>
+        <row>
+          <entry>/web/css/ascodocpsy/application_form_magnify.png</entry>
 
-          <row>
-            <entry>/web/css/ascodocpsy/bullet_key.png</entry>
+          <entry>Icone du lien "Voir la notice complète"</entry>
+        </row>
 
-            <entry>Icone apparaissant dans les zones de saisie pour lesquelles
-            un index d'aide à la saisie est disponible</entry>
-          </row>
+        <row>
+          <entry>/web/css/ascodocpsy/bullet_key.png</entry>
 
-          <row>
-            <entry>/web/css/ascodocpsy/cart_add.png</entry>
+          <entry>Icone apparaissant dans les zones de saisie pour lesquelles
+          un index d'aide à la saisie est disponible</entry>
+        </row>
 
-            <entry>Icone du lien "Ajouter la notice au panier" présent sur
-            l'affichage de chaque notice</entry>
-          </row>
+        <row>
+          <entry>/web/css/ascodocpsy/cart_add.png</entry>
 
-          <row>
-            <entry>/web/css/ascodocpsy/cart_delete.png</entry>
+          <entry>Icone du lien "Ajouter la notice au panier" présent sur
+          l'affichage de chaque notice</entry>
+        </row>
 
-            <entry>Icone du lien "Supprimer la notice du panier" présent sur
-            l'affichage de chaque notice, lorsque l'on visualise le contenu du
-            panier</entry>
-          </row>
+        <row>
+          <entry>/web/css/ascodocpsy/cart_delete.png</entry>
 
-          <row>
-            <entry>/web/css/ascodocpsy/cart_put.png</entry>
+          <entry>Icone du lien "Supprimer la notice du panier" présent sur
+          l'affichage de chaque notice, lorsque l'on visualise le contenu du
+          panier</entry>
+        </row>
 
-            <entry>Icone du lien "Ajouter toutes les notices de la page au
-            panier" présent au début et à la fin d'une page de
-            réponses</entry>
-          </row>
+        <row>
+          <entry>/web/css/ascodocpsy/cart_put.png</entry>
 
-          <row>
-            <entry>/web/css/ascodocpsy/cart_remove.png</entry>
+          <entry>Icone du lien "Ajouter toutes les notices de la page au
+          panier" présent au début et à la fin d'une page de réponses</entry>
+        </row>
 
-            <entry>Icone du lien "Supprimer du panier toutes les notices de la
-            page" présent au début et à la fin d'une page de notices lorsque
-            l'on visualise le contenu du panier</entry>
-          </row>
+        <row>
+          <entry>/web/css/ascodocpsy/cart_remove.png</entry>
 
-          <row>
-            <entry>/web/css/ascodocpsy/help.png</entry>
+          <entry>Icone du lien "Supprimer du panier toutes les notices de la
+          page" présent au début et à la fin d'une page de notices lorsque
+          l'on visualise le contenu du panier</entry>
+        </row>
 
-            <entry>Icone pour le lien vers l'aide sur un champ</entry>
-          </row>
+        <row>
+          <entry>/web/css/ascodocpsy/help.png</entry>
 
-          <row>
-            <entry>/web/css/ascodocpsy/inform.png</entry>
+          <entry>Icone pour le lien vers l'aide sur un champ</entry>
+        </row>
 
-            <entry>Icone pour les différents lien permettant d'obtenir des
-            informations</entry>
-          </row>
+        <row>
+          <entry>/web/css/ascodocpsy/inform.png</entry>
 
-          <row>
-            <entry>/web/css/ascodocpsy/loc.png</entry>
+          <entry>Icone pour les différents lien permettant d'obtenir des
+          informations</entry>
+        </row>
 
-            <entry>Icone pour le lien "Localiser le périodique"</entry>
-          </row>
+        <row>
+          <entry>/web/css/ascodocpsy/loc.png</entry>
 
-          <row>
-            <entry>/web/css/ascodocpsy/puce.gif</entry>
+          <entry>Icone pour le lien "Localiser le périodique"</entry>
+        </row>
 
-            <entry></entry>
-          </row>
-        </tbody>
-      </tgroup>
-    </table>
-  
+        <row>
+          <entry>/web/css/ascodocpsy/puce.gif</entry>
+
+          <entry />
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
 </sect1>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
+<sect1 id="introduction">
+  <sect1info>
+    <releaseinfo>$Id$</releaseinfo>
+  </sect1info>
+
+  <title>Vue générale</title>
+
+  <toc></toc>
+
+  <para>Ascoweb est une application complètement basée sur le framework
+  fab.</para>
+
+  <para>Avant de lire la documentation de l'application, il est nécessaire de
+  lire <ulink url="?filename=fab.index">celle de fab</ulink> afin d'en
+  comprendre le fonctionnement.</para>
+
+  <sect2 id="introduction.modules">
+    <title>Modules</title>
+
+    <para>Ascoweb est constituée de 5 modules.</para>
+
+    <sect3 id="introduction.modules.Base">
+      <title>Module Base</title>
+
+      <para>Le module Base assure la consultation et la gestion de la base
+      documentaire SantéPsy. Il offre les fonctionnalités telles que :</para>
+
+      <para><itemizedlist>
+          <listitem>
+            <para>l'interrogation de la base,</para>
+          </listitem>
+
+          <listitem>
+            <para>l'affichage et l'export des notices,</para>
+          </listitem>
+
+          <listitem>
+            <para>la création, la modification, la duplication, la suppression
+            de notices,</para>
+          </listitem>
+
+          <listitem>
+            <para>l'import de notices,</para>
+          </listitem>
+
+          <listitem>
+            <para>la modification et la validation de notices en série,</para>
+          </listitem>
+
+          <listitem>
+            <para>etc.</para>
+          </listitem>
+        </itemizedlist>Il est basé sur le module <ulink
+      url="?class=DatabaseModule">DatabaseModule</ulink> de fab.<itemizedlist>
+          <listitem>
+            <para><ulink url="?class=DatabaseModule">API du module
+            DatabaseModule de fab</ulink></para>
+          </listitem>
+
+          <listitem>
+            <para><ulink url="?class=Base">API du module Base</ulink></para>
+          </listitem>
+
+          <listitem>
+            <para><ulink type="" url="?filename=Base">Spécificités du module
+            Base</ulink></para>
+          </listitem>
+        </itemizedlist></para>
+    </sect3>
+
+    <sect3 id="introduction.modules.AscoCart">
+      <title>Module AscoCart</title>
+
+      <para>AscoCart permet de gérer le panier de notices. C'est un
+      pseudo-module basé sur le module <ulink
+      url="?class=CartModule">CartModule</ulink> de fab.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><ulink url="?class=CartModule">API du module CartModule de
+          fab</ulink></para>
+        </listitem>
+
+        <listitem>
+          <para><ulink url="?filename=AscoCart">Spécificités du module
+          AscoCart</ulink></para>
+        </listitem>
+      </itemizedlist>
+    </sect3>
+
+    <sect3 id="introduction.modules.ThesauruModule">
+      <title>Module ThesaurusModule</title>
+
+      <para><ulink url="?class=ThesaurusModule">ThesaurusModule</ulink> est un
+      module standard de fab qui permet de consulter un thesaurus
+      mono-hiérarchique. Dans Ascoweb, ThesaurusModule est utilisé tel quel
+      pour permettre la consultation du thesaurus SantéPsy.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><ulink url="?class=ThesaurusModule" userlevel="">API du module
+          ThesaurusModule de fab</ulink></para>
+        </listitem>
+      </itemizedlist>
+    </sect3>
+
+    <sect3 id="introduction.modules.ImportAsco">
+      <title>Module ImportAsco</title>
+
+      <para>ImportAsco gère les fichiers d'import envoyés par les membres du
+      réseau AscodocPsy pour alimenter la base documentaire SantéPsy. C'est un
+      module basé sur le module <ulink
+      url="?class=ImportModule">ImportModule</ulink> de fab.<itemizedlist>
+          <listitem>
+            <para><ulink url="?class=ImportModule" userlevel="">API du module
+            ImportModule de fab</ulink></para>
+          </listitem>
+
+          <listitem>
+            <para><ulink url="?class=ImportAsco">API du module
+            ImportAsco</ulink></para>
+          </listitem>
+        </itemizedlist></para>
+    </sect3>
+
+    <sect3 id="introduction.modules.SpipSecurity">
+      <title>Module SpipSecurity</title>
+
+      <para>SpipSecurity est un module spécial en cela qu'il n'est pas destiné
+      à être manipulé directement par les utilisateurs. C'est un module de
+      sécurité spécifique à Ascoweb qui permet aux utilisateurs du site
+      principal d'<ulink url="http://www.ascodocpsy.org">Ascodocpsy</ulink>
+      d'être connectés automatiquement à Ascoweb.</para>
+
+      <para>Il est basé sur le module <ulink
+      url="?class=NoSecurity">NoSecurity</ulink> de fab.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><ulink url="?class=NoSecurity">API du module NoSecurity de
+          fab</ulink></para>
+        </listitem>
+
+        <listitem>
+          <para><ulink type="" url="?class=SpipSecurity">API du module
+          SpipSecurity</ulink></para>
+        </listitem>
+      </itemizedlist>
+    </sect3>
+  </sect2>
+
+  <sect2 id="introduction.config">
+    <title>Configuration d'Ascoweb</title>
+
+    <sect3 id="introduction.config.general">
+      <title>Configuration générale</title>
+
+      <para>Le fichier <filename>general.config</filename> permet de définir
+      le thème, le layout, les feuilles de style, les fichiers javascript
+      utilisés par l'application, etc.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><ulink url="/AdminConfig/Edit?file=general.config">Editer le
+          fichier general.config</ulink></para>
+        </listitem>
+      </itemizedlist>
+    </sect3>
+
+    <sect3 id="introduction.config.db">
+      <title>Bases de données</title>
+
+      <para>Le fichier <filename>db.config</filename> permet de définir les
+      bases utilisées par l'application.</para>
+
+      <para>Ascoweb se sert de 3 bases de données :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>La base documentaire SantéPsy,</para>
+        </listitem>
+
+        <listitem>
+          <para>La base du thesaurus SantéPsy,</para>
+        </listitem>
+
+        <listitem>
+          <para>La base <filename>importasco</filename> qui gère les fichiers
+          de notices importés dans la base documentaire.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Vous n'avez pas à intervenir sur ce fichier, il est géré par le
+      <ulink url="/AdminDatabases">module d'administration des bases de
+      données</ulink>.</para>
+    </sect3>
+
+    <sect3 id="introduction.config.routing">
+      <title>Routage des urls</title>
+
+      <para>Pour l'application Ascoweb, certaines URL sont personnalisées et
+      définies dans le fichier de configuration
+      <filename>routing.config</filename>.</para>
+
+      <para><table>
+          <title>Routes définies pour l'application ascoweb</title>
+
+          <tgroup cols="2">
+            <thead>
+              <row>
+                <entry align="center">URL</entry>
+
+                <entry align="center">Module/Action</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>/Base/FormulaireRecherche</entry>
+
+                <entry>Base/SearchForm</entry>
+              </row>
+
+              <row>
+                <entry>/Base/Recherche</entry>
+
+                <entry>Base/Search</entry>
+              </row>
+
+              <row>
+                <entry>/Base/REF (avec REF = un nombre entier (ex :
+                /Base/1256))</entry>
+
+                <entry>Base/Show</entry>
+              </row>
+
+              <row>
+                <entry>/Panier</entry>
+
+                <entry>AscoCart/Show</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table></para>
+
+      <itemizedlist>
+        <listitem>
+          <para><ulink url="?filename=fab.routing.xml">Système de routage de
+          fab</ulink></para>
+        </listitem>
+
+        <listitem>
+          <para><ulink url="/AdminConfig/Edit?file=routing.config">Editer le
+          fichier routing.config</ulink></para>
+        </listitem>
+      </itemizedlist>
+    </sect3>
+
+    <sect3 id="introduction.config.links">
+      <title>Liens utiles</title>
+
+      <itemizedlist>
+        <listitem>
+          <para><ulink url="?filename=fab.config">Documentation sur les
+          fichiers de configuration</ulink></para>
+        </listitem>
+
+        <listitem>
+          <para><ulink type="" url="/AdminConfig">Module d'administration de
+          la configuration</ulink> d'Ascoweb</para>
+        </listitem>
+      </itemizedlist>
+    </sect3>
+  </sect2>
+</sect1>
