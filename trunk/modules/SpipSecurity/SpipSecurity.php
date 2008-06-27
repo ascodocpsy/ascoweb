@@ -1,15 +1,46 @@
 <?php
-/*
- * Created on 31 mai 06
- *
- * To change the template for this generated file go to
- * Window - Preferences - PHPeclipse - PHP - Code Templates
+/**
+ * @package     ascoweb
+ * @subpackage  SpipSecurity
+ * @author      Daniel Ménard <Daniel.Menard@bdsp.tm.fr>
+ * @version     SVN: $Id$
  */
 
+/**
+ * Module de sécurité.
+ * 
+ * Ce module gère la connexion des utilisateurs SPIP depuis le site web 
+ * d'Ascodocpsy.
+ * 
+ * On distingue trois types d'utilisateurs :
+ * - le grand public
+ * - les membres du GIP
+ * - les administrateurs
+ * 
+ * @package     ascoweb
+ * @subpackage  SpipSecurity 
+ */
 class SpipSecurity extends NoSecurity
 {
+    /**
+     * Identité de la personne connectée
+     *
+     * @var string
+     */
     public $ident='';
+    
+    /**
+     * Login de la personne connectée
+     *
+     * @var string
+     */
     public $login='';
+    
+    /**
+     * Email de la personne connectée
+     *
+     * @var string
+     */
     public $email='';
     
     public function __construct()
@@ -25,9 +56,17 @@ class SpipSecurity extends NoSecurity
                 $this->rights=$t['rights'];
             }
         }
-        //echo '<pre>', var_dump($this, true), '</pre>';
     }	
 
+    /**
+     * Connecte un utilisateur identifié à partir du site Ascodocpsy sous SPIP et
+     * lui attribue des droits en fonction du statut SPIP.
+     *
+     * On distingue trois types d'utilisateurs :
+     * - le grand public : pas de droit particulier
+     * - les membres du GIP : droit "Edit" 
+     * - les administrateurs : droit "Admin"
+     */
     public function actionConnect()
     {
         // on attend en querystring une chaine qui est la version base64 de la sérialisation du tableau suivant :
@@ -43,7 +82,7 @@ class SpipSecurity extends NoSecurity
         // YTo0OntzOjU6ImlkZW50IjtzOjU6IkFzY28xIjtzOjU6ImxvZ2luIjtzOjU6ImFzY28xIjtzOjU6ImVtYWlsIjtzOjMyOiJuYWRpbmUuY2FycmFzY29AY2gtbW9udHBlcnJpbi5mciI7czo2OiJzdGF0dXQiO3M6NjoiNmZvcnVtIjt9
 
 
-        // décode et désérialise la query string qu'on nous a passée
+        // Décode et désérialise la query string qu'on nous a passée
         $request=unserialize(base64_decode($_SERVER['QUERY_STRING']));
 
         // Récupère l'ident, le login, l'email tel quel                
