@@ -551,16 +551,6 @@ class Base extends DatabaseModule
     }
 
     /**
-     * Lance une recherche dans la base et affiche les réponses obtenues.
-     */
-    public function actionSearch()
-    {
-//        $this->cart=Module::loadModule('AscoCart');
-//        $this->cart->preExecute();
-        parent::actionSearch();   
-    }
-    
-    /**
      * Affiche la localisation d'une revue.
      * 
      * Recherche, dans la base, la fiche Périodique de $rev.
@@ -650,8 +640,9 @@ class Base extends DatabaseModule
      * Affiche le formulaire permettant de choisir le type du document à créer.
      * 
      * Si un type de document est spécifié en paramètre, affiche le formulaire 
-     * de création pour ce type, sinon affiche le formulaire pour choisir le 
-     * type de document à créer.
+     * indiqué dans la clé <code><template></code> de la configuration, sinon
+     * affiche le formulaire <code>/templates/chooseType.html</code> pour choisir le type 
+     * de document à créer.
      * 
      * @param string $Type le type du document à créer.
      */    
@@ -665,7 +656,8 @@ class Base extends DatabaseModule
                 'templates/chooseType.html'
             );
         }
-        else    // sinon, appelle l'action par défaut
+        // Sinon, appelle l'action par défaut
+        else
         {
             parent::actionNew();
         }
@@ -674,12 +666,12 @@ class Base extends DatabaseModule
     /**
      * Valide des notices.
      *
-     * C'est en fait un chercher/remplacer : chercher "avalider", remplacer par 
-     * "valide" dans le champ "Statut".
+     * C'est en fait un chercher/remplacer ({@link actionReplace() action Replace}) : 
+     * chercher "avalider", remplacer par "valide" dans le champ "Statut".
      * 
      * Affiche une demande de confirmation si l'utilisateur n'a pas confirmé la 
-     * validation des notices.
-     *  
+     * validation des notices (template <code>/templates/confirmValidate.html</code>).
+     * 
      * @param string $_equation l'équation de recherche qui définit les notices
      * à valider.
      * 
@@ -722,7 +714,43 @@ class Base extends DatabaseModule
         // formulaire.
         parent::actionReplace($eq);
     }
+
+    /**
+     * Affiche le contenu du panier.
+     * 
+     * Si le panier est vide, affiche le template défini dans la clé 
+     * <code><noanswertemplate></code> du fichier de configuration.
+     */
+    public function actionShowCaddie()
+    {
+        // Charge le panier
+        $ascoCart=Module::getModuleFor(Request::create()->setModule('AscoCart')->setAction('Show'));
+        $ascoCart->preExecute();
         
+        // Le module en cours devient Base et l'action Search
+        $base=Module::getModuleFor($this->request->copy()->setModule('Base')->setAction('Search'));
+        
+        // Charge la configuration de l'action ShowCaddie
+        Config::addArray(Config::get('actionShowCaddie'));
+        
+        // Panier vide
+        if (count($ascoCart->cart)==0)
+        {
+            Template::run
+            (
+                $this->getTemplate('noanswertemplate')
+            );
+            return;
+        }
+         
+        // Le panier contient des notices, ajoute dans la config une equation par défaut contenant toutes les notices du panier
+        if (count($ascoCart->cart))
+            Config::set('equation','REF:('.implode(' OR ', array_keys($ascoCart->cart)).')');
+        
+        // Lance /Base/Search sans paramètres pour qu'il utilise l'équation par défaut
+        $base->execute();
+    }
+    
 //    public function actionNewsletter()
 //    {
 //        global $selection;
