@@ -204,19 +204,17 @@ function CheckForm(ControlsName)
 
 	if ( ctrlGetFieldValue(Statut)=="valide" )
 	{
-		h  = "Impossible d'enregistrer la fiche : elle contient des erreurs et la fiche a été validée par un administrateur. "
-        h += "Elle est donc visible du grand public.\n"
-		h += "Pour enregistrer la fiche, corrigez les erreurs qu'elle contient.\n"
-		ctrlFormAlert(h) ;
-		return false ;
+        h  = "Votre fiche contient une ou plusieurs erreurs. "
+        h += "Elle sera visible du grand public.\n"
+        h += "Nous vous conseillons de corriger votre fiche avant de l'enregistrer.\n\n"
+        h += "Cliquez sur OK pour enregistrer la fiche, sur Annuler pour la corriger."
+        return confirm( h ) ;
 	}
     else if ( ctrlGetFieldValue(Statut)=="" )
     {        
-        h  = "Impossible d'enregistrer la fiche : elle contient des erreurs.\n"
-        h += "Vous n'avez notamment pas défini son statut.\n"
-        h += "Pour enregistrer la fiche, corrigez les erreurs qu'elle contient et définissez son statut.\n"
-        ctrlFormAlert(h) ;
-        return false ;
+        h  = "Impossible d'enregistrer la fiche : vous devez au minimum définir son statut.\n"
+        ctrlFormAlert( h ) ;
+        return false;
     }
 	else
 	{
