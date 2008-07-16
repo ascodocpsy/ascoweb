@@ -62,7 +62,25 @@
                 
             </loop>
         </table>
-        <p style="text-align: right;"><a href="ClearSearchHistory">Effacer l'historique</a></p>
+        <p style="text-align: right;"><a id="ClearSearchHistory" href="ClearSearchHistory">Effacer l'historique</a></p>
+<script type="text/javascript">
+
+jQuery(document).ready(function()
+\{
+    jQuery('#ClearSearchHistory').click(function()
+    \{
+        var qs='';
+        jQuery('div.searchhistory input:checked').each(function()
+        \{
+            qs += '&amp;_equation=' + escape(jQuery(this).val());
+        \});
+        if (qs)
+            this.href += '?' + qs.substr(1);
+        //console.debug(qs.substr(1));
+        //return false;
+    \});
+\});
+</script>
 </if>
 <else>
     <p>Aucune recherche enregistrée pour l'instant</p>
