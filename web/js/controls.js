@@ -139,8 +139,8 @@ var ctrlFRE=
 /*0*/	"Champ obligatoire.", // Nom du champ
 /*1*/	"%2 caractères minimum (%3 actuellement)", // Nom du champ, Longueur mini, longueur actuelle
 /*2*/	"Taille limitée à %2 caractères (%3 actuellement)", // Nom du champ, Longueur maxi, longueur actuelle
-/*3*/	"%2 article(s) minimum (%3 actuellement).", // Nom du champ, Nombre mini d'articles, nb actuel
-/*4*/	"%2 article(s) maximum (%3 actuellement).", // Nom du champ, Nombre maxi d'articles, nb actuel
+/*3*/	"%2 valeur(s) attendue(s) dans ce champ minimum (%3 actuellement).", // Nom du champ, Nombre mini d'articles, nb actuel
+/*4*/	"%2 valeur(s) attendue(s) dans ce champ maximum (%3 actuellement).", // Nom du champ, Nombre maxi d'articles, nb actuel
 /*5*/	"Syntaxe incorrecte.", // Nom du champ
 /*6*/	'"%2" : ', // Nom du champ, article
 /*7*/	"Votre fiche comporte au moins une erreur. Voici le texte de la première erreur :\n\n%1\n\nEtes-vous sûr de vouloir enregistrer une fiche erronée ?", // Erreur
