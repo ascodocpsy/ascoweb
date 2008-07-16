@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema label="Base SantéPsy" version="1" description="Structure de la base SantéPsy" creation="2007/11/09 19:12:17" lastupdate="2008/07/02 11:33:31">
+<schema label="Base SantéPsy" version="1" description="Structure de la base SantéPsy" creation="2007/11/09 19:12:17" lastupdate="2008/07/15 14:52:29">
     <stopwords>ai aie aient aies ait as au aura aurai auraient aurais aurait auras aurez auriez aurions aurons auront aux avaient avais avait avec avez aviez avions avons ayant ayante ayantes ayants ayez ayons c ce ces d dans de des du elle en es est et eu eue eues eurent eus eusse eussent eusses eussiez eussions eut eux eûmes eût eûtes furent fus fusse fussent fusses fussiez fussions fut fûmes fût fûtes il j je l la le leur lui m ma mais me mes moi mon même n ne nos notre nous on ont ou par pas pour qu que qui s sa se sera serai seraient serais serait seras serez seriez serions serons seront ses soient sois soit sommes son sont soyez soyons suis sur t ta te tes toi ton tu un une vos votre vous y à étaient étais était étant étante étantes étants étiez étions été étée étées étés êtes</stopwords>
-    <_lastid field="43" index="36" alias="6" lookuptable="17" sortkey="7" />
+    <_lastid field="43" index="37" alias="6" lookuptable="18" sortkey="7" />
     <fields>
         <field _id="1" name="REF" type="autonumber" _type="2" label="Numéro de la notice" />
         <field _id="2" name="Type" _type="3" label="Type de document" />
@@ -84,7 +84,7 @@
         </index>
         <index _id="8" name="CongrTit" label="Intitulé du congrès">
             <fields>
-                <field _id="8" name="CongrTit" words="true" phrases="true" global="true" weight="2" />
+                <field _id="8" name="CongrTit" words="true" phrases="true" values="true" global="true" weight="2" />
             </fields>
         </index>
         <index _id="9" name="CongrNum" label="Numéro du congrès">
@@ -99,12 +99,12 @@
         </index>
         <index _id="11" name="CongrLie" label="Ville du congrès">
             <fields>
-                <field _id="11" name="CongrLie" words="true" global="true" />
+                <field _id="11" name="CongrLie" words="true" values="true" global="true" />
             </fields>
         </index>
         <index _id="12" name="DipSpe" label="Spécialité du diplôme">
             <fields>
-                <field _id="12" name="DipSpe" words="true" phrases="true" />
+                <field _id="12" name="DipSpe" words="true" phrases="true" values="true" />
             </fields>
         </index>
         <index _id="13" name="Date" label="Année du document ou de soutenance">
@@ -144,22 +144,22 @@
         </index>
         <index _id="20" name="Col" label="Collection">
             <fields>
-                <field _id="26" name="Col" words="true" phrases="true" />
+                <field _id="26" name="Col" words="true" phrases="true" values="true" />
             </fields>
         </index>
         <index _id="21" name="Edit" label="Editeur">
             <fields>
-                <field _id="27" name="Edit" words="true" />
+                <field _id="27" name="Edit" words="true" values="true" />
             </fields>
         </index>
         <index _id="22" name="Lieu" label="Lieu d'édition, de soutenance">
             <fields>
-                <field _id="28" name="Lieu" words="true" global="true" />
+                <field _id="28" name="Lieu" words="true" values="true" global="true" />
             </fields>
         </index>
         <index _id="23" name="IsbnIssn" label="ISBN, ISSN">
             <fields>
-                <field _id="30" name="IsbnIssn" words="true" phrases="true" />
+                <field _id="30" name="IsbnIssn" words="true" phrases="true" values="true" />
             </fields>
         </index>
         <index _id="24" name="Resu" label="Résumé">
@@ -194,17 +194,17 @@
         </index>
         <index _id="30" name="Loc" label="Localisation du document">
             <fields>
-                <field _id="37" name="Loc" words="true" />
+                <field _id="37" name="Loc" words="true" values="true" />
             </fields>
         </index>
         <index _id="31" name="ProdFich" label="Producteur de la fiche">
             <fields>
-                <field _id="38" name="ProdFich" words="true" />
+                <field _id="38" name="ProdFich" words="true" values="true" />
             </fields>
         </index>
         <index _id="32" name="Statut" label="Statut de la notice">
             <fields>
-                <field _id="39" name="Statut" words="true" />
+                <field _id="39" name="Statut" words="true" values="true" />
             </fields>
         </index>
         <index _id="34" name="Creation" label="Date de création de la notice">
@@ -220,6 +220,11 @@
         <index _id="36" name="LastAuthor" label="Dernière personne à avoir modifié la notice">
             <fields>
                 <field _id="43" name="LastAuthor" words="true" />
+            </fields>
+        </index>
+        <index name="DateVali" label="Date de fin de validité du texte officiel" _id="37">
+            <fields>
+                <field name="DateVali" count="true" _id="16" />
             </fields>
         </index>
     </indices>
@@ -310,6 +315,11 @@
         <lookuptable _id="17" name="statuts" label="Statuts des notices">
             <fields>
                 <field _id="39" name="Statut" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="18" name="isbnissn" label="Isbn et Issn">
+            <fields>
+                <field _id="30" name="IsbnIssn" />
             </fields>
         </lookuptable>
     </lookuptables>
