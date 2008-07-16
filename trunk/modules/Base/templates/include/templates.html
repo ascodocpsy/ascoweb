@@ -44,8 +44,8 @@ $MotCle/$Theme, $CanDes/$Nomp et $Resu : permet de le faire en une seule ligne *
 </template>
 
 /* Template pour afficher le champ Notes en activant l'option autolink */
-<template match="//Notes">
-    <opt><row label="Notes">{Utils::autoLink($Notes)}</row></opt>
+<template match="//Notes" label="Notes">
+    <opt><row label="$label">{Utils::autoLink($Notes)}</row></opt>
 </template>
 
 /* Template pour afficher un <label> et une <div class="row"> dans une autre <div class="field"> */
@@ -64,7 +64,7 @@ $MotCle/$Theme, $CanDes/$Nomp et $Resu : permet de le faire en une seule ligne *
 		<a 
             class="locate" 
             test="{$Rev}" 
-            href="/{$this->module}/Locate?Rev={urlencode(trim(Utils::convertString($this->selection['Rev']),'alphanum'))}"
+            href="/{$this->module}/Locate?Rev={urlencode(trim(Utils::convertString($this->selection['Rev'],'alphanum')))}"
             onclick="window.open(this.href); return false;" 
             title="Localiser le périodique (ouverture dans une nouvelle fenêtre)">
             <img 
