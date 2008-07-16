@@ -32,7 +32,7 @@
         <div class="buttons">
             <def name="deletelink" value="{Routing::linkFor('ConfirmDelete?REF='.$REF)}" />
             <button test="{$REF!=0 AND User::hasAccess('AdminBase')}" type="button" onclick="window.location.replace('$deletelink');" class="reset">Supprimer</button>
-            <button type="button" onclick="checkDuplicate();" class="reset">Doublons potentiels</button>
+            <button test="{Config::get('nodedupbutton') !== true}" type="button" onclick="checkDuplicate();" class="reset">Doublons potentiels</button>
             <submit label="Enregistrer" class="submit" />
         </div>
     
