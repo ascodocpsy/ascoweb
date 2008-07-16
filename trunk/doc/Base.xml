@@ -121,7 +121,7 @@
                 <listitem>
                   <para>Options de recherche (format d'affichage, ordre de
                   tri, nombre de notices par page) à l'aide du template
-                  <emphasis>searchoptions.html</emphasis>.</para>
+                  <filename>searchoptions.html</filename>.</para>
                 </listitem>
 
                 <listitem>
@@ -136,8 +136,8 @@
             l'affichage des notices du panier). </para> <para>Il appelle
             ensuite le template d'affichage des notices en fonction du format
             demandé. Pour l'affichage court des notices, on emploie le
-            template <emphasis>shortref.html</emphasis>. Pour l'affichage
-            long, on emploie le template <emphasis>fullref.html</emphasis>.
+            template <filename>shortref.html</filename>. Pour l'affichage
+            long, on emploie le template <filename>fullref.html</filename>.
             </para> <para>La barre de navigation et le bouton mentionnés
             ci-dessus sont répétés à la suite des notices. </para> <para>En
             fin de page, il affiche une liste de liens vers des actions sur la
@@ -151,7 +151,7 @@
             <entry>Template utilisé pour afficher le formulaire permettant de
             changer les options de recherche (format d'affichage, ordre de
             tri, nombre de notices par page). <para>Il est référencé dans le
-            template <emphasis>list.html</emphasis>. </para></entry>
+            template <filename>list.html</filename>. </para></entry>
           </row>
 
           <row>
@@ -190,7 +190,7 @@
 
             <entry><para>Permet d'afficher une seule notice au format long, en
             utilisant le template
-            <filename>fullref.html</filename></para></entry>
+            <filename>fullref.html</filename>.</para></entry>
           </row>
         </tbody>
       </tgroup>
