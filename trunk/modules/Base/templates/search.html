@@ -155,7 +155,7 @@
             conserve toutes les options définies par l'utilisateur
         */ 
         <hidden name="_fmt" value="{htmlspecialchars($this->request->defaults('_fmt','shortref')->ok())}" />
-        <hidden name="_sort" value="{htmlspecialchars($this->request->defaults('_sort','Date-')->ok())}" />
+        <hidden name="_sort" value="{htmlspecialchars($this->request->defaults('_sort','%')->ok())}" />
         <hidden name="_max" value="{htmlspecialchars($this->request->defaults('_max',10)->ok())}" />
 
         <div class="buttons">
@@ -219,6 +219,7 @@ jQuery(document).ready(
         (
             '{Routing::linkFor("Lookup")}?table=editeurs&amp;value=%s',
             \{
+                asValue: true,
                 title: title
             \}
         );
@@ -226,6 +227,7 @@ jQuery(document).ready(
         (
             '{Routing::linkFor("Lookup")}?table=collections&amp;value=%s',
             \{
+                asValue: true,
                 title: title
             \}
         );
@@ -234,6 +236,7 @@ jQuery(document).ready(
         (
             '{Routing::linkFor("Lookup")}?table=localisations&amp;value=%s',
             \{
+                asValue: true,
                 title: title
             \}
         );
@@ -241,6 +244,7 @@ jQuery(document).ready(
         (
             '{Routing::linkFor("Lookup")}?table=producteurs&amp;value=%s',
             \{
+                asValue: true,
                 title: title
             \}
         );
@@ -249,6 +253,16 @@ jQuery(document).ready(
         (
             '{Routing::linkFor("Lookup")}?table=diplomes&amp;value=%s',
             \{
+                asValue: true,
+                title: title
+            \}
+        );
+
+        jQuery('#IsbnIssn').autocomplete
+        (
+            '{Routing::linkFor("Lookup")}?table=isbnissn&amp;value=%s',
+            \{
+                asValue: true,
                 title: title
             \}
         );
