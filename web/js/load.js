@@ -62,6 +62,13 @@ jQuery(document).ready(
             }
         );
 
+        jQuery('input[@name=IsbnIssn]').autocomplete
+        (
+            'Lookup?table=isbnissn&value=%s',
+            {
+                title: title
+            }
+        );
         jQuery('textarea[@name=Rev]').autocomplete
         (
             'Lookup?table=revues&value=%s',
