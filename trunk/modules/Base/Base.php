@@ -570,7 +570,7 @@ class Base extends DatabaseModule
         $this->request->required('Rev')->unique()->ok();
         
         // Construit l'équation de recherche
-        $eq='rev=['.$Rev.'] et Type=periodique';
+        $eq='rev=['.$Rev.'] AND Type=periodique';
         
         // Ouvre la base de données
         $this->openDatabase();
@@ -621,7 +621,7 @@ class Base extends DatabaseModule
         $this->request->required('Rev')->unique()->ok();
         
         // Construit l'équation de recherche
-        $eq='rev=['.$Rev.'] et Type=periodique';
+        $eq='rev=['.$Rev.'] AND Type=periodique';
         
         // Ouvre la base de données
         $this->openDatabase();
