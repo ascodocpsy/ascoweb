@@ -19,7 +19,7 @@
                 name="_equation" 
                 label="Recherche dans toute la base" 
                 rows="1" class="autoheight" 
-                value="{htmlspecialchars($this->request->get('_equation'))}"
+                value="{htmlspecialchars(implode(' AND ',$this->request->asArray('_equation')->ok()))}"
             />
         </div>
         
