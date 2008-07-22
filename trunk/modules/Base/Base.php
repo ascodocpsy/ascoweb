@@ -420,6 +420,8 @@ class Base extends DatabaseModule
      * 1ère ligne : Entête1[tab]Entête2
      * lignes suivantes : Valeur1[tab]Valeur2
      * 
+     * Le fichier doit se trouver dans le répertoire <code>tables</code> du module.
+     * 
      * Le tableau retourné a :
      *  - pour clé : les valeurs de la première colonne,
      *  - pour valeur : les valeurs de la deuxième colonne. 
@@ -434,15 +436,9 @@ class Base extends DatabaseModule
         
         // Ajoute l'extension par défaut s'il y a lieu
         $source=Utils::defaultExtension($source, '.txt');
-                        
-        // Détermine le path exact de la table
-        $h=Utils::searchFile
-        (
-            $source,                                    // On recherche la table :  
-            Runtime::$root . 'modules/Base/tables',     // dans le répertoire du script appellant. TODO : path codé en dur. A corriger
-            Runtime::$root . 'tables',                  // dans le répertoire 'tables' de l'application
-            Runtime::$fabRoot . 'tables'                // dans le répertoire 'tables du framework
-        );
+
+        // Recherche la table dans le répertoire tables du module
+        $h=Utils::searchFile($source, $this->path.'tables');        
         if (! $h)
             throw new Exception("Table non trouvée : '$source'");
         
