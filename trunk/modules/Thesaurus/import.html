@@ -1,0 +1,21 @@
+<h1>Chargement du thesaurus</h1>
+
+<p>
+    Pour charger le thésaurus, vous devez au préalable envoyer dans le
+    <a href="/AdminFiles/?directory=/data/thesaurus">répertoire /data/thesaurus</a>
+    les fichiers Cindoc contenant la liste alphabétique structurée et la liste 
+    hiérarchique (utilisez le bouton "Envoyer un fichier").
+</p>
+
+<p>
+    Choisissez ensuite les fichiers dans le formulaire ci-dessous puis cliquez
+    sur le bouton pour lancer l'import.
+</p>
+
+<form>
+    <fieldset label="Sélection des fichiers à charger :">
+        <p>Liste alphabétique : <select name="alpha" src="$files" /></p> 
+        <p>Liste hiérarchique : <select name="hiera" src="$files" /></p>
+        <submit label="lancer l'import..." />
+    </fieldset> 
+</form>
