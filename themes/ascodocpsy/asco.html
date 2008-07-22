@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
 	$CSS
 	$JS
+	<link type="text/css" rel="stylesheet" href="/css/ascodocpsy/print.css" media="print" />
 </head>
 
 <body>
@@ -37,7 +38,6 @@
                 <if test="{User::hasAccess('Edit,Admin')}">
                     <li id="caddie"><a href="/Base/ShowCaddie">Voir mon panier</a></li>
                 </if>
-                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=711" target="_blank">Contacter Ascodocpsy</a></li>
                 <if test="{User::hasAccess('Edit,Admin')}">
                     <li><a href="/Base/New">Créer une nouvelle notice</a></li>
                     <li><a href="/ImportAsco">Importer des notices</a></li>
@@ -48,6 +48,7 @@
                     <li><a href="/Admin/">Administration</a></li>
                     <li><a href="/AutoDoc/">Documentation</a></li>
                 </if>
+                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=711" target="_blank">Contacter Ascodocpsy</a></li>
             </ul>
          </div>
 
@@ -77,7 +78,8 @@
 
 	<!-- Pied de page -->
 	<div id="pied" class="texte">
-		<p>Pied de page</p>
+		<p><a target="_blank" href="http://www.ascodocpsy.org/article.php3?id_article=672" title="Mentions légales : contact webmestre, CNIL">&nbsp;Mentions légales&nbsp;</a>
+			- Tous droits réservés Ascodocpsy</p>
         <!-- Marqueur Xiti -->
         <div id="xiti-logo">
         <a href="http://www.xiti.com/xiti.asp?s=315354" title="WebAnalytics">
