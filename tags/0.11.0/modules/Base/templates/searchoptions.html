@@ -1,0 +1,63 @@
+/*
+    Slot utilisé pour afficher le formulaire permettant de changer les options
+    de recherche (format d'affichage, ordre de tri, nombre de notices par page)
+*/
+<form style="float: right;">
+    <fieldset label="Options :" style="width: 13.2em; margin: 1em 0;">
+    
+    /* Format des notices (court/long) */
+    <fill values="{$this->request->defaults('_fmt', 'shortref')->ok()}">
+        <select name="_fmt" id="_fmt" style="width: 15em; font-size: 86%;">
+            <option value="shortref">Affichage court</option>
+            <option value="fullref">Affichage long</option>
+        </select>
+    </fill>
+    <br />
+    
+    /* Critères de tri */
+    <fill values="{$this->request->defaults('_sort', Config::get('sort'))->ok()}">
+        <select name="_sort" id="_sort" style="width: 15em; font-size: 86%;">
+            <option value="-" test="{User::hasAccess('AdminBase')}">Aucun tri</option>                    
+            <option value="%">Tri par pertinence</option>
+            <option value="Auteur">Tri par auteur</option>
+            <option value="Date-">Tri par date</option>
+            <option value="Revue">Tri par revue</option>
+            <option value="Titre">Tri par titre</option>
+            <option value="Type">Tri par type</option>
+            <option value="Type.Date-">Tri par type et date</option>
+            /*
+                Remarque : on ne peut pas utiliser une virgule ou un point-virgule
+                pour séparer Type et Date- dans l'option ci-dessus car sinon
+                le <fill></fill> coche l'option "date-" qui est au-dessus.
+                Les caractères '.' ou ':' fonctionnent parce qu'ils ne sont
+                pas dans la liste des séparateurs reconnus par le fill.
+            */
+        </select>
+    </fill>
+    <br />
+    
+    /* Nombre de réponses par page */
+    <fill values="{$this->request->defaults('_max', 10)->ok()}">
+        <select name="_max" id="_max" style="width: 15em; font-size: 86%;">
+            <option value="10">10 par page</option>
+            <option value="50">50 par page</option>
+            <option value="100">100 par page</option>
+        </select>
+    </fill>
+    <br />
+    
+    /* Bouton submit */
+    <submit label="Appliquer..." style="width: 15em; font-size: 86%;" />
+
+    /*
+        Pour chaque paramètre passé en query string, on génère un champ input
+        de façon à ce que tous les paramètres de la requête soient retransmis
+        lorsqu'on change une option et qu'on valide le formulaire
+    */
+    <loop on="{$this->request->copy()->clear('_fmt')->clear('_sort')->clear('_max')->getParameters()}" as="$name,$value">
+        <loop on="{(array)$value}" as="$value">
+            <input type="hidden" name="$name" value="{htmlspecialchars($value)}" />
+        </loop>
+    </loop>        
+    </fieldset>
+</form>

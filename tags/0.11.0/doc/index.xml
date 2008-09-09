@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
+<sect1 id="index">
+  <sect1info>
+    <releaseinfo>$Id$</releaseinfo>
+  </sect1info>
+
+  <title>Introduction</title>
+
+  <toc></toc>
+
+  <sect2 id="index.about">
+    <title>A propos</title>
+
+    <para>Ascoweb est le logiciel documentaire utilisé par le GIP <ulink
+    url="http://www.ascodocpsy.org">AscodocPsy</ulink>, réseau documentaire en
+    santé mentale constitué de plus de 80 membres.</para>
+
+    <para>Il s'agit d'une application full web qui permet la consultation et
+    la gestion de la <ulink url="/Base/SearchForm">base documentaire
+    SantéPsy</ulink> et du <ulink url="/ThesaurusModule">thésaurus
+    SantéPsy</ulink>.</para>
+
+    <para>Ascoweb est basé sur <ulink url="?filename=fab.index">fab</ulink>.
+    Cette documentation présente la configuration
+    et les développements spécifiques qui ont été réalisés. Pour la comprendre, 
+    il est nécessaire d'avoir au préalable une bonne connaissance de fab, 
+    de ses concepts et de la manière dont il les met en oeuvre.</para>
+  </sect2>
+
+  <sect2 id="index.features">
+    <title>Principales fonctionnalités</title>
+
+    <para>En tant que site web, Ascoweb offre des fonctions performantes
+    permettant la consultation de ces bases :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>accès différencié selon le type d'utilisateur,</para>
+      </listitem>
+
+      <listitem>
+        <para>formulaire de recherche avec assistance à la saisie et
+        consultation en temps réel des index,</para>
+      </listitem>
+
+      <listitem>
+        <para>fonctions avancées de recherche en texte intégral (recherche
+        libre ou structurée, troncature, recherche par phrase et par article,
+        proximité, ...),</para>
+      </listitem>
+
+      <listitem>
+        <para>options évoluées pour le tri des réponses (tri par pertinence,
+        par titre, par date, par auteur, par type de document, tri combiné par
+        type de document et date, choix des formats d'affichage et du nombre
+        de réponses par page, pagination des résultats...),</para>
+      </listitem>
+
+      <listitem>
+        <para>historique des équations de recherche,</para>
+      </listitem>
+
+      <listitem>
+        <para>marquage et sélection des notices pertinentes (paniers de
+        notices),</para>
+      </listitem>
+
+      <listitem>
+        <para>génération de bibliographies (format vancouver),</para>
+      </listitem>
+
+      <listitem>
+        <para>générations de fichiers d'export (csv par exemple) avec
+        possibilité d'envoi par mail,</para>
+      </listitem>
+
+      <listitem>
+        <para>localisation des documents, etc.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>En tant que logiciel documentaire, Ascoweb dispose de toutes les
+    fonctions nécessaires à la gestion des bases de données :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>saisie/modification/suppression de notices,</para>
+      </listitem>
+
+      <listitem>
+        <para>formulaires de saisie spécifiques à chaque type de
+        document,</para>
+      </listitem>
+
+      <listitem>
+        <para>contrôles de saisie et aide contextuelle,</para>
+      </listitem>
+
+      <listitem>
+        <para>saisie sur index,</para>
+      </listitem>
+
+      <listitem>
+        <para>saisie par duplication de notice existante,</para>
+      </listitem>
+
+      <listitem>
+        <para>import de fichiers,</para>
+      </listitem>
+
+      <listitem>
+        <para>modification et suppression en série,</para>
+      </listitem>
+
+      <listitem>
+        <para>système intégré de validation des notices,</para>
+      </listitem>
+
+      <listitem>
+        <para>système de détection de doublons potentiels.</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+
+  <sect2 id="index.license">
+    <title>Licence</title>
+
+    <para>Ascoweb est distribué sous licence <ulink
+    url="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GPL
+    v2</ulink>.</para>
+  </sect2>
+
+  <sect2 id="index.development">
+    <title>Développement</title>
+
+    <para>Ascoweb est développé en php sur la base du framework fab. Il est
+    entièrement paramétrable par simple modification des <ulink
+    url="?filename=fab.config">fichiers de configuration</ulink> et des
+    templates html utilisés.</para>
+
+    <para>Le projet est hébergé sur Google Code : <ulink
+    url="http://ascoweb.googlecode.com">http://ascoweb.googlecode.com</ulink>.</para>
+
+    <para>Le projet dispose d'un <ulink
+    url="http://code.google.com/p/ascoweb/issues/list">issue tracker</ulink>,
+    permettant d'assurer un suivi des problèmes signalés.</para>
+
+    <para>Il dispose également de deux listes de diffusion :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><ulink
+        url="http://groups.google.com/group/ascoweb-commits">ascoweb-commits</ulink>
+        : permet d'être informé des modifications apportées à
+        l'application.</para>
+      </listitem>
+
+      <listitem>
+        <para><ulink
+        url="http://groups.google.com/group/ascoweb-issues">ascoweb-issues</ulink>
+        : permet de recevoir les messages des problèmes signalés et de leur
+        résolution.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>L'application Ascoweb étant basée sur un framework, elle pourra
+    facilement bénéficier des améliorations futures qui seront apportées à
+    fab.</para>
+  </sect2>
+
+  <sect2 id="index.sourcecode">
+    <title>Code source</title>
+
+    <para>Le code source de l'application est disponible dans le <ulink
+    url="http://code.google.com/p/ascoweb/source/checkout">dépôt Subversion du
+    projet</ulink>.</para>
+
+    <para>Pour plus d'information sur le système de gestion de versions
+    Subversion, visitez <ulink url="http://subversion.tigris.org">le site du
+    projet</ulink>.</para>
+  </sect2>
+</sect1>

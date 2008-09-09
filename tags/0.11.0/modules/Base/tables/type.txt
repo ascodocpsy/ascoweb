@@ -1,0 +1,9 @@
+code	label
+Article	Article
+Livre	Livre
+Congrès	Congrès
+Rapport	Rapport
+Mémoire	Mémoire
+Thèse	Thèse
+Texte officiel	Texte officiel
+Périodique	Titre de périodique

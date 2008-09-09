@@ -1,0 +1,134 @@
+<slot name="header" count="{$this->selection->count()}">
+
+    /* Lien vers l'aide */
+    <help href="http://www.ascodocpsy.org/article.php3?id_article=904" />
+
+    /* Titre de la page */
+    <div class="titre">Votre recherche</div>
+
+    /* Slot contenant les options de recherche (format, tri, notices par page...) */
+    <slot name="searchoptions" action="templates/searchoptions.html" />
+
+    /* Affichage de la requête utilisateur et lien pour la modifier */
+    <div style="font-size: 120%; background-color: #eee; padding: 0.5em; width: 65%; margin: 1em 0;">
+        <p style="margin: 0;">
+            {$this->equation}
+        </p>
+        <p style="margin-bottom: 0;">
+            <a href="{$this->request->copy()->clearNull()->setAction('SearchForm')}">
+                Modifier la recherche...
+            </a>
+        </p>
+    </div>
+        
+    
+    /* Affiche les mots-vides qui ont été ignorés dans l'équation */
+    <def name="stopwords" value="{$this->selection->searchInfo('stopwords')}" />
+    <switch test="{count($stopwords)}">
+        <case test="0" />
+        <case test="1"><p>Le mot "{$stopwords[0]}" a été ignoré dans votre recherche.</p></case>
+        <default><p>Les mots "{implode('", "', $stopwords)}" ont été ignorés dans votre recherche.</p></default>
+    </switch>
+    
+    /* Informations techniques sur la recherche (affichées en mode debug uniquement) */
+    <searchinfo for="StopWords" />
+    <searchinfo for="InternalStopWords" />
+    <searchinfo for="QueryTerms" />
+    <searchinfo for="InternalQueryTerms" />
+    <searchinfo for="MaxPossibleWeight" />
+    <searchinfo for="MaxAttainedWeight" />
+    <searchinfo for="InternalQuery" />
+    <searchinfo for="InternalFilter" />
+    <searchinfo for="InternalFinalQuery" />
+    <searchinfo for="SortOrder" />
+</slot>
+
+
+/* Détermine si on est dans le caddie ou non, définit l'action et l'id du formulaire en conséquence */
+<def name="incart" value="{Config::get('incart',false)}" />
+<def name="action" value="{$incart ? '/Ascocart/Remove' : '/Ascocart/Add'}" />
+<def name="formid" value="{$incart ? 'incartanswers' : 'answers'}" />
+
+/* Formulaire permettant d'ajouter/supprimer toutes les notices de la page dans/du panier */
+<form strip="{! User::hasAccess('AdminBase,EditBase')}" action="$action" method="post" id="$formid" class="texte" style="clear: both" >
+
+    <div id="list" class="texte">
+
+        /* Barre de navigation des pages + bouton ajouter au caddie */
+        <div style="padding: 0.5em 0; border-bottom: 1px solid #ccc;">
+            
+            <div test="{User::hasAccess('AdminBase,EditBase')}" style="float: left;">
+                <if test="$incart">
+                    <submit name="btnremove" class="removeall" label="Supprimer les notices du panier" title="Supprimer les notices de cette page du panier"/>
+                </if>
+                <else>
+                    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" title="Ajouter les notices de cette page au panier"/>                
+                </else>
+            </div>
+            
+            <div class="pager" style="text-align: right;">
+                {$this->getNavigation()}
+            </div>
+        </div>
+
+        /* Appelle le template d'affichage des notices en fonction du format demandé */
+        <switch test="{$this->request->unique('_fmt')->defaults('shortref')->ok()}">
+            <case test="shortref">
+                <slot name="answerlist" action="templates/shortref.html" />
+            </case>
+            
+            <case test="fullref">
+                <slot name="answerlist" action="templates/fullref.html" />
+            </case>
+/*            
+            <case test="csv">
+                <pre style="font-family: arial;"><slot name="answerlist" action="templates/export/csv.txt" /></pre>
+            </case>
+            
+            <case test="vancouver">
+                <pre style="font-family: arial;"><slot name="answerlist" action="templates/export/vancouver.txt" fmt="{array('plus'=>false)}"/></pre>
+            </case>
+            
+            <case test="vancouverplus">
+                <pre style="font-family: arial;"><slot name="answerlist" action="templates/export/vancouver.txt" fmt="{array('plus'=>true)}"/></pre>
+            </case>
+*/            
+            <default>
+                Impossible d'afficher les notices avec le format demandé : {$this->request->unique('_fmt')->defaults('shortref')->ok()}.
+            </default>
+        </switch>
+        
+        /* Barre de navigation des pages + bouton ajouter au caddie */
+        <div >
+            
+            <div test="{User::hasAccess('AdminBase,EditBase')}" style="float: left;">
+                <if test="$incart">
+                    <submit name="btnremove" class="removeall" label="Supprimer les notices du panier" title="Supprimer les notices de cette page du panier"/>
+                </if>
+                <else>
+                    <submit name="btnadd" class="addall" label="Ajouter les notices au panier" title="Ajouter les notices de cette page au panier"/>                
+                </else>
+            </div>
+            
+            <div class="pager" style="text-align: right;">
+                {$this->getNavigation()}
+            </div>
+        </div>
+
+        /* Menu de bas de page (export, chercher/remplacer, suppression en série...) */
+        <slot name="menubase">
+            <div class="menubase">
+                <ul>
+                    <li><a href="Export?_equation={urlencode($this-&gt;equation)}&amp;_sort={urlencode($this-&gt;selection-&gt;searchInfo('sortorder'))}">Exporter toutes les notices</a></li>
+                    <li><a href="ExportByType?_equation={urlencode($this-&gt;equation)}&amp;_sort={urlencode($this-&gt;selection-&gt;searchInfo('sortorder'))}">Exporter par type de document</a></li>
+                    <li test="{User::hasAccess('AdminBase')}"><a href="ReplaceForm?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans toutes ces notices...</a></li>                    
+                    <li test="{User::hasAccess('AdminBase')}"><a href="Validate?_equation={urlencode($this-&gt;equation)}">Valider toutes ces notices</a></li>
+                    <li test="{User::hasAccess('AdminBase')}"><a href="ConfirmDelete?_equation={urlencode($this-&gt;equation)}">Supprimer toutes ces notices</a></li>
+                    <li test="{User::hasAccess('AdminBase')}"><a href="/DedupModule/Index?_equation={urlencode($this-&gt;equation)}">Rechercher des doublons potentiels pour ces notices</a></li>
+                    <li test="{!$incart and User::hasAccess('AdminBase,EditBase')}"><a href="/Base/ShowCaddie">Voir mon panier</a></li>
+                </ul>
+            </div>
+        </slot>
+       
+    </div>
+</form>

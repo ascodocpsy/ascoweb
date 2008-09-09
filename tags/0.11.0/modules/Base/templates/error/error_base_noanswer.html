@@ -1,0 +1,29 @@
+<div class="titre">Aucune réponse</div>
+<div class="texte">
+	<p class="spip">$message</p>
+    <ol>
+        <li>Votre recherche est trop restrictive&#160;? Supprimez des critères de recherche.</li>
+        <li>Utilisez la zone "Recherche dans toute la base" du formulaire de recherche.</li>
+        <li>Vérifiez l’orthographe des mots recherchés.</li>
+        <li>Vous avez cliqué sur la dernière page des résultats ? 
+            Le nombre de réponses est donné de manière approximative lors de 
+            l'affichage des résultats. Cette page s'affiche quand l’estimation 
+            était surévaluée.
+        </li>
+    </ol>
+    
+    <p class="spip">Retournez sur la page précédente pour <a href="{$this->request->copy()->clearNull()->setAction('SearchForm')}">modifier vos critères de recherche</a>.</p>
+  
+    /* Informations techniques sur la recherche (affichées en mode debug uniquement) */
+    <searchinfo for="StopWords" />
+    <searchinfo for="InternalStopWords" />
+    <searchinfo for="QueryTerms" />
+    <searchinfo for="InternalQueryTerms" />
+    <searchinfo for="MaxPossibleWeight" />
+    <searchinfo for="MaxAttainedWeight" />
+    <searchinfo for="InternalQuery" />
+    <searchinfo for="InternalFilter" />
+    <searchinfo for="InternalFinalQuery" />
+    <searchinfo for="SortOrder" />
+    
+</div>

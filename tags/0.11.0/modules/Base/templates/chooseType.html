@@ -1,0 +1,15 @@
+<div class="titre">Ajout d'une notice</div>
+
+<div class="texte">
+	<p class="spip">
+        Choisissez le type de document pour obtenir un formulaire de saisie.
+        Validez votre choix en cliquant sur le bouton "Créer".
+	</p>
+
+	<form method="post" action="New" class="form ">
+	    <fieldset label="Choix du type de document">
+	        <select name="Type" src="new TextTable($this->path.'tables/type.txt')" />
+	        <submit label="Créer..." class="spip_bouton" />
+	    </fieldset>
+	</form>
+</div>

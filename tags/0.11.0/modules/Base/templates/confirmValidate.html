@@ -1,0 +1,28 @@
+<h1>Validation d'enregistrements</h1>
+
+<form>
+
+    <fieldset label="Confirmation">
+        <def name="count" value="{$this->selection->count()}" />
+        <p>
+            Vous avez demandé à valider
+            <if test="{$count==1}">
+                l'enregistrement
+            </if>
+            <else>
+                les $count enregistrements
+            </else>
+            correspondant à l'équation : 
+            <pre style="border: 1px solid #444; background-color: #eee; font-size: 120%; padding: 0.5em;">{$this->equation}</pre>
+        </p>
+        <p>Pour confirmer votre demande, cliquez sur le bouton "Valider".</p>
+        <p>Sinon, retournez sur la <a href="javascript:history.back()">page précédente</a>.</p>
+    </fieldset>
+
+    <hidden name="_equation" value="{htmlspecialchars($this->equation)}" />
+    <hidden name="search" value="avalider" />
+    <hidden name="replace" value="valide" />
+    <hidden name="fields" value="Statut" />
+    <hidden name="confirm" value="true" />
+    <submit label="Valider..." style="float:right;" />
+</form>

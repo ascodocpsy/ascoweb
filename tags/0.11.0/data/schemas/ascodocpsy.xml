@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema label="Base SantéPsy" version="1" description="Structure de la base SantéPsy" creation="2007/11/09 19:12:17" lastupdate="2008/07/15 14:52:29">
+    <stopwords>ai aie aient aies ait as au aura aurai auraient aurais aurait auras aurez auriez aurions aurons auront aux avaient avais avait avec avez aviez avions avons ayant ayante ayantes ayants ayez ayons c ce ces d dans de des du elle en es est et eu eue eues eurent eus eusse eussent eusses eussiez eussions eut eux eûmes eût eûtes furent fus fusse fussent fusses fussiez fussions fut fûmes fût fûtes il j je l la le leur lui m ma mais me mes moi mon même n ne nos notre nous on ont ou par pas pour qu que qui s sa se sera serai seraient serais serait seras serez seriez serions serons seront ses soient sois soit sommes son sont soyez soyons suis sur t ta te tes toi ton tu un une vos votre vous y à étaient étais était étant étante étantes étants étiez étions été étée étées étés êtes</stopwords>
+    <_lastid field="43" index="37" alias="6" lookuptable="18" sortkey="7" />
+    <fields>
+        <field _id="1" name="REF" type="autonumber" _type="2" label="Numéro de la notice" />
+        <field _id="2" name="Type" _type="3" label="Type de document" />
+        <field _id="3" name="NatText" _type="3" label="Nature du texte officiel" />
+        <field _id="4" name="Aut" _type="3" label="Auteurs" defaultstopwords="false" />
+        <field _id="5" name="Tit" _type="3" label="Titre" />
+        <field _id="6" name="Annexe" _type="3" label="Titres des annexes" />
+        <field _id="7" name="LienAnne" _type="3" label="Adresses Internet des annexes" />
+        <field _id="8" name="CongrTit" _type="3" label="Intitulé du congrès" />
+        <field _id="9" name="CongrNum" _type="3" label="Numéro du congrès" />
+        <field _id="10" name="CongrDat" _type="3" label="Année du congrès AAAA" />
+        <field _id="11" name="CongrLie" _type="3" label="Ville du congrès" />
+        <field _id="12" name="DipSpe" _type="3" label="Spécialité du diplôme" defaultstopwords="false" />
+        <field _id="13" name="Date" _type="3" label="Année du document ou de soutenance AAAA" />
+        <field _id="14" name="DateText" _type="3" label="Date du texte officiel AAAA-MM-JJ" />
+        <field _id="15" name="DatePub" _type="3" label="Date de publication du texte officiel AAAA-MM-JJ" />
+        <field _id="16" name="DateVali" _type="3" label="Date de fin de validité du texte officiel AAAA-MM-JJ" />
+        <field _id="17" name="Rev" _type="3" label="Titre du périodique" />
+        <field _id="18" name="Vol" _type="3" label="Volume du périodique" />
+        <field _id="19" name="Num" _type="3" label="Numéro du périodique" />
+        <field _id="20" name="NumTexOf" _type="3" label="Numéro du texte officiel" />
+        <field _id="21" name="ViePerio" _type="3" label="Date de vie et de mort d'un titre de périodique" />
+        <field _id="22" name="EtatCol" _type="3" label="Etat de la collection" />
+        <field _id="23" name="Page" _type="3" label="Nombre de pages" />
+        <field _id="24" name="PdPf" _type="3" label="Page début-page fin" />
+        <field _id="25" name="Notes" _type="3" label="Notes bibliographiques" />
+        <field _id="26" name="Col" _type="3" label="Collection" />
+        <field _id="27" name="Edit" _type="3" label="Editeur" />
+        <field _id="28" name="Lieu" _type="3" label="Lieu d'édition, de soutenance" />
+        <field _id="29" name="Reed" _type="3" label="Mention d'édition" />
+        <field _id="30" name="IsbnIssn" _type="3" label="ISBN, ISSN" />
+        <field _id="31" name="Resu" _type="3" label="Résumé" />
+        <field _id="32" name="Theme" _type="3" label="Thème" />
+        <field _id="33" name="MotCle" _type="3" label="Descripteurs" />
+        <field _id="34" name="Nomp" _type="3" label="Nom propre" />
+        <field _id="35" name="CanDes" _type="3" label="Candidats descripteurs" />
+        <field _id="36" name="Lien" _type="3" label="Adresse Internet" />
+        <field _id="37" name="Loc" _type="3" label="Localisation du document" />
+        <field _id="38" name="ProdFich" _type="3" label="Producteur de la fiche" />
+        <field _id="39" name="Statut" _type="3" label="Statut de la notice" description="Les statuts possibles sont : encours, avalider , valide." defaultstopwords="false" />
+        <field _id="41" name="Creation" _type="3" label="Date de création de la notice (AAAAMMJJ)" defaultstopwords="false" />
+        <field _id="42" name="LastUpdate" _type="3" label="Date de dernière mise à jour de la notice (AAAAMMJJ)" defaultstopwords="false" />
+        <field _id="43" name="LastAuthor" _type="3" label="Dernière personne à avoir modifié la notice" defaultstopwords="false" />
+    </fields>
+    <indices>
+        <index _id="1" name="REF" label="Numéro de la notice">
+            <fields>
+                <field _id="1" name="REF" words="true" />
+            </fields>
+        </index>
+        <index _id="2" name="Type" label="Type de document">
+            <fields>
+                <field _id="2" name="Type" words="true" phrases="true" values="true" count="true" weight="5" />
+            </fields>
+        </index>
+        <index _id="3" name="NatText" label="Nature du texte officiel">
+            <fields>
+                <field _id="3" name="NatText" words="true" phrases="true" values="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index _id="4" name="Aut" label="Auteurs">
+            <fields>
+                <field _id="4" name="Aut" words="true" phrases="true" values="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index _id="5" name="Tit" label="Titre">
+            <fields>
+                <field _id="5" name="Tit" words="true" phrases="true" global="true" weight="2" />
+            </fields>
+        </index>
+        <index _id="6" name="Annexe" label="Titres des annexes">
+            <fields>
+                <field _id="6" name="Annexe" words="true" phrases="true" global="true" />
+            </fields>
+        </index>
+        <index _id="7" name="LienAnne" label="Adresses Internet des annexes">
+            <fields>
+                <field _id="7" name="LienAnne" count="true" />
+            </fields>
+        </index>
+        <index _id="8" name="CongrTit" label="Intitulé du congrès">
+            <fields>
+                <field _id="8" name="CongrTit" words="true" phrases="true" values="true" global="true" weight="2" />
+            </fields>
+        </index>
+        <index _id="9" name="CongrNum" label="Numéro du congrès">
+            <fields>
+                <field _id="9" name="CongrNum" words="true" />
+            </fields>
+        </index>
+        <index _id="10" name="CongrDat" label="Année du congrès AAAA">
+            <fields>
+                <field _id="10" name="CongrDat" words="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index _id="11" name="CongrLie" label="Ville du congrès">
+            <fields>
+                <field _id="11" name="CongrLie" words="true" values="true" global="true" />
+            </fields>
+        </index>
+        <index _id="12" name="DipSpe" label="Spécialité du diplôme">
+            <fields>
+                <field _id="12" name="DipSpe" words="true" phrases="true" values="true" />
+            </fields>
+        </index>
+        <index _id="13" name="Date" label="Année du document ou de soutenance">
+            <fields>
+                <field _id="13" name="Date" words="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index _id="14" name="DateText" label="Date du texte officiel">
+            <fields>
+                <field _id="14" name="DateText" words="true" phrases="true" values="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index _id="15" name="Rev" label="Titre du périodique">
+            <fields>
+                <field _id="17" name="Rev" words="true" phrases="true" values="true" weight="5" />
+            </fields>
+        </index>
+        <index _id="16" name="Vol" label="Volume du périodique">
+            <fields>
+                <field _id="18" name="Vol" words="true" />
+            </fields>
+        </index>
+        <index _id="17" name="Num" label="Numéro du périodique">
+            <fields>
+                <field _id="19" name="Num" words="true" />
+            </fields>
+        </index>
+        <index _id="18" name="NumTexOf" label="Numéro du texte officiel">
+            <fields>
+                <field _id="20" name="NumTexOf" words="true" phrases="true" />
+            </fields>
+        </index>
+        <index _id="19" name="Notes" label="Notes bibliographiques">
+            <fields>
+                <field _id="25" name="Notes" words="true" phrases="true" />
+            </fields>
+        </index>
+        <index _id="20" name="Col" label="Collection">
+            <fields>
+                <field _id="26" name="Col" words="true" phrases="true" values="true" />
+            </fields>
+        </index>
+        <index _id="21" name="Edit" label="Editeur">
+            <fields>
+                <field _id="27" name="Edit" words="true" values="true" />
+            </fields>
+        </index>
+        <index _id="22" name="Lieu" label="Lieu d'édition, de soutenance">
+            <fields>
+                <field _id="28" name="Lieu" words="true" values="true" global="true" />
+            </fields>
+        </index>
+        <index _id="23" name="IsbnIssn" label="ISBN, ISSN">
+            <fields>
+                <field _id="30" name="IsbnIssn" words="true" phrases="true" values="true" />
+            </fields>
+        </index>
+        <index _id="24" name="Resu" label="Résumé">
+            <fields>
+                <field _id="31" name="Resu" words="true" phrases="true" global="true" />
+            </fields>
+        </index>
+        <index _id="25" name="Theme" label="Thème">
+            <fields>
+                <field _id="32" name="Theme" words="true" phrases="true" values="true" global="true" weight="10" />
+            </fields>
+        </index>
+        <index _id="26" name="MotCle" label="Descripteurs">
+            <fields>
+                <field _id="33" name="MotCle" words="true" phrases="true" values="true" count="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index _id="27" name="Nomp" label="Nom propre">
+            <fields>
+                <field _id="34" name="Nomp" words="true" phrases="true" values="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index _id="28" name="CanDes" label="Candidats descripteurs">
+            <fields>
+                <field _id="35" name="CanDes" words="true" phrases="true" values="true" global="true" weight="5" />
+            </fields>
+        </index>
+        <index _id="29" name="Lien" label="Adresse Internet">
+            <fields>
+                <field _id="36" name="Lien" count="true" />
+            </fields>
+        </index>
+        <index _id="30" name="Loc" label="Localisation du document">
+            <fields>
+                <field _id="37" name="Loc" words="true" values="true" />
+            </fields>
+        </index>
+        <index _id="31" name="ProdFich" label="Producteur de la fiche">
+            <fields>
+                <field _id="38" name="ProdFich" words="true" values="true" />
+            </fields>
+        </index>
+        <index _id="32" name="Statut" label="Statut de la notice">
+            <fields>
+                <field _id="39" name="Statut" words="true" values="true" />
+            </fields>
+        </index>
+        <index _id="34" name="Creation" label="Date de création de la notice">
+            <fields>
+                <field _id="41" name="Creation" words="true" />
+            </fields>
+        </index>
+        <index _id="35" name="LastUpdate" label="Date de dernière mise à jour de la notice">
+            <fields>
+                <field _id="42" name="LastUpdate" words="true" />
+            </fields>
+        </index>
+        <index _id="36" name="LastAuthor" label="Dernière personne à avoir modifié la notice">
+            <fields>
+                <field _id="43" name="LastAuthor" words="true" />
+            </fields>
+        </index>
+        <index name="DateVali" label="Date de fin de validité du texte officiel" _id="37">
+            <fields>
+                <field name="DateVali" count="true" _id="16" />
+            </fields>
+        </index>
+    </indices>
+    <lookuptables>
+        <lookuptable _id="1" name="types" label="Types des documents">
+            <fields>
+                <field _id="2" name="Type" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="2" name="nattext" label="Natures des textes officiels">
+            <fields>
+                <field _id="3" name="NatText" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="3" name="auteurs" label="Auteurs">
+            <fields>
+                <field _id="4" name="Aut" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="4" name="villes" label="Villes des congrès">
+            <fields>
+                <field _id="11" name="CongrLie" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="5" name="diplomes" label="Spécialités des diplômes">
+            <fields>
+                <field _id="12" name="DipSpe" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="6" name="revues" label="Titres des périodiques">
+            <fields>
+                <field _id="17" name="Rev" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="7" name="collections" label="Collections">
+            <fields>
+                <field _id="26" name="Col" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="8" name="editeurs" label="Editeurs">
+            <fields>
+                <field _id="27" name="Edit" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="9" name="lieux" label="Lieux d'édition et de soutenance">
+            <fields>
+                <field _id="28" name="Lieu" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="10" name="themes" label="Thèmes">
+            <fields>
+                <field _id="32" name="Theme" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="11" name="motscles" label="Mots clés">
+            <fields>
+                <field _id="33" name="MotCle" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="12" name="nomspropres" label="Noms propres">
+            <fields>
+                <field _id="34" name="Nomp" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="13" name="candes" label="Candidats descripteurs">
+            <fields>
+                <field _id="35" name="CanDes" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="14" name="descripteurs" label="Thème, descripteurs et candidats descripteurs">
+            <fields>
+                <field _id="32" name="Theme" />
+                <field _id="33" name="MotCle" />
+                <field _id="34" name="Nomp" />
+                <field _id="35" name="CanDes" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="15" name="localisations" label="Localisations des documents">
+            <fields>
+                <field _id="37" name="Loc" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="16" name="producteurs" label="Producteurs des notices">
+            <fields>
+                <field _id="38" name="ProdFich" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="17" name="statuts" label="Statuts des notices">
+            <fields>
+                <field _id="39" name="Statut" />
+            </fields>
+        </lookuptable>
+        <lookuptable _id="18" name="isbnissn" label="Isbn et Issn">
+            <fields>
+                <field _id="30" name="IsbnIssn" />
+            </fields>
+        </lookuptable>
+    </lookuptables>
+    <aliases>
+        <alias _id="1" name="Motscles" label="Thème, descripteurs et candidats descripteurs">
+            <indices>
+                <index _id="25" name="Theme" />
+                <index _id="26" name="MotCle" />
+                <index _id="27" name="Nomp" />
+                <index _id="28" name="CanDes" />
+            </indices>
+        </alias>
+        <alias _id="2" name="Titres" label="Titre du document/du congrès">
+            <indices>
+                <index _id="5" name="Tit" />
+                <index _id="8" name="CongrTit" />
+                <index _id="6" name="Annexe" />
+            </indices>
+        </alias>
+        <alias _id="3" name="Dates" label="Date du document/du congrès">
+            <indices>
+                <index _id="13" name="Date" />
+                <index _id="10" name="CongrDat" />
+            </indices>
+        </alias>
+        <alias _id="4" name="Numeros" label="Numéro du périodique/du congrès/du texte officiel">
+            <indices>
+                <index _id="17" name="Num" />
+                <index _id="9" name="CongrNum" />
+                <index _id="18" name="NumTexOf" />
+            </indices>
+        </alias>
+        <alias _id="5" name="Mots" label="Mots de la notice">
+            <indices>
+                <index _id="5" name="Tit" />
+                <index _id="6" name="Annexe" />
+                <index _id="8" name="CongrTit" />
+                <index _id="10" name="CongrDat" />
+                <index _id="11" name="CongrLie" />
+                <index _id="4" name="Aut" />
+                <index _id="13" name="Date" />
+                <index _id="14" name="DateText" />
+                <index _id="22" name="Lieu" />
+                <index _id="3" name="NatText" />
+                <index _id="24" name="Resu" />
+                <index _id="26" name="MotCle" />
+                <index _id="27" name="Nomp" />
+                <index _id="28" name="CanDes" />
+                <index _id="25" name="Theme" />
+            </indices>
+        </alias>
+        <alias _id="6" name="Liens" label="Liens vers le texte intégral">
+            <indices>
+                <index _id="29" name="Lien" />
+                <index _id="7" name="LienAnne" />
+            </indices>
+        </alias>
+    </aliases>
+    <sortkeys>
+        <sortkey _id="6" name="REF" label="Numéro de la notice" type="number">
+            <fields>
+                <field _id="1" name="REF" />
+            </fields>
+        </sortkey>
+        <sortkey _id="1" name="Type" label="Type du document" description="Extraction des 2 premiers caractères">
+            <fields>
+                <field _id="2" name="Type" length="2" />
+            </fields>
+        </sortkey>
+        <sortkey _id="2" name="Auteur" label="Auteur">
+            <description>Premier auteur mentionné dans la notice. Les mentions [s.n.] ne sont pas prises en compte.</description>
+            <fields>
+                <field _id="4" name="Aut" end="[s.n.]" />
+            </fields>
+        </sortkey>
+        <sortkey _id="3" name="Date" label="Date">
+            <description>Date du document ou date du texte officiel. Les mentions [s.d.] ne sont pas prises en compte.</description>
+            <fields>
+                <field _id="13" name="Date" end="[s.d.]" />
+                <field _id="14" name="DateText" end="[s.d.]" />
+            </fields>
+        </sortkey>
+        <sortkey _id="4" name="Titre" label="Titre">
+            <fields>
+                <field _id="5" name="Tit" length="50" />
+            </fields>
+        </sortkey>
+        <sortkey _id="5" name="Revue" label="Titre du périodique">
+            <fields>
+                <field _id="17" name="Rev" />
+            </fields>
+        </sortkey>
+    </sortkeys>
+</schema>

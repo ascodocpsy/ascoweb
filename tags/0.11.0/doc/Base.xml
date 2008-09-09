@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?xml-stylesheet href="../../fab/web/css/docbook/dm.css" type="text/css"?>
+<sect1 id="Base">
+  <sect1info>
+    <releaseinfo>$Id$</releaseinfo>
+  </sect1info>
+
+  <title>Spécificités du module Base</title>
+
+  <toc></toc>
+
+  <sect2 id="Base.searchform">
+    <title>Formulaire de recherche</title>
+
+    <para>Le formulaire de recherche, <filename>search.html</filename>, se
+    trouve dans le répertoire
+    <filename>/modules/Base/templates</filename>.</para>
+
+    <para>Ce template gère l'affichage du formulaire de recherche pour les
+    trois modes d'accès. Les critères de recherche sont affichés ou non en
+    fonction des droits de l'utilisateur.</para>
+
+    <para>Il affiche également l'historique des recherches en utilisant le
+    template
+    <filename>/modules/Base/templates/searchhistory.html</filename>.</para>
+
+    <para>Le code JavaScript présent à la fin du template : <itemizedlist>
+        <listitem>
+          <para>gère l'affichage des critères <emphasis>Nature du texte
+          officiel</emphasis> et <emphasis>Date du texte officiel</emphasis>
+          suivant que l'utilisateur a coché ou non la case <emphasis>Texte
+          officiel</emphasis> du critère <emphasis>Type de
+          document</emphasis>.</para>
+        </listitem>
+
+        <listitem>
+          <para>associe une table de lookup à certains critères.</para>
+        </listitem>
+      </itemizedlist></para>
+  </sect2>
+
+  <sect2 id="Base.show">
+    <title>Affichage des notices</title>
+
+    <para>Les templates utilisés pour l'affichage des notices se trouvent dans
+    le répertoire <filename>/modules/Base/templates</filename>.</para>
+
+    <para>Ces templates font référence à des templates match qui se trouvent
+    dans le fichier
+    <filename>/modules/Base/templates/include/templates.html</filename>.</para>
+
+    <table>
+      <title>Templates associés à l'affichage des notices</title>
+
+      <tgroup cols="2">
+        <thead>
+          <row>
+            <entry>Fichier</entry>
+
+            <entry>Description</entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry>fullref.html</entry>
+
+            <entry>Template utilisé pour afficher une ou plusieurs notices au
+            format long. <para> Pour chaque notice, il affiche : <itemizedlist>
+                <listitem>
+                  <para>Le numéro de la réponse,</para>
+                </listitem>
+
+                <listitem>
+                  <para>Le bouton "Ajouter au panier" ou "Supprimer du panier"
+                  (suivant que l'on est dans l'affichage des résultats de la
+                  recherche ou dans l'affichage des notices du panier) si
+                  l'utilisateur a les droits requis pour cette action,</para>
+                </listitem>
+
+                <listitem>
+                  <para>Le bouton "Modifier la notice", si l'utilisateur a les
+                  droits requis pour cette action,</para>
+                </listitem>
+
+                <listitem>
+                  <para>Les informations de la notice en fonction du type de
+                  document et des drois utilisateurs.</para>
+                </listitem>
+              </itemizedlist> </para></entry>
+          </row>
+
+          <row>
+            <entry>list.html</entry>
+
+            <entry>Il s'agit de la page complète d'affichage des réponses.
+            <para> Au début du template, un slot affiche le début de la page :
+            <itemizedlist>
+                <listitem>
+                  <para>Titre,</para>
+                </listitem>
+
+                <listitem>
+                  <para>Lien vers l'aide en ligne,</para>
+                </listitem>
+
+                <listitem>
+                  <para>Rappel de l'équation de recherche,</para>
+                </listitem>
+
+                <listitem>
+                  <para>Lien pour modifier la recherche,</para>
+                </listitem>
+
+                <listitem>
+                  <para>Mots vides ignorés lors de la recherche</para>
+                </listitem>
+
+                <listitem>
+                  <para>Options de recherche (format d'affichage, ordre de
+                  tri, nombre de notices par page) à l'aide du template
+                  <filename>searchoptions.html</filename>.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Informations techniques sur la recherche (affichées en
+                  mode debug uniquement)</para>
+                </listitem>
+              </itemizedlist> </para> <para>Il affiche ensuite une barre de
+            navigation permettant de parcourir les résultats page par page, et
+            un bouton permettant d'ajouter au panier ou de supprimer du panier
+            toutes les notices visibles sur la page en cours (suivant que l'on
+            est dans l'affichage des résultats de la recherche ou dans
+            l'affichage des notices du panier). </para> <para>Il appelle
+            ensuite le template d'affichage des notices en fonction du format
+            demandé. Pour l'affichage court des notices, on emploie le
+            template <filename>shortref.html</filename>. Pour l'affichage
+            long, on emploie le template <filename>fullref.html</filename>.
+            </para> <para>La barre de navigation et le bouton mentionnés
+            ci-dessus sont répétés à la suite des notices. </para> <para>En
+            fin de page, il affiche une liste de liens vers des actions sur la
+            base de données (export de notices, modification et suppression en
+            série) et un lien vers l'affichage du panier. </para></entry>
+          </row>
+
+          <row>
+            <entry>searchoptions.html</entry>
+
+            <entry>Template utilisé pour afficher le formulaire permettant de
+            changer les options de recherche (format d'affichage, ordre de
+            tri, nombre de notices par page). <para>Il est référencé dans le
+            template <filename>list.html</filename>. </para></entry>
+          </row>
+
+          <row>
+            <entry>shortref.html</entry>
+
+            <entry>Template utilisé pour afficher une ou plusieurs notices au
+            format court. <para>Pour chaque notice, il affiche : <itemizedlist>
+                <listitem>
+                  <para>Le numéro de la réponse,</para>
+                </listitem>
+
+                <listitem>
+                  <para>Le bouton "Ajouter au panier" ou "Supprimer du
+                  panier", si l'utilisateur a les droits requis pour cette
+                  action,</para>
+                </listitem>
+
+                <listitem>
+                  <para>Le bouton "Notice complète",</para>
+                </listitem>
+
+                <listitem>
+                  <para>Le bouton "Modifier la notice", si l'utilisateur a les
+                  droits requis pour cette action,</para>
+                </listitem>
+
+                <listitem>
+                  <para>Les informations de la notice en fonction du type de
+                  document et des drois utilisateurs.</para>
+                </listitem>
+              </itemizedlist> </para></entry>
+          </row>
+
+          <row>
+            <entry>show.html</entry>
+
+            <entry><para>Permet d'afficher une seule notice au format long, en
+            utilisant le template
+            <filename>fullref.html</filename>.</para></entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+  </sect2>
+
+  <sect2 id="Base.load">
+    <title>Formulaire de saisie/modification de notices</title>
+
+    <para>Le formulaire de saisie/modification d'une notice (fichier
+    <filename>/modules/Base/templates/load.html</filename>) permet d'afficher
+    soit le formulaire de saisie en fonction du type de document, soit celui
+    comprenant tous les champs de la base (réservé aux
+    administrateurs).</para>
+
+    <para>Il a la structure suivante :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Titre de la page</para>
+      </listitem>
+
+      <listitem>
+        <para>Lien vers le formulaire de saisie avec tous les champs.</para>
+
+        <para>Celui-ci n'apparaît pas si on est en création ou duplication de
+        notice. Il renvoie vers l'action LoadFull qui est une pseudo action de
+        l'action Load. Dans le fichier de configuration, l'action LoadFull
+        définit une clé &amp;lt;allfields&amp;gt;</para>
+      </listitem>
+
+      <listitem>
+        <para>Ensuite, il y a le formulaire qui contient un
+        <filename>switch</filename>, qui, en fonction du type de document,
+        affiche les zones de saisie appropriées.</para>
+
+        <para>Pour le formulaire comprenant tous les champs, un pseudo type
+        <filename>allfields</filename> est défini. Cela permet de simplifier
+        le formulaire en traitant ce cas dans le <filename>switch</filename>
+        comme les "vrais" types de document.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Il utilise des templates match qui sont définis dans le fichier
+    <filename>/modules/Base/templates/include/loadtemplates.html</filename>.</para>
+
+    <para>Le code JQuery présent dans le fichier
+    <filename>/web/js/load.js</filename> permet de rendre disponible :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>l'index d'aide à la saisie, pour certains champs,</para>
+      </listitem>
+
+      <listitem>
+        <para>pour le champ MotCle, la consultation du thesaurus afin de
+        choisir les descripteurs à injecter dans la zone de saisie.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Les feuillles de style utilisées par le formulaire de saisie sont
+    :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>/web/css/ascodocpsy/formulaire.css : Styles communs à tous les
+        formulaires</para>
+      </listitem>
+
+      <listitem>
+        <para>/web/css/ascodocpsy/load.css : Styles spécifiques au formulaire
+        de saisie.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Les images utilisées sont :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><filename>/web/css/ascodocpsy/bullet_key.png</filename> : Icone
+        apparaissant dans les zones de saisie pour lesquelles un index d'aide
+        à la saisie est disponible,</para>
+      </listitem>
+
+      <listitem>
+        <para><filename>/web/css/ascodocpsy/help.png</filename> : Icone pour
+        le lien vers l'aide sur un champ.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Les scripts utilisés pour les contrôles de saisie sont :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>/web/js/controls.js : Bibliothèque pour les contrôles de saisie
+        (fonctions, expressions régulières).</para>
+      </listitem>
+
+      <listitem>
+        <para>/web/js/load.js : Contrôles exécutés lors de la saisie d'une
+        notice, pour chaque masque de saisie (un masque avec tous les champs,
+        un masque par type de document).</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+
+  <sect2 id="Base.export">
+    <title>Formats d'export</title>
+
+    <para>Les templates utilisés pour les exports se trouvent dans le
+    répertoire <filename>/modules/Base/templates/export</filename> :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><filename>csv.txt</filename> : export au format texte tabulé,
+        tous types de document confondus,</para>
+      </listitem>
+
+      <listitem>
+        <para><filename>csvtype.txt</filename> : export au format texte tabulé
+        par type de document,</para>
+      </listitem>
+
+      <listitem>
+        <para><filename>vancouver.txt</filename> : exports Vancouver et
+        "Vancouver plus".</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+
+  <sect2 id="Base.errortpl">
+    <title>Templates utilisés pour les erreurs</title>
+
+    <para>Des <ulink url="?filename=fab.templates">templates</ulink>
+    permettant d'afficher des messages d'erreur sont utilisés par plusieurs
+    actions. Ils se trouvent dans le répertoire
+    <filename>/modules/Base/templates/error</filename> :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><filename>error_base_noanswer.html</filename> : Page affichée
+        lorsque une recherche dans la base de données n'a donné aucun
+        résultat.</para>
+      </listitem>
+
+      <listitem>
+        <para><filename>error_base.html</filename> : Page affichée lorsqu'une
+        erreur intervient lors de l'interrogation de la base de
+        données.</para>
+      </listitem>
+
+      <listitem>
+        <para><filename>error.html</filename> : Template simple permettant
+        d'afficher uniquement le message d'erreur.</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+
+  <sect2 id="Base.tables">
+    <title>Tables</title>
+
+    <sect3 id="Base.tables.introduction">
+      <title>Introduction</title>
+
+      <para>Les formulaires de recherche et de saisie de l'application Ascoweb
+      présentent à l'utilisateur des listes sous formes de cases à cocher ou
+      de boutons radio (types de document, dates, statut de la notice, etc.).
+      Pour éviter la répétition du code dans ces formulaires et faciliter la
+      maintenance de ces listes, celles-ci ont été créées sous la forme de
+      fichiers, dans le répertoire
+      <filename>/modules/Base/tables</filename>.</para>
+
+      <para>Une des tables de ce répertoire est utilisée pour l'affichage des
+      notices.</para>
+
+      <para>Les tables sont des fichiers texte tabulé : <itemizedlist>
+          <listitem>
+            <para>La première ligne est la ligne de titre. Elle contient les
+            libellés des champs, séparés les uns des autres par une
+            tabulation.</para>
+          </listitem>
+
+          <listitem>
+            <para>Les lignes suivantes contiennent les enregistrements, dont
+            les champs sont séparés par des tabulations.</para>
+          </listitem>
+        </itemizedlist></para>
+
+      <para><example>
+          <title>Fichier texte tabulé <emphasis>type.txt</emphasis></title>
+
+          <para><screen>
+                    code    label
+                    Article Article
+                    Livre   Livre
+                    Congrès Congrès
+                    Rapport Rapport
+                    Mémoire Mémoire
+                    Thèse   Thèse
+                    Texte officiel  Texte officiel
+                    Périodique  Titre de périodique            
+                </screen></para>
+        </example></para>
+    </sect3>
+
+    <sect3 id="Base.tables.liste">
+      <title>Liste des tables</title>
+
+      <sect4 id="Base.tables.liste.annuairegip">
+        <title>annuairegip.txt</title>
+
+        <para><emphasis role="strong">Rôle :</emphasis> permet de faire la
+        correspondance entre un numéro de centre (ascoX) et l'article SPIP du
+        site web Ascodocpsy présentant le centre. Il est utilisé lors de
+        l'affichage des notices pour créer un lien vers la page de
+        présentation d'un centre spécifié dans les champs Loc, ProdFich et
+        EtatCol (voir modules/Base/Base.php, fonction getField).</para>
+
+        <para><emphasis role="strong">Contenu :</emphasis> La première colonne
+        (ident) contient les numéros "asco" attribués aux centres. La deuxième
+        colonne (numarticle) contient les numéros des articles SPIP
+        correspondants.</para>
+      </sect4>
+
+      <sect4 id="Base.tables.liste.date">
+        <title>date.txt</title>
+
+        <para><emphasis role="strong">Rôle :</emphasis> est utilisé pour
+        générer les cases à cocher du critère "Date du document" du formulaire
+        de recherche.</para>
+
+        <para><emphasis role="strong">Contenu :</emphasis> La première colonne
+        (code) contient la valeur de la case à cocher. La deuxième colonne
+        (label) contient le libellé de la case à cocher.</para>
+      </sect4>
+
+      <sect4 id="Base.tables.liste.membre_statut">
+        <title>membre_statut.txt</title>
+
+        <para><emphasis role="strong">Rôle :</emphasis> est utilisé dans le
+        formulaire de saisie de l'accès professionnel pour générer les boutons
+        radios permettant de définir le statut de la notice, lorsque celle-ci
+        n'est pas encore validée (statut : valide).</para>
+
+        <para><emphasis role="strong">Contenu :</emphasis> La première colonne
+        (code) contient la valeur du bouton radio. Cette valeur sera injecté
+        dans le champ "Statut" de la notice lors de l'enregistrement de
+        celle-ci. La deuxième colonne (label) contient le libellé du bouton
+        radio.</para>
+      </sect4>
+
+      <sect4 id="Base.tables.liste.nattext">
+        <title>nattext.txt</title>
+
+        <para><emphasis role="strong">Rôle :</emphasis> est utilisé :
+        <itemizedlist>
+            <listitem>
+              <para>Dans le formulaire de recherche, pour générer la zone de
+              selection multiple (select) du critère "Nature du texte
+              officiel".</para>
+            </listitem>
+
+            <listitem>
+              <para>Dans le formulaire de saisie des documents de type "Texte
+              officiel" et celui présentant tous les champs (disponible
+              uniquement en accès administrateur), pour générer les boutons
+              radios permettant de choisir la nature du texte officiel.</para>
+            </listitem>
+          </itemizedlist></para>
+
+        <para><emphasis role="strong">Contenu :</emphasis> La première colonne
+        (code) contient la valeur du bouton radio. La deuxième colonne (label)
+        contient le libellé du bouton radio.</para>
+      </sect4>
+
+      <sect4 id="Base.tables.liste.public_type">
+        <title>public_type.txt</title>
+
+        <para><emphasis role="strong">Rôle :</emphasis> est utilisé pour
+        générer les cases à cocher du critère "Type de document" du formulaire
+        de recherche de l'accès public. Les utilisateurs non connectés n'ont
+        en effet pas accès aux documents de type "Périodique".</para>
+
+        <para><emphasis role="strong">Contenu :</emphasis> La première colonne
+        (code) contient la valeur de la case à cocher. La deuxième colonne
+        (label) contient le libellé de la case à cocher.</para>
+      </sect4>
+
+      <sect4 id="Base.tables.liste.statut">
+        <title>statut.txt</title>
+
+        <para><emphasis role="strong">Rôle :</emphasis> est utilisé :
+        <itemizedlist>
+            <listitem>
+              <para>Dans le formulaire de recherche des accès professionnel et
+              administrateur, pour générer les cases à cocher du critère
+              "Statut de la notice".</para>
+            </listitem>
+
+            <listitem>
+              <para>Dans le formulaire de saisie de l'accès administrateur
+              pour générer les boutons radios permettant de définir le statut
+              de la notice.</para>
+            </listitem>
+
+            <listitem>
+              <para>Dans le formulaire de saisie de l'accès professionnel pour
+              générer les boutons radios permettant de définir le statut de la
+              notice, lorsque celle-ci a été validée.</para>
+            </listitem>
+          </itemizedlist></para>
+
+        <para><emphasis role="strong">Contenu :</emphasis> La première colonne
+        (code) contient la valeur du bouton radio. Cette valeur sera injecté
+        dans le champ "Statut" de la notice lors de l'enregistrement de
+        celle-ci. La deuxième colonne (label) contient le libellé du bouton
+        radio.</para>
+      </sect4>
+
+      <sect4 id="Base.tables.liste.type">
+        <title>type.txt</title>
+
+        <para><emphasis role="strong">Rôle :</emphasis> est utilisé pour
+        générer les cases à cocher du critère "Type de document" du formulaire
+        de recherche des accès professionnel et administrateur. Les
+        utilisateurs de ces deux accès peuvent faire des recherches sur tous
+        les types de document, contrairement aux utilisateurs de l'accès
+        public qui ne peuvent pas accéder aux notices de type
+        "Périodique".</para>
+
+        <para><emphasis role="strong">Contenu :</emphasis> La première colonne
+        (code) contient la valeur de la case à cocher. La deuxième colonne
+        (label) contient le libellé de la case à cocher.</para>
+      </sect4>
+    </sect3>
+  </sect2>
+</sect1>

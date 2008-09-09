@@ -1,0 +1,3399 @@
+Type : LISTE HIÉRARCHIQUE
+
+Thésaurus : SANTEPSY 3
+
+Langue : francais
+
+*************************
+
+            ACTION SOCIALE
+                  AIDE SOCIALE
+                        AIDE A DOMICILE
+                        AIDE HUMANITAIRE
+                  ETABLISSEMENT SOCIAL ET MEDICO SOCIAL
+                        CENTRE COMMUNAL D'ACTION SOCIALE
+                        ETABLISSEMENT D'ACCUEIL POUR ENFANT
+                              CRECHE
+                                    CRECHE PARENTALE
+                              HALTE GARDERIE
+                              POUPONNIERE
+                        ETABLISSEMENT D'ENSEIGNEMENT ET D'EDUCATION SPECIALE
+                              INSTITUT D'EDUCATION MOTRICE
+                              INSTITUT MEDICO EDUCATIF
+                              INSTITUT MEDICO PEDAGOGIQUE
+                              INSTITUT MEDICO PROFESSIONNEL
+                        ETABLISSEMENT D'INTEGRATION PROFESSIONNELLE
+                              ATELIER PROTEGE
+                              CENTRE D'AIDE PAR LE TRAVAIL
+                        ETABLISSEMENT POUR PERSONNE AGEE
+                              CANTOU
+                              ETABLISSEMENT D'HEBERGEMENT POUR PERSONNE AGEE DEPENDANTE
+                                    MAISON D'ACCUEIL POUR PERSONNE AGEE DEPENDANTE
+                                    UNITE DE SOINS DE LONGUE DUREE
+                              ETABLISSEMENT D'HEBERGEMENT POUR PERSONNE AGEE
+                                    FOYER LOGEMENT
+                                    MAISON DE RETRAITE
+                        ETABLISSEMENT POUR PERSONNE EN DIFFICULTE SPECIFIQUE
+                              CENTRE D'HEBERGEMENT ET DE READAPTATION SOCIALE
+                              CENTRE DE CURE AMBULATOIRE EN ALCOOLOGIE
+                              SAMU SOCIAL
+                        ETABLISSEMENT POUR PERSONNE HANDICAPEE
+                              CENTRE DE READAPTATION FONCTIONNELLE
+                              FOYER D'ACCUEIL MEDICALISE
+                              FOYER OCCUPATIONNEL
+                              MAISON D'ACCUEIL SPECIALISE
+                        STRUCTURE D'ACCUEIL
+                              RESIDENT
+                                    PROJET DE VIE
+                              STRUCTURE D'HEBERGEMENT
+                  POLITIQUE SOCIALE
+                  PROTECTION SOCIALE DE L'ENFANCE
+                        PROTECTION MATERNELLE ET INFANTILE
+                        SERVICE EN FAVEUR DE L'ENFANCE INADAPTEE
+                              CENTRE D'ACTION MEDICO SOCIALE PRECOCE
+                              CENTRE MEDICO PSYCHO PEDAGOGIQUE
+                              CENTRE REGIONAL POUR L'ENFANCE ET L'ADOLESCENCE INADAPTEE
+                              COMMISSION DEPARTEMENTALE DE L'EDUCATION SPECIALE
+                  PROTECTION SOCIALE
+                        AIDE MEDICALE
+                        ASSURANCE MALADIE
+                              AFFECTION DE LONGUE DUREE
+                              DEPENSES DE SANTE
+                                    MAITRISE DES DEPENSES DE SANTE
+                                          OBJECTIF NATIONAL DES DEPENSES D'ASSURANCE MALADIE
+                                          REFERENCE MEDICALE OPPOSABLE
+                              REMBOURSEMENT DES SOINS
+                                    TICKET MODERATEUR
+                                    TIERS PAYANT
+                        ASSURE SOCIAL
+                              ACCES AUX SOINS
+                              CARTE D'ASSURE SOCIAL
+                              OUVERTURE DES DROITS
+                              PARCOURS DE SOINS
+                        CONTROLE MEDICAL
+                        COTISATION SOCIALE
+                        COUVERTURE MALADIE UNIVERSELLE
+                        NOMENCLATURE GENERALE DES ACTES PROFESSIONNELS
+                        PRESTATION SOCIALE
+                              ALLOCATION D'INSERTION
+                                    REVENU MINIMUM D'ACTIVITE
+                                    REVENU MINIMUM D'INSERTION
+                              CONDITION D'ATTRIBUTION
+                                    CONDITION D'AGE
+                                    CONDITION DE NATIONALITE
+                                    CONDITION DE RESSOURCES
+                              PRESTATION AUX HANDICAPES
+                                    ALLOCATION ADULTE HANDICAPE
+                                    ALLOCATION COMPENSATRICE POUR TIERCE PERSONNE
+                                    ALLOCATION D'EDUCATION SPECIALE
+                                    CARTE D'INVALIDITE
+                                    PENSION D'INVALIDITE
+                              PRESTATION CHOMAGE
+                                    ALLOCATION DE FIN DE DROIT
+                              PRESTATION FAMILIALE
+                                    ALLOCATION D'ADOPTION
+                                    ALLOCATION DE GARDE D'ENFANT
+                                    ALLOCATION DE PARENT ISOLE
+                                    ALLOCATION DE RENTREE SCOLAIRE
+                                    ALLOCATION DE SOUTIEN FAMILIAL
+                                    ALLOCATION PARENTALE D'EDUCATION
+                                    ALLOCATION POUR JEUNE ENFANT
+                                    SUPPLEMENT FAMILIAL
+                              PRESTATION LOGEMENT
+                              PRESTATION MALADIE
+                                    INDEMNITE JOURNALIERE
+                              PRESTATION VIEILLESSE
+                                    ALLOCATION PERSONNALISEE D'AUTONOMIE
+                                    FONDS DE SOLIDARITE VIEILLESSE
+                                    PENSION DE REVERSION
+                        PROTECTION SOCIALE COMPLEMENTAIRE
+                              MUTUELLE
+                              RETRAITE COMPLEMENTAIRE
+                        REGIME DE SECURITE SOCIALE
+                              REGIME GENERAL
+                              REGIME SPECIAL
+                  TRAVAIL SOCIAL
+            ADDICTION
+                  [RE] COMPORTEMENT LIE A L'EMPLOI ABUSIF D'UNE SUBSTANCE PSYCHOACTIVE
+                        ALCOOLISME
+                              COALCOOLISME
+                        DOPAGE
+                        PHARMACODEPENDANCE
+                        TABAGISME
+                        TOXICOMANIE
+                  DROGUE
+                        ALCOOL
+                        AMPHETAMINE
+                        CANNABIS
+                        COCAINE
+                              CRACK
+                        DROGUE DE SYNTHESE
+                              ECSTASY
+                              LSD
+                        HALLUCINOGENE
+                        HEROINE
+                        OPIACE
+                        SOLVANT ORGANIQUE
+                        TABAC
+                  [RE] INDIVIDU DONT LE COMPORTEMENT EST LIE A UNE ADDICTION
+                        ALCOOLODEPENDANT
+                        FUMEUR
+                        TOXICOMANE
+                  [RE] MODE DE CONSOMMATION D'UNE SUBSTANCE PSYCHOACTIVE
+                        ABSTINENCE
+                        USAGE
+                              MESUSAGE
+                                    USAGE AVEC DEPENDANCE
+                                          POLYDEPENDANCE
+                                    USAGE NOCIF
+                  TRAITEMENT DE DESINTOXICATION
+                        SEVRAGE THERAPEUTIQUE
+                  TRAITEMENT DE SUBSTITUTION
+                  TROUBLE DES HABITUDES ET DES IMPULSIONS
+                        ACHAT PATHOLOGIQUE
+                        ADDICTION AU TRAVAIL
+                        JEU PATHOLOGIQUE
+                        KLEPTOMANIE
+                        PYROMANIE
+                        TRICHOTILLOMANIE
+                  [RE] TROUBLE PHYSIQUE LIE A L'EMPLOI D'UNE SUBSTANCE PSYCHOACTIVE
+                        ENCEPHALOPATHIE ALCOOLIQUE
+                              SYNDROME DE GAYET WERNICKE
+                              SYNDROME DE KORSAKOFF
+                        INTOXICATION AIGUE
+                              COMA ETHYLIQUE
+                              OVERDOSE
+                        SYNDROME ALCOOLIQUE FOETAL
+                        SYNDROME DE DEPENDANCE
+                              CRAVING
+                        SYNDROME DE SEVRAGE
+                              DELIRIUM TREMENS
+                                    DELIRE ONIRIQUE
+                              ETAT DE MANQUE
+                              PRE DELIRIUM TREMENS
+            AMENAGEMENT DU TERRITOIRE
+                  TRANSPORT
+                  URBANISME
+                        ARCHITECTURE
+                        BATIMENT
+                              AMENAGEMENT DES LOCAUX
+                                    CHAUFFAGE
+                                    ELECTRICITE
+                                    GAZ
+                                    MATERIAU DE CONSTRUCTION
+                                          AMIANTE
+                                    MOBILIER
+                              LIEU DE CULTE
+                              TRAVAUX D'ENTRETIEN
+                        EQUIPEMENT SPORTIF
+                              PATAUGEOIRE
+                              PISCINE
+                        HABITAT
+                              CHAMBRE
+                                    LIT
+                              DEMENAGEMENT
+                              DOMOTIQUE
+                              LOGEMENT DE FONCTION
+                              LOGEMENT SOCIAL
+                        LIEU PUBLIC
+                              AIRE DE JEUX
+                              ESPACES VERTS
+            ANATOMIE
+                  APPAREIL CARDIOVASCULAIRE
+                        COEUR
+                        VAISSEAU SANGUIN
+                  APPAREIL DIGESTIF
+                        BOUCHE
+                              DENT
+                        COLON
+                        ESTOMAC
+                        FOIE
+                        INTESTIN
+                        OESOPHAGE
+                        PANCREAS
+                        PHARYNX
+                  APPAREIL GENITAL
+                        OVAIRE
+                        PENIS
+                        PROSTATE
+                        TESTICULE
+                        UTERUS
+                  APPAREIL LOCOMOTEUR
+                        MUSCLE
+                        SQUELETTE
+                              COLONNE VERTEBRALE
+                              CRANE
+                  APPAREIL RESPIRATOIRE
+                        BRONCHE
+                        LARYNX
+                              VOIX
+                        NEZ
+                        PLEVRE
+                        POUMON
+                        TRACHEE
+                  APPAREIL URINAIRE
+                        REIN
+                        VESSIE
+                  CORPS
+                        ABDOMEN
+                        DOS
+                        MEMBRE INFERIEUR
+                              PIED
+                        MEMBRE SUPERIEUR
+                              MAIN
+                        OEIL
+                        ORGANE
+                        PEAU
+                        SEIN
+                        TETE
+                              CHEVEUX
+                              VISAGE
+                  DEVELOPPEMENT PHYSIQUE
+                  PSYCHOMOTRICITE
+                        COORDINATION MOTRICE
+                        LATERALITE
+                              DROITIER
+                              GAUCHER
+                        MARCHE
+                        MOTRICITE
+                        SENSORIMOTRICITE
+            DOCUMENTATION
+                  CHAINE DOCUMENTAIRE
+                        ANALYSE DOCUMENTAIRE
+                        ARCHIVES
+                              DUREE DE CONSERVATION
+                        BIBLIOTHECONOMIE
+                        CATALOGAGE
+                        COLLECTE
+                        DIFFUSION
+                              PRESTATION DOCUMENTAIRE
+                                    DIFFUSION SELECTIVE D'INFORMATION
+                                    PRET
+                                    RECHERCHE DOCUMENTAIRE
+                              PRODUIT DOCUMENTAIRE
+                                    BASE DE DONNEES
+                                    DOSSIER THEMATIQUE
+                        INDEXATION
+                              LANGAGE DOCUMENTAIRE
+                                    THESAURUS
+                        PLAN DE CLASSEMENT
+                  RESEAU DOCUMENTAIRE
+                  UNITE DOCUMENTAIRE
+                        BIBLIOTHEQUE
+                        CENTRE DE DOCUMENTATION
+            DROIT
+                  DROIT COMMUNAUTAIRE
+                  DROIT CONSTITUTIONNEL
+                        DROIT DE LA PERSONNE
+                              DROIT DE L'ENFANT
+                              DROIT DE L'HOMME
+                              DROIT DE LA FEMME
+                              DROIT DES USAGERS
+                  DROIT DE LA PROPRIETE INTELLECTUELLE
+                        DROIT DE COPIE
+                        DROIT DE PRET
+                  DROIT DE LA SANTE
+                        AUTORISATION D'EXERCICE
+                        AUTORISATION DE MISE SUR LE MARCHE
+                        DROIT DU MALADE
+                              ANONYMAT
+                                    ACCOUCHEMENT SOUS X
+                                    HOSPITALISATION SOUS X
+                              CONSENTEMENT AUX SOINS
+                              DIRECTIVE ANTICIPEE
+                              DOSSIER DU MALADE
+                                    ACCES AU DOSSIER DU MALADE
+                                    DOSSIER PERSONNEL DU MALADE
+                                          DOSSIER MEDICAL PARTAGE
+                              INFORMATION DU MALADE
+                                    CHARTE DU MALADE
+                                    LIVRET D'ACCUEIL
+                              PERSONNE DE CONFIANCE
+                              REFUS DE SOINS
+                        DROIT HOSPITALIER
+                        OBLIGATION DU MALADE
+                        REFORME HOSPITALIERE
+                              GOUVERNANCE
+                  DROIT INTERNATIONAL
+                  DROIT PENAL
+                        INFRACTION
+                              CRIME
+                                    ABUS SEXUEL
+                                          INCESTE
+                                          VIOL
+                                    ACTE DE BARBARIE
+                                    ATTEINTE A L'INTEGRITE DE LA PERSONNE
+                                    CRIME CONTRE L'HUMANITE
+                                          DEPORTATION
+                                                CAMP DE CONCENTRATION
+                                          GENOCIDE
+                                                HOLOCAUSTE
+                                    CRIMINEL
+                                          ENFANT MEURTRIER
+                                          FRATRICIDE
+                                          INFANTICIDE
+                                          PARRICIDE
+                                          TUEUR EN SERIE
+                                    HOMICIDE
+                                    INCENDIE VOLONTAIRE
+                                    MUTILATION
+                                          MUTILATION SEXUELLE
+                                                EXCISION
+                                    PRISE D'OTAGE
+                                          OTAGE
+                                    TERRORISME
+                                          ATTENTAT
+                                          VIGIPIRATE
+                                    TORTURE
+                              DELIT
+                                    AGRESSION
+                                          AGRESSEUR
+                                    ATTENTAT A LA PUDEUR
+                                    DIFFAMATION
+                                    HARCELEMENT MORAL
+                                    HARCELEMENT SEXUEL
+                                    MALTRAITANCE
+                                          ENFANT MALTRAITE
+                                          PARENT MALTRAITE
+                                    NON ASSISTANCE A PERSONNE EN DANGER
+                                    VOL
+                              ELEMENT INTENTIONNEL
+                              RECIDIVE
+                              VICTIME
+                                    ACCUSATION
+                        PEINE
+                              AMNISTIE
+                              PEINE DE SUBSTITUTION
+                                    EDUCATION SURVEILLEE
+                                    OBLIGATION DE SOINS
+                              PRISON
+                                    DETENU
+                              RETENTION DE SURETE
+                        PREUVE
+                              AVEU
+                  DROIT PRIVE
+                        DROIT CIVIL
+                              CONTRAT
+                              ETAT CIVIL
+                                    NOM
+                                    PRENOM
+                              LEGS
+                        DROIT DE LA FAMILLE
+                              AUTORITE PARENTALE
+                              DROIT DE GARDE
+                                    NON PRESENTATION D'ENFANT
+                              OBLIGATION ALIMENTAIRE
+                  DROIT PUBLIC
+                        DROIT ADMINISTRATIF
+                        FINANCES PUBLIQUES
+                              MARCHE PUBLIC
+                  DROIT SOCIAL
+                        DROIT DU TRAVAIL
+                  LEGISLATION
+                        REGLEMENTATION
+                  PERSONNALITE JURIDIQUE
+                        AYANT DROIT
+                        PERSONNE MORALE
+                        PERSONNE PHYSIQUE
+                              MAJEUR
+                                    MAJEUR PROTEGE
+                              MINEUR
+                                    MINEUR EMANCIPE
+                  PROTECTION JURIDIQUE DES MAJEURS
+                        CURATELLE
+                        MANDAT DE PROTECTION FUTURE
+                        SAUVEGARDE DE JUSTICE
+                        TUTELLE
+                  RESPONSABILITE
+                        RESPONSABILITE ADMINISTRATIVE
+                        RESPONSABILITE CIVILE
+                              DOMMAGES ET INTERETS
+                              PREJUDICE
+                              REPARATION
+                              SINISTRE
+                        RESPONSABILITE MEDICALE
+                              ALEA THERAPEUTIQUE
+                              NEGLIGENCE MEDICALE
+                        RESPONSABILITE PENALE
+                              DISCERNEMENT
+                        RESPONSABILITE POUR FAUTE
+                              ERREUR PROFESSIONNELLE
+                        RESPONSABILITE SANS FAUTE
+            EDUCATION
+                  ALPHABETISATION
+                  EDUCATION SPECIALISEE
+                  ENSEIGNEMENT
+                        ENSEIGNEMENT A DISTANCE
+                  ETABLISSEMENT D'ENSEIGNEMENT
+                        COLLEGE
+                        ECOLE EXPERIMENTALE
+                        ECOLE MATERNELLE
+                        ECOLE PRIVEE
+                        ECOLE
+                        GRANDES ECOLES
+                        INTERNAT SCOLAIRE
+                        LYCEE
+                        UNIVERSITE
+                  EVALUATION PEDAGOGIQUE
+                        CONCOURS
+                        DIPLOME
+                              LMD
+                                    DOCTORAT
+                                    LICENCE
+                                    MASTERE
+                        EXAMEN SCOLAIRE
+                  INTEGRATION SCOLAIRE
+                  ORIENTATION SCOLAIRE
+                  PEDAGOGIE
+                        METHODE PEDAGOGIQUE
+                              APPRENTISSAGE PAR L'ERREUR
+                                    RESOLUTION DE PROBLEME
+                              METHODE MONTESSORI
+                              PEDAGOGIE INSTITUTIONNELLE
+                                    METHODE FREINET
+                        OBJECTIF PEDAGOGIQUE
+                        OUTIL PEDAGOGIQUE
+                              JEU EDUCATIF
+                        RELATION PEDAGOGIQUE
+                        RYTHME SCOLAIRE
+                  [RE] POPULATION SCOLAIRE ET UNIVERSITAIRE
+                        COLLEGIEN
+                        ELEVE
+                              ENFANT SURDOUE
+                        ETUDIANT
+                        LYCEEN
+                  PROGRAMME D'ETUDES
+                  PROJET PEDAGOGIQUE
+                  RELATION PARENT ECOLE
+                  RESULTAT SCOLAIRE
+                  SCOLARISATION
+                  SCOLARITE
+                        ABANDON SCOLAIRE
+                        ADAPTATION SCOLAIRE
+                        APPRENTISSAGE SCOLAIRE
+                              ECRITURE
+                              LECTURE
+                        DIFFICULTE SCOLAIRE
+                              ECHEC SCOLAIRE
+                        RETARD SCOLAIRE
+                        TROUBLE DE L'APPRENTISSAGE
+                              ACALCULIE
+                              AGRAPHIE
+                              DYSCALCULIE
+                              DYSGRAPHIE
+                              DYSLEXIE
+                              DYSORTHOGRAPHIE
+                  SOUTIEN SCOLAIRE
+            ENVIRONNEMENT
+                  CLIMAT
+                        CANICULE
+                        SAISON
+                  DEVELOPPEMENT DURABLE
+                        HAUTE QUALITE ENVIRONNEMENTALE
+                  MILIEU NATUREL
+                        AIR
+                        EAU
+                              MER
+                        FAUNE
+                              ANIMAL
+                        FEU
+                        FLORE
+                        TERRE
+                  MILIEU RURAL
+                  MILIEU URBAIN
+                        BANLIEUE
+                  POLLUTION
+                        BRUIT
+            FAMILLE
+                  CARENCE PARENTALE
+                        CARENCE MATERNELLE
+                        CARENCE PATERNELLE
+                  FILIATION
+                        FAMILLE D'ORIGINE
+                              RECHERCHE DES ORIGINES
+                  HISTOIRE FAMILIALE
+                        ABANDON D'ENFANT
+                              ENFANT ABANDONNE
+                        ADOPTION
+                              ADOPTANT
+                              ADOPTION INTERNATIONALE
+                              ENFANT ADOPTE
+                        DATE ANNIVERSAIRE
+                        ENFANT DE REMPLACEMENT
+                        ENFANT HOSPITALISE
+                        ENFANT MALADE
+                        ENFANT MORT
+                              MORT SUBITE DU NOURRISSON
+                        ENFANT NATUREL
+                        ENFANT PREMATURE
+                        ENFANT THERAPEUTE
+                        MORT
+                        NAISSANCE MULTIPLE
+                        ORPHELIN
+                        SECRET DE FAMILLE
+                              SECRET DES ORIGINES
+                  PARENTALITE
+                        DESIR D'ENFANT
+                        HOMOPARENTALITE
+                        MATERNITE
+                        PATERNITE
+                              COUVADE
+                        PERINATALITE
+                  RELATION FAMILIALE
+                        RELATION CONJUGALE
+                              CONJOINT
+                        RELATION FRATERNELLE
+                        RELATION PARENT ENFANT
+                              EDUCATION DE L'ENFANT
+                              MATERNAGE
+                              RELATION MERE ENFANT
+                                    INTERACTION PRECOCE
+                                    RELATION MERE FILLE
+                                    RELATION MERE FILS
+                              RELATION PERE ENFANT
+                                    RELATION PERE FILLE
+                                    RELATION PERE FILS
+                  SITUATION DE FAMILLE
+                        CELIBAT
+                        COUPLE
+                        MARIAGE
+                              POLYGAMIE
+                        PACTE CIVIL DE SOLIDARITE
+                        SEPARATION CONJUGALE
+                              GARDE ALTERNEE
+                        UNION LIBRE
+                        VEUVAGE
+                  STRUCTURE FAMILIALE
+                        FAMILLE MONOPARENTALE
+                        FAMILLE NOMBREUSE
+                        FAMILLE NUCLEAIRE
+                        FAMILLE RECOMPOSEE
+                        FRATRIE
+                              AINE
+                              BENJAMIN
+                              CADET
+                              FRERE
+                              JUMEAU
+                                    JUMEAU DIZYGOTE
+                                    JUMEAU MONOZYGOTE
+                              SOEUR
+                        GRAND PARENT
+                        PARENT
+                              MERE
+                              PERE
+            INFORMATION
+                  FAIT DIVERS
+                  INFORMATIQUE
+                        INFORMATISATION
+                        LOGICIEL
+                              LOGICIEL DOCUMENTAIRE
+                        RESEAU INFORMATIQUE
+                              INTERNET
+                              INTRANET
+                              PROTECTION DES DONNEES
+                                    CONFIDENTIALITE DES DONNEES
+                                    MASQUAGE DES DONNEES
+                              TRANSMISSION DES DONNEES
+                                    IDENTIFICATION PAR RADIOFREQUENCE
+                                          BRACELET ELECTRONIQUE
+                  OPINION PUBLIQUE
+                        RUMEUR
+                  OUTIL DE COMMUNICATION
+                        MEDIA
+                              AUDIOVISUEL
+                                    FILM
+                                    RADIO
+                                    TELEVISION
+                                    VIDEO
+                              JOURNAL
+                                    JOURNAL INTERNE
+                              PRESSE
+                                    REVUE ELECTRONIQUE
+                        MESSAGERIE ELECTRONIQUE
+                        TELEPHONE
+                              TELEPHONE PORTABLE
+                                    SMS
+                  PUBLICITE
+                  SECRET
+            JUSTICE
+                  AIDE JURIDICTIONNELLE
+                  DEPOT DE PLAINTE
+                  EXPERTISE JUDICIAIRE
+                        EXPERTISE MEDICALE
+                              EXPERTISE MEDICO LEGALE
+                              EXPERTISE PSYCHIATRIQUE
+                        EXPERTISE PSYCHOLOGIQUE
+                  JURIDICTION ADMINISTRATIVE
+                  JURIDICTION CIVILE
+                        CONSEIL DE PRUD'HOMMES
+                  JURIDICTION DES MINEURS
+                        PROTECTION JUDICIAIRE DE LA JEUNESSE
+                              AIDE SOCIALE A L'ENFANCE
+                                    ACTION EDUCATIVE EN MILIEU OUVERT
+                                    PLACEMENT DE L'ENFANT
+                                          FAMILLE D'ACCUEIL
+                              ENFANCE EN DANGER
+                              PLACEMENT PROVISOIRE D'URGENCE
+                  JURIDICTION PENALE
+                  JURISPRUDENCE
+                  MEDIATION SOCIALE
+                  SANCTION
+                        SANCTION ADMINISTRATIVE
+                        SANCTION PENALE
+            MEDECINE
+                  ACTE MEDICAL
+                        ACCOUCHEMENT
+                              ACCOUCHEMENT SANS DOULEUR
+                              CESARIENNE
+                        ACTE MEDICO LEGAL
+                              AUTOPSIE
+                        ANESTHESIE
+                        AVORTEMENT
+                              AVORTEMENT SPONTANE
+                              AVORTEMENT THERAPEUTIQUE
+                              INTERRUPTION VOLONTAIRE DE GROSSESSE
+                        PROCREATION MEDICALEMENT ASSISTEE
+                              FECONDATION IN VITRO
+                              INSEMINATION ARTIFICIELLE
+                        REANIMATION
+                        TEST GENETIQUE
+                              CONSEIL GENETIQUE
+                              EMPREINTE GENETIQUE
+                  DIAGNOSTIC MEDICAL
+                        ANNONCE DU DIAGNOSTIC
+                        ARBRE DECISIONNEL
+                        DIAGNOSTIC DIFFERENTIEL
+                        DIAGNOSTIC ETIOLOGIQUE
+                        DIAGNOSTIC PRECOCE
+                        DIAGNOSTIC PRENATAL
+                        PRONOSTIC
+                  DISPOSITIF MEDICAL
+                        AIDE TECHNIQUE
+                        DISPOSITIF A USAGE UNIQUE
+                              CATHETER
+                              GANT
+                              POCHE DE RECUEIL
+                              POMPE A INJECTION
+                              PRESERVATIF
+                              PROTHESE
+                              SERINGUE
+                              SONDE
+                              STERILET
+                        DISPOSITIF MEDICAL STERILE
+                  ETAT DE SANTE
+                        DEPENDANCE
+                              DEPENDANCE PHYSIQUE
+                              DEPENDANCE PSYCHIQUE
+                                    CODEPENDANCE
+                        ETAT VEGETATIF
+                        MOURANT
+                  EXAMEN MEDICAL
+                        EXAMEN CLINIQUE
+                              EXAMEN NEUROLOGIQUE
+                              EXAMEN PSYCHIATRIQUE
+                        EXAMEN PARACLINIQUE
+                              AMNIOSCOPIE
+                              ECHOGRAPHIE
+                              ELECTRO CARDIOGRAMME
+                              ELECTRO ENCEPHALOGRAMME
+                              ENDOSCOPIE
+                              EXAMEN BIOLOGIQUE
+                                    DOSAGE SANGUIN
+                                          BILAN HEPATIQUE
+                                          BILAN LIPIDIQUE
+                                          GLYCEMIE
+                                          NATREMIE
+                                          NUMERATION FORMULE SANGUINE
+                                          TAUX DE CHOLESTEROL
+                                    EXAMEN BACTERIOLOGIQUE
+                                    EXAMEN PARASITOLOGIQUE
+                                    EXAMEN SEROLOGIQUE
+                                    HEMOGRAMME
+                                    HEMOSTASE
+                                          TEMPS DE COAGULATION
+                                    MARQUEUR BIOLOGIQUE
+                              EXPLORATION MEDICALE
+                                    BIOPSIE
+                              FIBROSCOPIE
+                              IMAGERIE MEDICALE
+                                    IMAGERIE CEREBRALE
+                                          MAGNETO ENCEPHALOGRAPHIE
+                                          POTENTIEL EVOQUE COGNITIF
+                                    IMAGERIE PAR RESONANCE MAGNETIQUE
+                                    RADIOGRAPHIE
+                                    SCANNER
+                                          TOMOGRAPHIE PAR EMISSION DE POSITONS
+                                    SCINTIGRAPHIE
+                  INTERVENTION CHIRURGICALE
+                        AMPUTATION
+                        CIRCONCISION
+                        COLOSTOMIE
+                        HYSTERECTOMIE
+                        LARYNGOTOMIE
+                        LOBOTOMIE
+                        STOMIE
+                        TRANSPLANTATION D'ORGANE
+                              DON D'ORGANE
+                              GREFFE D'ORGANE
+                              PRELEVEMENT D'ORGANE
+                  MALADIE
+                        ANAMNESE
+                              ANTECEDENT FAMILIAL
+                        [RE] CARACTERISTIQUES DE LA MALADIE
+                              INFECTION NOSOCOMIALE
+                              MALADIE AIGUE
+                              MALADIE AUTO IMMUNE
+                              MALADIE CHRONIQUE
+                              MALADIE CONGENITALE
+                              MALADIE EMERGENTE
+                              MALADIE FAMILIALE
+                              MALADIE HEREDITAIRE
+                              MALADIE IATROGENE
+                              MALADIE INCURABLE
+                              MALADIE INFANTILE
+                              MALADIE INFLAMMATOIRE
+                              MALADIE INVALIDANTE
+                              MALADIE ORPHELINE
+                              MALADIE PROFESSIONNELLE
+                              MALADIE RARE
+                              MALADIE RECURRENTE
+                              MALADIE SEXUELLEMENT TRANSMISSIBLE
+                        COMORBIDITE
+                        MALADE
+                              MALADE DIFFICILE
+                              MALADE MENTAL
+                                    ENFANT DE MALADE MENTAL
+                                    PARENT DE MALADE MENTAL
+                        SYMPTOME
+                              PRODROME
+                              SYNDROME
+                  SPECIALITE MEDICALE
+                        ADDICTOLOGIE
+                        ALCOOLOGIE
+                        ALLERGOLOGIE
+                        ANESTHESIE REANIMATION
+                        CANCEROLOGIE
+                        CARDIOLOGIE ANGEIOLOGIE
+                        CHIRURGIE
+                              CHIRURGIE ESTHETIQUE
+                        DERMATOLOGIE
+                        ENDOCRINOLOGIE
+                        GASTROENTEROLOGIE
+                        GERIATRIE
+                        GYNECOLOGIE OBSTETRIQUE
+                        HEMATOLOGIE
+                        HEPATOLOGIE
+                        MEDECINE LEGALE
+                        MEDECINE PHYSIQUE ET DE READAPTATION
+                        NEUROLOGIE
+                              NEUROBIOLOGIE
+                              NEUROCHIRURGIE
+                              NEUROENDOCRINOLOGIE
+                              NEUROLINGUISTIQUE
+                              NEUROPHYSIOLOGIE
+                        ODONTOSTOMATOLOGIE
+                        OPHTALMOLOGIE
+                        ORTHOPEDIE
+                        OTO RHINO LARYNGOLOGIE
+                        PEDIATRIE
+                              MATERNOLOGIE
+                              MEDECINE PERINATALE
+                              NEONATALOGIE
+                        PHARMACOLOGIE
+                              PHARMACOCINETIQUE
+                              PHARMACODYNAMIE
+                              PHARMACOPSYCHOLOGIE
+                              PHARMACORESISTANCE
+                        PHONIATRIE
+                        PNEUMOLOGIE
+                        PSYCHIATRIE
+                              ETHNOPSYCHIATRIE
+                              GERONTOPSYCHIATRIE
+                              NEUROPSYCHIATRIE
+                              PEDOPSYCHIATRIE
+                                    PSYCHIATRIE PERINATALE
+                              PSYCHIATRIE BIOLOGIQUE
+                              PSYCHIATRIE DE GUERRE
+                              PSYCHIATRIE MEDICO LEGALE
+                              PSYCHIATRIE MILITAIRE
+                              PSYCHIATRIE PENITENTIAIRE
+                              PSYCHIATRIE SOCIALE
+                        RADIOLOGIE
+                        RHUMATOLOGIE
+                        SEXOLOGIE
+                        TOXICOLOGIE
+                        TRAUMATOLOGIE
+                        UROLOGIE NEPHROLOGIE
+                  SPECIALITE PARAMEDICALE
+                        DIETETIQUE
+                        KINESITHERAPIE
+                        ORTHOPHONIE
+                  [RE] STADE DE LA MALADIE
+                        ACME
+                        COMPLICATION
+                        CONVALESCENCE
+                        DECLENCHEMENT
+                        GRAVITE
+                        GUERISON
+                        RECHUTE
+                        REMISSION
+                        STADE TERMINAL
+                  [RE] TYPE DE MEDECINE
+                        MEDECINE ALTERNATIVE
+                              AROMATHERAPIE
+                              HOMEOPATHIE
+                              MEDECINE ORIENTALE
+                                    ACUPUNCTURE
+                              MEDECINE PSYCHOSOMATIQUE
+                              OSTEOPATHIE
+                              PHYTOTHERAPIE
+                        MEDECINE D'URGENCE
+                        MEDECINE DE CATASTROPHE
+                        MEDECINE DU TRAVAIL
+                        MEDECINE GENERALE
+                        MEDECINE HUMANITAIRE
+                        MEDECINE LIBERALE
+                        MEDECINE PREDICTIVE
+                        MEDECINE SCOLAIRE
+                        MEDECINE TRADITIONNELLE
+                              GUERISSEUR
+            [RE] MOTS OUTILS
+                  ACCESSIBILITE
+                  ACCOMPAGNEMENT
+                  ACCREDITATION
+                  ACQUISITION
+                  ACTION
+                  AGREMENT
+                  AIDE
+                  ALLOCATAIRE
+                  APPROPRIATION
+                  AUTOEVALUATION
+                  BESOIN
+                  BILAN
+                  BUDGET
+                  CAS CLINIQUE
+                  CERTIFICATION
+                  CHANGEMENT
+                  CHARTE
+                  CHOIX
+                  CLINIQUE
+                  COMITE DE PILOTAGE
+                  COMPETENCE
+                  CONCEPT
+                  CONDUITE A TENIR
+                  CONGRES
+                  CONSEQUENCE
+                  CONSULTATION
+                  CONTRACTUALISATION
+                  CONTROLE
+                  COORDINATION
+                  COTATION
+                  COUT
+                  CRISE
+                  CRITERE
+                  DEFINITION
+                  DEMATERIALISATION
+                  DETTE
+                  DEVELOPPEMENT
+                  DIAGNOSTIC
+                  DON
+                  ECHEC
+                  EFFICACITE
+                  EGALITE
+                  ENTRETIEN
+                  EVALUATION
+                  EVENEMENT
+                  EVOLUTION
+                  EXPERIENCE
+                  EXPERTISE
+                  EXTERNALISATION
+                  FINANCEMENT
+                  FONCTIONNEMENT
+                  GESTION
+                  GRATUITE
+                  HISTORIQUE
+                  INDICATEUR
+                  INNOVATION
+                  INTERACTION
+                  INTERDICTION
+                  INTERPRETATION
+                  INTERVENTION
+                  INVENTAIRE
+                  INVESTISSEMENT
+                  LIBERTE
+                  MAINTENANCE
+                  METHODE
+                  METHODOLOGIE
+                  MISSION
+                  MODE
+                  MODELE
+                  MOTIVATION
+                  NOTATION
+                  OBJECTIF
+                  OBSERVATION
+                  ORGANE DE CONSULTATION
+                  ORGANE DE DECISION
+                  ORGANISATION
+                  PAIEMENT
+                  PARTENARIAT
+                  PENURIE
+                  PERFORMANCE
+                  PLAN D'ACTIONS
+                  POLITIQUE
+                  PREVENTION
+                  PROCESSUS
+                  PROJET
+                  PROTOCOLE
+                  QUALITE
+                  RECOMMANDATION
+                  RECUEIL DE DONNEES
+                  REFORME
+                  REFUS
+                  RELATION
+                  REPRESENTATION
+                  RESEAU
+                  RISQUE
+                  ROLE
+                  RYTHME
+                  SEMINAIRE
+                  SIGNALEMENT
+                  SPECIFICITE
+                  STIMULATION
+                  STRATEGIE
+                  TARIF
+                  TECHNIQUE
+                  TECHNOLOGIE
+                  TEMOIGNAGE
+                  THEORIE
+                  TRAITEMENT
+                  VALIDATION
+                  VOLONTE
+            ORGANISATION SANITAIRE
+                  ETABLISSEMENT DE SANTE
+                        CENTRE HOSPITALIER GENERAL
+                        CENTRE HOSPITALIER UNIVERSITAIRE
+                        ETABLISSEMENT DE SOINS DE SUITE ET DE READAPTATION
+                        ETABLISSEMENT PRIVE DE SANTE
+                              ETABLISSEMENT PRIVE PARTICIPANT AU SERVICE PUBLIC HOSPITALIER
+                        ETABLISSEMENT PUBLIC DE SANTE
+                        HOPITAL LOCAL
+                        HOPITAL MILITAIRE
+                        HOPITAL PSYCHIATRIQUE
+                  ORGANISATION DE L'HOPITAL
+                        COOPERATION INTERHOSPITALIERE
+                              COMMUNAUTE D'ETABLISSEMENTS DE SANTE
+                              GROUPEMENT D'INTERET ECONOMIQUE
+                              GROUPEMENT D'INTERET PUBLIC
+                              GROUPEMENT DE COOPERATION SANITAIRE
+                              SYNDICAT INTERHOSPITALIER
+                        DEMARCHE QUALITE
+                              AUDIT
+                              EVALUATION DES PRATIQUES PROFESSIONNELLES
+                              EVALUATION DES SOINS
+                              EXPERT VISITEUR
+                              GESTION DES RISQUES
+                                    EVENEMENT INDESIRABLE
+                                    SECURITE INCENDIE
+                              QUALITE DES SOINS
+                              RAPPORT D'EXPERTISE
+                              VISITE D'ACCREDITATION
+                        GESTION HOSPITALIERE
+                              ASSURANCE
+                              BUDGET HOSPITALIER
+                                    SECTION D'EXPLOITATION
+                                    SECTION D'INVESTISSEMENT
+                              COMPTABILITE HOSPITALIERE
+                              DELEGATION DE GESTION
+                              FINANCEMENT DE L'HOPITAL
+                                    DOTATION HOSPITALIERE
+                                    FORFAIT HOSPITALIER
+                                    PRIX DE JOURNEE
+                                    TARIFICATION A L'ACTIVITE
+                              INDICATEUR DE GESTION
+                                    COMPTABILITE ANALYTIQUE
+                                          CENTRE DE RESPONSABILITE
+                                          UNITE FONCTIONNELLE
+                                    MESURE DE L'ACTIVITE
+                                          DUREE DE SEJOUR
+                                          PROGRAMME DE MEDICALISATION DES SYSTEMES D'INFORMATION
+                                                FICHE PATIENT
+                                                FILE ACTIVE
+                                          VALORISATION DE L'ACTIVITE PSYCHIATRIQUE
+                                                RECUEIL D'INFORMATION MEDICALISEE EN PSYCHIATRIE
+                              PATRIMOINE HOSPITALIER
+                                    BAIL EMPHYTEOTIQUE
+                        INSTANCE DE RECOURS
+                              COMMISSION DE CONCILIATION
+                                    HOSPITALISATION ARBITRAIRE
+                        INSTANCE HOSPITALIERE
+                              COMITE D'ETHIQUE
+                              COMITE D'HYGIENE ET DE SECURITE ET DES CONDITIONS DE TRAVAIL
+                              COMITE DE LUTTE CONTRE LES INFECTIONS NOSOCOMIALES
+                              COMITE DU MEDICAMENT
+                              COMITE TECHNIQUE D'ETABLISSEMENT
+                              COMMISSION ADMINISTRATIVE PARITAIRE
+                              COMMISSION D'APPEL D'OFFRES
+                              COMMISSION DU SERVICE DES SOINS INFIRMIERS
+                              COMMISSION MEDICALE D'ETABLISSEMENT
+                              CONSEIL D'ADMINISTRATION
+                              CONSEIL DE POLE
+                              CONSEIL DE SERVICE
+                              CONSEIL EXECUTIF
+                        ORGANISME DE CONTROLE
+                        PLANIFICATION HOSPITALIERE
+                              CONFERENCE SANITAIRE DE SECTEUR
+                              SCHEMA D'ORGANISATION SANITAIRE
+                                    TERRITOIRE DE SANTE
+                        PROJET D'ETABLISSEMENT
+                              CONTRAT D'OBJECTIF ET DE MOYENS
+                                    CONTRAT DE POLE
+                              POLE D'ACTIVITE
+                              PROJET DE SERVICE
+                              PROJET DE SOINS
+                              PROJET MEDICAL
+                              PROJET SOCIAL
+                        SERVICE EXTRA HOSPITALIER
+                              ACCUEIL FAMILIAL THERAPEUTIQUE
+                              APPARTEMENT THERAPEUTIQUE
+                              CENTRE D'ACCUEIL THERAPEUTIQUE A TEMPS PARTIEL
+                              CENTRE DE CRISE
+                              CENTRE DE POST CURE
+                              CENTRE MEDICO PSYCHOLOGIQUE
+                              HOPITAL DE JOUR
+                        SERVICE HOSPITALIER
+                              SERVICE ADMINISTRATIF
+                                    GESTION DES BIENS
+                              SERVICE DE SOIN INFIRMIER
+                              SERVICE MEDICO TECHNIQUE
+                                    DEPARTEMENT D'INFORMATION MEDICALE
+                                    HYGIENE HOSPITALIERE
+                                          DECHET HOSPITALIER
+                                          STERILISATION
+                                    LABORATOIRE D'ANALYSES MEDICALES
+                                    MORGUE
+                                    PHARMACIE
+                              SERVICE SOCIAL
+                              SERVICE TECHNIQUE
+                                    BLANCHISSERIE
+                                    REPROGRAPHIE
+                                    RESTAURATION COLLECTIVE
+                                          REPAS
+                              UNITE DE SOIN PSYCHIATRIQUE
+                                    CHAMBRE D'ISOLEMENT
+                                    SERVICE FERME
+                                    SERVICE OUVERT
+                                    UNITE POUR MALADES AGITES ET PERTURBATEURS
+                                    UNITE POUR MALADES DIFFICILES
+                                    UNITE PSYCHIATRIQUE INTER DEPARTEMENTALE
+                              UNITE DE SOIN
+                                    SERVICE MATERNITE
+                                          UNITE KANGOUROU
+                                    STRUCTURE D'URGENCE
+                        SYSTEME D'INFORMATION HOSPITALIER
+                  ORGANISATION DE L'HOSPITALISATION
+                        ACCUEIL
+                              DEPOT DE BIENS
+                                    BIENS DES PATIENTS
+                              FORMALITE D'ACCUEIL
+                                    ADMISSION
+                                    CONTRAT DE SEJOUR
+                                    IDENTIFICATION DU PATIENT
+                                    REGISTRE D'ENTREE ET DE SORTIE
+                        HOSPITALISATION
+                              ALTERNATIVE A L'HOSPITALISATION
+                                    HOSPITALISATION A DOMICILE
+                                    SOIN AMBULATOIRE
+                                    SOIN EXTRA HOSPITALIER
+                              HOSPITALISATION A TEMPS COMPLET
+                              HOSPITALISATION A TEMPS PARTIEL
+                                    HOSPITALISATION A LA SEMAINE
+                                    HOSPITALISATION DE JOUR
+                                    HOSPITALISATION DE NUIT
+                                    HOSPITALISATION DE WEEK END
+                              HOSPITALISATION BREVE
+                              HOSPITALISATION LONGUE
+                              HOSPITALISATION PSYCHIATRIQUE
+                                    HOSPITALISATION LIBRE
+                                    HOSPITALISATION MERE ENFANT
+                                    HOSPITALISATION SOUS CONTRAINTE
+                                          HOSPITALISATION A LA DEMANDE D'UN TIERS
+                                          HOSPITALISATION D'OFFICE
+                        MODALITE DE SORTIE
+                              SORTIE SANS AUTORISATION
+                                    FUGUE
+                                    SORTIE CONTRE AVIS MEDICAL
+                              SORTIE
+                                    PERMISSION DE SORTIE
+                                    SORTIE D'ESSAI
+                  ORGANISATION DES SOINS PSYCHIATRIQUES
+                        DESINSTITUTIONNALISATION
+                        INTERSECTORIALITE
+                        PEDOPSYCHIATRIE DE LIAISON
+                        PSYCHIATRIE DE LIAISON
+                        SECTORISATION PSYCHIATRIQUE
+                        SERVICE MEDICO PSYCHOLOGIQUE REGIONAL
+                  PLATEAU TECHNIQUE
+                        BLOC OPERATOIRE
+            PATHOLOGIE PSYCHIATRIQUE
+                  NOSOGRAPHIE PSYCHIATRIQUE
+                        DEMENCE
+                              DEMENCE A CORPS DE LEWY
+                              DEMENCE DE TYPE ALZHEIMER
+                              DEMENCE DEBUTANTE
+                              DEMENCE FRONTO TEMPORALE
+                              DEMENCE PRESENILE
+                              DEMENCE SENILE
+                              DEMENCE SOUS CORTICALE
+                              DEMENCE VASCULAIRE
+                        ETAT LIMITE
+                        NEVROSE
+                              NEVROSE D'ECHEC
+                              NEVROSE HYSTERIQUE
+                                    HYSTERIE DE CONVERSION
+                                    HYSTERIE DISSOCIATIVE
+                                          PERSONNALITE MULTIPLE
+                                          SYNDROME DE GANSER
+                              TROUBLE ANXIEUX GENERALISE
+                        PERVERSION
+                              MASOCHISME
+                              SADISME
+                        PSYCHOSE
+                              AUTISME
+                              PARANOIA
+                                    DELIRE D'INTERPRETATION
+                                    DELIRE DE JALOUSIE
+                                    DELIRE DE REVENDICATION
+                                    EROTOMANIE
+                                    PARANOIA SENSITIVE
+                              PARAPHRENIE
+                              PSYCHOSE BLANCHE
+                              PSYCHOSE CARCERALE
+                              PSYCHOSE CHRONIQUE
+                              PSYCHOSE DEFICITAIRE
+                              PSYCHOSE DELIRANTE AIGUE
+                              PSYCHOSE EXPERIMENTALE
+                              PSYCHOSE HALLUCINATOIRE CHRONIQUE
+                              PSYCHOSE HYSTERIQUE
+                              PSYCHOSE INFANTILE
+                                    AUTISME INFANTILE
+                                          AUTISME DE KANNER
+                                          SYNDROME D'ASPERGER
+                                          SYNDROME DE RETT
+                                          TROUBLE ENVAHISSANT DU DEVELOPPEMENT
+                                    DYSHARMONIE EVOLUTIVE
+                                    PSYCHOSE INFANTILE PRECOCE
+                                    PSYCHOSE SYMBIOTIQUE
+                                    SCHIZOPHRENIE INFANTILE
+                              PSYCHOSE POST TRAUMATIQUE
+                              PSYCHOSE PUERPERALE
+                              SCHIZOPHRENIE
+                                    HEBEPHRENIE
+                                    SCHIZOPHRENIE CATATONIQUE
+                                    SCHIZOPHRENIE DEFICITAIRE
+                                    SCHIZOPHRENIE PARANOIDE
+                                    SCHIZOPHRENIE RESISTANTE
+                        TROUBLE DE L'ATTENTION
+                              TROUBLE DEFICITAIRE DE L'ATTENTION HYPERACTIVITE
+                        TROUBLE DE L'HUMEUR
+                              CYCLOTHYMIE
+                              DEPRESSION
+                                    DEPRESSION ANACLITIQUE
+                                    DEPRESSION DU POST PARTUM
+                                    DEPRESSION ENDOGENE
+                                    DEPRESSION MASQUEE
+                                    DEPRESSION MINEURE
+                                    DEPRESSION POST PSYCHOTIQUE
+                                    DEPRESSION PRECOCE
+                                    DEPRESSION REACTIONNELLE
+                                    DEPRESSION SAISONNIERE
+                                    DEPRESSION UNIPOLAIRE
+                              MANIE
+                              MELANCOLIE
+                              TROUBLE BIPOLAIRE
+                                    EPISODE MANIAQUE
+                                    HYPOMANIE
+                        TROUBLE DE LA PERSONNALITE
+                              PERSONNALITE DEPENDANTE
+                              PERSONNALITE EVITANTE
+                              PERSONNALITE HISTRIONIQUE
+                              PERSONNALITE NARCISSIQUE
+                              PERSONNALITE PARANOIAQUE
+                              PERSONNALITE SCHIZOTYPIQUE
+                              PSYCHOPATHIE
+                              SCHIZOIDIE
+                              TROUBLE FACTICE
+                                    SYNDROME DE LASTHENIE DE FERJOL
+                                    SYNDROME DE MUNCHHAUSEN PAR PROCURATION
+                                    SYNDROME DE MUNCHHAUSEN
+                        TROUBLE DU COMPORTEMENT ALIMENTAIRE
+                              ANOREXIE MENTALE
+                              BOULIMIE
+                        TROUBLE DU COMPORTEMENT
+                              SYNDROME DE DIOGENE
+                        TROUBLE DU LANGAGE
+                        TROUBLE MENTAL ORGANIQUE
+                        TROUBLE NEUROPSYCHOLOGIQUE
+                              TROUBLE COGNITIF
+                              TROUBLE DE LA MEMOIRE
+                        TROUBLE PSYCHOSOMATIQUE
+                              ALEXITHYMIE
+                              NANISME PSYCHOGENE
+                  SEMIOLOGIE PSYCHIATRIQUE
+                        SYMPTOMATOLOGIE DE L'ATTENTION
+                              HYPERACTIVITE
+                        SYMPTOMATOLOGIE DE L'HUMEUR
+                              AUTOACCUSATION
+                              AUTODEPRECIATION
+                              AUTOPUNITION
+                              DYSTHYMIE
+                              LABILITE
+                              TACHYPSYCHIE
+                        SYMPTOMATOLOGIE DES TROUBLES DE LA PERSONNALITE
+                              IMMATURITE
+                              MYTHOMANIE
+                        SYMPTOMATOLOGIE DES TROUBLES DU LANGAGE
+                              APHASIE
+                              BEGAIEMENT
+                              COPROLALIE
+                              DYSARTHRIE
+                              DYSPHASIE
+                              DYSPHONIE
+                              ECHOLALIE
+                              GLOSSOLALIE
+                              MUTISME
+                                    MUTISME ELECTIF
+                              PARAPHASIE
+                        SYMPTOMATOLOGIE DU COMPORTEMENT ALIMENTAIRE
+                              COPROPHAGIE
+                              HYPERPHAGIE
+                              MERYCISME
+                              PICA
+                              POTOMANIE
+                        SYMPTOMATOLOGIE DU COMPORTEMENT
+                              AGITATION
+                              ANHEDONIE
+                              CATALEPSIE
+                                    STUPEUR
+                              CLINOPHILIE
+                              COLLECTIONNISME
+                              COMPORTEMENT VIOLENT
+                                    AUTOMUTILATION
+                                    CRISE CLASTIQUE
+                              DANGEROSITE
+                              ERRANCE
+                              GRAPHOMANIE
+                              IMPULSIVITE
+                              PASSAGE A L'ACTE
+                              SUICIDE
+                                    PRIMO SUICIDANT
+                                    RECIDIVE SUICIDAIRE
+                                    RISQUE SUICIDAIRE
+                                    SUICIDE ALTRUISTE
+                                    SUICIDE COLLECTIF
+                                          PACTE SUICIDAIRE
+                                    TENTATIVE DE SUICIDE
+                        SYMPTOMATOLOGIE MENTALE ORGANIQUE
+                              DEGENERESCENCE
+                        SYMPTOMATOLOGIE NEUROPSYCHOLOGIQUE
+                              AGNOSIE
+                              APRAXIE
+                                    DYSPRAXIE
+                              SYMPTOMATOLOGIE DES TROUBLES COGNITIFS
+                                    BRADYPSYCHIE
+                                    DESORIENTATION SPATIO TEMPORELLE
+                                    DETERIORATION MENTALE
+                              SYMPTOMATOLOGIE DES TROUBLES DE LA MEMOIRE
+                                    AMNESIE
+                                          AMNESIE ANTEROGRADE
+                                          AMNESIE RETROGRADE
+                                    HYPERMNESIE
+                              TIC
+                                    BRUXISME
+                              TROUBLE DE LA MARCHE
+                        SYMPTOMATOLOGIE NEVROTIQUE
+                              ABOULIE
+                              AMNESIE PSYCHOGENE
+                              CANCEROPHOBIE
+                              DYSMORPHOPHOBIE
+                              FUGUE PSYCHOGENE
+                              HYPOCONDRIE
+                              PHOBIE
+                                    AGORAPHOBIE
+                                    ATTAQUE DE PANIQUE
+                                    CLAUSTROPHOBIE
+                                    EREUTOPHOBIE
+                                    HEAUTOPHOBIE
+                                    NOSOPHOBIE
+                                    PHOBIE D'IMPULSION
+                                    PHOBIE SCOLAIRE
+                                    PHOBIE SOCIALE
+                              SUGGESTIBILITE
+                                    THEATRALISME
+                              SYNDROME POST TRAUMATIQUE
+                              TROUBLE DE CONVERSION
+                                    ACCIDENT TETANIFORME
+                                    BOVARYSME
+                                    CONVERSION HYSTERIQUE
+                                    PATHOMIMIE
+                                    SIMULATION
+                              TROUBLE DE L'ATTACHEMENT
+                                    ABANDONNISME
+                                    CARENCE AFFECTIVE
+                                    HOSPITALISME
+                                    INDIFFERENCE AFFECTIVE
+                                    INFANTILISME
+                              TROUBLE OBSESSIONNEL COMPULSIF
+                                    COMPORTEMENT DE VERIFICATION
+                                    COMPULSION
+                                    LENTEUR OBSESSIONNELLE
+                                    OBSESSION
+                                    RITE COMPULSIF
+                        SYMPTOMATOLOGIE PSYCHOTIQUE
+                              APRAGMATISME
+                              ATTITUDE ANTITHETIQUE
+                              AUTOAGRESSIVITE
+                              AUTOMATISME MENTAL
+                              BOUFFEE DELIRANTE AIGUE
+                              CATATONIE
+                              CHRONICITE
+                                    NEVROSE INSTITUTIONNELLE
+                              CLAUSTROMANIE
+                              CONFUSION MENTALE
+                              DECOMPENSATION
+                              DELIRE
+                                    CONFABULATION
+                                    CONVICTION DELIRANTE
+                                    DELIRE A DEUX
+                                    DELIRE CHRONIQUE
+                                    DELIRE COLLECTIF
+                                    DELIRE D'IMAGINATION
+                                    DELIRE D'INFLUENCE
+                                    DELIRE DE FILIATION
+                                    DELIRE DE GRANDEUR
+                                    DELIRE DE PERSECUTION
+                                    DELIRE DE SERIEUX ET CAPGRAS
+                                    DELIRE EROTOMANIAQUE
+                                    DELIRE MYSTIQUE
+                                    DELIRE NON SYSTEMATISE
+                                    DELIRE PARANOIAQUE
+                                    DELIRE SENSITIF DE RELATION
+                                    DELIRE SYSTEMATISE
+                                    SYNDROME D'IDENTIFICATION DELIRANTE
+                                          FAUSSE RECONNAISSANCE
+                                          SYNDROME DE CAPGRAS
+                                          SYNDROME DE FREGOLI
+                                    SYNDROME DE COTARD
+                              DEPERSONNALISATION
+                              HALLUCINATION
+                                    HALLUCINATION SENSORIELLE
+                                          HALLUCINATION AUDITIVE
+                                          HALLUCINATION GUSTATIVE
+                                          HALLUCINATION OLFACTIVE
+                                          HALLUCINATION TACTILE
+                                          HALLUCINATION VISUELLE
+                                    HEAUTOSCOPIE
+                                    PSEUDO HALLUCINATION
+                              RETRAIT PSYCHOTIQUE
+                        SYMPTOMATOLOGIE SCHIZOPHRENIQUE
+                              DISCORDANCE
+                              FADING MENTAL
+                              JARGONOPHASIE
+                              LOGORRHEE
+                              RIRES IMMOTIVES
+                              SCHIZOPHASIE
+                              STEREOTYPIE
+                                    STEREOTYPIE D'ATTITUDE
+                                    STEREOTYPIE GESTUELLE
+                                    STEREOTYPIE VERBALE
+                              SYMPTOME NEGATIF
+                              SYMPTOME POSITIF
+                              TROUBLE DISSOCIATIF DE L'IDENTITE
+                              TROUBLE SCHIZOAFFECTIF
+                              ZOOPATHIE
+            PATHOLOGIE SOMATIQUE
+                  NOSOGRAPHIE SOMATIQUE
+                        MALADIE CARDIOVASCULAIRE
+                              ACCIDENT VASCULAIRE CEREBRAL
+                              HYPERTENSION
+                                    HYPERTENSION ARTERIELLE
+                                    HYPERTENSION INTRACRANIENNE
+                              HYPOTENSION ORTHOSTATIQUE
+                              INFARCTUS DU MYOCARDE
+                              INSUFFISANCE CARDIAQUE
+                        MALADIE DE L'APPAREIL CIRCULATOIRE
+                              ATHEROSCLEROSE
+                              INSUFFISANCE VEINEUSE
+                        MALADIE DE L'APPAREIL DIGESTIF
+                              CIRRHOSE
+                              COLITE
+                                    MALADIE DE CROHN
+                                    RECTOCOLITE HEMORRAGIQUE
+                              HEPATITE
+                                    HEPATITE A
+                                    HEPATITE B
+                                    HEPATITE C
+                                    HEPATITE D
+                              INTOXICATION ALIMENTAIRE
+                                    BOTULISME
+                                    SALMONELLOSE
+                                    SATURNISME
+                        MALADIE DE L'APPAREIL GENITAL
+                              STERILITE
+                        MALADIE DE L'APPAREIL RESPIRATOIRE
+                              ASTHME
+                              BRONCHIOLITE
+                              BRONCHOPNEUMOPATHIE CHRONIQUE OBSTRUCTIVE
+                        MALADIE DE L'APPAREIL URINAIRE
+                              INSUFFISANCE RENALE
+                        MALADIE DE LA PEAU
+                              ALOPECIE
+                              ECZEMA
+                              PSORIASIS
+                              ZONA
+                        MALADIE DU METABOLISME
+                              DIABETE
+                                    HYPOGLYCEMIE
+                              OBESITE
+                              SYNDROME METABOLIQUE
+                        MALADIE DU SANG
+                              ANEMIE
+                              LEUCEMIE
+                              SYNDROME HEMORRAGIQUE
+                        MALADIE DU SYSTEME ENDOCRINIEN
+                              HYPERTHYROIDIE
+                                    MALADIE DE BASEDOW
+                              HYPOTHYROIDIE
+                              MALADIE DE CUSHING
+                        MALADIE DU SYSTEME IMMUNITAIRE
+                              DEFICIT IMMUNITAIRE
+                              MYASTHENIE
+                              SIDA
+                                    SEROPOSITIVITE
+                                    VIH
+                        MALADIE GENETIQUE
+                              HEMOPHILIE
+                              MALADIE CHROMOSOMIQUE
+                                    SYNDROME DE KLINEFELTER
+                                    SYNDROME DE L'X FRAGILE
+                                    SYNDROME DE TURNER
+                                    TRISOMIE
+                                          SYNDROME TRIPLO X
+                                          TRISOMIE 13
+                                          TRISOMIE 18
+                                          TRISOMIE 21
+                              MUCOVISCIDOSE
+                              OSTEOGENESE IMPARFAITE
+                        MALADIE INFECTIEUSE
+                              HERPES
+                              LEGIONELLOSE
+                              MENINGITE
+                              SYPHILIS
+                              TETANOS
+                              TUBERCULOSE
+                        MALADIE NEUROLOGIQUE
+                              ATROPHIE CEREBRALE
+                              ENCEPHALITE
+                              ENCEPHALOPATHIE
+                              EPILEPSIE
+                                    SYNDROME DE LANDAU ET KLEFFNER
+                                    SYNDROME DE LENNOX GASTAUT
+                                    SYNDROME DE WEST
+                                    SYNDROME EPILEPTIQUE
+                              LEUCODYSTROPHIE
+                              MALADIE D'ALZHEIMER
+                              MALADIE DE CREUTZFELDT JACOB
+                              MALADIE DE GILLES DE LA TOURETTE
+                              MALADIE DE PARKINSON
+                              SYNDROME D'ANTON ET BABINSKI
+                        MALADIE NEUROMUSCULAIRE
+                              MYOPATHIE
+                                    MALADIE DE STEINERT
+                                    MYOPATHIE DE DUCHENNE
+                              SCLEROSE EN PLAQUES
+                              SCLEROSE LATERALE AMYOTROPHIQUE
+                              SYNDROME DE GUILLAIN ET BARRE
+                        MALADIE PARASITAIRE
+                              GALE
+                              MYCOSE
+                              PALUDISME
+                              TOXOPLASMOSE
+                        MALADIE RHUMATOLOGIQUE
+                              ARTHROSE
+                              LOMBALGIE
+                              OSTEOPOROSE
+                              POLYARTHRITE RHUMATOIDE
+                        MALADIE VASCULO CEREBRALE
+                        MALADIE VIRALE
+                              GRIPPE
+                        MALFORMATION
+                              GIGANTISME
+                              HERMAPHRODISME
+                              HYDROCEPHALIE
+                              MACROCEPHALIE
+                              MICROCEPHALIE
+                              NANISME
+                              PHACOMATOSE
+                                    SCLEROSE TUBEREUSE DE BOURNEVILLE
+                              SPINA BIFIDA
+                        TROUBLE DU SOMMEIL
+                              APNEE DU SOMMEIL
+                              HYPERSOMNIE
+                                    SYNDROME DE KLEINE LEVIN
+                              INSOMNIE
+                              NARCOLEPSIE
+                              PARASOMNIE
+                                    CAUCHEMAR
+                                    SOMNAMBULISME
+                                          SYNDROME D'ELPENOR
+                                    TERREURS NOCTURNES
+                              SYNDROME DE GELINEAU
+                              TROUBLE DU RYTHME VEILLE SOMMEIL
+                        TROUBLE SENSORIEL
+                        TROUBLE SPHINCTERIEN
+                              ENCOPRESIE
+                              ENURESIE
+                              INCONTINENCE
+                        TUMEUR
+                              CANCER
+                                    MELANOME
+                                    SARCOME
+                              METASTASE
+                              TUMEUR CEREBRALE
+                  SEMIOLOGIE SOMATIQUE
+                        ABCES
+                        ALLERGIE
+                        ANOREXIE
+                        ASTHENIE
+                              APATHIE
+                        CICATRICE
+                        DOULEUR
+                        ETAT CONFUSIONNEL
+                        FRACTURE
+                        HEMORRAGIE
+                        INFECTION
+                        INTOXICATION
+                        LESION
+                              BRULURE
+                              ULCERE
+                        PLAIE
+                        SEQUELLE
+                        SOMNOLENCE
+                        SYMPTOMATOLOGIE CARDIAQUE
+                              ARYTHMIE
+                                    TORSADE DE POINTE
+                              TACHYCARDIE
+                        SYMPTOMATOLOGIE DE L'APPAREIL DIGESTIF
+                              CONSTIPATION
+                              DIARRHEE
+                              NAUSEE
+                              REFLUX GASTRO OESOPHAGIEN
+                              TROUBLE DE LA DEGLUTITION
+                              VOMISSEMENT
+                        SYMPTOMATOLOGIE DE L'APPAREIL LOCOMOTEUR
+                              AKINESIE
+                              ATAXIE
+                              DYSKINESIE
+                              HYPERKINESIE
+                              TROUBLE MUSCULO SQUELETTIQUE
+                        SYMPTOMATOLOGIE DERMATOLOGIQUE
+                              CICATRISATION
+                              ESCARRE
+                              URTICAIRE
+                        SYMPTOMATOLOGIE DU METABOLISME
+                              DENUTRITION
+                              DESHYDRATATION
+                              HYPERTHERMIE
+                              HYPOTHERMIE
+                              MAIGREUR
+                              MALNUTRITION
+                              POLYDIPSIE
+                              SURPOIDS
+                        SYMPTOMATOLOGIE NEUROLOGIQUE
+                              AKATHISIE
+                              CEPHALEE
+                              CHOREE
+                                    CHOREE DE HUNTINGTON
+                              COMA
+                              CONVULSION
+                              LESION CEREBRALE
+                              MIGRAINE
+                              MORT CEREBRALE
+                              PARALYSIE
+                              PERTE DE CONNAISSANCE
+                                    SPASME DU SANGLOT
+                              SYNDROME FRONTAL
+                              SYNDROME TEMPORAL
+                              TROUBLE DE L'EQUILIBRE
+                                    VERTIGE
+                        SYMPTOMATOLOGIE NEUROMUSCULAIRE
+                              TETANIE
+                        SYMPTOMATOLOGIE RESPIRATOIRE
+                              ASPHYXIE
+                              DYSPNEE
+                              INSUFFISANCE RESPIRATOIRE
+                        SYMPTOMATOLOGIE SENSORIELLE
+                              ACOUPHENE
+                              DEFICIENCE AUDITIVE
+                                    SURDITE
+                              DEFICIENCE VISUELLE
+                                    AMBLYOPIE
+                                    CECITE
+                              MUTITE
+                                    AUDIMUTITE
+                        TRAUMATISME
+                              POLYTRAUMATISME
+                              TRAUMATISME CRANIEN
+                                    SYNDROME TRAUMATIQUE
+                                          SYNDROME DES ENFANTS BATTUS
+                                          SYNDROME DES ENFANTS SECOUES
+            PERIODE HISTORIQUE
+                  ANTIQUITE
+                  EPOQUE CONTEMPORAINE
+                        19E SIECLE
+                        20E SIECLE
+                        21E SIECLE
+                  EPOQUE MODERNE
+                        17E SIECLE
+                        18E SIECLE
+                        ANCIEN REGIME
+                        RENAISSANCE
+                        REVOLUTION FRANCAISE
+                  MOYEN AGE
+                  PREHISTOIRE
+            PHYSIOLOGIE
+                  ADN
+                        CHROMOSOME
+                  BESOIN PHYSIOLOGIQUE
+                        ALIMENTATION
+                              APPETIT
+                              FAIM
+                              MINERAUX
+                                    CALCIUM
+                                    FER
+                                    FLUOR
+                                    MAGNESIUM
+                                    OLIGO ELEMENT
+                                    PHOSPHORE
+                                    POTASSIUM
+                              NUTRIMENT
+                                    GLUCIDE
+                                    LIPIDE
+                                    PROTIDE
+                                    VITAMINE
+                        ALLAITEMENT
+                              SEVRAGE
+                        HYDRATATION
+                              SOIF
+                        RESPIRATION
+                        SOMMEIL
+                              ENDORMISSEMENT
+                        SUCCION
+                  FREQUENCE CARDIAQUE
+                        TENSION ARTERIELLE
+                  METABOLISME
+                  ORGANOGENESE
+                        EMBRYON
+                        FOETUS
+                  PERCEPTION SENSORIELLE
+                        AUDITION
+                              SON
+                        GOUT
+                        ODORAT
+                        TOUCHER
+                        VISION
+                              COULEUR
+                  PHYSIOLOGIE SEXUELLE
+                        ANDROPAUSE
+                        MENOPAUSE
+                        MENSTRUATION
+                              AMENORRHEE
+                              SYNDROME PREMENSTRUEL
+                        PUBERTE
+                  POIDS
+                        PERTE DE POIDS
+                        PRISE DE POIDS
+                  PROCREATION
+                  PUERPERALITE
+                        GROSSESSE
+                  SANG
+                        GROUPE SANGUIN
+                  SECRETION
+                        HORMONE
+                              INSULINE
+                              PROLACTINE
+                        SELLES
+                        SPERME
+                        SUEUR
+                        URINE
+                  SYSTEME ENDOCRINIEN
+                        GLANDE SURRENALE
+                        HYPOPHYSE
+                        PARATHYROIDE
+                        THYROIDE
+                  SYSTEME NERVEUX
+                        LIQUIDE CEPHALO RACHIDIEN
+                        MOELLE EPINIERE
+                        NEURONE
+                              PLASTICITE NEURONALE
+                        NEUROTRANSMETTEUR
+                              ACETYLCHOLINE
+                              CATECHOLAMINE
+                              DOPAMINE
+                              MELATONINE
+                              NEUROPEPTIDE
+                              NORADRENALINE
+                              SEROTONINE
+                        SYNAPSE
+                        SYSTEME NERVEUX CENTRAL
+                              CORPS CALLEUX
+                              ENCEPHALE
+                                    STRUCTURE CORTICALE
+                                          HIPPOCAMPE
+                              HYPOTHALAMUS
+                              LOBE CEREBRAL
+                                    LOBE FRONTAL
+                                    LOBE OCCIPITAL
+                                    LOBE PARIETAL
+                                    LOBE TEMPORAL
+                              SYSTEME LIMBIQUE
+                              THALAMUS
+                        SYSTEME NERVEUX PERIPHERIQUE
+            PRATIQUE DU SOIN
+                  PRISE EN CHARGE
+                        ACCOMPAGNEMENT DU MOURANT
+                        ACCUEIL TEMPORAIRE
+                        DEMANDE DE SOINS
+                        INDICATION THERAPEUTIQUE
+                        PRESCRIPTION MEDICALE
+                        PROJET THERAPEUTIQUE
+                        REFERENT
+                        RELATION SOIGNANT ECOLE
+                        RELATION SOIGNANT FAMILLE
+                        RELATION SOIGNANT SOIGNE
+                              ACCOMPAGNEMENT THERAPEUTIQUE
+                              BIENTRAITANCE
+                              RELATION D'AIDE
+                        RELATION THERAPEUTIQUE
+                              ATTITUDE DU PROFESSIONNEL
+                                    SAVOIR ETRE
+                                    SAVOIR FAIRE
+                              CADRE THERAPEUTIQUE
+                                    CONTRAT THERAPEUTIQUE
+                              DISTANCE THERAPEUTIQUE
+                              EMPATHIE
+                              ENTRETIEN THERAPEUTIQUE
+                                    CONDUITE DE L'ENTRETIEN
+                                    DEBRIEFING
+                                    ENTRETIEN DE GROUPE
+                                    ENTRETIEN FAMILIAL
+                                    PREMIER ENTRETIEN
+                              TEMPS INFORMEL
+                        SEANCE
+                        SOIN HOLISTIQUE
+                        SURVEILLANCE
+                  SOIN
+                        ABSTENTION THERAPEUTIQUE
+                        ACHARNEMENT THERAPEUTIQUE
+                        ERGONOMIE DES SOINS
+                        ISOLEMENT SEPTIQUE
+                        SOIN A DOMICILE
+                        SOIN D'URGENCE
+                        SOIN EDUCATIF
+                        SOIN HOSPITALIER
+                        SOIN INFIRMIER
+                              CONSULTATION INFIRMIERE
+                              DELEGATION DE SOINS
+                              DEMARCHE DE SOINS
+                                    PLAN DE SOINS
+                                    REPARTITION DES SOINS
+                                    SOIN INDIVIDUALISE
+                                    SOIN RELATIONNEL
+                                          ENTRETIEN INFIRMIER
+                              DIAGNOSTIC INFIRMIER
+                              DOSSIER DE SOINS
+                                    RESUME DE SOINS INFIRMIERS
+                                    TRANSMISSION CIBLEE
+                              PROTOCOLE DE SOINS
+                              ROLE PROPRE
+                              THEORIE DES SOINS INFIRMIERS
+                                    MODELE DE SOINS
+                              VISITE A DOMICILE
+                        SOIN INTENSIF
+                        SOIN INTERCULTUREL
+                        SOIN PREVENTIF
+                        SOIN PSYCHIATRIQUE
+                              ISOLEMENT THERAPEUTIQUE
+                        SOIN TECHNIQUE
+                              AEROSOL
+                              ALIMENTATION ARTIFICIELLE
+                              ASPIRATION
+                              BANDAGE
+                              CONTENTION
+                              INJECTION
+                              INSTILLATION
+                              INTUBATION
+                              LAVEMENT EVACUATEUR
+                              MASSAGE
+                              MESURE DES CONSTANTES
+                              OXYGENOTHERAPIE
+                              PANSEMENT
+                              PERFUSION
+                              PRELEVEMENT SANGUIN
+                              REEDUCATION
+                              SONDAGE URINAIRE
+                              TOILETTE
+                                    TOILETTE MORTUAIRE
+                              TRACHEOTOMIE
+                              TRANSFUSION SANGUINE
+                              VENTILATION ARTIFICIELLE
+                        SOINS DE SUPPORT
+                        SOINS PALLIATIFS
+            PSYCHANALYSE
+                  ANGOISSE
+                        ANGOISSE D'ABANDON
+                        ANGOISSE DE CASTRATION
+                        ANGOISSE DE MORT
+                        ANGOISSE DE SEPARATION
+                        ANGOISSE PRIMITIVE
+                              VIDE
+                        CONFLIT ESTHETIQUE
+                        TRAUMATISME PSYCHIQUE
+                              TRAUMATISME DE LA NAISSANCE
+                  CAUSALITE PSYCHIQUE
+                        CONFLIT PSYCHIQUE
+                              AMBIVALENCE
+                              BISEXUALITE PSYCHIQUE
+                              NEVROSE INFANTILE
+                              NEVROSE OBSESSIONNELLE
+                        MECANISME DE DEFENSE
+                              AMNESIE INFANTILE
+                              ANNULATION PSYCHIQUE
+                              CENSURE
+                              CLIVAGE
+                              DENI
+                              DEPLACEMENT
+                              EVITEMENT
+                              FAUX SELF
+                              FORCLUSION
+                              IDEALISATION
+                              IDENTIFICATION A L'AGRESSEUR
+                              PROJECTION
+                              REFOULEMENT
+                                    DOUBLE
+                                    INQUIETANTE ETRANGETE
+                              REGRESSION
+                              REPRESSION PSYCHIQUE
+                              SOUVENIR ECRAN
+                              SUBLIMATION
+                              TEMPORALITE PSYCHIQUE
+                                    APRES COUP
+                  METAPSYCHOLOGIE
+                        APPAREIL PSYCHIQUE GROUPAL
+                              ILLUSION GROUPALE
+                        APPAREIL PSYCHIQUE
+                        DEUXIEME TOPIQUE
+                              CA
+                              MOI
+                                    ENVELOPPE PSYCHIQUE
+                              SURMOI
+                                    IDEAL DU MOI
+                        PREMIERE TOPIQUE
+                              CONSCIENT
+                              INCONSCIENT
+                                    PRINCIPE DE PLAISIR
+                              PRECONSCIENT
+                                    PRINCIPE DE REALITE
+                  NAISSANCE PSYCHIQUE
+                        DEVELOPPEMENT PSYCHIQUE
+                              POSITION DEPRESSIVE
+                                    ARCHAIQUE
+                              POSITION PARANOIDE
+                              POSITION SCHIZOPARANOIDE
+                                    IDENTIFICATION PROJECTIVE
+                              STADE DU MIROIR
+                                    JE
+                        FONCTION MATERNELLE
+                              DYADE
+                              HOLDING
+                              MERE MORTE
+                              PREOCCUPATION MATERNELLE PRIMAIRE
+                              SYMBIOSE
+                                    INTERSUBJECTIVITE
+                                    SEPARATION INDIVIDUATION
+                        FONCTION PATERNELLE
+                              HORDE PRIMITIVE
+                              LOI DU PERE
+                              MEURTRE DU PERE
+                              NOM DU PERE
+                              TRIADE
+                  PSYCHOLOGIE ANALYTIQUE
+                        AMPLIFICATION
+                        ANIMA
+                        ANIMUS
+                        ARCHETYPE
+                              SOI
+                        EXTRAVERSION
+                        INCONSCIENT COLLECTIF
+                        RETRAIT DES PROJECTIONS
+                        SYNCHRONICITE
+                  STRUCTURE PSYCHIQUE
+                        AUTRE
+                              CHOSE
+                              MIROIR
+                              PYGMALION
+                        DISCOURS
+                              BANDE DE MOEBIUS
+                              LA LETTRE
+                              SEMBLANT
+                              TRAIT UNAIRE
+                        GRAPHE
+                              GRAPHE DU DESIR
+                              SCHEMA L
+                        NOEUD BORROMEEN
+                              IMAGINAIRE
+                              SYMBOLIQUE
+                  THEORIE DES PULSIONS
+                        EMPRISE
+                        FRUSTRATION
+                        PULSION
+                              AFFECT
+                              INTROJECTION
+                                    DEUIL
+                                          FANTOME
+                                          INCORPORATION
+                                          NEGATIF
+                                          TRAVAIL DE DEUIL
+                                    RELATION D'OBJET
+                                    REPRESENTATION PULSIONNELLE
+                                          ORIGINAIRE
+                                                MENTALISATION
+                              LIAISON
+                                    DELIAISON
+                              OBJET
+                                    FETICHE
+                                    OBJET TRANSITIONNEL
+                                          ESPACE TRANSITIONNEL
+                                    PERTE D'OBJET
+                              PULSION DE MORT
+                              PULSION DE VIE
+                              PULSION SCOPIQUE
+                  VIE PSYCHIQUE
+                        [RE] ACTE PSYCHIQUE
+                              ACTE MANQUE
+                              LAPSUS
+                              MOT D'ESPRIT
+                              OUBLI
+                        COMPLEXE
+                              COMPLEXE D'OEDIPE
+                              COMPLEXE DE CASTRATION
+                        DESORGANISATION PSYCHIQUE
+                              SOMATISATION
+                        PROCESSUS PSYCHIQUE
+                              ELABORATION PSYCHIQUE
+                              IDENTIFICATION
+                                    IDENTIFICATION ADHESIVE
+                                    IDENTIFICATION PRIMAIRE
+                                          MOI IDEAL
+                              NEGATION
+                              REPETITION
+                              SUBJECTIVATION
+                        PRODUCTION PSYCHIQUE
+                              COMPAGNON IMAGINAIRE
+                              ENFANT IMAGINAIRE
+                              FANTASME
+                                    ANTOEDIPE
+                                    FANTASME ORIGINAIRE
+                                          SCENE ORIGINAIRE
+                                    REALITE PSYCHIQUE
+                              IMAGE DU CORPS
+                              IMAGO
+                              REVE
+                              ROMAN FAMILIAL
+                              SOUVENIR
+                              TRANSMISSION PSYCHIQUE
+                        VECU
+                              ABSENCE
+                                    JEU DE LA BOBINE
+                              CULPABILITE
+                                    FAUTE
+                              PLAINTE
+                              SATISFACTION
+                                    HALLUCINATION NEGATIVE
+                              SINTHOME
+            PSYCHOLOGIE
+                  COMMUNICATION
+                        COMMUNICATION ECRITE
+                        COMMUNICATION NON VERBALE
+                              HAPTONOMIE
+                              LANGAGE GESTUEL
+                                    BALANCEMENT
+                              LANGUE DES SIGNES
+                              LANGUE PARLEE COMPLETEE
+                        COMMUNICATION VERBALE
+                        LANGAGE
+                              ANALOGIE
+                              LANGUE
+                                    LANGUE ETRANGERE
+                                    LANGUE FRANCAISE
+                                    LANGUE MATERNELLE
+                                    MULTILINGUISME
+                              METAPHORE
+                              METONYMIE
+                              MOT
+                              PAROLE
+                  PSYCHOGENESE
+                        DEVELOPPEMENT AFFECTIF
+                              ANGOISSE DU HUITIEME MOIS
+                              ATTACHEMENT
+                              MATURATION
+                                    MATURITE
+                              SEPARATION
+                              SOCIALISATION
+                        DEVELOPPEMENT COGNITIF
+                              STADE OPERATOIRE
+                        DEVELOPPEMENT DE L'ENFANT
+                              DEVELOPPEMENT PSYCHOMOTEUR
+                                    GESTE
+                                          PREHENSION
+                                    MOUVEMENT
+                                          REFLEXE
+                                                REFLEXE ARCHAIQUE
+                                                REFLEXE CONDITIONNE
+                              DEVELOPPEMENT SENSORIEL
+                                    ORALITE
+                              PRE OEDIPE
+                        DEVELOPPEMENT DU LANGAGE
+                        DEVELOPPEMENT PSYCHOSEXUEL
+                              DIFFERENCIATION SEXUELLE
+                              FEMINITE
+                              LATENCE
+                              MASCULINITE
+                        GERONTOPSYCHOLOGIE
+                              ATTITUDE FACE AU VIEILLISSEMENT
+                              SYNDROME DE GLISSEMENT
+                        HEREDITE
+                              INNE ACQUIS
+                              INSTINCT
+                  PSYCHOLINGUISTIQUE
+                  PSYCHOLOGIE APPLIQUEE
+                        PSYCHOLOGIE DE LA SANTE
+                              EVENEMENT DE VIE
+                              RESEAU SOCIAL
+                                    AIDANT
+                              STRESS
+                                    AJUSTEMENT PSYCHIQUE
+                                    RESILIENCE
+                                    SYNDROME D'ADAPTATION
+                                    TROUBLE REACTIONNEL
+                        PSYCHOLOGIE DES ORGANISATIONS
+                              INSTITUTION
+                                    ANALYSE INSTITUTIONNELLE
+                                    CULTURE D'ORGANISATION
+                        PSYCHOLOGIE DU TRAVAIL
+                              EPUISEMENT PROFESSIONNEL
+                              MANAGEMENT
+                                    DELEGATION
+                                    DEMARCHE DE PROJET
+                                    ENCADREMENT
+                                    IMPLICATION
+                                    MANAGEMENT PARTICIPATIF
+                                    MOBILISATION
+                                    RELATION HIERARCHIQUE
+                                    TRAVAIL EN EQUIPE
+                                          REUNION
+                        PSYCHOLOGIE SCOLAIRE
+                              PSYCHOPEDAGOGIE
+                        PSYCHOLOGIE SOCIALE
+                              COMPORTEMENT SOCIAL
+                                    INFLUENCE SOCIALE
+                                    NORME SOCIALE
+                                          CONFORMISME
+                                          DELINQUANCE
+                                                DELINQUANCE JUVENILE
+                                          DEVIANCE
+                                          INCIVILITE
+                                          POLITESSE
+                                                TUTOIEMENT
+                                          REPRESENTATION SOCIALE
+                                                STIGMATISATION
+                                          TRANSGRESSION
+                                          VALEUR
+                              ENVIRONNEMENT SOCIAL
+                              GROUPE
+                                    AUTORITE
+                                    DYNAMIQUE DE GROUPE
+                                          ANIMATION
+                                          BOUC EMISSAIRE
+                                          COHESION
+                                          CONFLIT
+                                                GESTION DE CONFLIT
+                                                      CONCERTATION
+                                                      NEGOCIATION
+                                          LEADERSHIP
+                                          POUVOIR
+                                    GROUPE D'APPARTENANCE
+                                          MEMOIRE COLLECTIVE
+                                    VIE COMMUNAUTAIRE
+                              LIEN SOCIAL
+                                    NON DIRECTIVITE
+                                    RELATION ADULTE ADOLESCENT
+                                    RELATION ADULTE ENFANT
+                                    RELATION ENTRE PAIRS
+                                    RELATION INTERGENERATIONNELLE
+                                    RELATION INTERPERSONNELLE
+                                          RELATION DOMINANT DOMINE
+                                    SOCIOMETRIE
+                  PSYCHOLOGIE FONDAMENTALE
+                        NEUROPSYCHOLOGIE
+                        PSYCHOBIOLOGIE
+                        PSYCHOLOGIE COGNITIVE
+                              ACTIVITE INTELLECTUELLE
+                              APPRENTISSAGE
+                              CONSCIENCE
+                                    ETAT SECOND
+                              FONCTION COGNITIVE
+                                    CAPACITE INSTRUMENTALE
+                                          CAPACITE VISUO SPATIALE
+                                          GNOSIE
+                                          PRAXIE
+                                    CREATIVITE
+                                    FONCTION EXECUTIVE
+                                          ANTICIPATION
+                                          ATTENTION
+                                          FLEXIBILITE
+                                          INHIBITION
+                                    MEMOIRE
+                                          MEMOIRE A COURT TERME
+                                          MEMOIRE A LONG TERME
+                                                MEMOIRE DECLARATIVE
+                                                MEMOIRE PROCEDURALE
+                              INTELLIGENCE
+                                    COMPREHENSION
+                                    CONCENTRATION
+                                    DECISION
+                                    INTUITION
+                                    RAISONNEMENT
+                              PENSEE
+                                    ASSOCIATION D'IDEES
+                                    HUMOUR
+                                    IMAGINATION
+                                    REFLEXIVITE
+                                    SYMBOLISATION
+                              PERCEPTION
+                                    REALITE
+                                          REEL
+                                    REPRESENTATION SPATIO TEMPORELLE
+                                          ESPACE
+                                          TEMPS
+                                    SCHEMA CORPOREL
+                                          MEMBRE FANTOME
+                                    VIRTUALITE
+                              PROCESSUS CREATIF
+                              SAVOIR
+                                    SAVOIR PRATIQUE
+                                    SAVOIR THEORIQUE
+                              THEORIE DE L'ESPRIT
+                        PSYCHOLOGIE GENETIQUE
+                        PSYCHOPHYSIOLOGIE
+                  PSYCHOLOGIE MEDICALE
+                  PSYCHOMETRIE
+                        BILAN PSYCHOLOGIQUE
+                              BILAN SENSORIMOTEUR
+                              ECHELLE D'EVALUATION
+                              GRAPHOLOGIE
+                              MORPHOPSYCHOLOGIE
+                              PROFIL PSYCHOLOGIQUE
+                              TEST
+                                    TEST D'EFFICIENCE
+                                          AGE MENTAL
+                                          QUOTIENT INTELLECTUEL
+                                          TEST NON VERBAL
+                                          TEST PSYCHOMOTEUR
+                                          TEST PSYCHOTECHNIQUE
+                                          TEST VERBAL
+                                    TEST PSYCHOLOGIQUE
+                                          TEST D'APTITUDE
+                                          TEST DE CONNAISSANCE
+                                          TEST DE DEVELOPPEMENT
+                                          TEST DE MEMOIRE
+                                          TEST DE PERSONNALITE
+                                          TEST PROJECTIF
+                  SUJET
+                        COMPORTEMENT
+                              ADAPTATION SOCIALE
+                              AGRESSIVITE
+                              ALTRUISME
+                              AUTONOMIE
+                              CONFIANCE
+                              CRUAUTE
+                              EGOCENTRISME
+                              IMITATION
+                              MANIPULATION
+                              OBJECTIVITE
+                              PASSIVITE
+                              RESPECT
+                              RETICENCE
+                              RIVALITE
+                              SEDUCTION
+                              SOUMISSION
+                              SUBJECTIVITE
+                              TENDRESSE
+                              VAMPIRISME AFFECTIF
+                        EMOTION
+                              AMITIE
+                              AMOUR
+                              ANXIETE
+                              COLERE
+                              ENNUI
+                              EXPRESSION DE L'EMOTION
+                                    CRI
+                                    MIMIQUE
+                                    PLEUR
+                                    REGARD
+                                    RIRE
+                                    SOURIRE
+                              HAINE
+                              HONTE
+                              JALOUSIE
+                              PASSION
+                              PEUR
+                              SOLITUDE
+                              TIMIDITE
+                              TRISTESSE
+                        IDENTITE
+                              ALTERITE
+                              CRISE D'IDENTITE
+                              ESTIME DE SOI
+                              IMAGE DE SOI
+                              PERSONNALITE
+                                    CARACTERE
+                        PSYCHISME
+                              PSYCHODYNAMIE
+                              SOUFFRANCE PSYCHIQUE
+            PSYCHOTHERAPIE
+                  MEDIATION THERAPEUTIQUE
+                        ART THERAPIE
+                        ATELIER D'ANIMATION
+                        ATELIER D'ECRITURE
+                        ATELIER D'EXPRESSION
+                        ATELIER THERAPEUTIQUE
+                        CLOWNOTHERAPIE
+                        EQUITHERAPIE
+                        ERGOTHERAPIE
+                        GRIBOUILLIS
+                        GROUPE DE LECTURE
+                        HYDROTHERAPIE
+                        LUDOTHERAPIE
+                        MARIONNETTE
+                        MASQUE
+                        MEDIATION CONJUGALE
+                        MEDIATION FAMILIALE
+                        MUSICOTHERAPIE
+                        PHOTOLANGAGE
+                        PSYCHODRAME
+                              JEU DE ROLE
+                        RECIT DE VIE
+                        REPAS THERAPEUTIQUE
+                        REUNION SOIGNANT SOIGNE
+                        SEJOUR THERAPEUTIQUE
+                        SOCIOTHERAPIE
+                        SOIN ESTHETIQUE
+                        SORTIE THERAPEUTIQUE
+                        VIDEOTHERAPIE
+                  [RE] TYPE DE PSYCHOTHERAPIE
+                        ANALYSE EXISTENTIELLE
+                        ANALYSE TRANSACTIONNELLE
+                        COTHERAPIE
+                        DEVELOPPEMENT PERSONNEL
+                        ETHNOPSYCHANALYSE
+                        HYPNOSE
+                              TRANSE
+                        LUXTHERAPIE
+                        METHODE TEACCH
+                        PROGRAMMATION NEURO LINGUISTIQUE
+                        PSYCHANALYSE APPLIQUEE
+                        PSYCHANALYSE D'ENFANT
+                        PSYCHOTHERAPIE BREVE
+                        PSYCHOTHERAPIE CONJUGALE
+                        PSYCHOTHERAPIE CORPORELLE
+                              BIOFEEDBACK
+                              CRI PRIMAL
+                              ENVELOPPEMENT HUMIDE
+                              GESTALT THERAPIE
+                              RELAXATION
+                                    EUTONIE
+                                    SOPHROLOGIE
+                                    TRAINING AUTOGENE
+                                    YOGA
+                        PSYCHOTHERAPIE DE GROUPE
+                              GROUPE D'ADOLESCENTS
+                              GROUPE D'AIDE MUTUELLE
+                              GROUPE D'ENFANTS
+                              GROUPE DE PARENTS
+                                    GUIDANCE PARENTALE
+                              GROUPE DE PAROLE
+                        PSYCHOTHERAPIE DE SOUTIEN
+                        PSYCHOTHERAPIE FAMILIALE
+                              [RE] OUTILS ET CONCEPTS
+                                    ANCETRE
+                                    ENFANT SYMPTOME
+                                    GENOGRAMME
+                                    PATIENT DESIGNE
+                                    TRANSGENERATIONNEL
+                              PSYCHOTHERAPIE FAMILIALE ANALYTIQUE
+                              PSYCHOTHERAPIE FAMILIALE SYSTEMIQUE
+                        PSYCHOTHERAPIE INSTITUTIONNELLE
+                              CLUB THERAPEUTIQUE
+                              COMMUNAUTE THERAPEUTIQUE
+                        PSYCHOTHERAPIE NON DIRECTIVE
+                        PSYCHOTHERAPIE PARENT ENFANT
+                              PSYCHOTHERAPIE MERE ENFANT
+                        PSYCHOTHERAPIE PSYCHANALYTIQUE
+                        REVE EVEILLE DIRIGE
+                        SEXOTHERAPIE
+                        THERAPIE COGNITIVE
+                              REMEDIATION COGNITIVE
+                        THERAPIE COMPORTEMENTALE
+                              CONDITIONNEMENT
+                                    AFFIRMATION DE SOI
+                              ENTRAINEMENT AUX HABILETES SOCIALES
+                        THERAPIE PSYCHOMOTRICE
+            SANTE
+                  ACCIDENT
+                        ACCIDENT DE LA CIRCULATION
+                        ACCIDENT DOMESTIQUE
+                        CHUTE
+                  COMPORTEMENT DE SANTE
+                        COMPORTEMENT A RISQUE
+                  DONNEE INDIVIDUELLE
+                        CARNET DE VACCINATION
+                        CERTIFICAT MEDICAL
+                        CERTIFICAT MEDICO LEGAL
+                              CERTIFICAT DE DECES
+                  HANDICAP
+                        DEFICIENCE
+                        DESAVANTAGE
+                        HANDICAP ACQUIS
+                        HANDICAP MENTAL
+                              RETARD MENTAL
+                                    RETARD MENTAL LEGER
+                                    RETARD MENTAL MOYEN
+                                    RETARD MENTAL PROFOND
+                        HANDICAP PHYSIQUE
+                              HANDICAP MOTEUR
+                                    HEMIPLEGIE
+                                    PARAPLEGIE
+                                    TETRAPLEGIE
+                        HANDICAP PSYCHIQUE
+                        HANDICAP PSYCHOMOTEUR
+                              INFIRMITE MOTRICE CEREBRALE
+                        INCAPACITE
+                        INVALIDITE
+                        PERSONNE HANDICAPEE
+                              ENFANT HANDICAPE
+                              HANDICAPE MENTAL
+                              HANDICAPE PHYSIQUE
+                              HANDICAPE PSYCHIQUE
+                        POLYHANDICAP
+                  HYGIENE
+                        HYGIENE ALIMENTAIRE
+                        HYGIENE CORPORELLE
+                              HYGIENE BUCCODENTAIRE
+                              LAVAGE DES MAINS
+                  SANTE PUBLIQUE
+                        EPIDEMIOLOGIE
+                              ALERTE EPIDEMIOLOGIQUE
+                              EPIDEMIE
+                                    CONTAGION
+                                    CONTAMINATION
+                                    EPIZOOTIE
+                                    PANDEMIE
+                              FACTEUR DE RISQUE
+                                    VULNERABILITE
+                              INDICATEUR DE RISQUE
+                              INDICATEUR DE SANTE
+                              MALADIE A DECLARATION OBLIGATOIRE
+                              POPULATION A RISQUE
+                              PREVALENCE
+                        MEDICALISATION
+                        POLITIQUE DE SANTE
+                              CONTINUITE DES SOINS
+                              EDUCATION POUR LA SANTE
+                                    EDUCATION DU PATIENT
+                                    PLANNING FAMILIAL
+                              HUMANISATION DES SOINS
+                              INFORMATION MEDICALE
+                              MAINTIEN A DOMICILE
+                              PERMANENCE DES SOINS
+                              PREVENTION MEDICALE
+                                    DEPISTAGE
+                                    VACCINATION
+                        PSYCHIATRISATION
+                        PSYCHOLOGISATION
+                        SANTE MENTALE
+                        SYSTEME DE SOINS
+                              OFFRE DE SOINS
+                                    HEBERGEMENT THERAPEUTIQUE
+                              ORGANISATION DES URGENCES
+                                    CATASTROPHE
+                                          CRISE SANITAIRE
+                                    CORPS DE RESERVE SANITAIRE
+                                    URGENCE MEDICALE
+                                          SAMU
+                                          SMUR
+                                          URGENCE MEDICO PSYCHOLOGIQUE
+                                          URGENCE PEDIATRIQUE
+                                          URGENCE PSYCHIATRIQUE
+                              RESEAU DE SOINS
+                                    CELLULE D'URGENCE MEDICO PSYCHOLOGIQUE
+                                    EQUIPE PLURIDISCIPLINAIRE
+                                          EQUIPE SOIGNANTE
+                                                EQUIPE MOBILE
+                                                SOIGNANT
+                                                TRANSMISSION ENTRE EQUIPE
+                              SECURITE SANITAIRE
+                                    CIRCUIT DU MEDICAMENT
+                                    HEMOVIGILANCE
+                                    MATERIOVIGILANCE
+                                    PHARMACOVIGILANCE
+                                    PRINCIPE DE PRECAUTION
+                                    TOXICOVIGILANCE
+                                    TRACABILITE
+                              TRANSPORT SANITAIRE
+                                    AMBULANCE
+                                    RAPATRIEMENT SANITAIRE
+                                    TRANSFERT SANITAIRE
+            SCIENCES
+                  HISTOIRE DES SCIENCES
+                        HISTOIRE DE LA MEDECINE
+                              HYGIENISME
+                        HISTOIRE DE LA PSYCHANALYSE
+                              [RE] FONDEMENT DE LA PSYCHANALYSE
+                                    ABREACTION
+                                    ANIMISME
+                                          PENSEE MAGIQUE
+                                    AUTOANALYSE
+                                    CATHARSIS
+                                    SUGGESTION
+                                    TOTEMISME
+                        HISTOIRE DE LA PSYCHIATRIE
+                              ANTIPSYCHIATRIE
+                              TRAITEMENT MORAL
+                        HISTOIRE DE LA PSYCHOLOGIE
+                  INTERDISCIPLINARITE
+                  RECHERCHE
+                        CONFERENCE DE CONSENSUS
+                        ESSAI CLINIQUE
+                        RECHERCHE BIOMEDICALE
+                              EXPERIMENTATION ANIMALE
+                              EXPERIMENTATION HUMAINE
+                        RECHERCHE CLINIQUE
+                        RECHERCHE PHARMACEUTIQUE
+                  SCIENCES EXACTES
+                        BIOLOGIE
+                              CHRONOBIOLOGIE
+                              EMBRYOLOGIE
+                              GENETIQUE
+                                    CLONAGE
+                                    EUGENISME
+                                    GENOME
+                                          CARYOTYPE
+                              HISTOLOGIE
+                              IMMUNOLOGIE
+                              MICROBIOLOGIE
+                                    BACTERIOLOGIE
+                                    VIROLOGIE
+                              PHYLOGENESE
+                              PHYSIOPATHOLOGIE
+                        MATHEMATIQUES
+                              LOGIQUE
+                              NOMBRE
+                              TOPOLOGIE
+                        NEUROSCIENCES
+                        PHYSIQUE
+                  SCIENCES HUMAINES
+                        ANTHROPOLOGIE
+                              MYTHOLOGIE
+                                    MYTHE
+                                          HEROS
+                        ARCHEOLOGIE
+                        CRIMINOLOGIE
+                        ECOLOGIE
+                        ETHNOLOGIE
+                              ETHNIE
+                        ETHOLOGIE
+                        GENEALOGIE
+                        GEOGRAPHIE
+                              PAYS
+                                    PAYS EN VOIE DE DEVELOPPEMENT
+                                    PAYS ETRANGER
+                        GERONTOLOGIE
+                        HISTOIRE
+                        LINGUISTIQUE
+                              ANALYSE DE CONTENU
+                              ETYMOLOGIE
+                              GRAMMAIRE
+                                    SYNTAXE
+                              PHONOLOGIE
+                                    PHONETIQUE
+                              SEMANTIQUE
+                              SIGNIFIANT
+                              SIGNIFIE
+                              SYMBOLE
+                                    LOGO
+                              TRADUCTION
+                        PARAPSYCHOLOGIE
+                              TELEPATHIE
+                        PHILOSOPHIE
+                              BONHEUR
+                              CONSTRUCTIVISME
+                              DESTIN
+                              DETERMINISME
+                              DIALECTIQUE
+                              DOUTE
+                              EPISTEMOLOGIE
+                                    NORMAL PATHOLOGIQUE
+                              ESTHETIQUE
+                                    BEAUTE
+                              EXISTENTIALISME
+                              HERMENEUTIQUE
+                              HUMANISME
+                              IDEALISME
+                              MENSONGE
+                              METAPHYSIQUE
+                              MODERNITE
+                              MORALE
+                                    BIEN
+                                    ETHIQUE
+                                          BIOETHIQUE
+                                    MAL
+                              PHENOMENOLOGIE
+                              PROXEMIQUE
+                              STRUCTURALISME
+                              THEOLOGIE
+                              THEORIE SYSTEMIQUE
+                                    CYBERNETIQUE
+                                    DOUBLE LIEN
+                                    MODELE ECOSYSTEMIQUE
+                                    PARADOXE
+                                    THEORIE DE LA COMPLEXITE
+                                    THEORIE DU CHAOS
+                                    THERMODYNAMIQUE
+                              VERITE
+                        PRAGMATIQUE
+                        PSYCHOPATHOLOGIE
+                        SEMIOLOGIE
+                        SOCIOLOGIE
+                        STATISTIQUE
+                              ANALYSE FACTORIELLE
+                        VICTIMOLOGIE
+                              SURVIVANT
+                  SCIENCES MEDICALES
+                        ETIOLOGIE
+                        MEDECINE CLINIQUE
+                              MEDECINE FACTUELLE
+                        NOSOLOGIE
+                              CFTMEA
+                              CIM
+                              DSM
+            SEXUALITE
+                  COMPORTEMENT SEXUEL
+                        BISEXUALITE
+                        HETEROSEXUALITE
+                        HOMOSEXUALITE
+                  CONTRACEPTION
+                  DESIR
+                        CHOIX D'OBJET
+                        ILLUSION
+                        OBJET A
+                        TORE
+                  DYSFONCTIONNEMENT SEXUEL
+                        FRIGIDITE
+                        IMPUISSANCE
+                  EDUCATION SEXUELLE
+                  EXCITATION
+                  INTERDIT
+                  LIBIDO
+                        FIXATION
+                        NARCISSISME PRIMAIRE
+                              TOUTE PUISSANCE
+                        NARCISSISME
+                              ANTINARCISSISME
+                        PHALLUS
+                              CASTRATION
+                  PLAISIR
+                        EROTISME
+                        JOUISSANCE
+                        MASTURBATION
+                  PULSION SEXUELLE
+                  RAPPORT SEXUEL
+                  SEXUALITE FEMININE
+                  SEXUALITE INFANTILE
+                        AUTOEROTISME
+                        CURIOSITE SEXUELLE
+                        MAITRISE
+                        STADE ANAL
+                        STADE GENITAL
+                        STADE LIBIDINAL
+                        STADE ORAL
+                        STADE PHALLIQUE
+                        STADE PREGENITAL
+                  SEXUALITE MASCULINE
+                  TROUBLE DE LA SEXUALITE
+                        ADDICTION SEXUELLE
+                              NYMPHOMANIE
+                              SATYRIASIS
+                        IDENTITE SEXUEE
+                        PARAPHILIE
+                              EONISME
+                              EXHIBITIONNISME
+                              FETICHISME
+                              FROTTEURISME
+                              GERONTOPHILIE
+                              NECROPHILIE
+                              PEDOPHILIE
+                              VOYEURISME
+                              ZOOPHILIE
+                        TRANSSEXUALISME
+            SOCIETE
+                  CIVILISATION
+                        CROYANCE
+                              ASCETISME
+                              ATHEISME
+                              ESOTERISME
+                                    FRANC MACONNERIE
+                              MYSTICISME
+                                    CHAMANISME
+                                    EXTASE
+                                    POSSESSION
+                              OCCULTISME
+                                    EXORCISME
+                                    MAGIE
+                                    SORCELLERIE
+                                    SPIRITISME
+                              RELIGION
+                                    CONVERSION
+                                    MONOTHEISME
+                                          BIBLE
+                                          CHRISTIANISME
+                                          ISLAM
+                                          JUDAISME
+                                    POLYTHEISME
+                                          HINDOUISME
+                                                BOUDDHISME
+                                    SACRE
+                                    SPIRITUALITE
+                                    VAUDOU
+                        CULTURE D'ORIGINE
+                              MULTICULTURALISME
+                                    ACCULTURATION
+                        TRADITION
+                              RITE
+                                    BIZUTAGE
+                                    FETE
+                                          FETE DE FAMILLE
+                                          FETE RELIGIEUSE
+                                    RITE FUNERAIRE
+                                    RITE INITIATIQUE
+                                    SACRIFICE
+                        [RE] TYPE DE SOCIETE
+                              SOCIETE DE CONSOMMATION
+                              SOCIETE MATRIARCALE
+                              SOCIETE PATRIARCALE
+                              SOCIETE TRADITIONNELLE
+                  CULTURE
+                        ACTIVITE CULTURELLE
+                        ART
+                              ART BRUT
+                              ARTS PLASTIQUES
+                                    COLLAGE
+                                    DESSIN
+                                    PEINTURE
+                                    POTERIE
+                                          MODELAGE
+                                    SCULPTURE
+                              CINEMA
+                              DANSE
+                              EXPOSITION
+                              LITTERATURE
+                                    CONTE
+                                    LITTERATURE ENFANTINE
+                                    POESIE
+                                    ROMAN
+                              [RE] MOUVEMENT LITTERAIRE ET ARTISTIQUE
+                                    ROMANTISME
+                                    SCIENCE FICTION
+                                    SURREALISME
+                              MUSIQUE
+                                    CHANT
+                                    GENRE MUSICAL
+                                          OPERA
+                              PHOTOGRAPHIE
+                              THEATRE
+                                    MIME
+                        LOISIRS
+                              ACTIVITE MANUELLE
+                                    ART FLORAL
+                                    CUISINE
+                                    JARDINAGE
+                                    JEU
+                                          JEU DE SOCIETE
+                                          JEU VIDEO
+                              ACTIVITE PHYSIQUE
+                              CENTRE DE VACANCES
+                              SPORT
+                                    ARTS MARTIAUX
+                                    EXPRESSION CORPORELLE
+                                    RANDONNEE
+                                    SPORT AQUATIQUE
+                                    SPORT COLLECTIF
+                                    SPORT D'HIVER
+                                    SPORT INDIVIDUEL
+                              TOURISME
+                                    VOYAGE
+                        VETEMENT
+                  ECONOMIE
+                        AMORTISSEMENT
+                        ARGENT
+                        COMMERCE ELECTRONIQUE
+                        COMPTABILITE
+                              BILAN FINANCIER
+                              BON DE COMMANDE ET DE LIVRAISON
+                              COMPTE ADMINISTRATIF
+                              COMPTE DE GESTION
+                              ETAT DES PREVISIONS DE DEPENSES ET DE RECETTES
+                              FACTURATION
+                              MANDATEMENT
+                              REGIE D'AVANCES OU DE RECETTES
+                        ECONOMIE DE LA SANTE
+                              INDUSTRIE PHARMACEUTIQUE
+                        ENTREPRISE
+                        FISCALITE
+                        MECENAT
+                        STOCK
+                  [RE] ORGANISATION DE L'ETAT
+                        CITOYENNETE
+                        DECENTRALISATION
+                              COLLECTIVITE TERRITORIALE
+                                    COMMUNE
+                                    DEPARTEMENT
+                                    REGION
+                              ELU LOCAL
+                        DECONCENTRATION
+                              ADMINISTRATION CENTRALE
+                              SERVICE DECONCENTRE
+                        FONCTION PUBLIQUE
+                              CONCOURS DE RECRUTEMENT
+                                    CONCOURS EXTERNE
+                                    CONCOURS INTERNE
+                              FONCTION PUBLIQUE D'ETAT
+                              FONCTION PUBLIQUE HOSPITALIERE
+                              FONCTION PUBLIQUE TERRITORIALE
+                              STATUT GENERAL DE LA FONCTION PUBLIQUE
+                                    DROITS ET OBLIGATIONS DES FONCTIONNAIRES
+                                          DETACHEMENT
+                                          DISPONIBILITE
+                                          MISE A DISPOSITION
+                                          MUTATION PROFESSIONNELLE
+                        GOUVERNEMENT
+                              ARMEE
+                                    ARME
+                                    GUERRE
+                              POLICE
+                              TRESOR PUBLIC
+                        IDEOLOGIE POLITIQUE
+                              CAPITALISME
+                              COMMUNISME
+                              FASCISME
+                              MARXISME
+                              NATIONALISME
+                              NAZISME
+                              UTOPIE
+                        LAICITE
+                        NATIONALITE
+                        PRINCIPE DE NEUTRALITE
+                        REGIME POLITIQUE
+                              DEMOCRATIE
+                              DICTATURE
+                              TOTALITARISME
+                        SERVICE PUBLIC
+                              RELATION ADMINISTRATION ADMINISTRE
+                                    DOCUMENT ADMINISTRATIF
+                                          ACCES AUX DOCUMENTS ADMINISTRATIFS
+                                    FORMALITE ADMINISTRATIVE
+                              USAGER
+                  POPULATION
+                        AGE
+                              ADOLESCENT
+                                    PREADOLESCENT
+                              ADULTE
+                                    JEUNE ADULTE
+                              ENFANT
+                              JEUNE ENFANT
+                                    NOURRISSON
+                              PERSONNE AGEE
+                        CONDITION DE VIE
+                              QUALITE DE VIE
+                              VIE QUOTIDIENNE
+                        DEMOGRAPHIE
+                              ESPERANCE DE VIE
+                              FECONDITE
+                              LONGEVITE
+                              MORBIDITE
+                              MORTALITE
+                                    DECES
+                              NATALITE
+                                    NAISSANCE
+                              RECENSEMENT
+                              VIEILLISSEMENT
+                        METISSAGE
+                              METIS
+                        MIGRATION
+                              ETRANGER
+                              EXILE
+                              MIGRANT
+                                    ENFANT DE MIGRANT
+                                    NOMADE
+                        SEXE
+                              FEMME
+                                    FILLE
+                              HOMME
+                                    GARCON
+                  QUESTION DE SOCIETE
+                        ASSOCIATION
+                              ASSOCIATION D'USAGERS
+                              ASSOCIATION DE MALADES
+                                    GROUPE D'ENTRAIDE MUTUELLE
+                        BENEVOLAT
+                        COLONISATION
+                        CONFLIT SOCIAL
+                              GREVE
+                        EUTHANASIE
+                        EXCLUSION
+                        FANATISME
+                        GREVE DE LA FAIM
+                        ILLETTRISME
+                        INSERTION SOCIALE
+                              REHABILITATION PSYCHOSOCIALE
+                        MARQUAGE CORPOREL
+                              PIERCING
+                              SCARIFICATION
+                              TATOUAGE
+                        MILITANTISME
+                        MIXITE SOCIALE
+                        MONDIALISATION
+                        PAUVRETE
+                              PRECARITE
+                              SANS DOMICILE FIXE
+                        PORNOGRAPHIE
+                        PROSTITUTION
+                        RACISME
+                        RELATION HOMME FEMME
+                              EGALITE HOMME FEMME
+                        RELATION INTERNATIONALE
+                        SECTE
+                        SECURITE
+                              SECURITE ROUTIERE
+                              VIDEOSURVEILLANCE
+                        SOLIDARITE
+                        TOLERANCE
+                        VIE PRIVEE
+                              INTIMITE
+                              PUDEUR
+                        VIOLENCE
+                              RACKET
+                              VANDALISME
+                                    TAG
+                              VIOLENCE CONJUGALE
+                              VIOLENCE FAMILIALE
+                              VIOLENCE SCOLAIRE
+                              VIOLENCE VERBALE
+            TECHNIQUE PSYCHANALYTIQUE
+                  CADRE PSYCHANALYTIQUE
+                        ACTING
+                        ALLIANCE THERAPEUTIQUE
+                        CAPACITE DE REVERIE
+                        NEVROSE DE TRANSFERT
+                        PERLABORATION
+                        PROCESSUS ANALYTIQUE
+                        REACTION THERAPEUTIQUE NEGATIVE
+                        RECONSTRUCTION
+                        REMEMORATION
+                        RESISTANCE
+                        TRANSFERT
+                              CONTRE TRANSFERT
+                  CURE PSYCHANALYTIQUE
+                        ANALYSANT
+                        COUPURE SIGNIFIANTE
+                        ENTRETIEN PRELIMINAIRE
+                              INSIGHT
+                        FIN D'ANALYSE
+                        NON DIT
+                        RUPTURE DE LA CURE
+                        SILENCE
+                        TEMPS LOGIQUE
+                        TIERCEITE
+                  FORMATION PSYCHANALYTIQUE
+                        ANALYSE DIDACTIQUE
+                        ANALYSE PROFANE
+                        LA PASSE
+                        METHODE D'OBSERVATION
+                        PRESENTATION DE MALADE
+                        SUPERVISION
+                              CARTEL
+                  REGLE FONDAMENTALE
+                        ASSOCIATION LIBRE
+                        ATTENTION FLOTTANTE
+                        ECOUTE
+                        INTERPRETATION PSYCHANALYTIQUE
+                              INTERPRETATION DES REVES
+                        NEUTRALITE BIENVEILLANTE
+            THERAPEUTIQUE MEDICAMENTEUSE
+                  ADMINISTRATION DU MEDICAMENT
+                        BENEFICE THERAPEUTIQUE
+                              BENEFICE RISQUE
+                              MARGE THERAPEUTIQUE
+                        EFFET SECONDAIRE
+                              ACCOUTUMANCE
+                              CONTRE INDICATION
+                              DYSKINESIE TARDIVE
+                              INTERACTION MEDICAMENTEUSE
+                              INTOXICATION MEDICAMENTEUSE
+                              SYNDROME EXTRA PYRAMIDAL
+                              SYNDROME MALIN DES NEUROLEPTIQUES
+                              SYNDROME PARKINSONIEN
+                              TERATOGENESE
+                              TOLERANCE MEDICAMENTEUSE
+                        FENETRE THERAPEUTIQUE
+                        ORDONNANCE MEDICALE
+                              ORDONNANCE MEDICALE SECURISEE
+                              POSOLOGIE
+                                    CALCUL DE DOSES
+                        PREMEDICATION
+                        SURVEILLANCE DU TRAITEMENT
+                        TRAITEMENT AU LONG COURS
+                        TRAITEMENT PER OS
+                        TRAITEMENT RETARD
+                  ATTITUDE FACE AU TRAITEMENT
+                        ABANDON DU TRAITEMENT
+                        AUTOMEDICATION
+                        OBSERVANCE
+                        POLYMEDICATION
+                  MEDICAMENT
+                        DENOMINATION COMMUNE INTERNATIONALE
+                        [RE] FAMILLE MEDICAMENTEUSE
+                              ADRENALINE
+                                    BUPRENORPHINE
+                              ANALEPTIQUE
+                              ANESTHESIQUE
+                              ANOREXIGENE
+                              ANTALGIQUE
+                                    ACIDE ACETYLSALICYLIQUE
+                                    MORPHINE
+                                    PARACETAMOL
+                              ANTI INFLAMMATOIRE
+                                    ANTI INFLAMMATOIRE NON STEROIDIEN
+                                    ANTI INFLAMMATOIRE STEROIDIEN
+                                          CORTICOIDE
+                              ANTIBIOTIQUE
+                                    ANTITUBERCULEUX
+                              ANTICANCEREUX
+                              ANTICOAGULANT
+                                    ANTIAGREGANT PLAQUETTAIRE
+                                    ANTIVITAMINE K
+                                    HEPARINE
+                              ANTICONVULSIVANT
+                              ANTIDIABETIQUE
+                              ANTIFONGIQUE
+                              ANTIHISTAMINIQUE
+                              ANTIHYPERTENSEUR
+                                    BETA BLOQUANT
+                                    DIURETIQUE
+                              ANTIHYPOTENSEUR
+                              ANTIOXYDANT
+                              ANTIPARASITAIRE
+                                    ANTIPALUDEEN
+                              ANTIPARKINSONIEN
+                                    ANTICHOLINERGIQUE
+                                    DOPAMINERGIQUE
+                              ANTIPHOTOSENSIBILISANT
+                              ANTIPYRETIQUE
+                              ANTISEPTIQUE
+                              ANTISPASMODIQUE
+                              ANTIVIRAL
+                                    ANTIRETROVIRAL
+                              CARDIOTONIQUE
+                              CONTRACEPTIF
+                              DERMOCORTICOIDE
+                              HORMONE DE CROISSANCE
+                              HYPERGLYCEMIANT
+                              HYPOGLYCEMIANT
+                              METHADONE
+                              OREXIGENE
+                              OXYGENE
+                              PILULE DU LENDEMAIN
+                              PSYCHOTROPE
+                                    ANTIDEPRESSEUR
+                                          ANTIDEPRESSEUR NON TRICYCLIQUE NON IMAO
+                                          ANTIDEPRESSEUR NON TRICYCLIQUE NON IRS
+                                                MIANSERINE
+                                                MILNACIPRAM
+                                                MIRTAZAPINE
+                                                VENLAFAXINE
+                                                VILOXAZINE
+                                          ANTIDEPRESSEUR TRICYCLIQUE
+                                                AMITRIPTYLINE
+                                                AMOXAPINE
+                                                CLOMIPRAMINE
+                                                DESIPRAMINE
+                                                DOSULEPINE
+                                                DOXEPINE
+                                                IMIPRAMINE
+                                                TRIMIPRAMINE
+                                          INHIBITEUR DE LA MONOAMINE OXYDASE
+                                                IPRONIAZIDE
+                                                MOCLOBEMIDE
+                                                TOLOXATONE
+                                                TRANYLCYPROMINE
+                                          INHIBITEUR SPECIFIQUE DE LA RECAPTURE DE LA SEROTONINE
+                                                FLUOXETINE
+                                                FLUVOXAMINE
+                                                MAPROTILINE
+                                                PAROXETINE
+                                                SERTRALINE
+                                    ANXIOLYTIQUE
+                                          BUSPIRONE
+                                          HYDROXYZINE
+                                          MEPROBAMATE
+                                    BENZODIAZEPINE
+                                    HYPNOTIQUE
+                                          ZOLPIDEM
+                                          ZOPICLONE
+                                    NEUROLEPTIQUE ATYPIQUE
+                                          CLOZAPINE
+                                          OLANZAPINE
+                                    NEUROLEPTIQUE
+                                          BENZAMIDE
+                                          BUTYROPHENONE
+                                          DIAZEPAM
+                                          OXAZEPAM
+                                          PHENOTHIAZINE
+                                          PIMOZIDE
+                                          RISPERIDONE
+                                    PSYCHOSTIMULANT
+                                          CAFEINE
+                                          METHYLPHENIDATE
+                                          MODAFINIL
+                                    THYMOREGULATEUR
+                                          CARBAMAZEPINE
+                                          DIVALPROATE DE SODIUM
+                                          LAMOTRIGINE
+                                          SEL DE LITHIUM
+                                          VALPROMIDE
+                        HORMONOTHERAPIE
+                        INSULINOTHERAPIE
+                        MEDICAMENT GENERIQUE
+                        PLACEBO
+                  THERAPIE GENIQUE
+                  TRAITEMENTS PHYSIQUES ET ELECTRIQUES
+                        DIALYSE
+                        RADIOTHERAPIE
+                        SISMOTHERAPIE
+                        STIMULATION MAGNETIQUE INTRACRANIENNE
+            TRAVAIL
+                  CARRIERE
+                        CESSATION D'ACTIVITE
+                              CESSATION PROGRESSIVE D'ACTIVITE
+                              DEMISSION
+                              LICENCIEMENT
+                              RETRAITE
+                        COMPETENCE PROFESSIONNELLE
+                              ADAPTATION A L'EMPLOI
+                              AUTONOMIE PROFESSIONNELLE
+                              EXPERIENCE PROFESSIONNELLE
+                              PRATIQUE PROFESSIONNELLE
+                                    BILAN DE COMPETENCE
+                                    TRANSMISSION DU SAVOIR
+                                    VALIDATION DES ACQUIS DE L'EXPERIENCE
+                              PROFESSIONNALISATION
+                        DOSSIER DU PERSONNEL
+                        EXAMEN PROFESSIONNEL
+                        MOBILITE PROFESSIONNELLE
+                        ORIENTATION PROFESSIONNELLE
+                        PROCEDURE DISCIPLINAIRE
+                              SANCTION DISCIPLINAIRE
+                                    AVERTISSEMENT
+                                    BLAME
+                                    MISE A PIED
+                                    SUSPENSION
+                        PROJET PROFESSIONNEL
+                        PROMOTION PROFESSIONNELLE
+                        RECLASSEMENT PROFESSIONNEL
+                        RECONNAISSANCE PROFESSIONNELLE
+                  DEONTOLOGIE
+                        SECRET PROFESSIONNEL
+                              SECRET MEDICAL
+                              SECRET PARTAGE
+                  EMPLOI
+                        AIDE A L'EMPLOI
+                        CHOMAGE
+                              DEMANDEUR D'EMPLOI
+                        INSERTION PROFESSIONNELLE
+                  FORMATION
+                        FORMATION A DISTANCE
+                        FORMATION EN ALTERNANCE
+                              MISE EN SITUATION PROFESSIONNELLE
+                        FORMATION PERMANENTE
+                              ANALYSE DE LA PRATIQUE
+                              FORMATION MEDICALE CONTINUE
+                              GROUPE BALINT
+                        FORMATION PROFESSIONNELLE
+                              FORMATION MEDICALE
+                              FORMATION PARAMEDICALE
+                                    ETUDIANT EN SOINS INFIRMIERS
+                        INSTITUT DE FORMATION
+                        PLAN DE FORMATION
+                        STAGE
+                        TUTORAT
+                  GESTION DU PERSONNEL
+                        ABSENTEISME
+                        BILAN SOCIAL
+                        CONGE
+                              AUTORISATION SPECIALE D'ABSENCE
+                                    ABSENCE SYNDICALE
+                              CONGE ANNUEL
+                              CONGE BONIFIE
+                              CONGE D'ADOPTION
+                              CONGE DE FORMATION
+                              CONGE DE MALADIE
+                                    CONGE LONGUE DUREE
+                                    CONGE LONGUE MALADIE
+                                    MI TEMPS THERAPEUTIQUE
+                              CONGE DE MATERNITE
+                              CONGE DE PATERNITE
+                              CONGE DE PRESENCE PARENTALE
+                              CONGE DE SOUTIEN FAMILIAL
+                              CONGE PARENTAL D'EDUCATION
+                              CONGE POUR EVENEMENTS FAMILIAUX
+                        EFFECTIF
+                              ROTATION D'EQUIPE
+                        EMPLOI RESERVE
+                              TRAVAILLEUR HANDICAPE
+                        RECRUTEMENT
+                              CONDITION D'EXERCICE
+                              PROFIL DE POSTE
+                        REMUNERATION
+                              AVANTAGE EN NATURE
+                              CLASSEMENT INDICIAIRE
+                              FRAIS PROFESSIONNELS
+                              INDEMNITE
+                              INTERESSEMENT
+                              PRIME
+                              SALAIRE
+                                    BULLETIN DE SALAIRE
+                        [RE] TYPE D'ACTIVITE
+                              ACTIVITE SALARIEE
+                              CUMUL D'ACTIVITES
+                              EXERCICE LIBERAL
+                  MILIEU PROFESSIONNEL
+                        ACTE PROFESSIONNEL
+                              DEPASSEMENT DE FONCTION
+                        APTITUDE AU TRAVAIL
+                              INCAPACITE DE TRAVAIL
+                        ASSOCIATION PROFESSIONNELLE
+                        COMITE D'ENTREPRISE
+                        CONDITION DE TRAVAIL
+                              CHARGE DE TRAVAIL
+                        CONTRAT DE TRAVAIL
+                              CONTRAT A DUREE DETERMINEE
+                                    CONTRAT EMPLOI SOLIDARITE
+                              CONTRAT A DUREE INDETERMINEE
+                              VACATION
+                        CONVENTION COLLECTIVE
+                        ELECTION PROFESSIONNELLE
+                        ERGONOMIE
+                              POSTE DE TRAVAIL
+                        FAUTE PROFESSIONNELLE
+                              ABANDON DE POSTE
+                              DEFAUT DE SURVEILLANCE
+                              FAUTE LOURDE
+                        IDENTITE PROFESSIONNELLE
+                        INSPECTION DU TRAVAIL
+                        RELATION PROFESSIONNELLE
+                        REPRESENTATION DU PERSONNEL
+                              PARTENAIRES SOCIAUX
+                              SYNDICAT PROFESSIONNEL
+                        SECURITE DU TRAVAIL
+                              ACCIDENT DU TRAVAIL
+                                    ACCIDENT D'EXPOSITION AU SANG
+                              PROTECTION DU TRAVAILLEUR ISOLE
+                        TEMPS DE TRAVAIL
+                              GARDES ET ASTREINTES
+                              HEURES SUPPLEMENTAIRES
+                              REDUCTION DU TEMPS DE TRAVAIL
+                              REPOS DE SECURITE
+                              TRAVAIL A TEMPS PARTIEL
+                              TRAVAIL A TEMPS PLEIN
+                              TRAVAIL DE NUIT
+                        TRAVAIL ILLEGAL
+                  ORDRE PROFESSIONNEL
+                        CONSEIL DE L'ORDRE
+                  PROFESSION
+                        ARCHIVISTE
+                        AUMONIER
+                        BIBLIOTHECAIRE
+                        CHAUFFEUR
+                        CHERCHEUR
+                        DIRECTEUR
+                        DOCUMENTALISTE
+                        ENSEIGNANT
+                        FORMATEUR
+                        GERANT DE TUTELLE
+                        JUGE
+                        PROFESSIONNEL DE SANTE
+                              AGENT DE SERVICE HOSPITALIER
+                              AIDE MEDICO PSYCHOLOGIQUE
+                              AIDE SOIGNANT
+                              AMBULANCIER
+                              ART THERAPEUTE
+                              AUXILIAIRE DE PUERICULTURE
+                              CHIRURGIEN DENTISTE
+                              DIETETICIEN
+                              DIRECTEUR DES SOINS
+                              ERGOTHERAPEUTE
+                              INFIRMIER
+                                    INFIRMIER CLINICIEN
+                                    INFIRMIER DE SECTEUR PSYCHIATRIQUE
+                                    INFIRMIER HYGIENISTE
+                              MASSEUR KINESITHERAPEUTE
+                              MEDECIN
+                                    MEDECIN CHEF DE SERVICE
+                                    MEDECIN COORDONNATEUR
+                                    MEDECIN DU TRAVAIL
+                                    MEDECIN GENERALISTE
+                                    MEDECIN SPECIALISTE
+                                    MEDECIN TRAITANT
+                                          MEDECIN REFERENT
+                              ORTHOPHONISTE
+                              PEDICURE PODOLOGUE
+                              PEDOPSYCHIATRE
+                              PHARMACIEN
+                              PREPARATEUR EN PHARMACIE
+                              PSYCHANALYSTE
+                              PSYCHIATRE
+                              PSYCHOLOGUE
+                                    PSYCHOLOGUE CONSEIL
+                              PSYCHOMOTRICIEN
+                              PSYCHOTHERAPEUTE
+                              PUERICULTRICE
+                              SAGE FEMME
+                              SECRETAIRE MEDICALE
+                              TECHNICIEN DE LABORATOIRE
+                        STANDARDISTE
+                        TRAVAILLEUR SOCIAL
+                              AIDE FAMILIALE
+                              ANIMATEUR
+                              ASSISTANT SOCIAL
+                              ASSISTANTE MATERNELLE
+                              AUXILIAIRE DE VIE SOCIALE
+                              EDUCATEUR DE JEUNES ENFANTS
+                              EDUCATEUR SPECIALISE
+                              EDUCATEUR TECHNIQUE SPECIALISE
+                              MEDIATEUR FAMILIAL
+                              TRAVAILLEUR FAMILIAL
+                        VAGUEMESTRE
+                  STATUT DU PERSONNEL
+                        CATEGORIE DE LA FONCTION PUBLIQUE
+                              CATEGORIE A
+                              CATEGORIE B
+                              CATEGORIE C
+                        FAISANT FONCTION
+                        GRADE DE LA FONCTION PUBLIQUE HOSPITALIERE
+                              ADJOINT ADMINISTRATIF
+                              ADJOINT DES CADRES HOSPITALIERS
+                              AGENT ADMINISTRATIF
+                              AGENT CHEF
+                              AGENT TECHNIQUE
+                              ATTACHE D'ADMINISTRATION HOSPITALIERE
+                              CADRE DE SANTE
+                              CADRE SOCIO EDUCATIF
+                              CADRE SUPERIEUR DE SANTE
+                              INGENIEUR HOSPITALIER
+                              MONITEUR D'ATELIER
+                              OUVRIER PROFESSIONNEL
+                              TECHNICIEN SUPERIEUR HOSPITALIER
+                        PERSONNEL CONTRACTUEL
+                        PERSONNEL HOSPITALIER
+                              PERSONNEL ADMINISTRATIF
+                              PERSONNEL DE DIRECTION
+                              PERSONNEL MEDICO TECHNIQUE
+                              PERSONNEL PARAMEDICAL
+                              PERSONNEL SOCIO EDUCATIF
+                              PERSONNEL TECHNIQUE
+                        PERSONNEL MEDICAL
+                              INTERNE HOSPITALIER
+                              MEDECIN ASSISTANT
+                              PRATICIEN ATTACHE
+                              PRATICIEN HOSPITALIER
+                                    PRATICIEN ADJOINT CONTRACTUEL
+                                    PRATICIEN HOSPITALIER A TEMPS PARTIEL
+                        PERSONNEL STAGIAIRE
+                        PERSONNEL TITULAIRE
+            [RE] TYPOLOGIE DE DOCUMENTS
+                  ACTES DE CONGRES
+                  ACTES DE SEMINAIRE
+                  ANNALES
+                  ANNUAIRE
+                  ARTICLE
+                  AUTOBIOGRAPHIE
+                  AUTOPORTRAIT
+                  BANDE DESSINEE
+                  BIOGRAPHIE
+                  CAHIER DES CHARGES
+                  CLASSIFICATION
+                  CODE
+                  COMPTE RENDU
+                  CORRESPONDANCE
+                  DEBAT
+                  DICTIONNAIRE
+                  DOSSIER LEGISLATIF
+                  ECRIT PROFESSIONNEL
+                  ENQUETE NATIONALE
+                  ENQUETE RETROSPECTIVE
+                  ENQUETE
+                  ETUDE COMPARATIVE
+                  ETUDE CRITIQUE
+                  ETUDE GENERALE
+                  ETUDE LONGITUDINALE
+                  ETUDE PROSPECTIVE
+                  ETUDE THEORIQUE
+                  EXERCICE PRATIQUE
+                  EXPERTISE COLLECTIVE
+                  GUIDE DE BONNES PRATIQUES
+                  HOMMAGE
+                  IMAGE VIRTUELLE
+                  IMAGE
+                  INTERVIEW
+                  JOURNAL INTIME
+                  LIVRE DE VULGARISATION
+                  LIVRE
+                  MANUEL
+                  NORME
+                  NOTE DE SERVICE
+                  NOTES PERSONNELLES
+                  ORGANIGRAMME
+                  PATHOGRAPHIE
+                  PERIODIQUE
+                  PROPOSITION
+                  PUBLICATION
+                  QUESTIONNAIRE
+                  RAPPORT D'ACTIVITE
+                  RAPPORT DE STAGE
+                  RAPPORT OFFICIEL
+                  REFERENTIEL
+                  REGLEMENT INTERIEUR
+                  REVUE DE LA LITTERATURE
+                  REVUE DE PRESSE
+                  TABLEAU DE BORD
+                  TEXTE OFFICIEL
+                  TRAVAIL DE FIN D'ETUDES
