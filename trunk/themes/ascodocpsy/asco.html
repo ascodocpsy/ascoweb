@@ -80,32 +80,36 @@
 	<div id="pied" class="texte">
 		<p><a target="_blank" href="http://www.ascodocpsy.org/article.php3?id_article=672" title="Mentions légales : contact webmestre, CNIL">&nbsp;Mentions légales&nbsp;</a>
 			- Tous droits réservés Ascodocpsy</p>
-        <!-- Marqueur Xiti -->
-        <div id="xiti-logo">
-        <a href="http://www.xiti.com/xiti.asp?s=315354" title="WebAnalytics">
-        <script type="text/javascript">
-        <!--
-        Xt_param = 's=315354&p=';
-        try {Xt_r = top.document.referrer;}
-        catch(e) {Xt_r = document.referrer; }
-        Xt_h = new Date();
-        Xt_i = '<img width="39" height="25" border="0" ';
-        Xt_i += 'src="http://logv143.xiti.com/hit.xiti?'+Xt_param;
-        Xt_i += '&hl='+Xt_h.getHours()+'x'+Xt_h.getMinutes()+'x'+Xt_h.getSeconds();
-        if(parseFloat(navigator.appVersion)>=4)
-        {Xt_s=screen;Xt_i+='&r='+Xt_s.width+'x'+Xt_s.height+'x'+Xt_s.pixelDepth+'x'+Xt_s.colorDepth;}
-        document.write(Xt_i+'&ref='+Xt_r.replace(/[<>"]/g, '').replace(/&/g, '$')+'">');
-        //-->
-        </script>
-        <object>
-        <noscript>
-        <div id="xiti-logo-noscript">
-        <img width="39" height="25" src="http://logv143.xiti.com/hit.xiti?s=315354&amp;p=&amp;" alt="WebAnalytics" />
-        </div>
-        </noscript>
-        </object>
-        </a>
-        </div>
+			
+		<def name="xiti" value="{Config::get('xiti')}" />
+		<if test="$xiti">
+	        <!-- Marqueur Xiti -->
+	        <div id="xiti-logo">
+	        <a href="http://www.xiti.com/xiti.asp?s=$xiti" title="WebAnalytics">
+	        <script type="text/javascript">
+	        Xt_param = 's=$xiti&amp;p=';
+	        <!--
+	        try {Xt_r = top.document.referrer;}
+	        catch(e) {Xt_r = document.referrer; }
+	        Xt_h = new Date();
+	        Xt_i = '<img width="39" height="25" border="0" ';
+	        Xt_i += 'src="http://logv143.xiti.com/hit.xiti?'+Xt_param;
+	        Xt_i += '&hl='+Xt_h.getHours()+'x'+Xt_h.getMinutes()+'x'+Xt_h.getSeconds();
+	        if(parseFloat(navigator.appVersion)>=4)
+	        {Xt_s=screen;Xt_i+='&r='+Xt_s.width+'x'+Xt_s.height+'x'+Xt_s.pixelDepth+'x'+Xt_s.colorDepth;}
+	        document.write(Xt_i+'&ref='+Xt_r.replace(/[<>"]/g, '').replace(/&/g, '$')+'">');
+	        //-->
+	        </script>
+	        <object>
+	        <noscript>
+	        <div id="xiti-logo-noscript">
+	        <img width="39" height="25" src="http://logv143.xiti.com/hit.xiti?s=$xiti&amp;p=&amp;" alt="WebAnalytics" />
+	        </div>
+	        </noscript>
+	        </object>
+	        </a>
+	        </div>
+        </if>
 	</div>
 
 </div> <!-- Ferme div id="principal" -->
