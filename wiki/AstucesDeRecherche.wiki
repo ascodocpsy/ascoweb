@@ -1,0 +1,31 @@
+= Quelques astuces de recherche =
+
+_Notes rédigées par Gaëlle Faure, webmestre d'Ascodopsy._
+
+*Pré-requis pour les astuces suivantes :* 
+le champ doit être *indexé* et de type *count*
+
+*_Rechercher les notices qui n'ont pas de mot-clé :_*
+Dans le champ Descripteur : 2 tirets bas sans espace suivi de empty
+
+*_Rechercher les notices qui ont 1 mot-clé :_*
+Dans le champ descripteur : 2 tirets bas sans espace suivi de has1. 1 peut être remplacé par n'importe quelle valeur
+
+*_Rechercher les notices qui ont au moins 1 valeur :_* 
+Dans le champ descripteur : 2 tirets bas sans espace suivi de has étoile
+
+
+
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
