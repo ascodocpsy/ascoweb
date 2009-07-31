@@ -6,7 +6,7 @@
 </template>
 */
 
-/* Lien vers l'aide */
+/* Lien vers aide en ligne */
 <help href="http://www.ascodocpsy.org/article.php3?id_article=903" />
 
 <div class="titre">Rechercher des documents</div>
@@ -21,17 +21,17 @@
                 rows="1" class="autoheight" 
                 value="{htmlspecialchars(implode(' AND ',$this->request->asArray('_equation')->ok()))}"
             />
+            <p class="exemple">Par défaut, l'opérateur OU est utilisé entre deux mots</p>
         </div>
         
-        <div>
-            <textbox name="MotsCles" label="Descripteurs"  rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('MotsCles'))}" />
+        <div> 
+           <textbox name="MotsCles" label="Descripteurs"  rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('MotsCles'))}" />
             <p class="exemple"><a href="/Thesaurus" target="_blank" title="Consultez le thesaurus SantéPsy (nouvelle fenêtre)">Consultez le thesaurus SantéPsy</a></p>
         </div>
     
         <div>
-            <textbox name="Titres" label="Titre ou mots du titre" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Titres'))}" />
+            <textbox name="Titres" label="Mots du titre" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Titres'))}" />
         </div>
-        
         <div>
             <textbox name="Aut" label="Auteur" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Aut'))}" />
         </div>
@@ -66,9 +66,8 @@
             </fill>
             <div class="infonatext">
                 <p class="exemple">
-                    Pour sélectionner plusieurs types de texte officiel,
-                    appuyez sur la touche contrôle (Ctrl) et cliquez sur 
-                    les types souhaités. Procéder de même pour désélectionner.
+                    Pour sélectionner ou désélectionner plusieurs types de texte officiel,
+                    appuyez sur la touche contrôle (Ctrl) et cliquez sur les types souhaités.
                 </p>
             </div>
         </div>
@@ -76,7 +75,7 @@
         <div>
             <textbox name="DateText" label="Date du texte officiel" value="{htmlspecialchars($this->request->get('DateText'))}" rows="1" class="autoheight smallbox"/>
             <p class="exemple">
-                Format : [AAAA-MM-JJ] ou [AAAA-MM*] ou [AAAA*]
+                Formats : AAAA-MM-JJ ou AAAA-MM ou AAAA
             </p>
         </div>
     
@@ -120,9 +119,10 @@
         <div test="{User::hasAccess('AdminBase')}">
             <textbox name="DipSpe" label="Spécialité du diplôme" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('DipSpe'))}" />
         </div>
-        
-        <div test="{User::hasAccess('AdminBase,EditBase')}">
+     
+        <div>
             <textbox name="Loc" label="Localisation" rows="1" class="autoheight smallbox" value="{htmlspecialchars($this->request->get('Loc'))}" />
+             <p class="exemple"><a href="http://www.ascodocpsy.org/article.php3?id_article=10" target="_blank" title="Je ne connais pas le numéro de mon établissement">Je ne connais pas le numéro de mon établissement</a></p>
         </div>
         
         <div test="{User::hasAccess('AdminBase,EditBase')}">
@@ -168,6 +168,7 @@
 
     </form>
 </div>
+
 <script type="text/javascript">
 
 jQuery(document).ready(

@@ -67,8 +67,8 @@
                     <Notes />
                     <MTCNR />
                     <Isbn />
-                    <if test="{User::hasAccess('AdminBase,EditBase')}">
-                        <opt><row label="Localisation">$Loc</row></opt>
+                    <opt><row label="Localisation">$Loc</row></opt>
+                    <if test="{User::hasAccess('AdminBase,EditBase')}">                        
                         <opt><row label="Producteur">$ProdFich</row></opt>
                     </if>
                 </case>
@@ -80,8 +80,8 @@
                     <Notes />
                     <MTCNR />
                     <Isbn />
-                    <if test="{User::hasAccess('AdminBase,EditBase')}">
-                        <opt><row label="Localisation">$Loc</row></opt>
+                    <opt><row label="Localisation">$Loc</row></opt>
+                    <if test="{User::hasAccess('AdminBase,EditBase')}">                      
                         <opt><row label="Producteur">$ProdFich</row></opt>
                     </if>
                 </case>
@@ -97,8 +97,8 @@
                     </else>
                     <Notes />
                     <MTCNR />
-                    <if test="{User::hasAccess('AdminBase,EditBase')}">
-                        <opt><row label="Localisation">$Loc</row></opt>
+                     <opt><row label="Localisation">$Loc</row></opt>
+                    <if test="{User::hasAccess('AdminBase,EditBase')}">                       
                         <opt><row label="Producteur">$ProdFich</row></opt>
                     </if>
                 </case>
