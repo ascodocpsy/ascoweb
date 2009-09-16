@@ -1,12 +1,12 @@
-<if test="{$count === false}">
-    <p>Une erreur est survenue pendant la validation des enregistrements.</p>
-</if>
-<elseif test="{$count === 0}">
-    <p>L'opération s'est déroulée avec succès mais aucun enregistrement n'a été validé.</p>
-</elseif>
-<elseif test="{$count === 1}">
-    <p>L'opération s'est déroulée avec succès : un enregistrement a été validé.</p>
-</elseif>
-<else>
-    <p>L'opération s'est déroulée avec succès : $count enregistrements ont été validés.</p>
+<if test="{$count === false}">
+    <p>Une erreur est survenue pendant la validation des enregistrements.</p>
+</if>
+<elseif test="{$count === 0}">
+    <p>L'opération s'est déroulée avec succès mais aucun enregistrement n'a été validé.</p>
+</elseif>
+<elseif test="{$count === 1}">
+    <p>L'opération s'est déroulée avec succès : un enregistrement a été validé.</p>
+</elseif>
+<else>
+    <p>L'opération s'est déroulée avec succès : $count enregistrements ont été validés.</p>
 </else>
