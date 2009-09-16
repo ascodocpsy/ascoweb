@@ -1,19 +1,19 @@
-<!-- Template appelé au retour de l'action replace de DatabaseModule -->
-<if test="{$count === false}">
-    <p>Une erreur est survenue : veuillez vérifier la syntaxe de votre expression régulière.</p>
-</if>
-<elseif test="{$count === 0}">
-    <p>L'opération s'est déroulée avec succès mais rien n'a été remplacé (aucune occurence rencontrée).</p>
-</elseif>
-<elseif test="{$count === 1}">
-    <p>L'opération s'est déroulée avec succès : une occurence a été remplacée.</p>
-</elseif>
-<else>
-    <p>L'opération s'est déroulée avec succès : $count occurences ont été remplacées.</p>
-</else>
-
-<ul>
-    <li><a href="/Base/ReplaceForm?_equation={urlencode($this->equation)}">Faire d'autres modifications sur ce lot de notices</a></li>
-    <li><a href="/Base/Search?_equation={urlencode($this->equation)}">Retour à la liste des documents</a></li>
-    <li><a href="/Base/SearchForm">Formulaire de recherche</a></li>
-</ul>
+<!-- Template appelé au retour de l'action replace de DatabaseModule -->
+<if test="{$count === false}">
+    <p>Une erreur est survenue : veuillez vérifier la syntaxe de votre expression régulière.</p>
+</if>
+<elseif test="{$count === 0}">
+    <p>L'opération s'est déroulée avec succès mais rien n'a été remplacé (aucune occurence rencontrée).</p>
+</elseif>
+<elseif test="{$count === 1}">
+    <p>L'opération s'est déroulée avec succès : une occurence a été remplacée.</p>
+</elseif>
+<else>
+    <p>L'opération s'est déroulée avec succès : $count occurences ont été remplacées.</p>
+</else>
+
+<ul>
+    <li><a href="/Base/ReplaceForm?_equation={urlencode($this->equation)}">Faire d'autres modifications sur ce lot de notices</a></li>
+    <li><a href="/Base/Search?_equation={urlencode($this->equation)}">Retour à la liste des documents</a></li>
+    <li><a href="/Base/SearchForm">Formulaire de recherche</a></li>
+</ul>

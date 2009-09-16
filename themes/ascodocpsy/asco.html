@@ -1,117 +1,114 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html>
-<head>
-	<title>$title</title>
-	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
-	$CSS
-	$JS
-	<link type="text/css" rel="stylesheet" href="/css/ascodocpsy/print.css" media="print" />
-</head>
-
-<body>
-<div style="line-height: 0em">&#160;</div><!-- Bug Mozilla http://bugzilla.mozilla.org/show_bug.cgi?id=200510 -->
-
-<!-- Ancre du retour en haut de page-->
-<div id="top"></div>
-
-<div id="principal">
-	<!-- En tete : logo en flash et logo de la rubrique-->
-	<div id="header"> 	  
-		<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-			<tr> <td align="center"> <a href="http://www.ascodocpsy.org"> 
-			<img src="/images/base.jpg" border="0" />
-			 </a> </td> </tr>
-		</table>		
-	</div> <!-- ferme div id=header -->
-
-	<!-- Menu de navigation -->
-	<!--<slot name="menu" action="menu.html" />-->
-
-	<div id="ContentLeft">
-         <div class="menu">
-            <ul>
-                <li><a href="/Base/SearchForm">Rechercher des documents</a></li>
-                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=906" target="_blank">Comment se procurer les documents</a></li>
-                <li><a href="/Base/SearchForm#history">Historique des recherches</a></li>
-                <li><a href="/Thesaurus">Consulter le thesaurus SantéPsy</a></li>
-                <if test="{User::hasAccess('Edit,Admin')}">
-                    <li id="caddie"><a href="/Base/ShowCaddie">Voir mon panier</a></li>
-                </if>
-                <if test="{User::hasAccess('Edit,Admin')}">
-                    <li><a href="/Base/New">Créer une nouvelle notice</a></li>
-                    <li><a href="/ImportAsco">Importer des notices</a></li>
-                </if>
-                <if test="{User::hasAccess('Admin')}">
-                    <li><a href="/Base/Validate">Valider toutes les notices</a></li>
-                    <li><a href="/TaskManager/">Gestionnaire de tâches</a></li>
-                    <li><a href="/Admin/">Administration</a></li>
-                    <li><a href="/AutoDoc/">Documentation</a></li>
-                </if>
-                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=711" target="_blank">Contacter Ascodocpsy</a></li>
-            </ul>
-         </div>
-
-        <p style="text-align: center; color:#888; margin-top: 2em; font-size: 86%;">
-            Accès<br />
-            <if test="{User::hasAccess('AdminBase')}">
-                administrateur
-            </if>
-            <elseif test="{User::hasAccess('EditBase')}">
-                professionnel
-            </elseif>
-            <else>
-                public
-            </else>
-         </p>
-                 
-	</div>
-
-	<div id="contentRight">
-	
-		$contents
-			
-		<!-- retour en haut de page -->
-		<div class="top"> <a href="#"> haut de page </a> </div>
-	
-	</div> <!-- fermeture de div id=contentright -->
-
-	<!-- Pied de page -->
-	<div id="pied" class="texte">
-		<p><a target="_blank" href="http://www.ascodocpsy.org/article.php3?id_article=672" title="Mentions légales : contact webmestre, CNIL">&nbsp;Mentions légales&nbsp;</a>
-			- Tous droits réservés Ascodocpsy</p>
-			
-		<def name="xiti" value="{Config::get('xiti')}" />
-		<if test="$xiti">
-	        <!-- Marqueur Xiti -->
-	        <div id="xiti-logo">
-	        <a href="http://www.xiti.com/xiti.asp?s=$xiti" title="WebAnalytics">
-	        <script type="text/javascript">
-	        Xt_param = 's=$xiti&amp;p=';
-	        <!--
-	        try {Xt_r = top.document.referrer;}
-	        catch(e) {Xt_r = document.referrer; }
-	        Xt_h = new Date();
-	        Xt_i = '<img width="39" height="25" border="0" ';
-	        Xt_i += 'src="http://logv143.xiti.com/hit.xiti?'+Xt_param;
-	        Xt_i += '&hl='+Xt_h.getHours()+'x'+Xt_h.getMinutes()+'x'+Xt_h.getSeconds();
-	        if(parseFloat(navigator.appVersion)>=4)
-	        {Xt_s=screen;Xt_i+='&r='+Xt_s.width+'x'+Xt_s.height+'x'+Xt_s.pixelDepth+'x'+Xt_s.colorDepth;}
-	        document.write(Xt_i+'&ref='+Xt_r.replace(/[<>"]/g, '').replace(/&/g, '$')+'">');
-	        //-->
-	        </script>
-	        <object>
-	        <noscript>
-	        <div id="xiti-logo-noscript">
-	        <img width="39" height="25" src="http://logv143.xiti.com/hit.xiti?s=$xiti&amp;p=&amp;" alt="WebAnalytics" />
-	        </div>
-	        </noscript>
-	        </object>
-	        </a>
-	        </div>
-        </if>
-	</div>
-
-</div> <!-- Ferme div id="principal" -->
-</body>
-</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<title>$title</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
+	$CSS
+	$JS
+	<link type="text/css" rel="stylesheet" href="/css/ascodocpsy/print.css" media="print" />
+</head>
+<body>
+<div style="line-height: 0em">&#160;</div><!-- Bug Mozilla http://bugzilla.mozilla.org/show_bug.cgi?id=200510 -->
+
+<!-- Ancre du retour en haut de page-->
+<div id="top"></div>
+
+<div id="principal">
+	<!-- En tete : logo en flash et logo de la rubrique-->
+	<div id="header"> 	  
+		<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+			<tr> <td align="center"> <a href="http://www.ascodocpsy.org"> 
+			<img src="/images/base.jpg" border="0" />
+			 </a> </td> </tr>
+		</table>		
+	</div> <!-- ferme div id=header -->
+
+	<!-- Menu de navigation -->
+	<!--<slot name="menu" action="menu.html" />-->
+
+	<div id="ContentLeft">
+         <div class="menu">
+            <ul>
+                <li><a href="/Base/SearchForm">Rechercher des documents</a></li>
+                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=906" target="_blank">Comment se procurer les documents</a></li>
+                <li><a href="/Base/SearchForm#history">Historique des recherches</a></li>
+                <li><a href="/Thesaurus">Consulter le thesaurus SantéPsy</a></li>
+                <li id="caddie"><a href="/Base/ShowCaddie">Voir mon panier</a></li>
+                <if test="{User::hasAccess('Edit,Admin')}">
+                    <li><a href="/Base/New">Créer une nouvelle notice</a></li>
+                    <li><a href="/ImportAsco">Importer des notices</a></li>
+                </if>
+                <if test="{User::hasAccess('Admin')}">
+                    <li><a href="/Base/Validate">Valider toutes les notices</a></li>
+                    <li><a href="/TaskManager/">Gestionnaire de tâches</a></li>
+                    <li><a href="/Admin/">Administration</a></li>
+                </if>
+                <li><a href="/AutoDoc/">Documentation</a></li>
+                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=711" target="_blank">Contacter Ascodocpsy</a></li>
+            </ul>
+         </div>
+
+        <p style="text-align: center; color:#888; margin-top: 2em; font-size: 86%;">
+            Accès<br />
+            <if test="{User::hasAccess('AdminBase')}">
+                administrateur
+            </if>
+            <elseif test="{User::hasAccess('EditBase')}">
+                professionnel
+            </elseif>
+            <else>
+                public
+            </else>
+         </p>
+                 
+	</div>
+
+	<div id="contentRight">
+	
+		$contents
+			
+		<!-- retour en haut de page -->
+		<div class="top"> <a href="#"> haut de page </a> </div>
+	
+	</div> <!-- fermeture de div id=contentright -->
+
+	<!-- Pied de page -->
+	<div id="pied" class="texte">
+		<p><a target="_blank" href="http://www.ascodocpsy.org/article.php3?id_article=672" title="Mentions légales : contact webmestre, CNIL">&nbsp;Mentions légales&nbsp;</a>
+			- Tous droits réservés Ascodocpsy</p>
+			
+		<def name="xiti" value="{Config::get('xiti')}" />
+		<if test="$xiti">
+	        <!-- Marqueur Xiti -->
+	        <div id="xiti-logo">
+	        <a href="http://www.xiti.com/xiti.asp?s=$xiti" title="WebAnalytics">
+	        <script type="text/javascript">
+	        Xt_param = 's=$xiti&amp;p=';
+	        <!--
+	        try {Xt_r = top.document.referrer;}
+	        catch(e) {Xt_r = document.referrer; }
+	        Xt_h = new Date();
+	        Xt_i = '<img width="39" height="25" border="0" ';
+	        Xt_i += 'src="http://logv143.xiti.com/hit.xiti?'+Xt_param;
+	        Xt_i += '&hl='+Xt_h.getHours()+'x'+Xt_h.getMinutes()+'x'+Xt_h.getSeconds();
+	        if(parseFloat(navigator.appVersion)>=4)
+	        {Xt_s=screen;Xt_i+='&r='+Xt_s.width+'x'+Xt_s.height+'x'+Xt_s.pixelDepth+'x'+Xt_s.colorDepth;}
+	        document.write(Xt_i+'&ref='+Xt_r.replace(/[<>"]/g, '').replace(/&/g, '$')+'">');
+	        //-->
+	        </script>
+	        <object>
+	        <noscript>
+	        <div id="xiti-logo-noscript">
+	        <img width="39" height="25" src="http://logv143.xiti.com/hit.xiti?s=$xiti&amp;p=&amp;" alt="WebAnalytics" />
+	        </div>
+	        </noscript>
+	        </object>
+	        </a>
+	        </div>
+        </if>
+	</div>
+
+</div> <!-- Ferme div id="principal" -->
+</body>
+</html>

@@ -1,88 +1,88 @@
-<def name="history" value="{$this->getSearchHistory()}" />
-
-<div class="searchhistory" style="text-align: center;">
-<h3><a name="history" />Historique des recherches : {count($history)}</h3>
-<if test="$history">
-        <table style="width: 100%;" class="spip" >
-            <tr>
-                <th colspan="2">Num</th>
-                <th>Equation</th>
-                <th>Réponses</th>
-                <th>Heure</th>
-            </tr>
-    
-            <loop on="$history" as="$eqnum,$t">
-                <tr>
-                    <td>
-                        <checkbox 
-                            name="_equation"
-                            id="eq$eqnum"
-                            value="{htmlspecialchars($t['user'])}" 
-                        />
-                    </td>
-    
-                    <td>
-                        {$t['number']}
-                    </td>
-                    
-                    <td>
-                        <a href="{$this->request->setAction('Search')->set('_equation', $t['user'])}">
-                        {
-                            str_replace
-                            (
-                                '&amp;nbsp;&lt;/span>', /* vire certains &nbsp; sinon on n'a aucune césure */ 
-                                '&lt;/span> ',
-                                str_replace
-                                (
-                                    array('&lt;code>','&lt;/code>'), 
-                                    '', 
-                                    Utils::highlight
-                                    (
-                                        str_replace
-                                        (
-                                            chr(39),
-                                            '’',
-                                            $t['user']
-                                        )
-                                    )
-                                )
-                            )
-                        } 
-                        </a>
-                    </td>
-                    
-                    <td>
-                        {$t['count']}
-                    </td>
-                    
-                    <td>
-                        {Utils::friendlyDate($t['time'])}
-                    </td>                        
-                </tr>
-                
-            </loop>
-        </table>
-        <p style="text-align: right;"><a id="ClearSearchHistory" href="ClearSearchHistory">Effacer l'historique</a></p>
-<script type="text/javascript">
-
-jQuery(document).ready(function()
-\{
-    jQuery('#ClearSearchHistory').click(function()
-    \{
-        var qs='';
-        jQuery('div.searchhistory input:checked').each(function()
-        \{
-            qs += '&amp;_equation=' + escape(jQuery(this).val());
-        \});
-        if (qs)
-            this.href += '?' + qs.substr(1);
-        //console.debug(qs.substr(1));
-        //return false;
-    \});
-\});
-</script>
-</if>
-<else>
-    <p>Aucune recherche enregistrée pour l'instant</p>
-</else>
-</div>
+<def name="history" value="{$this->getSearchHistory()}" />
+
+<div class="searchhistory" style="text-align: center;">
+<h3><a name="history" />Historique des recherches : {count($history)}</h3>
+<if test="$history">
+        <table style="width: 100%;" class="spip" >
+            <tr>
+                <th colspan="2">Num</th>
+                <th>Equation</th>
+                <th>Réponses</th>
+                <th>Heure</th>
+            </tr>
+    
+            <loop on="$history" as="$eqnum,$t">
+                <tr>
+                    <td>
+                        <checkbox 
+                            name="_equation"
+                            id="eq$eqnum"
+                            value="{htmlspecialchars($t['user'])}" 
+                        />
+                    </td>
+    
+                    <td>
+                        {$t['number']}
+                    </td>
+                    
+                    <td>
+                        <a href="{$this->request->setAction('Search')->set('_equation', $t['user'])}">
+                        {
+                            str_replace
+                            (
+                                '&amp;nbsp;&lt;/span>', /* vire certains &nbsp; sinon on n'a aucune césure */ 
+                                '&lt;/span> ',
+                                str_replace
+                                (
+                                    array('&lt;code>','&lt;/code>'), 
+                                    '', 
+                                    Utils::highlight
+                                    (
+                                        str_replace
+                                        (
+                                            chr(39),
+                                            '’',
+                                            $t['user']
+                                        )
+                                    )
+                                )
+                            )
+                        } 
+                        </a>
+                    </td>
+                    
+                    <td>
+                        {$t['count']}
+                    </td>
+                    
+                    <td>
+                        {Utils::friendlyDate($t['time'])}
+                    </td>                        
+                </tr>
+                
+            </loop>
+        </table>
+        <p style="text-align: right;"><a id="ClearSearchHistory" href="ClearSearchHistory">Effacer l'historique</a></p>
+<script type="text/javascript">
+
+jQuery(document).ready(function()
+\{
+    jQuery('#ClearSearchHistory').click(function()
+    \{
+        var qs='';
+        jQuery('div.searchhistory input:checked').each(function()
+        \{
+            qs += '&amp;_equation=' + escape(jQuery(this).val());
+        \});
+        if (qs)
+            this.href += '?' + qs.substr(1);
+        //console.debug(qs.substr(1));
+        //return false;
+    \});
+\});
+</script>
+</if>
+<else>
+    <p>Aucune recherche enregistrée pour l'instant</p>
+</else>
+</div>
