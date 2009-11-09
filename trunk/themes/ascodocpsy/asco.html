@@ -15,7 +15,7 @@
 <div id="top"></div>
 
 <div id="principal">
-	<!-- En tete : logo en flash et logo de la rubrique-->
+	<!-- En tete : image-->
 	<div id="header"> 	  
 		<table width="100%"  border="0" cellspacing="0" cellpadding="0">
 			<tr> <td align="center"> <a href="http://www.ascodocpsy.org"> 
@@ -30,22 +30,21 @@
 	<div id="ContentLeft">
          <div class="menu">
             <ul>
-                <li><a href="/Base/SearchForm">Rechercher des documents</a></li>
-                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=906" target="_blank">Comment se procurer les documents</a></li>
-                <li><a href="/Base/SearchForm#history">Historique des recherches</a></li>
-                <li><a href="/Thesaurus">Consulter le thesaurus SantéPsy</a></li>
-                <li id="caddie"><a href="/Base/ShowCaddie">Voir mon panier</a></li>
-                <if test="{User::hasAccess('Edit,Admin')}">
-                    <li><a href="/Base/New">Créer une nouvelle notice</a></li>
-                    <li><a href="/ImportAsco">Importer des notices</a></li>
+                <li><a href="/Base/SearchForm">Rechercher</a></li>
+                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=906" target="_blank">Obtenir les documents</a></li>
+                <li><a href="/Base/SearchForm#history">Historique</a></li>
+                <li><a href="/Thesaurus">Thesaurus SantéPsy</a></li>
+                <li id="caddie"><a href="/Base/ShowCaddie">Mon panier</a></li>								<if test="{User::hasAccess('Edit,Admin')}">
+                    <li><a href="/Base/New">Créer</a></li>
+                    <li><a href="/ImportAsco">Importer</a></li>
                 </if>
                 <if test="{User::hasAccess('Admin')}">
-                    <li><a href="/Base/Validate">Valider toutes les notices</a></li>
-                    <li><a href="/TaskManager/">Gestionnaire de tâches</a></li>
-                    <li><a href="/Admin/">Administration</a></li>
+                    <li><a href="/Base/Validate">Valider</a></li>
+                    <li><a href="/TaskManager/">Gérer les tâches</a></li>
+                    <li><a href="/Admin/">Administrer</a></li>
                 </if>
                 <li><a href="/AutoDoc/">Documentation</a></li>
-                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=711" target="_blank">Contacter Ascodocpsy</a></li>
+                <li><a href="http://www.ascodocpsy.org/article.php3?id_article=711" target="_blank">Nous contacter</a></li>
             </ul>
          </div>
 
