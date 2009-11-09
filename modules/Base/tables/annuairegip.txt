@@ -13,7 +13,6 @@ asco11	580
 asco12	581
 asco13	582
 asco14	583
-asco15	584
 asco16	585
 asco17	586
 asco18	587
@@ -64,7 +63,6 @@ asco62	627
 asco63	628
 asco64	629
 asco65	630
-asco66	631
 asco67	632
 asco68	633
 asco69	634
@@ -89,7 +87,8 @@ asco87	678
 asco88	356
 asco89	620
 asco90	637
-asco91	713
-asco93	622
+asco91	713asco92	953
+asco93	622asco94	928
 asco95	929
 asco96	620
+asco97	1022asco98	579asco99	1032
