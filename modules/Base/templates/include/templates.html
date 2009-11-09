@@ -10,7 +10,17 @@ $Aut et $Tit sont sur la même ligne */
 $Type, $Date, $Tit, $Aut : permet de le faire en une seule ligne
 $Aut et $Tit sont sur 2 lignes différentes */
 <template match="//TDTA">
-    <row >$Type, $Date</row>
+    <row >$Type, $Date 
+	<img 
+		class="locate"
+		test="{$Tit != ''}" strip="{$Lien == ''}"
+		src="/css/ascodocpsy/texte.gif" 
+        align="top" 
+        alt="Texte intégral en cliquant sur le titre"
+		title="Texte intégral en cliquant sur le titre"
+		width="22"
+    />
+	</row>
     <row label="Titre">
         <Tit />
     </row>
