@@ -34,7 +34,7 @@
             <button test="{$REF!=0 AND User::hasAccess('AdminBase')}" type="button" onclick="window.location.replace('$deletelink');" class="reset">Supprimer</button>
             <button test="{Config::get('nodedupbutton') !== true}" type="button" onclick="checkDuplicate();" class="reset">Doublons potentiels</button>
             <submit label="Enregistrer" class="submit" />
-        </div>
+        </div>/* 
     
         /* Liste des doublons potentiels */
         <div id="DuplicatesContainer">
@@ -196,7 +196,7 @@
                 </fieldset>
                 <Periodique revMandatory="{false}" />
                 <IsbnIssn />
-                <fieldset label="Notes bibliographiques">
+                <fieldset label="Notes">
                     <text name="Notes" rows="1" class="fullwidth autoheight" />
                     <help name="Notes" />
                 </fieldset>
@@ -321,7 +321,7 @@
                         <help name="PdPf" />
                     </div>
                     <div>
-                        <text name="Notes" label="Notes bibliographiques" rows="1" class="fullwidth autoheight" />
+                        <text name="Notes" label="Notes " rows="1" class="fullwidth autoheight" />
                         <help name="Notes" />
                     </div>
                 </fieldset>
