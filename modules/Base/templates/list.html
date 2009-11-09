@@ -8,7 +8,7 @@
 
     /* Slot contenant les options de recherche (format, tri, notices par page...) */
     <slot name="searchoptions" action="templates/searchoptions.html" />
-
+
     /* Affichage de la requête utilisateur et lien pour la modifier */
     <div style="font-size: 120%; background-color: #eee; padding: 0.5em; width: 65%; margin: 1em 0;">
         <p style="margin: 0;">
@@ -48,15 +48,13 @@
 <def name="incart" value="{Config::get('incart',false)}" />
 <def name="action" value="{$incart ? '/Ascocart/Remove' : '/Ascocart/Add'}" />
 <def name="formid" value="{$incart ? 'incartanswers' : 'answers'}" />
-
+<p class="impression"><a href="javascript:window.print();">Imprimer cette page  <img src="http://ascodocpsy.in2p3.fr/TEST2/plugins/auto/outils_article/img_pack/printer.png" width="20" alt="Impression de la page" title="Impression de la page"/> </a></p>
 /* Formulaire permettant d'ajouter/supprimer toutes les notices de la page dans/du panier */
 <form action="$action" method="post" id="$formid" class="texte" style="clear: both" >
 
     <div id="list" class="texte">
-
         /* Barre de navigation des pages + bouton ajouter au caddie */
         <div style="padding: 0.5em 0; border-bottom: 1px solid #ccc;">
-            
             <div style="float: left;">
                 <if test="$incart">
                     <submit name="btnremove" class="removeall" label="Supprimer les notices du panier" title="Supprimer les notices de cette page du panier"/>
@@ -72,7 +70,7 @@
     </div>
 
         /* Appelle le template d'affichage des notices en fonction du format demandé */
-        <switch test="{$this->request->unique('_fmt')->defaults('shortref')->ok()}">
+        <switch test="{$this->request->unique('_fmt')->defaults('fullref')->ok()}">
             <case test="shortref">
                 <slot name="answerlist" action="templates/shortref.html" />
             </case>
@@ -94,7 +92,7 @@
             </case>
 */            
             <default>
-                Impossible d'afficher les notices avec le format demandé : {$this->request->unique('_fmt')->defaults('shortref')->ok()}.
+                Impossible d'afficher les notices avec le format demandé : {$this->request->unique('_fmt')->defaults('fullref')->ok()}.
             </default>
         </switch>
         
