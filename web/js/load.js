@@ -264,7 +264,7 @@ var Controls =
 ["EtatCol"         , "Etat de la collection"                            ,      ,       ,        ,       ,       ,                ,                ],
 ["Page"            , "Nombre de pages"                                  ,      ,       ,        ,       ,       ,                ,                ],
 ["PdPf"            , "Page de début et page de fin"                     ,      ,       ,        ,       ,       ,                ,                ],
-["Notes"           , "Notes bibliographiques"                           ,      ,       ,        ,       ,       ,                ,                ],
+["Notes"           , "Notes"				                            ,      ,       ,        ,       ,       ,                ,                ],
 ["Col"             , "Collection"                                       ,      ,       ,        ,       ,       ,                ,                ],
 ["Edit"            , "Editeur(s)"                                       ,      ,       ,        ,     1 ,       ,                ,                ],
 ["Lieu"            , "Lieu d'édition ou de soutenance"                  ,      ,       ,        ,     1 ,       ,                ,                ],
