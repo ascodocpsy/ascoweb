@@ -7,7 +7,7 @@
 */
 
 /* Lien vers aide en ligne */
-<help href="http://www.ascodocpsy.org/article.php3?id_article=903" />
+<help href="http://www.ascodocpsy.org/article.php3?id_article=903" />
 
 <div class="titre">Rechercher des documents</div>
 
@@ -22,8 +22,7 @@
                 value="{htmlspecialchars(implode(' AND ',$this->request->asArray('_equation')->ok()))}"
             />
             <p class="exemple">Par défaut, l'opérateur OU est utilisé entre deux mots</p>
-        </div>
-        
+        </div>       
         <div> 
            <textbox name="MotsCles" label="Descripteurs"  rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('MotsCles'))}" />
             <p class="exemple"><a href="/Thesaurus" target="_blank" title="Consultez le thesaurus SantéPsy (nouvelle fenêtre)">Consultez le thesaurus SantéPsy</a></p>
