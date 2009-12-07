@@ -1,6 +1,6 @@
 = Quelques astuces de recherche =
 
-_Notes rédigées par Gaëlle Faure, webmestre d'Ascodopsy._
+_Notes rédigées par Gaëlle Faure, webmestre d'Ascodocpsy._
 
 *Pré-requis pour les astuces suivantes :* 
 le champ doit être *indexé* et de type *count*
