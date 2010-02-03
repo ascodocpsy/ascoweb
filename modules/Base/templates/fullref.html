@@ -1,4 +1,4 @@
-<ul class="fulllist" start="{$this->selection->searchInfo('rank')}"><p class="impression"><a href="javascript:window.print();">Imprimer cette notice  <img src="http://ascodocpsy.in2p3.fr/TEST2/plugins/auto/outils_article/img_pack/printer.png" width="20" alt="Impression de la notice" title="Impression de la notice"/> </a></p>
+<ul class="fulllist" start="{$this->selection->searchInfo('rank')}">
     <loop on="{$this->selection}" as="$rank, $record">
         <li class="record">
 
@@ -13,7 +13,7 @@
                 
                 /* Bouton Ajouter ou Supprimer dans le/du panier */
                 <span style="float: left">
-                    <if test="{User::hasAccess('AdminBase,EditBase')}">
+                   <!-- <if test="{User::hasAccess('AdminBase,EditBase')}">-->
                         <if test="{!Config::get('incart',false)}">
                             <a class="addtocart" href="/AscoCart/Add?item=$REF">
                                 <img src="/css/ascodocpsy/cart_add.png" alt="Ajouter au panier" />
@@ -24,7 +24,7 @@
                                 <img src="/css/ascodocpsy/cart_delete.png" alt="Supprimer du panier" />
                             </a>
                         </else>
-                    </if>                
+                    <!--</if>  -->
                 </span>                
                 
                 /* Boutons de la notice */ 
