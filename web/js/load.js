@@ -326,7 +326,7 @@ var ControlsLivre =
 ["Edit"            , "Editeur"                                          , true ,       ,        ,     1 ,       ,                ,                ],
 ["Lieu"            , "Lieu d'édition"                                   , true ,       ,        ,     1 ,       ,                ,                ],
 ["Reed"            , "Mention d'édition"                                ,      ,       ,        ,       ,       ,                ,                ],
-["IsbnIssn"        , "ISBN, ISSN"                                       ,      ,       ,        ,       ,     1 ,                ,                ],
+["IsbnIssn"        , "ISBN, ISSN"                                       ,      ,       ,        ,       ,       ,                ,                ],
 ["Resu"            , "Résumé"                                           ,      ,       ,        ,       ,       ,                ,                ],
 ["Theme"           , "Thème"                                            ,      ,       ,        ,       ,     1 , "reUpCase"     ,                ],
 ["MotCle"          , "Descripteurs"                                     , true ,       ,        ,     1 ,       , "reUpCase"     ,                ],
