@@ -21,7 +21,7 @@
     
     <template match="//LieuEdit"><if test="{$Lieu}">{implode('/',(array)$Lieu)}<opt> : {implode('/',(array)$Edit)}</opt></if><else><opt>{implode('/',(array)$Edit)}</opt></else></template>
     
-    <template match="//Lien"><if test="$Lien">Disponible à partir de : $Lien$nl</if></template>
+    <template match="//Lien"><if test="$Lien">$Lien$nl</if></template>
 
 	<template match="//MclResu"><if test="{$fmt['plus']}"><opt min="2">{implode('/',(array)$MotCle)}$nl</opt><opt min="2">$Resu$nl</opt></if></template>
 </div>/*
