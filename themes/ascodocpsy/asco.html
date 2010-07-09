@@ -1,32 +1,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html>
-<head>
-	<title>$title</title>
-	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
-	$CSS
-	$JS
-	<link type="text/css" rel="stylesheet" href="/css/ascodocpsy/print.css" media="print" />
+<head>
+	<title>Base SantéPsy</title>	
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
+	$CSS
+	$JS
+	<link type="text/css" rel="stylesheet" href="/css/ascodocpsy/print.css" media="print" />
 </head>
 <body>
-<div style="line-height: 0em">&#160;</div><!-- Bug Mozilla http://bugzilla.mozilla.org/show_bug.cgi?id=200510 -->
+<div style="line-height: 0em">&#160;</div><!-- Bug Mozilla http://bugzilla.mozilla.org/show_bug.cgi?id=200510 -->
 
-<!-- Ancre du retour en haut de page-->
+<!-- Ancre du retour en haut de page-->
 <div id="top"></div>
-
+
 <div id="principal">
-	<!-- En tete : image-->
-	<div id="header"> 	  
-		<table width="100%"  border="0" cellspacing="0" cellpadding="0">
-			<tr> <td align="center"> <a href="http://www.ascodocpsy.org"> 
-			<img src="/images/base.jpg" border="0" />
-			 </a> </td> </tr>
-		</table>		
-	</div> <!-- ferme div id=header -->
-
+	<!-- En tete : image-->
+	<div id="header">			<a href="http://www.ascodocpsy.org" title="retour au site ascodocpsy"><img src="/images/base.jpg" border="0" /></a>	</div>
+	
 	<!-- Menu de navigation -->
 	<!--<slot name="menu" action="menu.html" />-->
-
 	<div id="ContentLeft">
          <div class="menu">
             <ul>
@@ -43,7 +36,7 @@
                     <li><a href="/TaskManager/">Gérer les tâches</a></li>
                     <li><a href="/Admin/">Administrer</a></li>
                 </if>
-                <li><a href="/AutoDoc/">Documentation</a></li>
+                <li><a href="/AutoDoc/">Documentation sur ascoweb</a></li>
                 <li><a href="http://www.ascodocpsy.org/article.php3?id_article=711" target="_blank">Nous contacter</a></li>
             </ul>
          </div>
@@ -59,23 +52,18 @@
             <else>
                 public
             </else>
-         </p>
-                 
+         </p>                 
 	</div>
 
-	<div id="contentRight">
-	
-		$contents
-			
-		<!-- retour en haut de page -->
+	<div id="contentRight">			$contents		
+		<!-- retour en haut de page -->
 		<div class="top"> <a href="#"> haut de page </a> </div>
-	
 	</div> <!-- fermeture de div id=contentright -->
 
-	<!-- Pied de page -->
-	<div id="pied" class="texte">
-		<p><a target="_blank" href="http://www.ascodocpsy.org/article.php3?id_article=672" title="Mentions légales : contact webmestre, CNIL">&nbsp;Mentions légales&nbsp;</a>
-			- Tous droits réservés Ascodocpsy</p>
+	<!-- Pied de page -->
+	<div id="pied" class="pied">		<a href="http://www.ascodocpsy.org/Nous-contacter">Contact</a>&nbsp; |		<a href="http://www.ascodocpsy.org/Informations-sur-la-base-SantePsy">Présentation de SantéPsy</a>&nbsp; |
+		<a target="_blank" href="http://www.ascodocpsy.org/article.php3?id_article=672" title="Mentions légales : contact webmestre, CNIL">&nbsp;Mentions légales&nbsp;</a>
+		| 2007- © ascodocpsy - Tous droits réservés
 			
 		<def name="xiti" value="{Config::get('xiti')}" />
 		<if test="$xiti">
@@ -106,8 +94,8 @@
 	        </a>
 	        </div>
         </if>
-	</div>
+	</div> <!-- Ferme le pied-->
 
 </div> <!-- Ferme div id="principal" -->
 </body>
-</html>
+</html>
