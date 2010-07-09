@@ -87,8 +87,14 @@ asco87	678
 asco88	356
 asco89	620
 asco90	637
-asco91	713asco92	953
-asco93	622asco94	928
+asco91	713
+asco92	953
+asco93	622
+asco94	928
 asco95	929
 asco96	620
-asco97	1022asco98	579asco99	1032
+asco97	1022
+asco98	579
+asco99	1032
+asco100	1109
+asco101	1122
