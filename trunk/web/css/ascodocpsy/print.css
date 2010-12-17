@@ -1,4 +1,139 @@
-body
-{
+#principal {
+    width: 800px;
+	border:0;
+    }
+     
+#header {
+    display: none;
+    }
+   
+#ContentLeft {  
+   display: none;
+    }
+    
+#contentRight {
+    position: relative;
+    z-index: 1;
+    float : right;  
+    width: 795px;
+    margin-top: 0;
+    margin-right:0px;
+    padding-top: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;   
+    font-size: 100%;
+    text-align: justify;    
+        }
+    
+#pied {     
+     display: none;
+    }
 
-}
+/* Aide en ligne*/ 
+.help {
+	display: none;}
+	
+.fieldset {
+	display: none;}
+	
+/* Le bloc qui affiche une notice */
+li.record{
+    width:800px;
+	border-bottom: 1px solid #cccccc;
+	margin-top:10px;
+	}
+
+/* Liste des actions possibles sur les notices (exporter, supprimer, etc.) */
+div.menubase {
+	display:none;}
+
+/* decoupage du nombre de reponses par page */ 	
+.pager {
+	display: none; }
+	
+.recordbuttons {
+    display: none;}
+
+li.record.hover .recordbuttons {
+    display: none;}
+
+/* Bouton "Ajouter tout au panier" */
+input.addall{
+	display: none;}
+
+/* Bouton "Supprimer tout du panier" */
+input.removeall{
+	display: none;}
+
+/* toutes les images*/	
+a img{
+    display: none;}
+	
+.titre {
+    font-size: 150%;
+    font-weight: bold;
+    margin-top: 20px;
+    }
+    
+.texte{
+    padding:0;
+    font-size: 100%;
+    text-align: left;
+    color: #5a666f;
+    }
+    
+.impression {
+    display: none;
+    }   
+    
+
+.top {
+    display: none;
+    }   
+    
+  
+
+/*couleur des liens */
+
+#principal a:link{
+    color: #000000;
+	text-decoration: none;    
+    } 
+	
+#principal a:visited{
+     color: #000000;
+	text-decoration: none;   
+    }	
+	
+.texte a:link {
+    color: #000000;
+    text-decoration: none;
+    }
+
+.texte a:visited {
+    color: #000000;
+    text-decoration: none;
+    }
+    
+/* fix for browsers that don't need the hack */
+html>body .ContentLeft li {
+    border-bottom: none;
+    }
+
+/*********** #sectionLinks styles ***********/
+#sectionLinks{
+    position: inherit;
+    margin: 0px;
+    padding-left: 10px;
+    font-size: 100%;
+    text-align: left;
+    }
+
+
+
+.spip_puce { /* puce générée automatiquement lors de la saisie d'un article : fait appel à "puce.gif" a la racine*/ 
+    list-style-position: inside;
+    border-width: 0px;
+    margin-left: 20px;  
+    }
