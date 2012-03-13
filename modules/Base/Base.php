@@ -91,7 +91,7 @@ class Base extends DatabaseModule
                 for ($i=0;$i<=count($annexe)-1;$i++)
                 {
                     if ($value) $value.=self::SEPARATOR;
-                    $value.=$this->link($annexe[$i], $lien[$i], 'Accéder au texte intégral (ouverture dans une nouvelle fenêtre)', true);
+                    $value.=$this->link($annexe[$i], $lien[$i], 'Accès gratuit ou payant selon éditeur', true);
                 }
                 return $value;
 
@@ -232,11 +232,11 @@ class Base extends DatabaseModule
                     }
                     else
                     {
-                        $title='Accéder au texte intégral (ouverture dans une nouvelle fenêtre)';
-                        $alt='Texte intégral';
+                        $title='Accès gratuit ou payant selon éditeur';
+                        $alt='Accès gratuit ou payant selon éditeur';
                     }
 
-                    // Lien vers la page de présentation de la revue ou vers le texte intégral
+                    // Lien vers la page de présentation de la revue ou vers le texte intégral ou le site de l'éditeur
                     // avec ouverture dans une nouvelle fenêtre
                     return $this->link('<img src="'.$img.'" align="top" alt="'.$alt.'" />', $lien, $title, true);
                 }
@@ -306,6 +306,7 @@ class Base extends DatabaseModule
             case 'Type':
                 return $this->request->Type;
             
+			
             case 'ProdFich':
                 return $this->ident;
             
@@ -639,7 +640,7 @@ class Base extends DatabaseModule
         // Fiche Périodique existante mais le champ Lien ne contient pas www.ascodocpsy.org
         if (stripos($this->selection['Lien'], 'ascodocpsy') === false)
         {
-        	$this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$Rev.'.');
+        	$this->showError('Aucune page de présentation n\'est disponible pour le périodique '.$Rev.'.');
         	return;
         }
         
