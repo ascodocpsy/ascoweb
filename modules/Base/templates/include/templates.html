@@ -16,8 +16,8 @@ $Aut et $Tit sont sur 2 lignes différentes */
 		test="{$Tit != ''}" strip="{$Lien == ''}"
 		src="/css/ascodocpsy/texte.gif" 
         align="top" 
-        alt="Texte intégral en cliquant sur le titre"
-		title="Texte intégral en cliquant sur le titre"
+        alt="Accès gratuit ou payant selon éditeur"
+		title="Accès gratuit ou payant selon éditeur"
 		width="22"
     />
 	</row>
@@ -29,7 +29,7 @@ $Aut et $Tit sont sur 2 lignes différentes */
 
 /* Template pour afficher un titre de document et son lien (s'il en a un) */
 <template match="//Tit">
-    <a test="{$Tit != ''}" strip="{$Lien == ''}" href="{Routing::linkFor($Lien)}" onclick="window.open(this.href); return false;" title="Accéder au texte intégral (ouverture dans une nouvelle fenêtre)">$Tit</a>
+    <a test="{$Tit != ''}" strip="{$Lien == ''}" href="{Routing::linkFor($Lien)}" onclick="window.open(this.href); return false;" title="Accéder au site éditeur (ouverture dans une nouvelle fenêtre)">$Tit</a>
 </template>
 
 /* Template pour l'affichage long des notices 
