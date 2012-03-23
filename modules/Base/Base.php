@@ -626,7 +626,7 @@ class Base extends DatabaseModule
 		// Fiche Périodique inexistante
         if (! $this->select($eq))
         {
-            $this->showError('Aucune page de présentation n\'est disponible sur le site www.ascodocpsy.org, pour le périodique '.$Rev.'.');
+            $this->showError('Aucune page de présentation du périodique n\'est disponible sur le site www.ascodocpsy.org'.$Rev.'.');
             return;
         }
         
