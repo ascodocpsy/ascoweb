@@ -117,8 +117,8 @@
         <slot name="menubase">
             <div class="menubase">
                 <ul>
-                    <li><a href="Export?_equation={urlencode($this-&gt;equation)}&amp;_sort={urlencode($this-&gt;selection-&gt;searchInfo('sortorder'))}">Exporter toutes les notices</a></li>
-                    <li><a href="ExportByType?_equation={urlencode($this-&gt;equation)}&amp;_sort={urlencode($this-&gt;selection-&gt;searchInfo('sortorder'))}">Exporter par type de document</a></li>
+                    <li><a href="Export?_equation={urlencode($this-&gt;equation)}&amp;_sort={urlencode($this-&gt;selection-&gt;searchInfo('sortorder'))}">Télécharger toutes les notices</a></li>
+                    <li><a href="ExportByType?_equation={urlencode($this-&gt;equation)}&amp;_sort={urlencode($this-&gt;selection-&gt;searchInfo('sortorder'))}">Télécharger par type de document</a></li>
                     <li test="{User::hasAccess('AdminBase')}"><a href="ReplaceForm?_equation={urlencode($this-&gt;equation)}">Chercher/remplacer dans toutes ces notices...</a></li>                    
                     <li test="{User::hasAccess('AdminBase')}"><a href="Validate?_equation={urlencode($this-&gt;equation)}">Valider toutes ces notices</a></li>
                     <li test="{User::hasAccess('AdminBase')}"><a href="ConfirmDelete?_equation={urlencode($this-&gt;equation)}">Supprimer toutes ces notices</a></li>
