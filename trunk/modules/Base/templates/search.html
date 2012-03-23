@@ -51,7 +51,8 @@
                 </fill>
             </else>
         </div>
-    
+
+	
         /* TODO : quickTable ? */
         <div>
             <fill values="{htmlspecialchars($this->request->get('Liens'))}">
@@ -137,11 +138,11 @@
             </fill>
         </div>
     
-        <div test="{User::hasAccess('AdminBase')}">
+        <div test="{User::hasAccess('AdminBase,EditBase')}">
             <textbox name="Creation" label="Date de création" value="{htmlspecialchars($this->request->get('Creation'))}" rows="1" class="autoheight smallbox" />
         </div>
     
-        <div test="{User::hasAccess('AdminBase')}">
+        <div test="{User::hasAccess('AdminBase,EditBase')}">
             <textbox name="LastUpdate" label="Date de mise à jour" value="{htmlspecialchars($this->request->get('LastUpdate'))}" rows="1" class="autoheight smallbox" />
             <p class="exemple">
                 Exemples : 2006*, 200612*, 20061215
@@ -189,6 +190,8 @@ jQuery(document).ready(
             jQuery('#NatText').parent().slideToggle('normal');
         \});
         
+		
+		
         // Critères dont la liste des valeurs de la base est disponible
         jQuery('#MotsCles').autocomplete
         (
