@@ -29,7 +29,6 @@ asco28	597
 asco29	598
 asco30	599
 asco31	600
-asco32	601
 asco33	602
 asco34	603
 asco35	604
@@ -81,10 +80,9 @@ asco81	594
 asco82	647
 asco83	648
 asco84	659
-asco85	660
 asco86	677
 asco87	678
-asco88	356
+asco88	587
 asco89	620
 asco90	637
 asco91	713
