@@ -37,10 +37,6 @@ var rePeriodFRE    = "L'information doit être saisie sous la forme suivante :\n-
 //var reUpCase       = " *[-.*]? *_Char_*_Majus_ *[0-9]*"       // Texte comprenant des espaces ou des caractères ou des chiffres ou des majus
 //var reUpCaseFRE    = "L'information doit comporter au moins 2 caractères."
 
-// Auteurs
-// Caractères autorisés : lettres majuscules, minuscules, accentuées, chiffres, caractères '.[]
-var reAuteur       = "[A-Za-z0-9ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖØÙÚÛÜİßàáâãäåæçèéêëìíîïğñòóôõöùúûüışÿŞ\\[\\]-.' ]*"
-var reAuteurFRE    = "Syntaxe incorrecte. Les caractères autorisés sont : les lettres majuscules, minuscules, accentuées, les chiffres, les espaces et les signes suivants : '.[]"
 
 // Mots clés. Caractères autorisés : lettres majuscules, chiffres, espaces et signes suivants : ',.()[]+-
 //var reUpCase       = "[A-Z0-9',. ()\\[\\]+-]{2,}"
