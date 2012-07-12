@@ -243,7 +243,7 @@ var Controls =
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
 ["NatText"         , "Nature du texte officiel"                         ,      ,       ,        ,       ,     1 ,                ,                ],
-["Aut"             , "Auteurs"                                          ,      ,       ,        ,     1 ,       , "reAuteur"     ,                ],
+["Aut"             , "Auteurs"                                          ,      ,       ,        ,     1 ,       , 			     ,                ],
 ["Tit"             , "Titre du document"                                ,      ,       ,        ,       ,       ,                ,                ],
 ["Annexe"          , "Titres des annexes"                               ,      ,       ,        ,       ,       ,                ,                ],
 ["LienAnne"        , "Adresses Internet des annexes"                    ,      ,       ,        ,       ,       ,                ,"CheckLienAnnexe"],
@@ -278,7 +278,8 @@ var Controls =
 ["Lien"            , "Lien vers le document"                            ,      ,       ,        ,       ,       , "reUrlIP"      ,                ],
 ["Loc"             , "Localisation du document"                         ,      ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
 ["ProdFich"        , "Producteur de la fiche"                           ,      ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
-["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
+["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ],
+["Support"         , "Support du document multimédia"                   ,      ,       ,        ,       ,     1 ,                ,                ],
 ]
 
 // Pour document Article
@@ -288,7 +289,7 @@ var ControlsArticle =
 //        0           		1                                              2       3       4        5       6        7                  8
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
-["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , "reAuteur"     ,                ],
+["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , 			     ,                ],
 ["Tit"             , "Titre de l'article"                               , true ,       ,        ,       ,       ,                ,                ],
 ["Date"            , "Année du document"                                , true ,       ,        ,       ,     1 , "reYear"       ,                ],
 ["Rev"             , "Titre du périodique"                              , true ,       ,        ,       ,       ,                ,                ],
@@ -313,7 +314,7 @@ var ControlsLivre =
 //        0           		1                                              2       3       4        5       6        7                  8
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
-["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , "reAuteur"     ,                ],
+["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , 			     ,                ],
 ["Tit"             , "Titre du document"                                , true ,       ,        ,       ,       ,                ,                ],
 ["CongrTit"        , "Intitulé du congrès"                              ,      ,       ,        ,       ,       ,                ,                ],
 ["CongrNum"        , "Numéro du congrès"                                ,      ,       ,        ,       ,       ,                ,                ],
@@ -345,7 +346,7 @@ var ControlsCongres =
 //        0           		1                                              2       3       4        5       6        7                  8
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
-["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , "reAuteur"     ,                ],
+["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , 			     ,                ],
 ["Tit"             , "Titre du document"                                , true ,       ,        ,       ,       ,                ,                ],
 ["CongrTit"        , "Intitulé du congrès"                              , true ,       ,        ,       ,       ,                ,                ],
 ["CongrNum"        , "Numéro du congrès"                                , true ,       ,        ,       ,       ,                ,                ],
@@ -377,7 +378,7 @@ var ControlsRapport =
 //        0           		1                                              2       3       4        5       6        7                  8
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
-["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , "reAuteur"     ,                ],
+["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , 			     ,                ],
 ["Tit"             , "Titre"                                            , true ,       ,        ,       ,       ,                ,                ],
 ["Date"            , "Année du document"                                , true ,       ,        ,       ,     1 , "reYearDoc"    ,                ],
 ["Rev"             , "Titre du périodique"                              ,      ,       ,        ,       ,       ,                ,                ],
@@ -407,7 +408,7 @@ var ControlsMemoire =
 //        0           		1                                              2       3       4        5       6        7                  8
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
-["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , "reAuteur"     ,                ],
+["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , 			     ,                ],
 ["Tit"             , "Titre"                                            , true ,       ,        ,       ,       ,                ,                ],
 ["DipSpe"          , "Spécialité du diplôme"                            , true ,       ,        ,       ,       ,                ,                ],
 ["Date"            , "Année de soutenance"                              , true ,       ,        ,       ,     1 , "reYearDoc"    ,                ],
@@ -467,5 +468,30 @@ var ControlsPeriodique =
 ["IsbnIssn"        , "ISSN"                                             , true ,       ,        ,       ,       ,                ,                ],
 ["Lien"            , "Lien vers le document"                            ,      ,       ,        ,       ,       , "reUrlIP"      ,                ],
 ["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
+["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
+]
+
+//Pour document Multimédia
+var ControlsMultimedia =
+[
+[0, "FRE", "/", "CheckForm"],
+//        0           		1                                              2        3       4        5       6        7                 8
+// Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
+["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
+["Aut"             , "Auteurs"                                          , true ,       ,        ,     1 ,       , 			     ,                ],
+["Tit"             , "Titre"                                            , true ,       ,        ,       ,       ,                ,                ],
+["Date"            , "Année du document"                                , true ,       ,        ,       ,     1 , "reYearDoc"    ,                ],
+["Edit"            , "Editeur"                                          ,      ,       ,        ,     1 ,       ,                ,                ],
+["Lieu"            , "Lieu d'édition"                                   ,      ,       ,        ,     1 ,       ,                ,                ],
+["Resu"            , "Résumé"                                           ,      ,       ,        ,       ,       ,                ,                ],
+["Theme"           , "Thème"                                            , true ,       ,        ,       ,     1 , "reUpCase"     ,                ],
+["MotCle"          , "Descripteurs"                                     , true ,       ,        ,     1 ,       , "reUpCase"     ,                ],
+["Nomp"            , "Noms propres"                                     ,      ,       ,        ,     1 ,       , "reUpCase"     ,                ],
+["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,     1 ,       , "reUpCase"     ,                ],
+["Support"         , "Support du document multimédia"                   , true ,       ,        ,       ,     1 ,                ,                ],
+["Notes"           , "Notes"                                            ,      ,       ,        ,       ,       ,                ,                ],
+["Lien"            , "Lien vers le document"                            , true ,       ,        ,       ,       , "reUrlIP"      ,                ],
+["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
+["Loc"             , "Localisation du document"                         , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
 ["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
 ]
