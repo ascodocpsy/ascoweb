@@ -46,6 +46,7 @@
     <case test="congrès"       ><export fields="{Config::get('formats.'.$format.'.fields.congrès')}" /></case>
     <case test="livre"         ><export fields="{Config::get('formats.'.$format.'.fields.livre')}" /></case>
     <case test="mémoire"       ><export fields="{Config::get('formats.'.$format.'.fields.mémoire')}" /></case>
+	<case test="multimédia"    ><export fields="{Config::get('formats.'.$format.'.fields.multimédia')}" /></case>
     <case test="thèse"         ><export fields="{Config::get('formats.'.$format.'.fields.mémoire')}" /></case>
     <case test="périodique"    ><export fields="{Config::get('formats.'.$format.'.fields.périodique')}" /></case>
     <case test="rapport"       ><export fields="{Config::get('formats.'.$format.'.fields.rapport')}" /></case>

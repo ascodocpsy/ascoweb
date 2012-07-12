@@ -50,6 +50,8 @@
 
     <case test="{$TypeMinu==='mémoire' || $TypeMinu==='thèse'}"><AutTit/><opt>{implode('/',(array)$Lieu)}</opt><opt> : $DipSpe</opt><Date sep=" ; " />.$nl<Lien /><MclResu /></case>
 
+	<case test="{$TypeMinu==='multimédia'}"><AutTit /><LieuEdit /><Date sep=" ; " />.$nl<Lien /><MclResu /></case>
+	
 	<case test="{$TypeMinu==='périodique'}">$Rev$nl<opt min="2">$Notes$nl</opt><opt min="2">ISSN : {implode(' / ',(array)$IsbnIssn)}{$nl}</opt><opt min="2">{implode($nl,(array)$EtatCol)}{$nl}</opt></case>
     
     <case test="{$TypeMinu==='rapport'}"><AutTit /><if test="{$Rev}">$Rev $Date<opt> ; <opt>$Vol</opt><opt>($Num)</opt></opt><opt> : $Page.$nl</opt></if>
