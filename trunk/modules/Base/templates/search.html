@@ -52,6 +52,17 @@
             </else>
         </div>
 
+		    	<div>
+			<fill values="{$this->request->asArray('Support')->ok()}">
+                <select name="Support" label="Support du document multimédia" src="new TextTable($this->path.'tables/support.txt')" size="3" multiple="true" />
+            </fill>
+			<div class="infonatext">
+                <p class="exemple">
+                    Pour sélectionner ou désélectionner plusieurs supports de document multimédia,
+                    appuyez sur la touche contrôle (Ctrl) et cliquez sur les supports souhaités.
+                </p>
+            </div>
+        </div>
 	
         /* TODO : quickTable ? */
         <div>
@@ -190,7 +201,26 @@ jQuery(document).ready(
             jQuery('#NatText').parent().slideToggle('normal');
         \});
         
+		var multimedia=jQuery('input[@value="Multimédia"]');
+        if (! multimedia.is(':checked'))
+        \{
+            jQuery('#Support').parent().hide();
+        \};
+        
+        multimedia.click(function()
+        \{
+            jQuery('#Support').parent().slideToggle('normal');
+        \});
 		
+        // Critères dont la liste des valeurs de la base est disponible
+        jQuery('#MotsCles').autocomplete
+        (
+            '{Routing::linkFor("Lookup")}?table=descripteurs&amp;value=%s',
+            \{
+                asValue: true,
+                title: title
+            \}
+        );
 		
         // Critères dont la liste des valeurs de la base est disponible
         jQuery('#MotsCles').autocomplete
