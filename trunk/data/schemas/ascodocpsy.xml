@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema label="Base SantéPsy" version="1" description="Structure de la base SantéPsy" creation="2007/11/09 19:12:17" lastupdate="2009/04/27 22:52:13">
     <stopwords>ai aie aient aies ait as au aura aurai auraient aurais aurait auras aurez auriez aurions aurons auront aux avaient avais avait avec avez aviez avions avons ayant ayante ayantes ayants ayez ayons c ce ces d dans de des du elle en es est et eu eue eues eurent eus eusse eussent eusses eussiez eussions eut eux eûmes eût eûtes furent fus fusse fussent fusses fussiez fussions fut fûmes fût fûtes il j je l la le leur lui m ma mais me mes moi mon même n ne nos notre nous on ont ou par pas pour qu que qui s sa se sera serai seraient serais serait seras serez seriez serions serons seront ses soient sois soit sommes son sont soyez soyons suis sur t ta te tes toi ton tu un une vos votre vous y à étaient étais était étant étante étantes étants étiez étions été étée étées étés êtes</stopwords>
-    <_lastid field="43" index="37" alias="6" lookuptable="18" sortkey="7" />
+    <_lastid field="44" index="38" alias="6" lookuptable="19" sortkey="7" />
     <fields>
         <field _id="1" name="REF" type="autonumber" _type="2" label="Numéro de la notice" />
         <field _id="2" name="Type" _type="3" label="Type de document" />
@@ -45,6 +45,7 @@
         <field _id="41" name="Creation" _type="3" label="Date de création de la notice (AAAAMMJJ)" defaultstopwords="false" />
         <field _id="42" name="LastUpdate" _type="3" label="Date de dernière mise à jour de la notice (AAAAMMJJ)" defaultstopwords="false" />
         <field _id="43" name="LastAuthor" _type="3" label="Dernière personne à avoir modifié la notice" defaultstopwords="false" />
+		<field _id="44" name="Support" _type="3" label="Support du document multimédia" description="Les supports possibles sont : Cd, Dvd, Podcast, Vhs." />
     </fields>
     <indices>
         <index _id="1" name="REF" label="Numéro de la notice">
@@ -137,6 +138,11 @@
                 <field _id="20" name="NumTexOf" words="true" phrases="true" />
             </fields>
         </index>
+        <index _id="39" name="Etatcol" label="Etat de la collection">
+            <fields>
+                <field _id="22" name="Etatcol" words="true" values="true" />
+            </fields>
+        </index>
         <index _id="19" name="Notes" label="Notes bibliographiques">
             <fields>
                 <field _id="25" name="Notes" words="true" phrases="true" />
@@ -225,6 +231,11 @@
         <index _id="37" name="DateVali" label="Date de fin de validité du texte officiel">
             <fields>
                 <field _id="16" name="DateVali" count="true" />
+            </fields>
+        </index>
+		<index _id="38" name="Support" label="Support du document multimédia">
+            <fields>
+                <field _id="44" name="Support" words="true" phrases="true" values="true" count="true" weight="5" />
             </fields>
         </index>
     </indices>
@@ -320,6 +331,11 @@
         <lookuptable _id="18" name="isbnissn" label="Isbn et Issn">
             <fields>
                 <field _id="30" name="IsbnIssn" />
+            </fields>
+        </lookuptable>
+		<lookuptable _id="19" name="support" label="Support du document multimédia">
+            <fields>
+                <field _id="44" name="Support" />
             </fields>
         </lookuptable>
     </lookuptables>
