@@ -4,5 +4,7 @@ Livre	Livre
 Congrès	Congrès
 Rapport	Rapport
 Mémoire	Mémoire
+Multimédia	Multimédia
 Thèse	Thèse
 Texte officiel	Texte officiel
+
