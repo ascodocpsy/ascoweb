@@ -37,7 +37,7 @@
     <br />
     
     /* Nombre de réponses par page */
-    <fill values="{$this->request->defaults('_max', 10)->ok()}">
+    <fill values="{$this->request->defaults('_max', 100)->ok()}">
         <select name="_max" id="_max" style="width: 15em; font-size: 86%;">
             <option value="10">10 par page</option>
             <option value="50">50 par page</option>
