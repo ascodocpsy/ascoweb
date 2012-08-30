@@ -150,12 +150,12 @@
         </index>
         <index _id="20" name="Col" label="Collection">
             <fields>
-                <field _id="26" name="Col" words="true" phrases="true" values="true" />
+                <field _id="26" name="Col" words="true" phrases="true" values="true" global="true" />
             </fields>
         </index>
         <index _id="21" name="Edit" label="Editeur">
             <fields>
-                <field _id="27" name="Edit" words="true" values="true" />
+                <field _id="27" name="Edit" words="true" values="true" global="true" />
             </fields>
         </index>
         <index _id="22" name="Lieu" label="Lieu d'édition, de soutenance">
