@@ -11,25 +11,40 @@
 
 <div class="titre">Rechercher des documents</div>
 
+
 <div class="texte">
     <form class="form search" action="Search" method="get">
 /*        <autosave /> */
-        <div>
-            <textbox 
+		<div>
+		     <label class="textarea autoheight">Recherche dans toute la base</label>
+            <textarea 
                 name="_equation" 
-                label="Recherche dans toute la base" 
-                rows="1" class="autoheight" 
+				id="_equation"	
+                rows="1"  
+				class="autoheight"
+				onkeyup="if(event.keyCode==13)this.form.submit();" 
                 value="{htmlspecialchars(implode(' AND ',$this->request->asArray('_equation')->ok()))}"
+				
             />
             <p class="exemple">Par défaut, l'opérateur ET est utilisé entre deux mots</p>
-        </div>       
+        </div>
+  
+
+
+	   
         <div> 
            <textbox name="MotsCles" label="Descripteurs"  rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('MotsCles'))}" />
             <p class="exemple"><a href="/Thesaurus" target="_blank" title="Consultez le thesaurus SantéPsy (nouvelle fenêtre)">Consultez le thesaurus SantéPsy</a></p>
         </div>
     
         <div>
-            <textbox name="Titres" label="Mots du titre" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Titres'))}" />
+           <label class="textarea autoheight">Mots du titre</label>
+			<textarea 
+			name="Titres"
+			rows="1" 
+			class="autoheight"
+			onkeyup="if(event.keyCode==13)this.form.submit();" 
+			value="{htmlspecialchars($this->request->get('Titres'))}" />
         </div>
         <div>
             <textbox name="Aut" label="Auteur" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Aut'))}" />
@@ -167,7 +182,7 @@
         */ 
         <hidden name="_fmt" value="{htmlspecialchars($this->request->defaults('_fmt','shortref')->ok())}" />
         <hidden name="_sort" value="{htmlspecialchars($this->request->defaults('_sort','%')->ok())}" />
-        <hidden name="_max" value="{htmlspecialchars($this->request->defaults('_max',10)->ok())}" />
+        <hidden name="_max" value="{htmlspecialchars($this->request->defaults('_max',100)->ok())}" />
 
         <div class="buttons">
             <reset label="Effacer tout" onclick="window.location='{Routing::linkFor('SearchForm')}'" />
