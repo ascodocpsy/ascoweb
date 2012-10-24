@@ -490,7 +490,7 @@ var ControlsMultimedia =
 ["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,     1 ,       , "reUpCase"     ,                ],
 ["Support"         , "Support du document multimédia"                   , true ,       ,        ,       ,     1 ,                ,                ],
 ["Notes"           , "Notes"                                            ,      ,       ,        ,       ,       ,                ,                ],
-["Lien"            , "Lien vers le document"                            , true ,       ,        ,       ,       , "reUrlIP"      ,                ],
+["Lien"            , "Lien vers le document"                            , 	   ,       ,        ,       ,       , "reUrlIP"      ,                ],
 ["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
 ["Loc"             , "Localisation du document"                         , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
 ["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
