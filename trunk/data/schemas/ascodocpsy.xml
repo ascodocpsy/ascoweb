@@ -46,6 +46,8 @@
         <field _id="42" name="LastUpdate" _type="3" label="Date de dernière mise à jour de la notice (AAAAMMJJ)" defaultstopwords="false" />
         <field _id="43" name="LastAuthor" _type="3" label="Dernière personne à avoir modifié la notice" defaultstopwords="false" />
 		<field _id="44" name="Support" _type="3" label="Support du document multimédia" description="Les supports possibles sont : Cd, Dvd, Podcast, Vhs." />
+		<field _id="45" name="Langue" _type="3" label="Langue" description="Langue du document" />
+
     </fields>
     <indices>
         <index _id="1" name="REF" label="Numéro de la notice">
@@ -170,7 +172,7 @@
         </index>
         <index _id="24" name="Resu" label="Résumé">
             <fields>
-                <field _id="31" name="Resu" words="true" phrases="true" global="true" />
+                <field _id="31" name="Resu" words="true" phrases="true" count="true" global="true" />
             </fields>
         </index>
         <index _id="25" name="Theme" label="Thème">
