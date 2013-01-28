@@ -302,7 +302,7 @@ var ControlsArticle =
 ["MotCle"          , "Descripteurs"                                     , true ,       ,        ,     1 ,       , "reUpCase"     ,                ],
 ["Nomp"            , "Noms propres"                                     ,      ,       ,        ,     1 ,       , 			     ,                ],
 ["CanDes"          , "Candidats descripteurs"                           ,      ,       ,        ,     1 ,       , "reUpCase"     ,                ],
-["Lien"            , "Lien vers le document"                            ,      ,       ,        ,       ,       , "reUrlIP"      ,                ],
+["Lien"            , "Lien vers le document"                            ,      ,       ,        ,       ,       , 			     ,                ],
 ["ProdFich"        , "Producteur de la fiche"                           , true ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
 ["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ]
 ]
