@@ -6,175 +6,51 @@
 </template>
 */
 
-/* Lien vers aide en ligne */
-<help href="http://www.ascodocpsy.org/article.php3?id_article=903" />
-
-<div class="titre">Rechercher des documents</div>
 
 
+<div class="titre" align="left">Rechercher des documents</div>
 <div class="texte">
     <form class="form search" action="Search" method="get">
 /*        <autosave /> */
-		<div>
-		     <label class="textarea autoheight">Recherche dans toute la base</label>
-            <textarea 
-                name="_equation" 
-				id="_equation"	
-                rows="1"  
-				class="autoheight"
-				onkeyup="if(event.keyCode==13)this.form.submit();" 
-                value="{htmlspecialchars(implode(' AND ',$this->request->asArray('_equation')->ok()))}"
-				
-            />
-            <p class="exemple">Par défaut, l'opérateur ET est utilisé entre deux mots</p>
-        </div>
-  
 
-
+		<table>
+			<tr>
+				<td>		
+					<div style="font-size:14px; ">
+						<textarea 
+							name="_equation" 
+							rows="1"
+							onkeyup="if(event.keyCode==13)this.form.submit();" 
+							value="{htmlspecialchars(implode(' AND ',$this->request->asArray('_equation')->ok()))}"
+						/>
+            
+					</div>
+				</td>
+				<td>	
+					<div class="buttons">             			   
+						<submit label="Lancer la recherche" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div style="font-size:12px; font-weight:bold; margin-left:37%;">
+					   <p><a href="/Base/SearchAdvanced">Pour une recherche avancée, cliquez ici</a></p>
+					</div>
+				</td>
+			</tr>
+		</table>
+			   <br />
+	   <br />
 	   
-        <div> 
-           <textbox name="MotsCles" label="Descripteurs"  rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('MotsCles'))}" />
-            <p class="exemple"><a href="/Thesaurus" target="_blank" title="Consultez le thesaurus SantéPsy (nouvelle fenêtre)">Consultez le thesaurus SantéPsy</a></p>
-        </div>
-    
-        <div>
-           <label class="textarea autoheight">Mots du titre</label>
-			<textarea 
-			name="Titres"
-			rows="1" 
-			class="autoheight"
-			onkeyup="if(event.keyCode==13)this.form.submit();" 
-			value="{htmlspecialchars($this->request->get('Titres'))}" />
-        </div>
-        <div>
-            <textbox name="Aut" label="Auteur" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Aut'))}" />
-        </div>
-        
-        <div>
-            <textbox name="Resu" label="Résumé" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Resu'))}" />
-        </div>
-    
-        <div>
-            <if test="{User::hasAccess('AdminBase,EditBase')}">
-                <fill values="{$this->request->asArray('Type')->ok()}">
-                    <checklist name="Type" label="Type de document" src="new TextTable($this->path.'tables/type.txt')" />
-                </fill>
-            </if>
-            <else>
-                <fill values="{$this->request->asArray('Type')->ok()}"> 
-                    <checklist name="Type" label="Type de document" src="new TextTable($this->path.'tables/public_type.txt')" />
-                </fill>
-            </else>
-        </div>
 
-		    	<div>
-			<fill values="{$this->request->asArray('Support')->ok()}">
-                <select name="Support" label="Support du document multimédia" src="new TextTable($this->path.'tables/support.txt')" size="3" multiple="true" />
-            </fill>
-			<div class="infonatext">
-                <p class="exemple">
-                    Pour sélectionner ou désélectionner plusieurs supports de document multimédia,
-                    appuyez sur la touche contrôle (Ctrl) et cliquez sur les supports souhaités.
-                </p>
-            </div>
-        </div>
+	 
+    
+		
+
+
+		
 	
-        /* TODO : quickTable ? */
-        <div>
-            <fill values="{htmlspecialchars($this->request->get('Liens'))}">
-                <checklist name="Liens" label="Texte intégral" rows="1" class="autoheight" src="array(array('code'=>'__has* NOT Type:Periodique', 'label'=>'Accès gratuit ou payant selon éditeur'))" />
-            </fill>
-        </div>
-    
-        <div>
-            <fill values="{$this->request->asArray('NatText')->ok()}">
-                <select name="NatText" label="Nature du texte officiel" src="new TextTable($this->path.'tables/nattext.txt')" size="3" multiple="true" />
-            </fill>
-            <div class="infonatext">
-                <p class="exemple">
-                    Pour sélectionner ou désélectionner plusieurs types de texte officiel,
-                    appuyez sur la touche contrôle (Ctrl) et cliquez sur les types souhaités.
-                </p>
-            </div>
-        </div>
-    
-        <div>
-            <textbox name="DateText" label="Date du texte officiel" value="{htmlspecialchars($this->request->get('DateText'))}" rows="1" class="autoheight smallbox"/>
-            <p class="exemple">
-                Formats : AAAA-MM-JJ ou AAAA-MM ou AAAA
-            </p>
-        </div>
-    
-        <div>
-            <textbox name="Rev" label="Titre du périodique" value="{htmlspecialchars($this->request->get('Rev'))}" rows="1" class="autoheight" />
-        </div>
-    
-    	<div>		
-            <textbox name="Numeros" label="Numéro (du périodique, du congrès, du texte officiel)" value="{htmlspecialchars($this->request->get('Numeros'))}" rows="1" class="autoheight smallbox" />
-        </div>
-    
-        <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="Vol" label="Numéro de volume" value="{htmlspecialchars($this->request->get('Vol'))}" rows="1" class="autoheight smallbox" />
-        </div>
-        
-        <div>
-            <fill values="{$this->request->asArray('Dates')->ok()}">
-                <checklist name="Dates" label="Date du document&lt;br /&gt;(sauf texte officiel)" src="new TextTable($this->path.'tables/date.txt')" />
-
-                <div class="date">
-        			<textbox name="Dates" label="Autre date" value="$fill" rows="1" class="autoheight smallbox" />
-        		</div>
-            </fill>
-        </div>
-        
-        <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="Edit" label="Editeur" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Edit'))}" />
-        </div>
-        
-        <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="Col" label="Collection" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('Col'))}" />
-        </div>
-        
-        <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="IsbnIssn" label="ISBN, ISSN" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('IsbnIssn'))}" />
-            <p class="exemple">
-                ISBN : 2-294-00377-2 ou 978-2-294-00377-6, ISSN : 4444-7564
-            </p>
-        </div>   
-        
-        <div test="{User::hasAccess('AdminBase')}">
-            <textbox name="DipSpe" label="Spécialité du diplôme" rows="1" class="autoheight" value="{htmlspecialchars($this->request->get('DipSpe'))}" />
-        </div>
-     
-        <div>
-            <textbox name="Loc" label="Localisation" rows="1" class="autoheight smallbox" value="{htmlspecialchars($this->request->get('Loc'))}" />
-             <p class="exemple"><a href="http://www.ascodocpsy.org/article.php3?id_article=10" target="_blank" title="Je ne connais pas le numéro de mon établissement">Je ne connais pas le numéro de mon établissement</a></p>
-        </div>
-        
-        <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="ProdFich" label="Producteur" value="{htmlspecialchars($this->request->get('ProdFich'))}" rows="1" class="autoheight smallbox" />
-            <p class="exemple">
-                Producteur, localisation : format="asco5"
-            </p>
-        </div>
-        
-        <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <fill values="{$this->request->asArray('Statut')->ok()}">
-                <checklist name="Statut" label="Statut de la notice" src="new TextTable($this->path.'tables/statut.txt')" />
-            </fill>
-        </div>
-    
-        <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="Creation" label="Date de création" value="{htmlspecialchars($this->request->get('Creation'))}" rows="1" class="autoheight smallbox" />
-        </div>
-    
-        <div test="{User::hasAccess('AdminBase,EditBase')}">
-            <textbox name="LastUpdate" label="Date de mise à jour" value="{htmlspecialchars($this->request->get('LastUpdate'))}" rows="1" class="autoheight smallbox" />
-            <p class="exemple">
-                Exemples : 2006*, 200612*, 20061215
-            </p>
-        </div>
-    
         /* 
             Si les options d'affichage ont été indiquées, on les récupère et on les transmet
             lors de la recherche (comme ça, quand on fait 'modifier la recherche', on
@@ -184,11 +60,18 @@
         <hidden name="_sort" value="{htmlspecialchars($this->request->defaults('_sort','%')->ok())}" />
         <hidden name="_max" value="{htmlspecialchars($this->request->defaults('_max',100)->ok())}" />
 
-        <div class="buttons">
-            <reset label="Effacer tout" onclick="window.location='{Routing::linkFor('SearchForm')}'" />
-            <submit label="Rechercher" />
-        </div>
-        
+        	<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		/* Lien vers aide en ligne */
+		<help href="http://www.ascodocpsy.org/article.php3?id_article=903" />
+		<br />
+
+		
+		<hr />
+		
         /* Historique des équations de recherche */
         <slot name="searchhistory" action="templates/searchhistory.html" />
 
@@ -197,35 +80,15 @@
 
 <script type="text/javascript">
 
+
 jQuery(document).ready(
-    function()
+    
+		
+	function()
     \{
         var title="Un index d'aide à la saisie est disponible pour ce champ.";
 
-        // Affichage conditionnel de critères
-        var textof=jQuery('input[@value="Texte officiel"]');
-        if (! textof.is(':checked'))
-        \{
-            jQuery('#DateText').parent().hide();
-            jQuery('#NatText').parent().hide();
-        \};
         
-        textof.click(function()
-        \{
-            jQuery('#DateText').parent().slideToggle('normal');
-            jQuery('#NatText').parent().slideToggle('normal');
-        \});
-        
-		var multimedia=jQuery('input[@value="Multimédia"]');
-        if (! multimedia.is(':checked'))
-        \{
-            jQuery('#Support').parent().hide();
-        \};
-        
-        multimedia.click(function()
-        \{
-            jQuery('#Support').parent().slideToggle('normal');
-        \});
 		
         // Critères dont la liste des valeurs de la base est disponible
         jQuery('#MotsCles').autocomplete
@@ -316,4 +179,36 @@ jQuery(document).ready(
         );
     \}
 );
+
+<!--
+function na_show_layer(lname)
+{
+if (na_show_layer.arguments.length <= 1) { // don't delete, backword compatibility
+if(document.getElementById) {
+document.getElementById(lname).style.visibility = 'visible';
+} else if(document.layers) {
+document.layers[lname].visibility = 'show'
+} else if(document.all)
+document.all(lname).style.visibility = 'visible'
+} else {
+if(document.getElementById) {
+document.getElementById(lname).style.visibility = 'hidden';
+} else if(document.layers) {
+document.layers[lname].visibility = 'hide'
+} else if(document.all)
+document.all(lname).style.visibility = 'hidden'
+}
+}
+
+function na_hide_layer(lname)
+{
+if(document.getElementById) {
+document.getElementById(lname).style.visibility = 'hidden';
+} else if(document.layers) {
+document.layers[lname].visibility = 'hide'
+} else if(document.all)
+document.all(lname).style.visibility = 'hidden'
+}
+
+// --> 
 </script>
