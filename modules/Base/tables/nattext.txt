@@ -1,4 +1,5 @@
 code	label
+ARRET	Arrêt
 ARRETE	Arrêté
 AVENANT	Avenant
 AVIS	Avis
