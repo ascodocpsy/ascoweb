@@ -192,7 +192,7 @@
         </index>
         <index _id="28" name="CanDes" label="Candidats descripteurs">
             <fields>
-                <field _id="35" name="CanDes" words="true" phrases="true" values="true" global="true" weight="5" />
+                <field _id="35" name="CanDes" words="true" phrases="true" values="true" count="true" global="true" weight="5" />
             </fields>
         </index>
         <index _id="29" name="Lien" label="Adresse Internet">
