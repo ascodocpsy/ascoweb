@@ -44,7 +44,7 @@ var reUpCase       = "[A-Z0-9(\\[][A-Z0-9',. ()\\[\\]+-]+"    // Commence soit p
 var reUpCaseFRE    = "L'information doit être saisie entièrement en majuscules et doit comporter au moins 2 caractères.\nSont autorisés : les lettres, les chiffres, les espaces et les signes suivants : ',.()[]+-"
 
 // Nom du centre au format ascoXXX
-var reNomCentre    = "asco[1-9][0-9]{0,2}"
+var reNomCentre    = "asco[1-9][0-9]{0,2}|webmestre"
 var reNomCentreFRE = "Le numéro attribué à la bibliothèque ou au centre de documentation doit être saisi sous la forme suivante : ascoXXX\nExemples : asco1/asco52"
 
 // Adresse IP
