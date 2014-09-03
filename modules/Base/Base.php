@@ -608,7 +608,6 @@ class Base extends DatabaseModule
      * Un message d'erreur est affiché dans les cas suivants :
      * - fiche inexistante,
      * - plusieurs fiches existent pour la revue,
-     * - la fiche existe mais le lien ne pointe pas vers le site www.ascodocpsy.org.
      *
      * @param string $Rev la revue pour laquelle on veut afficher la page 
      * de présentation.
@@ -626,7 +625,7 @@ class Base extends DatabaseModule
 		// Fiche Périodique inexistante
         if (! $this->select($eq))
         {
-            $this->showError('Aucune page de présentation du périodique n\'est disponible sur le site www.ascodocpsy.org'.$Rev.'.');
+            $this->showError('Aucune page de présentation n\'est disponible pour le périodique '.$Rev.'.');
             return;
         }
         
@@ -637,14 +636,14 @@ class Base extends DatabaseModule
         	return;
         }
         
-        // Fiche Périodique existante mais le champ Lien ne contient pas www.ascodocpsy.org
-        if (stripos($this->selection['Lien'], 'ascodocpsy') === false)
-        {
+        // Fiche Périodique existante mais le champ Lien est vide
+        if ($this->selection['Lien'] == "")
+		   		        {
         	$this->showError('Aucune page de présentation n\'est disponible pour le périodique '.$Rev.'.');
         	return;
         }
         
-        // Fiche Périodique existante, redirige vers l'URL du champ Lien (lien sur le site ascodocpsy.org)
+        // Fiche Périodique existante, redirige vers l'URL du champ Lien
         Runtime::redirect($this->selection['Lien'], true);
     }
 
