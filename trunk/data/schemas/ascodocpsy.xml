@@ -47,6 +47,8 @@
         <field _id="43" name="LastAuthor" _type="3" label="Dernière personne à avoir modifié la notice" defaultstopwords="false" />
 		<field _id="44" name="Support" _type="3" label="Support du document multimédia" description="Les supports possibles sont : Cd, Dvd, Podcast, Vhs." />
 		<field _id="45" name="Langue" _type="3" label="Langue" description="Langue du document" />
+		<field _id="46" name="SupportPerio" _type="3" label="Support du titre de périodique" description="Les supports possibles sont : Papier, électronique." />
+
 
     </fields>
     <indices>
@@ -240,6 +242,11 @@
                 <field _id="44" name="Support" words="true" phrases="true" values="true" count="true" weight="5" />
             </fields>
         </index>
+		<index _id="40" name="SupportPerio" label="Support du titre de périodique">
+            <fields>
+                <field _id="46" name="SupportPerio" words="true" phrases="true" values="true" count="true" weight="5" />
+            </fields>
+        </index>
     </indices>
     <lookuptables>
         <lookuptable _id="1" name="types" label="Types des documents">
@@ -338,6 +345,11 @@
 		<lookuptable _id="19" name="support" label="Support du document multimédia">
             <fields>
                 <field _id="44" name="Support" />
+            </fields>
+        </lookuptable>
+		<lookuptable _id="20" name="SupportPerio" label="Support du titre de périodique">
+            <fields>
+                <field _id="46" name="SupportPerio" />
             </fields>
         </lookuptable>
     </lookuptables>
