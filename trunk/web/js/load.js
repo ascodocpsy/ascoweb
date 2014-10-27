@@ -280,6 +280,7 @@ var Controls =
 ["ProdFich"        , "Producteur de la fiche"                           ,      ,       ,        ,     1 ,       , "reNomCentre"  ,                ],
 ["Statut"          , "Statut de la notice"                              , true ,       ,        ,       ,       ,                ,                ],
 ["Support"         , "Support du document multimédia"                   ,      ,       ,        ,       ,     1 ,                ,                ],
+["SupportPerio"    , "Support du titre de périodique"                   ,      ,       ,        ,       ,     1 ,                ,                ],
 ]
 
 // Pour document Article
@@ -462,6 +463,7 @@ var ControlsPeriodique =
 // Nom du champ    , Libellé du champ                                   , Obl  , MinLen, MaxLen , MinArt, MaxArt, "RegExp"       , "UserFunc"
 ["Type"            , "Type de document"                                 , true ,       ,        ,       ,     1 ,                ,                ],
 ["Rev"             , "Titre du périodique"                              , true ,     2 ,        ,       ,       ,                ,                ],
+["SupportPerio"    , "Support du titre de périodique"                   , true ,       ,        ,       ,     1 ,                ,                ],
 ["ViePerio"        , "Date de vie et de mort"                           , true ,       ,        ,       ,       , "rePeriod"     ,                ],
 ["EtatCol"         , "Etat de la collection"                            , true ,       ,        ,       ,       ,                ,                ],
 ["Notes"           , "Notes"                                            ,      ,       ,        ,       ,       ,                ,                ],
